@@ -10,6 +10,10 @@ public class HoaDon {
 	public HoaDon() {
 		super();
 	}
+	public HoaDon(String maHD) {
+		super();
+		this.maHD = maHD;
+	}
 	public HoaDon(String maHD, Date ngayXuatHD, KhachHang maKH, CuaHang maCH, NhanVien maNV) {
 		super();
 		this.maHD = maHD;

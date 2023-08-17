@@ -1,6 +1,7 @@
 package entity;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class NhanVien {
 	 private String maNV;
@@ -19,6 +20,10 @@ public class NhanVien {
 		public NhanVien() {
 			super();
 		}
+		public NhanVien(String maNV) {
+			super();
+			this.maNV = maNV;
+		}
 		public NhanVien(String maNV, String tenNV, int tuoi, String diaChi, String gioiTinh, Date ngaySinh,
 				Date ngayVaoLam, String cCCD, String email, String soDienThoai, String chucVu, TaiKhoan taiKhoan,
 				String maCH) {
@@ -30,12 +35,28 @@ public class NhanVien {
 			this.gioiTinh = gioiTinh;
 			this.ngaySinh = ngaySinh;
 			this.ngayVaoLam = ngayVaoLam;
-			CCCD = cCCD;
+			this.CCCD = cCCD;
 			this.email = email;
 			this.soDienThoai = soDienThoai;
 			this.chucVu = chucVu;
 			this.taiKhoan = taiKhoan;
 			this.maCH = maCH;
+		}
+		
+		@Override
+		public int hashCode() {
+			return Objects.hash(maNV);
+		}
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			NhanVien other = (NhanVien) obj;
+			return Objects.equals(maNV, other.maNV);
 		}
 		public String getMaNV() {
 			return maNV;

@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.Objects;
+
 public class NXB {
 	private String maNXB;
 	private String tenNXB;
@@ -9,6 +11,12 @@ public class NXB {
 	public NXB() {
 		super();
 	}
+	
+	public NXB(String maNXB) {
+		super();
+		this.maNXB = maNXB;
+	}
+
 	public NXB(String maNXB, String tenNXB, String diaChi, String soDienThoai, String email) {
 		super();
 		this.maNXB = maNXB;
@@ -47,6 +55,26 @@ public class NXB {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(diaChi, email, maNXB, soDienThoai, tenNXB);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		NXB other = (NXB) obj;
+		return Objects.equals(diaChi, other.diaChi) && Objects.equals(email, other.email)
+				&& Objects.equals(maNXB, other.maNXB) && Objects.equals(soDienThoai, other.soDienThoai)
+				&& Objects.equals(tenNXB, other.tenNXB);
+	}
+
 	@Override
 	public String toString() {
 		return "NXB [maNXB=" + maNXB + ", tenNXB=" + tenNXB + ", diaChi=" + diaChi + ", soDienThoai=" + soDienThoai

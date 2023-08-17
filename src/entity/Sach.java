@@ -1,6 +1,7 @@
 package entity;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Sach {
 	
@@ -10,12 +11,14 @@ public class Sach {
 	private String tenSach;
 	private String xuatXu;
 	private double gia;
-	
-	
-	
 	public Sach() {
 		
 	}
+	public Sach(String maSach) {
+		super();
+		this.maSach = maSach;
+	}
+
 	public Sach(String maSach, String maNXB, String maLoaiSach, String tenSach, String xuatXu, double gia) {
 		super();
 		this.maSach = maSach;
@@ -61,6 +64,27 @@ public class Sach {
 	public void setGia(double gia) {
 		this.gia = gia;
 	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(gia, maLoaiSach, maNXB, maSach, tenSach, xuatXu);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Sach other = (Sach) obj;
+		return Double.doubleToLongBits(gia) == Double.doubleToLongBits(other.gia)
+				&& Objects.equals(maLoaiSach, other.maLoaiSach) && Objects.equals(maNXB, other.maNXB)
+				&& Objects.equals(maSach, other.maSach) && Objects.equals(tenSach, other.tenSach)
+				&& Objects.equals(xuatXu, other.xuatXu);
+	}
+
 	@Override
 	public String toString() {
 		return "Sach [maSach=" + maSach + ", maNXB=" + maNXB + ", maLoaiSach=" + maLoaiSach + ", tenSach=" + tenSach

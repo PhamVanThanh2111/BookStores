@@ -83,7 +83,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 				
 		// icon btn exit
 		btnExit = new JButton("Thoát");
-		Image imgBackground = Toolkit.getDefaultToolkit ().getImage ("/image/background-login.jpg");
+		Image imgBackground = Toolkit.getDefaultToolkit ().getImage ("/background-login.jpg");
 		
 		lblTitle = new JLabel("ĐĂNG NHẬP");
 		lblTitle.setForeground(new Color(237, 106, 64));
@@ -159,9 +159,10 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		txtUser.setColumns(10);
 		
 		JLabel lblBackground = new JLabel("");
+		lblBackground.setIcon(new ImageIcon(DangNhap_GUI.class.getResource("/image/background-login.jpg")));
 		lblBackground.setBounds(0, 0, 636, 363);
 		getContentPane().add(lblBackground);
-		lblBackground.setIcon(new ImageIcon(DangNhap_GUI.class.getResource("/image/background-login.jpg")));
+//		lblBackground.setIcon(new ImageIcon(DangNhap_GUI.class.getResource("/image/background-login.jpg")));
 		
 		btnLogin.addActionListener(this);
 		btnExit.addActionListener(this);
@@ -206,7 +207,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 			countSaiMatKhau++;
 		}
 		else {
-			TrangChu trangChu = new TrangChu();
+			TrangChu_GUI trangChu = new TrangChu_GUI();
 			trangChu.setVisible(true);
 			this.setVisible(false);
 		}

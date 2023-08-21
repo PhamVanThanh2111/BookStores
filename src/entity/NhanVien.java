@@ -4,7 +4,8 @@ import java.util.Date;
 import java.util.Objects;
 
 public class NhanVien {
-	 private String maNV;
+	 	private String maNV;
+	    private String maCH;
 	    private String tenNV;
 		private int tuoi;
 		private String diaChi;
@@ -16,7 +17,8 @@ public class NhanVien {
 	    private String soDienThoai;
 	    private	String chucVu;
 	    private TaiKhoan taiKhoan;
-	    private String maCH;
+	    private int luong;
+
 		public NhanVien() {
 			super();
 		}
@@ -24,28 +26,29 @@ public class NhanVien {
 			super();
 			this.maNV = maNV;
 		}
-		public NhanVien(String maNV, String tenNV, int tuoi, String diaChi, String gioiTinh, Date ngaySinh,
+		public NhanVien(String maNV, String maCH, String tenNV, int tuoi, String diaChi, String gioiTinh, Date ngaySinh,
 				Date ngayVaoLam, String cCCD, String email, String soDienThoai, String chucVu, TaiKhoan taiKhoan,
-				String maCH) {
+				int luong) {
 			super();
 			this.maNV = maNV;
+			this.maCH = maCH;
 			this.tenNV = tenNV;
 			this.tuoi = tuoi;
 			this.diaChi = diaChi;
 			this.gioiTinh = gioiTinh;
 			this.ngaySinh = ngaySinh;
 			this.ngayVaoLam = ngayVaoLam;
-			this.CCCD = cCCD;
+			CCCD = cCCD;
 			this.email = email;
 			this.soDienThoai = soDienThoai;
 			this.chucVu = chucVu;
 			this.taiKhoan = taiKhoan;
-			this.maCH = maCH;
+			this.luong = luong;
 		}
 		
 		@Override
 		public int hashCode() {
-			return Objects.hash(maNV);
+			return Objects.hash(CCCD, email, maNV, soDienThoai, taiKhoan);
 		}
 		@Override
 		public boolean equals(Object obj) {
@@ -56,7 +59,9 @@ public class NhanVien {
 			if (getClass() != obj.getClass())
 				return false;
 			NhanVien other = (NhanVien) obj;
-			return Objects.equals(maNV, other.maNV);
+			return Objects.equals(CCCD, other.CCCD) && Objects.equals(email, other.email)
+					&& Objects.equals(maNV, other.maNV) && Objects.equals(soDienThoai, other.soDienThoai)
+					&& Objects.equals(taiKhoan, other.taiKhoan);
 		}
 		public String getMaNV() {
 			return maNV;
@@ -135,6 +140,13 @@ public class NhanVien {
 		}
 		public void setMaCH(String maCH) {
 			this.maCH = maCH;
+		}
+		
+		public int getLuong() {
+			return luong;
+		}
+		public void setLuong(int luong) {
+			this.luong = luong;
 		}
 		@Override
 		public String toString() {

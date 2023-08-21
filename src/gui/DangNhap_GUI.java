@@ -22,7 +22,9 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 import connect.ConnectDB;
+import dao.NhanVien_DAO;
 import dao.TaiKhoan_DAO;
+import entity.NhanVien;
 //import dao.TaiKhoan_DAO;
 import entity.TaiKhoan;
 import java.awt.event.KeyAdapter;
@@ -40,6 +42,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 	private JButton btnExit;
 	private JButton btnLogin;
 	private TaiKhoan_DAO taiKhoan_DAO;
+	private NhanVien_DAO nhanVien_DAO;
 	private JTextField txtUser;
 	private int countSaiMatKhau = 0;
 	
@@ -59,6 +62,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		
 		// khai bao dao
 		taiKhoan_DAO = new TaiKhoan_DAO();
+		nhanVien_DAO = new NhanVien_DAO();
 		
 		getContentPane().setLayout(null);
 		setTitle("Login");
@@ -198,7 +202,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		String maTaiKhoan = txtUser.getText().trim();
 		@SuppressWarnings("deprecation")
 		String matKhau = txtPwd.getText().toString().trim();
-		TaiKhoan taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMa(maTaiKhoan);
+		TaiKhoan taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTK(maTaiKhoan);
 		if (taiKhoan.getTaiKhoan() == null) {
 			JOptionPane.showMessageDialog(null, "Tài khoản không đúng!");
 		}
@@ -207,9 +211,11 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 			countSaiMatKhau++;
 		}
 		else {
-			TrangChu_GUI trangChu = new TrangChu_GUI();
-			trangChu.setVisible(true);
+			NhanVien nhanVien = nhanVien_DAO.getNhanVienTheoTaiKhoan(taiKhoan.getTaiKhoan());
+			TrangChu_GUI trangChu_GUI = new TrangChu_GUI(nhanVien);
+			trangChu_GUI.setVisible(true);
 			this.setVisible(false);
+//			System.out.println(nhanVien);
 		}
 	}
 }

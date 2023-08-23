@@ -7,11 +7,10 @@ public class NhanVien {
 	 	private String maNV;
 	    private String maCH;
 	    private String tenNV;
-		private int tuoi;
 		private String diaChi;
 	    private String gioiTinh;
-	    private Date ngaySinh;
-	    private Date ngayVaoLam;
+	    private java.sql.Date ngaySinh;
+	    private java.sql.Date ngayVaoLam;
 	    private String CCCD;
 	    private String email;
 	    private String soDienThoai;
@@ -26,19 +25,18 @@ public class NhanVien {
 			super();
 			this.maNV = maNV;
 		}
-		public NhanVien(String maNV, String maCH, String tenNV, int tuoi, String diaChi, String gioiTinh, Date ngaySinh,
-				Date ngayVaoLam, String cCCD, String email, String soDienThoai, String chucVu, TaiKhoan taiKhoan,
+		public NhanVien(String maNV, String maCH, String tenNV, String diaChi, String gioiTinh, java.sql.Date ngaySinh,
+				java.sql.Date ngayVaoLam, String cCCD, String email, String soDienThoai, String chucVu, TaiKhoan taiKhoan,
 				int luong) {
 			super();
 			this.maNV = maNV;
 			this.maCH = maCH;
 			this.tenNV = tenNV;
-			this.tuoi = tuoi;
 			this.diaChi = diaChi;
 			this.gioiTinh = gioiTinh;
 			this.ngaySinh = ngaySinh;
 			this.ngayVaoLam = ngayVaoLam;
-			CCCD = cCCD;
+			this.CCCD  = cCCD;
 			this.email = email;
 			this.soDienThoai = soDienThoai;
 			this.chucVu = chucVu;
@@ -75,12 +73,6 @@ public class NhanVien {
 		public void setTenNV(String tenNV) {
 			this.tenNV = tenNV;
 		}
-		public int getTuoi() {
-			return tuoi;
-		}
-		public void setTuoi(int tuoi) {
-			this.tuoi = tuoi;
-		}
 		public String getDiaChi() {
 			return diaChi;
 		}
@@ -93,16 +85,16 @@ public class NhanVien {
 		public void setGioiTinh(String gioiTinh) {
 			this.gioiTinh = gioiTinh;
 		}
-		public Date getNgaySinh() {
+		public java.sql.Date getNgaySinh() {
 			return ngaySinh;
 		}
-		public void setNgaySinh(Date ngaySinh) {
+		public void setNgaySinh(java.sql.Date ngaySinh) {
 			this.ngaySinh = ngaySinh;
 		}
-		public Date getNgayVaoLam() {
+		public java.sql.Date getNgayVaoLam() {
 			return ngayVaoLam;
 		}
-		public void setNgayVaoLam(Date ngayVaoLam) {
+		public void setNgayVaoLam(java.sql.Date ngayVaoLam) {
 			this.ngayVaoLam = ngayVaoLam;
 		}
 		public String getCCCD() {
@@ -150,9 +142,10 @@ public class NhanVien {
 		}
 		@Override
 		public String toString() {
-			return "NhanVien [maNV=" + maNV + ", tenNV=" + tenNV + ", tuoi=" + tuoi + ", diaChi=" + diaChi
+			return "NhanVien [maNV=" + maNV + ", maCH=" + maCH + ", tenNV=" + tenNV + ", diaChi=" + diaChi
 					+ ", gioiTinh=" + gioiTinh + ", ngaySinh=" + ngaySinh + ", ngayVaoLam=" + ngayVaoLam + ", CCCD="
 					+ CCCD + ", email=" + email + ", soDienThoai=" + soDienThoai + ", chucVu=" + chucVu + ", taiKhoan="
-					+ taiKhoan + ", maCH=" + maCH + "]";
-		}   
+					+ taiKhoan + ", luong=" + luong + "]";
+		}
+		
 }

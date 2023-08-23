@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -40,31 +41,36 @@ public class TrangChu_GUI extends JFrame {
 	private JButton btnDangXuat;
 	private JLabel lblHeaderMaNV;
 	private JButton btnHeaderInfo;
+	private JPanel pContent;
+	private NhanVien_GUI nhanVien_GUI;
 
 	/**
 	 * Create the frame.
 	 */
 	public TrangChu_GUI(NhanVien nhanVien) {
+		setForeground(new Color(255, 255, 255));
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setForeground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setSize(1281, 750);
+//		contentPane.setBounds(0, 0, 1280, 520);
+		setSize(1280, 720);
 		setResizable(false);
 		setTitle("Quản lý sách");
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 1281, 54);
+		panel.setBounds(0, 0, 1280, 54);
 		panel.setBackground(new Color(3, 37, 76));
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(TrangChu_GUI.class.getResource("/image/logo.jpg")));
-		lblLogo.setBounds(25, 0, 217, 55);
+		lblLogo.setBounds(30, 0, 217, 55);
 		Image imglogo = Toolkit.getDefaultToolkit().getImage("\\data\\image\\logo.jpg");
 		Image resizelogo = imglogo.getScaledInstance(lblLogo.getWidth(), lblLogo.getHeight(), 0);
 		panel.add(lblLogo);
@@ -75,12 +81,14 @@ public class TrangChu_GUI extends JFrame {
 		nam = now.getYear();
 
 		JLabel lblHeaderDate = new JLabel("Hiện tại:");
+		lblHeaderDate.setToolTipText("Ngày hiện tại");
 		lblHeaderDate.setForeground(Color.WHITE);
 		lblHeaderDate.setFont(new Font("SansSerif", Font.BOLD, 15));
 		lblHeaderDate.setBounds(488, 23, 66, 21);
 		panel.add(lblHeaderDate);
 
 		JLabel lblNgayHienTai = new JLabel(ngay + " / " + thang + " / " + nam);
+		lblNgayHienTai.setToolTipText("Ngày hiện tại");
 		lblNgayHienTai.setForeground(Color.WHITE);
 		lblNgayHienTai.setFont(new Font("SansSerif", Font.BOLD, 22));
 		lblNgayHienTai.setBounds(564, 20, 151, 21);
@@ -89,19 +97,20 @@ public class TrangChu_GUI extends JFrame {
 		lblHeaderTen = new JLabel(nhanVien.getTenNV());
 		lblHeaderTen.setFont(new Font("SansSerif", Font.BOLD, 15));
 		lblHeaderTen.setForeground(Color.WHITE);
-		lblHeaderTen.setBounds(843, 5, 170, 20);
+		lblHeaderTen.setBounds(840, 5, 170, 20);
 		panel.add(lblHeaderTen);
 
 		lblSubMa = new JLabel("Mã nhân viên:");
 		lblSubMa.setForeground(Color.WHITE);
 		lblSubMa.setFont(new Font("SansSerif", Font.BOLD, 15));
-		lblSubMa.setBounds(843, 26, 110, 20);
+		lblSubMa.setBounds(840, 26, 110, 20);
 		panel.add(lblSubMa);
 
 		btnDangXuat = new JButton("Đăng xuất");
+		btnDangXuat.setToolTipText("Đăng xuất");
 		btnDangXuat.setForeground(Color.WHITE);
 		btnDangXuat.setFont(new Font("SansSerif", Font.BOLD, 13));
-		btnDangXuat.setBounds(1113, 10, 132, 35);
+		btnDangXuat.setBounds(1110, 10, 132, 35);
 		btnDangXuat.setBackground(new Color(0xE91940));
 //		Icon iconDangXuat = IconFontSwing.buildIcon(FontAwesome.SIGN_OUT, 25, new Color(255, 255 ,255));
 //		btnDangXuat.setIcon(iconDangXuat);
@@ -122,7 +131,7 @@ public class TrangChu_GUI extends JFrame {
 		lblHeaderMaNV.setText(nhanVien.getMaNV());
 		lblHeaderMaNV.setForeground(Color.WHITE);
 		lblHeaderMaNV.setFont(new Font("SansSerif", Font.ITALIC, 15));
-		lblHeaderMaNV.setBounds(953, 26, 60, 20);
+		lblHeaderMaNV.setBounds(950, 26, 60, 20);
 		panel.add(lblHeaderMaNV);
 
 		btnHeaderInfo = new JButton();
@@ -134,49 +143,62 @@ public class TrangChu_GUI extends JFrame {
 
 		btnHeaderInfo.setForeground(Color.WHITE);
 		btnHeaderInfo.setFont(new Font("SansSerif", Font.BOLD, 20));
-		btnHeaderInfo.setBounds(1023, 5, 60, 44);
+		btnHeaderInfo.setBounds(1020, 5, 60, 44);
 		btnHeaderInfo.setBackground(new Color(57, 210, 247));
 		panel.add(btnHeaderInfo);
 		
 		// menu
 		JPanel pMenu = new JPanel();
 		pMenu.setBackground(new Color(17, 103, 177));
-		pMenu.setBounds(0, 54, 1281, 31);
+		pMenu.setBounds(0, 54, 1280, 31);
 		getContentPane().add(pMenu);
 		pMenu.setLayout(null);
 		
 		JButton btnNhanVien = new JButton("Nhân viên");
 		btnNhanVien.setToolTipText("Quản lý nhân viên");
-		btnNhanVien.setBounds(74, 0, 127, 31);
+		btnNhanVien.setBounds(47, 0, 127, 31);
+		btnNhanVien.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				loadNhanVien_GUI();
+			}
+		});
 		pMenu.add(btnNhanVien);
 		
 		JButton btnSach = new JButton("Sách");
 		btnSach.setToolTipText("Quản lý sách");
-		btnSach.setBounds(476, 0, 127, 31);
+		btnSach.setBounds(743, 0, 127, 31);
 		pMenu.add(btnSach);
 		
 		JButton btnNXB = new JButton("NXB");
 		btnNXB.setToolTipText("Quản lý NXB");
-		btnNXB.setBounds(677, 0, 127, 31);
+		btnNXB.setBounds(917, 0, 127, 31);
 		pMenu.add(btnNXB);
 		
 		JButton btnHoaDon = new JButton("Hóa đơn");
 		btnHoaDon.setToolTipText("Quản lý hóa đơn");
-		btnHoaDon.setBounds(1079, 0, 127, 31);
+		btnHoaDon.setBounds(1091, 0, 127, 31);
 		pMenu.add(btnHoaDon);
 		
 		JButton btnCuaHang = new JButton("Cửa hàng");
 		btnCuaHang.setToolTipText("Quản lý cửa hàng");
-		btnCuaHang.setBounds(275, 0, 127, 31);
+		btnCuaHang.setBounds(395, 0, 127, 31);
 		pMenu.add(btnCuaHang);
 		
 		JButton btnLoaiSach = new JButton("Loại sách");
 		btnLoaiSach.setToolTipText("Quản lý loại sách");
-		btnLoaiSach.setBounds(878, 0, 127, 31);
+		btnLoaiSach.setBounds(569, 0, 127, 31);
 		pMenu.add(btnLoaiSach);
 		
-		JPanel pContent = new JPanel();
-		pContent.setBounds(0, 86, 1269, 629);
+		JButton btnKhachHang = new JButton("Khách hàng");
+		btnKhachHang.setToolTipText("Quản lý khách hàng");
+		btnKhachHang.setBounds(221, 0, 127, 31);
+		pMenu.add(btnKhachHang);
+		
+		pContent = new JPanel();
+		pContent.setBounds(10, 108, 1256, 553);
 		getContentPane().add(pContent);
 		pContent.setLayout(null);
 	}	
@@ -188,5 +210,12 @@ public class TrangChu_GUI extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void loadNhanVien_GUI() {
+		setTitle("Quản lý nhân viên");
+		pContent.removeAll();
+		nhanVien_GUI = new NhanVien_GUI();
+		pContent.add(nhanVien_GUI.getParent());
 	}
 }

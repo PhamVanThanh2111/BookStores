@@ -73,7 +73,7 @@ public class NhanVien_GUI extends JPanel {
 		mMain.setLayout(null);
 		
 		JPanel pNhapThongTin = new JPanel();
-		pNhapThongTin.setBounds(10, 53, 1236, 175);
+		pNhapThongTin.setBounds(10, 53, 1236, 219);
 		pNhapThongTin.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 162, 197)), "Th\u00F4ng tin:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
 		mMain.add(pNhapThongTin);
 		pNhapThongTin.setLayout(null);
@@ -201,14 +201,20 @@ public class NhanVien_GUI extends JPanel {
 		lblTim.setBounds(303, 10, 96, 33);
 		mMain.add(lblTim);
 		
+		JPanel pDanhSach = new JPanel();
+		pDanhSach.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 162, 197)), "Danh s\u00E1ch:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
+		pDanhSach.setBounds(10, 282, 1236, 291);
+		mMain.add(pDanhSach);
+		pDanhSach.setLayout(null);
+		
 		JScrollPane scrollPaneNV = new JScrollPane();
-		scrollPaneNV.setBounds(10, 238, 1236, 335);
+		scrollPaneNV.setBounds(10, 20, 1216, 305);
 		scrollPaneNV.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
 		scrollPaneNV.setBorder(new LineBorder(new Color(0, 162, 197), 1, true));
 		scrollPaneNV.setBackground(new Color(0, 162, 197));
-		mMain.add(scrollPaneNV);
+		pDanhSach.add(scrollPaneNV);
 	
-		String cols[] = {"Mã NV", "Mã CH", "Tên NV", "Địa chỉ","Giới tính","Ngày sinh","Ngày vào làm","CCCD","Email","SĐT","Chức vụ","Tài khoản","Lương"};
+		String cols[] = {"Mã NV", "Mã CH", "Tên NV", "Địa chỉ","Giới tính","Ngày sinh","Ngày vào làm","CCCD","Email","SĐT","Chức vụ","Lương"};
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
 		table.setRowHeight(25);
@@ -260,6 +266,10 @@ public class NhanVien_GUI extends JPanel {
 					cbChucVu.setSelectedIndex(1);
 				else
 					cbChucVu.setSelectedIndex(2);
+				if (model.getValueAt(row, 4).toString().equalsIgnoreCase("Nam"))
+					cbGioiTinh.setSelectedIndex(0);
+				else 
+					cbGioiTinh.setSelectedIndex(1);
 			}
 		});
 		scrollPaneNV.setViewportView(table);
@@ -271,19 +281,18 @@ public class NhanVien_GUI extends JPanel {
 		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
 		
 		// set width of table
-		table.getColumnModel().getColumn(0).setPreferredWidth(95);
-		table.getColumnModel().getColumn(1).setPreferredWidth(95);
-		table.getColumnModel().getColumn(2).setPreferredWidth(95);
-		table.getColumnModel().getColumn(3).setPreferredWidth(95);
-		table.getColumnModel().getColumn(4).setPreferredWidth(95);
-		table.getColumnModel().getColumn(5).setPreferredWidth(95);
-		table.getColumnModel().getColumn(6).setPreferredWidth(95);
-		table.getColumnModel().getColumn(7).setPreferredWidth(95);
-		table.getColumnModel().getColumn(8).setPreferredWidth(95);
-		table.getColumnModel().getColumn(9).setPreferredWidth(95);
-		table.getColumnModel().getColumn(10).setPreferredWidth(95);
-		table.getColumnModel().getColumn(11).setPreferredWidth(95);
-		table.getColumnModel().getColumn(12).setPreferredWidth(95);
+		table.getColumnModel().getColumn(0).setPreferredWidth(102);
+		table.getColumnModel().getColumn(1).setPreferredWidth(102);
+		table.getColumnModel().getColumn(2).setPreferredWidth(102);
+		table.getColumnModel().getColumn(3).setPreferredWidth(102);
+		table.getColumnModel().getColumn(4).setPreferredWidth(102);
+		table.getColumnModel().getColumn(5).setPreferredWidth(102);
+		table.getColumnModel().getColumn(6).setPreferredWidth(102);
+		table.getColumnModel().getColumn(7).setPreferredWidth(102);
+		table.getColumnModel().getColumn(8).setPreferredWidth(102);
+		table.getColumnModel().getColumn(9).setPreferredWidth(102);
+		table.getColumnModel().getColumn(10).setPreferredWidth(102);
+		table.getColumnModel().getColumn(11).setPreferredWidth(102);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
 		
@@ -298,6 +307,22 @@ public class NhanVien_GUI extends JPanel {
 		dateChooserNgaySinh.getCalendarButton().setBackground(new Color(0, 162, 197));
 		dateNow = new Date(new java.util.Date().getTime());
 		dateChooserNgaySinh.setDate(dateNow);
+		
+		JButton btnAdd = new JButton("Thêm");
+		btnAdd.setBounds(160, 167, 108, 33);
+		pNhapThongTin.add(btnAdd);
+		
+		JButton btnXoa = new JButton("Xóa");
+		btnXoa.setBounds(428, 167, 108, 33);
+		pNhapThongTin.add(btnXoa);
+		
+		JButton btnSua = new JButton("Sửa");
+		btnSua.setBounds(696, 167, 108, 33);
+		pNhapThongTin.add(btnSua);
+		
+		JButton btnLamMoi = new JButton("Làm mới");
+		btnLamMoi.setBounds(964, 167, 108, 33);
+		pNhapThongTin.add(btnLamMoi);
 
 		// loadData
 		loadDataIntoTable();
@@ -305,7 +330,7 @@ public class NhanVien_GUI extends JPanel {
 	
 	public void loadDataIntoTable() {
 		for (NhanVien nhanVien : nhanVien_DAO.getAllListNhanVien()) {
-			Object[] objects = {nhanVien.getMaNV(), nhanVien.getMaCH(), nhanVien.getTenNV(), nhanVien.getDiaChi(), nhanVien.getGioiTinh(), simpleDateFormat.format(nhanVien.getNgaySinh()), simpleDateFormat.format(nhanVien.getNgayVaoLam()), nhanVien.getCCCD(), nhanVien.getEmail(), nhanVien.getSoDienThoai(), nhanVien.getChucVu(), nhanVien.getTaiKhoan(), nhanVien.getLuong()};
+			Object[] objects = {nhanVien.getMaNV(), nhanVien.getMaCH(), nhanVien.getTenNV(), nhanVien.getDiaChi(), nhanVien.getGioiTinh(), simpleDateFormat.format(nhanVien.getNgaySinh()), simpleDateFormat.format(nhanVien.getNgayVaoLam()), nhanVien.getCCCD(), nhanVien.getEmail(), nhanVien.getSoDienThoai(), nhanVien.getChucVu(), nhanVien.getLuong()};
 			model.addRow(objects);
 		}
 	}

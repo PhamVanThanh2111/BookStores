@@ -114,7 +114,15 @@ public class TrangChu_GUI extends JFrame {
 				// TODO Auto-generated method stub
 				int option = JOptionPane.showConfirmDialog(null, "Bạn có muốn thoát ứng dụng?", "Thoát?", JOptionPane.YES_NO_OPTION);
 				if (option == JOptionPane.YES_OPTION) {
-					System.exit(0);
+					DangNhap_GUI dangNhap_GUI;
+					try {
+						dangNhap_GUI = new DangNhap_GUI();
+						dangNhap_GUI.setVisible(true);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					setVisible(false);
 				}
 			}
 		});

@@ -7,6 +7,11 @@ import java.awt.Font;
 public class HoaDon_GUI extends JPanel {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Create the panel.
 	 */
 	public HoaDon_GUI() {

@@ -7,7 +7,12 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.Date;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
@@ -16,11 +21,17 @@ import javax.swing.table.JTableHeader;
 
 import com.toedter.calendar.JDateChooser;
 
+import connect.ConnectDB;
+import dao.NhanVien_DAO;
+import entity.NhanVien;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.EtchedBorder;
 
 public class NhanVien_GUI extends JPanel {
 	/**
@@ -39,13 +50,23 @@ public class NhanVien_GUI extends JPanel {
 	private DefaultTableModel model;
 	private JTable table;
 	private JTableHeader tableHeader;
+	private NhanVien_DAO nhanVien_DAO;
+	private SimpleDateFormat simpleDateFormat;
 
 	/**
 	 * Create the panel.
+	 * @throws SQLException 
 	 */
-	public NhanVien_GUI() {
-		setLayout(null);
+	public NhanVien_GUI() throws SQLException {
+		// connect
+		ConnectDB.getInstance();
+		ConnectDB.connect();
 		
+		// khai bao DAO
+		nhanVien_DAO = new NhanVien_DAO();
+		simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		
+		setLayout(null);
 		JPanel mMain = new JPanel();
 		mMain.setBounds(0, 0, 1256, 583);
 		add(mMain);
@@ -53,7 +74,7 @@ public class NhanVien_GUI extends JPanel {
 		
 		JPanel pNhapThongTin = new JPanel();
 		pNhapThongTin.setBounds(10, 53, 1236, 175);
-		pNhapThongTin.setBorder(new LineBorder(new Color(0, 162, 197), 1, true));
+		pNhapThongTin.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 162, 197)), "Th\u00F4ng tin:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
 		mMain.add(pNhapThongTin);
 		pNhapThongTin.setLayout(null);
 		
@@ -115,6 +136,8 @@ public class NhanVien_GUI extends JPanel {
 		JComboBox<String> cbGioiTinh = new JComboBox<String>();
 		cbGioiTinh.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		cbGioiTinh.setBounds(545, 116, 96, 33);
+		cbGioiTinh.addItem("Nam");
+		cbGioiTinh.addItem("Nữ");
 		pNhapThongTin.add(cbGioiTinh);
 		
 		JLabel lblChucVu = new JLabel("Chức vụ:");
@@ -147,6 +170,9 @@ public class NhanVien_GUI extends JPanel {
 		JComboBox<String> cbChucVu = new JComboBox<String>();
 		cbChucVu.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		cbChucVu.setBounds(890, 116, 96, 33);
+		cbChucVu.addItem("Bán hàng");
+		cbChucVu.addItem("Nhập hàng");
+		cbChucVu.addItem("Quản trị hệ thống");
 		pNhapThongTin.add(cbChucVu);
 		
 		txtTim = new JTextField();
@@ -163,6 +189,10 @@ public class NhanVien_GUI extends JPanel {
 		JComboBox<String> cbTim = new JComboBox<String>();
 		cbTim.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		cbTim.setBounds(676, 10, 96, 33);
+		cbTim.addItem("Tên NV");
+		cbTim.addItem("Mã NV");
+		cbTim.addItem("SĐT");
+		cbTim.addItem("CCCD");
 		mMain.add(cbTim);
 		
 		JLabel lblTim = new JLabel("Tìm kiếm");
@@ -181,6 +211,57 @@ public class NhanVien_GUI extends JPanel {
 		String cols[] = {"Mã NV", "Mã CH", "Tên NV", "Địa chỉ","Giới tính","Ngày sinh","Ngày vào làm","CCCD","Email","SĐT","Chức vụ","Tài khoản","Lương"};
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
+		table.setRowHeight(25);
+		table.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				int row = table.getSelectedRow();
+				txtMaNV.setText((String) model.getValueAt(row, 0));
+				txtTenNV.setText((String) model.getValueAt(row, 2));
+				txtDiaChi.setText((String) model.getValueAt(row, 3));
+				try {
+					dateChooserNgaySinh.setDate(new java.sql.Date(simpleDateFormat.parse((String) model.getValueAt(row, 5)).getTime()));
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				txtSoDienThoai.setText((String) model.getValueAt(row, 9));
+				txtCCCD.setText((String) model.getValueAt(row, 7));
+				txtEmail.setText((String) model.getValueAt(row, 8));
+				if (model.getValueAt(row, 10).toString().equalsIgnoreCase("Bán hàng"))
+					cbChucVu.setSelectedIndex(0);
+				else if (model.getValueAt(row, 10).toString().equalsIgnoreCase("Nhập hàng"))
+					cbChucVu.setSelectedIndex(1);
+				else
+					cbChucVu.setSelectedIndex(2);
+			}
+		});
 		scrollPaneNV.setViewportView(table);
 		
 		// header of table
@@ -218,5 +299,14 @@ public class NhanVien_GUI extends JPanel {
 		dateNow = new Date(new java.util.Date().getTime());
 		dateChooserNgaySinh.setDate(dateNow);
 
+		// loadData
+		loadDataIntoTable();
+	}
+	
+	public void loadDataIntoTable() {
+		for (NhanVien nhanVien : nhanVien_DAO.getAllListNhanVien()) {
+			Object[] objects = {nhanVien.getMaNV(), nhanVien.getMaCH(), nhanVien.getTenNV(), nhanVien.getDiaChi(), nhanVien.getGioiTinh(), simpleDateFormat.format(nhanVien.getNgaySinh()), simpleDateFormat.format(nhanVien.getNgayVaoLam()), nhanVien.getCCCD(), nhanVien.getEmail(), nhanVien.getSoDienThoai(), nhanVien.getChucVu(), nhanVien.getTaiKhoan(), nhanVien.getLuong()};
+			model.addRow(objects);
+		}
 	}
 }

@@ -103,7 +103,12 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					login();
+					try {
+						login();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 			}
 		});
@@ -149,7 +154,12 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					login();
+					try {
+						login();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 			}
 		});
@@ -182,7 +192,12 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Bạn đã nhập sai mật khẩu quá 3 lần!");
 			}
 			else {
-				login();
+				try {
+					login();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		}
 		else if (e.getSource().equals(btnExit)) {
@@ -195,7 +210,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 	
 	
 	
-	public void login() {
+	public void login() throws SQLException {
 		String maTaiKhoan = txtUser.getText().trim();
 		@SuppressWarnings("deprecation")
 		String matKhau = txtPwd.getText().toString().trim();

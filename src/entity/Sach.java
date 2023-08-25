@@ -9,6 +9,7 @@ public class Sach {
 	private String maLoaiSach;
 	private String tenSach;
 	private String xuatXu;
+	private double giaa;
 	private double gia;
 	public Sach() {
 		

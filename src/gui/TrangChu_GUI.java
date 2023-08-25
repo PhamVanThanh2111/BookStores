@@ -1,15 +1,13 @@
 package gui;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,13 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 
 import entity.NhanVien;
-
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 
 public class TrangChu_GUI extends JFrame {
 
@@ -42,7 +35,7 @@ public class TrangChu_GUI extends JFrame {
 	private JLabel lblHeaderMaNV;
 	private JButton btnHeaderInfo;
 	private JPanel pContent;
-	private NhanVien_GUI nhanVien_GUI;
+	private CardLayout cardLayout;
 
 	/**
 	 * Create the frame.
@@ -64,15 +57,13 @@ public class TrangChu_GUI extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1280, 54);
-		panel.setBackground(new Color(3, 37, 76));
+		panel.setBackground(new Color(0, 41, 111));
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(TrangChu_GUI.class.getResource("/image/logo.jpg")));
 		lblLogo.setBounds(30, 0, 217, 55);
-		Image imglogo = Toolkit.getDefaultToolkit().getImage("\\data\\image\\logo.jpg");
-		Image resizelogo = imglogo.getScaledInstance(lblLogo.getWidth(), lblLogo.getHeight(), 0);
 		panel.add(lblLogo);
 
 		now = LocalDate.now();
@@ -162,7 +153,7 @@ public class TrangChu_GUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				loadNhanVien_GUI();
+				cardLayout.show(pContent, "1");
 			}
 		});
 		pMenu.add(btnNhanVien);
@@ -180,6 +171,14 @@ public class TrangChu_GUI extends JFrame {
 		JButton btnHoaDon = new JButton("Hóa đơn");
 		btnHoaDon.setToolTipText("Quản lý hóa đơn");
 		btnHoaDon.setBounds(1091, 0, 127, 31);
+		btnHoaDon.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(pContent, "7");
+			}
+		});
 		pMenu.add(btnHoaDon);
 		
 		JButton btnCuaHang = new JButton("Cửa hàng");
@@ -198,9 +197,19 @@ public class TrangChu_GUI extends JFrame {
 		pMenu.add(btnKhachHang);
 		
 		pContent = new JPanel();
-		pContent.setBounds(10, 108, 1256, 553);
+		pContent.setBounds(10, 90, 1256, 583);
 		getContentPane().add(pContent);
-		pContent.setLayout(null);
+		
+		cardLayout = new CardLayout();
+		pContent.setLayout(cardLayout);
+		pContent.add(new NhanVien_GUI(), "1");
+//		pContent.add(new HoaDon_GUI(), "2");
+		// 3
+		// 4
+		// 5
+		// 6Xj
+		pContent.add(new HoaDon_GUI(), "7");
+		cardLayout.show(pContent, "1");
 	}	
 	
 	public static void main(String[] args) {
@@ -212,10 +221,4 @@ public class TrangChu_GUI extends JFrame {
 		}
 	}
 	
-	public void loadNhanVien_GUI() {
-		setTitle("Quản lý nhân viên");
-		pContent.removeAll();
-		nhanVien_GUI = new NhanVien_GUI();
-		pContent.add(nhanVien_GUI.getParent());
-	}
 }

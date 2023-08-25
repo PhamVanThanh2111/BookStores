@@ -1,7 +1,6 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -16,7 +15,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
@@ -87,7 +85,6 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 				
 		// icon btn exit
 		btnExit = new JButton("Thoát");
-		Image imgBackground = Toolkit.getDefaultToolkit ().getImage ("/background-login.jpg");
 		
 		lblTitle = new JLabel("ĐĂNG NHẬP");
 		lblTitle.setForeground(new Color(237, 106, 64));

@@ -172,7 +172,19 @@ public class TrangChu_GUI extends JFrame {
 		
 		JButton btnSach = new JButton("Sách");
 		btnSach.setToolTipText("Quản lý sách");
+//<<<<<<< HEAD
+		btnSach.setBounds(743, 0, 127, 31);
+		btnSach.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(pContent, "Sach_GUI");
+			}
+		});
+//=======
 		btnSach.setBounds(653, 0, 127, 31);
+//>>>>>>> c8ed6b154494120d6eaac61a979b04c8cea654b3
 		pMenu.add(btnSach);
 		
 		JButton btnNXB = new JButton("NXB");
@@ -217,13 +229,31 @@ public class TrangChu_GUI extends JFrame {
 		pContent.setBounds(10, 90, 1256, 583);
 		getContentPane().add(pContent);
 		
+		
 		cardLayout = new CardLayout();
 		pContent.setLayout(cardLayout);
+//<<<<<<< HEAD
+		pContent.add(new NhanVien_GUI(), "1");
+//		pContent.add(new HoaDon_GUI(), "2");
+		// 3
+		// 4
+		// 5
+		pContent.add(new Sach_GUI(),"Sach_GUI");
+		
+		// 6Xj
+		pContent.add(new HoaDon_GUI(), "7");
+		cardLayout.show(pContent, "1");
+		
+
+		
+//=======
 		pContent.add(new NhanVien_GUI(), "NhanVien_GUI");
 		// add them gui vao day
 		pContent.add(new HoaDon_GUI(), "HoaDon_GUI");
 		cardLayout.show(pContent, "NhanVien_GUI");
+//>>>>>>> c8ed6b154494120d6eaac61a979b04c8cea654b3
 	}	
+		
 	
 	public static void main(String[] args) {
 		try {

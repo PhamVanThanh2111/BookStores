@@ -3,16 +3,18 @@ package entity;
 import java.util.Objects;
 
 public class Sach {
-	
+
 	private String maSach;
 	private String maNXB;
 	private String maLoaiSach;
 	private String tenSach;
 	private String xuatXu;
 	private double gia;
+
 	public Sach() {
-		
+
 	}
+
 	public Sach(String maSach) {
 		super();
 		this.maSach = maSach;
@@ -27,43 +29,55 @@ public class Sach {
 		this.xuatXu = xuatXu;
 		this.gia = gia;
 	}
+
 	public String getMaSach() {
 		return maSach;
 	}
+
 	public void setMaSach(String maSach) {
 		this.maSach = maSach;
 	}
+
 	public String getMaNXB() {
 		return maNXB;
 	}
+
 	public void setMaNXB(String maNXB) {
 		this.maNXB = maNXB;
 	}
+
 	public String getMaLoaiSach() {
 		return maLoaiSach;
 	}
+
 	public void setMaLoaiSach(String maLoaiSach) {
 		this.maLoaiSach = maLoaiSach;
 	}
+
 	public String getTenSach() {
 		return tenSach;
 	}
+
 	public void setTenSach(String tenSach) {
 		this.tenSach = tenSach;
 	}
+
 	public String getXuatXu() {
 		return xuatXu;
 	}
+
 	public void setXuatXu(String xuatXu) {
 		this.xuatXu = xuatXu;
 	}
+
 	public double getGia() {
 		return gia;
 	}
+
 	public void setGia(double gia) {
 		this.gia = gia;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(gia, maLoaiSach, maNXB, maSach, tenSach, xuatXu);
@@ -89,9 +103,5 @@ public class Sach {
 		return "Sach [maSach=" + maSach + ", maNXB=" + maNXB + ", maLoaiSach=" + maLoaiSach + ", tenSach=" + tenSach
 				+ ", xuatXu=" + xuatXu + ", gia=" + gia + "]";
 	}
-	
-	
-	
-	
 
 }

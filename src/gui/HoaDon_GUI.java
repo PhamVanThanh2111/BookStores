@@ -22,7 +22,7 @@ public class HoaDon_GUI extends JPanel {
 		add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Hoas don");
+		JLabel lblNewLabel = new JLabel("Hoá don");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel.setBounds(271, 270, 200, 92);
 		panel.add(lblNewLabel);

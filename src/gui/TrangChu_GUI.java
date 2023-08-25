@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import entity.NhanVien;
 
@@ -39,8 +40,9 @@ public class TrangChu_GUI extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public TrangChu_GUI(NhanVien nhanVien) {
+	public TrangChu_GUI(NhanVien nhanVien) throws SQLException {
 		setForeground(new Color(255, 255, 255));
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -147,19 +149,22 @@ public class TrangChu_GUI extends JFrame {
 		
 		JButton btnNhanVien = new JButton("Nhân viên");
 		btnNhanVien.setToolTipText("Quản lý nhân viên");
-		btnNhanVien.setBounds(47, 0, 127, 31);
+		btnNhanVien.setBounds(29, 0, 127, 31);
+		btnNhanVien.setBackground(new Color(255, 240, 245));
+		btnNhanVien.setBorder(new LineBorder(new Color(0, 146, 182), 2, false));
 		btnNhanVien.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				cardLayout.show(pContent, "1");
+				cardLayout.show(pContent, "NhanVien_GUI");
 			}
 		});
 		pMenu.add(btnNhanVien);
 		
 		JButton btnSach = new JButton("Sách");
 		btnSach.setToolTipText("Quản lý sách");
+<<<<<<< HEAD
 		btnSach.setBounds(743, 0, 127, 31);
 		btnSach.addActionListener(new ActionListener() {
 			
@@ -169,40 +174,48 @@ public class TrangChu_GUI extends JFrame {
 				cardLayout.show(pContent, "Sach_GUI");
 			}
 		});
+=======
+		btnSach.setBounds(653, 0, 127, 31);
+>>>>>>> c8ed6b154494120d6eaac61a979b04c8cea654b3
 		pMenu.add(btnSach);
 		
 		JButton btnNXB = new JButton("NXB");
 		btnNXB.setToolTipText("Quản lý NXB");
-		btnNXB.setBounds(917, 0, 127, 31);
+		btnNXB.setBounds(965, 0, 127, 31);
 		pMenu.add(btnNXB);
 		
 		JButton btnHoaDon = new JButton("Hóa đơn");
 		btnHoaDon.setToolTipText("Quản lý hóa đơn");
-		btnHoaDon.setBounds(1091, 0, 127, 31);
+		btnHoaDon.setBounds(497, 0, 127, 31);
 		btnHoaDon.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				cardLayout.show(pContent, "7");
+				cardLayout.show(pContent, "HoaDon_GUI");
 			}
 		});
 		pMenu.add(btnHoaDon);
 		
 		JButton btnCuaHang = new JButton("Cửa hàng");
 		btnCuaHang.setToolTipText("Quản lý cửa hàng");
-		btnCuaHang.setBounds(395, 0, 127, 31);
+		btnCuaHang.setBounds(185, 0, 127, 31);
 		pMenu.add(btnCuaHang);
 		
 		JButton btnLoaiSach = new JButton("Loại sách");
 		btnLoaiSach.setToolTipText("Quản lý loại sách");
-		btnLoaiSach.setBounds(569, 0, 127, 31);
+		btnLoaiSach.setBounds(809, 0, 127, 31);
 		pMenu.add(btnLoaiSach);
 		
 		JButton btnKhachHang = new JButton("Khách hàng");
 		btnKhachHang.setToolTipText("Quản lý khách hàng");
-		btnKhachHang.setBounds(221, 0, 127, 31);
+		btnKhachHang.setBounds(341, 0, 127, 31);
 		pMenu.add(btnKhachHang);
+		
+		JButton btnThongKe = new JButton("Thống kê");
+		btnThongKe.setBounds(1121, 0, 127, 31);
+		pMenu.add(btnThongKe);
+		btnThongKe.setToolTipText("Quản lý khách hàng");
 		
 		pContent = new JPanel();
 		pContent.setBounds(10, 90, 1256, 583);
@@ -211,6 +224,7 @@ public class TrangChu_GUI extends JFrame {
 		
 		cardLayout = new CardLayout();
 		pContent.setLayout(cardLayout);
+<<<<<<< HEAD
 		pContent.add(new NhanVien_GUI(), "1");
 //		pContent.add(new HoaDon_GUI(), "2");
 		// 3
@@ -224,6 +238,12 @@ public class TrangChu_GUI extends JFrame {
 		
 
 		
+=======
+		pContent.add(new NhanVien_GUI(), "NhanVien_GUI");
+		// add them gui vao day
+		pContent.add(new HoaDon_GUI(), "HoaDon_GUI");
+		cardLayout.show(pContent, "NhanVien_GUI");
+>>>>>>> c8ed6b154494120d6eaac61a979b04c8cea654b3
 	}	
 		
 	
@@ -235,5 +255,4 @@ public class TrangChu_GUI extends JFrame {
 			e.printStackTrace();
 		}
 	}
-	
 }

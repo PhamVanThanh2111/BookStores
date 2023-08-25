@@ -41,7 +41,7 @@ public class Sach_GUI extends JPanel {
 	
 		JPanel pNhapThongTin = new JPanel();
 		pNhapThongTin.setBounds(10, 52, 1204, 167);
-		pNhapThongTin.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 162, 197)), "Chức :", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
+		pNhapThongTin.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 162, 197)), "Th\u00F4ng tin:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
 //		pNhapThongTin.setBorder(new TitledBorder(null, "Th\u00F4ng tin:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		mMain.add(pNhapThongTin);
 		pNhapThongTin.setLayout(null);

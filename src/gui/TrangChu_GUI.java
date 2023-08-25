@@ -161,6 +161,14 @@ public class TrangChu_GUI extends JFrame {
 		JButton btnSach = new JButton("Sách");
 		btnSach.setToolTipText("Quản lý sách");
 		btnSach.setBounds(743, 0, 127, 31);
+		btnSach.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(pContent, "Sach_GUI");
+			}
+		});
 		pMenu.add(btnSach);
 		
 		JButton btnNXB = new JButton("NXB");
@@ -200,6 +208,7 @@ public class TrangChu_GUI extends JFrame {
 		pContent.setBounds(10, 90, 1256, 583);
 		getContentPane().add(pContent);
 		
+		
 		cardLayout = new CardLayout();
 		pContent.setLayout(cardLayout);
 		pContent.add(new NhanVien_GUI(), "1");
@@ -207,10 +216,16 @@ public class TrangChu_GUI extends JFrame {
 		// 3
 		// 4
 		// 5
+		pContent.add(new Sach_GUI(),"Sach_GUI");
+		
 		// 6Xj
 		pContent.add(new HoaDon_GUI(), "7");
 		cardLayout.show(pContent, "1");
+		
+
+		
 	}	
+		
 	
 	public static void main(String[] args) {
 		try {

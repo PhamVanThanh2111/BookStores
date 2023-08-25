@@ -178,45 +178,46 @@ public class NhanVien_GUI extends JPanel {
 		scrollPaneNV.setBackground(new Color(0, 162, 197));
 		mMain.add(scrollPaneNV);
 	
+		
 		String cols[] = {"Mã NV", "Mã CH", "Tên NV", "Địa chỉ","Giới tính","Ngày sinh","Ngày vào làm","CCCD","Email","SĐT","Chức vụ","Tài khoản","Lương"};
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
 		scrollPaneNV.setViewportView(table);
 		
-		// header of table
-		tableHeader = table.getTableHeader();
-		tableHeader.setBackground(new Color(1, 98, 156));
-		tableHeader.setForeground(Color.white);
-		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
-		
-		// set width of table
-		table.getColumnModel().getColumn(0).setPreferredWidth(95);
-		table.getColumnModel().getColumn(1).setPreferredWidth(95);
-		table.getColumnModel().getColumn(2).setPreferredWidth(95);
-		table.getColumnModel().getColumn(3).setPreferredWidth(95);
-		table.getColumnModel().getColumn(4).setPreferredWidth(95);
-		table.getColumnModel().getColumn(5).setPreferredWidth(95);
-		table.getColumnModel().getColumn(6).setPreferredWidth(95);
-		table.getColumnModel().getColumn(7).setPreferredWidth(95);
-		table.getColumnModel().getColumn(8).setPreferredWidth(95);
-		table.getColumnModel().getColumn(9).setPreferredWidth(95);
-		table.getColumnModel().getColumn(10).setPreferredWidth(95);
-		table.getColumnModel().getColumn(11).setPreferredWidth(95);
-		table.getColumnModel().getColumn(12).setPreferredWidth(95);
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		
-		
-		dateChooserNgaySinh = new JDateChooser();
-		dateChooserNgaySinh.setBounds(545, 35, 170, 28);
-		pNhapThongTin.add(dateChooserNgaySinh);
-		dateChooserNgaySinh.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		dateChooserNgaySinh.setDateFormatString("dd/MM/yyyy");
-		dateChooserNgaySinh.setBorder(new LineBorder(new Color(0, 162, 197), 1, true));
-		dateChooserNgaySinh.setFont(new Font("SansSerif", Font.PLAIN, 15));
-		dateChooserNgaySinh.getCalendarButton().setPreferredSize(new Dimension(30, 24));
-		dateChooserNgaySinh.getCalendarButton().setBackground(new Color(0, 162, 197));
-		dateNow = new Date(new java.util.Date().getTime());
-		dateChooserNgaySinh.setDate(dateNow);
+//		// header of table
+//		tableHeader = table.getTableHeader();
+//		tableHeader.setBackground(new Color(1, 98, 156));
+//		tableHeader.setForeground(Color.white);
+//		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
+//		
+//		// set width of table
+//		table.getColumnModel().getColumn(0).setPreferredWidth(95);
+//		table.getColumnModel().getColumn(1).setPreferredWidth(95);
+//		table.getColumnModel().getColumn(2).setPreferredWidth(95);
+//		table.getColumnModel().getColumn(3).setPreferredWidth(95);
+//		table.getColumnModel().getColumn(4).setPreferredWidth(95);
+//		table.getColumnModel().getColumn(5).setPreferredWidth(95);
+//		table.getColumnModel().getColumn(6).setPreferredWidth(95);
+//		table.getColumnModel().getColumn(7).setPreferredWidth(95);
+//		table.getColumnModel().getColumn(8).setPreferredWidth(95);
+//		table.getColumnModel().getColumn(9).setPreferredWidth(95);
+//		table.getColumnModel().getColumn(10).setPreferredWidth(95);
+//		table.getColumnModel().getColumn(11).setPreferredWidth(95);
+//		table.getColumnModel().getColumn(12).setPreferredWidth(95);
+//		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+//		
+//		
+//		dateChooserNgaySinh = new JDateChooser();
+//		dateChooserNgaySinh.setBounds(545, 35, 170, 28);
+//		pNhapThongTin.add(dateChooserNgaySinh);
+//		dateChooserNgaySinh.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+//		dateChooserNgaySinh.setDateFormatString("dd/MM/yyyy");
+//		dateChooserNgaySinh.setBorder(new LineBorder(new Color(0, 162, 197), 1, true));
+//		dateChooserNgaySinh.setFont(new Font("SansSerif", Font.PLAIN, 15));
+//		dateChooserNgaySinh.getCalendarButton().setPreferredSize(new Dimension(30, 24));
+//		dateChooserNgaySinh.getCalendarButton().setBackground(new Color(0, 162, 197));
+//		dateNow = new Date(new java.util.Date().getTime());
+//		dateChooserNgaySinh.setDate(dateNow);
 
 	}
 }

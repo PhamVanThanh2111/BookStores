@@ -41,7 +41,7 @@ public class Sach_GUI extends JPanel {
 	
 		JPanel pNhapThongTin = new JPanel();
 		pNhapThongTin.setBounds(10, 52, 1204, 167);
-		pNhapThongTin.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 162, 197)), "Th\u00F4ng tin:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
+		pNhapThongTin.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 162, 197)), "Th\u00F4ng tin chi ti\u1EBFt:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
 //		pNhapThongTin.setBorder(new TitledBorder(null, "Th\u00F4ng tin:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		mMain.add(pNhapThongTin);
 		pNhapThongTin.setLayout(null);
@@ -129,20 +129,8 @@ public class Sach_GUI extends JPanel {
 		
 		JComboBox<String> cbTim = new JComboBox<String>();
 		cbTim.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbTim.setBounds(706, 10, 102, 33);
+		cbTim.setBounds(706, 10, 246, 33);
 		mMain.add(cbTim);
-		
-		JButton btnNewButton = new JButton("Tìm");
-//		btnNewButton.setBackground(new Color(0, 0, 0));
-		btnNewButton.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnNewButton.setBounds(782, 10, 114, 33);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnNewButton.setBounds(818, 10, 114, 33);
-		mMain.add(btnNewButton);
 		
 		JPanel pnSouth_1 = new JPanel();
 		pnSouth_1.setBounds(10, 216, 1204, 58);
@@ -152,7 +140,11 @@ public class Sach_GUI extends JPanel {
 		
 		JButton btnThmSch = new JButton("Thêm Sách");
 		btnThmSch.setFont(new Font("Tahoma", Font.PLAIN, 14));
+//<<<<<<< HEAD
 		btnThmSch.setBounds(252, 14, 114, 34);
+//=======
+		btnThmSch.setBounds(103, 14, 121, 34);
+//>>>>>>> 6af007389f56da578c44eec0f892741c0bb58e8c
 		pnSouth_1.add(btnThmSch);
 		
 		JButton btnXaSch = new JButton("Xóa Sách");
@@ -161,22 +153,38 @@ public class Sach_GUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+//<<<<<<< HEAD
 		btnXaSch.setBounds(386, 14, 121, 34);
+//=======
+		btnXaSch.setBounds(327, 14, 121, 34);
+//>>>>>>> 6af007389f56da578c44eec0f892741c0bb58e8c
 		pnSouth_1.add(btnXaSch);
 		
 		JButton btnSua = new JButton("Sửa Thông Tin");
 		btnSua.setFont(new Font("Tahoma", Font.PLAIN, 14));
+//<<<<<<< HEAD
 		btnSua.setBounds(517, 14, 140, 34);
+//=======
+		btnSua.setBounds(551, 14, 129, 34);
+//>>>>>>> 6af007389f56da578c44eec0f892741c0bb58e8c
 		pnSouth_1.add(btnSua);
 		
 		JButton btnXoaTrang = new JButton("Xóa Trắng");
 		btnXoaTrang.setFont(new Font("Tahoma", Font.PLAIN, 14));
+//<<<<<<< HEAD
 		btnXoaTrang.setBounds(679, 14, 121, 34);
+//=======
+		btnXoaTrang.setBounds(783, 14, 121, 34);
+//>>>>>>> 6af007389f56da578c44eec0f892741c0bb58e8c
 		pnSouth_1.add(btnXoaTrang);
 		
 		JButton btnThoat = new JButton("Thoát");
 		btnThoat.setFont(new Font("Tahoma", Font.PLAIN, 14));
+//<<<<<<< HEAD
 		btnThoat.setBounds(810, 14, 92, 34);
+//=======
+		btnThoat.setBounds(1007, 14, 92, 34);
+//>>>>>>> 6af007389f56da578c44eec0f892741c0bb58e8c
 		pnSouth_1.add(btnThoat);
 		
 		JPanel pnSouth_2 = new JPanel();
@@ -191,6 +199,11 @@ public class Sach_GUI extends JPanel {
 		pnSouth_2.add(pnSouth);
 		pnSouth.setBorder(new LineBorder(new Color(0, 0, 0)));
 		pnSouth.setLayout(null);
+		
+		JButton btnNewButton = new JButton("Tìm");
+		btnNewButton.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnNewButton.setBounds(973, 10, 114, 33);
+		mMain.add(btnNewButton);
 		btnXoaTrang.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -203,6 +216,7 @@ public class Sach_GUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		
 		
 		
 		

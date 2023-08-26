@@ -35,7 +35,7 @@ public class Sach_GUI extends JPanel {
 		setLayout(null);
 		
 		JPanel mMain = new JPanel();
-		mMain.setBounds(10, 22, 1256, 583);
+		mMain.setBounds(10, 10, 1256, 583);
 		add(mMain);
 		mMain.setLayout(null);
 	
@@ -83,7 +83,7 @@ public class Sach_GUI extends JPanel {
 		
 		JLabel lblGioiTinh = new JLabel("Giá:");
 		lblGioiTinh.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblGioiTinh.setBounds(678, 116, 121, 33);
+		lblGioiTinh.setBounds(675, 116, 121, 33);
 		pNhapThongTin.add(lblGioiTinh);
 		
 		JLabel lblSoDienThoai = new JLabel("Xuất Xứ:");
@@ -115,7 +115,7 @@ public class Sach_GUI extends JPanel {
 		textField_1.setBounds(817, 116, 362, 33);
 		pNhapThongTin.add(textField_1);
 		
-		JLabel lblTim = new JLabel("Tìm kiếm");
+		JLabel lblTim = new JLabel("Tìm kiếm:");
 		lblTim.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTim.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblTim.setBounds(184, 10, 96, 33);
@@ -124,7 +124,7 @@ public class Sach_GUI extends JPanel {
 		textField_2 = new JTextField();
 		textField_2.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		textField_2.setColumns(10);
-		textField_2.setBounds(290, 10, 406, 33);
+		textField_2.setBounds(290, 9, 406, 33);
 		mMain.add(textField_2);
 		
 		JComboBox<String> cbTim = new JComboBox<String>();
@@ -133,6 +133,9 @@ public class Sach_GUI extends JPanel {
 		mMain.add(cbTim);
 		
 		JButton btnNewButton = new JButton("Tìm");
+//		btnNewButton.setBackground(new Color(0, 0, 0));
+		btnNewButton.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnNewButton.setBounds(782, 10, 114, 33);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -149,7 +152,7 @@ public class Sach_GUI extends JPanel {
 		
 		JButton btnThmSch = new JButton("Thêm Sách");
 		btnThmSch.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnThmSch.setBounds(232, 14, 121, 34);
+		btnThmSch.setBounds(252, 14, 114, 34);
 		pnSouth_1.add(btnThmSch);
 		
 		JButton btnXaSch = new JButton("Xóa Sách");
@@ -158,33 +161,33 @@ public class Sach_GUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnXaSch.setBounds(376, 14, 121, 34);
+		btnXaSch.setBounds(386, 14, 121, 34);
 		pnSouth_1.add(btnXaSch);
 		
 		JButton btnSua = new JButton("Sửa Thông Tin");
 		btnSua.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnSua.setBounds(507, 14, 129, 34);
+		btnSua.setBounds(517, 14, 140, 34);
 		pnSouth_1.add(btnSua);
 		
 		JButton btnXoaTrang = new JButton("Xóa Trắng");
 		btnXoaTrang.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnXoaTrang.setBounds(657, 14, 121, 34);
+		btnXoaTrang.setBounds(679, 14, 121, 34);
 		pnSouth_1.add(btnXoaTrang);
 		
 		JButton btnThoat = new JButton("Thoát");
 		btnThoat.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnThoat.setBounds(796, 14, 92, 34);
+		btnThoat.setBounds(810, 14, 92, 34);
 		pnSouth_1.add(btnThoat);
 		
 		JPanel pnSouth_2 = new JPanel();
-		pnSouth_2.setBounds(10, 278, 1204, 295);
+		pnSouth_2.setBounds(10, 278, 1204, 283);
 		mMain.add(pnSouth_2);
 //		pnSouth_2.setBorder(new TitledBorder("Danh Sách: "));
 		pnSouth_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 162, 197)), "Danh sách:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
 		pnSouth_2.setLayout(null);
 		
 		JPanel pnSouth = new JPanel();
-		pnSouth.setBounds(21, 25, 1150, 229);
+		pnSouth.setBounds(21, 25, 1156, 226);
 		pnSouth_2.add(pnSouth);
 		pnSouth.setBorder(new LineBorder(new Color(0, 0, 0)));
 		pnSouth.setLayout(null);

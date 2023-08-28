@@ -229,5 +229,6 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 			this.setVisible(false);
 //			System.out.println(nhanVien);
 		}
+		
 	}
 }

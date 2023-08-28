@@ -13,20 +13,19 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 
-import java.awt.Component;
-import javax.swing.ScrollPaneConstants;
-import java.awt.Dimension;
 import javax.swing.border.EtchedBorder;
 
 public class Sach_GUI extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JScrollPane scrollPaneSach;
+	private JScrollPane scrollPaneSach; 
 	/**
 	 * Create the panel.
 	 */

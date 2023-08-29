@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Sach {
 
 	private String maSach;
-	private String maNXB;
+	private NXB maNXB;
 	private String maLoaiSach;
 	private String tenSach;
 	private String xuatXu;
@@ -20,7 +20,7 @@ public class Sach {
 		this.maSach = maSach;
 	}
 
-	public Sach(String maSach, String maNXB, String maLoaiSach, String tenSach, String xuatXu, double gia) {
+	public Sach(String maSach, NXB maNXB, String maLoaiSach, String tenSach, String xuatXu, double gia) {
 		super();
 		this.maSach = maSach;
 		this.maNXB = maNXB;
@@ -38,11 +38,11 @@ public class Sach {
 		this.maSach = maSach;
 	}
 
-	public String getMaNXB() {
+	public NXB getMaNXB() {
 		return maNXB;
 	}
 
-	public void setMaNXB(String maNXB) {
+	public void setMaNXB(NXB maNXB) {
 		this.maNXB = maNXB;
 	}
 

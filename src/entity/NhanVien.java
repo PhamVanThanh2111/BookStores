@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class NhanVien {
 	 	private String maNV;
-	    private String maCH;
+	    private	CuaHang maCH;
 	    private String tenNV;
 		private String diaChi;
 	    private String gioiTinh;
@@ -13,8 +13,8 @@ public class NhanVien {
 	    private String CCCD;
 	    private String email;
 	    private String soDienThoai;
-	    private	String chucVu;
 	    private TaiKhoan taiKhoan;
+	    private	String chucVu;
 	    private int luong;
 
 		public NhanVien() {
@@ -24,7 +24,7 @@ public class NhanVien {
 			super();
 			this.maNV = maNV;
 		}
-		public NhanVien(String maNV, String maCH, String tenNV, String diaChi, String gioiTinh, java.sql.Date ngaySinh,
+		public NhanVien(String maNV, CuaHang maCH, String tenNV, String diaChi, String gioiTinh, java.sql.Date ngaySinh,
 				java.sql.Date ngayVaoLam, String cCCD, String email, String soDienThoai, String chucVu, TaiKhoan taiKhoan,
 				int luong) {
 			super();
@@ -126,10 +126,10 @@ public class NhanVien {
 		public void setTaiKhoan(TaiKhoan taiKhoan) {
 			this.taiKhoan = taiKhoan;
 		}
-		public String getMaCH() {
+		public CuaHang getMaCH() {
 			return maCH;
 		}
-		public void setMaCH(String maCH) {
+		public void setMaCH(CuaHang maCH) {
 			this.maCH = maCH;
 		}
 		

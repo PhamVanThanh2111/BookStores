@@ -3,26 +3,26 @@ package entity;
 import java.util.Objects;
 
 public class LoaiSach {
-	private String maLoaiSach;
+	private Sach maLoaiSach;
 	private String tenLoaiSach;
 	public LoaiSach() {
 		super();
 	}
 	
-	public LoaiSach(String maLoaiSach) {
+	public LoaiSach(Sach maLoaiSach) {
 		super();
 		this.maLoaiSach = maLoaiSach;
 	}
 
-	public LoaiSach(String maLoaiSach, String tenLoaiSach) {
+	public LoaiSach(Sach maLoaiSach, String tenLoaiSach) {
 		super();
 		this.maLoaiSach = maLoaiSach;
 		this.tenLoaiSach = tenLoaiSach;
 	}
-	public String getMaLoaiSach() {
+	public Sach getMaLoaiSach() {
 		return maLoaiSach;
 	}
-	public void setMaLoaiSach(String maLoaiSach) {
+	public void setMaLoaiSach(Sach maLoaiSach) {
 		this.maLoaiSach = maLoaiSach;
 	}
 	public String getTenLoaiSach() {

@@ -1,10 +1,11 @@
 package entity;
 
+import java.sql.Date;
 import java.util.Objects;
 
 public class NhanVien {
 	 	private String maNV;
-	    private	CuaHang maCH;
+	    private	String maCH;
 	    private String tenNV;
 		private String diaChi;
 	    private String gioiTinh;
@@ -20,16 +21,17 @@ public class NhanVien {
 		public NhanVien() {
 			super();
 		}
+		
 		public NhanVien(String maNV) {
 			super();
 			this.maNV = maNV;
 		}
-		public NhanVien(String maNV, CuaHang maCH, String tenNV, String diaChi, String gioiTinh, java.sql.Date ngaySinh,
+		public NhanVien(String maNV, String string, String tenNV, String diaChi, String gioiTinh, java.sql.Date ngaySinh,
 				java.sql.Date ngayVaoLam, String cCCD, String email, String soDienThoai, String chucVu, TaiKhoan taiKhoan,
 				int luong) {
 			super();
 			this.maNV = maNV;
-			this.maCH = maCH;
+			this.maCH = string;
 			this.tenNV = tenNV;
 			this.diaChi = diaChi;
 			this.gioiTinh = gioiTinh;
@@ -126,13 +128,13 @@ public class NhanVien {
 		public void setTaiKhoan(TaiKhoan taiKhoan) {
 			this.taiKhoan = taiKhoan;
 		}
-		public CuaHang getMaCH() {
+		public String getMaCH() {
 			return maCH;
 		}
-		public void setMaCH(CuaHang maCH) {
+	
+		public void setMaCH(String maCH) {
 			this.maCH = maCH;
 		}
-		
 		public int getLuong() {
 			return luong;
 		}

@@ -13,9 +13,16 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
 import javax.swing.border.EtchedBorder;
+import javax.swing.JTable;
+import java.awt.Component;
+import javax.swing.Box;
+import javax.swing.DefaultButtonModel;
+import javax.swing.ScrollPaneConstants;
+import java.awt.Dimension;
 
 public class Sach_GUI extends JPanel {
 	/**
@@ -26,13 +33,16 @@ public class Sach_GUI extends JPanel {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JScrollPane scrollPaneSach; 
+	private JTable table;
+	private DefaultTableModel model;
+
 	/**
 	 * Create the panel.
 	 */
 	public Sach_GUI() {
 		
 		setLayout(null);
-		
+	
 		JPanel mMain = new JPanel();
 		mMain.setBounds(10, 10, 1256, 583);
 		add(mMain);
@@ -41,7 +51,6 @@ public class Sach_GUI extends JPanel {
 		JPanel pNhapThongTin = new JPanel();
 		pNhapThongTin.setBounds(10, 52, 1204, 167);
 		pNhapThongTin.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 162, 197)), "Th\u00F4ng tin chi ti\u1EBFt:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
-//		pNhapThongTin.setBorder(new TitledBorder(null, "Th\u00F4ng tin:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		mMain.add(pNhapThongTin);
 		pNhapThongTin.setLayout(null);
 		
@@ -114,6 +123,34 @@ public class Sach_GUI extends JPanel {
 		textField_1.setBounds(817, 116, 362, 33);
 		pNhapThongTin.add(textField_1);
 		
+		Component horizontalStrut = Box.createHorizontalStrut(20);
+		horizontalStrut.setBounds(563, 40, 111, 23);
+		pNhapThongTin.add(horizontalStrut);
+		
+		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
+		horizontalStrut_1.setBounds(563, 83, 111, 23);
+		pNhapThongTin.add(horizontalStrut_1);
+		
+		Component horizontalStrut_2 = Box.createHorizontalStrut(20);
+		horizontalStrut_2.setBounds(563, 126, 111, 23);
+		pNhapThongTin.add(horizontalStrut_2);
+		
+		Component verticalStrut = Box.createVerticalStrut(10);
+		verticalStrut.setBounds(203, 63, 840, -7);
+		pNhapThongTin.add(verticalStrut);
+		
+		Component verticalStrut_1 = Box.createVerticalStrut(10);
+		verticalStrut_1.setBounds(203, 63, 840, 10);
+		pNhapThongTin.add(verticalStrut_1);
+		
+		Component verticalStrut_2 = Box.createVerticalStrut(10);
+		verticalStrut_2.setBounds(203, 106, 840, 10);
+		pNhapThongTin.add(verticalStrut_2);
+		
+		Component verticalStrut_3 = Box.createVerticalStrut(10);
+		verticalStrut_3.setBounds(203, 147, 840, 10);
+		pNhapThongTin.add(verticalStrut_3);
+		
 		JLabel lblTim = new JLabel("Tìm kiếm:");
 		lblTim.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTim.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -139,11 +176,7 @@ public class Sach_GUI extends JPanel {
 		
 		JButton btnThmSch = new JButton("Thêm Sách");
 		btnThmSch.setFont(new Font("Tahoma", Font.PLAIN, 14));
-//<<<<<<< HEAD
-		btnThmSch.setBounds(252, 14, 114, 34);
-//=======
 		btnThmSch.setBounds(103, 14, 121, 34);
-//>>>>>>> 6af007389f56da578c44eec0f892741c0bb58e8c
 		pnSouth_1.add(btnThmSch);
 		
 		JButton btnXaSch = new JButton("Xóa Sách");
@@ -152,52 +185,30 @@ public class Sach_GUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-//<<<<<<< HEAD
-		btnXaSch.setBounds(386, 14, 121, 34);
-//=======
 		btnXaSch.setBounds(327, 14, 121, 34);
-//>>>>>>> 6af007389f56da578c44eec0f892741c0bb58e8c
 		pnSouth_1.add(btnXaSch);
 		
 		JButton btnSua = new JButton("Sửa Thông Tin");
 		btnSua.setFont(new Font("Tahoma", Font.PLAIN, 14));
-//<<<<<<< HEAD
-		btnSua.setBounds(517, 14, 140, 34);
-//=======
 		btnSua.setBounds(551, 14, 129, 34);
-//>>>>>>> 6af007389f56da578c44eec0f892741c0bb58e8c
 		pnSouth_1.add(btnSua);
 		
 		JButton btnXoaTrang = new JButton("Xóa Trắng");
 		btnXoaTrang.setFont(new Font("Tahoma", Font.PLAIN, 14));
-//<<<<<<< HEAD
-		btnXoaTrang.setBounds(679, 14, 121, 34);
-//=======
 		btnXoaTrang.setBounds(783, 14, 121, 34);
-//>>>>>>> 6af007389f56da578c44eec0f892741c0bb58e8c
 		pnSouth_1.add(btnXoaTrang);
 		
 		JButton btnThoat = new JButton("Thoát");
 		btnThoat.setFont(new Font("Tahoma", Font.PLAIN, 14));
-//<<<<<<< HEAD
-		btnThoat.setBounds(810, 14, 92, 34);
-//=======
 		btnThoat.setBounds(1007, 14, 92, 34);
-//>>>>>>> 6af007389f56da578c44eec0f892741c0bb58e8c
 		pnSouth_1.add(btnThoat);
 		
 		JPanel pnSouth_2 = new JPanel();
 		pnSouth_2.setBounds(10, 278, 1204, 283);
 		mMain.add(pnSouth_2);
-//		pnSouth_2.setBorder(new TitledBorder("Danh Sách: "));
 		pnSouth_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 162, 197)), "Danh sách:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
 		pnSouth_2.setLayout(null);
 		
-		JPanel pnSouth = new JPanel();
-		pnSouth.setBounds(21, 25, 1156, 226);
-		pnSouth_2.add(pnSouth);
-		pnSouth.setBorder(new LineBorder(new Color(0, 0, 0)));
-		pnSouth.setLayout(null);
 		
 		JButton btnNewButton = new JButton("Tìm");
 		btnNewButton.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -215,17 +226,20 @@ public class Sach_GUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		scrollPaneSach = new JScrollPane();
+		scrollPaneSach.setBounds(10, 22, 1184, 251);
+		scrollPaneSach.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
+		scrollPaneSach.setBorder(new LineBorder(new Color(0, 162, 197), 1, true));
+		scrollPaneSach.setBackground(new Color(0, 162, 197));
+		pnSouth_2.add(scrollPaneSach);
 		
 		
+		String cols[] = {"Mã Sách", "Mã NXB", "Mã Loại Sách ", "Tên Sách","Xuất Xứ","Giá"};
+		model = new DefaultTableModel(cols, 0);
+		table = new JTable(model);
 		
-		
-		
-		
-		
-		
-		
-	
-		
+		scrollPaneSach.add(table);
+		scrollPaneSach.setViewportView(table);
 		
 	}
 }

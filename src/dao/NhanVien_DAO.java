@@ -89,7 +89,6 @@ public class NhanVien_DAO {
 				nhanVien.setEmail(resultSet.getString(9));
 				nhanVien.setSoDienThoai(resultSet.getString(10));
 				nhanVien.setChucVu(resultSet.getString(11));
-				nhanVien.setChucVu(resultSet.getString(12));
 				nhanVien.setTaiKhoan(taiKhoan);
 				nhanVien.setLuong(resultSet.getInt(13));
 			}

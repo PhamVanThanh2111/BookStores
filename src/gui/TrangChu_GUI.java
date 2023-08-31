@@ -146,7 +146,16 @@ public class TrangChu_GUI extends JFrame {
 		JPanel pMenu = new JPanel();
 		pMenu.setBackground(new Color(17, 103, 177));
 		pMenu.setBounds(0, 54, 1280, 31);
-		pMenu.setLayout(null);
+		
+		if (nhanVien.getChucVu().equalsIgnoreCase("Quản trị hệ thống")) {
+			cardLayoutMenu = new CardLayout();
+			pMenu.setLayout(cardLayoutMenu);
+			pMenu.add(new MenuAdmin(), "MenuAdmin");
+			cardLayoutMenu.show(pMenu, "MenuAdmin");
+		}
+		else
+			pMenu.setLayout(null);
+			
 		getContentPane().add(pMenu);
 		
 		JButton btnNhanVien = new JButton("Nhân viên");
@@ -216,6 +225,14 @@ public class TrangChu_GUI extends JFrame {
 		pMenu.add(btnThongKe);
 		btnThongKe.setToolTipText("Quản lý khách hàng");
 		
+		if (nhanVien.getChucVu().equalsIgnoreCase("Bán hàng")) {
+			btnNhanVien.setEnabled(false);
+		}
+		else {
+			// chuc nang nay danh cho quan ly kho
+		}
+			
+		
 		pContent = new JPanel();
 		pContent.setBounds(10, 90, 1256, 583);
 		getContentPane().add(pContent);
@@ -227,7 +244,7 @@ public class TrangChu_GUI extends JFrame {
 		pContent.add(new HoaDon_GUI(), "HoaDon_GUI");
 		cardLayoutContent.show(pContent, "NhanVien_GUI");
 		
-		System.out.println(nhanVien.getChucVu());
+//		System.out.println(nhanVien.getChucVu());
 	}	
 		
 	

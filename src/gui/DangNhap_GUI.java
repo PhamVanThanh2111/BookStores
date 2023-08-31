@@ -228,7 +228,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 				TrangChu_GUI trangChu_GUI = new TrangChu_GUI(nhanVien);
 				trangChu_GUI.setVisible(true);
 				this.setVisible(false);	
-//				System.out.println(nhanVien);
+				System.out.println(nhanVien);
 			}
 		}
 	}

@@ -188,16 +188,11 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource().equals(btnLogin)) {
-			if (countSaiMatKhau > 2) {
-				JOptionPane.showMessageDialog(null, "Bạn đã nhập sai mật khẩu quá 3 lần!");
-			}
-			else {
-				try {
-					login();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+			try {
+				login();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 		}
 		else if (e.getSource().equals(btnExit)) {
@@ -211,24 +206,30 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 	
 	
 	public void login() throws SQLException {
-		String maTaiKhoan = txtUser.getText().trim();
-		@SuppressWarnings("deprecation")
-		String matKhau = txtPwd.getText().toString().trim();
-		TaiKhoan taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTK(maTaiKhoan);
-		if (taiKhoan.getTaiKhoan() == null) {
-			JOptionPane.showMessageDialog(null, "Tài khoản không đúng!");
-		}
-		else if (!taiKhoan.getMatKhau().equals(matKhau)) {
-			JOptionPane.showMessageDialog(null, "Mật khẩu không đúng!");
-			countSaiMatKhau++;
+		if (countSaiMatKhau > 2) {
+			JOptionPane.showMessageDialog(null, "Bạn đã nhập sai tài khoản quá 3 lần. Chương trình sẽ thoát!");
+			System.exit(0);
 		}
 		else {
-			NhanVien nhanVien = nhanVien_DAO.getNhanVienTheoTaiKhoan(taiKhoan.getTaiKhoan());
-			TrangChu_GUI trangChu_GUI = new TrangChu_GUI(nhanVien);
-			trangChu_GUI.setVisible(true);
-			this.setVisible(false);
-//			System.out.println(nhanVien);
+			String maTaiKhoan = txtUser.getText().trim();
+			@SuppressWarnings("deprecation")
+			String matKhau = txtPwd.getText().toString().trim();
+			TaiKhoan taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTK(maTaiKhoan);
+			if (taiKhoan.getTaiKhoan() == null) {
+				JOptionPane.showMessageDialog(null, "Tài khoản không đúng!");
+				countSaiMatKhau++;
+			}
+			else if (!taiKhoan.getMatKhau().equals(matKhau)) {
+				JOptionPane.showMessageDialog(null, "Mật khẩu không đúng!");
+				countSaiMatKhau++;
+			}
+			else {
+				NhanVien nhanVien = nhanVien_DAO.getNhanVienTheoTaiKhoan(taiKhoan.getTaiKhoan());
+				TrangChu_GUI trangChu_GUI = new TrangChu_GUI(nhanVien);
+				trangChu_GUI.setVisible(true);
+				this.setVisible(false);	
+//				System.out.println(nhanVien);
+			}
 		}
-		
 	}
 }

@@ -20,9 +20,6 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.JTable;
 import java.awt.Component;
 import javax.swing.Box;
-import javax.swing.DefaultButtonModel;
-import javax.swing.ScrollPaneConstants;
-import java.awt.Dimension;
 
 public class Sach_GUI extends JPanel {
 	/**

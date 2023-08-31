@@ -36,7 +36,8 @@ public class TrangChu_GUI extends JFrame {
 	private JLabel lblHeaderMaNV;
 	private JButton btnHeaderInfo;
 	private JPanel pContent;
-	private CardLayout cardLayout;
+	private CardLayout cardLayoutContent;
+	private CardLayout cardLayoutMenu;
 
 	/**
 	 * Create the frame.
@@ -135,11 +136,6 @@ public class TrangChu_GUI extends JFrame {
 
 		btnHeaderInfo = new JButton();
 
-//		if (nv.getChucVu().equalsIgnoreCase("Quản lý"))
-//			btnHeaderInfo.setText("QL");
-//		else
-//			btnHeaderInfo.setText("NV");
-
 		btnHeaderInfo.setForeground(Color.WHITE);
 		btnHeaderInfo.setFont(new Font("SansSerif", Font.BOLD, 20));
 		btnHeaderInfo.setBounds(1020, 5, 60, 44);
@@ -150,8 +146,8 @@ public class TrangChu_GUI extends JFrame {
 		JPanel pMenu = new JPanel();
 		pMenu.setBackground(new Color(17, 103, 177));
 		pMenu.setBounds(0, 54, 1280, 31);
-		getContentPane().add(pMenu);
 		pMenu.setLayout(null);
+		getContentPane().add(pMenu);
 		
 		JButton btnNhanVien = new JButton("Nhân viên");
 		btnNhanVien.setToolTipText("Quản lý nhân viên");
@@ -163,7 +159,7 @@ public class TrangChu_GUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				cardLayout.show(pContent, "NhanVien_GUI");
+				cardLayoutContent.show(pContent, "NhanVien_GUI");
 			}
 		});
 		pMenu.add(btnNhanVien);
@@ -176,7 +172,7 @@ public class TrangChu_GUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				cardLayout.show(pContent, "Sach_GUI");
+				cardLayoutContent.show(pContent, "Sach_GUI");
 			}
 		});
 		btnSach.setBounds(653, 0, 127, 31);
@@ -195,7 +191,7 @@ public class TrangChu_GUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				cardLayout.show(pContent, "HoaDon_GUI");
+				cardLayoutContent.show(pContent, "HoaDon_GUI");
 			}
 		});
 		pMenu.add(btnHoaDon);
@@ -224,12 +220,14 @@ public class TrangChu_GUI extends JFrame {
 		pContent.setBounds(10, 90, 1256, 583);
 		getContentPane().add(pContent);
 		
-		cardLayout = new CardLayout();
-		pContent.setLayout(cardLayout);
+		cardLayoutContent = new CardLayout();
+		pContent.setLayout(cardLayoutContent);
 		pContent.add(new NhanVien_GUI(), "NhanVien_GUI");
 		pContent.add(new Sach_GUI(),"Sach_GUI");
 		pContent.add(new HoaDon_GUI(), "HoaDon_GUI");
-		cardLayout.show(pContent, "NhanVien_GUI");
+		cardLayoutContent.show(pContent, "NhanVien_GUI");
+		
+		System.out.println(nhanVien.getChucVu());
 	}	
 		
 	

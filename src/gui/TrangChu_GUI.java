@@ -226,7 +226,16 @@ public class TrangChu_GUI extends JFrame {
 		btnThongKe.setToolTipText("Quản lý khách hàng");
 		
 		if (nhanVien.getChucVu().equalsIgnoreCase("Bán hàng")) {
-			btnNhanVien.setEnabled(false);
+			btnNhanVien.setVisible(false);
+			btnCuaHang.setVisible(false);
+			btnKhachHang.setBounds(74, 0, 127, 31);
+			btnHoaDon.setBounds(275, 0, 127, 31);
+			btnSach.setBounds(476, 0, 127, 31);
+			btnLoaiSach.setBounds(677,  0, 127, 31);
+			btnNXB.setBounds(878, 0, 127, 31);
+			btnThongKe.setBounds(1079, 0, 127, 31);
+			
+			// set show pContent KhachHang
 		}
 		else {
 			// chuc nang nay danh cho quan ly kho

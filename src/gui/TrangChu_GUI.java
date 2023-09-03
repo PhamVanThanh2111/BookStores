@@ -2,7 +2,10 @@ package gui;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -14,10 +17,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import entity.NhanVien;
+import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Toolkit;
 
 public class TrangChu_GUI extends JFrame {
 
@@ -38,12 +46,20 @@ public class TrangChu_GUI extends JFrame {
 	private JPanel pContent;
 	private CardLayout cardLayoutContent;
 	private CardLayout cardLayoutMenu;
+	private JLabel lblNhanVien;
+	private JLabel lblCuaHang;
+	private JLabel lblKhachHang;
+	private JLabel lblHoaDon;
+	private JLabel lblSach;
+	private JLabel lblThongKe;
+	private JLabel lblShowHideMenu;
 
 	/**
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
 	public TrangChu_GUI(NhanVien nhanVien) throws SQLException {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(TrangChu_GUI.class.getResource("/image/favicon.jpg")));
 		setForeground(new Color(255, 255, 255));
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,15 +68,23 @@ public class TrangChu_GUI extends JFrame {
 		contentPane.setForeground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 //		contentPane.setBounds(0, 0, 1280, 520);
-		setSize(1280, 720);
+		setSize(1366, 768);
 		setResizable(false);
 		setTitle("Quản lý sách");
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		lblShowHideMenu = new JLabel("-");
+		lblShowHideMenu.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblShowHideMenu.setHorizontalAlignment(SwingConstants.CENTER);
+		lblShowHideMenu.setForeground(new Color(255, 255, 255));
+		lblShowHideMenu.setBackground(new Color(240, 240, 240));
+		lblShowHideMenu.setBounds(150, 65, 30, 30);
+		contentPane.add(lblShowHideMenu);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 1280, 54);
-		panel.setBackground(new Color(0, 41, 111));
+		panel.setBounds(0, 0, 1352, 54);
+		panel.setBackground(new Color(46, 46, 46));
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
@@ -91,20 +115,20 @@ public class TrangChu_GUI extends JFrame {
 		lblHeaderTen = new JLabel(nhanVien.getTenNV());
 		lblHeaderTen.setFont(new Font("SansSerif", Font.BOLD, 15));
 		lblHeaderTen.setForeground(Color.WHITE);
-		lblHeaderTen.setBounds(840, 5, 170, 20);
+		lblHeaderTen.setBounds(940, 5, 170, 20);
 		panel.add(lblHeaderTen);
 
 		lblSubMa = new JLabel("Mã nhân viên:");
 		lblSubMa.setForeground(Color.WHITE);
 		lblSubMa.setFont(new Font("SansSerif", Font.BOLD, 15));
-		lblSubMa.setBounds(840, 26, 110, 20);
+		lblSubMa.setBounds(940, 26, 110, 20);
 		panel.add(lblSubMa);
 
 		btnDangXuat = new JButton("Đăng xuất");
 		btnDangXuat.setToolTipText("Đăng xuất");
 		btnDangXuat.setForeground(Color.WHITE);
 		btnDangXuat.setFont(new Font("SansSerif", Font.BOLD, 13));
-		btnDangXuat.setBounds(1110, 10, 132, 35);
+		btnDangXuat.setBounds(1210, 10, 132, 35);
 		btnDangXuat.setBackground(new Color(0xE91940));
 		btnDangXuat.addActionListener(new ActionListener() {
 			
@@ -131,119 +155,186 @@ public class TrangChu_GUI extends JFrame {
 		lblHeaderMaNV.setText(nhanVien.getMaNV());
 		lblHeaderMaNV.setForeground(Color.WHITE);
 		lblHeaderMaNV.setFont(new Font("SansSerif", Font.ITALIC, 15));
-		lblHeaderMaNV.setBounds(950, 26, 60, 20);
+		lblHeaderMaNV.setBounds(1050, 26, 60, 20);
 		panel.add(lblHeaderMaNV);
 
 		btnHeaderInfo = new JButton();
 
 		btnHeaderInfo.setForeground(Color.WHITE);
 		btnHeaderInfo.setFont(new Font("SansSerif", Font.BOLD, 20));
-		btnHeaderInfo.setBounds(1020, 5, 60, 44);
+		btnHeaderInfo.setBounds(1120, 5, 60, 44);
 		btnHeaderInfo.setBackground(new Color(57, 210, 247));
 		panel.add(btnHeaderInfo);
 		
 		// menu
 		JPanel pMenu = new JPanel();
-		pMenu.setBackground(new Color(17, 103, 177));
-		pMenu.setBounds(0, 54, 1280, 31);
+		pMenu.setBackground(new Color(42, 42, 42));
+		pMenu.setBounds(0, 64, 180, 667);
+		pMenu.setLayout(null);
 		
-		if (nhanVien.getChucVu().equalsIgnoreCase("Quản trị hệ thống")) {
-			cardLayoutMenu = new CardLayout();
-			pMenu.setLayout(cardLayoutMenu);
-			pMenu.add(new MenuAdmin(), "MenuAdmin");
-			cardLayoutMenu.show(pMenu, "MenuAdmin");
-		}
-		else
-			pMenu.setLayout(null);
+//		if (nhanVien.getChucVu().equalsIgnoreCase("Quản trị hệ thống")) {
+//			cardLayoutMenu = new CardLayout();
+//			pMenu.setLayout(cardLayoutMenu);
+//			pMenu.add(new MenuAdmin(), "MenuAdmin");
+//			cardLayoutMenu.show(pMenu, "MenuAdmin");
+//		}
+//		else
+//			pMenu.setLayout(null);
 			
 		getContentPane().add(pMenu);
 		
-		JButton btnNhanVien = new JButton("Nhân viên");
-		btnNhanVien.setToolTipText("Quản lý nhân viên");
-		btnNhanVien.setBounds(29, 0, 127, 31);
-		btnNhanVien.setBackground(new Color(255, 240, 245));
-		btnNhanVien.setBorder(new LineBorder(new Color(0, 146, 182), 2, false));
-		btnNhanVien.addActionListener(new ActionListener() {
-			
+		lblNhanVien = new JLabel("Nhân Viên");
+		lblNhanVien.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblNhanVien.addMouseListener(new MouseAdapter() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+			public void mouseEntered(MouseEvent e) {
+				lblNhanVien.setBackground(new Color(28, 28, 28));
+				lblNhanVien.setOpaque(true);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblNhanVien.setBackground(new Color(38, 38, 38));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
 				cardLayoutContent.show(pContent, "NhanVien_GUI");
 			}
 		});
-		pMenu.add(btnNhanVien);
+		lblNhanVien.setForeground(new Color(255, 255, 255));
+		lblNhanVien.setBackground(new Color(28, 28, 28));
+		lblNhanVien.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		lblNhanVien.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNhanVien.setBounds(10, 40, 160, 64);
+		pMenu.add(lblNhanVien);
 		
-		JButton btnSach = new JButton("Sách");
-		btnSach.setToolTipText("Quản lý sách");
-		btnSach.setBounds(743, 0, 127, 31);
-		btnSach.addActionListener(new ActionListener() {
-			
+		lblCuaHang = new JLabel("Cửa Hàng");
+		lblCuaHang.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCuaHang.setForeground(Color.WHITE);
+		lblCuaHang.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		lblCuaHang.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblCuaHang.setBackground(new Color(28, 28, 28));
+		lblCuaHang.setBounds(10, 144, 160, 64);
+		lblCuaHang.addMouseListener(new MouseAdapter() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				cardLayoutContent.show(pContent, "Sach_GUI");
+			public void mouseEntered(MouseEvent e) {
+				lblCuaHang.setBackground(new Color(28, 28, 28));
+				lblCuaHang.setOpaque(true);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblCuaHang.setBackground(new Color(38, 38, 38));
 			}
 		});
-		btnSach.setBounds(653, 0, 127, 31);
-		pMenu.add(btnSach);
+		pMenu.add(lblCuaHang);
 		
-		JButton btnNXB = new JButton("NXB");
-		btnNXB.setToolTipText("Quản lý NXB");
-		btnNXB.setBounds(965, 0, 127, 31);
-		pMenu.add(btnNXB);
-		
-		JButton btnHoaDon = new JButton("Hóa đơn");
-		btnHoaDon.setToolTipText("Quản lý hóa đơn");
-		btnHoaDon.setBounds(497, 0, 127, 31);
-		btnHoaDon.addActionListener(new ActionListener() {
-			
+		lblKhachHang = new JLabel("Khách Hàng");
+		lblKhachHang.setHorizontalAlignment(SwingConstants.CENTER);
+		lblKhachHang.setForeground(Color.WHITE);
+		lblKhachHang.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		lblKhachHang.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblKhachHang.setBackground(new Color(28, 28, 28));
+		lblKhachHang.setBounds(10, 248, 160, 64);
+		lblKhachHang.addMouseListener(new MouseAdapter() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+			public void mouseEntered(MouseEvent e) {
+				lblKhachHang.setBackground(new Color(28, 28, 28));
+				lblKhachHang.setOpaque(true);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblKhachHang.setBackground(new Color(38, 38, 38));
+			}
+		});
+		pMenu.add(lblKhachHang);
+		
+		lblHoaDon = new JLabel("Hóa Đơn");
+		lblHoaDon.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHoaDon.setForeground(Color.WHITE);
+		lblHoaDon.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		lblHoaDon.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblHoaDon.setBackground(new Color(28, 28, 28));
+		lblHoaDon.setBounds(10, 352, 160, 64);
+		lblHoaDon.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblHoaDon.setBackground(new Color(28, 28, 28));
+				lblHoaDon.setOpaque(true);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblHoaDon.setBackground(new Color(38, 38, 38));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
 				cardLayoutContent.show(pContent, "HoaDon_GUI");
 			}
 		});
-		pMenu.add(btnHoaDon);
+		pMenu.add(lblHoaDon);
 		
-		JButton btnCuaHang = new JButton("Cửa hàng");
-		btnCuaHang.setToolTipText("Quản lý cửja hàng");
-		btnCuaHang.setBounds(185, 0, 127, 31);
-		pMenu.add(btnCuaHang);
+		lblSach = new JLabel("Sách");
+		lblSach.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSach.setForeground(Color.WHITE);
+		lblSach.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		lblSach.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblSach.setBackground(new Color(28, 28, 28));
+		lblSach.setBounds(10, 456, 160, 64);
+		lblSach.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblSach.setBackground(new Color(28, 28, 28));
+				lblSach.setOpaque(true);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblSach.setBackground(new Color(38, 38, 38));
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cardLayoutContent.show(pContent, "Sach_GUI");
+			}
+		});
+		pMenu.add(lblSach);
 		
-		JButton btnLoaiSach = new JButton("Loại sách");
-		btnLoaiSach.setToolTipText("Quản lý loại sách");
-		btnLoaiSach.setBounds(809, 0, 127, 31);
-		pMenu.add(btnLoaiSach);
+		lblThongKe = new JLabel("Thống Kê");
+		lblThongKe.setHorizontalAlignment(SwingConstants.CENTER);
+		lblThongKe.setForeground(Color.WHITE);
+		lblThongKe.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		lblThongKe.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblThongKe.setBackground(new Color(28, 28, 28));
+		lblThongKe.setBounds(10, 560, 160, 64);
+		lblThongKe.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblThongKe.setBackground(new Color(28, 28, 28));
+				lblThongKe.setOpaque(true);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblThongKe.setBackground(new Color(38, 38, 38));
+			}
+		});
+		pMenu.add(lblThongKe);
 		
-		JButton btnKhachHang = new JButton("Khách hàng");
-		btnKhachHang.setToolTipText("Quản lý khách hàng");
-		btnKhachHang.setBounds(341, 0, 127, 31);
-		pMenu.add(btnKhachHang);
-		
-		JButton btnThongKe = new JButton("Thống kê");
-		btnThongKe.setBounds(1121, 0, 127, 31);
-		pMenu.add(btnThongKe);
-		btnThongKe.setToolTipText("Quản lý khách hàng");
-		
-		if (nhanVien.getChucVu().equalsIgnoreCase("Bán hàng")) {
-			btnNhanVien.setVisible(false);
-			btnCuaHang.setVisible(false);
-			btnKhachHang.setBounds(74, 0, 127, 31);
-			btnHoaDon.setBounds(275, 0, 127, 31);
-			btnSach.setBounds(476, 0, 127, 31);
-			btnLoaiSach.setBounds(677,  0, 127, 31);
-			btnNXB.setBounds(878, 0, 127, 31);
-			btnThongKe.setBounds(1079, 0, 127, 31);
-			
-			// set show pContent KhachHang
-		}
-		else {
-			// chuc nang nay danh cho quan ly kho
-		}
+//		if (nhanVien.getChucVu().equalsIgnoreCase("Bán hàng")) {
+//			btnNhanVien.setVisible(false);
+//			btnCuaHang.setVisible(false);
+//			btnKhachHang.setBounds(74, 0, 127, 31);
+//			btnHoaDon.setBounds(275, 0, 127, 31);
+//			btnSach.setBounds(476, 0, 127, 31);
+//			btnLoaiSach.setBounds(677,  0, 127, 31);
+//			btnNXB.setBounds(878, 0, 127, 31);
+//			btnThongKe.setBounds(1079, 0, 127, 31);
+//			
+//			// set show pContent KhachHang
+//		}
+//		else {
+//			// chuc nang nay danh cho quan ly kho
+//		}
 			
 		
 		pContent = new JPanel();
-		pContent.setBounds(10, 90, 1256, 583);
+		pContent.setBackground(new Color(77, 77, 77));
+		pContent.setBounds(190, 64, 1162, 667);
 		getContentPane().add(pContent);
 		
 		cardLayoutContent = new CardLayout();
@@ -254,6 +345,24 @@ public class TrangChu_GUI extends JFrame {
 		cardLayoutContent.show(pContent, "NhanVien_GUI");
 		
 //		System.out.println(nhanVien.getChucVu());
+		lblShowHideMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (lblShowHideMenu.getText().equals("-")) {
+					lblShowHideMenu.setText("+");
+					pContent.setBounds(102, 64, 1162, 667);
+					lblShowHideMenu.setForeground(new Color(1, 1, 1));
+					lblShowHideMenu.setBounds(10, 65, 25, 25);
+				}
+				else {
+					lblShowHideMenu.setText("-");
+					pContent.setBounds(190, 64, 1162, 667);
+					lblShowHideMenu.setForeground(new Color(255, 255, 255));
+					lblShowHideMenu.setBounds(150, 65, 25, 25);
+				}
+				pMenu.setVisible(!pMenu.isVisible());
+			}
+		});
 	}	
 		
 	

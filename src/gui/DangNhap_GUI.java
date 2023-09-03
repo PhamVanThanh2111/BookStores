@@ -26,6 +26,8 @@ import entity.NhanVien;
 //import dao.TaiKhoan_DAO;
 import entity.TaiKhoan;
 import java.awt.event.KeyAdapter;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class DangNhap_GUI extends JFrame implements ActionListener {
 
@@ -34,6 +36,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JLabel lblTitle;
+	private JLabel lblTitle_1;
 	private JLabel lblUser;
 	private JLabel lblPwd;
 	private JPasswordField txtPwd;
@@ -70,7 +73,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		setResizable(false);
 		// image
 		Image img = Toolkit.getDefaultToolkit().createImage("image//private.png");
-		setIconImage(img);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DangNhap_GUI.class.getResource("/image/favicon.jpg")));
 		// title
 		lblTitle = new JLabel("ĐĂNG NHẬP");
 		lblTitle.setFont(new Font("Times new roman", Font.BOLD, 40));
@@ -86,11 +89,11 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		// icon btn exit
 		btnExit = new JButton("Thoát");
 		
-		lblTitle = new JLabel("ĐĂNG NHẬP");
-		lblTitle.setForeground(new Color(237, 106, 64));
-		lblTitle.setFont(new Font("Arial", Font.BOLD, 40));
-		lblTitle.setBounds(194, 41, 241, 47);
-		getContentPane().add(lblTitle);
+		lblTitle_1 = new JLabel("ĐĂNG NHẬP");
+		lblTitle_1.setForeground(new Color(237, 106, 64));
+		lblTitle_1.setFont(new Font("Arial", Font.BOLD, 40));
+		lblTitle_1.setBounds(194, 41, 241, 47);
+		getContentPane().add(lblTitle_1);
 		
 		lblUser = new JLabel("Tài khoản:");
 		lblUser.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -227,8 +230,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 				NhanVien nhanVien = nhanVien_DAO.getNhanVienTheoTaiKhoan(taiKhoan.getTaiKhoan());
 				TrangChu_GUI trangChu_GUI = new TrangChu_GUI(nhanVien);
 				trangChu_GUI.setVisible(true);
-				this.setVisible(false);	
-				System.out.println(nhanVien);
+				this.setVisible(false);
 			}
 		}
 	}

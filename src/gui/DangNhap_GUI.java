@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,8 +25,6 @@ import entity.NhanVien;
 //import dao.TaiKhoan_DAO;
 import entity.TaiKhoan;
 import java.awt.event.KeyAdapter;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class DangNhap_GUI extends JFrame implements ActionListener {
 
@@ -72,7 +69,6 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 		// image
-		Image img = Toolkit.getDefaultToolkit().createImage("image//private.png");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DangNhap_GUI.class.getResource("/image/favicon.jpg")));
 		// title
 		lblTitle = new JLabel("ĐĂNG NHẬP");
@@ -217,7 +213,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 			String maTaiKhoan = txtUser.getText().trim();
 			@SuppressWarnings("deprecation")
 			String matKhau = txtPwd.getText().toString().trim();
-			TaiKhoan taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTK(maTaiKhoan);
+			TaiKhoan taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTaiKhoan(maTaiKhoan);
 			if (taiKhoan.getTaiKhoan() == null) {
 				JOptionPane.showMessageDialog(null, "Tài khoản không đúng!");
 				countSaiMatKhau++;

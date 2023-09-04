@@ -1,8 +1,6 @@
 package gui;
 
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Font;
@@ -13,10 +11,8 @@ import java.awt.Component;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 

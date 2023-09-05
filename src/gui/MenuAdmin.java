@@ -25,30 +25,30 @@ public class MenuAdmin extends JPanel {
 		menuBar.setBounds(0, 0, 1280, 31);
 		panel.add(menuBar);
 
-		JMenu mnuNhanVien = new JMenu("Nhân viên");
+		JMenu mnuNhanVien = new JMenu("Nhân Viên |");
 		mnuNhanVien.setMnemonic('s');
 		mnuNhanVien.setHorizontalAlignment(SwingConstants.CENTER);
 		mnuNhanVien.setFont(new Font("SansSerif", Font.BOLD, 14));
 		menuBar.add(mnuNhanVien);
 
-		JMenu mnuCuaHang = new JMenu("Cửa hàng");
+		JMenu mnuCuaHang = new JMenu("Cửa Hàng |");
 		mnuCuaHang.setHorizontalAlignment(SwingConstants.CENTER);
 		mnuCuaHang.setFont(new Font("SansSerif", Font.BOLD, 14));
 		menuBar.add(mnuCuaHang);
 
-		JMenu mnuKhachHang = new JMenu("Khách hàng");
+		JMenu mnuKhachHang = new JMenu("Khách Hàng |");
 		mnuKhachHang.setMnemonic('s');
 		mnuKhachHang.setHorizontalAlignment(SwingConstants.CENTER);
 		mnuKhachHang.setFont(new Font("SansSerif", Font.BOLD, 14));
 		menuBar.add(mnuKhachHang);
 
-		JMenu mnuHoaDon = new JMenu("Hóa đơn");
+		JMenu mnuHoaDon = new JMenu("Hóa Đơn |");
 		mnuHoaDon.setMnemonic('s');
 		mnuHoaDon.setHorizontalAlignment(SwingConstants.CENTER);
 		mnuHoaDon.setFont(new Font("SansSerif", Font.BOLD, 14));
 		menuBar.add(mnuHoaDon);
 
-		JMenu mnuSach = new JMenu("Sách");
+		JMenu mnuSach = new JMenu("Sách |");
 		mnuSach.setMnemonic('s');
 		mnuSach.setHorizontalAlignment(SwingConstants.CENTER);
 		mnuSach.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -66,13 +66,13 @@ public class MenuAdmin extends JPanel {
 		mniNXB.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		mnuSach.add(mniNXB);
 
-		JMenu mnuDCHT = new JMenu("Dụng cụ học tập");
+		JMenu mnuDCHT = new JMenu("Dụng Cụ Học Tập |");
 		mnuDCHT.setMnemonic('s');
 		mnuDCHT.setHorizontalAlignment(SwingConstants.CENTER);
 		mnuDCHT.setFont(new Font("SansSerif", Font.BOLD, 14));
 		menuBar.add(mnuDCHT);
 
-		JMenu mnuThongKe = new JMenu("Thống kê");
+		JMenu mnuThongKe = new JMenu("Thống Kê |");
 		mnuThongKe.setMnemonic('s');
 		mnuThongKe.setHorizontalAlignment(SwingConstants.CENTER);
 		mnuThongKe.setFont(new Font("SansSerif", Font.BOLD, 14));

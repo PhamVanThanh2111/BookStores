@@ -227,7 +227,11 @@ public class NhanVien_GUI extends JPanel {
 		String cols[] = {"Mã NV", "Mã CH", "Tên NV", "Địa chỉ","Giới tính","Ngày sinh","Ngày vào làm","CCCD","Email","SĐT","Chức vụ","Lương"};
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
+<<<<<<< HEAD
 		table.setToolTipText("Chọn vào nhân viên để xem thông tin");
+=======
+		table.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
+>>>>>>> bb0efcf6009a474e8172ef3fa2e04b5729238e24
 		table.setRowHeight(25);
 		table.addMouseListener(new MouseListener() {
 

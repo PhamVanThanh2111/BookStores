@@ -5,84 +5,84 @@ import java.util.Objects;
 public class Sach {
 
 	private String maSach;
-	private NXB maNXB;
+	private String  maNXB;
 	private String maLoaiSach;
 	private String tenSach;
 	private String xuatXu;
+	private String tacGia;
+	private int 	soTrang;
 	private double gia;
-
 	public Sach() {
-
+		super();
 	}
-
 	public Sach(String maSach) {
 		super();
 		this.maSach = maSach;
 	}
-
-	public Sach(String maSach, NXB maNXB, String maLoaiSach, String tenSach, String xuatXu, double gia) {
+	public Sach(String maSach, String maNXB, String maLoaiSach, String tenSach, String xuatXu, String tacGia,
+			int soTrang, double gia) {
 		super();
 		this.maSach = maSach;
 		this.maNXB = maNXB;
 		this.maLoaiSach = maLoaiSach;
 		this.tenSach = tenSach;
 		this.xuatXu = xuatXu;
+		this.tacGia = tacGia;
+		this.soTrang = soTrang;
 		this.gia = gia;
 	}
-
 	public String getMaSach() {
 		return maSach;
 	}
-
 	public void setMaSach(String maSach) {
 		this.maSach = maSach;
 	}
-
-	public NXB getMaNXB() {
+	public String getMaNXB() {
 		return maNXB;
 	}
-
-	public void setMaNXB(NXB maNXB) {
+	public void setMaNXB(String maNXB) {
 		this.maNXB = maNXB;
 	}
-
 	public String getMaLoaiSach() {
 		return maLoaiSach;
 	}
-
 	public void setMaLoaiSach(String maLoaiSach) {
 		this.maLoaiSach = maLoaiSach;
 	}
-
 	public String getTenSach() {
 		return tenSach;
 	}
-
 	public void setTenSach(String tenSach) {
 		this.tenSach = tenSach;
 	}
-
 	public String getXuatXu() {
 		return xuatXu;
 	}
-
 	public void setXuatXu(String xuatXu) {
 		this.xuatXu = xuatXu;
 	}
-
+	public String getTacGia() {
+		return tacGia;
+	}
+	public void setTacGia(String tacGia) {
+		this.tacGia = tacGia;
+	}
+	public int getSoTrang() {
+		return soTrang;
+	}
+	public void setSoTrang(int soTrang) {
+		this.soTrang = soTrang;
+	}
 	public double getGia() {
 		return gia;
 	}
-
 	public void setGia(double gia) {
 		this.gia = gia;
 	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(gia, maLoaiSach, maNXB, maSach, tenSach, xuatXu);
+		return Objects.hash(maSach);
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -92,16 +92,12 @@ public class Sach {
 		if (getClass() != obj.getClass())
 			return false;
 		Sach other = (Sach) obj;
-		return Double.doubleToLongBits(gia) == Double.doubleToLongBits(other.gia)
-				&& Objects.equals(maLoaiSach, other.maLoaiSach) && Objects.equals(maNXB, other.maNXB)
-				&& Objects.equals(maSach, other.maSach) && Objects.equals(tenSach, other.tenSach)
-				&& Objects.equals(xuatXu, other.xuatXu);
+		return Objects.equals(maSach, other.maSach);
 	}
-
 	@Override
 	public String toString() {
 		return "Sach [maSach=" + maSach + ", maNXB=" + maNXB + ", maLoaiSach=" + maLoaiSach + ", tenSach=" + tenSach
-				+ ", xuatXu=" + xuatXu + ", gia=" + gia + "]";
+				+ ", xuatXu=" + xuatXu + ", tacGia=" + tacGia + ", soTrang=" + soTrang + ", gia=" + gia + "]";
 	}
-
+	
 }

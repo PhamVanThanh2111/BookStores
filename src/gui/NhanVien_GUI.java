@@ -186,18 +186,18 @@ public class NhanVien_GUI extends JPanel {
 
 		txtTim = new JTextField();
 		txtTim.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtTim.setBounds(409, 10, 257, 33);
+		txtTim.setBounds(377, 10, 257, 33);
 		pMain.add(txtTim);
 		txtTim.setColumns(10);
 
 		JButton btnNewButton = new JButton("Tìm");
 		btnNewButton.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnNewButton.setBounds(782, 10, 114, 33);
+		btnNewButton.setBounds(750, 10, 114, 33);
 		pMain.add(btnNewButton);
 
 		JComboBox<String> cbTim = new JComboBox<String>();
 		cbTim.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbTim.setBounds(676, 10, 96, 33);
+		cbTim.setBounds(644, 10, 96, 33);
 		cbTim.addItem("Tên NV");
 		cbTim.addItem("Mã NV");
 		cbTim.addItem("SĐT");
@@ -208,7 +208,7 @@ public class NhanVien_GUI extends JPanel {
 		lblTim.setForeground(new Color(255, 255, 255));
 		lblTim.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTim.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblTim.setBounds(303, 10, 96, 33);
+		lblTim.setBounds(271, 10, 96, 33);
 		pMain.add(lblTim);
 		
 		JPanel pDanhSach = new JPanel();
@@ -227,6 +227,7 @@ public class NhanVien_GUI extends JPanel {
 		String cols[] = {"Mã NV", "Mã CH", "Tên NV", "Địa chỉ","Giới tính","Ngày sinh","Ngày vào làm","CCCD","Email","SĐT","Chức vụ","Lương"};
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
+		table.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
 		table.setRowHeight(25);
 		table.addMouseListener(new MouseListener() {
 

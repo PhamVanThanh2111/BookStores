@@ -24,7 +24,7 @@ public class NhanVien_DAO {
 			PreparedStatement preparedStatement = connection.prepareStatement("select * from NhanVien");
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTK(resultSet.getString(13));
+				taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTaiKhoan(resultSet.getString(13));
 				ds.add(new NhanVien(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getDate(6),
 						resultSet.getDate(7), resultSet.getString(8), resultSet.getString(9), resultSet.getString(10),
 						resultSet.getString(11), taiKhoan, resultSet.getInt(13)));
@@ -46,7 +46,7 @@ public class NhanVien_DAO {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement("select * from NhanVien where maNV = '" + maNV + "'");
 			ResultSet resultSet = preparedStatement.executeQuery();
-			taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTK(resultSet.getString(13));
+			taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTaiKhoan(resultSet.getString(13));
 			nhanVien.setMaNV(maNV);
 			nhanVien.setMaCH(resultSet.getString(2));
 			nhanVien.setTenNV(resultSet.getString(3));
@@ -73,7 +73,7 @@ public class NhanVien_DAO {
 		ConnectDB.getInstance();
 		Connection connection = ConnectDB.getConnection();
 		TaiKhoan_DAO taiKhoan_DAO = new TaiKhoan_DAO();
-		TaiKhoan taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTK(maTK);
+		TaiKhoan taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTaiKhoan(maTK);
 		try {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery("select * from NhanVien where taiKhoan = '" + maTK + "'");

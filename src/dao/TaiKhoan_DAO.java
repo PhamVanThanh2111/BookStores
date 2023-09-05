@@ -12,7 +12,7 @@ import entity.TaiKhoan;
 
 public class TaiKhoan_DAO {
 	// taoTK khi themNV
-	public boolean createTK(TaiKhoan tk) throws SQLException {
+	public boolean themTaiKhoan(TaiKhoan tk) throws SQLException {
 		ConnectDB.getInstance();
 		Connection con = ConnectDB.getConnection();
 		String sql = "insert into TaiKhoan values (?,?)";
@@ -29,7 +29,7 @@ public class TaiKhoan_DAO {
 		return false;
 	}
 
-	public boolean suaTK(TaiKhoan tk) {
+	public boolean suaTaiKhoan(TaiKhoan tk) {
 		ConnectDB.getInstance();
 		Connection con = ConnectDB.getConnection();
 		PreparedStatement stmt = null;
@@ -54,7 +54,7 @@ public class TaiKhoan_DAO {
 	}
 
 	// Load ds TK
-	public ArrayList<TaiKhoan> getDanhSachTK() {
+	public ArrayList<TaiKhoan> getDanhSachTaiKhoan() {
 		ConnectDB.getInstance();
 		ArrayList<TaiKhoan> lstTK = new ArrayList<TaiKhoan>();
 		Connection con = ConnectDB.getConnection();
@@ -73,7 +73,7 @@ public class TaiKhoan_DAO {
 		return lstTK;
 	}
 
-	public TaiKhoan getTaiKhoanTheoMaTK(String maTK) {
+	public TaiKhoan getTaiKhoanTheoMaTaiKhoan(String maTK) {
 		ConnectDB.getInstance();
 		TaiKhoan tk = new TaiKhoan();
 		Connection con = ConnectDB.getConnection();
@@ -93,7 +93,7 @@ public class TaiKhoan_DAO {
 	}
 
 	// Load ds matkhau
-	public TaiKhoan getMatKhauTheoMaNV(String ma) {
+	public TaiKhoan getMatKhauTheoMaNhanVien(String ma) {
 		ConnectDB.getInstance();
 		TaiKhoan tk = new TaiKhoan();
 		Connection con = ConnectDB.getConnection();

@@ -2,7 +2,6 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +17,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 
 import connect.ConnectDB;
 import dao.NhanVien_DAO;
@@ -26,8 +27,8 @@ import entity.NhanVien;
 //import dao.TaiKhoan_DAO;
 import entity.TaiKhoan;
 import java.awt.event.KeyAdapter;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import javax.swing.JCheckBox;
+import javax.swing.SwingConstants;
 
 public class DangNhap_GUI extends JFrame implements ActionListener {
 
@@ -46,6 +47,8 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 	private NhanVien_DAO nhanVien_DAO;
 	private JTextField txtUser;
 	private int countSaiMatKhau = 0;
+	private JCheckBox cbxShow;
+
 	
 	public static void main(String[] args) {
 		try {
@@ -72,7 +75,6 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 		// image
-		Image img = Toolkit.getDefaultToolkit().createImage("image//private.png");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DangNhap_GUI.class.getResource("/image/favicon.jpg")));
 		// title
 		lblTitle = new JLabel("ĐĂNG NHẬP");
@@ -82,13 +84,17 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		lblUser = new JLabel("Tài khoản:");
 		lblUser.setSize(20, 300);
 		lblUser.setFont(new Font("times new roman", Font.TRUETYPE_FONT, 28));
+		
+	
+		
 
 		// iconuser
 		lblUser.setIcon(new ImageIcon("image//user.png"));
 				
 		// icon btn exit
+	
 		btnExit = new JButton("Thoát");
-		
+	
 		lblTitle_1 = new JLabel("ĐĂNG NHẬP");
 		lblTitle_1.setForeground(new Color(237, 106, 64));
 		lblTitle_1.setFont(new Font("Arial", Font.BOLD, 40));
@@ -105,16 +111,17 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		txtPwd.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					try {
-						login();
-					} catch (SQLException e1) {
+					if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+						try {
+							login();
+							} catch (SQLException e1) {
 						// TODO Auto-generated catch block
-						e1.printStackTrace();
+							e1.printStackTrace();
+						}
 					}
 				}
-			}
 		});
+		
 //		txtPwd.addKeyListener(new KeyAdapter() {
 //			@Override
 //			public void keyPressed(KeyEvent e) {
@@ -136,6 +143,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		btnLogin.setBackground(new Color(237, 106, 64));
 		btnLogin.setBounds(142, 265, 138, 38);
 		getContentPane().add(btnLogin);
+		
 		
 		btnExit = new JButton("Thoát");
 		btnExit.setMnemonic(KeyEvent.VK_X);
@@ -173,13 +181,28 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		txtUser.setColumns(10);
 		
 		JLabel lblBackground = new JLabel("");
+		lblBackground.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBackground.setForeground(new Color(255, 0, 0));
+		lblBackground.setBackground(new Color(255, 0, 0));
 		lblBackground.setIcon(new ImageIcon(DangNhap_GUI.class.getResource("/image/background-login.jpg")));
-		lblBackground.setBounds(0, 0, 636, 363);
+		lblBackground.setBounds(0, 0, 711, 427);
 		getContentPane().add(lblBackground);
+		
+		cbxShow = new JCheckBox("Hiển Thị Mật Khẩu");
+		cbxShow.setBackground(new Color(255, 255, 255));
+		cbxShow.setForeground(new Color(255, 0, 0));
+		cbxShow.setBounds(244, 238, 151, 21);
+		getContentPane().add(cbxShow);
+		
+		
+		
 //		lblBackground.setIcon(new ImageIcon(DangNhap_GUI.class.getResource("/image/background-login.jpg")));
+		
+		
 		
 		btnLogin.addActionListener(this);
 		btnExit.addActionListener(this);
+		
 	}
 
 	public void connect() throws SQLException {
@@ -206,8 +229,6 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		}
 	}
 	
-	
-	
 	public void login() throws SQLException {
 		if (countSaiMatKhau > 2) {
 			JOptionPane.showMessageDialog(null, "Bạn đã nhập sai tài khoản quá 3 lần. Chương trình sẽ thoát!");
@@ -217,7 +238,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 			String maTaiKhoan = txtUser.getText().trim();
 			@SuppressWarnings("deprecation")
 			String matKhau = txtPwd.getText().toString().trim();
-			TaiKhoan taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTK(maTaiKhoan);
+			TaiKhoan taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTaiKhoan(maTaiKhoan);
 			if (taiKhoan.getTaiKhoan() == null) {
 				JOptionPane.showMessageDialog(null, "Tài khoản không đúng!");
 				countSaiMatKhau++;

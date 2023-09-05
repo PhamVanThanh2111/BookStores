@@ -3,6 +3,9 @@ package gui;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.BorderFactory;
@@ -210,14 +213,50 @@ public class CuaHang_GUI extends JPanel {
         txtGioHoatDongTT.setBackground(new Color(240,240,240));
         txtSoLuongNhanVienTT.setBorder(BorderFactory.createEmptyBorder());
         txtSoLuongNhanVienTT.setBackground(new Color(240,240,240));
-        
 		loadData();
-		
+		table.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int row = table.getSelectedRow();
+				txtMaCHTT.setText((String) model.getValueAt(row, 0));
+				txtTenCHTT.setText((String) model.getValueAt(row, 1));
+				txtDiaChiTT.setText((String) model.getValueAt(row, 2));
+				txtSDTTT.setText((String) model.getValueAt(row, 3));
+				txtEmailTT.setText((String) model.getValueAt(row, 4));
+				txtSoLuongNhanVienTT.setText((String) model.getValueAt(row, 5).toString());
+				txtGioHoatDongTT.setText((String) model.getValueAt(row, 6));
+			}
+		});
 	}
 	public void loadData() {
 		for (CuaHang cuaHang : cuaHang_DAO.getAllCuaHang()) {
 			
-			Object[] object = {cuaHang.getMaCH(),cuaHang.getTenCuaHang(),cuaHang.getDiaChi(),cuaHang.getSoDienThoai(),cuaHang.getEmail()};
+			Object[] object = {cuaHang.getMaCH(),cuaHang.getTenCuaHang(),cuaHang.getDiaChi(),cuaHang.getSoDienThoai(),cuaHang.getEmail(),cuaHang.getSoLuongNV(),cuaHang.getGioHD()};
 			
 			model.addRow(object);
 			

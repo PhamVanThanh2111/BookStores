@@ -8,6 +8,8 @@ public class CuaHang {
 	private String diaChi;
 	private String soDienThoai;
 	private String email;
+	private int soLuongNV;
+	private String gioHD;
 	public CuaHang() {
 		super();
 	}
@@ -17,13 +19,15 @@ public class CuaHang {
 		this.maCH = maCH;
 	}
 
-	public CuaHang(String maCH, String tenCuaHang, String diaChi, String soDienThoai, String email) {
+	public CuaHang(String maCH, String tenCuaHang, String diaChi, String soDienThoai, String email,int soLuongNV,String gioHD) {
 		super();
 		this.maCH = maCH;
 		this.tenCuaHang = tenCuaHang;
 		this.diaChi = diaChi;
 		this.soDienThoai = soDienThoai;
 		this.email = email;
+		this.soLuongNV = soLuongNV;
+		this.gioHD = gioHD;
 	}
 	public String getMaCH() {
 		return maCH;
@@ -56,6 +60,22 @@ public class CuaHang {
 		this.email = email;
 	}
 	
+	public int getSoLuongNV() {
+		return soLuongNV;
+	}
+
+	public void setSoLuongNV(int soLuongNV) {
+		this.soLuongNV = soLuongNV;
+	}
+
+	public String getGioHD() {
+		return gioHD;
+	}
+
+	public void setGioHD(String gioHD) {
+		this.gioHD = gioHD;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(diaChi, email, maCH, soDienThoai, tenCuaHang);
@@ -78,7 +98,7 @@ public class CuaHang {
 	@Override
 	public String toString() {
 		return "CuaHang [maCH=" + maCH + ", tenCuaHang=" + tenCuaHang + ", diaChi=" + diaChi + ", soDienThoai="
-				+ soDienThoai + ", email=" + email + "]";
+				+ soDienThoai + ", email=" + email +", soLuongNV = "+ soLuongNV+", gioHD"+gioHD + "]";
 	}
 	
 	

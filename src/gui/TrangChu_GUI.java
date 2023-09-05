@@ -224,6 +224,10 @@ public class TrangChu_GUI extends JFrame {
 			public void mouseExited(MouseEvent e) {
 				lblCuaHang.setBackground(new Color(38, 38, 38));
 			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cardLayoutContent.show(pContent, "CuaHang_GUI");
+			}
 		});
 		pMenu.add(lblCuaHang);
 		
@@ -342,6 +346,7 @@ public class TrangChu_GUI extends JFrame {
 		pContent.add(new NhanVien_GUI(), "NhanVien_GUI");
 		pContent.add(new Sach_GUI(),"Sach_GUI");
 		pContent.add(new HoaDon_GUI(), "HoaDon_GUI");
+		pContent.add(new CuaHang_GUI(), "CuaHang_GUI");
 		cardLayoutContent.show(pContent, "NhanVien_GUI");
 		
 //		System.out.println(nhanVien.getChucVu());

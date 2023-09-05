@@ -11,9 +11,7 @@ import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.border.EtchedBorder;
-import com.toedter.calendar.JDateChooser;
 import javax.swing.border.LineBorder;
-import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -34,7 +32,7 @@ public class HoaDon_GUI extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public HoaDon_GUI() {
+	public HoaDon_GUI(String maNV) {
 		setLayout(null);
 		
 		JPanel pMain = new JPanel();
@@ -72,7 +70,6 @@ public class HoaDon_GUI extends JPanel {
 		pTenKhachHang.setBounds(10, 53, 221, 604);
 		pMain.add(pTenKhachHang);
 		
-		JScrollPane scrollPaneNV;
 		scrollPaneTenKH = new JScrollPane();
 		scrollPaneTenKH.setBounds(10, 20, 201, 574);
 		scrollPaneTenKH.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
@@ -90,7 +87,7 @@ public class HoaDon_GUI extends JPanel {
 		JPanel pSanPham = new JPanel();
 		pSanPham.setLayout(null);
 		pSanPham.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(28, 28, 28)), "S\u1EA3n ph\u1EA9m:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));
-		pSanPham.setBounds(241, 53, 275, 604);
+		pSanPham.setBounds(241, 53, 275, 279);
 		pMain.add(pSanPham);
 		
 		JLabel lblLoaiSanPham = new JLabel("Loại sản phẩm:");
@@ -98,8 +95,11 @@ public class HoaDon_GUI extends JPanel {
 		lblLoaiSanPham.setBounds(10, 51, 103, 33);
 		pSanPham.add(lblLoaiSanPham);
 		
-		JComboBox cbLoaiSanPham = new JComboBox();
+		JComboBox<String> cbLoaiSanPham = new JComboBox<String>();
 		cbLoaiSanPham.setBounds(123, 51, 142, 33);
+		cbLoaiSanPham.addItem("");
+		cbLoaiSanPham.addItem("Sách");
+		cbLoaiSanPham.addItem("Dụng cụ học tập");
 		pSanPham.add(cbLoaiSanPham);
 		
 		JLabel lblTen = new JLabel("Tên sản phẩm:");
@@ -113,11 +113,11 @@ public class HoaDon_GUI extends JPanel {
 		
 		JLabel lblSLng = new JLabel("Số lượng:");
 		lblSLng.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		lblSLng.setBounds(10, 157, 103, 33);
+		lblSLng.setBounds(10, 155, 103, 33);
 		pSanPham.add(lblSLng);
 		
 		txtSoLuong = new JTextField();
-		txtSoLuong.setBounds(123, 155, 142, 35);
+		txtSoLuong.setBounds(123, 155, 142, 33);
 		pSanPham.add(txtSoLuong);
 		txtSoLuong.setColumns(10);
 		
@@ -142,6 +142,12 @@ public class HoaDon_GUI extends JPanel {
 		tableTT.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
 		tableTT.setRowHeight(25);
 		scrollPaneTT.setViewportView(tableTT);
+		
+		JPanel pNhanVien = new JPanel();
+		pNhanVien.setLayout(null);
+		pNhanVien.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(28, 28, 28)), "Nh\u00E2n vi\u00EAn:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));
+		pNhanVien.setBounds(241, 342, 275, 315);
+		pMain.add(pNhanVien);
 
 	}
 }

@@ -210,6 +210,7 @@ public class HoaDon_GUI extends JPanel {
 		pMain.add(lblTim);
 		
 		JPanel pDanhSach = new JPanel();
+		pDanhSach.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
 		pDanhSach.setLayout(null);
 		pDanhSach.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(28, 28, 28)), "Danh s\u00E1ch:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));
 		pDanhSach.setBounds(10, 282, 1142, 375);

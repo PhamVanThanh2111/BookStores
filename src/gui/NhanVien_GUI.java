@@ -81,7 +81,9 @@ public class NhanVien_GUI extends JPanel {
 
 		JPanel pNhapThongTin = new JPanel();
 		pNhapThongTin.setBounds(10, 53, 1142, 219);
-		pNhapThongTin.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(28, 28, 28)), "Th\u00F4ng tin:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));
+		pNhapThongTin.setBorder(new TitledBorder(
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(28, 28, 28)),
+				"Th\u00F4ng tin:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));
 		pMain.add(pNhapThongTin);
 		pNhapThongTin.setLayout(null);
 
@@ -210,28 +212,27 @@ public class NhanVien_GUI extends JPanel {
 		lblTim.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblTim.setBounds(271, 10, 96, 33);
 		pMain.add(lblTim);
-		
+
 		JPanel pDanhSach = new JPanel();
-		pDanhSach.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(28, 28, 28)), "Danh s\u00E1ch:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));
+		pDanhSach.setBorder(new TitledBorder(
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(28, 28, 28)),
+				"Danh s\u00E1ch:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));
 		pDanhSach.setBounds(10, 282, 1142, 375);
 		pMain.add(pDanhSach);
 		pDanhSach.setLayout(null);
-		
+
 		JScrollPane scrollPaneNV = new JScrollPane();
 		scrollPaneNV.setBounds(10, 20, 1122, 345);
 		scrollPaneNV.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
 		scrollPaneNV.setBorder(new LineBorder(new Color(80, 80, 80), 1, true));
 		scrollPaneNV.setBackground(new Color(80, 80, 80));
 		pDanhSach.add(scrollPaneNV);
-	
-		String cols[] = {"Mã NV", "Mã CH", "Tên NV", "Địa chỉ","Giới tính","Ngày sinh","Ngày vào làm","CCCD","Email","SĐT","Chức vụ","Lương"};
+
+		String cols[] = { "Mã NV", "Mã CH", "Tên NV", "Địa chỉ", "Giới tính", "Ngày sinh", "Ngày vào làm", "CCCD",
+				"Email", "SĐT", "Chức vụ", "Lương" };
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
-<<<<<<< HEAD
-		table.setToolTipText("Chọn vào nhân viên để xem thông tin");
-=======
 		table.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
->>>>>>> bb0efcf6009a474e8172ef3fa2e04b5729238e24
 		table.setRowHeight(25);
 		table.addMouseListener(new MouseListener() {
 
@@ -294,13 +295,13 @@ public class NhanVien_GUI extends JPanel {
 			}
 		});
 		scrollPaneNV.setViewportView(table);
-		
+
 		// header of table
 		tableHeader = table.getTableHeader();
 		tableHeader.setBackground(new Color(46, 46, 46));
 		tableHeader.setForeground(Color.white);
 		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
-		
+
 		// set width of table
 		table.getColumnModel().getColumn(0).setPreferredWidth(102);
 		table.getColumnModel().getColumn(1).setPreferredWidth(102);
@@ -315,8 +316,7 @@ public class NhanVien_GUI extends JPanel {
 		table.getColumnModel().getColumn(10).setPreferredWidth(102);
 		table.getColumnModel().getColumn(11).setPreferredWidth(102);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		
-		
+
 		dateChooserNgaySinh = new JDateChooser();
 		dateChooserNgaySinh.setBounds(406, 73, 163, 33);
 		pNhapThongTin.add(dateChooserNgaySinh);
@@ -328,31 +328,31 @@ public class NhanVien_GUI extends JPanel {
 		dateChooserNgaySinh.getCalendarButton().setBackground(new Color(46, 46, 46));
 		dateNow = new Date(new java.util.Date().getTime());
 		dateChooserNgaySinh.setDate(dateNow);
-		
+
 		JButton btnAdd = new JButton("Thêm");
 		btnAdd.setBounds(142, 167, 108, 33);
 		btnAdd.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
 		});
 		pNhapThongTin.add(btnAdd);
-		
+
 		JButton btnXoa = new JButton("Xóa");
 		btnXoa.setBounds(392, 167, 108, 33);
 		pNhapThongTin.add(btnXoa);
-		
+
 		JButton btnSua = new JButton("Sửa");
 		btnSua.setBounds(642, 167, 108, 33);
 		pNhapThongTin.add(btnSua);
-		
+
 		JButton btnXoaTrang = new JButton("Xóa trắng");
 		btnXoaTrang.setBounds(892, 167, 108, 33);
 		btnXoaTrang.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -360,22 +360,22 @@ public class NhanVien_GUI extends JPanel {
 			}
 		});
 		pNhapThongTin.add(btnXoaTrang);
-		
+
 		JLabel lblMaCH = new JLabel("Mã CH:");
 		lblMaCH.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblMaCH.setBounds(39, 73, 90, 33);
 		pNhapThongTin.add(lblMaCH);
-		
+
 		JComboBox<String> cbMaCH = new JComboBox<String>();
 		cbMaCH.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		cbMaCH.setBounds(119, 73, 151, 33);
 		pNhapThongTin.add(cbMaCH);
-		
+
 		JLabel lblLuong = new JLabel("Lương:");
 		lblLuong.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblLuong.setBounds(879, 73, 56, 33);
 		pNhapThongTin.add(lblLuong);
-		
+
 		txtLuong = new JTextField();
 		txtLuong.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtLuong.setColumns(10);
@@ -388,11 +388,14 @@ public class NhanVien_GUI extends JPanel {
 
 	public void loadDataIntoTable() {
 		for (NhanVien nhanVien : nhanVien_DAO.getAllListNhanVien()) {
-			Object[] objects = {nhanVien.getMaNV(), nhanVien.getMaCH(), nhanVien.getTenNV(), nhanVien.getDiaChi(), nhanVien.getGioiTinh(), simpleDateFormat.format(nhanVien.getNgaySinh()), simpleDateFormat.format(nhanVien.getNgayVaoLam()), nhanVien.getCCCD(), nhanVien.getEmail(), nhanVien.getSoDienThoai(), nhanVien.getChucVu(), nhanVien.getLuong()};
+			Object[] objects = { nhanVien.getMaNV(), nhanVien.getMaCH(), nhanVien.getTenNV(), nhanVien.getDiaChi(),
+					nhanVien.getGioiTinh(), simpleDateFormat.format(nhanVien.getNgaySinh()),
+					simpleDateFormat.format(nhanVien.getNgayVaoLam()), nhanVien.getCCCD(), nhanVien.getEmail(),
+					nhanVien.getSoDienThoai(), nhanVien.getChucVu(), nhanVien.getLuong() };
 			model.addRow(objects);
 		}
 	}
-	
+
 	public void xoaTrang() {
 		txtMaNV.setText("");
 		txtTenNV.setText("");

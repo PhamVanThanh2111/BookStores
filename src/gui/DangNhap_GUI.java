@@ -191,8 +191,8 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		
 		
 		cbxShow = new JCheckBox("Hiển Thị Mật Khẩu");
-		cbxShow.setBackground(new Color(255, 255, 255));
-		cbxShow.setForeground(new Color(255, 0, 0));
+		cbxShow.setBackground(new Color(0, 0, 0));
+		cbxShow.setForeground(new Color(255, 255, 255));
 		cbxShow.setBounds(244, 238, 151, 21);
 		getContentPane().add(cbxShow);
 		

@@ -2,10 +2,7 @@ package gui;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -17,7 +14,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
@@ -45,7 +41,6 @@ public class TrangChu_GUI extends JFrame {
 	private JButton btnHeaderInfo;
 	private JPanel pContent;
 	private CardLayout cardLayoutContent;
-	private CardLayout cardLayoutMenu;
 	private JLabel lblNhanVien;
 	private JLabel lblCuaHang;
 	private JLabel lblKhachHang;

@@ -15,6 +15,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
 
 public class LoaiSach_GUI extends JPanel {
 
@@ -32,12 +33,12 @@ public class LoaiSach_GUI extends JPanel {
 		setLayout(null);
 
 		JPanel mMain = new JPanel();
-		mMain.setBounds(10, 10, 1326, 742);
+		mMain.setBounds(10, 10, 1162, 667);
 		add(mMain);
 		mMain.setLayout(null);
 
 		JPanel pnTieuDe = new JPanel();
-		pnTieuDe.setBounds(10, 10, 1034, 42);
+		pnTieuDe.setBounds(10, 10, 1021, 42);
 		mMain.add(pnTieuDe);
 		pnTieuDe.setLayout(null);
 
@@ -51,9 +52,9 @@ public class LoaiSach_GUI extends JPanel {
 		// pnCenN.setBorder(new TitledBorder(null, "Thông Tin: ", TitledBorder.LEADING,
 		// TitledBorder.TOP, null, new Color(0, 126, 197)));
 		pnCenN.setBorder(new TitledBorder(
-				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 126, 197)), "Thông Tin:",
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0,0)), "Thông Tin:",//162, 197
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 126, 197)));
-		pnCenN.setBounds(10, 62, 1040, 106);
+		pnCenN.setBounds(10, 62, 1028, 106);
 		mMain.add(pnCenN);
 		pnCenN.setLayout(null);
 
@@ -89,9 +90,9 @@ public class LoaiSach_GUI extends JPanel {
 		b.add(verticalStrut_1);
 
 		JPanel pnCenS = new JPanel();
-		pnCenS.setBounds(10, 167, 1034, 54);
+		pnCenS.setBounds(10, 167, 1028, 54);
 		pnCenS.setBorder(new TitledBorder(
-				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 126, 197)), "Chức Năng:",
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0 )), "Chức Năng:", //162, 197
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 126, 197)));
 		mMain.add(pnCenS);
 		pnCenS.setLayout(null);
@@ -137,18 +138,18 @@ public class LoaiSach_GUI extends JPanel {
 		pnCenS.add(horizontalStrut_1_3);
 
 		JPanel pnSouth_2 = new JPanel();
-		pnSouth_2.setBounds(10, 231, 1034, 357);
-		pnSouth_2.setLayout(null);
+		pnSouth_2.setBounds(10, 231, 1028, 357);
 		pnSouth_2.setBorder(new TitledBorder(
-				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 162, 197)), "Danh sách:",
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0 )), "Danh sách:",//162, 197
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
 		mMain.add(pnSouth_2);
+		pnSouth_2.setLayout(null);
 
 		JScrollPane scrollPaneSach = new JScrollPane();
+		scrollPaneSach.setBounds(38, 22, 980, 314);
 		scrollPaneSach.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
 		scrollPaneSach.setBorder(new LineBorder(new Color(0, 162, 197), 1, true));
 		scrollPaneSach.setBackground(new Color(0, 162, 197));
-		scrollPaneSach.setBounds(28, 22, 980, 314);
 		pnSouth_2.add(scrollPaneSach);
 
 		Component verticalStrut_1_1 = Box.createVerticalStrut(10);

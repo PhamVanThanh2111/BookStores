@@ -12,7 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import dao.NhaXuatBan_DAO;
+import dao.NXB_DAO;
 
 import javax.swing.border.EtchedBorder;
 import java.awt.Component;
@@ -21,7 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 
-public class NhaXuatBan_GUI extends JPanel {
+public class NXB_GUI extends JPanel {
 	/**
 	 * 
 	 */
@@ -35,15 +35,15 @@ public class NhaXuatBan_GUI extends JPanel {
 
 	private DefaultTableModel model;
 	private JTable table;
-	private NhaXuatBan_DAO nhaXuatBan_DAO;
+	private NXB_DAO nhaXuatBan_DAO;
 
 	/**
 	 * Create the panel.
 	 */
-	public NhaXuatBan_GUI() {
+	public NXB_GUI() {
 
 		// Khai bao DAO
-		nhaXuatBan_DAO = new NhaXuatBan_DAO();
+		nhaXuatBan_DAO = new NXB_DAO();
 
 		setLayout(null);
 		JPanel pMain = new JPanel();

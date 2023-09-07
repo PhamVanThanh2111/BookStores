@@ -149,7 +149,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 //					login();
 //			}
 //		});
-		txtPwd.setText("admin");
+		txtPwd.setText("NV002");
 		txtPwd.setBorder(BorderFactory.createLineBorder(new Color(117, 128, 134)));
 		txtPwd.setBounds(269, 188, 191, 32);
 		txtPwd.requestFocus();
@@ -196,7 +196,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		});
 		txtUser.setBounds(269, 131, 191, 32);
 		txtUser.setBorder(BorderFactory.createLineBorder(new Color(117, 128, 134)));
-		txtUser.setText("admin");
+		txtUser.setText("NV002");
 		getContentPane().add(txtUser);
 		txtUser.setColumns(10);
 		

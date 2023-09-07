@@ -47,7 +47,9 @@ public class TrangChu_GUI extends JFrame {
 	private JLabel lblHoaDon;
 	private JLabel lblSach;
 	private JLabel lblThongKe;
+	private JLabel lblNXB;
 	private JLabel lblShowHideMenu;
+	private JLabel lblLoaiSach;
 
 	/**
 	 * Create the frame.
@@ -327,22 +329,77 @@ public class TrangChu_GUI extends JFrame {
 			}
 		});
 		pMenu.add(lblThongKe);
+		
+		lblLoaiSach = new JLabel("Loại sách");
+		lblLoaiSach.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLoaiSach.setForeground(Color.WHITE);
+		lblLoaiSach.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		lblLoaiSach.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblLoaiSach.setBackground(new Color(28, 28, 28));
+		lblLoaiSach.setBounds(10, 560, 160, 64);
+		lblLoaiSach.setVisible(false);
+		lblLoaiSach.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblLoaiSach.setBackground(new Color(28, 28, 28));
+				lblLoaiSach.setOpaque(true);
+			}
 
-//		if (nhanVien.getChucVu().equalsIgnoreCase("Bán hàng")) {
-//			btnNhanVien.setVisible(false);
-//			btnCuaHang.setVisible(false);
-//			btnKhachHang.setBounds(74, 0, 127, 31);
-//			btnHoaDon.setBounds(275, 0, 127, 31);
-//			btnSach.setBounds(476, 0, 127, 31);
-//			btnLoaiSach.setBounds(677,  0, 127, 31);
-//			btnNXB.setBounds(878, 0, 127, 31);
-//			btnThongKe.setBounds(1079, 0, 127, 31);
-//			
-//			// set show pContent KhachHang
-//		}
-//		else {
-//			// chuc nang nay danh cho quan ly kho
-//		}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblLoaiSach.setBackground(new Color(38, 38, 38));
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cardLayoutContent.show(pContent, "LoaiSach_GUI");
+			}
+		});
+		pMenu.add(lblLoaiSach);
+		
+		lblNXB = new JLabel("NXB");
+		lblNXB.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNXB.setForeground(Color.WHITE);
+		lblNXB.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		lblNXB.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblNXB.setBackground(new Color(28, 28, 28));
+		lblNXB.setBounds(0, 0, 160, 64);
+		lblNXB.setVisible(false);
+		lblNXB.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblNXB.setBackground(new Color(28, 28, 28));
+				lblNXB.setOpaque(true);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblNXB.setBackground(new Color(38, 38, 38));
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cardLayoutContent.show(pContent, "NXB_GUI");
+			}
+		});
+		pMenu.add(lblNXB);
+
+		if (nhanVien.getChucVu().equalsIgnoreCase("Bán hàng")) {
+			// set show pContent KhachHang
+			lblLoaiSach.setVisible(true);
+			lblNXB.setVisible(true);
+			lblNhanVien.setVisible(false);
+			lblCuaHang.setVisible(false);
+			lblKhachHang.setBounds(10, 40, 160, 64);
+			lblHoaDon.setBounds(10, 144, 160, 64);
+			lblSach.setBounds(10, 248, 160, 64);
+			lblLoaiSach.setBounds(10, 352, 160, 64);
+			lblNXB.setBounds(10, 456, 160, 64);
+			lblThongKe.setBounds(10, 560, 160, 64);
+		}
+		else {
+			// chuc nang nay danh cho quan ly kho
+		}
 
 		pContent = new JPanel();
 		pContent.setBackground(new Color(77, 77, 77));
@@ -355,6 +412,8 @@ public class TrangChu_GUI extends JFrame {
 		pContent.add(new Sach_GUI(), "Sach_GUI");
 		pContent.add(new HoaDon_GUI(nhanVien.getMaNV()), "HoaDon_GUI");
 		pContent.add(new CuaHang_GUI(), "CuaHang_GUI");
+		pContent.add(new LoaiSach_GUI(), "LoaiSach_GUI");
+		pContent.add(new NXB_GUI(), "NXB_GUI");
 		cardLayoutContent.show(pContent, "NhanVien_GUI");
 
 //		System.out.println(nhanVien.getChucVu());

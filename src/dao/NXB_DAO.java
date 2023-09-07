@@ -9,7 +9,7 @@ import connect.ConnectDB;
 
 import entity.NXB;
 
-public class NhaXuatBan_DAO {
+public class NXB_DAO {
 	// get all loai sách //lấy
 				public List<NXB> getAllListNXB() {
 					ConnectDB.getInstance();

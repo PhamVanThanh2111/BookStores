@@ -15,6 +15,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class LoaiSach_GUI extends JPanel {
 
@@ -22,8 +23,8 @@ public class LoaiSach_GUI extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtMaLoaiSach;
+	private JTextField txtTenLoaiSach;
 
 	/**
 	 * Create the panel.
@@ -31,36 +32,29 @@ public class LoaiSach_GUI extends JPanel {
 	public LoaiSach_GUI() {
 		setLayout(null);
 
-		JPanel mMain = new JPanel();
-		mMain.setBounds(10, 10, 1326, 742);
-		add(mMain);
-		mMain.setLayout(null);
+		JPanel pMain = new JPanel();
+		pMain.setBounds(10, 10, 1162, 667);
+		add(pMain);
+		pMain.setLayout(null);
+		pMain.setBackground(new Color(77, 77, 77));
 
-		JPanel pnTieuDe = new JPanel();
-		pnTieuDe.setBounds(10, 10, 1034, 42);
-		mMain.add(pnTieuDe);
-		pnTieuDe.setLayout(null);
+//		pnMain.setBackground(getBackground());
 
-		JLabel lblQunLLoi = new JLabel("QUẢN LÝ LOẠI SÁCH");
-		lblQunLLoi.setBounds(421, 10, 240, 22);
-		lblQunLLoi.setForeground(Color.RED);
-		lblQunLLoi.setFont(new Font("Arial", Font.BOLD, 20));
-		pnTieuDe.add(lblQunLLoi);
-
-		JPanel pnCenN = new JPanel();
+		JPanel pnThongTin = new JPanel();
 		// pnCenN.setBorder(new TitledBorder(null, "Thông Tin: ", TitledBorder.LEADING,
 		// TitledBorder.TOP, null, new Color(0, 126, 197)));
-		pnCenN.setBorder(new TitledBorder(
-				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 126, 197)), "Thông Tin:",
+		pnThongTin.setBorder(new TitledBorder(
+				
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0,0)), "Thông Tin:",//162, 197
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 126, 197)));
-		pnCenN.setBounds(10, 62, 1040, 106);
-		mMain.add(pnCenN);
-		pnCenN.setLayout(null);
+		pnThongTin.setBounds(10, 10, 1128, 106);
+		pMain.add(pnThongTin);
+		pnThongTin.setLayout(null);
 
 		Box b = Box.createVerticalBox();
 		b.setBounds(73, 10, 897, 74);
 		b.setPreferredSize(new Dimension(840, 70));
-		pnCenN.add(b);
+		pnThongTin.add(b);
 
 		Component verticalStrut = Box.createVerticalStrut(30);
 		b.add(verticalStrut);
@@ -68,92 +62,69 @@ public class LoaiSach_GUI extends JPanel {
 		Box b1 = Box.createHorizontalBox();
 		b.add(b1);
 
-		JLabel lblMLoiSch = new JLabel("Mã Loại Sách: ");
-		lblMLoiSch.setPreferredSize(new Dimension(86, 13));
-		b1.add(lblMLoiSch);
+		JLabel lblMaLoaiSach = new JLabel("Mã Loại Sách: ");
+		lblMaLoaiSach.setPreferredSize(new Dimension(86, 13));
+		b1.add(lblMaLoaiSach);
 
-		textField = new JTextField();
-		textField.setEditable(false);
-		b1.add(textField);
+		txtMaLoaiSach = new JTextField();
+		txtMaLoaiSach.setEditable(false);
+		b1.add(txtMaLoaiSach);
 
-		Component horizontalStrut = Box.createHorizontalStrut(20);
-		b1.add(horizontalStrut);
+		JLabel lblTenLoaiSach = new JLabel("Tên Loại Sách:    ");
+		b1.add(lblTenLoaiSach);
 
-		JLabel lblTnLoiSch = new JLabel("Tên Loại Sách:    ");
-		b1.add(lblTnLoiSch);
-
-		textField_1 = new JTextField();
-		b1.add(textField_1);
+		txtTenLoaiSach = new JTextField();
+		b1.add(txtTenLoaiSach);
 
 		Component verticalStrut_1 = Box.createVerticalStrut(10);
 		b.add(verticalStrut_1);
 
-		JPanel pnCenS = new JPanel();
-		pnCenS.setBounds(10, 167, 1034, 54);
-		pnCenS.setBorder(new TitledBorder(
-				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 126, 197)), "Chức Năng:",
+		JPanel pnChucNang = new JPanel();
+		pnChucNang.setBounds(10, 126, 1128, 54);
+		pnChucNang.setBorder(new TitledBorder(
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0 )), "Chức Năng:", //162, 197
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 126, 197)));
-		mMain.add(pnCenS);
-		pnCenS.setLayout(null);
+		pMain.add(pnChucNang);
+		pnChucNang.setLayout(null);
 
 		JButton btnThem = new JButton("Thêm Loại Sách");
-		btnThem.setBounds(145, 10, 127, 34);
-		pnCenS.add(btnThem);
+		btnThem.setBounds(92, 10, 127, 34);
+		pnChucNang.add(btnThem);
 
 		JButton btnXoa = new JButton("Xóa Loại Sách");
 		btnXoa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnXoa.setBounds(320, 10, 133, 34);
-		pnCenS.add(btnXoa);
+		btnXoa.setBounds(311, 10, 133, 34);
+		pnChucNang.add(btnXoa);
 
 		JButton btnSua = new JButton("Sửa Thông Tin");
-		btnSua.setBounds(498, 10, 121, 34);
-		pnCenS.add(btnSua);
+		btnSua.setBounds(536, 10, 121, 34);
+		pnChucNang.add(btnSua);
 
 		JButton btnIn = new JButton("In Thông Tin");
-		btnIn.setBounds(664, 10, 127, 34);
-		pnCenS.add(btnIn);
+		btnIn.setBounds(749, 10, 127, 34);
+		pnChucNang.add(btnIn);
 
 		JButton btnThoat = new JButton("Thoát");
-		btnThoat.setBounds(827, 10, 80, 34);
-		pnCenS.add(btnThoat);
+		btnThoat.setBounds(968, 10, 80, 34);
+		pnChucNang.add(btnThoat);
 
-		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
-		horizontalStrut_1.setBounds(269, 20, 53, 12);
-		pnCenS.add(horizontalStrut_1);
-
-		Component horizontalStrut_1_1 = Box.createHorizontalStrut(20);
-		horizontalStrut_1_1.setBounds(454, 20, 45, 12);
-		pnCenS.add(horizontalStrut_1_1);
-
-		Component horizontalStrut_1_2 = Box.createHorizontalStrut(20);
-		horizontalStrut_1_2.setBounds(617, 20, 45, 12);
-		pnCenS.add(horizontalStrut_1_2);
-
-		Component horizontalStrut_1_3 = Box.createHorizontalStrut(20);
-		horizontalStrut_1_3.setBounds(792, 20, 38, 12);
-		pnCenS.add(horizontalStrut_1_3);
-
-		JPanel pnSouth_2 = new JPanel();
-		pnSouth_2.setBounds(10, 231, 1034, 357);
-		pnSouth_2.setLayout(null);
-		pnSouth_2.setBorder(new TitledBorder(
-				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 162, 197)), "Danh sách:",
+		JPanel pnDanhSach = new JPanel();
+		pnDanhSach.setBounds(10, 190, 1128, 467);
+		pnDanhSach.setBorder(new TitledBorder(
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0 )), "Danh sách:",//162, 197
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
-		mMain.add(pnSouth_2);
+		pMain.add(pnDanhSach);
+		pnDanhSach.setLayout(null);
 
 		JScrollPane scrollPaneSach = new JScrollPane();
+		scrollPaneSach.setBounds(27, 46, 1060, 399);
 		scrollPaneSach.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
-		scrollPaneSach.setBorder(new LineBorder(new Color(0, 162, 197), 1, true));
-		scrollPaneSach.setBackground(new Color(0, 162, 197));
-		scrollPaneSach.setBounds(28, 22, 980, 314);
-		pnSouth_2.add(scrollPaneSach);
-
-		Component verticalStrut_1_1 = Box.createVerticalStrut(10);
-		verticalStrut_1_1.setBounds(10, 217, 1034, 17);
-		mMain.add(verticalStrut_1_1);
+		scrollPaneSach.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		scrollPaneSach.setBackground(new Color(0, 0, 0));
+		pnDanhSach.add(scrollPaneSach);
 
 	}
 }

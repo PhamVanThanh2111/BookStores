@@ -18,8 +18,9 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import dao.LoaiSach_DAO;
 import dao.Sach_DAO;
-import entity.NhanVien;
+import entity.LoaiSach;
 import entity.Sach;
 
 import javax.swing.JScrollPane;
@@ -34,9 +35,8 @@ public class Sach_GUI extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField txtgia;
+	private JTextField txtTimKiem;
 	private JTextField txtMaSach;
 	private JTextField txtMaNXB;
 	private JTextField txtMaLoaiSach;
@@ -45,191 +45,210 @@ public class Sach_GUI extends JPanel {
 	private JTextField txtTacGia;
 	private JTextField txtSoTrang;
 	private JTextField txtGia;
-	private JScrollPane scrollPaneSach; 
+	private JScrollPane scrollPaneSach;
 	private JTable table;
 	private DefaultTableModel model;
 	private Sach_DAO sach_DAO;
+	private LoaiSach_DAO loaiSach_DAO;
 	private JTableHeader tableHeader;
-
+	private JComboBox<String> comboBox ;
+	private JTextField textXuatXu;
 	/**
 	 * Create the panel.
 	 */
 	public Sach_GUI() {
-		
+
 		setLayout(null);
-		//Khai bao Sach_DAO
+		// Khai bao Sach_DAO
 		sach_DAO = new Sach_DAO();
-	
+		loaiSach_DAO = new LoaiSach_DAO();
 		JPanel mMain = new JPanel();
+		
+		
+		
+		
+		
+		
+		mMain.setBackground(new Color(77,77,77));
 		mMain.setBounds(10, 10, 1162, 667);
 		add(mMain);
 		mMain.setLayout(null);
-	
+
 		JPanel pNhapThongTin = new JPanel();
-		pNhapThongTin.setBounds(10, 53, 1142, 167);
-		pNhapThongTin.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 162, 197)), "Th\u00F4ng tin chi ti\u1EBFt:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
+		pNhapThongTin.setBounds(10, 53, 1128, 168);
+		pNhapThongTin.setBorder(new TitledBorder(
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)),
+				"Th\u00F4ng tin chi ti\u1EBFt:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
 		mMain.add(pNhapThongTin);
 		pNhapThongTin.setLayout(null);
-		
 
 		JLabel lblMaNV = new JLabel("Mã Sách:");
 		lblMaNV.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblMaNV.setBounds(49, 30, 90, 33);
 		pNhapThongTin.add(lblMaNV);
-		
+
 		JTextField txtMaNV = new JTextField();
 		txtMaNV.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtMaNV.setColumns(10);
 		txtMaNV.setBounds(161, 30, 297, 33);
 		txtMaNV.setEditable(false);
 		pNhapThongTin.add(txtMaNV);
-		
+
 		JTextField txtTenNV = new JTextField();
 		txtTenNV.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtTenNV.setColumns(10);
 		txtTenNV.setBounds(161, 73, 297, 33);
 		pNhapThongTin.add(txtTenNV);
-		
+
 		JLabel lblTenNV = new JLabel("Tên Sách:");
 		lblTenNV.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblTenNV.setBounds(49, 73, 90, 33);
 		pNhapThongTin.add(lblTenNV);
-		
+
 		JLabel lblDiaChi = new JLabel("Nhà Xuất Bản:");
 		lblDiaChi.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblDiaChi.setBounds(49, 116, 121, 33);
 		pNhapThongTin.add(lblDiaChi);
-		
-		JTextField txtDiaChi = new JTextField();
-		txtDiaChi.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtDiaChi.setColumns(10);
-		txtDiaChi.setBounds(161, 116, 297, 33);
-		pNhapThongTin.add(txtDiaChi);
-		
-		JLabel lblGioiTinh = new JLabel("Giá:");
-		lblGioiTinh.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblGioiTinh.setBounds(651, 116, 121, 33);
-		pNhapThongTin.add(lblGioiTinh);
-		
-		JLabel lblSoDienThoai = new JLabel("Xuất Xứ:");
-		lblSoDienThoai.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblSoDienThoai.setBounds(651, 73, 124, 33);
-		pNhapThongTin.add(lblSoDienThoai);
-		
-		JLabel lbmaLoaiSach = new JLabel("Mã Loại Sách:");
-		lbmaLoaiSach.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lbmaLoaiSach.setBounds(651, 30, 111, 33);
-		pNhapThongTin.add(lbmaLoaiSach);
-		
-		JTextField txtSoDienThoai = new JTextField();
-		txtSoDienThoai.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtSoDienThoai.setColumns(10);
-		txtSoDienThoai.setBounds(756, 73, 320, 33);
-		pNhapThongTin.add(txtSoDienThoai);
-		
-		textField = new JTextField();
-		textField.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		textField.setEditable(false);
-		textField.setColumns(10);
-		textField.setBounds(756, 30, 320, 33);
-		pNhapThongTin.add(textField);
-		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		textField_1.setColumns(10);
-		textField_1.setBounds(756, 116, 320, 33);
-		pNhapThongTin.add(textField_1);
-		
+
+		JTextField txtNXB = new JTextField();
+		txtNXB.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtNXB.setColumns(10);
+		txtNXB.setBounds(161, 116, 297, 33);
+		pNhapThongTin.add(txtNXB);
+
+		JLabel lblGia = new JLabel("Giá:");
+		lblGia.setFont(new Font("SansSerif", Font.BOLD, 14));
+		lblGia.setBounds(651, 116, 121, 33);
+		pNhapThongTin.add(lblGia);
+
+		JLabel lblXuatXu = new JLabel("Xuất Xứ:");
+		lblXuatXu.setFont(new Font("SansSerif", Font.BOLD, 14));
+		lblXuatXu.setBounds(651, 73, 124, 33);
+		pNhapThongTin.add(lblXuatXu);
+
+		JLabel lbMaLoaiSach = new JLabel("Mã Loại Sách:");
+		lbMaLoaiSach.setFont(new Font("SansSerif", Font.BOLD, 14));
+		lbMaLoaiSach.setBounds(651, 30, 111, 33);
+		pNhapThongTin.add(lbMaLoaiSach);
+
+//		JTextField txtxuatXu = new JTextField();
+//		txtxuatXu.setFont(new Font("SansSerif", Font.PLAIN, 14));
+//		txtxuatXu.setColumns(10);
+//		txtxuatXu.setBounds(756, 73, 320, 33);
+//		pNhapThongTin.add(txtxuatXu);
+
+		txtgia = new JTextField();
+		txtgia.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtgia.setColumns(10);
+		txtgia.setBounds(756, 116, 320, 33);
+		pNhapThongTin.add(txtgia);
+
 		Component horizontalStrut = Box.createHorizontalStrut(20);
 		horizontalStrut.setBounds(457, 40, 193, 23);
 		pNhapThongTin.add(horizontalStrut);
-		
+
 		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
 		horizontalStrut_1.setBounds(457, 83, 193, 23);
 		pNhapThongTin.add(horizontalStrut_1);
-		
+
 		Component horizontalStrut_2 = Box.createHorizontalStrut(20);
 		horizontalStrut_2.setBounds(457, 126, 193, 23);
 		pNhapThongTin.add(horizontalStrut_2);
-		
+
 		Component verticalStrut = Box.createVerticalStrut(10);
 		verticalStrut.setBounds(203, 63, 840, -7);
 		pNhapThongTin.add(verticalStrut);
-		
+
 		Component verticalStrut_1 = Box.createVerticalStrut(10);
 		verticalStrut_1.setBounds(203, 63, 840, 10);
 		pNhapThongTin.add(verticalStrut_1);
-		
+
 		Component verticalStrut_2 = Box.createVerticalStrut(10);
 		verticalStrut_2.setBounds(203, 106, 840, 10);
 		pNhapThongTin.add(verticalStrut_2);
-		
+
 		Component verticalStrut_3 = Box.createVerticalStrut(10);
 		verticalStrut_3.setBounds(203, 147, 840, 10);
 		pNhapThongTin.add(verticalStrut_3);
+
+		comboBox = new JComboBox<String>();
+		comboBox.addItem("");
+		loadDataIntoCombobox();
+		comboBox.setBounds(756, 30, 320, 33);
+		pNhapThongTin.add(comboBox);
 		
+		textXuatXu = new JTextField();
+		textXuatXu.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		textXuatXu.setColumns(10);
+		textXuatXu.setBounds(756, 73, 320, 33);
+		pNhapThongTin.add(textXuatXu);
+
 		JLabel lblTim = new JLabel("Tìm kiếm:");
+		lblTim.setForeground(new Color(255, 255, 255));
 		lblTim.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTim.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblTim.setBounds(184, 10, 96, 33);
+		lblTim.setBounds(130, 9, 96, 33);
 		mMain.add(lblTim);
-		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		textField_2.setColumns(10);
-		textField_2.setBounds(290, 9, 406, 33);
-		mMain.add(textField_2);
-		
+
+		txtTimKiem = new JTextField();
+		txtTimKiem.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtTimKiem.setColumns(10);
+		txtTimKiem.setBounds(234, 10, 425, 33);
+		mMain.add(txtTimKiem);
+
 		JComboBox<String> cbTim = new JComboBox<String>();
 		cbTim.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbTim.setBounds(706, 10, 246, 33);
+		cbTim.setBounds(669, 10, 246, 33);
 		mMain.add(cbTim);
-		
-		JPanel pnSouth_1 = new JPanel();
-		pnSouth_1.setBounds(10, 216, 1142, 58);
-		mMain.add(pnSouth_1);
-		pnSouth_1.setLayout(null);
-		pnSouth_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 162, 197)), "Ch\u1EE9c n\u0103ng:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
-		
-		JButton btnThmSch = new JButton("Thêm Sách");
-		btnThmSch.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnThmSch.setBounds(93, 14, 121, 34);
-		pnSouth_1.add(btnThmSch);
-		
-		JButton btnXaSch = new JButton("Xóa Sách");
-		btnXaSch.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnXaSch.addActionListener(new ActionListener() {
+
+		JPanel pnChucNang = new JPanel();
+		pnChucNang.setBounds(10, 231, 1128, 62);
+		mMain.add(pnChucNang);
+		pnChucNang.setLayout(null);
+		pnChucNang.setBorder(new TitledBorder(
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0,0)), //162, 197
+				"Ch\u1EE9c n\u0103ng:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
+
+		JButton btnThemSach = new JButton("Thêm Sách");
+		btnThemSach.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnThemSach.setBounds(93, 14, 121, 34);
+		pnChucNang.add(btnThemSach);
+
+		JButton btnXoaSach = new JButton("Xóa Sách");
+		btnXoaSach.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnXoaSach.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnXaSch.setBounds(307, 14, 121, 34);
-		pnSouth_1.add(btnXaSch);
-		
+		btnXoaSach.setBounds(307, 14, 121, 34);
+		pnChucNang.add(btnXoaSach);
+
 		JButton btnSua = new JButton("Sửa Thông Tin");
 		btnSua.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnSua.setBounds(521, 14, 129, 34);
-		pnSouth_1.add(btnSua);
-		
+		pnChucNang.add(btnSua);
+
 		JButton btnXoaTrang = new JButton("Xóa Trắng");
 		btnXoaTrang.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnXoaTrang.setBounds(743, 14, 121, 34);
-		pnSouth_1.add(btnXoaTrang);
-		
+		pnChucNang.add(btnXoaTrang);
+
 		JButton btnThoat = new JButton("Thoát");
 		btnThoat.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnThoat.setBounds(957, 14, 92, 34);
-		pnSouth_1.add(btnThoat);
-		
-		JPanel pnSouth_2 = new JPanel();
-		pnSouth_2.setBounds(10, 278, 1142, 283);
-		mMain.add(pnSouth_2);
-		pnSouth_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 162, 197)), "Danh sách:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
-		pnSouth_2.setLayout(null);
-		
-		
+		btnThoat.setBounds(957, 14, 107, 34);
+		pnChucNang.add(btnThoat);
+
+		JPanel pnDanhSach = new JPanel();
+		pnDanhSach.setBounds(10, 303, 1128, 354);
+		mMain.add(pnDanhSach);
+		pnDanhSach.setBorder(new TitledBorder(
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0,0,0 )), "Danh sách:",//162, 197
+				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
+		pnDanhSach.setLayout(null);
+
 		JButton btnNewButton = new JButton("Tìm");
 		btnNewButton.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnNewButton.setBounds(973, 10, 114, 33);
+		btnNewButton.setBounds(940, 10, 114, 33);
 		mMain.add(btnNewButton);
 		btnXoaTrang.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -239,48 +258,47 @@ public class Sach_GUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnThmSch.addActionListener(new ActionListener() {
+		btnThemSach.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		scrollPaneSach = new JScrollPane();
-		scrollPaneSach.setBounds(22, 22, 1099, 239);
+		scrollPaneSach.setBounds(22, 22, 1083, 311);
 		scrollPaneSach.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
 		scrollPaneSach.setBorder(new LineBorder(new Color(0, 162, 197), 1, true));
 		scrollPaneSach.setBackground(new Color(0, 162, 197));
-		pnSouth_2.add(scrollPaneSach);
-		
-		
-		String cols[] = {"Mã Sách", "Mã NXB", "Mã Loại Sách ", "Tên Sách","Xuất Xứ","Tác Giả","Số Trang","Giá"};
+		pnDanhSach.add(scrollPaneSach);
+
+		String cols[] = { "Mã Sách", "Mã NXB", "Mã Loại Sách ", "Tên Sách", "Xuất Xứ", "Tác Giả", "Số Trang", "Giá" };
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
 		table.setRowHeight(25);
 		table.addMouseListener(new MouseListener() {
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
@@ -293,27 +311,40 @@ public class Sach_GUI extends JPanel {
 				txtTacGia.setText((String) model.getValueAt(row, 5));
 				txtSoTrang.setText((String) model.getValueAt(row, 6));
 				txtGia.setText((String) model.getValueAt(row, 7));
-				System.out.println("ueuc");
+				System.out.println("fkugsuks");
+				
+				
+				
+				
+				
 			}
 		});
 		scrollPaneSach.add(table);
 		scrollPaneSach.setViewportView(table);
-		
-		
+
 		loadDataIntoTable();
-		
+
 		// header of table
-				tableHeader = table.getTableHeader();
-				tableHeader.setBackground(new Color(46, 46, 46));
-				tableHeader.setForeground(Color.white);
-				tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
+		tableHeader = table.getTableHeader();
+		tableHeader.setBackground(new Color(46, 46, 46));
+		tableHeader.setForeground(Color.white);
+		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
 	}
+
+	// Đổ DL vào comboBox Sách
 	public void loadDataIntoTable() {
 		for (Sach sach : sach_DAO.getAllListSach()) {
 			Object [] objects = {sach.getMaSach(),sach.getMaNXB(),sach.getMaLoaiSach(),sach.getTenSach(),sach.getXuatXu(),sach.getTacGia(),sach.getSoTrang(),sach.getGia()};
 			model.addRow(objects);
-			
+			}
 		}
-		
+
+	// Đổ DL vào comboBox Mã Loại Sách
+	public void loadDataIntoCombobox() {
+		for (LoaiSach loaiSach : loaiSach_DAO.getAllListLoaiSach()) {
+			comboBox.addItem(loaiSach.getMaLoaiSach());	
+		}
+
+	
 	}
 }

@@ -17,8 +17,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
 
 import connect.ConnectDB;
 import dao.NhanVien_DAO;
@@ -47,7 +45,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 	private NhanVien_DAO nhanVien_DAO;
 	private JTextField txtUser;
 	private int countSaiMatKhau = 0;
-	private JCheckBox cbxShow;
+	private JCheckBox chkShow;
 
 	
 	public static void main(String[] args) {
@@ -94,6 +92,28 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		// icon btn exit
 	
 		btnExit = new JButton("Thoát");
+		
+				
+				
+				chkShow = new JCheckBox("Hiển Thị Mật Khẩu");
+				chkShow.setBackground(new Color(0, 0, 0));
+				chkShow.setForeground(new Color(255, 255, 255));
+				chkShow.setBounds(244, 238, 151, 21);
+				getContentPane().add(chkShow);
+				
+				chkShow.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						if (chkShow.isSelected()) {
+							txtPwd.setEchoChar((char) 0);
+						}
+						else {
+							txtPwd.setEchoChar('*');		
+						}
+					}
+				});
 	
 		lblTitle_1 = new JLabel("ĐĂNG NHẬP");
 		lblTitle_1.setForeground(new Color(237, 106, 64));
@@ -129,7 +149,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 //					login();
 //			}
 //		});
-		txtPwd.setText("admin");
+		txtPwd.setText("NV002");
 		txtPwd.setBorder(BorderFactory.createLineBorder(new Color(117, 128, 134)));
 		txtPwd.setBounds(269, 188, 191, 32);
 		txtPwd.requestFocus();
@@ -176,7 +196,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		});
 		txtUser.setBounds(269, 131, 191, 32);
 		txtUser.setBorder(BorderFactory.createLineBorder(new Color(117, 128, 134)));
-		txtUser.setText("admin");
+		txtUser.setText("NV002");
 		getContentPane().add(txtUser);
 		txtUser.setColumns(10);
 		
@@ -188,22 +208,27 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		lblBackground.setBounds(0, 0, 711, 427);
 		getContentPane().add(lblBackground);
 		
-		cbxShow = new JCheckBox("Hiển Thị Mật Khẩu");
-		cbxShow.setBackground(new Color(255, 255, 255));
-		cbxShow.setForeground(new Color(255, 0, 0));
-		cbxShow.setBounds(244, 238, 151, 21);
-		getContentPane().add(cbxShow);
-		
-		
-		
-//		lblBackground.setIcon(new ImageIcon(DangNhap_GUI.class.getResource("/image/background-login.jpg")));
-		
-		
-		
 		btnLogin.addActionListener(this);
 		btnExit.addActionListener(this);
 		
-	}
+		
+		
+			
+		}
+		
+//		  cbxHienThi.addActionListener(new ActionListener() {
+//	            @Override
+//	            public void actionPerformed(ActionEvent e) {
+//	            	if (cbxHienThi.isSelected()) {
+//	                	tfMatKhau.setEchoChar((char) 0);
+//					} else {
+//	                	tfMatKhau.setEchoChar('*');
+//					}
+//	            }
+//	        });
+		
+//		lblBackground.setIcon(new ImageIcon(DangNhap_GUI.class.getResource("/image/background-login.jpg")));
+		
 
 	public void connect() throws SQLException {
 		ConnectDB.getInstance();
@@ -227,6 +252,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 				System.exit(0);
 			}
 		}
+		
 	}
 	
 	public void login() throws SQLException {

@@ -222,7 +222,7 @@ public class NhanVien_GUI extends JPanel {
 		pDanhSach.setLayout(null);
 
 		JScrollPane scrollPaneNV = new JScrollPane();
-		scrollPaneNV.setBounds(10, 10, 1122, 345);
+		scrollPaneNV.setBounds(10, 20, 1122, 335);
 		scrollPaneNV.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
 		scrollPaneNV.setBorder(new LineBorder(new Color(80, 80, 80), 1, true));
 		scrollPaneNV.setBackground(new Color(80, 80, 80));

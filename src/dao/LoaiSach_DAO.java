@@ -8,7 +8,6 @@ import java.util.List;
 
 import connect.ConnectDB;
 import entity.LoaiSach;
-import entity.Sach;
 
 public class LoaiSach_DAO {
 	// get all loai sách //lấy

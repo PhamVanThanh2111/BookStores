@@ -51,11 +51,11 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 
 		// connectDB
 		connect();
-		
+
 		// khai bao dao
 		taiKhoan_DAO = new TaiKhoan_DAO();
 		nhanVien_DAO = new NhanVien_DAO();
-		
+
 		getContentPane().setLayout(null);
 		setTitle("Login");
 		setSize(650, 400);
@@ -72,66 +72,60 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		lblUser = new JLabel("Tài khoản:");
 		lblUser.setSize(20, 300);
 		lblUser.setFont(new Font("times new roman", Font.TRUETYPE_FONT, 28));
-		
-	
-		
 
 		// iconuser
 		lblUser.setIcon(new ImageIcon("image//user.png"));
-				
+
 		// icon btn exit
-	
+
 		btnExit = new JButton("Thoát");
-		
-				
-				
-				chkShow = new JCheckBox("Hiển Thị Mật Khẩu");
-				chkShow.setBackground(new Color(0, 0, 0));
-				chkShow.setForeground(new Color(255, 255, 255));
-				chkShow.setBounds(244, 238, 151, 21);
-				getContentPane().add(chkShow);
-				
-				chkShow.addActionListener(new ActionListener() {
-					
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						// TODO Auto-generated method stub
-						if (chkShow.isSelected()) {
-							txtPwd.setEchoChar((char) 0);
-						}
-						else {
-							txtPwd.setEchoChar('*');		
-						}
-					}
-				});
-	
+
+		chkShow = new JCheckBox("Hiển Thị Mật Khẩu");
+		chkShow.setBackground(new Color(0, 0, 0));
+		chkShow.setForeground(new Color(255, 255, 255));
+		chkShow.setBounds(244, 238, 151, 21);
+		getContentPane().add(chkShow);
+
+		chkShow.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (chkShow.isSelected()) {
+					txtPwd.setEchoChar((char) 0);
+				} else {
+					txtPwd.setEchoChar('*');
+				}
+			}
+		});
+
 		lblTitle_1 = new JLabel("ĐĂNG NHẬP");
 		lblTitle_1.setForeground(new Color(237, 106, 64));
 		lblTitle_1.setFont(new Font("Arial", Font.BOLD, 40));
 		lblTitle_1.setBounds(194, 41, 241, 47);
 		getContentPane().add(lblTitle_1);
-		
+
 		lblUser = new JLabel("Tài khoản:");
 		lblUser.setFont(new Font("Arial", Font.PLAIN, 16));
 		lblUser.setBounds(161, 128, 74, 32);
 		lblUser.setForeground(Color.WHITE);
 		getContentPane().add(lblUser);
-		
+
 		txtPwd = new JPasswordField();
 		txtPwd.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-					if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-						try {
-							login();
-							} catch (SQLException e1) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					try {
+						login();
+					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+						e1.printStackTrace();
 					}
 				}
+			}
 		});
-		
+
 //		txtPwd.addKeyListener(new KeyAdapter() {
 //			@Override
 //			public void keyPressed(KeyEvent e) {
@@ -144,7 +138,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		txtPwd.setBounds(269, 188, 191, 32);
 		txtPwd.requestFocus();
 		getContentPane().add(txtPwd);
-		
+
 		btnLogin = new JButton("Đăng nhập");
 		btnLogin.setMnemonic(KeyEvent.VK_ENTER);
 		btnLogin.setForeground(Color.WHITE);
@@ -153,8 +147,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		btnLogin.setBackground(new Color(237, 106, 64));
 		btnLogin.setBounds(142, 265, 138, 38);
 		getContentPane().add(btnLogin);
-		
-		
+
 		btnExit = new JButton("Thoát");
 		btnExit.setMnemonic(KeyEvent.VK_X);
 		btnExit.setForeground(Color.WHITE);
@@ -163,13 +156,13 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		btnExit.setBackground(new Color(0, 163, 163));
 		btnExit.setBounds(342, 265, 138, 38);
 		getContentPane().add(btnExit);
-		
+
 		lblPwd = new JLabel("Mật khẩu:");
 		lblPwd.setFont(new Font("Arial", Font.PLAIN, 16));
 		lblPwd.setBounds(161, 188, 74, 32);
 		lblPwd.setForeground(Color.WHITE);
 		getContentPane().add(lblPwd);
-			
+
 		txtUser = new JTextField();
 		txtUser.addKeyListener(new KeyAdapter() {
 			@Override
@@ -189,7 +182,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		txtUser.setText("NV002");
 		getContentPane().add(txtUser);
 		txtUser.setColumns(10);
-		
+
 		JLabel lblBackground = new JLabel("");
 		lblBackground.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBackground.setForeground(new Color(255, 0, 0));
@@ -197,15 +190,12 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		lblBackground.setIcon(new ImageIcon(DangNhap_GUI.class.getResource("/image/background-login.jpg")));
 		lblBackground.setBounds(0, 0, 711, 427);
 		getContentPane().add(lblBackground);
-		
+
 		btnLogin.addActionListener(this);
 		btnExit.addActionListener(this);
-		
-		
-		
-			
-		}
-		
+
+	}
+
 //		  cbxHienThi.addActionListener(new ActionListener() {
 //	            @Override
 //	            public void actionPerformed(ActionEvent e) {
@@ -216,15 +206,14 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 //					}
 //	            }
 //	        });
-		
+
 //		lblBackground.setIcon(new ImageIcon(DangNhap_GUI.class.getResource("/image/background-login.jpg")));
-		
 
 	public void connect() throws SQLException {
 		ConnectDB.getInstance();
 		ConnectDB.connect();
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -235,22 +224,21 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		}
-		else if (e.getSource().equals(btnExit)) {
-			int option = JOptionPane.showConfirmDialog(null, "Bạn có thực sự muốn thoát?", "Thoát?", JOptionPane.YES_NO_OPTION);
+		} else if (e.getSource().equals(btnExit)) {
+			int option = JOptionPane.showConfirmDialog(null, "Bạn có thực sự muốn thoát?", "Thoát?",
+					JOptionPane.YES_NO_OPTION);
 			if (option == JOptionPane.YES_OPTION) {
 				System.exit(0);
 			}
 		}
-		
+
 	}
-	
+
 	public void login() throws SQLException {
 		if (countSaiMatKhau > 2) {
 			JOptionPane.showMessageDialog(null, "Bạn đã nhập sai tài khoản quá 3 lần. Chương trình sẽ thoát!");
 			System.exit(0);
-		}
-		else {
+		} else {
 			String maTaiKhoan = txtUser.getText().trim();
 			@SuppressWarnings("deprecation")
 			String matKhau = txtPwd.getText().toString().trim();
@@ -258,12 +246,10 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 			if (taiKhoan.getTaiKhoan() == null) {
 				JOptionPane.showMessageDialog(null, "Tài khoản không đúng!");
 				countSaiMatKhau++;
-			}
-			else if (!taiKhoan.getMatKhau().equals(matKhau)) {
+			} else if (!taiKhoan.getMatKhau().equals(matKhau)) {
 				JOptionPane.showMessageDialog(null, "Mật khẩu không đúng!");
 				countSaiMatKhau++;
-			}
-			else {
+			} else {
 				NhanVien nhanVien = nhanVien_DAO.getNhanVienTheoTaiKhoan(taiKhoan.getTaiKhoan());
 				TrangChu_GUI trangChu_GUI = new TrangChu_GUI(nhanVien);
 				trangChu_GUI.setVisible(true);

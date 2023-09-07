@@ -89,12 +89,13 @@ public class HoaDon_GUI extends JPanel {
 		JPanel pSanPham = new JPanel();
 		pSanPham.setLayout(null);
 
-
 		pSanPham.setBorder(new TitledBorder(
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(28, 28, 28)),
 				"S\u1EA3n ph\u1EA9m:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));
 		pSanPham.setBounds(241, 53, 275, 604);
-		pSanPham.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(28, 28, 28)), "S\u1EA3n ph\u1EA9m:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));
+		pSanPham.setBorder(new TitledBorder(
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(28, 28, 28)),
+				"S\u1EA3n ph\u1EA9m:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));
 		pSanPham.setBounds(241, 53, 275, 279);
 
 		pMain.add(pSanPham);
@@ -103,7 +104,6 @@ public class HoaDon_GUI extends JPanel {
 		lblLoaiSanPham.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		lblLoaiSanPham.setBounds(10, 51, 103, 33);
 		pSanPham.add(lblLoaiSanPham);
-
 
 		JComboBox<String> cbLoaiSanPham = new JComboBox<String>();
 
@@ -155,10 +155,12 @@ public class HoaDon_GUI extends JPanel {
 		tableTT.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
 		tableTT.setRowHeight(25);
 		scrollPaneTT.setViewportView(tableTT);
-		
+
 		JPanel pNhanVien = new JPanel();
 		pNhanVien.setLayout(null);
-		pNhanVien.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(28, 28, 28)), "Nh\u00E2n vi\u00EAn:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));
+		pNhanVien.setBorder(new TitledBorder(
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(28, 28, 28)),
+				"Nh\u00E2n vi\u00EAn:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));
 		pNhanVien.setBounds(241, 342, 275, 315);
 		pMain.add(pNhanVien);
 

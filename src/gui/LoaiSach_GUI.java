@@ -35,31 +35,24 @@ public class LoaiSach_GUI extends JPanel {
 	public LoaiSach_GUI(NhanVien nhanVien) {
 		setLayout(null);
 
-		JPanel mMain = new JPanel();
-		mMain.setBounds(10, 10, 1162, 667);
-		add(mMain);
-		mMain.setLayout(null);
+		JPanel pMain = new JPanel();
+		pMain.setBounds(10, 10, 1162, 667);
+		add(pMain);
+		pMain.setLayout(null);
+		pMain.setBackground(new Color(77, 77, 77));
 
-		JPanel pnTieuDe = new JPanel();
-		pnTieuDe.setBounds(10, 10, 1142, 42);
-		mMain.add(pnTieuDe);
-		pnTieuDe.setLayout(null);
-
-		JLabel lblQunLLoi = new JLabel("LOẠI SÁCH");
-		lblQunLLoi.setHorizontalAlignment(SwingConstants.CENTER);
-		lblQunLLoi.setBounds(421, 10, 240, 22);
-		lblQunLLoi.setForeground(Color.RED);
-		lblQunLLoi.setFont(new Font("Arial", Font.BOLD, 20));
-		pnTieuDe.add(lblQunLLoi);
+//		pnMain.setBackground(getBackground());
 
 		JPanel pnThongTin = new JPanel();
 		// pnCenN.setBorder(new TitledBorder(null, "Thông Tin: ", TitledBorder.LEADING,
 		// TitledBorder.TOP, null, new Color(0, 126, 197)));
 		pnThongTin.setBorder(new TitledBorder(
-				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0,0)), "Thông Tin:",//162, 197
+
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)), "Thông Tin:", // 162,
+																													// 197
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 126, 197)));
-		pnThongTin.setBounds(10, 62, 1142, 106);
-		mMain.add(pnThongTin);
+		pnThongTin.setBounds(10, 10, 1128, 106);
+		pMain.add(pnThongTin);
 		pnThongTin.setLayout(null);
 
 		Box b = Box.createVerticalBox();
@@ -91,11 +84,12 @@ public class LoaiSach_GUI extends JPanel {
 		b.add(verticalStrut_1);
 
 		JPanel pnChucNang = new JPanel();
-		pnChucNang.setBounds(10, 167, 1142, 54);
+		pnChucNang.setBounds(10, 126, 1128, 54);
 		pnChucNang.setBorder(new TitledBorder(
-				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0 )), "Chức Năng:", //162, 197
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)), "Chức Năng:", // 162,
+																													// 197
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 126, 197)));
-		mMain.add(pnChucNang);
+		pMain.add(pnChucNang);
 		pnChucNang.setLayout(null);
 
 		JButton btnThem = new JButton("Thêm Loại Sách");
@@ -123,22 +117,23 @@ public class LoaiSach_GUI extends JPanel {
 		pnChucNang.add(btnThoat);
 
 		JPanel pnDanhSach = new JPanel();
-		pnDanhSach.setBounds(10, 231, 1142, 426);
+		pnDanhSach.setBounds(10, 190, 1128, 467);
 		pnDanhSach.setBorder(new TitledBorder(
-				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0 )), "Danh sách:",//162, 197
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)), "Danh sách:", // 162,
+																													// 197
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
-		mMain.add(pnDanhSach);
+		pMain.add(pnDanhSach);
 		pnDanhSach.setLayout(null);
 
 		JScrollPane scrollPaneSach = new JScrollPane();
-		scrollPaneSach.setBounds(10, 21, 1122, 395);
+		scrollPaneSach.setBounds(27, 46, 1060, 399);
 		scrollPaneSach.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
 		scrollPaneSach.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		scrollPaneSach.setBackground(new Color(0, 0, 0));
 		pnDanhSach.add(scrollPaneSach);
 
 	}
-	
+
 	public LoaiSach_GUI() {
 		setLayout(null);
 
@@ -163,7 +158,8 @@ public class LoaiSach_GUI extends JPanel {
 		// pnCenN.setBorder(new TitledBorder(null, "Thông Tin: ", TitledBorder.LEADING,
 		// TitledBorder.TOP, null, new Color(0, 126, 197)));
 		pnThongTin.setBorder(new TitledBorder(
-				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0,0)), "Thông Tin:",//162, 197
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)), "Thông Tin:", // 162,
+																													// 197
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 126, 197)));
 		pnThongTin.setBounds(10, 62, 1142, 159);
 		mMain.add(pnThongTin);
@@ -200,7 +196,8 @@ public class LoaiSach_GUI extends JPanel {
 		JPanel pnDanhSach = new JPanel();
 		pnDanhSach.setBounds(10, 231, 1142, 426);
 		pnDanhSach.setBorder(new TitledBorder(
-				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0 )), "Danh sách:",//162, 197
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)), "Danh sách:", // 162,
+																													// 197
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
 		mMain.add(pnDanhSach);
 		pnDanhSach.setLayout(null);

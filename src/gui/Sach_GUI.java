@@ -52,8 +52,9 @@ public class Sach_GUI extends JPanel {
 	private Sach_DAO sach_DAO;
 	private LoaiSach_DAO loaiSach_DAO;
 	private JTableHeader tableHeader;
-	private JComboBox<String> comboBox ;
+	private JComboBox<String> comboBox;
 	private JTextField textXuatXu;
+
 	/**
 	 * Create the panel.
 	 */
@@ -64,8 +65,8 @@ public class Sach_GUI extends JPanel {
 		sach_DAO = new Sach_DAO();
 		loaiSach_DAO = new LoaiSach_DAO();
 		JPanel mMain = new JPanel();
-		
-		mMain.setBackground(new Color(77,77,77));
+
+		mMain.setBackground(new Color(77, 77, 77));
 		mMain.setBounds(10, 10, 1162, 667);
 		add(mMain);
 		mMain.setLayout(null);
@@ -172,7 +173,7 @@ public class Sach_GUI extends JPanel {
 		loadDataIntoCombobox();
 		comboBox.setBounds(756, 30, 320, 33);
 		pNhapThongTin.add(comboBox);
-		
+
 		textXuatXu = new JTextField();
 		textXuatXu.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		textXuatXu.setColumns(10);
@@ -201,9 +202,10 @@ public class Sach_GUI extends JPanel {
 		pnChucNang.setBounds(10, 231, 1128, 62);
 		mMain.add(pnChucNang);
 		pnChucNang.setLayout(null);
-		pnChucNang.setBorder(new TitledBorder(
-				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0,0)), //162, 197
-				"Ch\u1EE9c n\u0103ng:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
+		pnChucNang.setBorder(
+				new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)), // 162,
+																														// 197
+						"Ch\u1EE9c n\u0103ng:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
 
 		JButton btnThemSach = new JButton("Thêm Sách");
 		btnThemSach.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -238,7 +240,8 @@ public class Sach_GUI extends JPanel {
 		pnDanhSach.setBounds(10, 303, 1128, 354);
 		mMain.add(pnDanhSach);
 		pnDanhSach.setBorder(new TitledBorder(
-				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0,0,0 )), "Danh sách:",//162, 197
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)), "Danh sách:", // 162,
+																													// 197
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
 		pnDanhSach.setLayout(null);
 
@@ -320,7 +323,7 @@ public class Sach_GUI extends JPanel {
 		tableHeader.setForeground(Color.white);
 		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
 	}
-	
+
 	public Sach_GUI() {
 
 		setLayout(null);
@@ -328,8 +331,8 @@ public class Sach_GUI extends JPanel {
 		sach_DAO = new Sach_DAO();
 		loaiSach_DAO = new LoaiSach_DAO();
 		JPanel mMain = new JPanel();
-		
-		mMain.setBackground(new Color(77,77,77));
+
+		mMain.setBackground(new Color(77, 77, 77));
 		mMain.setBounds(10, 10, 1162, 667);
 		add(mMain);
 		mMain.setLayout(null);
@@ -412,7 +415,7 @@ public class Sach_GUI extends JPanel {
 		loadDataIntoCombobox();
 		comboBox.setBounds(756, 30, 320, 33);
 		pNhapThongTin.add(comboBox);
-		
+
 		textXuatXu = new JTextField();
 		textXuatXu.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		textXuatXu.setColumns(10);
@@ -441,7 +444,8 @@ public class Sach_GUI extends JPanel {
 		pnDanhSach.setBounds(10, 303, 1128, 354);
 		mMain.add(pnDanhSach);
 		pnDanhSach.setBorder(new TitledBorder(
-				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0,0,0 )), "Danh sách:",//162, 197
+				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)), "Danh sách:", // 162,
+																													// 197
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
 		pnDanhSach.setLayout(null);
 
@@ -449,7 +453,7 @@ public class Sach_GUI extends JPanel {
 		btnNewButton.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnNewButton.setBounds(940, 10, 114, 33);
 		mMain.add(btnNewButton);
-		
+
 		scrollPaneSach = new JScrollPane();
 		scrollPaneSach.setBounds(22, 22, 1083, 311);
 		scrollPaneSach.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
@@ -461,46 +465,6 @@ public class Sach_GUI extends JPanel {
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
 		table.setRowHeight(25);
-		table.addMouseListener(new MouseListener() {
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				int row = table.getSelectedRow();
-				txtMaSach.setText(table.getValueAt(row, 0).toString());
-				txtMaNXB.setText((String) model.getValueAt(row, 1));
-				txtMaLoaiSach.setText((String) model.getValueAt(row, 2));
-				txtTenSach.setText((String) model.getValueAt(row, 3));
-				txtXuatXu.setText((String) model.getValueAt(row, 4));
-				txtTacGia.setText((String) model.getValueAt(row, 5));
-				txtSoTrang.setText((String) model.getValueAt(row, 6));
-				txtGia.setText((String) model.getValueAt(row, 7));
-			}
-		});
 		scrollPaneSach.add(table);
 		scrollPaneSach.setViewportView(table);
 
@@ -516,17 +480,17 @@ public class Sach_GUI extends JPanel {
 	// Đổ DL vào comboBox Sách
 	public void loadDataIntoTable() {
 		for (Sach sach : sach_DAO.getAllListSach()) {
-			Object [] objects = {sach.getMaSach(),sach.getMaNXB(),sach.getMaLoaiSach(),sach.getTenSach(),sach.getXuatXu(),sach.getTacGia(),sach.getSoTrang(),sach.getGia()};
+			Object[] objects = { sach.getMaSach(), sach.getMaNXB(), sach.getMaLoaiSach(), sach.getTenSach(),
+					sach.getXuatXu(), sach.getTacGia(), sach.getSoTrang(), sach.getGia() };
 			model.addRow(objects);
-			}
 		}
+	}
 
 	// Đổ DL vào comboBox Mã Loại Sách
 	public void loadDataIntoCombobox() {
 		for (LoaiSach loaiSach : loaiSach_DAO.getAllListLoaiSach()) {
-			comboBox.addItem(loaiSach.getMaLoaiSach());	
+			comboBox.addItem(loaiSach.getMaLoaiSach());
 		}
 
-	
 	}
 }

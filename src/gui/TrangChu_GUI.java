@@ -60,7 +60,6 @@ public class TrangChu_GUI extends JFrame {
 	public TrangChu_GUI(NhanVien nhanVien) throws SQLException {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TrangChu_GUI.class.getResource("/image/favicon.jpg")));
 		setForeground(new Color(255, 255, 255));
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -72,6 +71,7 @@ public class TrangChu_GUI extends JFrame {
 		setTitle("Quản lý sách");
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setLocationRelativeTo(null);
 
 		lblShowHideMenu = new JLabel("-");
 		lblShowHideMenu.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -254,6 +254,10 @@ public class TrangChu_GUI extends JFrame {
 			public void mouseExited(MouseEvent e) {
 				lblKhachHang.setBackground(new Color(38, 38, 38));
 			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cardLayoutContent.show(pContent, "KhachHang_GUI");
+			}
 		});
 		pMenu.add(lblKhachHang);
 
@@ -413,6 +417,7 @@ public class TrangChu_GUI extends JFrame {
 		pContent.add(new CuaHang_GUI(), "CuaHang_GUI");
 		pContent.add(new LoaiSach_GUI(nhanVien), "LoaiSach_GUI");
 		pContent.add(new NXB_GUI(nhanVien), "NXB_GUI");
+		pContent.add(new KhachHang_GUI(), "KhachHang_GUI");
 		cardLayoutContent.show(pContent, "NhanVien_GUI");
 
 //		System.out.println(nhanVien.getChucVu());

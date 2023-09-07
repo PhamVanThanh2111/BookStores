@@ -36,14 +36,14 @@ public class NXB_GUI extends JPanel {
 	
 	private DefaultTableModel model;
 	private JTable table;
-	private	NXB_DAO nhaXuatBan_DAO;
+	private	NXB_DAO nxb_DAO;
 	/**
 	 * Create the panel.
 	 */
 	public NXB_GUI(NhanVien nhanVien) {
 
 		//Khai bao DAO
-		nhaXuatBan_DAO = new NXB_DAO();
+		nxb_DAO = new NXB_DAO();
 		
 		
 		setLayout(null);
@@ -78,8 +78,10 @@ public class NXB_GUI extends JPanel {
 		
 		JPanel pNhapThongTin = new JPanel();
 		pNhapThongTin.setLayout(null);
-		pNhapThongTin.setBorder(new TitledBorder(
-						new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)),
+		pNhapThongTin.setBorder(new TitledBorder(
+
+						new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)),
+
 						"Th\u00F4ng tin chi ti\u1EBFt:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
 		pNhapThongTin.setBounds(10, 53, 1142, 168);
 		pMain.add(pNhapThongTin);
@@ -219,7 +221,7 @@ public class NXB_GUI extends JPanel {
 	public NXB_GUI() {
 
 		//Khai bao DAO
-		nhaXuatBan_DAO = new NXB_DAO();
+		nxb_DAO = new NXB_DAO();
 		
 		
 		setLayout(null);

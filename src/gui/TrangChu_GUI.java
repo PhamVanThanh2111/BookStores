@@ -61,7 +61,6 @@ public class TrangChu_GUI extends JFrame {
 	public TrangChu_GUI(NhanVien nhanVien) throws SQLException {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TrangChu_GUI.class.getResource("/image/favicon.jpg")));
 		setForeground(new Color(255, 255, 255));
-		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -73,7 +72,8 @@ public class TrangChu_GUI extends JFrame {
 		setTitle("Quản lý sách");
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		setLocationRelativeTo(null);
+
 		lblShowHideMenu = new JLabel("-");
 		lblShowHideMenu.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblShowHideMenu.setHorizontalAlignment(SwingConstants.CENTER);

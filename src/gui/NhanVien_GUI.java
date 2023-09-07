@@ -78,7 +78,7 @@ public class NhanVien_GUI extends JPanel {
 		pMain.setBounds(0, 0, 1162, 667);
 		add(pMain);
 		pMain.setLayout(null);
-
+		
 		JPanel pNhapThongTin = new JPanel();
 		pNhapThongTin.setBounds(10, 53, 1142, 219);
 		pNhapThongTin.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(28, 28, 28)), "Th\u00F4ng tin:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));

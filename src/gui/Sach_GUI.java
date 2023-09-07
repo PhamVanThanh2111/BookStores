@@ -192,11 +192,13 @@ public class Sach_GUI extends JPanel {
 		pnSouth_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 162, 197)), "Ch\u1EE9c n\u0103ng:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
 		
 		JButton btnThmSch = new JButton("Thêm Sách");
+		btnThmSch.setToolTipText("Thêm Sách");
 		btnThmSch.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnThmSch.setBounds(93, 14, 121, 34);
 		pnSouth_1.add(btnThmSch);
 		
 		JButton btnXaSch = new JButton("Xóa Sách");
+		btnXaSch.setToolTipText("Xóa Sách");
 		btnXaSch.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnXaSch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

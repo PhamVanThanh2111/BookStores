@@ -13,7 +13,6 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import dao.NhaXuatBan_DAO;
-import dao.NhanVien_DAO;
 
 import javax.swing.border.EtchedBorder;
 import java.awt.Component;
@@ -23,6 +22,10 @@ import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 
 public class NhaXuatBan_GUI extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField txtTimKiem;
 	private JTextField txtmaNXB;
 	private JTextField txtEmail;

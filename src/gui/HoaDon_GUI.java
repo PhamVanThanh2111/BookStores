@@ -71,8 +71,6 @@ public class HoaDon_GUI extends JPanel {
 				"T\u00EAn kh\u00E1ch h\u00E0ng:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));
 		pTenKhachHang.setBounds(10, 53, 221, 604);
 		pMain.add(pTenKhachHang);
-		
-		JScrollPane scrollPaneNV;
 
 		scrollPaneTenKH = new JScrollPane();
 		scrollPaneTenKH.setBounds(10, 20, 201, 574);
@@ -107,23 +105,20 @@ public class HoaDon_GUI extends JPanel {
 		pSanPham.add(lblLoaiSanPham);
 
 
-		JComboBox cbLoaiSanPham = new JComboBox();
+		JComboBox<String> cbLoaiSanPham = new JComboBox<String>();
 
-		
-		JComboBox<String> cbLoaiSanPham1 = new JComboBox<String>();
-
-		cbLoaiSanPham1.setBounds(123, 51, 142, 33);
-		cbLoaiSanPham1.addItem("");
-		cbLoaiSanPham1.addItem("Sách");
-		cbLoaiSanPham1.addItem("Dụng cụ học tập");
-		pSanPham.add(cbLoaiSanPham1);
+		cbLoaiSanPham.setBounds(123, 51, 142, 33);
+		cbLoaiSanPham.addItem("");
+		cbLoaiSanPham.addItem("Sách");
+		cbLoaiSanPham.addItem("Dụng cụ học tập");
+		pSanPham.add(cbLoaiSanPham);
 
 		JLabel lblTen = new JLabel("Tên sản phẩm:");
 		lblTen.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		lblTen.setBounds(10, 103, 103, 33);
 		pSanPham.add(lblTen);
 
-		JComboBox cbTenSanPham = new JComboBox();
+		JComboBox<String> cbTenSanPham = new JComboBox<String>();
 		cbTenSanPham.setBounds(123, 103, 142, 33);
 		pSanPham.add(cbTenSanPham);
 

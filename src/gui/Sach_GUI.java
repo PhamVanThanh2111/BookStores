@@ -21,7 +21,6 @@ import javax.swing.table.JTableHeader;
 import dao.LoaiSach_DAO;
 import dao.Sach_DAO;
 import entity.LoaiSach;
-import entity.NhanVien;
 import entity.Sach;
 
 import javax.swing.JScrollPane;

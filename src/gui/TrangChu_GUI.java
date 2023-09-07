@@ -375,7 +375,6 @@ public class TrangChu_GUI extends JFrame {
 				pMenu.setVisible(!pMenu.isVisible());
 			}
 		});
-		System.out.println(nhanVien.getTenNV());
 	}
 
 	public static void main(String[] args) {

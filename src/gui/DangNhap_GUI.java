@@ -47,16 +47,6 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 	private int countSaiMatKhau = 0;
 	private JCheckBox chkShow;
 
-	
-	public static void main(String[] args) {
-		try {
-			new DangNhap_GUI().setVisible(true);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
 	public DangNhap_GUI() throws SQLException {
 
 		// connectDB

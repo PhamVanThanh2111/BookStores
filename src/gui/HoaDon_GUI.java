@@ -71,12 +71,9 @@ public class HoaDon_GUI extends JPanel {
 				"T\u00EAn kh\u00E1ch h\u00E0ng:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));
 		pTenKhachHang.setBounds(10, 53, 221, 604);
 		pMain.add(pTenKhachHang);
-<<<<<<< HEAD
-
-		JScrollPane scrollPaneNV;
-=======
 		
->>>>>>> e28672bec2813b70545182ef827842c0d165750c
+		JScrollPane scrollPaneNV;
+
 		scrollPaneTenKH = new JScrollPane();
 		scrollPaneTenKH.setBounds(10, 20, 201, 574);
 		scrollPaneTenKH.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
@@ -93,33 +90,33 @@ public class HoaDon_GUI extends JPanel {
 
 		JPanel pSanPham = new JPanel();
 		pSanPham.setLayout(null);
-<<<<<<< HEAD
+
+
 		pSanPham.setBorder(new TitledBorder(
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(28, 28, 28)),
 				"S\u1EA3n ph\u1EA9m:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));
 		pSanPham.setBounds(241, 53, 275, 604);
-=======
 		pSanPham.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(28, 28, 28)), "S\u1EA3n ph\u1EA9m:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));
 		pSanPham.setBounds(241, 53, 275, 279);
->>>>>>> e28672bec2813b70545182ef827842c0d165750c
+
 		pMain.add(pSanPham);
 
 		JLabel lblLoaiSanPham = new JLabel("Loại sản phẩm:");
 		lblLoaiSanPham.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		lblLoaiSanPham.setBounds(10, 51, 103, 33);
 		pSanPham.add(lblLoaiSanPham);
-<<<<<<< HEAD
+
 
 		JComboBox cbLoaiSanPham = new JComboBox();
-=======
+
 		
-		JComboBox<String> cbLoaiSanPham = new JComboBox<String>();
->>>>>>> e28672bec2813b70545182ef827842c0d165750c
-		cbLoaiSanPham.setBounds(123, 51, 142, 33);
-		cbLoaiSanPham.addItem("");
-		cbLoaiSanPham.addItem("Sách");
-		cbLoaiSanPham.addItem("Dụng cụ học tập");
-		pSanPham.add(cbLoaiSanPham);
+		JComboBox<String> cbLoaiSanPham1 = new JComboBox<String>();
+
+		cbLoaiSanPham1.setBounds(123, 51, 142, 33);
+		cbLoaiSanPham1.addItem("");
+		cbLoaiSanPham1.addItem("Sách");
+		cbLoaiSanPham1.addItem("Dụng cụ học tập");
+		pSanPham.add(cbLoaiSanPham1);
 
 		JLabel lblTen = new JLabel("Tên sản phẩm:");
 		lblTen.setFont(new Font("SansSerif", Font.PLAIN, 14));

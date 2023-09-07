@@ -53,6 +53,7 @@ public class Sach_GUI extends JPanel {
 	private LoaiSach_DAO loaiSach_DAO;
 	private JTableHeader tableHeader;
 	private JComboBox<String> comboBox ;
+	private JTextField textXuatXu;
 	/**
 	 * Create the panel.
 	 */
@@ -131,11 +132,11 @@ public class Sach_GUI extends JPanel {
 		lbMaLoaiSach.setBounds(651, 30, 111, 33);
 		pNhapThongTin.add(lbMaLoaiSach);
 
-		JTextField txtxuatXu = new JTextField();
-		txtxuatXu.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtxuatXu.setColumns(10);
-		txtxuatXu.setBounds(756, 73, 320, 33);
-		pNhapThongTin.add(txtxuatXu);
+//		JTextField txtxuatXu = new JTextField();
+//		txtxuatXu.setFont(new Font("SansSerif", Font.PLAIN, 14));
+//		txtxuatXu.setColumns(10);
+//		txtxuatXu.setBounds(756, 73, 320, 33);
+//		pNhapThongTin.add(txtxuatXu);
 
 		txtgia = new JTextField();
 		txtgia.setFont(new Font("SansSerif", Font.PLAIN, 14));
@@ -176,6 +177,12 @@ public class Sach_GUI extends JPanel {
 		loadDataIntoCombobox();
 		comboBox.setBounds(756, 30, 320, 33);
 		pNhapThongTin.add(comboBox);
+		
+		textXuatXu = new JTextField();
+		textXuatXu.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		textXuatXu.setColumns(10);
+		textXuatXu.setBounds(756, 73, 320, 33);
+		pNhapThongTin.add(textXuatXu);
 
 		JLabel lblTim = new JLabel("Tìm kiếm:");
 		lblTim.setForeground(new Color(255, 255, 255));

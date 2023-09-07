@@ -164,35 +164,33 @@ public class NhaXuatBan_GUI extends JPanel {
 		
 		JPanel pnChucNang = new JPanel();
 		pnChucNang.setLayout(null);
-		pnChucNang.setBorder(new TitledBorder(
-						new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0,0)), //162, 197
-						"Ch\u1EE9c n\u0103ng:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
+		pnChucNang.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)), "Ch\u1EE9c n\u0103ng:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
 		pnChucNang.setBounds(10, 226, 1142, 62);
 		pMain.add(pnChucNang);
 		
 		JButton btnThemNXB = new JButton("Thêm NXB");
 		btnThemNXB.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnThemNXB.setBounds(93, 14, 121, 34);
+		btnThemNXB.setBounds(89, 14, 121, 34);
 		pnChucNang.add(btnThemNXB);
 		
 		JButton btnXaNxb = new JButton("Xóa NXB");
 		btnXaNxb.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnXaNxb.setBounds(307, 14, 121, 34);
+		btnXaNxb.setBounds(299, 14, 121, 34);
 		pnChucNang.add(btnXaNxb);
 		
 		JButton btnSua = new JButton("Sửa Thông Tin");
 		btnSua.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnSua.setBounds(521, 14, 129, 34);
+		btnSua.setBounds(509, 14, 129, 34);
 		pnChucNang.add(btnSua);
 		
 		JButton btnXoaTrang = new JButton("Xóa Trắng");
 		btnXoaTrang.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnXoaTrang.setBounds(743, 14, 121, 34);
+		btnXoaTrang.setBounds(727, 14, 121, 34);
 		pnChucNang.add(btnXoaTrang);
 		
 		JButton btnThoat = new JButton("Thoát");
 		btnThoat.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnThoat.setBounds(957, 14, 114, 34);
+		btnThoat.setBounds(937, 14, 114, 34);
 		pnChucNang.add(btnThoat);
 		
 		JPanel pnDanhSach = new JPanel();

@@ -153,6 +153,8 @@ public class TrangChu_GUI extends JFrame {
 				}
 			}
 		});
+		
+	
 		panel.add(btnDangXuat);
 
 		btnHeaderInfo = new JButton();

@@ -585,7 +585,7 @@ public class TrangChu_GUI extends JFrame {
 		lblNXB.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		lblNXB.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblNXB.setBackground(new Color(28, 28, 28));
-		lblNXB.setBounds(0, 248, 160, 64);
+		lblNXB.setBounds(10, 248, 160, 64);
 		lblNXB.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -605,7 +605,7 @@ public class TrangChu_GUI extends JFrame {
 		});
 		pMenu.add(lblNXB);
 
-		pContent = new JPanel();
+		pContent = new JPanel();	
 		pContent.setBackground(new Color(77, 77, 77));
 		pContent.setBounds(190, 64, 1162, 667);
 		getContentPane().add(pContent);

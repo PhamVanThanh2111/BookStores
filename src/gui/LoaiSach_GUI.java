@@ -199,6 +199,7 @@ public class LoaiSach_GUI extends JPanel {
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)), "Danh sách:", // 162,
 																													// 197
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
+		
 		mMain.add(pnDanhSach);
 		pnDanhSach.setLayout(null);
 

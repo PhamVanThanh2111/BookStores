@@ -86,6 +86,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		chkShow.setBounds(244, 238, 151, 21);
 		getContentPane().add(chkShow);
 
+		//Hiển thị mất khẩu
 		chkShow.addActionListener(new ActionListener() {
 
 			@Override

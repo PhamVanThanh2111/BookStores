@@ -574,11 +574,7 @@ public class Sach_GUI extends JPanel {
 	public void loadDataIntoCombobox() {
 		for (LoaiSach loaiSach : loaiSach_DAO.getAllListLoaiSach()) {
 			cbMaLoaiSach.addItem(loaiSach.getMaLoaiSach());
-<<<<<<< HEAD
 		}		
-=======
-		}
->>>>>>> 4f8d0be0bfb3ccd206da3bda690301f6862cb08a
 	}
 	 public void xoaTrang() {
 	        txtMaSach.setText("");

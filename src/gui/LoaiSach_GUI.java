@@ -166,7 +166,7 @@ public class LoaiSach_GUI extends JPanel {
 		pnThongTin.setLayout(null);
 
 		Box b = Box.createVerticalBox();
-		b.setBounds(135, 36, 897, 74);
+		b.setBounds(92, 36, 972, 74);
 		b.setPreferredSize(new Dimension(840, 70));
 		pnThongTin.add(b);
 
@@ -177,6 +177,7 @@ public class LoaiSach_GUI extends JPanel {
 		b.add(b1);
 
 		JLabel lblMaLoaiSach = new JLabel("Mã Loại Sách: ");
+		lblMaLoaiSach.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblMaLoaiSach.setPreferredSize(new Dimension(86, 13));
 		b1.add(lblMaLoaiSach);
 
@@ -185,6 +186,7 @@ public class LoaiSach_GUI extends JPanel {
 		b1.add(txtMaLoaiSach);
 
 		JLabel lblTenLoaiSach = new JLabel("Tên Loại Sách:    ");
+		lblTenLoaiSach.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		b1.add(lblTenLoaiSach);
 
 		txtTenLoaiSach = new JTextField();
@@ -206,7 +208,7 @@ public class LoaiSach_GUI extends JPanel {
 		JScrollPane scrollPaneSach = new JScrollPane();
 		scrollPaneSach.setBounds(10, 21, 1122, 395);
 		scrollPaneSach.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
-		scrollPaneSach.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		scrollPaneSach.setBorder(new LineBorder(new Color(0, 162, 197), 1, true));
 		scrollPaneSach.setBackground(new Color(0, 0, 0));
 		pnDanhSach.add(scrollPaneSach);
 

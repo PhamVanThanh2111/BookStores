@@ -452,37 +452,54 @@ public class NhanVien_GUI extends JPanel {
 	}
 	
 	public boolean add() {
-		try {
-			// Thêm tài khoản mới cho nhân viên mới
-			TaiKhoan taiKhoan = new TaiKhoan();
-			String taiKhoanString = phatSinhMa_DAO.getMaTaiKhoan();
-			taiKhoan.setTaiKhoan(taiKhoanString);
-			taiKhoan.setMatKhau(taiKhoanString);
-			taiKhoan_DAO.themTaiKhoan(taiKhoan);
-			
-			NhanVien nhanVien = new NhanVien();
-			nhanVien.setMaNV(phatSinhMa_DAO.getMaNhanVien());
-			nhanVien.setMaCH(cbMaCH.getSelectedItem().toString());
-			nhanVien.setTenNV(txtTenNV.getText());
-			nhanVien.setDiaChi(txtDiaChi.getText());
-			nhanVien.setGioiTinh(cbGioiTinh.getSelectedItem().toString());
-			nhanVien.setNgaySinh(new Date(dateChooserNgaySinh.getDate().getTime()));
-			nhanVien.setNgayVaoLam(new Date(new java.util.Date().getTime()));
-			nhanVien.setCCCD(txtCCCD.getText());
-			nhanVien.setEmail(txtEmail.getText());
-			nhanVien.setSoDienThoai(txtSoDienThoai.getText());
-			nhanVien.setChucVu(cbChucVu.getSelectedItem().toString());
-			nhanVien.setTaiKhoan(taiKhoan);
-			nhanVien.setLuong(Integer.parseInt(txtLuong.getText()));
-			JOptionPane.showMessageDialog(null, "Thêm nhân viên thành công!");
-			refresh();
-			return true;
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			JOptionPane.showMessageDialog(null, "Thêm nhân viên thất bại!");
-			e1.printStackTrace();
+		if (cbMaCH.getSelectedItem().equals("") ||
+			txtTenNV.getText().equals("") ||
+			cbGioiTinh.getSelectedItem().equals("") ||
+			dateChooserNgaySinh.equals(null) ||
+			txtDiaChi.getText().equals("") ||
+			txtCCCD.getText().equals("") ||
+			txtSoDienThoai.getText().equals("") ||
+			txtEmail.getText().equals("") ||
+			cbChucVu.getSelectedItem().equals("") ||
+			txtLuong.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Phải điền đầy đủ thông tin!");
 			return false;
 		}
+		else {
+			try {
+				// Thêm tài khoản mới cho nhân viên mới
+				TaiKhoan taiKhoan = new TaiKhoan();
+				String taiKhoanString = phatSinhMa_DAO.getMaTaiKhoan();
+				taiKhoan.setTaiKhoan(taiKhoanString);
+				taiKhoan.setMatKhau(taiKhoanString);
+				taiKhoan_DAO.themTaiKhoan(taiKhoan);
+				
+				NhanVien nhanVien = new NhanVien();
+				nhanVien.setMaNV(phatSinhMa_DAO.getMaNhanVien());
+				nhanVien.setMaCH(cbMaCH.getSelectedItem().toString());
+				nhanVien.setTenNV(txtTenNV.getText());
+				nhanVien.setDiaChi(txtDiaChi.getText());
+				nhanVien.setGioiTinh(cbGioiTinh.getSelectedItem().toString());
+				nhanVien.setNgaySinh(new Date(dateChooserNgaySinh.getDate().getTime()));
+				nhanVien.setNgayVaoLam(new Date(new java.util.Date().getTime()));
+				nhanVien.setCCCD(txtCCCD.getText());
+				nhanVien.setEmail(txtEmail.getText());
+				nhanVien.setSoDienThoai(txtSoDienThoai.getText());
+				nhanVien.setChucVu(cbChucVu.getSelectedItem().toString());
+				nhanVien.setTaiKhoan(taiKhoan);
+				nhanVien.setLuong(Integer.parseInt(txtLuong.getText()));
+				nhanVien_DAO.themNhanVien(nhanVien);
+				JOptionPane.showMessageDialog(null, "Thêm nhân viên thành công!");
+				refresh();
+				return true;
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, "Thêm nhân viên thất bại!");
+				e1.printStackTrace();
+				return false;
+			}
+		}
+		
 	}
 	
 	public boolean delete() {

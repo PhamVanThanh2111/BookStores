@@ -28,6 +28,21 @@ public class TaiKhoan_DAO {
 		con.close();
 		return false;
 	}
+	
+	// xoa nhan vien
+		public boolean xoaTaiKhoan(String maTaiKhoan) throws SQLException {
+			ConnectDB.getInstance();
+			Connection connection = ConnectDB.getConnection();
+			try {
+				PreparedStatement preparedStatement = connection.prepareStatement("delete from TaiKhoan where taiKhoan = '"+ maTaiKhoan +"'");
+				return preparedStatement.executeUpdate() > 0;
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			connection.close();
+			return false;
+		}
 
 	public boolean suaTaiKhoan(TaiKhoan tk) {
 		ConnectDB.getInstance();

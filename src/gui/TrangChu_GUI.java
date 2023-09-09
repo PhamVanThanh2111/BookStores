@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import dao.NhanVien_DAO;
 import entity.NhanVien;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;
@@ -37,7 +38,6 @@ public class TrangChu_GUI extends JFrame {
 	private JLabel lblHeaderTen;
 	private JLabel lblSubMa;
 	private JButton btnDangXuat;
-	private JButton btnDangNhap;
 	private JLabel lblHeaderMaNV;
 	private JButton btnHeaderInfo;
 	private JPanel pContent;
@@ -58,6 +58,8 @@ public class TrangChu_GUI extends JFrame {
 	 * @throws SQLException
 	 */
 	public TrangChu_GUI(NhanVien nhanVien) throws SQLException {
+		
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TrangChu_GUI.class.getResource("/image/favicon.jpg")));
 		setForeground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -443,7 +445,7 @@ public class TrangChu_GUI extends JFrame {
 	public TrangChu_GUI() throws SQLException {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(TrangChu_GUI.class.getResource("/image/favicon.jpg")));
 		setForeground(new Color(255, 255, 255));
-
+		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -494,13 +496,13 @@ public class TrangChu_GUI extends JFrame {
 		lblNgayHienTai.setBounds(564, 20, 151, 21);
 		panel.add(lblNgayHienTai);
 
-		btnDangNhap = new JButton("Đăng nhập");
-		btnDangNhap.setToolTipText("Đăng nhập");
-		btnDangNhap.setForeground(Color.BLACK);
-		btnDangNhap.setFont(new Font("SansSerif", Font.BOLD, 13));
-		btnDangNhap.setBounds(1210, 10, 132, 35);
-		btnDangNhap.setBackground(new Color(0, 255, 255));
-		btnDangNhap.addActionListener(new ActionListener() {
+		btnDangXuat = new JButton("Đăng nhập");
+		btnDangXuat.setToolTipText("Đăng nhập");
+		btnDangXuat.setForeground(Color.BLACK);
+		btnDangXuat.setFont(new Font("SansSerif", Font.BOLD, 13));
+		btnDangXuat.setBounds(1210, 10, 132, 35);
+		btnDangXuat.setBackground(new Color(0, 255, 255));
+		btnDangXuat.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -517,7 +519,7 @@ public class TrangChu_GUI extends JFrame {
 			}
 		});
 
-		panel.add(btnDangNhap);
+		panel.add(btnDangXuat);
 
 		// menu
 		JPanel pMenu = new JPanel();
@@ -617,7 +619,6 @@ public class TrangChu_GUI extends JFrame {
 		pContent.add(new NXB_GUI(), "NXB_GUI");
 		cardLayoutContent.show(pContent, "Sach_GUI");
 
-//		System.out.println(nhanVien.getChucVu());
 		lblShowHideMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

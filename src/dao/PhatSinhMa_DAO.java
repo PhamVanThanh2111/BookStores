@@ -99,4 +99,17 @@ public class PhatSinhMa_DAO {
 		}
 		return maKH;
 	}
+	
+	// ma tai khoan
+		public String getMaTaiKhoan() throws SQLException {
+			ConnectDB.getInstance();
+			Connection con = ConnectDB.getConnection();
+			Statement statement = con.createStatement();
+			ResultSet resultSet = statement.executeQuery("select CONCAT('NV', RIGHT(CONCAT('000',ISNULL(right(max(taiKhoan),3),0) + 1),3)) from [dbo].[TaiKhoan] where taiKhoan like 'NV%'");
+			String maTaiKhoan = "";
+			while (resultSet.next()) {
+				maTaiKhoan = resultSet.getString(1);
+			}
+			return maTaiKhoan;
+		}
 }

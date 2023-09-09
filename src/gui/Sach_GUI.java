@@ -447,7 +447,16 @@ public class Sach_GUI extends JPanel {
 		JButton btnXoaTrang = new JButton("Xóa Trắng");
 		btnXoaTrang.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnXoaTrang.setBounds(743, 14, 121, 34);
+		btnXoaTrang.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				xoaTrang();
+			}
+		});
 		pnChucNang.add(btnXoaTrang);
+		
 
 		JButton btnThoat = new JButton("Thoát");
 		btnThoat.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -555,7 +564,16 @@ public class Sach_GUI extends JPanel {
 	public void loadDataIntoCombobox() {
 		for (LoaiSach loaiSach : loaiSach_DAO.getAllListLoaiSach()) {
 			cbMaLoaiSach.addItem(loaiSach.getMaLoaiSach());
-		}
-
+		}		
 	}
+	 public void xoaTrang() {
+	        txtMaSach.setText("");
+	        txtTenSach.setText("");
+	        txtMaNXB.setText("");
+	        cbMaLoaiSach.setSelectedItem(""); // Set the selected item to an empty string
+	        txtXuatXu.setText("");
+	        txtTacGia.setText("");
+	        txtSoTrang.setText("");
+	        txtGia.setText("");
+	    }
 }

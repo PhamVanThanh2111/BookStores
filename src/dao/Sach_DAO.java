@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,5 +30,33 @@ public class Sach_DAO {
 			}
 			return ds;
 		}
-		
+	//thêm sách
+		public boolean themSach(Sach sach) throws SQLException {
+			// TODO Auto-generated method stub
+			  ConnectDB.getInstance();
+			    Connection connection = ConnectDB.getConnection();
+			    try {
+			        PreparedStatement preparedStatement = null;
+			        preparedStatement = connection.prepareStatement("INSERT INTO Sach (MaSach, MaNXB , MaLoaiSach, TenSach, XuatXu, TacGia, SoTrang, Gia) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+			        preparedStatement.setString(1, sach.getMaSach()); 
+			        preparedStatement.setString(2, sach.getMaNXB());
+			        preparedStatement.setString(3, sach.getMaLoaiSach());
+			        preparedStatement.setString(4, sach.getTenSach());
+			        preparedStatement.setString(5, sach.getXuatXu());
+			        preparedStatement.setString(6, sach.getTacGia());
+			        preparedStatement.setInt(7, sach.getSoTrang());
+			        preparedStatement.setDouble(8, sach.getGia());
+			        return preparedStatement.executeUpdate() > 0;
+			    } catch (SQLException e) {
+			        e.printStackTrace();
+			    } finally {
+			        if (connection != null) {
+			            connection.close();
+			        }
+			    }
+			    return false;	
+		}
+
+
+
 }

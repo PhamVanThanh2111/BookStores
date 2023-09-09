@@ -11,7 +11,7 @@ public class Sach {
 	private String xuatXu;
 	private String tacGia;
 	private int 	soTrang;
-	private double gia;
+	private int gia;
 	public Sach() {
 		super();
 	}
@@ -20,7 +20,7 @@ public class Sach {
 		this.maSach = maSach;
 	}
 	public Sach(String maSach, String maNXB, String maLoaiSach, String tenSach, String xuatXu, String tacGia,
-			int soTrang, double gia) {
+			int soTrang, int gia) {
 		super();
 		this.maSach = maSach;
 		this.maNXB = maNXB;
@@ -73,10 +73,10 @@ public class Sach {
 	public void setSoTrang(int soTrang) {
 		this.soTrang = soTrang;
 	}
-	public double getGia() {
+	public int getGia() {
 		return gia;
 	}
-	public void setGia(double gia) {
+	public void setGia(int gia) {
 		this.gia = gia;
 	}
 	@Override

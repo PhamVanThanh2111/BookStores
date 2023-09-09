@@ -6,6 +6,7 @@ import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
@@ -14,6 +15,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -21,6 +23,7 @@ import javax.swing.table.JTableHeader;
 
 import connect.ConnectDB;
 import dao.LoaiSach_DAO;
+import dao.PhatSinhMa_DAO;
 import dao.Sach_DAO;
 import entity.LoaiSach;
 import entity.NhanVien;
@@ -58,7 +61,9 @@ public class Sach_GUI extends JPanel {
 	private JTable table;
 	private DefaultTableModel model;
 	private Sach_DAO sach_DAO;
+	
 	private LoaiSach_DAO loaiSach_DAO;
+	private PhatSinhMa_DAO phatSinhMa_DAO;
 	private JTableHeader tableHeader;
 	private JComboBox<String> cbMaLoaiSach;
 
@@ -75,8 +80,8 @@ public class Sach_GUI extends JPanel {
 		// Khai bao DAO
 		sach_DAO = new Sach_DAO();
 		loaiSach_DAO = new LoaiSach_DAO();
+		phatSinhMa_DAO = new PhatSinhMa_DAO();
 		JPanel mMain = new JPanel();
-
 		mMain.setBackground(new Color(77, 77, 77));
 		mMain.setBounds(10, 10, 1162, 667);
 		add(mMain);
@@ -292,6 +297,7 @@ public class Sach_GUI extends JPanel {
 		// Khai bao DAO
 		sach_DAO = new Sach_DAO();
 		loaiSach_DAO = new LoaiSach_DAO();
+		phatSinhMa_DAO =  new PhatSinhMa_DAO();
 		JPanel mMain = new JPanel();
 
 		mMain.setBackground(new Color(77, 77, 77));
@@ -436,6 +442,14 @@ public class Sach_GUI extends JPanel {
 		JButton btnThemSach = new JButton("Thêm Sách");
 		btnThemSach.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnThemSach.setBounds(93, 14, 121, 34);
+		btnThemSach.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				themSach();
+			}
+		});
 		pnChucNang.add(btnThemSach);
 
 		JButton btnXoaSach = new JButton("Xóa Sách");
@@ -574,12 +588,13 @@ public class Sach_GUI extends JPanel {
 	public void loadDataIntoCombobox() {
 		for (LoaiSach loaiSach : loaiSach_DAO.getAllListLoaiSach()) {
 			cbMaLoaiSach.addItem(loaiSach.getMaLoaiSach());
-<<<<<<< HEAD
-		}		
-=======
+			}		
 		}
->>>>>>> 4f8d0be0bfb3ccd206da3bda690301f6862cb08a
-	}
+	//refresh lại dữ liệu
+	 public void refresh() {
+			loadDataIntoTable();
+		}
+	 //Xóa Trắng
 	 public void xoaTrang() {
 	        txtMaSach.setText("");
 	        txtTenSach.setText("");
@@ -590,4 +605,44 @@ public class Sach_GUI extends JPanel {
 	        txtSoTrang.setText("");
 	        txtGia.setText("");
 	    }
+	 //thêm Sách
+	 public boolean themSach() {
+		    if (cbMaLoaiSach.getSelectedItem().equals("") ||
+		        txtTenSach.getText().equals("") ||
+		        txtMaNXB.getText().equals("") ||
+		        txtXuatXu.getText().equals("") ||
+		        txtTacGia.getText().equals("") ||
+		        txtSoTrang.getText().equals("") ||
+		        txtGia.getText().equals("")) {
+		        JOptionPane.showMessageDialog(null, "Phải điền đầy đủ thông tin!");
+		        return false;
+		    } else {
+		        try {
+		            Sach sach = new Sach();
+		            sach.setMaSach(phatSinhMa_DAO.getMaSach()); 
+		            sach.setMaNXB(txtMaNXB.getText());
+		            sach.setMaLoaiSach(cbMaLoaiSach.getSelectedItem().toString());
+		            sach.setTenSach(txtTenSach.getText());
+		            sach.setXuatXu(txtXuatXu.getText());
+		            sach.setTacGia(txtTacGia.getText());
+		            sach.setSoTrang(Integer.parseInt(txtSoTrang.getText()));
+		            sach.setGia(Integer.parseInt(txtGia.getText()));
+
+		            sach_DAO.themSach(sach);
+//		            System.out.println(sach);
+		            JOptionPane.showMessageDialog(null, "Thêm sách thành công!");
+//		            System.out.println("sdasdasdasda");
+		            xoaTrang();
+		            return true;
+		        } catch (SQLException e1) {
+		            JOptionPane.showMessageDialog(null, "Thêm sách thất bại!");
+		            e1.printStackTrace();
+		            return false;
+		        }
+		    }
+		}
+
+	 
+	 
+	 
 }

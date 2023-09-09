@@ -2,6 +2,7 @@ package gui;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -24,8 +25,13 @@ import javax.swing.table.JTableHeader;
 import com.toedter.calendar.JDateChooser;
 
 import connect.ConnectDB;
+import dao.CuaHang_DAO;
 import dao.NhanVien_DAO;
+import dao.PhatSinhMa_DAO;
+import dao.TaiKhoan_DAO;
+import entity.CuaHang;
 import entity.NhanVien;
+import entity.TaiKhoan;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -48,14 +54,17 @@ public class NhanVien_GUI extends JPanel {
 	private JTextField txtSoDienThoai;
 	private JTextField txtCCCD;
 	private JTextField txtEmail;
-	private Date dateNow;
 	private DefaultTableModel model;
 	private JTable table;
 	private JTableHeader tableHeader;
 	private NhanVien_DAO nhanVien_DAO;
+	private CuaHang_DAO cuaHang_DAO;
+	private PhatSinhMa_DAO phatSinhMa_DAO;
+	private TaiKhoan_DAO taiKhoan_DAO;
 	private SimpleDateFormat simpleDateFormat;
 	private JComboBox<String> cbGioiTinh;
 	private JComboBox<String> cbChucVu;
+	private JComboBox<String> cbMaCH;
 	private JTextField txtLuong;
 
 	/**
@@ -70,6 +79,10 @@ public class NhanVien_GUI extends JPanel {
 
 		// khai bao DAO
 		nhanVien_DAO = new NhanVien_DAO();
+		cuaHang_DAO = new CuaHang_DAO();
+		phatSinhMa_DAO = new PhatSinhMa_DAO();
+		taiKhoan_DAO = new TaiKhoan_DAO();
+		
 		simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 		setLayout(null);
@@ -292,6 +305,7 @@ public class NhanVien_GUI extends JPanel {
 					cbGioiTinh.setSelectedIndex(2);
 				else
 					cbGioiTinh.setSelectedIndex(0);
+				cbMaCH.setSelectedItem(model.getValueAt(row, 1));
 			}
 		});
 		scrollPaneNV.setViewportView(table);
@@ -326,8 +340,6 @@ public class NhanVien_GUI extends JPanel {
 		dateChooserNgaySinh.setFont(new Font("SansSerif", Font.PLAIN, 15));
 		dateChooserNgaySinh.getCalendarButton().setPreferredSize(new Dimension(30, 24));
 		dateChooserNgaySinh.getCalendarButton().setBackground(new Color(46, 46, 46));
-		dateNow = new Date(new java.util.Date().getTime());
-		dateChooserNgaySinh.setDate(dateNow);
 
 		JButton btnAdd = new JButton("Thêm");
 		btnAdd.setBounds(142, 167, 108, 33);
@@ -336,17 +348,33 @@ public class NhanVien_GUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-
+				add();
 			}
 		});
 		pNhapThongTin.add(btnAdd);
 
 		JButton btnXoa = new JButton("Xóa");
 		btnXoa.setBounds(392, 167, 108, 33);
+		btnXoa.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				delete();
+			}
+		});
 		pNhapThongTin.add(btnXoa);
 
 		JButton btnSua = new JButton("Sửa");
 		btnSua.setBounds(642, 167, 108, 33);
+		btnSua.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				update();
+			}
+		});
 		pNhapThongTin.add(btnSua);
 
 		JButton btnXoaTrang = new JButton("Xóa trắng");
@@ -356,7 +384,7 @@ public class NhanVien_GUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				xoaTrang();
+				removeInfo();
 			}
 		});
 		pNhapThongTin.add(btnXoaTrang);
@@ -366,9 +394,10 @@ public class NhanVien_GUI extends JPanel {
 		lblMaCH.setBounds(39, 73, 90, 33);
 		pNhapThongTin.add(lblMaCH);
 
-		JComboBox<String> cbMaCH = new JComboBox<String>();
+		cbMaCH = new JComboBox<String>();
 		cbMaCH.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		cbMaCH.setBounds(119, 73, 151, 33);
+		cbMaCH.addItem("");
 		pNhapThongTin.add(cbMaCH);
 
 		JLabel lblLuong = new JLabel("Lương:");
@@ -384,9 +413,11 @@ public class NhanVien_GUI extends JPanel {
 
 		// loadData
 		loadDataIntoTable();
+		loadDataComboboxCuaHang();
 	}
 
 	public void loadDataIntoTable() {
+		model.setRowCount(0);
 		for (NhanVien nhanVien : nhanVien_DAO.getAllListNhanVien()) {
 			Object[] objects = { nhanVien.getMaNV(), nhanVien.getMaCH(), nhanVien.getTenNV(), nhanVien.getDiaChi(),
 					nhanVien.getGioiTinh(), simpleDateFormat.format(nhanVien.getNgaySinh()),
@@ -395,8 +426,18 @@ public class NhanVien_GUI extends JPanel {
 			model.addRow(objects);
 		}
 	}
+	
+	public void loadDataComboboxCuaHang() {
+		for (CuaHang cuaHang : cuaHang_DAO.getAllCuaHang()) {
+			cbMaCH.addItem(cuaHang.getMaCH());
+		}
+	}
+	
+	public void refresh() {
+		loadDataIntoTable();
+	}
 
-	public void xoaTrang() {
+	public void removeInfo() {
 		txtMaNV.setText("");
 		txtTenNV.setText("");
 		txtDiaChi.setText("");
@@ -406,5 +447,123 @@ public class NhanVien_GUI extends JPanel {
 		txtCCCD.setText("");
 		txtEmail.setText("");
 		cbChucVu.setSelectedIndex(0);
+		cbMaCH.setSelectedIndex(0);
+		txtLuong.setText("");
+	}
+	
+	public boolean add() {
+		if (cbMaCH.getSelectedItem().equals("") ||
+			txtTenNV.getText().equals("") ||
+			cbGioiTinh.getSelectedItem().equals("") ||
+			dateChooserNgaySinh.equals(null) ||
+			txtDiaChi.getText().equals("") ||
+			txtCCCD.getText().equals("") ||
+			txtSoDienThoai.getText().equals("") ||
+			txtEmail.getText().equals("") ||
+			cbChucVu.getSelectedItem().equals("") ||
+			txtLuong.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Phải điền đầy đủ thông tin!");
+			return false;
+		}
+		else {
+			try {
+				// Thêm tài khoản mới cho nhân viên mới
+				TaiKhoan taiKhoan = new TaiKhoan();
+				String taiKhoanString = phatSinhMa_DAO.getMaTaiKhoan();
+				taiKhoan.setTaiKhoan(taiKhoanString);
+				taiKhoan.setMatKhau(taiKhoanString);
+				taiKhoan_DAO.themTaiKhoan(taiKhoan);
+				
+				NhanVien nhanVien = new NhanVien();
+				nhanVien.setMaNV(phatSinhMa_DAO.getMaNhanVien());
+				nhanVien.setMaCH(cbMaCH.getSelectedItem().toString());
+				nhanVien.setTenNV(txtTenNV.getText());
+				nhanVien.setDiaChi(txtDiaChi.getText());
+				nhanVien.setGioiTinh(cbGioiTinh.getSelectedItem().toString());
+				nhanVien.setNgaySinh(new Date(dateChooserNgaySinh.getDate().getTime()));
+				nhanVien.setNgayVaoLam(new Date(new java.util.Date().getTime()));
+				nhanVien.setCCCD(txtCCCD.getText());
+				nhanVien.setEmail(txtEmail.getText());
+				nhanVien.setSoDienThoai(txtSoDienThoai.getText());
+				nhanVien.setChucVu(cbChucVu.getSelectedItem().toString());
+				nhanVien.setTaiKhoan(taiKhoan);
+				nhanVien.setLuong(Integer.parseInt(txtLuong.getText()));
+				nhanVien_DAO.themNhanVien(nhanVien);
+				JOptionPane.showMessageDialog(null, "Thêm nhân viên thành công!");
+				refresh();
+				return true;
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, "Thêm nhân viên thất bại!");
+				e1.printStackTrace();
+				return false;
+			}
+		}
+		
+	}
+	
+	public boolean delete() {
+		int row = table.getSelectedRow();
+		if (row == -1) {
+			JOptionPane.showInternalMessageDialog(null, "Bạn phải chọn dòng cần xóa!");
+			return false;
+		}
+		else {
+			int option = JOptionPane.showConfirmDialog(null,
+					"Bạn có chắc muốn xóa nhân viên '" + model.getValueAt(row, 0) + "' chứ?", "Xóa?",
+					JOptionPane.YES_NO_OPTION);
+			if (option == JOptionPane.YES_OPTION) {
+				try {
+					String maTaiKhoan = nhanVien_DAO.getNhanVienTheoMa(model.getValueAt(row, 0).toString()).getTaiKhoan().getTaiKhoan();
+					nhanVien_DAO.xoaNhanVienTheoMa(model.getValueAt(row, 0).toString());
+					// Nếu xóa nhân viên thì xóa luôn tài khoản của nhân viên đó
+					taiKhoan_DAO.xoaTaiKhoan(maTaiKhoan);
+					JOptionPane.showMessageDialog(null,
+							"Xóa thành công nhân viên '" + model.getValueAt(row, 0) + "'!");
+					refresh();
+					return true;
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null,
+							"Xóa nhân viên '\" + model.getValueAt(row, 0) + \"' không thành công!");
+					return false;
+				}
+			}
+			else
+				return false;
+		}
+	}
+	
+	public boolean update() {
+		int row = table.getSelectedRow();
+		if (row == -1) {
+			JOptionPane.showInternalMessageDialog(null, "Bạn phải chọn dòng cần sửa!");
+			return false;
+		}
+		else {
+			int option = JOptionPane.showConfirmDialog(null,
+					"Bạn có chắc muốn sửa nhân viên '" + model.getValueAt(row, 0) + "' chứ?", "Xóa?",
+					JOptionPane.YES_NO_OPTION);
+			if (option == JOptionPane.YES_OPTION) {
+				try {
+					TaiKhoan taiKhoan = nhanVien_DAO.getNhanVienTheoMa(model.getValueAt(row, 0).toString()).getTaiKhoan();
+					Date ngayVaoLam = nhanVien_DAO.getNhanVienTheoMa(model.getValueAt(row, 0).toString()).getNgayVaoLam();
+					NhanVien nhanVien = new NhanVien(txtMaNV.getText(), cbMaCH.getSelectedItem().toString(), txtTenNV.getText(), txtDiaChi.getText(), cbGioiTinh.getSelectedItem().toString(), new Date(dateChooserNgaySinh.getDate().getTime()), ngayVaoLam, txtCCCD.getText(), txtEmail.getText(), txtSoDienThoai.getText(), cbChucVu.getSelectedItem().toString(), taiKhoan, Integer.parseInt(txtLuong.getText()));
+					nhanVien_DAO.suaNhanVienTheoMa(nhanVien);
+					JOptionPane.showMessageDialog(null,
+							"Sửa thành công nhân viên '" + model.getValueAt(row, 0) + "'!");
+					refresh();
+					return true;
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null,
+							"Sửa nhân viên '\" + model.getValueAt(row, 0) + \"' không thành công!");
+					return false;
+				}
+			}
+			else {
+				return false;
+			}
+		}
 	}
 }

@@ -1,5 +1,6 @@
 package entity;
 
+import java.sql.Date;
 import java.util.Objects;
 
 public class NhanVien {
@@ -12,9 +13,9 @@ public class NhanVien {
 	    private java.sql.Date ngayVaoLam;
 	    private String CCCD;
 	    private String email;
-	    private String soDienThoai;
-	    private TaiKhoan taiKhoan;
+	    private String soDienThoai;    
 	    private	String chucVu;
+	    private TaiKhoan taiKhoan;
 	    private int luong;
 
 		public NhanVien() {
@@ -25,25 +26,26 @@ public class NhanVien {
 			super();
 			this.maNV = maNV;
 		}
-		public NhanVien(String maNV, String string, String tenNV, String diaChi, String gioiTinh, java.sql.Date ngaySinh,
-				java.sql.Date ngayVaoLam, String cCCD, String email, String soDienThoai, String chucVu, TaiKhoan taiKhoan,
+		
+		public NhanVien(String maNV, String maCH, String tenNV, String diaChi, String gioiTinh, Date ngaySinh,
+				Date ngayVaoLam, String cCCD, String email, String soDienThoai, String chucVu, TaiKhoan taiKhoan,
 				int luong) {
 			super();
 			this.maNV = maNV;
-			this.maCH = string;
+			this.maCH = maCH;
 			this.tenNV = tenNV;
 			this.diaChi = diaChi;
 			this.gioiTinh = gioiTinh;
 			this.ngaySinh = ngaySinh;
 			this.ngayVaoLam = ngayVaoLam;
-			this.CCCD  = cCCD;
+			CCCD = cCCD;
 			this.email = email;
 			this.soDienThoai = soDienThoai;
 			this.chucVu = chucVu;
 			this.taiKhoan = taiKhoan;
 			this.luong = luong;
 		}
-		
+
 		@Override
 		public int hashCode() {
 			return Objects.hash(CCCD, email, maNV, soDienThoai, taiKhoan);

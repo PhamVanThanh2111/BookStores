@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -18,6 +19,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import connect.ConnectDB;
 import dao.LoaiSach_DAO;
 import dao.Sach_DAO;
 import entity.LoaiSach;
@@ -42,12 +44,16 @@ public class Sach_GUI extends JPanel {
 	private JTextField txtMaSach;
 	private JTextField txtTenSach;
 	private JTextField txtMaNXB;
+	private JTextField txtSoTrang;
+	private JTextField txtTacGia;
 	private JLabel lblMaSach;
 	private JLabel lblTenSach;
 	private JLabel lblMaNXB;
 	private JLabel lbMaLoaiSach;
 	private JLabel lblXuatXu;
 	private JLabel lblGia;
+	private JLabel lblTacGia;
+	private JLabel lblSoTrang;
 	private JScrollPane scrollPaneSach;
 	private JTable table;
 	private DefaultTableModel model;
@@ -55,19 +61,18 @@ public class Sach_GUI extends JPanel {
 	private LoaiSach_DAO loaiSach_DAO;
 	private JTableHeader tableHeader;
 	private JComboBox<String> cbMaLoaiSach;
-	private JLabel lblTacGia;
-	private JTextField txtTacGia;
-	private JLabel lblSoTrang;
-	private JTextField txtSoTrang;
-	
-	
+
 	/**
 	 * Create the panel.
 	 */
 	public Sach_GUI() {
 
+		// connect
+		ConnectDB.getInstance();
+		ConnectDB.getConnection();
+
 		setLayout(null);
-		// Khai bao Sach_DAO
+		// Khai bao DAO
 		sach_DAO = new Sach_DAO();
 		loaiSach_DAO = new LoaiSach_DAO();
 		JPanel mMain = new JPanel();
@@ -146,10 +151,6 @@ public class Sach_GUI extends JPanel {
 		txtGia.setBounds(756, 116, 320, 33);
 		pNhapThongTin.add(txtGia);
 
-		Component verticalStrut = Box.createVerticalStrut(10);
-		verticalStrut.setBounds(203, 63, 840, -7);
-		pNhapThongTin.add(verticalStrut);
-
 		cbMaLoaiSach = new JComboBox<String>();
 		cbMaLoaiSach.addItem("");
 		loadDataIntoCombobox();
@@ -161,23 +162,23 @@ public class Sach_GUI extends JPanel {
 		txtXuatXu.setColumns(10);
 		txtXuatXu.setBounds(756, 73, 320, 33);
 		pNhapThongTin.add(txtXuatXu);
-		
+
 		lblTacGia = new JLabel("Tác giả:");
 		lblTacGia.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblTacGia.setBounds(49, 159, 121, 33);
 		pNhapThongTin.add(lblTacGia);
-		
+
 		txtTacGia = new JTextField();
 		txtTacGia.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtTacGia.setColumns(10);
 		txtTacGia.setBounds(161, 159, 297, 33);
 		pNhapThongTin.add(txtTacGia);
-		
+
 		lblSoTrang = new JLabel("Số trang:");
 		lblSoTrang.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblSoTrang.setBounds(651, 159, 121, 33);
 		pNhapThongTin.add(lblSoTrang);
-		
+
 		txtSoTrang = new JTextField();
 		txtSoTrang.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtSoTrang.setColumns(10);
@@ -213,7 +214,7 @@ public class Sach_GUI extends JPanel {
 
 		JButton btnNewButton = new JButton("Tìm");
 		btnNewButton.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnNewButton.setBounds(940, 10, 114, 33);
+		btnNewButton.setBounds(925, 10, 114, 33);
 		mMain.add(btnNewButton);
 		scrollPaneSach = new JScrollPane();
 		scrollPaneSach.setBounds(10, 22, 1108, 350);
@@ -221,9 +222,12 @@ public class Sach_GUI extends JPanel {
 		scrollPaneSach.setBorder(new LineBorder(new Color(0, 162, 197), 1, true));
 		scrollPaneSach.setBackground(new Color(0, 162, 197));
 		pnDanhSach.add(scrollPaneSach);
-		
+
+		// Tạo một DefaultTableModel với các cột
 		String cols[] = { "Mã Sách", "Mã NXB", "Mã Loại Sách ", "Tên Sách", "Xuất Xứ", "Tác Giả", "Số Trang", "Giá" };
 		model = new DefaultTableModel(cols, 0);
+		
+		// Tạo một JTable và gắn model vào nó
 		table = new JTable(model);
 		table.setRowHeight(25);
 		table.addMouseListener(new MouseListener() {
@@ -280,8 +284,12 @@ public class Sach_GUI extends JPanel {
 
 	public Sach_GUI(NhanVien nhanVien) {
 
+		// connect
+		ConnectDB.getInstance();
+		ConnectDB.getConnection();
+
 		setLayout(null);
-		// Khai bao Sach_DAO
+		// Khai bao DAO
 		sach_DAO = new Sach_DAO();
 		loaiSach_DAO = new LoaiSach_DAO();
 		JPanel mMain = new JPanel();
@@ -375,23 +383,23 @@ public class Sach_GUI extends JPanel {
 		txtXuatXu.setColumns(10);
 		txtXuatXu.setBounds(756, 73, 320, 33);
 		pNhapThongTin.add(txtXuatXu);
-		
+
 		lblTacGia = new JLabel("Tác giả:");
 		lblTacGia.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblTacGia.setBounds(49, 159, 121, 33);
 		pNhapThongTin.add(lblTacGia);
-		
+
 		txtTacGia = new JTextField();
 		txtTacGia.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtTacGia.setColumns(10);
 		txtTacGia.setBounds(161, 159, 297, 33);
 		pNhapThongTin.add(txtTacGia);
-		
+
 		lblSoTrang = new JLabel("Số trang:");
 		lblSoTrang.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblSoTrang.setBounds(651, 159, 121, 33);
 		pNhapThongTin.add(lblSoTrang);
-		
+
 		txtSoTrang = new JTextField();
 		txtSoTrang.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtSoTrang.setColumns(10);
@@ -474,7 +482,7 @@ public class Sach_GUI extends JPanel {
 
 		JButton btnNewButton = new JButton("Tìm");
 		btnNewButton.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnNewButton.setBounds(940, 10, 114, 33);
+		btnNewButton.setBounds(925, 9, 114, 33);
 		mMain.add(btnNewButton);
 		btnXoaTrang.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -494,7 +502,7 @@ public class Sach_GUI extends JPanel {
 		scrollPaneSach.setBorder(new LineBorder(new Color(0, 162, 197), 1, true));
 		scrollPaneSach.setBackground(new Color(0, 162, 197));
 		pnDanhSach.add(scrollPaneSach);
-		
+
 		String cols[] = { "Mã Sách", "Mã NXB", "Mã Loại Sách ", "Tên Sách", "Xuất Xứ", "Tác Giả", "Số Trang", "Giá" };
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
@@ -551,12 +559,14 @@ public class Sach_GUI extends JPanel {
 		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
 	}
 
-	// Đổ DL vào comboBox Sách
+	// Đổ DL vào table Sách
 	public void loadDataIntoTable() {
+		model.setRowCount(0);
 		for (Sach sach : sach_DAO.getAllListSach()) {
 			Object[] objects = { sach.getMaSach(), sach.getMaNXB(), sach.getMaLoaiSach(), sach.getTenSach(),
 					sach.getXuatXu(), sach.getTacGia(), sach.getSoTrang(), sach.getGia() };
 			model.addRow(objects);
+			model.fireTableDataChanged();
 		}
 	}
 
@@ -564,7 +574,11 @@ public class Sach_GUI extends JPanel {
 	public void loadDataIntoCombobox() {
 		for (LoaiSach loaiSach : loaiSach_DAO.getAllListLoaiSach()) {
 			cbMaLoaiSach.addItem(loaiSach.getMaLoaiSach());
+<<<<<<< HEAD
 		}		
+=======
+		}
+>>>>>>> 4f8d0be0bfb3ccd206da3bda690301f6862cb08a
 	}
 	 public void xoaTrang() {
 	        txtMaSach.setText("");

@@ -14,49 +14,48 @@ import entity.TaiKhoan;
 
 public class Sach_DAO {
 	// get all sách //lấy
-		public List<Sach> getAllListSach() {
-			ConnectDB.getInstance();
-			Connection connection = ConnectDB.getConnection();
-			List<Sach> ds = new ArrayList<Sach>();
-			try {
-				PreparedStatement preparedStatement = connection.prepareStatement("select * from Sach");
-				ResultSet resultSet = preparedStatement.executeQuery();
-				while (resultSet.next()) {
-							ds.add(new Sach(resultSet.getString(1),resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),resultSet.getString(5),resultSet.getString(6),resultSet.getInt(7),resultSet.getInt(8)));
-				}
-				
-			} catch (Exception e) {
-				// TODO: handle exception
+	public List<Sach> getAllListSach() {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		List<Sach> ds = new ArrayList<Sach>();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement("select * from Sach");
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				ds.add(new Sach(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),
+						resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getInt(7),
+						resultSet.getInt(8)));
 			}
-			return ds;
-		}
-	//thêm sách
-		public boolean themSach(Sach sach) throws SQLException {
-			// TODO Auto-generated method stub
-			  ConnectDB.getInstance();
-			    Connection connection = ConnectDB.getConnection();
-			    try {
-			        PreparedStatement preparedStatement = null;
-			        preparedStatement = connection.prepareStatement("INSERT INTO Sach (MaSach, MaNXB , MaLoaiSach, TenSach, XuatXu, TacGia, SoTrang, Gia) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-			        preparedStatement.setString(1, sach.getMaSach()); 
-			        preparedStatement.setString(2, sach.getMaNXB());
-			        preparedStatement.setString(3, sach.getMaLoaiSach());
-			        preparedStatement.setString(4, sach.getTenSach());
-			        preparedStatement.setString(5, sach.getXuatXu());
-			        preparedStatement.setString(6, sach.getTacGia());
-			        preparedStatement.setInt(7, sach.getSoTrang());
-			        preparedStatement.setDouble(8, sach.getGia());
-			        return preparedStatement.executeUpdate() > 0;
-			    } catch (SQLException e) {
-			        e.printStackTrace();
-			    } finally {
-			        if (connection != null) {
-			            connection.close();
-			        }
-			    }
-			    return false;	
-		}
 
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return ds;
+	}
 
+	// thêm sách
+	public boolean themSach(Sach sach) throws SQLException {
+		// TODO Auto-generated method stub
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		try {
+			PreparedStatement preparedStatement = null;
+			preparedStatement = connection.prepareStatement(
+					"INSERT INTO Sach (MaSach, MaNXB , MaLoaiSach, TenSach, XuatXu, TacGia, SoTrang, Gia) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+			preparedStatement.setString(1, sach.getMaSach());
+			preparedStatement.setString(2, sach.getMaNXB());
+			preparedStatement.setString(3, sach.getMaLoaiSach());
+			preparedStatement.setString(4, sach.getTenSach());
+			preparedStatement.setString(5, sach.getXuatXu());
+			preparedStatement.setString(6, sach.getTacGia());
+			preparedStatement.setInt(7, sach.getSoTrang());
+			preparedStatement.setInt(8, sach.getGia());
+			return preparedStatement.executeUpdate() > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		connection.close();
+		return false;
+	}
 
 }

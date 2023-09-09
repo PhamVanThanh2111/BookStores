@@ -32,7 +32,7 @@ public class LoaiSach_GUI extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public LoaiSach_GUI(NhanVien nhanVien) {
+	public LoaiSach_GUI() {
 		setLayout(null);
 
 		JPanel pMain = new JPanel();
@@ -134,83 +134,83 @@ public class LoaiSach_GUI extends JPanel {
 
 	}
 
-	public LoaiSach_GUI() {
-		setLayout(null);
-
-		JPanel mMain = new JPanel();
-		mMain.setBounds(10, 10, 1162, 667);
-		add(mMain);
-		mMain.setLayout(null);
-
-		JPanel pnTieuDe = new JPanel();
-		pnTieuDe.setBounds(10, 10, 1142, 42);
-		mMain.add(pnTieuDe);
-		pnTieuDe.setLayout(null);
-
-		JLabel lblQunLLoi = new JLabel("LOẠI SÁCH");
-		lblQunLLoi.setHorizontalAlignment(SwingConstants.CENTER);
-		lblQunLLoi.setBounds(421, 10, 240, 22);
-		lblQunLLoi.setForeground(Color.RED);
-		lblQunLLoi.setFont(new Font("Arial", Font.BOLD, 20));
-		pnTieuDe.add(lblQunLLoi);
-
-		JPanel pnThongTin = new JPanel();
-		// pnCenN.setBorder(new TitledBorder(null, "Thông Tin: ", TitledBorder.LEADING,
-		// TitledBorder.TOP, null, new Color(0, 126, 197)));
-		pnThongTin.setBorder(new TitledBorder(
-				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)), "Thông Tin:", // 162,
-																													// 197
-				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 126, 197)));
-		pnThongTin.setBounds(10, 62, 1142, 159);
-		mMain.add(pnThongTin);
-		pnThongTin.setLayout(null);
-
-		Box b = Box.createVerticalBox();
-		b.setBounds(92, 36, 972, 74);
-		b.setPreferredSize(new Dimension(840, 70));
-		pnThongTin.add(b);
-
-		Component verticalStrut = Box.createVerticalStrut(30);
-		b.add(verticalStrut);
-
-		Box b1 = Box.createHorizontalBox();
-		b.add(b1);
-
-		JLabel lblMaLoaiSach = new JLabel("Mã Loại Sách: ");
-		lblMaLoaiSach.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblMaLoaiSach.setPreferredSize(new Dimension(86, 13));
-		b1.add(lblMaLoaiSach);
-
-		txtMaLoaiSach = new JTextField();
-		txtMaLoaiSach.setEditable(false);
-		b1.add(txtMaLoaiSach);
-
-		JLabel lblTenLoaiSach = new JLabel("Tên Loại Sách:    ");
-		lblTenLoaiSach.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		b1.add(lblTenLoaiSach);
-
-		txtTenLoaiSach = new JTextField();
-		b1.add(txtTenLoaiSach);
-
-		Component verticalStrut_1 = Box.createVerticalStrut(10);
-		b.add(verticalStrut_1);
-
-		JPanel pnDanhSach = new JPanel();
-		pnDanhSach.setBounds(10, 231, 1142, 426);
-		pnDanhSach.setBorder(new TitledBorder(
-				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)), "Danh sách:", // 162,
-																													// 197
-				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
-		
-		mMain.add(pnDanhSach);
-		pnDanhSach.setLayout(null);
-
-		JScrollPane scrollPaneSach = new JScrollPane();
-		scrollPaneSach.setBounds(10, 21, 1122, 395);
-		scrollPaneSach.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
-		scrollPaneSach.setBorder(new LineBorder(new Color(0, 162, 197), 1, true));
-		scrollPaneSach.setBackground(new Color(0, 0, 0));
-		pnDanhSach.add(scrollPaneSach);
-
-	}
+//	public LoaiSach_GUI() {
+//		setLayout(null);
+//
+//		JPanel mMain = new JPanel();
+//		mMain.setBounds(10, 10, 1162, 667);
+//		add(mMain);
+//		mMain.setLayout(null);
+//
+//		JPanel pnTieuDe = new JPanel();
+//		pnTieuDe.setBounds(10, 10, 1142, 42);
+//		mMain.add(pnTieuDe);
+//		pnTieuDe.setLayout(null);
+//
+//		JLabel lblQunLLoi = new JLabel("LOẠI SÁCH");
+//		lblQunLLoi.setHorizontalAlignment(SwingConstants.CENTER);
+//		lblQunLLoi.setBounds(421, 10, 240, 22);
+//		lblQunLLoi.setForeground(Color.RED);
+//		lblQunLLoi.setFont(new Font("Arial", Font.BOLD, 20));
+//		pnTieuDe.add(lblQunLLoi);
+//
+//		JPanel pnThongTin = new JPanel();
+//		// pnCenN.setBorder(new TitledBorder(null, "Thông Tin: ", TitledBorder.LEADING,
+//		// TitledBorder.TOP, null, new Color(0, 126, 197)));
+//		pnThongTin.setBorder(new TitledBorder(
+//				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)), "Thông Tin:", // 162,
+//																													// 197
+//				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 126, 197)));
+//		pnThongTin.setBounds(10, 62, 1142, 159);
+//		mMain.add(pnThongTin);
+//		pnThongTin.setLayout(null);
+//
+//		Box b = Box.createVerticalBox();
+//		b.setBounds(92, 36, 972, 74);
+//		b.setPreferredSize(new Dimension(840, 70));
+//		pnThongTin.add(b);
+//
+//		Component verticalStrut = Box.createVerticalStrut(30);
+//		b.add(verticalStrut);
+//
+//		Box b1 = Box.createHorizontalBox();
+//		b.add(b1);
+//
+//		JLabel lblMaLoaiSach = new JLabel("Mã Loại Sách: ");
+//		lblMaLoaiSach.setFont(new Font("Tahoma", Font.PLAIN, 13));
+//		lblMaLoaiSach.setPreferredSize(new Dimension(86, 13));
+//		b1.add(lblMaLoaiSach);
+//
+//		txtMaLoaiSach = new JTextField();
+//		txtMaLoaiSach.setEditable(false);
+//		b1.add(txtMaLoaiSach);
+//
+//		JLabel lblTenLoaiSach = new JLabel("Tên Loại Sách:    ");
+//		lblTenLoaiSach.setFont(new Font("Tahoma", Font.PLAIN, 13));
+//		b1.add(lblTenLoaiSach);
+//
+//		txtTenLoaiSach = new JTextField();
+//		b1.add(txtTenLoaiSach);
+//
+//		Component verticalStrut_1 = Box.createVerticalStrut(10);
+//		b.add(verticalStrut_1);
+//
+//		JPanel pnDanhSach = new JPanel();
+//		pnDanhSach.setBounds(10, 231, 1142, 426);
+//		pnDanhSach.setBorder(new TitledBorder(
+//				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)), "Danh sách:", // 162,
+//																													// 197
+//				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
+//		
+//		mMain.add(pnDanhSach);
+//		pnDanhSach.setLayout(null);
+//
+//		JScrollPane scrollPaneSach = new JScrollPane();
+//		scrollPaneSach.setBounds(10, 21, 1122, 395);
+//		scrollPaneSach.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
+//		scrollPaneSach.setBorder(new LineBorder(new Color(0, 162, 197), 1, true));
+//		scrollPaneSach.setBackground(new Color(0, 0, 0));
+//		pnDanhSach.add(scrollPaneSach);
+//
+//	}
 }

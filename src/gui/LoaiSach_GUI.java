@@ -3,7 +3,6 @@ package gui;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import java.awt.Font;
 import java.awt.Color;
 import javax.swing.Box;
 import java.awt.Dimension;
@@ -11,14 +10,11 @@ import java.awt.Component;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 
-import entity.NhanVien;
-
 import javax.swing.JScrollPane;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
 
 public class LoaiSach_GUI extends JPanel {
 

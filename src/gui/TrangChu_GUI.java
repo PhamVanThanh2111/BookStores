@@ -389,21 +389,21 @@ public class TrangChu_GUI extends JFrame {
 			}
 		});
 		pMenu.add(lblNXB);
-		if (nhanVien.getChucVu().equalsIgnoreCase("Bán hàng")) {
-			// set show pContent KhachHang
-			lblLoaiSach.setVisible(true);
-			lblNXB.setVisible(true);
-			lblNhanVien.setVisible(false);
-			lblCuaHang.setVisible(false);
-			lblKhachHang.setBounds(10, 40, 160, 64);
-			lblHoaDon.setBounds(10, 144, 160, 64);
-			lblSach.setBounds(10, 248, 160, 64);
-			lblLoaiSach.setBounds(10, 352, 160, 64);
-			lblNXB.setBounds(10, 456, 160, 64);
-			lblThongKe.setBounds(10, 560, 160, 64);
-		} else {
-		// chuc nang nay danh cho quan ly kho
-		}
+//		if (nhanVien.getChucVu().equalsIgnoreCase("Bán hàng")) {
+//			// set show pContent KhachHang
+//			lblLoaiSach.setVisible(true);
+//			lblNXB.setVisible(true);
+//			lblNhanVien.setVisible(false);
+//			lblCuaHang.setVisible(false);
+//			lblKhachHang.setBounds(10, 40, 160, 64);
+//			lblHoaDon.setBounds(10, 144, 160, 64);
+//			lblSach.setBounds(10, 248, 160, 64);
+//			lblLoaiSach.setBounds(10, 352, 160, 64);
+//			lblNXB.setBounds(10, 456, 160, 64);
+//			lblThongKe.setBounds(10, 560, 160, 64);
+//		} else {
+//		// chuc nang nay danh cho quan ly kho
+//		}
 
 		pContent = new JPanel();
 		pContent.setBackground(new Color(77, 77, 77));

@@ -389,7 +389,6 @@ public class TrangChu_GUI extends JFrame {
 			}
 		});
 		pMenu.add(lblNXB);
-
 		if (nhanVien.getChucVu().equalsIgnoreCase("Bán hàng")) {
 			// set show pContent KhachHang
 			lblLoaiSach.setVisible(true);
@@ -403,7 +402,7 @@ public class TrangChu_GUI extends JFrame {
 			lblNXB.setBounds(10, 456, 160, 64);
 			lblThongKe.setBounds(10, 560, 160, 64);
 		} else {
-			// chuc nang nay danh cho quan ly kho
+		// chuc nang nay danh cho quan ly kho
 		}
 
 		pContent = new JPanel();

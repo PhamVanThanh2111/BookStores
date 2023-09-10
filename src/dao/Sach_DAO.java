@@ -57,5 +57,20 @@ public class Sach_DAO {
 		connection.close();
 		return false;
 	}
+	//xóa Sách theo mã
+	public boolean xoaSachTheoMa(String maSach) throws SQLException {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM Sach WHERE MaSach = ?");
+	        preparedStatement.setString(1, maSach);
+			return preparedStatement.executeUpdate() > 0;
+		} catch  (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		connection.close();
+		return false;	
+	}
 
 }

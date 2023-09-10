@@ -456,6 +456,7 @@ public class Sach_GUI extends JPanel {
 		btnXoaSach.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnXoaSach.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				xoaSach();
 			}
 		});
 		btnXoaSach.setBounds(307, 14, 121, 34);
@@ -636,5 +637,34 @@ public class Sach_GUI extends JPanel {
 			}
 		}
 	}
-
+	//Xóa sách
+	public boolean xoaSach() {
+	    int row = table.getSelectedRow();
+	    if (row == -1) {
+	        JOptionPane.showInternalMessageDialog(null, "Bạn phải chọn dòng cần xóa!");
+	        return false;
+	    } else {
+	        int option = JOptionPane.showConfirmDialog(null,
+	                "Bạn có chắc muốn xóa sách '" + model.getValueAt(row, 0) + "' chứ?", "Xóa?",
+	                JOptionPane.YES_NO_OPTION);
+	        if (option == JOptionPane.YES_OPTION) {
+	            try {
+	                String maSach = model.getValueAt(row, 0).toString();
+	                // Assuming you have a book DAO class similar to the NhanVien_DAO
+	                sach_DAO.xoaSachTheoMa(maSach);
+	                JOptionPane.showMessageDialog(null,
+	                        "Xóa thành công sách '" + model.getValueAt(row, 0) + "'!");
+	                refresh(); // You may need to implement this method to update your table
+	                return true;
+	            } catch (SQLException e1) {
+	                JOptionPane.showMessageDialog(null,
+	                        "Xóa sách '" + model.getValueAt(row, 0) + "' không thành công!");
+	                return false;
+	            }
+	        } else {
+	            return false;
+	        }
+	    }
+	}
+	//Sửa sách
 }

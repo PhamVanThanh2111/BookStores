@@ -65,6 +65,7 @@ public class NhanVien_GUI extends JPanel {
 	private JComboBox<String> cbGioiTinh;
 	private JComboBox<String> cbChucVu;
 	private JComboBox<String> cbMaCH;
+	private JComboBox<String> cbTim;
 	private JTextField txtLuong;
 
 	/**
@@ -205,12 +206,44 @@ public class NhanVien_GUI extends JPanel {
 		pMain.add(txtTim);
 		txtTim.setColumns(10);
 
-		JButton btnNewButton = new JButton("Tìm");
-		btnNewButton.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnNewButton.setBounds(750, 10, 114, 33);
-		pMain.add(btnNewButton);
+		JButton btnTim = new JButton("Tìm");
+		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnTim.setBounds(750, 10, 114, 33);
+		btnTim.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (cbTim.getSelectedItem().equals("Mã NV")) {
+					model.setRowCount(0);
+					NhanVien nhanVien = nhanVien_DAO.getNhanVienTheoMa(txtTim.getText());
+					Object[] objects = { nhanVien.getMaNV(), nhanVien.getMaCH(), nhanVien.getTenNV(), nhanVien.getDiaChi(),
+							nhanVien.getGioiTinh(), simpleDateFormat.format(nhanVien.getNgaySinh()),
+							simpleDateFormat.format(nhanVien.getNgayVaoLam()), nhanVien.getCCCD(), nhanVien.getEmail(),
+							nhanVien.getSoDienThoai(), nhanVien.getChucVu(), nhanVien.getLuong() };
+					model.addRow(objects);
+				}
+				else if (cbTim.getSelectedItem().equals("Tên NV")) {
+					model.setRowCount(0);
+					for (NhanVien nhanVien : nhanVien_DAO.getNhanVienTheoTen(txtTim.getText())) {
+						Object[] objects = { nhanVien.getMaNV(), nhanVien.getMaCH(), nhanVien.getTenNV(), nhanVien.getDiaChi(),
+								nhanVien.getGioiTinh(), simpleDateFormat.format(nhanVien.getNgaySinh()),
+								simpleDateFormat.format(nhanVien.getNgayVaoLam()), nhanVien.getCCCD(), nhanVien.getEmail(),
+								nhanVien.getSoDienThoai(), nhanVien.getChucVu(), nhanVien.getLuong() };
+						model.addRow(objects);
+					}
+				}
+				else if (cbTim.getSelectedItem().equals("SĐT")) {
+					
+				}
+				else {
+					
+				}
+			}
+		});
+		pMain.add(btnTim);
 
-		JComboBox<String> cbTim = new JComboBox<String>();
+		cbTim = new JComboBox<String>();
 		cbTim.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		cbTim.setBounds(644, 10, 96, 33);
 		cbTim.addItem("Tên NV");

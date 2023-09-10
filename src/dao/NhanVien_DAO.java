@@ -37,6 +37,28 @@ public class NhanVien_DAO {
 		}
 		return ds;
 	}
+	
+	// get nhan vien theo ten
+		public List<NhanVien> getNhanVienTheoTen(String tenNV) {
+			ConnectDB.getInstance();
+			Connection connection = ConnectDB.getConnection();
+			List<NhanVien> ds = new ArrayList<NhanVien>();
+			TaiKhoan taiKhoan;
+			TaiKhoan_DAO taiKhoan_DAO = new TaiKhoan_DAO();
+			try {
+				PreparedStatement preparedStatement = connection.prepareStatement("select * from NhanVien where tenNV = '"+ tenNV +"'");
+				ResultSet resultSet = preparedStatement.executeQuery();
+				while (resultSet.next()) {
+					taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTaiKhoan(resultSet.getString(12));
+					ds.add(new NhanVien(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getDate(6),
+							resultSet.getDate(7), resultSet.getString(8), resultSet.getString(9), resultSet.getString(10),
+							resultSet.getString(11), taiKhoan, resultSet.getInt(13)));
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			return ds;
+		}
 
 	// get nhan vien theo ma
 	public NhanVien getNhanVienTheoMa(String maNV) {

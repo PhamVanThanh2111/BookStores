@@ -1,5 +1,6 @@
 package entity;
 
+import java.sql.Date;
 import java.util.Objects;
 
 public class Sach {
@@ -10,8 +11,10 @@ public class Sach {
 	private String tenSach;
 	private String xuatXu;
 	private String tacGia;
-	private int 	soTrang;
+	private int soTrang;
+	private int soLuong;
 	private int gia;
+	private Date namXuatBan;
 	public Sach() {
 		super();
 	}
@@ -73,11 +76,25 @@ public class Sach {
 	public void setSoTrang(int soTrang) {
 		this.soTrang = soTrang;
 	}
+	
+	public int getSoLuong() {
+		return soLuong;
+	}
+	public void setSoLuong(int soLuong) {
+		this.soLuong = soLuong;
+	}
 	public int getGia() {
 		return gia;
 	}
 	public void setGia(int gia) {
 		this.gia = gia;
+	}
+	
+	public Date getNamXuatBan() {
+		return namXuatBan;
+	}
+	public void setNamXuatBan(Date ngayXuatBan) {
+		this.namXuatBan = ngayXuatBan;
 	}
 	@Override
 	public int hashCode() {
@@ -97,7 +114,9 @@ public class Sach {
 	@Override
 	public String toString() {
 		return "Sach [maSach=" + maSach + ", maNXB=" + maNXB + ", maLoaiSach=" + maLoaiSach + ", tenSach=" + tenSach
-				+ ", xuatXu=" + xuatXu + ", tacGia=" + tacGia + ", soTrang=" + soTrang + ", gia=" + gia + "]";
+				+ ", xuatXu=" + xuatXu + ", tacGia=" + tacGia + ", soTrang=" + soTrang + ", soLuong=" + soLuong
+				+ ", gia=" + gia + ", namXuatBan=" + namXuatBan + "]";
 	}
+	
 	
 }

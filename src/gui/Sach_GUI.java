@@ -14,11 +14,15 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+
+import com.toedter.calendar.JDateChooser;
 
 import connect.ConnectDB;
 import dao.LoaiSach_DAO;
@@ -65,11 +69,15 @@ public class Sach_GUI extends JPanel {
 	private PhatSinhMa_DAO phatSinhMa_DAO;
 	private JTableHeader tableHeader;
 	private JComboBox<String> cbMaLoaiSach;
+	private JTextField txtSoLuong;
+	private JLabel lblSoLuong;
+	private JLabel lblNamXuatBan;
+	private JTextField txtNamXuatBan;
+	private int namXuatBan;
 
 	/**
 	 * Create the panel.
 	 */
-//	public Sach_GUI() {
 //
 //		// connect
 //		ConnectDB.getInstance();
@@ -305,7 +313,7 @@ public class Sach_GUI extends JPanel {
 		mMain.setLayout(null);
 
 		JPanel pNhapThongTin = new JPanel();
-		pNhapThongTin.setBounds(10, 53, 1128, 203);
+		pNhapThongTin.setBounds(10, 48, 1128, 235);
 		pNhapThongTin.setBorder(new TitledBorder(
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)),
 				"Th\u00F4ng tin chi ti\u1EBFt:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
@@ -314,51 +322,51 @@ public class Sach_GUI extends JPanel {
 
 		lblMaSach = new JLabel("Mã Sách:");
 		lblMaSach.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblMaSach.setBounds(49, 30, 90, 33);
+		lblMaSach.setBounds(36, 11, 90, 33);
 		pNhapThongTin.add(lblMaSach);
 
 		txtMaSach = new JTextField();
 		txtMaSach.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtMaSach.setColumns(10);
-		txtMaSach.setBounds(161, 30, 297, 33);
+		txtMaSach.setBounds(150, 11, 297, 33);
 		txtMaSach.setEditable(false);
 		pNhapThongTin.add(txtMaSach);
 
 		txtTenSach = new JTextField();
 		txtTenSach.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtTenSach.setColumns(10);
-		txtTenSach.setBounds(161, 73, 297, 33);
+		txtTenSach.setBounds(150, 55, 297, 33);
 		pNhapThongTin.add(txtTenSach);
 
 		lblTenSach = new JLabel("Tên Sách:");
 		lblTenSach.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblTenSach.setBounds(49, 73, 90, 33);
+		lblTenSach.setBounds(36, 55, 90, 33);
 		pNhapThongTin.add(lblTenSach);
 
 		lblMaNXB = new JLabel("Nhà Xuất Bản:");
 		lblMaNXB.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblMaNXB.setBounds(49, 116, 121, 33);
+		lblMaNXB.setBounds(36, 99, 121, 33);
 		pNhapThongTin.add(lblMaNXB);
 
 		txtMaNXB = new JTextField();
 		txtMaNXB.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtMaNXB.setColumns(10);
-		txtMaNXB.setBounds(161, 116, 297, 33);
+		txtMaNXB.setBounds(150, 99, 297, 33);
 		pNhapThongTin.add(txtMaNXB);
 
-		lblGia = new JLabel("Giá:");
+		lblGia = new JLabel("Giá bán:");
 		lblGia.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblGia.setBounds(651, 116, 121, 33);
+		lblGia.setBounds(654, 102, 121, 33);
 		pNhapThongTin.add(lblGia);
 
 		lblXuatXu = new JLabel("Xuất Xứ:");
 		lblXuatXu.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblXuatXu.setBounds(651, 73, 124, 33);
+		lblXuatXu.setBounds(651, 54, 124, 37);
 		pNhapThongTin.add(lblXuatXu);
 
-		lbMaLoaiSach = new JLabel("Mã Loại Sách:");
+		lbMaLoaiSach = new JLabel("Loại Sách:");
 		lbMaLoaiSach.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lbMaLoaiSach.setBounds(651, 30, 111, 33);
+		lbMaLoaiSach.setBounds(651, 11, 111, 32);
 		pNhapThongTin.add(lbMaLoaiSach);
 
 //		JTextField txtxuatXu = new JTextField();
@@ -370,7 +378,7 @@ public class Sach_GUI extends JPanel {
 		txtGia = new JTextField();
 		txtGia.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtGia.setColumns(10);
-		txtGia.setBounds(756, 116, 320, 33);
+		txtGia.setBounds(756, 99, 320, 33);
 		pNhapThongTin.add(txtGia);
 
 		Component verticalStrut = Box.createVerticalStrut(10);
@@ -380,36 +388,70 @@ public class Sach_GUI extends JPanel {
 		cbMaLoaiSach = new JComboBox<String>();
 		cbMaLoaiSach.addItem("");
 		loadDataIntoCombobox();
-		cbMaLoaiSach.setBounds(756, 30, 320, 33);
+		cbMaLoaiSach.setBounds(756, 11, 320, 33);
 		pNhapThongTin.add(cbMaLoaiSach);
 
 		txtXuatXu = new JTextField();
 		txtXuatXu.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtXuatXu.setColumns(10);
-		txtXuatXu.setBounds(756, 73, 320, 33);
+		txtXuatXu.setBounds(756, 55, 320, 33);
 		pNhapThongTin.add(txtXuatXu);
 
 		lblTacGia = new JLabel("Tác giả:");
 		lblTacGia.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblTacGia.setBounds(49, 159, 121, 33);
+		lblTacGia.setBounds(36, 143, 121, 33);
 		pNhapThongTin.add(lblTacGia);
 
 		txtTacGia = new JTextField();
 		txtTacGia.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtTacGia.setColumns(10);
-		txtTacGia.setBounds(161, 159, 297, 33);
+		txtTacGia.setBounds(150, 143, 297, 33);
 		pNhapThongTin.add(txtTacGia);
 
 		lblSoTrang = new JLabel("Số trang:");
 		lblSoTrang.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblSoTrang.setBounds(651, 159, 121, 33);
+		lblSoTrang.setBounds(651, 146, 90, 33);
 		pNhapThongTin.add(lblSoTrang);
 
 		txtSoTrang = new JTextField();
 		txtSoTrang.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtSoTrang.setColumns(10);
-		txtSoTrang.setBounds(756, 159, 320, 33);
+		txtSoTrang.setBounds(756, 143, 320, 33);
 		pNhapThongTin.add(txtSoTrang);
+		
+		txtSoLuong = new JTextField();
+		txtSoLuong.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtSoLuong.setColumns(10);
+		txtSoLuong.setBounds(756, 187, 320, 33);
+		pNhapThongTin.add(txtSoLuong);
+		
+		lblSoLuong = new JLabel("Số lượng:");
+		lblSoLuong.setFont(new Font("SansSerif", Font.BOLD, 14));
+		lblSoLuong.setBounds(654, 190, 78, 33);
+		pNhapThongTin.add(lblSoLuong);
+		
+		lblNamXuatBan = new JLabel("Năm Xuất Bản:");
+		lblNamXuatBan.setFont(new Font("SansSerif", Font.BOLD, 14));
+		lblNamXuatBan.setBounds(36, 187, 121, 33);
+	
+		
+		
+//		NamXuatBan = new JDateChooser();
+//		NamXuatBan.setDateFormatString("yyyy-mm-dd");
+//		try {
+//			Date date = Date.valueOf(LocalDate.now());
+//			NamXuatBan.setDate(date);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		
+		pNhapThongTin.add(lblNamXuatBan);
+		
+		txtNamXuatBan = new JTextField();
+		txtNamXuatBan.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtNamXuatBan.setColumns(10);
+		txtNamXuatBan.setBounds(150, 187, 297, 33);
+		pNhapThongTin.add(txtNamXuatBan);
 
 		JLabel lblTim = new JLabel("Tìm kiếm:");
 		lblTim.setForeground(new Color(255, 255, 255));
@@ -430,7 +472,7 @@ public class Sach_GUI extends JPanel {
 		mMain.add(cbTim);
 
 		JPanel pnChucNang = new JPanel();
-		pnChucNang.setBounds(10, 266, 1128, 62);
+		pnChucNang.setBounds(10, 286, 1128, 62);
 		mMain.add(pnChucNang);
 		pnChucNang.setLayout(null);
 		pnChucNang.setBorder(
@@ -485,7 +527,7 @@ public class Sach_GUI extends JPanel {
 		pnChucNang.add(btnThoat);
 
 		JPanel pnDanhSach = new JPanel();
-		pnDanhSach.setBounds(10, 338, 1128, 319);
+		pnDanhSach.setBounds(10, 352, 1128, 305);
 		mMain.add(pnDanhSach);
 		pnDanhSach.setBorder(new TitledBorder(
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)), "Danh sách:", // 162,
@@ -494,6 +536,10 @@ public class Sach_GUI extends JPanel {
 		pnDanhSach.setLayout(null);
 
 		JButton btnNewButton = new JButton("Tìm");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnNewButton.setBounds(925, 9, 114, 33);
 		mMain.add(btnNewButton);
@@ -510,13 +556,13 @@ public class Sach_GUI extends JPanel {
 			}
 		});
 		scrollPaneSach = new JScrollPane();
-		scrollPaneSach.setBounds(10, 22, 1108, 322);
+		scrollPaneSach.setBounds(10, 22, 1108, 273);
 		scrollPaneSach.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
 		scrollPaneSach.setBorder(new LineBorder(new Color(0, 162, 197), 1, true));
 		scrollPaneSach.setBackground(new Color(0, 162, 197));
 		pnDanhSach.add(scrollPaneSach);
 
-		String cols[] = { "Mã Sách", "Mã NXB", "Mã Loại Sách ", "Tên Sách", "Xuất Xứ", "Tác Giả", "Số Trang", "Giá" };
+		String cols[] = { "Mã Sách", "Mã NXB", "Mã Loại Sách ", "Tên Sách", "Xuất Xứ","Năm Xuất Bản", "Tác Giả", "Số Trang","Số Lượng", "Giá Bán" };
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
 		table.setRowHeight(25);
@@ -577,7 +623,7 @@ public class Sach_GUI extends JPanel {
 		model.setRowCount(0);
 		for (Sach sach : sach_DAO.getAllListSach()) {
 			Object[] objects = { sach.getMaSach(), sach.getMaNXB(), sach.getMaLoaiSach(), sach.getTenSach(),
-					sach.getXuatXu(), sach.getTacGia(), sach.getSoTrang(), sach.getGia() };
+					sach.getXuatXu(),sach.getNamXuatBan() ,sach.getTacGia(), sach.getSoTrang(),sach.getSoLuong() , sach.getGia() };
 			model.addRow(objects);
 		}
 	}
@@ -665,5 +711,4 @@ public class Sach_GUI extends JPanel {
 	        }
 	    }
 	}
-	//Sửa sách
 }

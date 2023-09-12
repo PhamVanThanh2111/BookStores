@@ -356,12 +356,12 @@ public class Sach_GUI extends JPanel {
 
 		lblGia = new JLabel("Giá bán:");
 		lblGia.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblGia.setBounds(654, 102, 121, 33);
+		lblGia.setBounds(651, 143, 121, 33);
 		pNhapThongTin.add(lblGia);
 
 		lblXuatXu = new JLabel("Xuất Xứ:");
 		lblXuatXu.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblXuatXu.setBounds(651, 54, 124, 37);
+		lblXuatXu.setBounds(651, 54, 124, 33);
 		pNhapThongTin.add(lblXuatXu);
 
 		lbMaLoaiSach = new JLabel("Loại Sách:");
@@ -378,7 +378,7 @@ public class Sach_GUI extends JPanel {
 		txtGia = new JTextField();
 		txtGia.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtGia.setColumns(10);
-		txtGia.setBounds(756, 99, 320, 33);
+		txtGia.setBounds(756, 143, 320, 33);
 		pNhapThongTin.add(txtGia);
 
 		Component verticalStrut = Box.createVerticalStrut(10);
@@ -410,13 +410,13 @@ public class Sach_GUI extends JPanel {
 
 		lblSoTrang = new JLabel("Số trang:");
 		lblSoTrang.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblSoTrang.setBounds(651, 146, 90, 33);
+		lblSoTrang.setBounds(651, 102, 90, 33);
 		pNhapThongTin.add(lblSoTrang);
 
 		txtSoTrang = new JTextField();
 		txtSoTrang.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtSoTrang.setColumns(10);
-		txtSoTrang.setBounds(756, 143, 320, 33);
+		txtSoTrang.setBounds(756, 99, 320, 33);
 		pNhapThongTin.add(txtSoTrang);
 		
 		txtSoLuong = new JTextField();
@@ -427,7 +427,7 @@ public class Sach_GUI extends JPanel {
 		
 		lblSoLuong = new JLabel("Số lượng:");
 		lblSoLuong.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblSoLuong.setBounds(654, 190, 78, 33);
+		lblSoLuong.setBounds(651, 186, 78, 33);
 		pNhapThongTin.add(lblSoLuong);
 		
 		lblNamXuatBan = new JLabel("Năm Xuất Bản:");
@@ -562,7 +562,7 @@ public class Sach_GUI extends JPanel {
 		scrollPaneSach.setBackground(new Color(0, 162, 197));
 		pnDanhSach.add(scrollPaneSach);
 
-		String cols[] = { "Mã Sách", "Mã NXB", "Mã Loại Sách ", "Tên Sách", "Xuất Xứ","Năm Xuất Bản", "Tác Giả", "Số Trang","Số Lượng", "Giá Bán" };
+		String cols[] = { "Mã Sách", "Mã NXB", "Mã Loại Sách ", "Tên Sách", "Xuất Xứ", "Tác Giả", "Số Trang","Giá Bán","Số Lượng","Năm Xuất Bản" };
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
 		table.setRowHeight(25);
@@ -604,6 +604,9 @@ public class Sach_GUI extends JPanel {
 				txtTacGia.setText((String) model.getValueAt(row, 5));
 				txtSoTrang.setText(model.getValueAt(row, 6) + "");
 				txtGia.setText(model.getValueAt(row, 7) + "");
+				txtSoLuong.setText(model.getValueAt(row, 8)+ "");
+				txtNamXuatBan.setText(model.getValueAt(row, 9)+ "");
+				
 			}
 		});
 		scrollPaneSach.add(table);
@@ -623,7 +626,7 @@ public class Sach_GUI extends JPanel {
 		model.setRowCount(0);
 		for (Sach sach : sach_DAO.getAllListSach()) {
 			Object[] objects = { sach.getMaSach(), sach.getMaNXB(), sach.getMaLoaiSach(), sach.getTenSach(),
-					sach.getXuatXu(),sach.getNamXuatBan() ,sach.getTacGia(), sach.getSoTrang(),sach.getSoLuong() , sach.getGia() };
+					sach.getXuatXu(),sach.getTacGia(), sach.getSoTrang(), sach.getGia(),sach.getSoLuong(),sach.getNamXuatBan()};
 			model.addRow(objects);
 		}
 	}
@@ -643,44 +646,56 @@ public class Sach_GUI extends JPanel {
 	// Xóa Trắng
 	public void xoaTrang() {
 		txtMaSach.setText("");
-		txtTenSach.setText("");
 		txtMaNXB.setText("");
-		cbMaLoaiSach.setSelectedItem(""); // Set the selected item to an empty string
+		cbMaLoaiSach.setSelectedItem(""); 
+		txtTenSach.setText("");
 		txtXuatXu.setText("");
 		txtTacGia.setText("");
 		txtSoTrang.setText("");
 		txtGia.setText("");
+		txtSoLuong.setText("");
+		txtNamXuatBan.setText("");
 	}
 
-	// thêm Sách
+	// Thêm Sách
 	public boolean themSach() {
-		if (cbMaLoaiSach.getSelectedItem().equals("") || txtTenSach.getText().equals("")
-				|| txtMaNXB.getText().equals("") || txtXuatXu.getText().equals("") || txtTacGia.getText().equals("")
-				|| txtSoTrang.getText().equals("") || txtGia.getText().equals("")) {
-			JOptionPane.showMessageDialog(null, "Phải điền đầy đủ thông tin!");
-			return false;
-		} else {
-			try {
-				Sach sach = new Sach();
-				sach.setMaSach(phatSinhMa_DAO.getMaSach());
-				sach.setMaNXB(txtMaNXB.getText());
-				sach.setMaLoaiSach(cbMaLoaiSach.getSelectedItem().toString());
-				sach.setTenSach(txtTenSach.getText());
-				sach.setXuatXu(txtXuatXu.getText());
-				sach.setTacGia(txtTacGia.getText());
-				sach.setSoTrang(Integer.parseInt(txtSoTrang.getText()));
-				sach.setGia(Integer.parseInt(txtGia.getText()));
-
-				sach_DAO.themSach(sach);
-				JOptionPane.showMessageDialog(null, "Thêm sách thành công!");
-				refresh();
-				return true;
-			} catch (SQLException e1) {
-				JOptionPane.showMessageDialog(null, "Thêm sách thất bại!");
-				e1.printStackTrace();
-				return false;
-			}
-		}
+	    // Kiểm tra nếu có trường nào không được điền đầy đủ thông tin
+	    if (cbMaLoaiSach.getSelectedItem().equals("")
+	            || txtTenSach.getText().equals("")
+	            || txtMaNXB.getText().equals("") || txtXuatXu.getText().equals("") || txtTacGia.getText().equals("")
+	            || txtSoTrang.getText().equals("") || txtGia.getText().equals("") || txtSoLuong.getText().equals("")
+	            || txtNamXuatBan.getText().equals("")) {
+	        JOptionPane.showMessageDialog(null, "Phải điền đầy đủ thông tin!");
+	        return false;
+	    } else {
+	        try {
+	            // Tạo một đối tượng sách và thiết lập các thuộc tính từ dữ liệu đầu vào
+	            Sach sach = new Sach();
+	            sach.setMaSach(phatSinhMa_DAO.getMaSach());
+	            sach.setMaNXB(txtMaNXB.getText());
+	            sach.setMaLoaiSach(cbMaLoaiSach.getSelectedItem().toString());
+	            sach.setTenSach(txtTenSach.getText());
+	            sach.setXuatXu(txtXuatXu.getText());
+	            sach.setTacGia(txtTacGia.getText());
+	            sach.setSoTrang(Integer.parseInt(txtSoTrang.getText()));
+	            sach.setGia(Integer.parseInt(txtGia.getText()));
+	            sach.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+	            sach.setNamXuatBan(Integer.parseInt(txtNamXuatBan.getText()));
+	            
+	            // Gọi phương thức để thêm sách vào cơ sở dữ liệu
+	            sach_DAO.themSach(sach);
+	            
+	            JOptionPane.showMessageDialog(null, "Thêm sách thành công!");
+	            
+	            // Làm mới giao diện sau khi thêm sách
+	            refresh();
+	            return true;
+	        } catch (SQLException e1) {
+	            JOptionPane.showMessageDialog(null, "Thêm sách thất bại!");
+	            e1.printStackTrace();
+	            return false;
+	        }
+	    }
 	}
 	//Xóa sách
 	public boolean xoaSach() {

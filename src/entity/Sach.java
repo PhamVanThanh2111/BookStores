@@ -14,7 +14,7 @@ public class Sach {
 	private int soTrang;
 	private int soLuong;
 	private int gia;
-	private Date namXuatBan;
+	private int namXuatBan;
 	public Sach() {
 		super();
 	}
@@ -23,7 +23,7 @@ public class Sach {
 		this.maSach = maSach;
 	}
 	public Sach(String maSach, String maNXB, String maLoaiSach, String tenSach, String xuatXu, String tacGia,
-			int soTrang, int gia) {
+			int soTrang, int soLuong, int gia, int namXuatBan) {
 		super();
 		this.maSach = maSach;
 		this.maNXB = maNXB;
@@ -32,8 +32,11 @@ public class Sach {
 		this.xuatXu = xuatXu;
 		this.tacGia = tacGia;
 		this.soTrang = soTrang;
+		this.soLuong = soLuong;
 		this.gia = gia;
+		this.namXuatBan = namXuatBan;
 	}
+	
 	public String getMaSach() {
 		return maSach;
 	}
@@ -76,7 +79,6 @@ public class Sach {
 	public void setSoTrang(int soTrang) {
 		this.soTrang = soTrang;
 	}
-	
 	public int getSoLuong() {
 		return soLuong;
 	}
@@ -89,13 +91,13 @@ public class Sach {
 	public void setGia(int gia) {
 		this.gia = gia;
 	}
-	
-	public Date getNamXuatBan() {
+	public int getNamXuatBan() {
 		return namXuatBan;
 	}
-	public void setNamXuatBan(Date ngayXuatBan) {
-		this.namXuatBan = ngayXuatBan;
+	public void setNamXuatBan(int namXuatBan) {
+		this.namXuatBan = namXuatBan;
 	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(maSach);
@@ -117,6 +119,5 @@ public class Sach {
 				+ ", xuatXu=" + xuatXu + ", tacGia=" + tacGia + ", soTrang=" + soTrang + ", soLuong=" + soLuong
 				+ ", gia=" + gia + ", namXuatBan=" + namXuatBan + "]";
 	}
-	
 	
 }

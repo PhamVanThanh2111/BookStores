@@ -57,23 +57,23 @@ public class NXB_GUI extends JPanel {
 		lblTim.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTim.setForeground(Color.WHITE);
 		lblTim.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblTim.setBounds(101, 10, 96, 33);
+		lblTim.setBounds(270, 10, 96, 33);
 		pMain.add(lblTim);
 		
 		txtTimKiem = new JTextField();
 		txtTimKiem.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtTimKiem.setColumns(10);
-		txtTimKiem.setBounds(189, 10, 406, 33);
+		txtTimKiem.setBounds(375, 10, 255, 33);
 		pMain.add(txtTimKiem);
 		
 		JButton btnTim = new JButton("Tìm");
 		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnTim.setBounds(798, 10, 114, 33);
+		btnTim.setBounds(745, 10, 95, 33);
 		pMain.add(btnTim);
 		
 		JComboBox<String> cbTim = new JComboBox<String>();
 		cbTim.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbTim.setBounds(624, 10, 142, 33);
+		cbTim.setBounds(640, 10, 95, 33);
 		pMain.add(cbTim);
 		
 		JPanel pNhapThongTin = new JPanel();
@@ -88,7 +88,7 @@ public class NXB_GUI extends JPanel {
 		
 		JLabel lblMS = new JLabel("Mã NXB:");
 		lblMS.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblMS.setBounds(49, 30, 90, 33);
+		lblMS.setBounds(40, 30, 90, 33);
 		pNhapThongTin.add(lblMS);
 		
 		txtmaNXB = new JTextField();
@@ -96,33 +96,34 @@ public class NXB_GUI extends JPanel {
 		txtmaNXB.setEditable(false);
 		txtmaNXB.setColumns(10);
 		txtmaNXB.setBounds(125, 30, 333, 33);
+		txtmaNXB.setFocusable(false);
 		pNhapThongTin.add(txtmaNXB);
 		
 		txtEmail = new JTextField();
 		txtEmail.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtEmail.setColumns(10);
-		txtEmail.setBounds(125, 73, 333, 33);
+		txtEmail.setBounds(125, 70, 333, 33);
 		pNhapThongTin.add(txtEmail);
 		
 		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblEmail.setBounds(49, 73, 90, 33);
+		lblEmail.setBounds(40, 70, 90, 33);
 		pNhapThongTin.add(lblEmail);
 		
 		JLabel lblDiaChi = new JLabel("Địa chỉ:");
 		lblDiaChi.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblDiaChi.setBounds(49, 116, 121, 33);
+		lblDiaChi.setBounds(40, 110, 121, 33);
 		pNhapThongTin.add(lblDiaChi);
 		
 		txtDiaChi = new JTextField();
 		txtDiaChi.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtDiaChi.setColumns(10);
-		txtDiaChi.setBounds(125, 116, 980, 33);
+		txtDiaChi.setBounds(125, 110, 980, 33);
 		pNhapThongTin.add(txtDiaChi);
 		
 		JLabel lblSoDienThoai = new JLabel("Điện Thoại:");
 		lblSoDienThoai.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblSoDienThoai.setBounds(620, 73, 80, 33);
+		lblSoDienThoai.setBounds(620, 70, 80, 33);
 		pNhapThongTin.add(lblSoDienThoai);
 		
 		JLabel lblTenNXB = new JLabel("Tên NXB:");
@@ -133,32 +134,12 @@ public class NXB_GUI extends JPanel {
 		textSoDienThoai = new JTextField();
 		textSoDienThoai.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		textSoDienThoai.setColumns(10);
-		textSoDienThoai.setBounds(730, 73, 375, 33);
+		textSoDienThoai.setBounds(730, 70, 375, 33);
 		pNhapThongTin.add(textSoDienThoai);
-		
-		Component horizontalStrut = Box.createHorizontalStrut(20);
-		horizontalStrut.setBounds(457, 40, 153, 23);
-		pNhapThongTin.add(horizontalStrut);
-		
-		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
-		horizontalStrut_1.setBounds(457, 83, 153, 23);
-		pNhapThongTin.add(horizontalStrut_1);
 		
 		Component verticalStrut = Box.createVerticalStrut(10);
 		verticalStrut.setBounds(203, 63, 840, -7);
 		pNhapThongTin.add(verticalStrut);
-		
-		Component verticalStrut_1 = Box.createVerticalStrut(10);
-		verticalStrut_1.setBounds(203, 63, 840, 10);
-		pNhapThongTin.add(verticalStrut_1);
-		
-		Component verticalStrut_2 = Box.createVerticalStrut(10);
-		verticalStrut_2.setBounds(203, 106, 840, 10);
-		pNhapThongTin.add(verticalStrut_2);
-		
-		Component verticalStrut_3 = Box.createVerticalStrut(10);
-		verticalStrut_3.setBounds(203, 147, 840, 10);
-		pNhapThongTin.add(verticalStrut_3);
 		
 		txtTenNXB = new JTextField();
 		txtTenNXB.setFont(new Font("SansSerif", Font.PLAIN, 14));
@@ -173,28 +154,28 @@ public class NXB_GUI extends JPanel {
 		pMain.add(pnChucNang);
 		
 		JButton btnThemNXB = new JButton("Thêm NXB");
-		btnThemNXB.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnThemNXB.setBounds(89, 14, 121, 34);
+		btnThemNXB.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnThemNXB.setBounds(90, 14, 120, 33);
 		pnChucNang.add(btnThemNXB);
 		
 		JButton btnXaNxb = new JButton("Xóa NXB");
-		btnXaNxb.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnXaNxb.setBounds(299, 14, 121, 34);
+		btnXaNxb.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnXaNxb.setBounds(300, 14, 120, 33);
 		pnChucNang.add(btnXaNxb);
 		
-		JButton btnSua = new JButton("Sửa Thông Tin");
-		btnSua.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnSua.setBounds(509, 14, 129, 34);
+		JButton btnSua = new JButton("Sửa");
+		btnSua.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnSua.setBounds(510, 14, 120, 33);
 		pnChucNang.add(btnSua);
 		
 		JButton btnXoaTrang = new JButton("Xóa Trắng");
-		btnXoaTrang.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnXoaTrang.setBounds(727, 14, 121, 34);
+		btnXoaTrang.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnXoaTrang.setBounds(720, 14, 120, 33);
 		pnChucNang.add(btnXoaTrang);
 		
 		JButton btnThoat = new JButton("Thoát");
-		btnThoat.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnThoat.setBounds(937, 14, 114, 34);
+		btnThoat.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnThoat.setBounds(930, 14, 120, 33);
 		pnChucNang.add(btnThoat);
 		
 		JPanel pnDanhSach = new JPanel();

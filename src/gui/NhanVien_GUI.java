@@ -103,62 +103,63 @@ public class NhanVien_GUI extends JPanel {
 
 		JLabel lblMaNV = new JLabel("Mã NV:");
 		lblMaNV.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblMaNV.setBounds(39, 30, 90, 33);
+		lblMaNV.setBounds(40, 30, 90, 33);
 		pNhapThongTin.add(lblMaNV);
 
 		txtMaNV = new JTextField();
 		txtMaNV.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtMaNV.setColumns(10);
-		txtMaNV.setBounds(119, 30, 151, 33);
+		txtMaNV.setBounds(120, 30, 160, 33);
 		txtMaNV.setEditable(false);
+		txtMaNV.setFocusable(false);
 		pNhapThongTin.add(txtMaNV);
 
 		txtTenNV = new JTextField();
 		txtTenNV.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtTenNV.setColumns(10);
-		txtTenNV.setBounds(119, 116, 151, 33);
+		txtTenNV.setBounds(120, 110, 160, 33);
 		pNhapThongTin.add(txtTenNV);
 
 		JLabel lblTenNV = new JLabel("Tên NV:");
 		lblTenNV.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblTenNV.setBounds(39, 116, 90, 33);
+		lblTenNV.setBounds(40, 110, 90, 33);
 		pNhapThongTin.add(lblTenNV);
 
 		JLabel lblDiaChi = new JLabel("Địa chỉ:");
 		lblDiaChi.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblDiaChi.setBounds(291, 116, 90, 33);
+		lblDiaChi.setBounds(295, 110, 90, 33);
 		pNhapThongTin.add(lblDiaChi);
 
 		txtDiaChi = new JTextField();
 		txtDiaChi.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtDiaChi.setColumns(10);
-		txtDiaChi.setBounds(406, 116, 163, 33);
+		txtDiaChi.setBounds(400, 110, 160, 33);
 		pNhapThongTin.add(txtDiaChi);
 
 		JLabel lblGioiTinh = new JLabel("Giới tính:");
 		lblGioiTinh.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblGioiTinh.setBounds(291, 30, 90, 33);
+		lblGioiTinh.setBounds(295, 30, 90, 33);
 		pNhapThongTin.add(lblGioiTinh);
 
 		JLabel lblSoDienThoai = new JLabel("Số điện thoại:");
 		lblSoDienThoai.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblSoDienThoai.setBounds(597, 73, 103, 33);
+		lblSoDienThoai.setBounds(600, 70, 103, 33);
 		pNhapThongTin.add(lblSoDienThoai);
 
 		JLabel lblNgaySinh = new JLabel("Ngày sinh:");
 		lblNgaySinh.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblNgaySinh.setBounds(291, 73, 90, 33);
+		lblNgaySinh.setBounds(295, 70, 90, 33);
 		pNhapThongTin.add(lblNgaySinh);
 
 		txtSoDienThoai = new JTextField();
 		txtSoDienThoai.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtSoDienThoai.setColumns(10);
-		txtSoDienThoai.setBounds(710, 73, 149, 33);
+		txtSoDienThoai.setBounds(710, 70, 160, 33);
 		pNhapThongTin.add(txtSoDienThoai);
 
 		cbGioiTinh = new JComboBox<String>();
 		cbGioiTinh.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbGioiTinh.setBounds(406, 30, 163, 33);
+		cbGioiTinh.setBounds(400, 30, 160, 33);
 		cbGioiTinh.addItem("");
 		cbGioiTinh.addItem("Nam");
 		cbGioiTinh.addItem("Nữ");
@@ -166,34 +167,34 @@ public class NhanVien_GUI extends JPanel {
 
 		JLabel lblChucVu = new JLabel("Chức vụ:");
 		lblChucVu.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblChucVu.setBounds(879, 30, 70, 33);
+		lblChucVu.setBounds(880, 30, 70, 33);
 		pNhapThongTin.add(lblChucVu);
 
 		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblEmail.setBounds(597, 116, 56, 33);
+		lblEmail.setBounds(600, 110, 56, 33);
 		pNhapThongTin.add(lblEmail);
 
 		JLabel lblCCCD = new JLabel("CCCD:");
 		lblCCCD.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblCCCD.setBounds(597, 30, 62, 33);
+		lblCCCD.setBounds(600, 30, 62, 33);
 		pNhapThongTin.add(lblCCCD);
 
 		txtCCCD = new JTextField();
 		txtCCCD.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtCCCD.setColumns(10);
-		txtCCCD.setBounds(710, 30, 149, 33);
+		txtCCCD.setBounds(710, 30, 160, 33);
 		pNhapThongTin.add(txtCCCD);
 
 		txtEmail = new JTextField();
 		txtEmail.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtEmail.setColumns(10);
-		txtEmail.setBounds(710, 116, 149, 33);
+		txtEmail.setBounds(710, 110, 410, 33);
 		pNhapThongTin.add(txtEmail);
 
 		cbChucVu = new JComboBox<String>();
 		cbChucVu.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbChucVu.setBounds(959, 30, 146, 33);
+		cbChucVu.setBounds(960, 30, 160, 33);
 		cbChucVu.addItem("");
 		cbChucVu.addItem("Bán hàng");
 		cbChucVu.addItem("Nhập hàng");
@@ -202,13 +203,13 @@ public class NhanVien_GUI extends JPanel {
 
 		txtTim = new JTextField();
 		txtTim.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtTim.setBounds(377, 10, 257, 33);
+		txtTim.setBounds(375, 10, 255, 33);
 		pMain.add(txtTim);
 		txtTim.setColumns(10);
 
 		JButton btnTim = new JButton("Tìm");
 		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnTim.setBounds(750, 10, 114, 33);
+		btnTim.setBounds(745, 10, 95, 33);
 		btnTim.addActionListener(new ActionListener() {
 			
 			@Override
@@ -245,7 +246,7 @@ public class NhanVien_GUI extends JPanel {
 
 		cbTim = new JComboBox<String>();
 		cbTim.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbTim.setBounds(644, 10, 96, 33);
+		cbTim.setBounds(640, 10, 95, 33);
 		cbTim.addItem("Tên NV");
 		cbTim.addItem("Mã NV");
 		cbTim.addItem("SĐT");
@@ -256,7 +257,7 @@ public class NhanVien_GUI extends JPanel {
 		lblTim.setForeground(new Color(255, 255, 255));
 		lblTim.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTim.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblTim.setBounds(271, 10, 96, 33);
+		lblTim.setBounds(270, 10, 96, 33);
 		pMain.add(lblTim);
 
 		JPanel pDanhSach = new JPanel();
@@ -365,17 +366,18 @@ public class NhanVien_GUI extends JPanel {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 		dateChooserNgaySinh = new JDateChooser();
-		dateChooserNgaySinh.setBounds(406, 73, 163, 33);
+		dateChooserNgaySinh.setBounds(400, 70, 160, 33);
 		pNhapThongTin.add(dateChooserNgaySinh);
 		dateChooserNgaySinh.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		dateChooserNgaySinh.setDateFormatString("dd/MM/yyyy");
 		dateChooserNgaySinh.setBorder(new LineBorder(new Color(28, 28, 28), 1, true));
-		dateChooserNgaySinh.setFont(new Font("SansSerif", Font.PLAIN, 15));
+		dateChooserNgaySinh.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		dateChooserNgaySinh.getCalendarButton().setPreferredSize(new Dimension(30, 24));
 		dateChooserNgaySinh.getCalendarButton().setBackground(new Color(46, 46, 46));
 
 		JButton btnAdd = new JButton("Thêm");
-		btnAdd.setBounds(142, 167, 108, 33);
+		btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnAdd.setBounds(132, 165, 120, 33);
 		btnAdd.addActionListener(new ActionListener() {
 
 			@Override
@@ -387,7 +389,8 @@ public class NhanVien_GUI extends JPanel {
 		pNhapThongTin.add(btnAdd);
 
 		JButton btnXoa = new JButton("Xóa");
-		btnXoa.setBounds(392, 167, 108, 33);
+		btnXoa.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnXoa.setBounds(384, 165, 120, 33);
 		btnXoa.addActionListener(new ActionListener() {
 			
 			@Override
@@ -399,7 +402,8 @@ public class NhanVien_GUI extends JPanel {
 		pNhapThongTin.add(btnXoa);
 
 		JButton btnSua = new JButton("Sửa");
-		btnSua.setBounds(642, 167, 108, 33);
+		btnSua.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnSua.setBounds(636, 165, 120, 33);
 		btnSua.addActionListener(new ActionListener() {
 			
 			@Override
@@ -411,7 +415,8 @@ public class NhanVien_GUI extends JPanel {
 		pNhapThongTin.add(btnSua);
 
 		JButton btnXoaTrang = new JButton("Xóa trắng");
-		btnXoaTrang.setBounds(892, 167, 108, 33);
+		btnXoaTrang.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnXoaTrang.setBounds(888, 165, 120, 33);
 		btnXoaTrang.addActionListener(new ActionListener() {
 
 			@Override
@@ -424,24 +429,24 @@ public class NhanVien_GUI extends JPanel {
 
 		JLabel lblMaCH = new JLabel("Mã CH:");
 		lblMaCH.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblMaCH.setBounds(39, 73, 90, 33);
+		lblMaCH.setBounds(40, 70, 90, 33);
 		pNhapThongTin.add(lblMaCH);
 
 		cbMaCH = new JComboBox<String>();
 		cbMaCH.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbMaCH.setBounds(119, 73, 151, 33);
+		cbMaCH.setBounds(120, 70, 160, 33);
 		cbMaCH.addItem("");
 		pNhapThongTin.add(cbMaCH);
 
 		JLabel lblLuong = new JLabel("Lương:");
 		lblLuong.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblLuong.setBounds(879, 73, 56, 33);
+		lblLuong.setBounds(880, 70, 56, 33);
 		pNhapThongTin.add(lblLuong);
 
 		txtLuong = new JTextField();
 		txtLuong.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtLuong.setColumns(10);
-		txtLuong.setBounds(959, 73, 146, 33);
+		txtLuong.setBounds(960, 70, 160, 33);
 		pNhapThongTin.add(txtLuong);
 
 		// loadData

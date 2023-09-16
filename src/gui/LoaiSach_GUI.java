@@ -15,6 +15,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class LoaiSach_GUI extends JPanel {
 
@@ -22,8 +23,8 @@ public class LoaiSach_GUI extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField txtMaLoaiSach;
-	private JTextField txtTenLoaiSach;
+	private JTextField txtMaLoai;
+	private JTextField txtTenLoai;
 
 	/**
 	 * Create the panel.
@@ -50,34 +51,28 @@ public class LoaiSach_GUI extends JPanel {
 		pnThongTin.setBounds(10, 10, 1128, 106);
 		pMain.add(pnThongTin);
 		pnThongTin.setLayout(null);
-
-		Box b = Box.createVerticalBox();
-		b.setBounds(73, 10, 897, 74);
-		b.setPreferredSize(new Dimension(840, 70));
-		pnThongTin.add(b);
-
-		Component verticalStrut = Box.createVerticalStrut(30);
-		b.add(verticalStrut);
-
-		Box b1 = Box.createHorizontalBox();
-		b.add(b1);
-
-		JLabel lblMaLoaiSach = new JLabel("Mã Loại Sách: ");
-		lblMaLoaiSach.setPreferredSize(new Dimension(86, 13));
-		b1.add(lblMaLoaiSach);
-
-		txtMaLoaiSach = new JTextField();
-		txtMaLoaiSach.setEditable(false);
-		b1.add(txtMaLoaiSach);
-
-		JLabel lblTenLoaiSach = new JLabel("Tên Loại Sách:    ");
-		b1.add(lblTenLoaiSach);
-
-		txtTenLoaiSach = new JTextField();
-		b1.add(txtTenLoaiSach);
-
-		Component verticalStrut_1 = Box.createVerticalStrut(10);
-		b.add(verticalStrut_1);
+		
+		JLabel lblMaLoai = new JLabel("Mã Loại: ");
+		lblMaLoai.setFont(new Font("SansSerif", Font.BOLD, 14));
+		lblMaLoai.setBounds(99, 35, 70, 33);
+		pnThongTin.add(lblMaLoai);
+		
+		txtMaLoai = new JTextField();
+		txtMaLoai.setBounds(179, 35, 316, 33);
+		txtMaLoai.setEnabled(false);
+		txtMaLoai.setFocusable(false);
+		pnThongTin.add(txtMaLoai);
+		txtMaLoai.setColumns(10);
+		
+		JLabel lblTenLoai = new JLabel("Tên Loại:");
+		lblTenLoai.setFont(new Font("SansSerif", Font.BOLD, 14));
+		lblTenLoai.setBounds(602, 35, 70, 33);
+		pnThongTin.add(lblTenLoai);
+		
+		txtTenLoai = new JTextField();
+		txtTenLoai.setColumns(10);
+		txtTenLoai.setBounds(682, 35, 316, 33);
+		pnThongTin.add(txtTenLoai);
 
 		JPanel pnChucNang = new JPanel();
 		pnChucNang.setBounds(10, 126, 1128, 54);
@@ -88,28 +83,33 @@ public class LoaiSach_GUI extends JPanel {
 		pMain.add(pnChucNang);
 		pnChucNang.setLayout(null);
 
-		JButton btnThem = new JButton("Thêm Loại Sách");
-		btnThem.setBounds(92, 10, 127, 34);
+		JButton btnThem = new JButton("Thêm");
+		btnThem.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnThem.setBounds(88, 10, 120, 33);
 		pnChucNang.add(btnThem);
 
-		JButton btnXoa = new JButton("Xóa Loại Sách");
+		JButton btnXoa = new JButton("Xóa");
+		btnXoa.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnXoa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnXoa.setBounds(311, 10, 133, 34);
+		btnXoa.setBounds(296, 10, 120, 33);
 		pnChucNang.add(btnXoa);
 
-		JButton btnSua = new JButton("Sửa Thông Tin");
-		btnSua.setBounds(536, 10, 121, 34);
+		JButton btnSua = new JButton("Sửa");
+		btnSua.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnSua.setBounds(504, 10, 120, 33);
 		pnChucNang.add(btnSua);
 
 		JButton btnIn = new JButton("In Thông Tin");
-		btnIn.setBounds(749, 10, 127, 34);
+		btnIn.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnIn.setBounds(712, 10, 120, 33);
 		pnChucNang.add(btnIn);
 
 		JButton btnThoat = new JButton("Thoát");
-		btnThoat.setBounds(968, 10, 80, 34);
+		btnThoat.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnThoat.setBounds(920, 10, 120, 33);
 		pnChucNang.add(btnThoat);
 
 		JPanel pnDanhSach = new JPanel();

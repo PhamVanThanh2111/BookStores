@@ -83,7 +83,7 @@ public class NXB_GUI extends JPanel {
 						new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)),
 
 						"Th\u00F4ng tin chi ti\u1EBFt:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 162, 197)));
-		pNhapThongTin.setBounds(10, 53, 1142, 168);
+		pNhapThongTin.setBounds(10, 53, 1142, 163);
 		pMain.add(pNhapThongTin);
 		
 		JLabel lblMS = new JLabel("Mã NXB:");

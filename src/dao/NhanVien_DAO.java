@@ -46,7 +46,7 @@ public class NhanVien_DAO {
 			TaiKhoan taiKhoan;
 			TaiKhoan_DAO taiKhoan_DAO = new TaiKhoan_DAO();
 			try {
-				PreparedStatement preparedStatement = connection.prepareStatement("select * from NhanVien where tenNV = '"+ tenNV +"'");
+				PreparedStatement preparedStatement = connection.prepareStatement("select * from NhanVien where tenNV like '%"+ tenNV +"%'");
 				ResultSet resultSet = preparedStatement.executeQuery();
 				while (resultSet.next()) {
 					taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTaiKhoan(resultSet.getString(12));
@@ -69,7 +69,7 @@ public class NhanVien_DAO {
 		TaiKhoan taiKhoan;
 		try {
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("select * from NhanVien where maNV = '" + maNV + "'");
+					.prepareStatement("select * from NhanVien where UPPER(maNV) = UPPER('" + maNV + "')");
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
@@ -88,6 +88,78 @@ public class NhanVien_DAO {
 				nhanVien.setTaiKhoan(taiKhoan);
 				nhanVien.setLuong(resultSet.getInt(13));
 				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return nhanVien;
+	}
+	
+	// get nhan vien theo SDT
+	public NhanVien getNhanVienTheoSDT(String sdtNV) {
+		NhanVien nhanVien = new NhanVien();
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		taiKhoan_DAO = new TaiKhoan_DAO();
+		TaiKhoan taiKhoan;
+		try {
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("select * from NhanVien where soDienThoai = '" + sdtNV + "'");
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTaiKhoan(resultSet.getString(12));
+				nhanVien.setMaNV(resultSet.getString(1));
+				nhanVien.setMaCH(resultSet.getString(2));
+				nhanVien.setTenNV(resultSet.getString(3));
+				nhanVien.setDiaChi(resultSet.getString(4));
+				nhanVien.setGioiTinh(resultSet.getString(5));
+				nhanVien.setNgaySinh(resultSet.getDate(6));
+				nhanVien.setNgayVaoLam(resultSet.getDate(7));
+				nhanVien.setCCCD(resultSet.getString(8));
+				nhanVien.setEmail(resultSet.getString(9));
+				nhanVien.setSoDienThoai(resultSet.getString(10));
+				nhanVien.setChucVu(resultSet.getString(11));
+				nhanVien.setTaiKhoan(taiKhoan);
+				nhanVien.setLuong(resultSet.getInt(13));
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return nhanVien;
+	}
+	
+	// get nhan vien theo SDT
+	public NhanVien getNhanVienTheoCCCD(String cccdNV) {
+		NhanVien nhanVien = new NhanVien();
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		taiKhoan_DAO = new TaiKhoan_DAO();
+		TaiKhoan taiKhoan;
+		try {
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("select * from NhanVien where CCCD = '" + cccdNV + "'");
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTaiKhoan(resultSet.getString(12));
+				nhanVien.setMaNV(resultSet.getString(1));
+				nhanVien.setMaCH(resultSet.getString(2));
+				nhanVien.setTenNV(resultSet.getString(3));
+				nhanVien.setDiaChi(resultSet.getString(4));
+				nhanVien.setGioiTinh(resultSet.getString(5));
+				nhanVien.setNgaySinh(resultSet.getDate(6));
+				nhanVien.setNgayVaoLam(resultSet.getDate(7));
+				nhanVien.setCCCD(resultSet.getString(8));
+				nhanVien.setEmail(resultSet.getString(9));
+				nhanVien.setSoDienThoai(resultSet.getString(10));
+				nhanVien.setChucVu(resultSet.getString(11));
+				nhanVien.setTaiKhoan(taiKhoan);
+				nhanVien.setLuong(resultSet.getInt(13));
+
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

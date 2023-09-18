@@ -468,7 +468,7 @@ public class Sach_GUI extends JPanel {
 		mMain.add(cbTim);
 
 		JPanel pnChucNang = new JPanel();
-		pnChucNang.setBounds(10, 286, 1128, 62);
+		pnChucNang.setBounds(10, 293, 1128, 55);
 		mMain.add(pnChucNang);
 		pnChucNang.setLayout(null);
 		pnChucNang.setBorder(
@@ -478,7 +478,7 @@ public class Sach_GUI extends JPanel {
 
 		JButton btnThemSach = new JButton("Thêm Sách");
 		btnThemSach.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnThemSach.setBounds(88, 14, 120, 33);
+		btnThemSach.setBounds(88, 11, 120, 33);
 		btnThemSach.addActionListener(new ActionListener() {
 
 			@Override
@@ -496,17 +496,17 @@ public class Sach_GUI extends JPanel {
 				xoaSach();
 			}
 		});
-		btnXoaSach.setBounds(296, 14, 120, 33);
+		btnXoaSach.setBounds(296, 11, 120, 33);
 		pnChucNang.add(btnXoaSach);
 
 		JButton btnSua = new JButton("Sửa Sách");
 		btnSua.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnSua.setBounds(504, 14, 120, 33);
+		btnSua.setBounds(504, 11, 120, 33);
 		pnChucNang.add(btnSua);
 
 		JButton btnXoaTrang = new JButton("Xóa Trắng");
 		btnXoaTrang.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnXoaTrang.setBounds(712, 14, 120, 33);
+		btnXoaTrang.setBounds(712, 11, 120, 33);
 		btnXoaTrang.addActionListener(new ActionListener() {
 
 			@Override
@@ -519,11 +519,11 @@ public class Sach_GUI extends JPanel {
 
 		JButton btnThoat = new JButton("Thoát");
 		btnThoat.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnThoat.setBounds(920, 14, 120, 33);
+		btnThoat.setBounds(920, 11, 120, 33);
 		pnChucNang.add(btnThoat);
 
 		JPanel pnDanhSach = new JPanel();
-		pnDanhSach.setBounds(10, 352, 1128, 305);
+		pnDanhSach.setBounds(10, 358, 1128, 299);
 		mMain.add(pnDanhSach);
 		pnDanhSach.setBorder(new TitledBorder(
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)), "Danh sách:", // 162,

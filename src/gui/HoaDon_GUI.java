@@ -141,15 +141,17 @@ public class HoaDon_GUI extends JPanel {
 		lblSoLuong.setBounds(30, 110, 120, 33);
 		pThongTinKH.add(lblSoLuong);
 		
-		JComboBox<String> cbLoai = new JComboBox<String>();
-		cbLoai.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbLoai.setBounds(160, 30, 284, 33);
-		pThongTinKH.add(cbLoai);
+		JComboBox<String> cbLoaiSP = new JComboBox<String>();
+		cbLoaiSP.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		cbLoaiSP.setBounds(160, 30, 284, 33);
+		cbLoaiSP.addItem("Sách");
+		cbLoaiSP.addItem("Dụng cụ học tập");
+		pThongTinKH.add(cbLoaiSP);
 		
-		JComboBox<String> cbTenSp = new JComboBox<String>();
-		cbTenSp.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbTenSp.setBounds(160, 70, 284, 33);
-		pThongTinKH.add(cbTenSp);
+		JComboBox<String> cbTenSP = new JComboBox<String>();
+		cbTenSP.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		cbTenSP.setBounds(160, 70, 284, 33);
+		pThongTinKH.add(cbTenSP);
 		
 		txtSoLuong = new JTextField();
 		txtSoLuong.setFont(new Font("SansSerif", Font.PLAIN, 14));

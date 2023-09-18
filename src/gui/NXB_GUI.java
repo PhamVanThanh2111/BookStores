@@ -88,7 +88,7 @@ public class NXB_GUI extends JPanel {
 		
 		JLabel lblMS = new JLabel("Mã NXB:");
 		lblMS.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblMS.setBounds(40, 30, 90, 33);
+		lblMS.setBounds(30, 30, 90, 33);
 		pNhapThongTin.add(lblMS);
 		
 		txtmaNXB = new JTextField();
@@ -102,39 +102,39 @@ public class NXB_GUI extends JPanel {
 		txtEmail = new JTextField();
 		txtEmail.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtEmail.setColumns(10);
-		txtEmail.setBounds(125, 70, 333, 33);
+		txtEmail.setBounds(705, 70, 382, 33);
 		pNhapThongTin.add(txtEmail);
 		
 		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblEmail.setBounds(40, 70, 90, 33);
+		lblEmail.setBounds(620, 70, 90, 33);
 		pNhapThongTin.add(lblEmail);
 		
 		JLabel lblDiaChi = new JLabel("Địa chỉ:");
 		lblDiaChi.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblDiaChi.setBounds(40, 110, 121, 33);
+		lblDiaChi.setBounds(620, 110, 121, 33);
 		pNhapThongTin.add(lblDiaChi);
 		
 		txtDiaChi = new JTextField();
 		txtDiaChi.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtDiaChi.setColumns(10);
-		txtDiaChi.setBounds(125, 110, 980, 33);
+		txtDiaChi.setBounds(705, 110, 382, 33);
 		pNhapThongTin.add(txtDiaChi);
 		
 		JLabel lblSoDienThoai = new JLabel("Điện Thoại:");
 		lblSoDienThoai.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblSoDienThoai.setBounds(620, 70, 80, 33);
+		lblSoDienThoai.setBounds(30, 110, 80, 33);
 		pNhapThongTin.add(lblSoDienThoai);
 		
 		JLabel lblTenNXB = new JLabel("Tên NXB:");
 		lblTenNXB.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblTenNXB.setBounds(620, 30, 66, 33);
+		lblTenNXB.setBounds(30, 70, 66, 33);
 		pNhapThongTin.add(lblTenNXB);
 		
 		textSoDienThoai = new JTextField();
 		textSoDienThoai.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		textSoDienThoai.setColumns(10);
-		textSoDienThoai.setBounds(730, 70, 375, 33);
+		textSoDienThoai.setBounds(125, 110, 333, 33);
 		pNhapThongTin.add(textSoDienThoai);
 		
 		Component verticalStrut = Box.createVerticalStrut(10);
@@ -144,7 +144,7 @@ public class NXB_GUI extends JPanel {
 		txtTenNXB = new JTextField();
 		txtTenNXB.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtTenNXB.setColumns(10);
-		txtTenNXB.setBounds(730, 30, 375, 33);
+		txtTenNXB.setBounds(125, 70, 333, 33);
 		pNhapThongTin.add(txtTenNXB);
 		
 		JPanel pnChucNang = new JPanel();

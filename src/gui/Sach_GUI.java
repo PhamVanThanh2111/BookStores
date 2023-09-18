@@ -14,22 +14,18 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-import com.toedter.calendar.JDateChooser;
 
 import connect.ConnectDB;
 import dao.LoaiSach_DAO;
 import dao.PhatSinhMa_DAO;
 import dao.Sach_DAO;
 import entity.LoaiSach;
-import entity.NhanVien;
 import entity.Sach;
 
 import javax.swing.JScrollPane;
@@ -73,7 +69,6 @@ public class Sach_GUI extends JPanel {
 	private JLabel lblSoLuong;
 	private JLabel lblNamXuatBan;
 	private JTextField txtNamXuatBan;
-	private int namXuatBan;
 
 	/**
 	 * Create the panel.

@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import connect.ConnectDB;
-import entity.NhanVien;
 import entity.Sach;
-import entity.TaiKhoan;
 
 public class Sach_DAO {
 	// get all sách //lấy

@@ -17,7 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import dao.NhanVien_DAO;
 import entity.NhanVien;
 import javax.swing.SwingConstants;
 import java.awt.event.MouseAdapter;

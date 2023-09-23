@@ -213,45 +213,45 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		table = new JTable(model);
 		scrollPaneKH.setViewportView(table);
 		loadData();
-		
+
 		table.addMouseListener(new MouseListener() {
-			
+
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mousePressed(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseExited(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			int r = table.getSelectedRow();
-				if (r !=-1 ) {
+				int r = table.getSelectedRow();
+				if (r != -1) {
 					txtMaKH.setEditable(false);
 					txtMaKH.setText(table.getValueAt(r, 0).toString());
 					txtTenKH.setText(table.getValueAt(r, 1).toString());
-					if (table.getValueAt(r, 2).toString().equalsIgnoreCase("Nam") )
+					if (table.getValueAt(r, 2).toString().equalsIgnoreCase("Nam"))
 						cbGioiTinh.setSelectedItem("Nam");
 					else
 						cbGioiTinh.setSelectedItem("Nữ");
-						
+
 				}
 			}
 //				String gt = (String)model.getValueAt(0, 3).toString();
@@ -271,7 +271,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 //
 //			}
 		});
-		
+
 		btnXoaTrang.addActionListener(this);
 	}
 

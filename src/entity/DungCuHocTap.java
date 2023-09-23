@@ -5,50 +5,63 @@ import java.util.Objects;
 public class DungCuHocTap {
 	private String maDCHT;
 	private String tenDCHT;
-	private double gia;
+	private int gia;
 	private String nhaCungCap;
+
 	public DungCuHocTap() {
 		super();
 	}
+
 	public DungCuHocTap(String maDCHT) {
 		super();
 		this.maDCHT = maDCHT;
 	}
-	public DungCuHocTap(String maDCHT, String tenDCHT, double gia, String nhaCungCap) {
+
+	public DungCuHocTap(String maDCHT, String tenDCHT, int gia, String nhaCungCap) {
 		super();
 		this.maDCHT = maDCHT;
 		this.tenDCHT = tenDCHT;
 		this.gia = gia;
 		this.nhaCungCap = nhaCungCap;
 	}
+
 	public String getMaDCHT() {
 		return maDCHT;
 	}
+
 	public void setMaDCHT(String maDCHT) {
 		this.maDCHT = maDCHT;
 	}
+
 	public String getTenDCHT() {
 		return tenDCHT;
 	}
+
 	public void setTenDCHT(String tenDCHT) {
 		this.tenDCHT = tenDCHT;
 	}
-	public double getGia() {
+
+	public int getGia() {
 		return gia;
 	}
-	public void setGia(double gia) {
+
+	public void setGia(int gia) {
 		this.gia = gia;
 	}
+
 	public String getNhaCungCap() {
 		return nhaCungCap;
 	}
+
 	public void setNhaCungCap(String nhaCungCap) {
 		this.nhaCungCap = nhaCungCap;
 	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(gia, maDCHT, nhaCungCap, tenDCHT);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -62,12 +75,11 @@ public class DungCuHocTap {
 				&& Objects.equals(maDCHT, other.maDCHT) && Objects.equals(nhaCungCap, other.nhaCungCap)
 				&& Objects.equals(tenDCHT, other.tenDCHT);
 	}
+
 	@Override
 	public String toString() {
 		return "DungCuHocTap [maDCHT=" + maDCHT + ", tenDCHT=" + tenDCHT + ", gia=" + gia + ", nhaCungCap=" + nhaCungCap
 				+ "]";
 	}
-	
-	
 
 }

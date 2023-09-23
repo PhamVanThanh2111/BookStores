@@ -20,7 +20,6 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-
 import connect.ConnectDB;
 import dao.LoaiSach_DAO;
 import dao.PhatSinhMa_DAO;
@@ -414,24 +413,22 @@ public class Sach_GUI extends JPanel {
 		txtSoTrang.setColumns(10);
 		txtSoTrang.setBounds(756, 100, 320, 33);
 		pNhapThongTin.add(txtSoTrang);
-		
+
 		txtSoLuong = new JTextField();
 		txtSoLuong.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtSoLuong.setColumns(10);
 		txtSoLuong.setBounds(756, 190, 320, 33);
 		pNhapThongTin.add(txtSoLuong);
-		
+
 		lblSoLuong = new JLabel("Số lượng:");
 		lblSoLuong.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblSoLuong.setBounds(651, 190, 78, 33);
 		pNhapThongTin.add(lblSoLuong);
-		
+
 		lblNamXuatBan = new JLabel("Năm Xuất Bản:");
 		lblNamXuatBan.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblNamXuatBan.setBounds(35, 190, 121, 33);
-	
-		
-		
+
 //		NamXuatBan = new JDateChooser();
 //		NamXuatBan.setDateFormatString("yyyy-mm-dd");
 //		try {
@@ -440,9 +437,9 @@ public class Sach_GUI extends JPanel {
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
-		
+
 		pNhapThongTin.add(lblNamXuatBan);
-		
+
 		txtNamXuatBan = new JTextField();
 		txtNamXuatBan.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtNamXuatBan.setColumns(10);
@@ -558,7 +555,8 @@ public class Sach_GUI extends JPanel {
 		scrollPaneSach.setBackground(new Color(0, 162, 197));
 		pnDanhSach.add(scrollPaneSach);
 
-		String cols[] = { "Mã Sách", "Mã NXB", "Mã Loại Sách ", "Tên Sách", "Xuất Xứ", "Tác Giả", "Số Trang","Giá Bán","Số Lượng","Năm Xuất Bản" };
+		String cols[] = { "Mã Sách", "Mã NXB", "Mã Loại Sách ", "Tên Sách", "Xuất Xứ", "Tác Giả", "Số Trang", "Giá Bán",
+				"Số Lượng", "Năm Xuất Bản" };
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
 		table.setRowHeight(25);
@@ -600,9 +598,9 @@ public class Sach_GUI extends JPanel {
 				txtTacGia.setText((String) model.getValueAt(row, 5));
 				txtSoTrang.setText(model.getValueAt(row, 6) + "");
 				txtGia.setText(model.getValueAt(row, 7) + "");
-				txtSoLuong.setText(model.getValueAt(row, 8)+ "");
-				txtNamXuatBan.setText(model.getValueAt(row, 9)+ "");
-				
+				txtSoLuong.setText(model.getValueAt(row, 8) + "");
+				txtNamXuatBan.setText(model.getValueAt(row, 9) + "");
+
 			}
 		});
 		scrollPaneSach.add(table);
@@ -622,7 +620,8 @@ public class Sach_GUI extends JPanel {
 		model.setRowCount(0);
 		for (Sach sach : sach_DAO.getAllListSach()) {
 			Object[] objects = { sach.getMaSach(), sach.getMaNXB(), sach.getMaLoaiSach(), sach.getTenSach(),
-					sach.getXuatXu(),sach.getTacGia(), sach.getSoTrang(), sach.getGia(),sach.getSoLuong(),sach.getNamXuatBan()};
+					sach.getXuatXu(), sach.getTacGia(), sach.getSoTrang(), sach.getGia(), sach.getSoLuong(),
+					sach.getNamXuatBan() };
 			model.addRow(objects);
 		}
 	}
@@ -643,7 +642,7 @@ public class Sach_GUI extends JPanel {
 	public void xoaTrang() {
 		txtMaSach.setText("");
 		txtMaNXB.setText("");
-		cbMaLoaiSach.setSelectedItem(""); 
+		cbMaLoaiSach.setSelectedItem("");
 		txtTenSach.setText("");
 		txtXuatXu.setText("");
 		txtTacGia.setText("");
@@ -655,71 +654,70 @@ public class Sach_GUI extends JPanel {
 
 	// Thêm Sách
 	public boolean themSach() {
-	    // Kiểm tra nếu có trường nào không được điền đầy đủ thông tin
-	    if (cbMaLoaiSach.getSelectedItem().equals("")
-	            || txtTenSach.getText().equals("")
-	            || txtMaNXB.getText().equals("") || txtXuatXu.getText().equals("") || txtTacGia.getText().equals("")
-	            || txtSoTrang.getText().equals("") || txtGia.getText().equals("") || txtSoLuong.getText().equals("")
-	            || txtNamXuatBan.getText().equals("")) {
-	        JOptionPane.showMessageDialog(null, "Phải điền đầy đủ thông tin!");
-	        return false;
-	    } else {
-	        try {
-	            // Tạo một đối tượng sách và thiết lập các thuộc tính từ dữ liệu đầu vào
-	            Sach sach = new Sach();
-	            sach.setMaSach(phatSinhMa_DAO.getMaSach());
-	            sach.setMaNXB(txtMaNXB.getText());
-	            sach.setMaLoaiSach(cbMaLoaiSach.getSelectedItem().toString());
-	            sach.setTenSach(txtTenSach.getText());
-	            sach.setXuatXu(txtXuatXu.getText());
-	            sach.setTacGia(txtTacGia.getText());
-	            sach.setSoTrang(Integer.parseInt(txtSoTrang.getText()));
-	            sach.setGia(Integer.parseInt(txtGia.getText()));
-	            sach.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
-	            sach.setNamXuatBan(Integer.parseInt(txtNamXuatBan.getText()));
-	            
-	            // Gọi phương thức để thêm sách vào cơ sở dữ liệu
-	            sach_DAO.themSach(sach);
-	            
-	            JOptionPane.showMessageDialog(null, "Thêm sách thành công!");
-	            
-	            // Làm mới giao diện sau khi thêm sách
-	            refresh();
-	            return true;
-	        } catch (SQLException e1) {
-	            JOptionPane.showMessageDialog(null, "Thêm sách thất bại!");
-	            e1.printStackTrace();
-	            return false;
-	        }
-	    }
+		// Kiểm tra nếu có trường nào không được điền đầy đủ thông tin
+		if (cbMaLoaiSach.getSelectedItem().equals("") || txtTenSach.getText().equals("")
+				|| txtMaNXB.getText().equals("") || txtXuatXu.getText().equals("") || txtTacGia.getText().equals("")
+				|| txtSoTrang.getText().equals("") || txtGia.getText().equals("") || txtSoLuong.getText().equals("")
+				|| txtNamXuatBan.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Phải điền đầy đủ thông tin!");
+			return false;
+		} else {
+			try {
+				// Tạo một đối tượng sách và thiết lập các thuộc tính từ dữ liệu đầu vào
+				Sach sach = new Sach();
+				sach.setMaSach(phatSinhMa_DAO.getMaSach());
+				sach.setMaNXB(txtMaNXB.getText());
+				sach.setMaLoaiSach(cbMaLoaiSach.getSelectedItem().toString());
+				sach.setTenSach(txtTenSach.getText());
+				sach.setXuatXu(txtXuatXu.getText());
+				sach.setTacGia(txtTacGia.getText());
+				sach.setSoTrang(Integer.parseInt(txtSoTrang.getText()));
+				sach.setGia(Integer.parseInt(txtGia.getText()));
+				sach.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+				sach.setNamXuatBan(Integer.parseInt(txtNamXuatBan.getText()));
+
+				// Gọi phương thức để thêm sách vào cơ sở dữ liệu
+				sach_DAO.themSach(sach);
+
+				JOptionPane.showMessageDialog(null, "Thêm sách thành công!");
+
+				// Làm mới giao diện sau khi thêm sách
+				refresh();
+				return true;
+			} catch (SQLException e1) {
+				JOptionPane.showMessageDialog(null, "Thêm sách thất bại!");
+				e1.printStackTrace();
+				return false;
+			}
+		}
 	}
-	//Xóa sách
+
+	// Xóa sách
 	public boolean xoaSach() {
-	    int row = table.getSelectedRow();
-	    if (row == -1) {
-	        JOptionPane.showInternalMessageDialog(null, "Bạn phải chọn dòng cần xóa!");
-	        return false;
-	    } else {
-	        int option = JOptionPane.showConfirmDialog(null,
-	                "Bạn có chắc muốn xóa sách '" + model.getValueAt(row, 0) + "' chứ?", "Xóa?",
-	                JOptionPane.YES_NO_OPTION);
-	        if (option == JOptionPane.YES_OPTION) {
-	            try {
-	                String maSach = model.getValueAt(row, 0).toString();
-	                // Assuming you have a book DAO class similar to the NhanVien_DAO
-	                sach_DAO.xoaSachTheoMa(maSach);
-	                JOptionPane.showMessageDialog(null,
-	                        "Xóa thành công sách '" + model.getValueAt(row, 0) + "'!");
-	                refresh(); // You may need to implement this method to update your table
-	                return true;
-	            } catch (SQLException e1) {
-	                JOptionPane.showMessageDialog(null,
-	                        "Xóa sách '" + model.getValueAt(row, 0) + "' không thành công!");
-	                return false;
-	            }
-	        } else {
-	            return false;
-	        }
-	    }
+		int row = table.getSelectedRow();
+		if (row == -1) {
+			JOptionPane.showInternalMessageDialog(null, "Bạn phải chọn dòng cần xóa!");
+			return false;
+		} else {
+			int option = JOptionPane.showConfirmDialog(null,
+					"Bạn có chắc muốn xóa sách '" + model.getValueAt(row, 0) + "' chứ?", "Xóa?",
+					JOptionPane.YES_NO_OPTION);
+			if (option == JOptionPane.YES_OPTION) {
+				try {
+					String maSach = model.getValueAt(row, 0).toString();
+					// Assuming you have a book DAO class similar to the NhanVien_DAO
+					sach_DAO.xoaSachTheoMa(maSach);
+					JOptionPane.showMessageDialog(null, "Xóa thành công sách '" + model.getValueAt(row, 0) + "'!");
+					refresh(); // You may need to implement this method to update your table
+					return true;
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(null,
+							"Xóa sách '" + model.getValueAt(row, 0) + "' không thành công!");
+					return false;
+				}
+			} else {
+				return false;
+			}
+		}
 	}
 }

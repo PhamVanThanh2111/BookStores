@@ -11,21 +11,21 @@ import entity.LoaiSach;
 
 public class LoaiSach_DAO {
 	// get all loai sách //lấy
-			public List<LoaiSach> getAllListLoaiSach() {
-				ConnectDB.getInstance();
-				Connection connection = ConnectDB.getConnection();
-				List<LoaiSach> ds = new ArrayList<LoaiSach>();
-				try {
-					PreparedStatement preparedStatement = connection.prepareStatement("select * from LoaiSach");
-					ResultSet resultSet = preparedStatement.executeQuery();
-					while (resultSet.next()) {
-								ds.add(new LoaiSach(resultSet.getString(1),resultSet.getString(2)));
-					}
-					
-				} catch (Exception e) {
-					// TODO: handle exception
-				}
-				return ds;
+	public List<LoaiSach> getAllListLoaiSach() {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		List<LoaiSach> ds = new ArrayList<LoaiSach>();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement("select * from LoaiSach");
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				ds.add(new LoaiSach(resultSet.getString(1), resultSet.getString(2)));
 			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return ds;
+	}
 
 }

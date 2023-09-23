@@ -48,24 +48,24 @@ public class LoaiSach_GUI extends JPanel {
 		pnThongTin.setBounds(10, 10, 1128, 106);
 		pMain.add(pnThongTin);
 		pnThongTin.setLayout(null);
-		
+
 		JLabel lblMaLoai = new JLabel("Mã Loại: ");
 		lblMaLoai.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblMaLoai.setBounds(99, 35, 70, 33);
 		pnThongTin.add(lblMaLoai);
-		
+
 		txtMaLoai = new JTextField();
 		txtMaLoai.setBounds(179, 35, 316, 33);
 		txtMaLoai.setEnabled(false);
 		txtMaLoai.setFocusable(false);
 		pnThongTin.add(txtMaLoai);
 		txtMaLoai.setColumns(10);
-		
+
 		JLabel lblTenLoai = new JLabel("Tên Loại:");
 		lblTenLoai.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblTenLoai.setBounds(602, 35, 70, 33);
 		pnThongTin.add(lblTenLoai);
-		
+
 		txtTenLoai = new JTextField();
 		txtTenLoai.setColumns(10);
 		txtTenLoai.setBounds(682, 35, 316, 33);

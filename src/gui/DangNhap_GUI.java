@@ -86,7 +86,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		chkShow.setBounds(244, 238, 151, 21);
 		getContentPane().add(chkShow);
 
-		//Hiển thị mất khẩu
+		// Hiển thị mất khẩu
 		chkShow.addActionListener(new ActionListener() {
 
 			@Override
@@ -234,7 +234,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		}
 
 	}
-	
+
 	public void login() throws SQLException {
 		if (countSaiMatKhau > 2) {
 			JOptionPane.showMessageDialog(null, "Bạn đã nhập sai tài khoản quá 3 lần. Chương trình sẽ thoát!");
@@ -258,7 +258,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 			}
 		}
 	}
-	
+
 	public static void main(String[] args) throws SQLException {
 		new DangNhap_GUI().setVisible(true);
 	}

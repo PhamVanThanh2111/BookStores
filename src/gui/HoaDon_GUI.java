@@ -7,9 +7,17 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+
+import connect.ConnectDB;
+import dao.DungCuHocTap_DAO;
+import dao.Sach_DAO;
+import entity.DungCuHocTap;
+import entity.Sach;
+
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
@@ -30,11 +38,23 @@ public class HoaDon_GUI extends JPanel {
 	private DefaultTableModel modelTT;
 	private JScrollPane scrollPaneTenKH;
 	private JTextField txtSoLuong;
+	private JComboBox<String> cbTenSP;
+	private JComboBox<String> cbLoaiSP;
+	private DefaultComboBoxModel<String> cbModelTenSP;
+	private Sach_DAO sach_DAO;
+	private DungCuHocTap_DAO dungCuHocTap_DAO;
 
 	/**
 	 * Create the panel.
 	 */
 	public HoaDon_GUI(String maNV) {
+		// khai bao DAO
+		sach_DAO = new Sach_DAO();
+
+		// connect
+		ConnectDB.getInstance();
+		ConnectDB.getConnection();
+
 		setLayout(null);
 
 		JPanel pMain = new JPanel();
@@ -73,17 +93,17 @@ public class HoaDon_GUI extends JPanel {
 				"T\u00EAn kh\u00E1ch h\u00E0ng:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));
 		pTenKhachHang.setBounds(10, 53, 506, 234);
 		pMain.add(pTenKhachHang);
-		
-				scrollPaneTenKH = new JScrollPane();
-				scrollPaneTenKH.setBounds(10, 24, 486, 200);
-				pTenKhachHang.add(scrollPaneTenKH);
-				scrollPaneTenKH.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
-				scrollPaneTenKH.setBorder(new LineBorder(new Color(80, 80, 80), 1, true));
-				scrollPaneTenKH.setBackground(new Color(80, 80, 80));
-				table = new JTable(model);
-				table.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
-				table.setRowHeight(25);
-				scrollPaneTenKH.setViewportView(table);
+
+		scrollPaneTenKH = new JScrollPane();
+		scrollPaneTenKH.setBounds(10, 24, 486, 200);
+		pTenKhachHang.add(scrollPaneTenKH);
+		scrollPaneTenKH.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
+		scrollPaneTenKH.setBorder(new LineBorder(new Color(80, 80, 80), 1, true));
+		scrollPaneTenKH.setBackground(new Color(80, 80, 80));
+		table = new JTable(model);
+		table.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
+		table.setRowHeight(25);
+		scrollPaneTenKH.setViewportView(table);
 
 		String cols[] = { "Tên KH" };
 		model = new DefaultTableModel(cols, 0);
@@ -119,51 +139,65 @@ public class HoaDon_GUI extends JPanel {
 				"Nh\u00E2n vi\u00EAn:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));
 		pNhanVien.setBounds(10, 561, 506, 96);
 		pMain.add(pNhanVien);
-		
+
 		JPanel pThongTinKH = new JPanel();
-		pThongTinKH.setBorder(new TitledBorder(null, "S\u1EA3n Ph\u1EA9m", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pThongTinKH.setBorder(
+				new TitledBorder(null, "S\u1EA3n Ph\u1EA9m", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		pThongTinKH.setBounds(10, 297, 506, 254);
 		pMain.add(pThongTinKH);
 		pThongTinKH.setLayout(null);
-		
+
 		JLabel lblLoaiSP = new JLabel("Loại Sản Phẩm:");
 		lblLoaiSP.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblLoaiSP.setBounds(30, 30, 120, 33);
 		pThongTinKH.add(lblLoaiSP);
-		
+
 		JLabel lblTenSP = new JLabel("Tên Sản Phẩm:");
 		lblTenSP.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblTenSP.setBounds(30, 70, 120, 33);
 		pThongTinKH.add(lblTenSP);
-		
+
 		JLabel lblSoLuong = new JLabel("Số Lượng:");
 		lblSoLuong.setFont(new Font("SansSerif", Font.BOLD, 14));
 		lblSoLuong.setBounds(30, 110, 120, 33);
 		pThongTinKH.add(lblSoLuong);
-		
-		JComboBox<String> cbLoaiSP = new JComboBox<String>();
+
+		cbLoaiSP = new JComboBox<String>();
 		cbLoaiSP.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		cbLoaiSP.setBounds(160, 30, 284, 33);
 		cbLoaiSP.addItem("Sách");
 		cbLoaiSP.addItem("Dụng cụ học tập");
+		cbLoaiSP.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (cbLoaiSP.getSelectedItem().toString().equals("Sách")) {
+					loadTenSachIntoComboboxTenSP();
+				} else {
+					loadTenDCHTIntoComboboxTenSP();
+				}
+			}
+		});
 		pThongTinKH.add(cbLoaiSP);
-		
-		JComboBox<String> cbTenSP = new JComboBox<String>();
+
+		cbTenSP = new JComboBox<String>();
 		cbTenSP.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		cbTenSP.setBounds(160, 70, 284, 33);
+		loadTenSachIntoComboboxTenSP();
 		pThongTinKH.add(cbTenSP);
-		
+
 		txtSoLuong = new JTextField();
 		txtSoLuong.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtSoLuong.setBounds(162, 110, 282, 33);
 		pThongTinKH.add(txtSoLuong);
 		txtSoLuong.setColumns(10);
-		
+
 		JButton btnThem = new JButton("Thêm");
 		btnThem.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnThem.setBounds(36, 195, 120, 33);
 		pThongTinKH.add(btnThem);
-		
+
 		JButton btnXoa = new JButton("Xóa");
 		btnXoa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -172,11 +206,30 @@ public class HoaDon_GUI extends JPanel {
 		btnXoa.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnXoa.setBounds(192, 195, 120, 33);
 		pThongTinKH.add(btnXoa);
-		
+
 		JButton btnThanhTon = new JButton("Thanh Toán");
 		btnThanhTon.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnThanhTon.setBounds(348, 195, 120, 33);
 		pThongTinKH.add(btnThanhTon);
 
+	}
+
+	// load data ten sach vao combobox
+	private void loadTenSachIntoComboboxTenSP() {
+		cbModelTenSP = new DefaultComboBoxModel<String>();
+		cbModelTenSP.removeAllElements();
+		for (Sach sach : sach_DAO.getAllListSach()) {
+			cbModelTenSP.addElement(sach.getTenSach());
+		}
+		cbTenSP.setModel(cbModelTenSP);
+	}
+
+	private void loadTenDCHTIntoComboboxTenSP() {
+		cbModelTenSP = new DefaultComboBoxModel<String>();
+		cbModelTenSP.removeAllElements();
+		for (DungCuHocTap dungCuHocTap : dungCuHocTap_DAO.getAllListDungCuHocTap()) {
+			cbModelTenSP.addElement(dungCuHocTap.getTenDCHT());
+		}
+		cbTenSP.setModel(cbModelTenSP);
 	}
 }

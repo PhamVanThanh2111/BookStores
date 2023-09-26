@@ -3,12 +3,9 @@ package entity;
 import java.util.Objects;
 
 public class KhachHang {
-	private String maKH;
-	private String tenKH;
-	private int tuoi;
+	private String maKhachHang;
+	private String tenKhachHang;
 	private String gioiTinh;
-	private String CCCD;
-	private String email;
 	private String soDienThoai;
 	private String diaChi;
 
@@ -16,46 +13,35 @@ public class KhachHang {
 		super();
 	}
 
-	public KhachHang(String maKH) {
+	public KhachHang(String maKhachHang) {
 		super();
-		this.maKH = maKH;
+		this.maKhachHang = maKhachHang;
 	}
 
-	public KhachHang(String maKH, String tenKH, int tuoi, String gioiTinh, String cCCD, String email,
-			String soDienThoai, String diaChi) {
+	public KhachHang(String maKhachHang, String tenKhachHang, String gioiTinh, String soDienThoai,
+			String diaChi) {
 		super();
-		this.maKH = maKH;
-		this.tenKH = tenKH;
-		this.tuoi = tuoi;
+		this.maKhachHang = maKhachHang;
+		this.tenKhachHang = tenKhachHang;
 		this.gioiTinh = gioiTinh;
-		CCCD = cCCD;
-		this.email = email;
 		this.soDienThoai = soDienThoai;
 		this.diaChi = diaChi;
 	}
 
-	public String getMaKH() {
-		return maKH;
+	public String getMaKhachHang() {
+		return maKhachHang;
 	}
 
-	public void setMaKH(String maKH) {
-		this.maKH = maKH;
+	public void setMaKhachHang(String maKhachHang) {
+		this.maKhachHang = maKhachHang;
 	}
 
-	public String getTenKH() {
-		return tenKH;
+	public String getTenKhachHang() {
+		return tenKhachHang;
 	}
 
-	public void setTenKH(String tenKH) {
-		this.tenKH = tenKH;
-	}
-
-	public int getTuoi() {
-		return tuoi;
-	}
-
-	public void setTuoi(int tuoi) {
-		this.tuoi = tuoi;
+	public void setTenKhachHang(String tenKhachHang) {
+		this.tenKhachHang = tenKhachHang;
 	}
 
 	public String getGioiTinh() {
@@ -64,22 +50,6 @@ public class KhachHang {
 
 	public void setGioiTinh(String gioiTinh) {
 		this.gioiTinh = gioiTinh;
-	}
-
-	public String getCCCD() {
-		return CCCD;
-	}
-
-	public void setCCCD(String cCCD) {
-		CCCD = cCCD;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getSoDienThoai() {
@@ -100,7 +70,7 @@ public class KhachHang {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(CCCD, diaChi, email, gioiTinh, maKH, soDienThoai, tenKH, tuoi);
+		return Objects.hash(maKhachHang, soDienThoai);
 	}
 
 	@Override
@@ -112,16 +82,14 @@ public class KhachHang {
 		if (getClass() != obj.getClass())
 			return false;
 		KhachHang other = (KhachHang) obj;
-		return Objects.equals(CCCD, other.CCCD) && Objects.equals(diaChi, other.diaChi)
-				&& Objects.equals(email, other.email) && Objects.equals(gioiTinh, other.gioiTinh)
-				&& Objects.equals(maKH, other.maKH) && Objects.equals(soDienThoai, other.soDienThoai)
-				&& Objects.equals(tenKH, other.tenKH) && tuoi == other.tuoi;
+		return Objects.equals(maKhachHang, other.maKhachHang) && Objects.equals(soDienThoai, other.soDienThoai);
 	}
 
 	@Override
 	public String toString() {
-		return "KhachHang [maKH=" + maKH + ", tenKH=" + tenKH + ", tuoi=" + tuoi + ", gioiTinh=" + gioiTinh + ", CCCD="
-				+ CCCD + ", email=" + email + ", soDienThoai=" + soDienThoai + ", diaChi=" + diaChi + "]";
+		return "KhachHang [maKhachHang=" + maKhachHang + ", tenKhachHang=" + tenKhachHang + ", gioiTinh=" + gioiTinh
+				+ ", soDienThoai=" + soDienThoai + ", diaChi=" + diaChi + "]";
 	}
-
+	
+	
 }

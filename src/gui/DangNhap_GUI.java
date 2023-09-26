@@ -18,6 +18,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
+
 import connect.ConnectDB;
 import dao.NhanVien_DAO;
 import dao.TaiKhoan_DAO;
@@ -27,6 +29,7 @@ import entity.TaiKhoan;
 import java.awt.event.KeyAdapter;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
 public class DangNhap_GUI extends JFrame implements ActionListener {
 
@@ -134,7 +137,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 //					login();
 //			}
 //		});
-		txtPwd.setText("NV001");
+		txtPwd.setText("NV0001");
 		txtPwd.setBorder(BorderFactory.createLineBorder(new Color(117, 128, 134)));
 		txtPwd.setBounds(269, 188, 191, 32);
 		txtPwd.requestFocus();
@@ -180,7 +183,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		});
 		txtUser.setBounds(269, 131, 191, 32);
 		txtUser.setBorder(BorderFactory.createLineBorder(new Color(117, 128, 134)));
-		txtUser.setText("NV001");
+		txtUser.setText("NV0001");
 		getContentPane().add(txtUser);
 		txtUser.setColumns(10);
 
@@ -260,6 +263,11 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) throws SQLException {
-		new DangNhap_GUI().setVisible(true);
+		try {
+		    UIManager.setLookAndFeel(new FlatMacLightLaf());
+		    new DangNhap_GUI().setVisible(true);
+		} catch( Exception ex ) {
+		    System.err.println( "Failed to initialize LaF" );
+		}
 	}
 }

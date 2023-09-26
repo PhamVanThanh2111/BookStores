@@ -108,7 +108,6 @@ public class TaiKhoan_DAO {
 
 	}
 
-	// Load ds matkhau
 	public TaiKhoan getMatKhauTheoMaNhanVien(String ma) {
 		ConnectDB.getInstance();
 		TaiKhoan tk = new TaiKhoan();

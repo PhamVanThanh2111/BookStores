@@ -9,11 +9,12 @@ public class Sach {
 	private String maLoaiSach;
 	private String tenSach;
 	private String xuatXu;
+	private long giaNhap;
 	private String tacGia;
 	private int soTrang;
+	private long gia;
 	private int soLuong;
-	private int gia;
-	private int namXuatBan;
+	private String hinhAnh;
 
 	public Sach() {
 		super();
@@ -24,19 +25,20 @@ public class Sach {
 		this.maSach = maSach;
 	}
 
-	public Sach(String maSach, String maNXB, String maLoaiSach, String tenSach, String xuatXu, String tacGia,
-			int soTrang, int soLuong, int gia, int namXuatBan) {
+	public Sach(String maSach, String maNXB, String maLoaiSach, String tenSach, String xuatXu, long giaNhap,
+			String tacGia, int soTrang, long gia, int soLuong, String hinhAnh) {
 		super();
 		this.maSach = maSach;
 		this.maNXB = maNXB;
 		this.maLoaiSach = maLoaiSach;
 		this.tenSach = tenSach;
 		this.xuatXu = xuatXu;
+		this.giaNhap = giaNhap;
 		this.tacGia = tacGia;
 		this.soTrang = soTrang;
-		this.soLuong = soLuong;
 		this.gia = gia;
-		this.namXuatBan = namXuatBan;
+		this.soLuong = soLuong;
+		this.hinhAnh = hinhAnh;
 	}
 
 	public String getMaSach() {
@@ -79,6 +81,14 @@ public class Sach {
 		this.xuatXu = xuatXu;
 	}
 
+	public long getGiaNhap() {
+		return giaNhap;
+	}
+
+	public void setGiaNhap(long giaNhap) {
+		this.giaNhap = giaNhap;
+	}
+
 	public String getTacGia() {
 		return tacGia;
 	}
@@ -95,6 +105,14 @@ public class Sach {
 		this.soTrang = soTrang;
 	}
 
+	public long getGia() {
+		return gia;
+	}
+
+	public void setGia(long gia) {
+		this.gia = gia;
+	}
+
 	public int getSoLuong() {
 		return soLuong;
 	}
@@ -103,22 +121,15 @@ public class Sach {
 		this.soLuong = soLuong;
 	}
 
-	public int getGia() {
-		return gia;
+	public String getHinhAnh() {
+		return hinhAnh;
 	}
 
-	public void setGia(int gia) {
-		this.gia = gia;
+	public void setHinhAnh(String hinhAnh) {
+		this.hinhAnh = hinhAnh;
 	}
 
-	public int getNamXuatBan() {
-		return namXuatBan;
-	}
-
-	public void setNamXuatBan(int namXuatBan) {
-		this.namXuatBan = namXuatBan;
-	}
-
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(maSach);
@@ -139,8 +150,9 @@ public class Sach {
 	@Override
 	public String toString() {
 		return "Sach [maSach=" + maSach + ", maNXB=" + maNXB + ", maLoaiSach=" + maLoaiSach + ", tenSach=" + tenSach
-				+ ", xuatXu=" + xuatXu + ", tacGia=" + tacGia + ", soTrang=" + soTrang + ", soLuong=" + soLuong
-				+ ", gia=" + gia + ", namXuatBan=" + namXuatBan + "]";
+				+ ", xuatXu=" + xuatXu + ", giaNhap=" + giaNhap + ", tacGia=" + tacGia + ", soTrang=" + soTrang
+				+ ", gia=" + gia + ", soLuong=" + soLuong + ", hinhAnh=" + hinhAnh + "]";
 	}
 
+	
 }

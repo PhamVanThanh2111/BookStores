@@ -1,37 +1,47 @@
 package entity;
 
 public class ChiTietHoaDon {
-	private HoaDon maHD;
-	private Sach maSach;
+	private String maHoaDon;
+	private String maSach;
+	private String maDungCuHocTap;
 	private int soLuong;
-	private int thanhTien;
+	private long donGia;
 
 	public ChiTietHoaDon() {
 		super();
 	}
 
-	public ChiTietHoaDon(HoaDon maHD, Sach maSach, int soLuong, int thanhTien) {
+	public ChiTietHoaDon(String maHoaDon, String maSach, String maDungCuHocTap, int soLuong, long donGia) {
 		super();
-		this.maHD = maHD;
+		this.maHoaDon = maHoaDon;
 		this.maSach = maSach;
+		this.maDungCuHocTap = maDungCuHocTap;
 		this.soLuong = soLuong;
-		this.thanhTien = thanhTien;
+		this.donGia = donGia;
 	}
 
-	public HoaDon getMaHD() {
-		return maHD;
+	public String getMaHoaDon() {
+		return maHoaDon;
 	}
 
-	public void setMaHD(HoaDon maHD) {
-		this.maHD = maHD;
+	public void setMaHoaDon(String maHoaDon) {
+		this.maHoaDon = maHoaDon;
 	}
 
-	public Sach getMaSach() {
+	public String getMaSach() {
 		return maSach;
 	}
 
-	public void setMaSach(Sach maSach) {
+	public void setMaSach(String maSach) {
 		this.maSach = maSach;
+	}
+
+	public String getMaDungCuHocTap() {
+		return maDungCuHocTap;
+	}
+
+	public void setMaDungCuHocTap(String maDungCuHocTap) {
+		this.maDungCuHocTap = maDungCuHocTap;
 	}
 
 	public int getSoLuong() {
@@ -42,18 +52,19 @@ public class ChiTietHoaDon {
 		this.soLuong = soLuong;
 	}
 
-	public int getThanhTien() {
-		return thanhTien;
+	public long getDonGia() {
+		return donGia;
 	}
 
-	public void setThanhTien(int thanhTien) {
-		this.thanhTien = thanhTien;
+	public void setDonGia(long donGia) {
+		this.donGia = donGia;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "ChiTietHoaDon [maHD=" + maHD + ", maSach=" + maSach + ", soLuong=" + soLuong + ", thanhTien="
-				+ thanhTien + "]";
+		return "ChiTietHoaDon [maHoaDon=" + maHoaDon + ", maSach=" + maSach + ", maDungCuHocTap=" + maDungCuHocTap
+				+ ", soLuong=" + soLuong + ", donGia=" + donGia + "]";
 	}
-
+	
+	
 }

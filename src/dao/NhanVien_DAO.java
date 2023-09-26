@@ -31,7 +31,7 @@ public class NhanVien_DAO {
 				ds.add(new NhanVien(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),
 						resultSet.getString(4), resultSet.getDate(5), resultSet.getDate(6), resultSet.getString(7),
 						resultSet.getString(8), resultSet.getString(9), resultSet.getString(10), taiKhoan,
-						resultSet.getInt(12)));
+						resultSet.getLong(12), resultSet.getInt(13), resultSet.getString(14)));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -40,7 +40,7 @@ public class NhanVien_DAO {
 	}
 
 	// get nhan vien theo ten
-	public List<NhanVien> getNhanVienTheoTen(String tenNV) {
+	public List<NhanVien> getNhanVienTheoTen(String tenNhanVien) {
 		ConnectDB.getInstance();
 		Connection connection = ConnectDB.getConnection();
 		List<NhanVien> ds = new ArrayList<NhanVien>();
@@ -48,14 +48,14 @@ public class NhanVien_DAO {
 		TaiKhoan_DAO taiKhoan_DAO = new TaiKhoan_DAO();
 		try {
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("select * from NhanVien where tenNV like '%" + tenNV + "%'");
+					.prepareStatement("select * from NhanVien where tenNhanVien like '%" + tenNhanVien + "%'");
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTaiKhoan(resultSet.getString(12));
 				ds.add(new NhanVien(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3),
 						resultSet.getString(4), resultSet.getDate(5), resultSet.getDate(6), resultSet.getString(7),
 						resultSet.getString(8), resultSet.getString(9), resultSet.getString(10), taiKhoan,
-						resultSet.getInt(12)));
+						resultSet.getLong(12), resultSet.getInt(13), resultSet.getString(14)));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -64,7 +64,7 @@ public class NhanVien_DAO {
 	}
 
 	// get nhan vien theo ma
-	public NhanVien getNhanVienTheoMa(String maNV) {
+	public NhanVien getNhanVienTheoMa(String maNhanVien) {
 		NhanVien nhanVien = new NhanVien();
 		ConnectDB.getInstance();
 		Connection connection = ConnectDB.getConnection();
@@ -72,24 +72,25 @@ public class NhanVien_DAO {
 		TaiKhoan taiKhoan;
 		try {
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("select * from NhanVien where UPPER(maNV) = UPPER('" + maNV + "')");
+					.prepareStatement("select * from NhanVien where UPPER(maNhanVien) = UPPER('" + maNhanVien + "')");
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
 				taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTaiKhoan(resultSet.getString(12));
-				nhanVien.setMaNV(maNV);
-				nhanVien.setTenNV(resultSet.getString(2));
+				nhanVien.setMaNhanVien(resultSet.getString(1));
+				nhanVien.setTenNhanVien(resultSet.getString(2));
 				nhanVien.setDiaChi(resultSet.getString(3));
 				nhanVien.setGioiTinh(resultSet.getString(4));
 				nhanVien.setNgaySinh(resultSet.getDate(5));
 				nhanVien.setNgayVaoLam(resultSet.getDate(6));
-				nhanVien.setCCCD(resultSet.getString(7));
+				nhanVien.setcCCD(resultSet.getString(7));
 				nhanVien.setEmail(resultSet.getString(8));
 				nhanVien.setSoDienThoai(resultSet.getString(9));
 				nhanVien.setChucVu(resultSet.getString(10));
 				nhanVien.setTaiKhoan(taiKhoan);
 				nhanVien.setLuong(resultSet.getInt(12));
-
+				nhanVien.setCa(resultSet.getInt(13));
+				nhanVien.setHinhAnh(resultSet.getString(14));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -112,18 +113,20 @@ public class NhanVien_DAO {
 
 			while (resultSet.next()) {
 				taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTaiKhoan(resultSet.getString(12));
-				nhanVien.setMaNV(resultSet.getString(1));
-				nhanVien.setTenNV(resultSet.getString(2));
+				nhanVien.setMaNhanVien(resultSet.getString(1));
+				nhanVien.setTenNhanVien(resultSet.getString(2));
 				nhanVien.setDiaChi(resultSet.getString(3));
 				nhanVien.setGioiTinh(resultSet.getString(4));
 				nhanVien.setNgaySinh(resultSet.getDate(5));
 				nhanVien.setNgayVaoLam(resultSet.getDate(6));
-				nhanVien.setCCCD(resultSet.getString(7));
+				nhanVien.setcCCD(resultSet.getString(7));
 				nhanVien.setEmail(resultSet.getString(8));
 				nhanVien.setSoDienThoai(resultSet.getString(9));
 				nhanVien.setChucVu(resultSet.getString(10));
 				nhanVien.setTaiKhoan(taiKhoan);
 				nhanVien.setLuong(resultSet.getInt(12));
+				nhanVien.setCa(resultSet.getInt(13));
+				nhanVien.setHinhAnh(resultSet.getString(14));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -146,18 +149,20 @@ public class NhanVien_DAO {
 
 			while (resultSet.next()) {
 				taiKhoan = taiKhoan_DAO.getTaiKhoanTheoMaTaiKhoan(resultSet.getString(12));
-				nhanVien.setMaNV(resultSet.getString(1));
-				nhanVien.setTenNV(resultSet.getString(2));
+				nhanVien.setMaNhanVien(resultSet.getString(1));
+				nhanVien.setTenNhanVien(resultSet.getString(2));
 				nhanVien.setDiaChi(resultSet.getString(3));
 				nhanVien.setGioiTinh(resultSet.getString(4));
 				nhanVien.setNgaySinh(resultSet.getDate(5));
 				nhanVien.setNgayVaoLam(resultSet.getDate(6));
-				nhanVien.setCCCD(resultSet.getString(7));
+				nhanVien.setcCCD(resultSet.getString(7));
 				nhanVien.setEmail(resultSet.getString(8));
 				nhanVien.setSoDienThoai(resultSet.getString(9));
 				nhanVien.setChucVu(resultSet.getString(10));
 				nhanVien.setTaiKhoan(taiKhoan);
 				nhanVien.setLuong(resultSet.getInt(12));
+				nhanVien.setCa(resultSet.getInt(13));
+				nhanVien.setHinhAnh(resultSet.getString(14));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -177,18 +182,20 @@ public class NhanVien_DAO {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery("select * from NhanVien where taiKhoan = '" + maTK + "'");
 			while (resultSet.next()) {
-				nhanVien.setMaNV(resultSet.getString(1));
-				nhanVien.setTenNV(resultSet.getString(2));
+				nhanVien.setMaNhanVien(resultSet.getString(1));
+				nhanVien.setTenNhanVien(resultSet.getString(2));
 				nhanVien.setDiaChi(resultSet.getString(3));
 				nhanVien.setGioiTinh(resultSet.getString(4));
 				nhanVien.setNgaySinh(resultSet.getDate(5));
 				nhanVien.setNgayVaoLam(resultSet.getDate(6));
-				nhanVien.setCCCD(resultSet.getString(7));
+				nhanVien.setcCCD(resultSet.getString(7));
 				nhanVien.setEmail(resultSet.getString(8));
 				nhanVien.setSoDienThoai(resultSet.getString(9));
 				nhanVien.setChucVu(resultSet.getString(10));
 				nhanVien.setTaiKhoan(taiKhoan);
 				nhanVien.setLuong(resultSet.getInt(12));
+				nhanVien.setCa(resultSet.getInt(13));
+				nhanVien.setHinhAnh(resultSet.getString(14));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -203,19 +210,21 @@ public class NhanVien_DAO {
 		Connection connection = ConnectDB.getConnection();
 		try {
 			PreparedStatement preparedStatement = null;
-			preparedStatement = connection.prepareStatement("insert into NhanVien values ( ?,?,?,?,?,?,?,?,?,?,?,?,?)");
-			preparedStatement.setString(1, nhanVien.getMaNV());
-			preparedStatement.setString(2, nhanVien.getTenNV());
+			preparedStatement = connection.prepareStatement("insert into NhanVien values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			preparedStatement.setString(1, nhanVien.getMaNhanVien());
+			preparedStatement.setString(2, nhanVien.getTenNhanVien());
 			preparedStatement.setString(3, nhanVien.getDiaChi());
 			preparedStatement.setString(4, nhanVien.getGioiTinh());
 			preparedStatement.setDate(5, nhanVien.getNgaySinh());
 			preparedStatement.setDate(6, nhanVien.getNgayVaoLam());
-			preparedStatement.setString(7, nhanVien.getCCCD());
+			preparedStatement.setString(7, nhanVien.getcCCD());
 			preparedStatement.setString(8, nhanVien.getEmail());
 			preparedStatement.setString(9, nhanVien.getSoDienThoai());
 			preparedStatement.setString(10, nhanVien.getChucVu());
 			preparedStatement.setString(11, nhanVien.getTaiKhoan().getTaiKhoan());
-			preparedStatement.setInt(12, nhanVien.getLuong());
+			preparedStatement.setLong(12, nhanVien.getLuong());
+			preparedStatement.setInt(13, nhanVien.getCa());
+			preparedStatement.setString(14, nhanVien.getHinhAnh());
 			return preparedStatement.executeUpdate() > 0;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -232,7 +241,7 @@ public class NhanVien_DAO {
 		Connection connection = ConnectDB.getConnection();
 		try {
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("delete from NhanVien where maNV = '" + maNV + "'");
+					.prepareStatement("delete from NhanVien where maNhanVien = '" + maNV + "'");
 			return preparedStatement.executeUpdate() > 0;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -247,19 +256,20 @@ public class NhanVien_DAO {
 		Connection connection = ConnectDB.getConnection();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(
-					"update NhanVien set maCH = ?, tenNV = ?, diaChi = ?, gioiTinh = ?, ngaySinh = ?, ngayVaoLam = ?, CCCD = ?, email = ?, soDienThoai = ?, chucVu = ?, taiKhoan = ?, luong = ? where maNV = '"
-							+ nhanVien.getMaNV() + "'");
-			preparedStatement.setString(1, nhanVien.getTenNV());
+					"update NhanVien set tenNhanVien = ?, diaChi = ?, gioiTinh = ?, ngaySinh = ?, ngayVaoLam = ?, CCCD = ?, email = ?, soDienThoai = ?, chucVu = ?, luong = ?, hinhAnh = ? where maNhanVien = '"
+							+ nhanVien.getMaNhanVien() + "'");
+			preparedStatement.setString(1, nhanVien.getTenNhanVien());
 			preparedStatement.setString(2, nhanVien.getDiaChi());
 			preparedStatement.setString(3, nhanVien.getGioiTinh());
 			preparedStatement.setDate(4, nhanVien.getNgaySinh());
 			preparedStatement.setDate(5, nhanVien.getNgayVaoLam());
-			preparedStatement.setString(6, nhanVien.getCCCD());
+			preparedStatement.setString(6, nhanVien.getcCCD());
 			preparedStatement.setString(7, nhanVien.getEmail());
 			preparedStatement.setString(8, nhanVien.getSoDienThoai());
 			preparedStatement.setString(9, nhanVien.getChucVu());
-			preparedStatement.setString(10, nhanVien.getTaiKhoan().getTaiKhoan());
-			preparedStatement.setInt(11, nhanVien.getLuong());
+			preparedStatement.setLong(10, nhanVien.getLuong());
+			preparedStatement.setInt(11, nhanVien.getCa());
+			preparedStatement.setString(12, nhanVien.getHinhAnh());
 			return preparedStatement.executeUpdate() > 0;
 		} catch (Exception e) {
 			// TODO: handle exception

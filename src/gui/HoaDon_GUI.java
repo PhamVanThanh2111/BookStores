@@ -228,7 +228,7 @@ public class HoaDon_GUI extends JPanel {
 		cbModelTenSP = new DefaultComboBoxModel<String>();
 		cbModelTenSP.removeAllElements();
 		for (DungCuHocTap dungCuHocTap : dungCuHocTap_DAO.getAllListDungCuHocTap()) {
-			cbModelTenSP.addElement(dungCuHocTap.getTenDCHT());
+			cbModelTenSP.addElement(dungCuHocTap.getTenDungCuHocTap());
 		}
 		cbTenSP.setModel(cbModelTenSP);
 	}

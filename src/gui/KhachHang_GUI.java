@@ -277,8 +277,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 
 	public void loadData() {
 		for (KhachHang Kh : khachHang_DAO.getAllKhachHang()) {
-			Object[] object = { Kh.getMaKH(), Kh.getTenKH(), Kh.getTuoi(), Kh.getGioiTinh(), Kh.getCCCD(),
-					Kh.getEmail(), Kh.getSoDienThoai(), Kh.getDiaChi() };
+			Object[] object = { Kh.getMaKhachHang(), Kh.getTenKhachHang(), Kh.getGioiTinh(), Kh.getSoDienThoai(), Kh.getDiaChi() };
 			model.addRow(object);
 			table.setRowHeight(25);
 		}

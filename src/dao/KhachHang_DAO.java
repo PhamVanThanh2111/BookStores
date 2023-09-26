@@ -21,8 +21,8 @@ public class KhachHang_DAO {
 			ResultSet result = preparedStatement.executeQuery();
 
 			while (result.next()) {
-				ds.add(new KhachHang(result.getString(1), result.getString(2), result.getInt(3), result.getString(4),
-						result.getString(5), result.getString(6), result.getString(7), result.getString(8)));
+				ds.add(new KhachHang(result.getString(1), result.getString(2), result.getString(3), result.getString(4),
+						result.getString(5)));
 			}
 
 		} catch (SQLException e) {

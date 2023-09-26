@@ -9,5 +9,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="library/sqljdbc42.jar"/>
 	<classpathentry kind="lib" path="library/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="library/flatlaf-3.2.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

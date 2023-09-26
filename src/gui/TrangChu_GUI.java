@@ -1,10 +1,5 @@
 package gui;
 
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -16,9 +11,18 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+
+import com.formdev.flatlaf.themes.FlatMacLightLaf;
 
 import entity.NhanVien;
-import javax.swing.SwingConstants;
+
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Toolkit;
@@ -94,13 +98,13 @@ public class TrangChu_GUI extends JFrame {
 		panel.add(lblSubMa);
 
 		lblHeaderMaNV = new JLabel();
-		lblHeaderMaNV.setText(nhanVien.getMaNV());
+		lblHeaderMaNV.setText(nhanVien.getMaNhanVien());
 		lblHeaderMaNV.setForeground(Color.WHITE);
 		lblHeaderMaNV.setFont(new Font("SansSerif", Font.ITALIC, 15));
 		lblHeaderMaNV.setBounds(1050, 26, 60, 20);
 		panel.add(lblHeaderMaNV);
 
-		lblHeaderTen = new JLabel(nhanVien.getTenNV());
+		lblHeaderTen = new JLabel(nhanVien.getTenNhanVien());
 		lblHeaderTen.setFont(new Font("SansSerif", Font.BOLD, 15));
 		lblHeaderTen.setForeground(new Color(255, 255, 255));
 		lblHeaderTen.setBounds(940, 5, 170, 20);
@@ -402,7 +406,7 @@ public class TrangChu_GUI extends JFrame {
 		pContent.setLayout(cardLayoutContent);
 		pContent.add(new NhanVien_GUI(), "NhanVien_GUI");
 		pContent.add(new Sach_GUI(), "Sach_GUI");
-		pContent.add(new HoaDon_GUI(nhanVien.getMaNV()), "HoaDon_GUI");
+		pContent.add(new HoaDon_GUI(nhanVien.getMaNhanVien()), "HoaDon_GUI");
 		pContent.add(new CuaHang_GUI(), "CuaHang_GUI");
 		pContent.add(new LoaiSach_GUI(), "LoaiSach_GUI");
 		pContent.add(new NXB_GUI(), "NXB_GUI");
@@ -627,6 +631,11 @@ public class TrangChu_GUI extends JFrame {
 	// }
 
 	public static void main(String[] args) {
+		try {
+		    UIManager.setLookAndFeel(new FlatMacLightLaf());
+		} catch( Exception ex ) {
+		    System.err.println( "Failed to initialize LaF" );
+		}
 		try {
 			DangNhap_GUI dangNhap_GUI = new DangNhap_GUI();
 			dangNhap_GUI.setVisible(true);

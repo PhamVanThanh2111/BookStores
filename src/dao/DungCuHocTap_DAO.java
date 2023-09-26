@@ -8,7 +8,6 @@ import java.util.List;
 
 import connect.ConnectDB;
 import entity.DungCuHocTap;
-import entity.Sach;
 
 public class DungCuHocTap_DAO {
 
@@ -21,8 +20,8 @@ public class DungCuHocTap_DAO {
 			PreparedStatement preparedStatement = connection.prepareStatement("select * from DungCuHocTap");
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				ds.add(new DungCuHocTap(resultSet.getString(1), resultSet.getString(2), resultSet.getInt(3),
-						resultSet.getString(4)));
+				ds.add(new DungCuHocTap(resultSet.getString(1), resultSet.getString(2), resultSet.getLong(3),
+						resultSet.getString(4), resultSet.getInt(5), resultSet.getString(6)));
 			}
 
 		} catch (Exception e) {

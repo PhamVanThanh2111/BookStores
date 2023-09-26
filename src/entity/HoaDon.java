@@ -1,65 +1,101 @@
 package entity;
 
-import java.util.Date;
+import java.util.Objects;
 
 public class HoaDon {
-	private String maHD;
-	private Date ngayXuatHD;
-	private KhachHang maKH;
-	private NhanVien maNV;
+	private String maHoaDon;
+	private String maNhanVien;
+	private String maKhachHang;
+	private java.sql.Date ngayLap;
+	private long tienKhachDua;
+	private long thanhTien;
 
 	public HoaDon() {
 		super();
 	}
 
-	public HoaDon(String maHD) {
+	public HoaDon(String maHoaDon, String maNhanVien, String maKhachHang, java.sql.Date ngayLap, long tienKhachDua,
+			long thanhTien) {
 		super();
-		this.maHD = maHD;
+		this.maHoaDon = maHoaDon;
+		this.maNhanVien = maNhanVien;
+		this.maKhachHang = maKhachHang;
+		this.ngayLap = ngayLap;
+		this.tienKhachDua = tienKhachDua;
+		this.thanhTien = thanhTien;
 	}
 
-	public HoaDon(String maHD, Date ngayXuatHD, KhachHang maKH, NhanVien maNV) {
-		super();
-		this.maHD = maHD;
-		this.ngayXuatHD = ngayXuatHD;
-		this.maKH = maKH;
-		this.maNV = maNV;
+	public String getMaHoaDon() {
+		return maHoaDon;
 	}
 
-	public String getMaHD() {
-		return maHD;
+	public void setMaHoaDon(String maHoaDon) {
+		this.maHoaDon = maHoaDon;
 	}
 
-	public void setMaHD(String maHD) {
-		this.maHD = maHD;
+	public String getMaNhanVien() {
+		return maNhanVien;
 	}
 
-	public Date getNgayXuatHD() {
-		return ngayXuatHD;
+	public void setMaNhanVien(String maNhanVien) {
+		this.maNhanVien = maNhanVien;
 	}
 
-	public void setNgayXuatHD(Date ngayXuatHD) {
-		this.ngayXuatHD = ngayXuatHD;
+	public String getMaKhachHang() {
+		return maKhachHang;
 	}
 
-	public KhachHang getMaKH() {
-		return maKH;
+	public void setMaKhachHang(String maKhachHang) {
+		this.maKhachHang = maKhachHang;
 	}
 
-	public void setMaKH(KhachHang maKH) {
-		this.maKH = maKH;
+	public java.sql.Date getNgayLap() {
+		return ngayLap;
 	}
 
-	public NhanVien getMaNV() {
-		return maNV;
+	public void setNgayLap(java.sql.Date ngayLap) {
+		this.ngayLap = ngayLap;
 	}
 
-	public void setMaNV(NhanVien maNV) {
-		this.maNV = maNV;
+	public long getTienKhachDua() {
+		return tienKhachDua;
+	}
+
+	public void setTienKhachDua(long tienKhachDua) {
+		this.tienKhachDua = tienKhachDua;
+	}
+
+	public long getThanhTien() {
+		return thanhTien;
+	}
+
+	public void setThanhTien(long thanhTien) {
+		this.thanhTien = thanhTien;
+	}
+	
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(maHoaDon);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		HoaDon other = (HoaDon) obj;
+		return Objects.equals(maHoaDon, other.maHoaDon);
 	}
 
 	@Override
 	public String toString() {
-		return "HoaDon [maHD=" + maHD + ", ngayXuatHD=" + ngayXuatHD + ", maKH=" + maKH + ", maNV=" + maNV + "]";
+		return "HoaDon [maHoaDon=" + maHoaDon + ", maNhanVien=" + maNhanVien + ", maKhachHang=" + maKhachHang
+				+ ", ngayLap=" + ngayLap + ", tienKhachDua=" + tienKhachDua + ", thanhTien=" + thanhTien + "]";
 	}
 
+	
 }

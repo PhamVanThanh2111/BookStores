@@ -3,49 +3,53 @@ package entity;
 import java.util.Objects;
 
 public class DungCuHocTap {
-	private String maDCHT;
-	private String tenDCHT;
-	private int gia;
+	private String maDungCuHocTap;
+	private String tenDungCuHocTap;
+	private long gia;
 	private String nhaCungCap;
+	private int soLuong;
+	private String hinhAnh;
 
 	public DungCuHocTap() {
 		super();
 	}
 
-	public DungCuHocTap(String maDCHT) {
+	public DungCuHocTap(String maDungCuHocTap) {
 		super();
-		this.maDCHT = maDCHT;
+		this.maDungCuHocTap = maDungCuHocTap;
 	}
 
-	public DungCuHocTap(String maDCHT, String tenDCHT, int gia, String nhaCungCap) {
+	public DungCuHocTap(String maDungCuHocTap, String tenDungCuHocTap, long gia, String nhaCungCap, int soLuong, String hinhAnh) {
 		super();
-		this.maDCHT = maDCHT;
-		this.tenDCHT = tenDCHT;
+		this.maDungCuHocTap = maDungCuHocTap;
+		this.tenDungCuHocTap = tenDungCuHocTap;
 		this.gia = gia;
 		this.nhaCungCap = nhaCungCap;
+		this.soLuong = soLuong;
+		this.hinhAnh = hinhAnh;
 	}
 
-	public String getMaDCHT() {
-		return maDCHT;
+	public String getMaDungCuHocTap() {
+		return maDungCuHocTap;
 	}
 
-	public void setMaDCHT(String maDCHT) {
-		this.maDCHT = maDCHT;
+	public void setMaDungCuHocTap(String maDungCuHocTap) {
+		this.maDungCuHocTap = maDungCuHocTap;
 	}
 
-	public String getTenDCHT() {
-		return tenDCHT;
+	public String getTenDungCuHocTap() {
+		return tenDungCuHocTap;
 	}
 
-	public void setTenDCHT(String tenDCHT) {
-		this.tenDCHT = tenDCHT;
+	public void setTenDungCuHocTap(String tenDungCuHocTap) {
+		this.tenDungCuHocTap = tenDungCuHocTap;
 	}
 
-	public int getGia() {
+	public long getGia() {
 		return gia;
 	}
 
-	public void setGia(int gia) {
+	public void setGia(long gia) {
 		this.gia = gia;
 	}
 
@@ -57,9 +61,26 @@ public class DungCuHocTap {
 		this.nhaCungCap = nhaCungCap;
 	}
 
+	public String getHinhAnh() {
+		return hinhAnh;
+	}
+
+	public void setHinhAnh(String hinhAnh) {
+		this.hinhAnh = hinhAnh;
+	}
+
+	public int getSoLuong() {
+		return soLuong;
+	}
+
+	public void setSoLuong(int soLuong) {
+		this.soLuong = soLuong;
+	}
+
+	
 	@Override
 	public int hashCode() {
-		return Objects.hash(gia, maDCHT, nhaCungCap, tenDCHT);
+		return Objects.hash(hinhAnh, maDungCuHocTap);
 	}
 
 	@Override
@@ -71,15 +92,13 @@ public class DungCuHocTap {
 		if (getClass() != obj.getClass())
 			return false;
 		DungCuHocTap other = (DungCuHocTap) obj;
-		return Double.doubleToLongBits(gia) == Double.doubleToLongBits(other.gia)
-				&& Objects.equals(maDCHT, other.maDCHT) && Objects.equals(nhaCungCap, other.nhaCungCap)
-				&& Objects.equals(tenDCHT, other.tenDCHT);
+		return Objects.equals(hinhAnh, other.hinhAnh) && Objects.equals(maDungCuHocTap, other.maDungCuHocTap);
 	}
 
 	@Override
 	public String toString() {
-		return "DungCuHocTap [maDCHT=" + maDCHT + ", tenDCHT=" + tenDCHT + ", gia=" + gia + ", nhaCungCap=" + nhaCungCap
-				+ "]";
+		return "DungCuHocTap [maDungCuHocTap=" + maDungCuHocTap + ", tenDungCuHocTap=" + tenDungCuHocTap + ", gia="
+				+ gia + ", nhaCungCap=" + nhaCungCap + ", soLuong=" + soLuong + ", hinhAnh=" + hinhAnh + "]";
 	}
-
+	
 }

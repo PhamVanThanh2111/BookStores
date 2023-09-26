@@ -4,18 +4,20 @@ import java.sql.Date;
 import java.util.Objects;
 
 public class NhanVien {
-	private String maNV;
-	private String tenNV;
+	private String maNhanVien;
+	private String tenNhanVien;
 	private String diaChi;
 	private String gioiTinh;
 	private java.sql.Date ngaySinh;
 	private java.sql.Date ngayVaoLam;
-	private String CCCD;
+	private String cCCD;
 	private String email;
 	private String soDienThoai;
 	private String chucVu;
 	private TaiKhoan taiKhoan;
-	private int luong;
+	private long luong;
+	private int ca;
+	private String hinhAnh;
 
 	public NhanVien() {
 		super();
@@ -23,59 +25,42 @@ public class NhanVien {
 
 	public NhanVien(String maNV) {
 		super();
-		this.maNV = maNV;
+		this.maNhanVien = maNV;
 	}
 
 	public NhanVien(String maNV, String tenNV, String diaChi, String gioiTinh, Date ngaySinh, Date ngayVaoLam,
-			String cCCD, String email, String soDienThoai, String chucVu, TaiKhoan taiKhoan, int luong) {
+			String cCCD, String email, String soDienThoai, String chucVu, TaiKhoan taiKhoan, long luong, int ca, String hinhAnh) {
 		super();
-		this.maNV = maNV;
-		this.tenNV = tenNV;
+		this.maNhanVien = maNV;
+		this.tenNhanVien = tenNV;
 		this.diaChi = diaChi;
 		this.gioiTinh = gioiTinh;
 		this.ngaySinh = ngaySinh;
 		this.ngayVaoLam = ngayVaoLam;
-		CCCD = cCCD;
+		this.cCCD = cCCD;
 		this.email = email;
 		this.soDienThoai = soDienThoai;
 		this.chucVu = chucVu;
 		this.taiKhoan = taiKhoan;
 		this.luong = luong;
+		this.ca = ca;
+		this.hinhAnh = hinhAnh;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(CCCD, email, maNV, soDienThoai, taiKhoan);
+	public String getMaNhanVien() {
+		return maNhanVien;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		NhanVien other = (NhanVien) obj;
-		return Objects.equals(CCCD, other.CCCD) && Objects.equals(email, other.email)
-				&& Objects.equals(maNV, other.maNV) && Objects.equals(soDienThoai, other.soDienThoai)
-				&& Objects.equals(taiKhoan, other.taiKhoan);
+	public void setMaNhanVien(String maNhanVien) {
+		this.maNhanVien = maNhanVien;
 	}
 
-	public String getMaNV() {
-		return maNV;
+	public String getTenNhanVien() {
+		return tenNhanVien;
 	}
 
-	public void setMaNV(String maNV) {
-		this.maNV = maNV;
-	}
-
-	public String getTenNV() {
-		return tenNV;
-	}
-
-	public void setTenNV(String tenNV) {
-		this.tenNV = tenNV;
+	public void setTenNhanVien(String tenNhanVien) {
+		this.tenNhanVien = tenNhanVien;
 	}
 
 	public String getDiaChi() {
@@ -110,14 +95,6 @@ public class NhanVien {
 		this.ngayVaoLam = ngayVaoLam;
 	}
 
-	public String getCCCD() {
-		return CCCD;
-	}
-
-	public void setCCCD(String cCCD) {
-		CCCD = cCCD;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -150,20 +127,65 @@ public class NhanVien {
 		this.taiKhoan = taiKhoan;
 	}
 
-	public int getLuong() {
+	public long getLuong() {
 		return luong;
 	}
 
-	public void setLuong(int luong) {
+	public void setLuong(long luong) {
 		this.luong = luong;
+	}
+
+	public String getHinhAnh() {
+		return hinhAnh;
+	}
+
+	public void setHinhAnh(String hinhAnh) {
+		this.hinhAnh = hinhAnh;
+	}
+
+	
+	public String getcCCD() {
+		return cCCD;
+	}
+
+	public void setcCCD(String cCCD) {
+		this.cCCD = cCCD;
+	}
+
+	public int getCa() {
+		return ca;
+	}
+
+	public void setCa(int ca) {
+		this.ca = ca;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cCCD, email, hinhAnh, maNhanVien, soDienThoai, taiKhoan);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		NhanVien other = (NhanVien) obj;
+		return Objects.equals(cCCD, other.cCCD) && Objects.equals(email, other.email)
+				&& Objects.equals(hinhAnh, other.hinhAnh) && Objects.equals(maNhanVien, other.maNhanVien)
+				&& Objects.equals(soDienThoai, other.soDienThoai) && Objects.equals(taiKhoan, other.taiKhoan);
 	}
 
 	@Override
 	public String toString() {
-		return "NhanVien [maNV=" + maNV + ", tenNV=" + tenNV + ", diaChi=" + diaChi + ", gioiTinh=" + gioiTinh
-				+ ", ngaySinh=" + ngaySinh + ", ngayVaoLam=" + ngayVaoLam + ", CCCD=" + CCCD + ", email=" + email
-				+ ", soDienThoai=" + soDienThoai + ", chucVu=" + chucVu + ", taiKhoan=" + taiKhoan + ", luong=" + luong
-				+ "]";
+		return "NhanVien [maNhanVien=" + maNhanVien + ", tenNhanVien=" + tenNhanVien + ", diaChi=" + diaChi
+				+ ", gioiTinh=" + gioiTinh + ", ngaySinh=" + ngaySinh + ", ngayVaoLam=" + ngayVaoLam + ", cCCD=" + cCCD
+				+ ", email=" + email + ", soDienThoai=" + soDienThoai + ", chucVu=" + chucVu + ", taiKhoan=" + taiKhoan
+				+ ", luong=" + luong + ", ca=" + ca + ", hinhAnh=" + hinhAnh + "]";
 	}
+	
 
 }

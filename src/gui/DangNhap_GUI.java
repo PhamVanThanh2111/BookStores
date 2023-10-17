@@ -38,7 +38,6 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JLabel lblTitle;
-	private JLabel lblTitle_1;
 	private JLabel lblUser;
 	private JLabel lblPwd;
 	private JPasswordField txtPwd;
@@ -61,7 +60,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 
 		getContentPane().setLayout(null);
 		setTitle("Login");
-		setSize(650, 400);
+		setSize(755, 541);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
@@ -84,9 +83,10 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		btnExit = new JButton("Thoát");
 
 		chkShow = new JCheckBox("Hiển Thị Mật Khẩu");
-		chkShow.setBackground(new Color(0, 0, 0));
-		chkShow.setForeground(new Color(255, 255, 255));
-		chkShow.setBounds(244, 238, 151, 21);
+		chkShow.setFont(new Font("Tahoma", Font.ITALIC, 10));
+		chkShow.setBackground(new Color(255, 255, 255));
+		chkShow.setForeground(new Color(0, 0, 0));
+		chkShow.setBounds(138, 321, 151, 21);
 		getContentPane().add(chkShow);
 
 		// Hiển thị mất khẩu
@@ -103,16 +103,10 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 			}
 		});
 
-		lblTitle_1 = new JLabel("ĐĂNG NHẬP");
-		lblTitle_1.setForeground(new Color(237, 106, 64));
-		lblTitle_1.setFont(new Font("Arial", Font.BOLD, 40));
-		lblTitle_1.setBounds(194, 41, 241, 47);
-		getContentPane().add(lblTitle_1);
-
 		lblUser = new JLabel("Tài khoản:");
-		lblUser.setFont(new Font("Arial", Font.PLAIN, 16));
-		lblUser.setBounds(161, 128, 74, 32);
-		lblUser.setForeground(Color.WHITE);
+		lblUser.setFont(new Font("Arial", Font.BOLD, 16));
+		lblUser.setBounds(30, 223, 87, 32);
+		lblUser.setForeground(new Color(0, 0, 0));
 		getContentPane().add(lblUser);
 
 		txtPwd = new JPasswordField();
@@ -139,7 +133,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 //		});
 		txtPwd.setText("NV0001");
 		txtPwd.setBorder(BorderFactory.createLineBorder(new Color(117, 128, 134)));
-		txtPwd.setBounds(269, 188, 191, 32);
+		txtPwd.setBounds(138, 283, 191, 32);
 		txtPwd.requestFocus();
 		getContentPane().add(txtPwd);
 
@@ -147,24 +141,24 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		btnLogin.setMnemonic(KeyEvent.VK_ENTER);
 		btnLogin.setForeground(Color.WHITE);
 		btnLogin.setFont(new Font("SansSerif", Font.BOLD, 15));
-		btnLogin.setBorder(new LineBorder(Color.WHITE, 2, true));
-		btnLogin.setBackground(new Color(237, 106, 64));
-		btnLogin.setBounds(142, 265, 138, 38);
+		btnLogin.setBorder(new LineBorder(new Color(116, 185, 209), 2, true));
+		btnLogin.setBackground(new Color(253, 120, 49));
+		btnLogin.setBounds(30, 384, 138, 38);
 		getContentPane().add(btnLogin);
 
 		btnExit = new JButton("Thoát");
 		btnExit.setMnemonic(KeyEvent.VK_X);
 		btnExit.setForeground(Color.WHITE);
 		btnExit.setFont(new Font("Arial", Font.PLAIN, 16));
-		btnExit.setBorder(new LineBorder(Color.WHITE, 2, true));
-		btnExit.setBackground(new Color(0, 163, 163));
-		btnExit.setBounds(342, 265, 138, 38);
+		btnExit.setBorder(new LineBorder(new Color(116, 185, 209), 2, true));
+		btnExit.setBackground(new Color(39, 63, 96));
+		btnExit.setBounds(191, 384, 138, 38);
 		getContentPane().add(btnExit);
 
 		lblPwd = new JLabel("Mật khẩu:");
-		lblPwd.setFont(new Font("Arial", Font.PLAIN, 16));
-		lblPwd.setBounds(161, 188, 74, 32);
-		lblPwd.setForeground(Color.WHITE);
+		lblPwd.setFont(new Font("Arial", Font.BOLD, 16));
+		lblPwd.setBounds(30, 283, 87, 32);
+		lblPwd.setForeground(new Color(0, 0, 0));
 		getContentPane().add(lblPwd);
 
 		txtUser = new JTextField();
@@ -181,7 +175,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 				}
 			}
 		});
-		txtUser.setBounds(269, 131, 191, 32);
+		txtUser.setBounds(138, 223, 191, 32);
 		txtUser.setBorder(BorderFactory.createLineBorder(new Color(117, 128, 134)));
 		txtUser.setText("NV0001");
 		getContentPane().add(txtUser);
@@ -192,7 +186,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		lblBackground.setForeground(new Color(255, 0, 0));
 		lblBackground.setBackground(new Color(255, 0, 0));
 		lblBackground.setIcon(new ImageIcon(DangNhap_GUI.class.getResource("/image/background-login.jpg")));
-		lblBackground.setBounds(0, 0, 711, 427);
+		lblBackground.setBounds(0, -25, 741, 529);
 		getContentPane().add(lblBackground);
 
 		btnLogin.addActionListener(this);
@@ -255,7 +249,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 				countSaiMatKhau++;
 			} else {
 				NhanVien nhanVien = nhanVien_DAO.getNhanVienTheoTaiKhoan(taiKhoan.getTaiKhoan());
-				TrangChu_GUI trangChu_GUI = new TrangChu_GUI(nhanVien);
+				HeThongQuanLyNhaSach trangChu_GUI = new HeThongQuanLyNhaSach(nhanVien);
 				trangChu_GUI.setVisible(true);
 				this.setVisible(false);
 			}

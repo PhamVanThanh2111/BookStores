@@ -15,8 +15,7 @@ public class NhanVien {
 	private String soDienThoai;
 	private String chucVu;
 	private TaiKhoan taiKhoan;
-	private long luong;
-	private int ca;
+	private String maCa;
 	private String hinhAnh;
 
 	public NhanVien() {
@@ -29,7 +28,7 @@ public class NhanVien {
 	}
 
 	public NhanVien(String maNV, String tenNV, String diaChi, String gioiTinh, Date ngaySinh, Date ngayVaoLam,
-			String cCCD, String email, String soDienThoai, String chucVu, TaiKhoan taiKhoan, long luong, int ca, String hinhAnh) {
+			String cCCD, String email, String soDienThoai, String chucVu, TaiKhoan taiKhoan, String maCa, String hinhAnh) {
 		super();
 		this.maNhanVien = maNV;
 		this.tenNhanVien = tenNV;
@@ -42,8 +41,7 @@ public class NhanVien {
 		this.soDienThoai = soDienThoai;
 		this.chucVu = chucVu;
 		this.taiKhoan = taiKhoan;
-		this.luong = luong;
-		this.ca = ca;
+		this.maCa = maCa;
 		this.hinhAnh = hinhAnh;
 	}
 
@@ -127,14 +125,6 @@ public class NhanVien {
 		this.taiKhoan = taiKhoan;
 	}
 
-	public long getLuong() {
-		return luong;
-	}
-
-	public void setLuong(long luong) {
-		this.luong = luong;
-	}
-
 	public String getHinhAnh() {
 		return hinhAnh;
 	}
@@ -152,12 +142,12 @@ public class NhanVien {
 		this.cCCD = cCCD;
 	}
 
-	public int getCa() {
-		return ca;
+	public String getCa() {
+		return maCa;
 	}
 
-	public void setCa(int ca) {
-		this.ca = ca;
+	public void setCa(String maCa) {
+		this.maCa = maCa;
 	}
 
 	@Override
@@ -184,8 +174,8 @@ public class NhanVien {
 		return "NhanVien [maNhanVien=" + maNhanVien + ", tenNhanVien=" + tenNhanVien + ", diaChi=" + diaChi
 				+ ", gioiTinh=" + gioiTinh + ", ngaySinh=" + ngaySinh + ", ngayVaoLam=" + ngayVaoLam + ", cCCD=" + cCCD
 				+ ", email=" + email + ", soDienThoai=" + soDienThoai + ", chucVu=" + chucVu + ", taiKhoan=" + taiKhoan
-				+ ", luong=" + luong + ", ca=" + ca + ", hinhAnh=" + hinhAnh + "]";
+				+ ", maCa=" + maCa + ", hinhAnh=" + hinhAnh + "]";
 	}
 	
-
+	
 }

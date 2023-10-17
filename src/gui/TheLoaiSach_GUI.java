@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
-public class LoaiSach_GUI extends JPanel {
+public class TheLoaiSach_GUI extends JPanel {
 
 	/**
 	 * 
@@ -26,7 +26,7 @@ public class LoaiSach_GUI extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public LoaiSach_GUI() {
+	public TheLoaiSach_GUI() {
 		setLayout(null);
 
 		JPanel pMain = new JPanel();
@@ -45,7 +45,7 @@ public class LoaiSach_GUI extends JPanel {
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)), "Thông Tin:", // 162,
 																													// 197
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 126, 197)));
-		pnThongTin.setBounds(10, 10, 1128, 106);
+		pnThongTin.setBounds(278, 10, 860, 298);
 		pMain.add(pnThongTin);
 		pnThongTin.setLayout(null);
 
@@ -72,7 +72,7 @@ public class LoaiSach_GUI extends JPanel {
 		pnThongTin.add(txtTenLoai);
 
 		JPanel pnChucNang = new JPanel();
-		pnChucNang.setBounds(10, 126, 1128, 54);
+		pnChucNang.setBounds(10, 10, 258, 298);
 		pnChucNang.setBorder(new TitledBorder(
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)), "Chức Năng:", // 162,
 																													// 197
@@ -82,7 +82,7 @@ public class LoaiSach_GUI extends JPanel {
 
 		JButton btnThem = new JButton("Thêm");
 		btnThem.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnThem.setBounds(88, 10, 120, 33);
+		btnThem.setBounds(61, 42, 120, 33);
 		pnChucNang.add(btnThem);
 
 		JButton btnXoa = new JButton("Xóa");
@@ -91,26 +91,26 @@ public class LoaiSach_GUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnXoa.setBounds(296, 10, 120, 33);
+		btnXoa.setBounds(61, 85, 120, 33);
 		pnChucNang.add(btnXoa);
 
 		JButton btnSua = new JButton("Sửa");
 		btnSua.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnSua.setBounds(504, 10, 120, 33);
+		btnSua.setBounds(61, 128, 120, 33);
 		pnChucNang.add(btnSua);
 
 		JButton btnIn = new JButton("In Thông Tin");
 		btnIn.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnIn.setBounds(712, 10, 120, 33);
+		btnIn.setBounds(61, 171, 120, 33);
 		pnChucNang.add(btnIn);
 
 		JButton btnThoat = new JButton("Thoát");
 		btnThoat.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnThoat.setBounds(920, 10, 120, 33);
+		btnThoat.setBounds(61, 214, 120, 33);
 		pnChucNang.add(btnThoat);
 
 		JPanel pnDanhSach = new JPanel();
-		pnDanhSach.setBounds(10, 190, 1128, 467);
+		pnDanhSach.setBounds(10, 318, 1128, 339);
 		pnDanhSach.setBorder(new TitledBorder(
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(0, 0, 0)), "Danh sách:", // 162,
 																													// 197
@@ -119,7 +119,7 @@ public class LoaiSach_GUI extends JPanel {
 		pnDanhSach.setLayout(null);
 
 		JScrollPane scrollPaneSach = new JScrollPane();
-		scrollPaneSach.setBounds(27, 46, 1060, 399);
+		scrollPaneSach.setBounds(10, 10, 1108, 319);
 		scrollPaneSach.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
 		scrollPaneSach.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
 		scrollPaneSach.setBackground(new Color(0, 0, 0));

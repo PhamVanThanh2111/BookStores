@@ -32,17 +32,18 @@ public class HoaDon_GUI extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField txtTimKiem;
-	private JTable table;
 	private DefaultTableModel model;
 	private JTable tableTT;
 	private DefaultTableModel modelTT;
-	private JScrollPane scrollPaneTenKH;
 	private JTextField txtSoLuong;
 	private JComboBox<String> cbTenSP;
 	private JComboBox<String> cbLoaiSP;
 	private DefaultComboBoxModel<String> cbModelTenSP;
 	private Sach_DAO sach_DAO;
 	private DungCuHocTap_DAO dungCuHocTap_DAO;
+	private JTextField txtTenKhachHang;
+	private JTextField txtSoDienThoai;
+	private JTextField txtDiaChi;
 
 	/**
 	 * Create the panel.
@@ -93,37 +94,70 @@ public class HoaDon_GUI extends JPanel {
 				"T\u00EAn kh\u00E1ch h\u00E0ng:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));
 		pTenKhachHang.setBounds(10, 53, 506, 234);
 		pMain.add(pTenKhachHang);
-
-		scrollPaneTenKH = new JScrollPane();
-		scrollPaneTenKH.setBounds(10, 24, 486, 200);
-		pTenKhachHang.add(scrollPaneTenKH);
-		scrollPaneTenKH.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
-		scrollPaneTenKH.setBorder(new LineBorder(new Color(80, 80, 80), 1, true));
-		scrollPaneTenKH.setBackground(new Color(80, 80, 80));
-		table = new JTable(model);
-		table.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
-		table.setRowHeight(25);
-		scrollPaneTenKH.setViewportView(table);
+		
+		JLabel lblTenKhachHang = new JLabel("Tên khách hàng:");
+		lblTenKhachHang.setFont(new Font("SansSerif", Font.BOLD, 14));
+		lblTenKhachHang.setBounds(32, 30, 120, 33);
+		pTenKhachHang.add(lblTenKhachHang);
+		
+		txtTenKhachHang = new JTextField();
+		txtTenKhachHang.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtTenKhachHang.setColumns(10);
+		txtTenKhachHang.setBounds(164, 30, 282, 33);
+		txtTenKhachHang.setEditable(false);
+		pTenKhachHang.add(txtTenKhachHang);
+		
+		JLabel lblSoDienThoai = new JLabel("Số điện thoại:");
+		lblSoDienThoai.setFont(new Font("SansSerif", Font.BOLD, 14));
+		lblSoDienThoai.setBounds(32, 73, 120, 33);
+		pTenKhachHang.add(lblSoDienThoai);
+		
+		txtSoDienThoai = new JTextField();
+		txtSoDienThoai.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtSoDienThoai.setColumns(10);
+		txtSoDienThoai.setBounds(164, 73, 282, 33);
+		pTenKhachHang.add(txtSoDienThoai);
+		
+		JLabel lblGioiTinh = new JLabel("Giới tính:");
+		lblGioiTinh.setFont(new Font("SansSerif", Font.BOLD, 14));
+		lblGioiTinh.setBounds(32, 116, 120, 33);
+		pTenKhachHang.add(lblGioiTinh);
+		
+		JLabel lblDiaChi = new JLabel("Địa chỉ:");
+		lblDiaChi.setFont(new Font("SansSerif", Font.BOLD, 14));
+		lblDiaChi.setBounds(32, 159, 120, 33);
+		pTenKhachHang.add(lblDiaChi);
+		
+		txtDiaChi = new JTextField();
+		txtDiaChi.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtDiaChi.setColumns(10);
+		txtDiaChi.setBounds(164, 159, 282, 33);
+		txtDiaChi.setEditable(false);
+		pTenKhachHang.add(txtDiaChi);
+		
+		JComboBox<String> cbGioiTinh = new JComboBox<String>();
+		cbGioiTinh.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		cbGioiTinh.setBounds(164, 116, 284, 33);
+		cbGioiTinh.setEditable(false);
+		pTenKhachHang.add(cbGioiTinh);
 
 		String cols[] = { "Tên KH" };
 		model = new DefaultTableModel(cols, 0);
 
-		JPanel pThongTin = new JPanel();
-		pThongTin.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
-		pThongTin.setLayout(null);
-		pThongTin.setBorder(new TitledBorder(
-				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(28, 28, 28)),
-				"Th\u00F4ng tin chung", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(28, 28, 28)));
-		pThongTin.setBounds(526, 53, 626, 604);
-		pMain.add(pThongTin);
+		JPanel pChiTietHoaDon = new JPanel();
+		pChiTietHoaDon.setToolTipText("");
+		pChiTietHoaDon.setLayout(null);
+		pChiTietHoaDon.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(28, 28, 28)), "Chi ti\u1EBFt h\u00F3a \u0111\u01A1n:", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(28, 28, 28)));
+		pChiTietHoaDon.setBounds(526, 53, 626, 604);
+		pMain.add(pChiTietHoaDon);
 
 		JScrollPane scrollPaneTT;
 		scrollPaneTT = new JScrollPane();
 		scrollPaneTT.setBounds(10, 20, 606, 574);
-		scrollPaneTT.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
+		scrollPaneTT.setToolTipText("");
 		scrollPaneTT.setBorder(new LineBorder(new Color(80, 80, 80), 1, true));
 		scrollPaneTT.setBackground(new Color(80, 80, 80));
-		pThongTin.add(scrollPaneTT);
+		pChiTietHoaDon.add(scrollPaneTT);
 
 		String colsTT[] = { "Tên mặt hàng", "Tên loại", "Số lượng", "Đơn giá", "Thành tiền" };
 		modelTT = new DefaultTableModel(colsTT, 0);
@@ -131,14 +165,6 @@ public class HoaDon_GUI extends JPanel {
 		tableTT.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
 		tableTT.setRowHeight(25);
 		scrollPaneTT.setViewportView(tableTT);
-
-		JPanel pNhanVien = new JPanel();
-		pNhanVien.setLayout(null);
-		pNhanVien.setBorder(new TitledBorder(
-				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(28, 28, 28)),
-				"Nh\u00E2n vi\u00EAn:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));
-		pNhanVien.setBounds(10, 561, 506, 96);
-		pMain.add(pNhanVien);
 
 		JPanel pThongTinKH = new JPanel();
 		pThongTinKH.setBorder(
@@ -211,6 +237,12 @@ public class HoaDon_GUI extends JPanel {
 		btnThanhTon.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnThanhTon.setBounds(348, 195, 120, 33);
 		pThongTinKH.add(btnThanhTon);
+		
+		JPanel pNhanVien = new JPanel();
+		pNhanVien.setLayout(null);
+		pNhanVien.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(28, 28, 28)), "Nh\u00E2n vi\u00EAn:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));
+		pNhanVien.setBounds(10, 561, 506, 96);
+		pMain.add(pNhanVien);
 
 	}
 

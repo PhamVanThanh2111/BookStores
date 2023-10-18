@@ -8,7 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ComboBoxSearchExample extends JFrame {
-    private JComboBox<String> comboBox;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JComboBox<String> comboBox;
     private JTextField searchField;
 
     public ComboBoxSearchExample() {

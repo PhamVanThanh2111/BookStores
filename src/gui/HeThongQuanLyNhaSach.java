@@ -16,6 +16,7 @@ import entity.NhanVien;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Toolkit;
@@ -46,6 +47,11 @@ public class HeThongQuanLyNhaSach extends JFrame {
 	private JLabel lblIconHoaDon;
 	private JLabel lblIconHoSo;
 	private JLabel lblIconDangXuat;
+	private JLabel lblSubMenu2;
+	private JSeparator sprDoc2;
+	private JLabel lblSubMenu3;
+	private JSeparator sprDoc1;
+	private JLabel lblSubMenu1;
 
 	/**
 	 * Create the frame.
@@ -97,6 +103,13 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				cardLayoutContent.show(pContent, "NhanVien_GUI");
+				lblSubMenu1.setVisible(true);
+				lblSubMenu1.setText("Nhân Viên");
+				lblSubMenu2.setVisible(true);
+				lblSubMenu2.setText("Thống Kê");
+				lblSubMenu3.setVisible(false);
+				sprDoc2.setVisible(false);
+				sprDoc1.setVisible(true);
 			}
 		});
 		
@@ -125,6 +138,11 @@ public class HeThongQuanLyNhaSach extends JFrame {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						cardLayoutContent.show(pContent, "TrangChu_GUI");
+						lblSubMenu1.setVisible(false);
+						lblSubMenu2.setVisible(false);
+						lblSubMenu3.setVisible(false);
+						sprDoc1.setVisible(false);
+						sprDoc2.setVisible(false);
 					}
 				});
 				pMenu1.add(lblTrangChu);
@@ -160,6 +178,11 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				cardLayoutContent.show(pContent, "KhachHang_GUI");
+				lblSubMenu1.setVisible(false);
+				lblSubMenu2.setVisible(false);
+				lblSubMenu3.setVisible(false);
+				sprDoc1.setVisible(false);
+				sprDoc2.setVisible(false);
 			}
 		});
 		pMenu1.add(lblKhachHang);
@@ -189,6 +212,14 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				cardLayoutContent.show(pContent, "HoaDon_GUI");
+				lblSubMenu1.setVisible(true);
+				lblSubMenu1.setText("Hóa Đơn");
+				lblSubMenu2.setVisible(true);
+				lblSubMenu2.setText("Danh Sách Đặt Hàng");
+				lblSubMenu3.setVisible(true);
+				lblSubMenu3.setText("Danh Sách Hóa Đơn");
+				sprDoc1.setVisible(true);
+				sprDoc2.setVisible(true);
 			}
 		});
 		pMenu1.add(lblHoaDon);
@@ -218,6 +249,14 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				cardLayoutContent.show(pContent, "Sach_GUI");
+				lblSubMenu1.setVisible(true);
+				lblSubMenu1.setText("Sách");
+				lblSubMenu2.setVisible(true);
+				lblSubMenu2.setText("Loại Sách");
+				lblSubMenu3.setVisible(true);
+				lblSubMenu3.setText("Nhà Xuất Bản");
+				sprDoc1.setVisible(true);
+				sprDoc2.setVisible(true);
 			}
 		});
 		pMenu1.add(lblSach);
@@ -338,6 +377,11 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				cardLayoutContent.show(pContent, "TrangChu_GUI");
+				lblSubMenu1.setVisible(false);
+				lblSubMenu2.setVisible(false);
+				lblSubMenu3.setVisible(false);
+				sprDoc1.setVisible(false);
+				sprDoc2.setVisible(false);
 			}
 		});
 		pMenu1.add(lblIconTrangChu);
@@ -366,6 +410,13 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				cardLayoutContent.show(pContent, "NhanVien_GUI");
+				lblSubMenu1.setVisible(true);
+				lblSubMenu1.setText("Nhân Viên");
+				lblSubMenu2.setVisible(true);
+				lblSubMenu2.setText("Thống Kê");
+				lblSubMenu3.setVisible(false);
+				sprDoc2.setVisible(false);
+				sprDoc1.setVisible(true);
 			}
 		});
 		pMenu1.add(lblIconNhanVien);
@@ -394,6 +445,11 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				cardLayoutContent.show(pContent, "KhachHang_GUI");
+				lblSubMenu1.setVisible(false);
+				lblSubMenu2.setVisible(false);
+				lblSubMenu3.setVisible(false);
+				sprDoc1.setVisible(false);
+				sprDoc2.setVisible(false);
 			}
 		});
 		pMenu1.add(lblIconKhachHang);
@@ -422,6 +478,14 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				cardLayoutContent.show(pContent, "Sach_GUI");
+				lblSubMenu1.setVisible(true);
+				lblSubMenu1.setText("Sách");
+				lblSubMenu2.setVisible(true);
+				lblSubMenu2.setText("Loại Sách");
+				lblSubMenu3.setVisible(true);
+				lblSubMenu3.setText("Nhà Xuất Bản");
+				sprDoc1.setVisible(true);
+				sprDoc2.setVisible(true);
 			}
 		});
 		pMenu1.add(lblIconSach);
@@ -473,6 +537,14 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				cardLayoutContent.show(pContent, "HoaDon_GUI");
+				lblSubMenu1.setVisible(true);
+				lblSubMenu1.setText("Hóa Đơn");
+				lblSubMenu2.setVisible(true);
+				lblSubMenu2.setText("Danh Sách Đặt Hàng");
+				lblSubMenu3.setVisible(true);
+				lblSubMenu3.setText("Danh Sách Hóa Đơn");
+				sprDoc1.setVisible(true);
+				sprDoc2.setVisible(true);
 			}
 		});
 		pMenu1.add(lblIconHoaDon);
@@ -556,214 +628,50 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		lblLogo.setBounds(58, 0, 93, 85);
 		contentPane.add(lblLogo);
 		
-		JLabel lblSubMenu1 = new JLabel("Đây là menu con");
+		Rectangle viTriMenuCon1 = new Rectangle(220, 15, 275, 55);
+		Rectangle viTriMenuCon2 = new Rectangle(544, 15, 275, 55);
+		Rectangle viTriMenuCon3 = new Rectangle(864, 15, 275, 55);
+		
+		lblSubMenu1 = new JLabel();
 		lblSubMenu1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSubMenu1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblSubMenu1.setBounds(220, 15, 200, 55);
+		lblSubMenu1.setBounds(viTriMenuCon1.getBounds());
+		lblSubMenu1.setVisible(false);
 		contentPane.add(lblSubMenu1);
 		
-		JSeparator separator = new JSeparator();
-		separator.setForeground(new Color(60, 60, 60));
-		separator.setBounds(220, 85, 1300, 2);
-		contentPane.add(separator);
+		sprDoc1 = new JSeparator();
+		sprDoc1.setForeground(new Color(60, 60, 60));
+		sprDoc1.setOrientation(SwingConstants.VERTICAL);
+		sprDoc1.setBounds(520, 15, 2, 55);
+		sprDoc1.setVisible(false);
+		contentPane.add(sprDoc1);
+		
+		lblSubMenu2 = new JLabel();
+		lblSubMenu2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSubMenu2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblSubMenu2.setBounds(viTriMenuCon2.getBounds());
+		lblSubMenu2.setVisible(false);
+		contentPane.add(lblSubMenu2);
+		
+		sprDoc2 = new JSeparator();
+		sprDoc2.setForeground(new Color(60, 60, 60));
+		sprDoc2.setOrientation(SwingConstants.VERTICAL);
+		sprDoc2.setBounds(842, 15, 2, 55);
+		sprDoc2.setVisible(false);
+		contentPane.add(sprDoc2);
+		
+		lblSubMenu3 = new JLabel();
+		lblSubMenu3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSubMenu3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblSubMenu3.setBounds(viTriMenuCon3.getBounds());
+		lblSubMenu3.setVisible(false);
+		contentPane.add(lblSubMenu3);
+		
+		JSeparator sprNgang = new JSeparator();
+		sprNgang.setForeground(new Color(60, 60, 60));
+		sprNgang.setBounds(220, 85, 1300, 2);
+		contentPane.add(sprNgang);
 	}
-
-	// public TrangChu_GUI() throws SQLException {
-	// setIconImage(Toolkit.getDefaultToolkit().getImage(TrangChu_GUI.class.getResource("/image/favicon.jpg")));
-	// setForeground(new Color(255, 255, 255));
-	// setLocationRelativeTo(null);
-	// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	// setBounds(100, 100, 450, 300);
-	// contentPane = new JPanel();
-	// contentPane.setForeground(new Color(255, 255, 255));
-	// contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-	//// contentPane.setBounds(0, 0, 1280, 520);
-	// setSize(1366, 768);
-	// setResizable(false);
-	// setTitle("Quản lý sách");
-	// setContentPane(contentPane);
-	// contentPane.setLayout(null);
-	//
-	// lblShowHideMenu = new JLabel("-");
-	// lblShowHideMenu.setFont(new Font("Tahoma", Font.PLAIN, 20));
-	// lblShowHideMenu.setHorizontalAlignment(SwingConstants.CENTER);
-	// lblShowHideMenu.setForeground(new Color(255, 255, 255));
-	// lblShowHideMenu.setBackground(new Color(240, 240, 240));
-	// lblShowHideMenu.setBounds(150, 65, 30, 30);
-	// contentPane.add(lblShowHideMenu);
-	//
-	// JPanel panel = new JPanel();
-	// panel.setBounds(0, 0, 1352, 54);
-	// panel.setBackground(new Color(46, 46, 46));
-	// getContentPane().add(panel);
-	// panel.setLayout(null);
-	//
-	// JLabel lblLogo = new JLabel("");
-	// lblLogo.setIcon(new
-	// ImageIcon(TrangChu_GUI.class.getResource("/image/logo.jpg")));
-	// lblLogo.setBounds(30, 0, 217, 55);
-	// panel.add(lblLogo);
-	//
-	// now = LocalDate.now();
-	// ngay = now.getDayOfMonth();
-	// thang = now.getMonthValue();
-	// nam = now.getYear();
-	//
-	// JLabel lblHeaderDate = new JLabel("Hiện tại:");
-	// lblHeaderDate.setToolTipText("Ngày hiện tại");
-	// lblHeaderDate.setForeground(Color.WHITE);
-	// lblHeaderDate.setFont(new Font("SansSerif", Font.BOLD, 15));
-	// lblHeaderDate.setBounds(488, 23, 66, 21);
-	// panel.add(lblHeaderDate);
-	//
-	// JLabel lblNgayHienTai = new JLabel(ngay + " / " + thang + " / " + nam);
-	// lblNgayHienTai.setToolTipText("Ngày hiện tại");
-	// lblNgayHienTai.setForeground(Color.WHITE);
-	// lblNgayHienTai.setFont(new Font("SansSerif", Font.BOLD, 22));
-	// lblNgayHienTai.setBounds(564, 20, 151, 21);
-	// panel.add(lblNgayHienTai);
-	//
-	// btnDangXuat = new JButton("Đăng nhập");
-	// btnDangXuat.setToolTipText("Đăng nhập");
-	// btnDangXuat.setForeground(Color.BLACK);
-	// btnDangXuat.setFont(new Font("SansSerif", Font.BOLD, 13));
-	// btnDangXuat.setBounds(1210, 10, 132, 35);
-	// btnDangXuat.setBackground(new Color(0, 255, 255));
-	// btnDangXuat.addActionListener(new ActionListener() {
-	//
-	// @Override
-	// public void actionPerformed(ActionEvent e) {
-	// // TODO Auto-generated method stub
-	// setVisible(false);
-	// DangNhap_GUI dangNhap_GUI;
-	// try {
-	// dangNhap_GUI = new DangNhap_GUI();
-	// dangNhap_GUI.setVisible(true);
-	// } catch (SQLException e1) {
-	// // TODO Auto-generated catch block
-	// e1.printStackTrace();
-	// }
-	// }
-	// });
-	//
-	// panel.add(btnDangXuat);
-	//
-	// // menu
-	// JPanel pMenu = new JPanel();
-	// pMenu.setBackground(new Color(42, 42, 42));
-	// pMenu.setBounds(0, 64, 180, 667);
-	// pMenu.setLayout(null);
-	//
-	// getContentPane().add(pMenu);
-	//
-	// lblSach = new JLabel("Sách");
-	// lblSach.setHorizontalAlignment(SwingConstants.CENTER);
-	// lblSach.setForeground(Color.WHITE);
-	// lblSach.setFont(new Font("SansSerif", Font.PLAIN, 14));
-	// lblSach.setBorder(new LineBorder(new Color(0, 0, 0)));
-	// lblSach.setBackground(new Color(28, 28, 28));
-	// lblSach.setBounds(10, 40, 160, 64);
-	// lblSach.addMouseListener(new MouseAdapter() {
-	// @Override
-	// public void mouseEntered(MouseEvent e) {
-	// lblSach.setBackground(new Color(28, 28, 28));
-	// lblSach.setOpaque(true);
-	// }
-	//
-	// @Override
-	// public void mouseExited(MouseEvent e) {
-	// lblSach.setBackground(new Color(38, 38, 38));
-	// }
-	//
-	// @Override
-	// public void mouseClicked(MouseEvent e) {
-	// cardLayoutContent.show(pContent, "Sach_GUI");
-	// }
-	// });
-	// pMenu.add(lblSach);
-	//
-	// lblLoaiSach = new JLabel("Loại sách");
-	// lblLoaiSach.setHorizontalAlignment(SwingConstants.CENTER);
-	// lblLoaiSach.setForeground(Color.WHITE);
-	// lblLoaiSach.setFont(new Font("SansSerif", Font.PLAIN, 14));
-	// lblLoaiSach.setBorder(new LineBorder(new Color(0, 0, 0)));
-	// lblLoaiSach.setBackground(new Color(28, 28, 28));
-	// lblLoaiSach.setBounds(10, 144, 160, 64);
-	// lblLoaiSach.addMouseListener(new MouseAdapter() {
-	// @Override
-	// public void mouseEntered(MouseEvent e) {
-	// lblLoaiSach.setBackground(new Color(28, 28, 28));
-	// lblLoaiSach.setOpaque(true);
-	// }
-	//
-	// @Override
-	// public void mouseExited(MouseEvent e) {
-	// lblLoaiSach.setBackground(new Color(38, 38, 38));
-	// }
-	//
-	// @Override
-	// public void mouseClicked(MouseEvent e) {
-	// cardLayoutContent.show(pContent, "LoaiSach_GUI");
-	// }
-	// });
-	// pMenu.add(lblLoaiSach);
-	//
-	// lblNXB = new JLabel("NXB");
-	// lblNXB.setHorizontalAlignment(SwingConstants.CENTER);
-	// lblNXB.setForeground(Color.WHITE);
-	// lblNXB.setFont(new Font("SansSerif", Font.PLAIN, 14));
-	// lblNXB.setBorder(new LineBorder(new Color(0, 0, 0)));
-	// lblNXB.setBackground(new Color(28, 28, 28));
-	// lblNXB.setBounds(10, 248, 160, 64);
-	// lblNXB.addMouseListener(new MouseAdapter() {
-	// @Override
-	// public void mouseEntered(MouseEvent e) {
-	// lblNXB.setBackground(new Color(28, 28, 28));
-	// lblNXB.setOpaque(true);
-	// }
-	//
-	// @Override
-	// public void mouseExited(MouseEvent e) {
-	// lblNXB.setBackground(new Color(38, 38, 38));
-	// }
-	//
-	// @Override
-	// public void mouseClicked(MouseEvent e) {
-	// cardLayoutContent.show(pContent, "NXB_GUI");
-	// }
-	// });
-	// pMenu.add(lblNXB);
-	//
-	// pContent = new JPanel();
-	// pContent.setBackground(new Color(77, 77, 77));
-	// pContent.setBounds(190, 64, 1162, 667);
-	// getContentPane().add(pContent);
-	//
-	// cardLayoutContent = new CardLayout();
-	// pContent.setLayout(cardLayoutContent);
-	// pContent.add(new Sach_GUI(), "Sach_GUI");
-	// pContent.add(new LoaiSach_GUI(), "LoaiSach_GUI");
-	// pContent.add(new NXB_GUI(), "NXB_GUI");
-	// cardLayoutContent.show(pContent, "Sach_GUI");
-	//
-	// lblShowHideMenu.addMouseListener(new MouseAdapter() {
-	// @Override
-	// public void mouseClicked(MouseEvent e) {
-	// if (lblShowHideMenu.getText().equals("-")) {
-	// lblShowHideMenu.setText("+");
-	// pContent.setBounds(102, 64, 1162, 667);
-	// lblShowHideMenu.setForeground(new Color(1, 1, 1));
-	// lblShowHideMenu.setBounds(10, 65, 25, 25);
-	// } else {
-	// lblShowHideMenu.setText("-");
-	// pContent.setBounds(190, 64, 1162, 667);
-	// lblShowHideMenu.setForeground(new Color(255, 255, 255));
-	// lblShowHideMenu.setBounds(150, 65, 25, 25);
-	// }
-	// pMenu.setVisible(!pMenu.isVisible());
-	// }
-	// });
-	// }
 
 	public static void main(String[] args) {
 		try {

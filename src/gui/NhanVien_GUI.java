@@ -109,7 +109,6 @@ public class NhanVien_GUI extends JPanel {
 		txtDiaChi.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtDiaChi.setColumns(10);
 		txtDiaChi.setBounds(170, 652, 240, 40);
-		txtDiaChi.setBorder(null);
 		pNhapThongTin.add(txtDiaChi);
 
 		JLabel lblSoDienThoai = new JLabel("Số điện thoại:");
@@ -125,7 +124,6 @@ public class NhanVien_GUI extends JPanel {
 		txtSoDienThoai.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtSoDienThoai.setColumns(10);
 		txtSoDienThoai.setBounds(170, 145, 240, 40);
-		txtSoDienThoai.setBorder(null);
 		pNhapThongTin.add(txtSoDienThoai);
 
 		cbGioiTinh = new JComboBox<String>();
@@ -150,7 +148,6 @@ public class NhanVien_GUI extends JPanel {
 		txtcCCD.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtcCCD.setColumns(10);
 		txtcCCD.setBounds(170, 562, 240, 40);
-		txtcCCD.setBorder(null);
 		pNhapThongTin.add(txtcCCD);
 
 		txtEmail = new JTextField();
@@ -160,13 +157,13 @@ public class NhanVien_GUI extends JPanel {
 		txtEmail.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtEmail.setColumns(10);
 		txtEmail.setBounds(170, 190, 240, 40);
-		txtEmail.setBorder(null);
 		pNhapThongTin.add(txtEmail);
 
-		JPanel pDanhSach = new JPanel();
+		PanelRound pDanhSach = new PanelRound();
 		pDanhSach.setBackground(new Color(255, 255, 255));
 		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0)));
 		pDanhSach.setBounds(0, 0, 850, 720);
+		pDanhSach.setRoundTopLeft(16);
 		pMain.add(pDanhSach);
 		pDanhSach.setLayout(null);
 

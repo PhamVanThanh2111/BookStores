@@ -12,9 +12,6 @@ import javax.swing.JComboBox;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import dao.NXB_DAO;
-import entity.NhanVien;
-
 import javax.swing.border.EtchedBorder;
 import java.awt.Component;
 import javax.swing.Box;
@@ -36,7 +33,6 @@ public class NXB_GUI extends JPanel {
 
 	private DefaultTableModel model;
 	private JTable table;
-	private NXB_DAO nxb_DAO;
 
 	/**
 	 * Create the panel.
@@ -44,7 +40,6 @@ public class NXB_GUI extends JPanel {
 	public NXB_GUI() {
 
 		// Khai bao DAO
-		nxb_DAO = new NXB_DAO();
 
 		setLayout(null);
 		JPanel pMain = new JPanel();

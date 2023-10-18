@@ -38,6 +38,7 @@ import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JSeparator;
+import javax.swing.ImageIcon;
 
 public class NhanVien_GUI extends JPanel {
 	/**
@@ -276,6 +277,7 @@ public class NhanVien_GUI extends JPanel {
 								pDanhSach.add(separator);
 								
 										JButton btnXoa = new JButton("Xóa");
+										btnXoa.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/remove_person.png")));
 										btnXoa.setBackground(new Color(73, 129, 158));
 										btnXoa.setForeground(new Color(255, 255, 255));
 										btnXoa.setBounds(423, 660, 120, 40);
@@ -283,6 +285,7 @@ public class NhanVien_GUI extends JPanel {
 										btnXoa.setFont(new Font("SansSerif", Font.BOLD, 14));
 										
 												JButton btnAdd = new JButton("Thêm");
+												btnAdd.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/add_person.png")));
 												btnAdd.setForeground(new Color(255, 255, 255));
 												btnAdd.setBackground(new Color(73, 129, 158));
 												btnAdd.setBounds(280, 660, 120, 40);
@@ -291,6 +294,7 @@ public class NhanVien_GUI extends JPanel {
 												btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
 												
 														JButton btnSua = new JButton("Sửa");
+														btnSua.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/update_person.png")));
 														btnSua.setBackground(new Color(73, 129, 158));
 														btnSua.setForeground(new Color(255, 255, 255));
 														btnSua.setBounds(568, 660, 120, 40);
@@ -298,6 +302,7 @@ public class NhanVien_GUI extends JPanel {
 														btnSua.setFont(new Font("SansSerif", Font.BOLD, 14));
 														
 														JButton btnTim = new JButton("Tìm");
+														btnTim.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/find_person.png")));
 														btnTim.setBackground(new Color(73, 129, 158));
 														btnTim.setForeground(new Color(255, 255, 255));
 														btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));

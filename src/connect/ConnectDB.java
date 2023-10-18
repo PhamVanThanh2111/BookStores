@@ -32,16 +32,4 @@ public class ConnectDB {
 	public static Connection getConnection() {
 		return con;
 	}
-
-	public static void main(String[] args) {
-		try {
-			connect();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(con);
-
-	}
-
 }

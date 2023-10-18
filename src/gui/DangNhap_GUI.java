@@ -18,8 +18,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
-import com.formdev.flatlaf.themes.FlatMacLightLaf;
-
 import connect.ConnectDB;
 import dao.NhanVien_DAO;
 import dao.TaiKhoan_DAO;
@@ -29,7 +27,6 @@ import entity.TaiKhoan;
 import java.awt.event.KeyAdapter;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 
 public class DangNhap_GUI extends JFrame implements ActionListener {
 
@@ -253,15 +250,6 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 				trangChu_GUI.setVisible(true);
 				this.setVisible(false);
 			}
-		}
-	}
-
-	public static void main(String[] args) throws SQLException {
-		try {
-		    UIManager.setLookAndFeel(new FlatMacLightLaf());
-		    new DangNhap_GUI().setVisible(true);
-		} catch( Exception ex ) {
-		    System.err.println( "Failed to initialize LaF" );
 		}
 	}
 }

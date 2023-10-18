@@ -66,10 +66,10 @@ public class ComboBoxSearchExample extends JFrame {
         setLocationRelativeTo(null);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            ComboBoxSearchExample example = new ComboBoxSearchExample();
-            example.setVisible(true);
-        });
-    }
+//    public static void main(String[] args) {
+//        SwingUtilities.invokeLater(() -> {
+//            ComboBoxSearchExample example = new ComboBoxSearchExample();
+//            example.setVisible(true);
+//        });
+//    }
 }

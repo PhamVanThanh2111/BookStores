@@ -87,6 +87,7 @@ public class HoaDon_GUI extends JPanel {
 		pTenKhachHang.add(lblTenKhachHang);
 		
 		txtTenKhachHang = new JTextField();
+		txtTenKhachHang.setEditable(false);
 		txtTenKhachHang.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtTenKhachHang.setColumns(10);
 		txtTenKhachHang.setBounds(174, 120, 336, 40);
@@ -106,7 +107,6 @@ public class HoaDon_GUI extends JPanel {
 		txtSoDienThoai.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtSoDienThoai.setColumns(10);
 		txtSoDienThoai.setBounds(174, 170, 336, 40);
-		txtSoDienThoai.setEditable(false);
 		pTenKhachHang.add(txtSoDienThoai);
 		
 		JLabel lblThongTinKhachHang = new JLabel("Thông tin khách hàng:");

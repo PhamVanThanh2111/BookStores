@@ -245,6 +245,7 @@ public class NhanVien_GUI extends JPanel {
 		tableHeader.setBackground(new Color(73, 129, 158));
 		tableHeader.setForeground(Color.white);
 		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
+		tableHeader.setReorderingAllowed(false);
 
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);

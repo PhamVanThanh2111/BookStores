@@ -112,7 +112,7 @@ public class NhanVien_GUI extends JPanel {
 		txtDiaChi.setBounds(170, 652, 240, 40);
 		pNhapThongTin.add(txtDiaChi);
 
-		JLabel lblSoDienThoai = new JLabel("Số điện thoại:");
+		JLabel lblSoDienThoai = new JLabel("Số Điện Thoại:");
 		lblSoDienThoai.setToolTipText("Số điện thoại");
 		lblSoDienThoai.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		lblSoDienThoai.setBounds(40, 145, 120, 40);
@@ -395,7 +395,7 @@ public class NhanVien_GUI extends JPanel {
 		lblThongTinViecLam.setBounds(20, 260, 189, 40);
 		pNhapThongTin.add(lblThongTinViecLam);
 		
-		JLabel lblMNhnVin = new JLabel("Mã nhân viên:");
+		JLabel lblMNhnVin = new JLabel("Mã Nhân Viên:");
 		lblMNhnVin.setToolTipText("Số điện thoại");
 		lblMNhnVin.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		lblMNhnVin.setBounds(40, 305, 120, 40);
@@ -407,7 +407,7 @@ public class NhanVien_GUI extends JPanel {
 		lblMaNhanVienValue.setBounds(170, 305, 120, 40);
 		pNhapThongTin.add(lblMaNhanVienValue);
 		
-		JLabel lblChucVu1 = new JLabel("Chức vụ:");
+		JLabel lblChucVu1 = new JLabel("Chức Vụ:");
 		lblChucVu1.setToolTipText("Số điện thoại");
 		lblChucVu1.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		lblChucVu1.setBounds(40, 350, 120, 40);
@@ -435,7 +435,7 @@ public class NhanVien_GUI extends JPanel {
 		lblT.setBounds(20, 467, 189, 40);
 		pNhapThongTin.add(lblT);
 		
-		JLabel lblNgaySinh = new JLabel("Ngày sinh:");
+		JLabel lblNgaySinh = new JLabel("Ngày Sinh");
 		lblNgaySinh.setToolTipText("Số điện thoại");
 		lblNgaySinh.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		lblNgaySinh.setBounds(40, 517, 120, 40);
@@ -447,13 +447,13 @@ public class NhanVien_GUI extends JPanel {
 		lblCccd.setBounds(40, 562, 120, 40);
 		pNhapThongTin.add(lblCccd);
 		
-		JLabel lblGiiTnh = new JLabel("Giới tính:");
+		JLabel lblGiiTnh = new JLabel("Giới Tính:");
 		lblGiiTnh.setToolTipText("Số điện thoại");
 		lblGiiTnh.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		lblGiiTnh.setBounds(40, 607, 120, 40);
 		pNhapThongTin.add(lblGiiTnh);
 		
-		JLabel lblDiaChi = new JLabel("Địa chỉ:");
+		JLabel lblDiaChi = new JLabel("Địa Chỉ:");
 		lblDiaChi.setToolTipText("Số điện thoại");
 		lblDiaChi.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		lblDiaChi.setBounds(40, 652, 120, 40);

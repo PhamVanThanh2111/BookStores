@@ -69,7 +69,7 @@ public class HoaDon_GUI extends JPanel {
 		pTenKhachHang.setBounds(0, 0, 530, 280);
 		pnlMain.add(pTenKhachHang);
 		
-		JLabel lblMaKhachHang = new JLabel("Mã khách hàng:");
+		JLabel lblMaKhachHang = new JLabel("Mã Khách Hàng:");
 		lblMaKhachHang.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		lblMaKhachHang.setBounds(23, 70, 141, 40);
 		pTenKhachHang.add(lblMaKhachHang);
@@ -81,7 +81,7 @@ public class HoaDon_GUI extends JPanel {
 		txtMaKhachHang.setEditable(false);
 		pTenKhachHang.add(txtMaKhachHang);
 		
-		JLabel lblTenKhachHang = new JLabel("Tên khách hàng:");
+		JLabel lblTenKhachHang = new JLabel("Tên Khách Hàng:");
 		lblTenKhachHang.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		lblTenKhachHang.setBounds(23, 120, 141, 40);
 		pTenKhachHang.add(lblTenKhachHang);
@@ -92,12 +92,12 @@ public class HoaDon_GUI extends JPanel {
 		txtTenKhachHang.setBounds(174, 120, 336, 40);
 		pTenKhachHang.add(txtTenKhachHang);
 		
-		JLabel lblSoDienThoai = new JLabel("Số điện thoại:");
+		JLabel lblSoDienThoai = new JLabel("Số Điện Thoại:");
 		lblSoDienThoai.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		lblSoDienThoai.setBounds(23, 170, 141, 40);
 		pTenKhachHang.add(lblSoDienThoai);
 		
-		JLabel lblDiaChi = new JLabel("Địa chỉ:");
+		JLabel lblDiaChi = new JLabel("Địa Chỉ:");
 		lblDiaChi.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		lblDiaChi.setBounds(23, 220, 141, 40);
 		pTenKhachHang.add(lblDiaChi);
@@ -136,7 +136,7 @@ public class HoaDon_GUI extends JPanel {
 		scrollPaneTT.setBackground(new Color(80, 80, 80));
 		pChiTietHoaDon.add(scrollPaneTT);
 
-		String colsTT[] = { "Tên mặt hàng", "Tên loại", "Số lượng", "Đơn giá", "Thành tiền" };
+		String colsTT[] = { "Tên Mặt Hàng", "Tên Loại", "Số Lượng", "Đơn Giá", "Thành Tiền" };
 		modelTT = new DefaultTableModel(colsTT, 0);
 		tableTT = new JTable(modelTT);
 		tableTT.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
@@ -262,7 +262,7 @@ public class HoaDon_GUI extends JPanel {
 		lblThongTinSanPham.setBounds(20, 20, 192, 40);
 		pThongTinKH.add(lblThongTinSanPham);
 		
-		JLabel lblConLai = new JLabel("Còn lại:");
+		JLabel lblConLai = new JLabel("Còn Lại:");
 		lblConLai.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		lblConLai.setBounds(23, 170, 134, 40);
 		pThongTinKH.add(lblConLai);

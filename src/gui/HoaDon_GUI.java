@@ -9,6 +9,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import connect.ConnectDB;
 import dao.DungCuHocTap_DAO;
@@ -22,6 +23,7 @@ import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 public class HoaDon_GUI extends JPanel {
 
@@ -42,7 +44,7 @@ public class HoaDon_GUI extends JPanel {
 	private JTextField txtSoDienThoai;
 	private JTextField txtDiaChi;
 	private JTextField txtConLai;
-
+	private JTableHeader tableHeader;
 	/**
 	 * Create the panel.
 	 */
@@ -141,6 +143,12 @@ public class HoaDon_GUI extends JPanel {
 		tableTT = new JTable(modelTT);
 		tableTT.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
 		tableTT.setRowHeight(25);
+		
+		tableHeader = tableTT.getTableHeader();
+		tableHeader.setBackground(new Color(73, 129, 158));
+		tableHeader.setForeground(Color.white);
+		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
+		tableHeader.setReorderingAllowed(false);
 		scrollPaneTT.setViewportView(tableTT);
 		
 		JLabel lblThngTinHoaDon = new JLabel("Thông tin hóa đơn:");
@@ -148,15 +156,16 @@ public class HoaDon_GUI extends JPanel {
 		lblThngTinHoaDon.setBounds(20, 20, 203, 40);
 		pChiTietHoaDon.add(lblThngTinHoaDon);
 		
-		JLabel lblTongTien = new JLabel("Tổng tiền:");
+		JLabel lblTongTien = new JLabel("Tổng Tiền:");
 		lblTongTien.setFont(new Font("SansSerif", Font.BOLD, 18));
-		lblTongTien.setBounds(70, 373, 96, 40);
+		lblTongTien.setBounds(70, 373, 110, 40);
 		pChiTietHoaDon.add(lblTongTien);
 		
 		JLabel lblTongTienValue = new JLabel("147.000 VND");
+		lblTongTienValue.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTongTienValue.setForeground(new Color(255, 0, 0));
 		lblTongTienValue.setFont(new Font("SansSerif", Font.BOLD, 18));
-		lblTongTienValue.setBounds(171, 373, 166, 40);
+		lblTongTienValue.setBounds(175, 373, 166, 40);
 		lblTongTienValue.setBorder(new LineBorder(new Color(0, 0, 0)));
 		pChiTietHoaDon.add(lblTongTienValue);
 		
@@ -197,6 +206,7 @@ public class HoaDon_GUI extends JPanel {
 		lblSoLuong.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		lblSoLuong.setBounds(23, 220, 134, 40);
 		pThongTinKH.add(lblSoLuong);
+
 
 		cbLoaiSP = new JComboBox<String>();
 		cbLoaiSP.setFont(new Font("SansSerif", Font.PLAIN, 14));

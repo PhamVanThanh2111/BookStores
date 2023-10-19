@@ -245,7 +245,8 @@ public class NhanVien_GUI extends JPanel {
 		tableHeader.setBackground(new Color(73, 129, 158));
 		tableHeader.setForeground(Color.white);
 		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
-
+		tableHeader.setReorderingAllowed(false);
+		
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 		table.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
@@ -266,14 +267,14 @@ public class NhanVien_GUI extends JPanel {
 //		table.getColumnModel().getColumn(10).setPreferredWidth(50);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
 								
-								JLabel lblNewLabel = new JLabel("Nhân viên");
-								lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-								lblNewLabel.setBounds(20, 40, 133, 32);
-								pDanhSach.add(lblNewLabel);
+								JLabel lblThongTin = new JLabel("Nhân Viên");
+								lblThongTin.setFont(new Font("Tahoma", Font.BOLD, 18));
+								lblThongTin.setBounds(20, 40, 133, 32);
+								pDanhSach.add(lblThongTin);
 								
 								JSeparator separator = new JSeparator();
 								separator.setForeground(new Color(60, 60, 60));
-								separator.setBounds(114, 56, 712, 2);
+								separator.setBounds(126, 56, 704, 2);
 								pDanhSach.add(separator);
 								
 										JButton btnXoa = new JButton("Xóa");
@@ -395,11 +396,11 @@ public class NhanVien_GUI extends JPanel {
 		lblThongTinViecLam.setBounds(20, 260, 189, 40);
 		pNhapThongTin.add(lblThongTinViecLam);
 		
-		JLabel lblMNhnVin = new JLabel("Mã Nhân Viên:");
-		lblMNhnVin.setToolTipText("Số điện thoại");
-		lblMNhnVin.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		lblMNhnVin.setBounds(40, 305, 120, 40);
-		pNhapThongTin.add(lblMNhnVin);
+		JLabel lblMaNV = new JLabel("Mã Nhân Viên:");
+		lblMaNV.setToolTipText("Số điện thoại");
+		lblMaNV.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		lblMaNV.setBounds(40, 305, 120, 40);
+		pNhapThongTin.add(lblMaNV);
 		
 		lblMaNhanVienValue = new JLabel("NV0001");
 		lblMaNhanVienValue.setToolTipText("Số điện thoại");

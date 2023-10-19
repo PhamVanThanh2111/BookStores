@@ -669,7 +669,6 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		
 		JSeparator sprNgang = new JSeparator();
 		sprNgang.setForeground(new Color(60, 60, 60));
-		sprNgang.setBounds(220, 85, 1300, 2);
 		contentPane.add(sprNgang);
 	}
 

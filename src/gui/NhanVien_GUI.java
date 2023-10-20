@@ -94,7 +94,7 @@ public class NhanVien_GUI extends JPanel {
 		JPanel pNhapThongTin = new JPanel();
 		pNhapThongTin.setBackground(new Color(255, 255, 255));
 		pNhapThongTin.setBounds(869, 0, 430, 720);
-		pNhapThongTin.setBorder(new LineBorder(new Color(0, 0, 0)));
+		pNhapThongTin.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pMain.add(pNhapThongTin);
 		pNhapThongTin.setLayout(null);
 		
@@ -162,7 +162,7 @@ public class NhanVien_GUI extends JPanel {
 
 		PanelRound pDanhSach = new PanelRound();
 		pDanhSach.setBackground(new Color(255, 255, 255));
-		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0)));
+		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pDanhSach.setBounds(0, 0, 850, 720);
 		pDanhSach.setRoundTopLeft(16);
 		pMain.add(pDanhSach);
@@ -185,8 +185,8 @@ public class NhanVien_GUI extends JPanel {
 		table.setShowGrid(true);
 		table.setShowHorizontalLines(true);
 		table.setBackground(new Color(255, 255, 255));
-		table.setSelectionBackground(new Color(216, 236, 244));
-		table.setSelectionForeground(new Color(73, 129, 158));
+		table.setSelectionBackground(new Color(141,208,229));
+		table.setSelectionForeground(new Color(0,0,0));
 		table.addMouseListener(new MouseListener() {
 
 			@Override
@@ -281,7 +281,7 @@ public class NhanVien_GUI extends JPanel {
 										btnXoa.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/remove_person.png")));
 										btnXoa.setBackground(new Color(73, 129, 158));
 										btnXoa.setForeground(new Color(255, 255, 255));
-										btnXoa.setBounds(423, 660, 120, 40);
+										btnXoa.setBounds(395, 660, 135, 40);
 										pDanhSach.add(btnXoa);
 										btnXoa.setFont(new Font("SansSerif", Font.BOLD, 14));
 										
@@ -289,7 +289,7 @@ public class NhanVien_GUI extends JPanel {
 												btnAdd.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/add_person.png")));
 												btnAdd.setForeground(new Color(255, 255, 255));
 												btnAdd.setBackground(new Color(73, 129, 158));
-												btnAdd.setBounds(280, 660, 120, 40);
+												btnAdd.setBounds(245, 660, 135, 40);
 												btnAdd.setOpaque(true);
 												pDanhSach.add(btnAdd);
 												btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -298,7 +298,7 @@ public class NhanVien_GUI extends JPanel {
 														btnSua.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/update_person.png")));
 														btnSua.setBackground(new Color(73, 129, 158));
 														btnSua.setForeground(new Color(255, 255, 255));
-														btnSua.setBounds(568, 660, 120, 40);
+														btnSua.setBounds(545, 660, 135, 40);
 														pDanhSach.add(btnSua);
 														btnSua.setFont(new Font("SansSerif", Font.BOLD, 14));
 														
@@ -307,7 +307,7 @@ public class NhanVien_GUI extends JPanel {
 														btnTim.setBackground(new Color(73, 129, 158));
 														btnTim.setForeground(new Color(255, 255, 255));
 														btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
-														btnTim.setBounds(710, 660, 120, 40);
+														btnTim.setBounds(695, 660, 135, 40);
 														pDanhSach.add(btnTim);
 														btnSua.addActionListener(new ActionListener() {
 

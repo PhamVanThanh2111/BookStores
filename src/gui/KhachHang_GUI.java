@@ -54,7 +54,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		JPanel pDanhSach = new JPanel();
 		pDanhSach.setBackground(new Color(255, 255, 255));
 		pDanhSach.setBorder(
-				new LineBorder(new Color(0, 0, 0)));
+				new LineBorder(new Color(0, 0, 0), 2));
 		pDanhSach.setBounds(0, 0, 850, 720);
 		pMain.add(pDanhSach);
 		pDanhSach.setLayout(null);
@@ -68,6 +68,9 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		String[] cols = { "Tên KH", "Mã KH", "Giới Tính", "Số Điện Thoại", "Địa Chỉ" };
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
+		
+		table.setSelectionBackground(new Color(141,208,229));
+		table.setSelectionForeground(new Color(0,0,0));
 		
 		tableHeader = table.getTableHeader();
 		tableHeader.setBackground(new Color(73, 129, 158));
@@ -91,25 +94,25 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		btnAdd.setForeground(Color.WHITE);
 		btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnAdd.setBackground(new Color(73, 129, 158));
-		btnAdd.setBounds(421, 660, 120, 40);
+		btnAdd.setBounds(395, 660, 135, 40);
 		pDanhSach.add(btnAdd);
 		
 		JButton btnXoa = new JButton("Xóa");
 		btnXoa.setForeground(Color.WHITE);
 		btnXoa.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnXoa.setBackground(new Color(73, 129, 158));
-		btnXoa.setBounds(564, 660, 120, 40);
+		btnXoa.setBounds(545, 660, 135, 40);
 		pDanhSach.add(btnXoa);
 		
 		JButton btnSua = new JButton("Sửa");
 		btnSua.setForeground(Color.WHITE);
 		btnSua.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnSua.setBackground(new Color(73, 129, 158));
-		btnSua.setBounds(709, 660, 120, 40);
+		btnSua.setBounds(695, 660, 135, 40);
 		pDanhSach.add(btnSua);
 		
 		JPanel pNhapThongTin = new JPanel();
-		pNhapThongTin.setBorder(new LineBorder(new Color(0, 0, 0)));
+		pNhapThongTin.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pNhapThongTin.setBackground(new Color(255, 255, 255));
 		pNhapThongTin.setBounds(869, 0, 430, 720);
 		pMain.add(pNhapThongTin);
@@ -294,7 +297,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 
 	public void loadData() {
 		for (KhachHang Kh : khachHang_DAO.getAllKhachHang()) {
-			Object[] object = { Kh.getMaKhachHang(), Kh.getTenKhachHang(), Kh.getGioiTinh(), Kh.getSoDienThoai(), Kh.getDiaChi() };
+			Object[] object = {Kh.getTenKhachHang(),Kh.getMaKhachHang(), Kh.getGioiTinh(), Kh.getSoDienThoai(), Kh.getDiaChi() };
 			model.addRow(object);
 			table.setRowHeight(25);
 		}

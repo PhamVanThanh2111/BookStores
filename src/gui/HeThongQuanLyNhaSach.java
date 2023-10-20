@@ -321,6 +321,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		// sub menu
 		pContent.add(new DanhSachHoaDon_GUI(), "DanhSachHoaDon_GUI");
 		pContent.add(new NhaCungCap_GUI(), "NhaCungCap_GUI");
+		pContent.add(new DanhSachDatHang_GUI(), "DanhSachDatHang_GUI");
 		cardLayoutContent.show(pContent, "TrangChu_GUI");
 		
 		JPanel pMenu2 = new JPanel();
@@ -731,7 +732,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				else if (lblSubMenu2.getText().equals("Nhà Cung Cấp"))
 					cardLayoutContent.show(pContent, "NhaCungCap_GUI");
 				else
-					cardLayoutContent.show(pContent, "Danh Sách Đặt Hàng");
+					cardLayoutContent.show(pContent, "DanhSachDatHang_GUI");
 			}
 		});
 		lblSubMenu2.setHorizontalAlignment(SwingConstants.CENTER);

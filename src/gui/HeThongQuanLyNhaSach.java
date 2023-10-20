@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.SwingConstants;
@@ -349,6 +350,15 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				lblDangXuat.setBackground(new Color(39, 63, 96));
 				lblIconDangXuat.setBackground(new Color(39, 63, 96));
 			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int option = JOptionPane.showConfirmDialog(null, "Bạn có thực sự muốn thoát?", "Thoát?",
+						JOptionPane.YES_NO_OPTION);
+				if (option == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}
+			}
 		});
 		pMenu2.add(lblDangXuat);
 		
@@ -627,6 +637,15 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				lblDangXuat.setBackground(new Color(39, 63, 96));
 				lblIconDangXuat.setBackground(new Color(39, 63, 96));
 			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int option = JOptionPane.showConfirmDialog(null, "Bạn có thực sự muốn thoát?", "Thoát?",
+						JOptionPane.YES_NO_OPTION);
+				if (option == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}
+			}
 		});
 		pMenu2.add(lblIconDangXuat);
 		
@@ -665,7 +684,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 					cardLayoutContent.show(pContent, "Sach_GUI");
 				else if (lblSubMenu1.getText().equals("Dụng Cụ Học Tập"))
 					cardLayoutContent.show(pContent, "DungCuHocTap_GUI");
-				else
+				else if (lblSubMenu1.getText().equals("Hóa Đơn"))
 					cardLayoutContent.show(pContent, "HoaDon_GUI");
 			}
 		});
@@ -687,7 +706,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		lblSubMenu2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				if (lblSubMenu2.isVisible()) {
+				if (!lblSubMenu2.getText().equals("")) {
 					lblSubMenu2.setBackground(new Color(39, 63, 96));
 					lblSubMenu2.setForeground(new Color(255, 255, 255));
 					lblSubMenu2.setOpaque(true);
@@ -696,10 +715,10 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			
 			@Override
 			public void mouseExited(MouseEvent e) {
-				if (lblSubMenu2.isVisible()) {
-					lblSubMenu1.setBackground(new Color(241, 245, 249));
-					lblSubMenu1.setForeground(new Color(0, 0, 0));
-					lblSubMenu1.setOpaque(true);
+				if (!lblSubMenu2.getText().equals("")) {
+					lblSubMenu2.setBackground(new Color(241, 245, 249));
+					lblSubMenu2.setForeground(new Color(0, 0, 0));
+					lblSubMenu2.setOpaque(true);
 				}
 			}
 			
@@ -731,12 +750,20 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		lblSubMenu3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				
+				if (!lblSubMenu3.getText().equals("")) {
+					lblSubMenu3.setBackground(new Color(39, 63, 96));
+					lblSubMenu3.setForeground(new Color(255, 255, 255));
+					lblSubMenu3.setOpaque(true);
+				}
 			}
 			
 			@Override
 			public void mouseExited(MouseEvent e) {
-				
+				if (!lblSubMenu3.getText().equals("")) {
+					lblSubMenu3.setBackground(new Color(241, 245, 249));
+					lblSubMenu3.setForeground(new Color(0, 0, 0));
+					lblSubMenu3.setOpaque(true);
+				}
 			}
 			
 			@Override

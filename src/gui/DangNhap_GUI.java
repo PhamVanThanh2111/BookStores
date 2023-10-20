@@ -138,7 +138,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		btnLogin.setMnemonic(KeyEvent.VK_ENTER);
 		btnLogin.setForeground(Color.WHITE);
 		btnLogin.setFont(new Font("SansSerif", Font.BOLD, 15));
-		btnLogin.setBorder(new LineBorder(new Color(116, 185, 209), 2, true));
+		btnLogin.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		btnLogin.setBackground(new Color(253, 120, 49));
 		btnLogin.setBounds(30, 384, 138, 38);
 		getContentPane().add(btnLogin);
@@ -147,7 +147,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		btnExit.setMnemonic(KeyEvent.VK_X);
 		btnExit.setForeground(Color.WHITE);
 		btnExit.setFont(new Font("Arial", Font.PLAIN, 16));
-		btnExit.setBorder(new LineBorder(new Color(116, 185, 209), 2, true));
+		btnExit.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		btnExit.setBackground(new Color(39, 63, 96));
 		btnExit.setBounds(191, 384, 138, 38);
 		getContentPane().add(btnExit);

@@ -182,11 +182,11 @@ public class NhanVien_GUI extends JPanel {
 		table.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
 		table.setRowHeight(30);
 		table.setDefaultEditor(Object.class, null);
-		table.setShowGrid(true);
+		table.setShowGrid(true); 
 		table.setShowHorizontalLines(true);
 		table.setBackground(new Color(255, 255, 255));
-		table.setSelectionBackground(new Color(216, 236, 244));
-		table.setSelectionForeground(new Color(73, 129, 158));
+		table.setSelectionBackground(new Color(141, 208, 229));
+		table.setSelectionForeground(new Color(0, 0, 0));
 		table.addMouseListener(new MouseListener() {
 
 			@Override
@@ -334,14 +334,16 @@ public class NhanVien_GUI extends JPanel {
 										});
 
 		dateChooserNgaySinh = new JDateChooser();
+		dateChooserNgaySinh.getCalendarButton().setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/calendar.png")));
+		dateChooserNgaySinh.getCalendarButton().setBorder(null);
+		dateChooserNgaySinh.getCalendarButton().setPreferredSize(new Dimension(30, 24));
+		dateChooserNgaySinh.getCalendarButton().setBackground(new Color(255, 255, 255));
 		dateChooserNgaySinh.setToolTipText("Ngày sinh");
 		dateChooserNgaySinh.setBounds(170, 517, 240, 40);
 		pNhapThongTin.add(dateChooserNgaySinh);
 		dateChooserNgaySinh.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		dateChooserNgaySinh.setDateFormatString("dd/MM/yyyy");
 		dateChooserNgaySinh.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		dateChooserNgaySinh.getCalendarButton().setPreferredSize(new Dimension(30, 24));
-		dateChooserNgaySinh.getCalendarButton().setBackground(new Color(46, 46, 46));
 		dateChooserNgaySinh.setBorder(null);
 
 		JLabel lblLuong = new JLabel("Lương:");

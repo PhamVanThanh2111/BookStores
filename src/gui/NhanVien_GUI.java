@@ -112,7 +112,7 @@ public class NhanVien_GUI extends JPanel {
 		txtDiaChi.setBounds(170, 652, 240, 40);
 		pNhapThongTin.add(txtDiaChi);
 
-		JLabel lblSoDienThoai = new JLabel("Số điện thoại:");
+		JLabel lblSoDienThoai = new JLabel("Số Điện Thoại:");
 		lblSoDienThoai.setToolTipText("Số điện thoại");
 		lblSoDienThoai.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		lblSoDienThoai.setBounds(40, 145, 120, 40);
@@ -246,7 +246,6 @@ public class NhanVien_GUI extends JPanel {
 		tableHeader.setForeground(Color.white);
 		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
 		tableHeader.setReorderingAllowed(false);
-
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 		table.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
@@ -267,14 +266,14 @@ public class NhanVien_GUI extends JPanel {
 //		table.getColumnModel().getColumn(10).setPreferredWidth(50);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
 								
-								JLabel lblNewLabel = new JLabel("Nhân viên");
-								lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-								lblNewLabel.setBounds(20, 40, 133, 32);
-								pDanhSach.add(lblNewLabel);
+								JLabel lblThongTin = new JLabel("Nhân Viên");
+								lblThongTin.setFont(new Font("Tahoma", Font.BOLD, 18));
+								lblThongTin.setBounds(20, 40, 133, 32);
+								pDanhSach.add(lblThongTin);
 								
 								JSeparator separator = new JSeparator();
 								separator.setForeground(new Color(60, 60, 60));
-								separator.setBounds(114, 56, 712, 2);
+								separator.setBounds(126, 56, 704, 2);
 								pDanhSach.add(separator);
 								
 										JButton btnXoa = new JButton("Xóa");
@@ -396,11 +395,11 @@ public class NhanVien_GUI extends JPanel {
 		lblThongTinViecLam.setBounds(20, 260, 189, 40);
 		pNhapThongTin.add(lblThongTinViecLam);
 		
-		JLabel lblMNhnVin = new JLabel("Mã nhân viên:");
-		lblMNhnVin.setToolTipText("Số điện thoại");
-		lblMNhnVin.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		lblMNhnVin.setBounds(40, 305, 120, 40);
-		pNhapThongTin.add(lblMNhnVin);
+		JLabel lblMaNV = new JLabel("Mã Nhân Viên:");
+		lblMaNV.setToolTipText("Số điện thoại");
+		lblMaNV.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		lblMaNV.setBounds(40, 305, 120, 40);
+		pNhapThongTin.add(lblMaNV);
 		
 		lblMaNhanVienValue = new JLabel("NV0001");
 		lblMaNhanVienValue.setToolTipText("Số điện thoại");
@@ -408,7 +407,7 @@ public class NhanVien_GUI extends JPanel {
 		lblMaNhanVienValue.setBounds(170, 305, 120, 40);
 		pNhapThongTin.add(lblMaNhanVienValue);
 		
-		JLabel lblChucVu1 = new JLabel("Chức vụ:");
+		JLabel lblChucVu1 = new JLabel("Chức Vụ:");
 		lblChucVu1.setToolTipText("Số điện thoại");
 		lblChucVu1.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		lblChucVu1.setBounds(40, 350, 120, 40);
@@ -436,7 +435,7 @@ public class NhanVien_GUI extends JPanel {
 		lblT.setBounds(20, 467, 189, 40);
 		pNhapThongTin.add(lblT);
 		
-		JLabel lblNgaySinh = new JLabel("Ngày sinh:");
+		JLabel lblNgaySinh = new JLabel("Ngày Sinh");
 		lblNgaySinh.setToolTipText("Số điện thoại");
 		lblNgaySinh.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		lblNgaySinh.setBounds(40, 517, 120, 40);
@@ -448,13 +447,13 @@ public class NhanVien_GUI extends JPanel {
 		lblCccd.setBounds(40, 562, 120, 40);
 		pNhapThongTin.add(lblCccd);
 		
-		JLabel lblGiiTnh = new JLabel("Giới tính:");
+		JLabel lblGiiTnh = new JLabel("Giới Tính:");
 		lblGiiTnh.setToolTipText("Số điện thoại");
 		lblGiiTnh.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		lblGiiTnh.setBounds(40, 607, 120, 40);
 		pNhapThongTin.add(lblGiiTnh);
 		
-		JLabel lblDiaChi = new JLabel("Địa chỉ:");
+		JLabel lblDiaChi = new JLabel("Địa Chỉ:");
 		lblDiaChi.setToolTipText("Số điện thoại");
 		lblDiaChi.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		lblDiaChi.setBounds(40, 652, 120, 40);

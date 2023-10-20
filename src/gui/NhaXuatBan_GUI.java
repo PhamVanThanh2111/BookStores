@@ -19,7 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 
-public class NXB_GUI extends JPanel {
+public class NhaXuatBan_GUI extends JPanel {
 	/**
 	 * 
 	 */
@@ -37,7 +37,7 @@ public class NXB_GUI extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public NXB_GUI() {
+	public NhaXuatBan_GUI() {
 
 		// Khai bao DAO
 

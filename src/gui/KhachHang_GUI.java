@@ -12,9 +12,8 @@ import java.awt.event.MouseListener;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.border.EtchedBorder;
+import javax.swing.table.JTableHeader;
 import java.awt.Color;
 
 import dao.KhachHang_DAO;
@@ -22,26 +21,22 @@ import entity.KhachHang;
 
 import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 
 public class KhachHang_GUI extends JPanel implements ActionListener {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField txtTimKiem;
-	private JTextField txtMaKH;
-	private JTextField txtTenKH;
-	private JTextField txtDiaChi;
-	private JTextField txtCCCD;
-	private JTextField txtSDT;
-	private JTextField txtEmail;
-	private JTextField txtTuoi;
 	private JTable table;
 	private DefaultTableModel model;
 	private KhachHang_DAO khachHang_DAO;
-	private JComboBox<String> cbGioiTinh;
-	private JButton btnXoaTrang;
-
+	private JTextField txtTenKH;
+	private JTextField txtSDT;
+	private JTextField txtDiaChi;
+	private JTextField txtQuocTich;
+	private JTableHeader tableHeader;
 	/**
 	 * Create the panel.
 	 */
@@ -50,168 +45,191 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		setLayout(null);
 
 		JPanel pMain = new JPanel();
-		pMain.setBounds(27, 10, 1162, 667);
+		pMain.setBounds(0, 0, 1300, 720);
 		add(pMain);
 		pMain.setLayout(null);
 
-		JLabel lblTimKiem = new JLabel("Tìm Kiếm ");
-		lblTimKiem.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		lblTimKiem.setBounds(270, 10, 96, 33);
-		pMain.add(lblTimKiem);
-
-		txtTimKiem = new JTextField();
-		txtTimKiem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		txtTimKiem.setBounds(375, 10, 257, 33);
-		pMain.add(txtTimKiem);
-		txtTimKiem.setColumns(10);
-
-		JComboBox<String> cbTim = new JComboBox<String>();
-		cbTim.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbTim.setBounds(640, 10, 96, 33);
-		pMain.add(cbTim);
-
-		JButton btnTim = new JButton("Tìm");
-		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnTim.setBounds(745, 10, 114, 33);
-		pMain.add(btnTim);
-
-		JPanel pNhapThongTin = new JPanel();
-		pNhapThongTin.setLayout(null);
-		pNhapThongTin.setBorder(new TitledBorder(
-				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(28, 28, 28)),
-				"Th\u00F4ng tin:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(28, 28, 28)));
-		pNhapThongTin.setBounds(10, 53, 1142, 219);
-		pMain.add(pNhapThongTin);
-
-		JLabel lblMKh = new JLabel("Mã KH:");
-		lblMKh.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblMKh.setBounds(40, 30, 90, 33);
-		pNhapThongTin.add(lblMKh);
-
-		txtMaKH = new JTextField();
-		txtMaKH.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtMaKH.setEditable(false);
-		txtMaKH.setColumns(10);
-		txtMaKH.setBounds(120, 30, 151, 33);
-		txtMaKH.setFocusable(false);
-		pNhapThongTin.add(txtMaKH);
-
-		txtTenKH = new JTextField();
-		txtTenKH.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtTenKH.setColumns(10);
-		txtTenKH.setBounds(120, 70, 151, 33);
-		pNhapThongTin.add(txtTenKH);
-
-		JLabel lblTenKH = new JLabel("Tên KH:");
-		lblTenKH.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblTenKH.setBounds(40, 70, 90, 33);
-		pNhapThongTin.add(lblTenKH);
-
-		JLabel lblDiaChi = new JLabel("Địa chỉ:");
-		lblDiaChi.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblDiaChi.setBounds(40, 110, 90, 33);
-		pNhapThongTin.add(lblDiaChi);
-
-		txtDiaChi = new JTextField();
-		txtDiaChi.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtDiaChi.setColumns(10);
-		txtDiaChi.setBounds(120, 110, 450, 33);
-		pNhapThongTin.add(txtDiaChi);
-
-		JLabel lblGioiTinh = new JLabel("Giới tính:");
-		lblGioiTinh.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblGioiTinh.setBounds(291, 30, 90, 33);
-		pNhapThongTin.add(lblGioiTinh);
-
-		JLabel lblSoDienThoai = new JLabel("Số điện thoại:");
-		lblSoDienThoai.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblSoDienThoai.setBounds(604, 30, 103, 33);
-		pNhapThongTin.add(lblSoDienThoai);
-
-		txtCCCD = new JTextField();
-		txtCCCD.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtCCCD.setColumns(10);
-		txtCCCD.setBounds(730, 70, 332, 33);
-		pNhapThongTin.add(txtCCCD);
-		cbGioiTinh = new JComboBox<String>();
-		cbGioiTinh.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbGioiTinh.setBounds(406, 30, 163, 33);
-		cbGioiTinh.addItem("Nam");
-		cbGioiTinh.addItem("Nữ");
-		cbGioiTinh.setSelectedIndex(-1);
-
-		pNhapThongTin.add(cbGioiTinh);
-
-		JLabel lblEmail = new JLabel("Email:");
-		lblEmail.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblEmail.setBounds(604, 110, 56, 33);
-		pNhapThongTin.add(lblEmail);
-
-		JLabel lblCCCD = new JLabel("CCCD:");
-		lblCCCD.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblCCCD.setBounds(604, 70, 62, 33);
-		pNhapThongTin.add(lblCCCD);
-
-		txtSDT = new JTextField();
-		txtSDT.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtSDT.setColumns(10);
-		txtSDT.setBounds(730, 30, 332, 33);
-		pNhapThongTin.add(txtSDT);
-
-		txtEmail = new JTextField();
-		txtEmail.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtEmail.setColumns(10);
-		txtEmail.setBounds(730, 110, 332, 33);
-		pNhapThongTin.add(txtEmail);
-
-		JButton btnAdd = new JButton("Thêm");
-		btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnAdd.setBounds(132, 165, 120, 33);
-		pNhapThongTin.add(btnAdd);
-
-		JButton btnXoa = new JButton("Xóa");
-		btnXoa.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnXoa.setBounds(384, 165, 120, 33);
-		pNhapThongTin.add(btnXoa);
-
-		JButton btnSua = new JButton("Sửa");
-		btnSua.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnSua.setBounds(636, 165, 120, 33);
-		pNhapThongTin.add(btnSua);
-
-		btnXoaTrang = new JButton("Xóa trắng");
-		btnXoaTrang.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnXoaTrang.setBounds(888, 165, 120, 33);
-		pNhapThongTin.add(btnXoaTrang);
-
-		JLabel lblTuoi = new JLabel("Tuổi:");
-		lblTuoi.setFont(new Font("SansSerif", Font.BOLD, 14));
-		lblTuoi.setBounds(291, 70, 56, 33);
-		pNhapThongTin.add(lblTuoi);
-
-		txtTuoi = new JTextField();
-		txtTuoi.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtTuoi.setColumns(10);
-		txtTuoi.setBounds(405, 70, 164, 33);
-		pNhapThongTin.add(txtTuoi);
-
-		JPanel pThonTin = new JPanel();
-		pThonTin.setBorder(
-				new TitledBorder(null, "Danh S\u00E1ch", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		pThonTin.setBounds(10, 282, 1142, 375);
-		pMain.add(pThonTin);
-		pThonTin.setLayout(null);
+		JPanel pDanhSach = new JPanel();
+		pDanhSach.setBackground(new Color(255, 255, 255));
+		pDanhSach.setBorder(
+				new LineBorder(new Color(0, 0, 0)));
+		pDanhSach.setBounds(0, 0, 850, 720);
+		pMain.add(pDanhSach);
+		pDanhSach.setLayout(null);
 
 		JScrollPane scrollPaneKH = new JScrollPane();
 		scrollPaneKH.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
 		scrollPaneKH.setBorder(new LineBorder(new Color(80, 80, 80), 1, true));
 		scrollPaneKH.setBackground(new Color(80, 80, 80));
-		scrollPaneKH.setBounds(10, 20, 1122, 345);
-		pThonTin.add(scrollPaneKH);
-		String[] cols = { "Mã KH", "Tên KH", "Tuổi", "Giới Tính", "CCCD", "Email", "Số Điện Thoại", "Địa Chỉ" };
+		scrollPaneKH.setBounds(20, 82, 810, 557);
+		pDanhSach.add(scrollPaneKH);
+		String[] cols = { "Tên KH", "Mã KH", "Giới Tính", "Số Điện Thoại", "Địa Chỉ" };
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
+		
+		tableHeader = table.getTableHeader();
+		tableHeader.setBackground(new Color(73, 129, 158));
+		tableHeader.setForeground(Color.white);
+		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
+		tableHeader.setReorderingAllowed(false);
 		scrollPaneKH.setViewportView(table);
+		
+		JLabel lblThongTin = new JLabel("Khách Hàng");
+		lblThongTin.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblThongTin.setBounds(20, 40, 133, 32);
+		pDanhSach.add(lblThongTin);
+		
+		JSeparator separator = new JSeparator();
+		separator.setForeground(new Color(60, 60, 60));
+		separator.setBounds(142, 56, 688, 2);
+		pDanhSach.add(separator);
+		
+		JButton btnAdd = new JButton("Thêm");
+		btnAdd.setOpaque(true);
+		btnAdd.setForeground(Color.WHITE);
+		btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnAdd.setBackground(new Color(73, 129, 158));
+		btnAdd.setBounds(421, 660, 120, 40);
+		pDanhSach.add(btnAdd);
+		
+		JButton btnXoa = new JButton("Xóa");
+		btnXoa.setForeground(Color.WHITE);
+		btnXoa.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnXoa.setBackground(new Color(73, 129, 158));
+		btnXoa.setBounds(564, 660, 120, 40);
+		pDanhSach.add(btnXoa);
+		
+		JButton btnSua = new JButton("Sửa");
+		btnSua.setForeground(Color.WHITE);
+		btnSua.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnSua.setBackground(new Color(73, 129, 158));
+		btnSua.setBounds(709, 660, 120, 40);
+		pDanhSach.add(btnSua);
+		
+		JPanel pNhapThongTin = new JPanel();
+		pNhapThongTin.setBorder(new LineBorder(new Color(0, 0, 0)));
+		pNhapThongTin.setBackground(new Color(255, 255, 255));
+		pNhapThongTin.setBounds(869, 0, 430, 720);
+		pMain.add(pNhapThongTin);
+		pNhapThongTin.setLayout(null);
+		
+		JLabel lblHinhAnh = new JLabel("");
+		lblHinhAnh.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblHinhAnh.setBounds(20, 20, 64, 64);
+		pNhapThongTin.add(lblHinhAnh);
+		
+		txtTenKH = new JTextField();
+		txtTenKH.setToolTipText("Số điện thoại");
+		txtTenKH.setText("Phạm Văn Thành");
+		txtTenKH.setFont(new Font("SansSerif", Font.BOLD, 20));
+		txtTenKH.setEditable(false);
+		txtTenKH.setColumns(10);
+		txtTenKH.setBorder(null);
+		txtTenKH.setBackground(Color.WHITE);
+		txtTenKH.setBounds(94, 20, 240, 40);
+		pNhapThongTin.add(txtTenKH);
+		
+		JLabel lblKhchHng = new JLabel("Khách Hàng");
+		lblKhchHng.setToolTipText("Mã nhân viên");
+		lblKhchHng.setHorizontalAlignment(SwingConstants.LEFT);
+		lblKhchHng.setForeground(new Color(28, 28, 28));
+		lblKhchHng.setFont(new Font("SansSerif", Font.ITALIC, 20));
+		lblKhchHng.setBounds(94, 50, 177, 40);
+		pNhapThongTin.add(lblKhchHng);
+		
+		JLabel lblThongTinLienLac = new JLabel("Thông Tin Liên Lạc:");
+		lblThongTinLienLac.setToolTipText("Mã nhân viên");
+		lblThongTinLienLac.setHorizontalAlignment(SwingConstants.LEFT);
+		lblThongTinLienLac.setForeground(new Color(28, 28, 28));
+		lblThongTinLienLac.setFont(new Font("SansSerif", Font.BOLD, 18));
+		lblThongTinLienLac.setBounds(20, 100, 189, 40);
+		pNhapThongTin.add(lblThongTinLienLac);
+		
+		JLabel lblSoDienThoai = new JLabel("Số Điện Thoại:");
+		lblSoDienThoai.setToolTipText("Số điện thoại");
+		lblSoDienThoai.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		lblSoDienThoai.setBounds(40, 145, 120, 40);
+		pNhapThongTin.add(lblSoDienThoai);
+		
+		txtSDT = new JTextField();
+		txtSDT.setToolTipText("Số điện thoại");
+		txtSDT.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtSDT.setEditable(false);
+		txtSDT.setColumns(10);
+		txtSDT.setBackground(Color.WHITE);
+		txtSDT.setBounds(170, 145, 240, 40);
+		pNhapThongTin.add(txtSDT);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setForeground(new Color(60, 60, 60));
+		separator_1.setBounds(20, 200, 390, 2);
+		pNhapThongTin.add(separator_1);
+		
+		JLabel lblThongTinCaNhan = new JLabel("Thông Tin Cá Nhân:");
+		lblThongTinCaNhan.setToolTipText("Mã nhân viên");
+		lblThongTinCaNhan.setHorizontalAlignment(SwingConstants.LEFT);
+		lblThongTinCaNhan.setForeground(new Color(28, 28, 28));
+		lblThongTinCaNhan.setFont(new Font("SansSerif", Font.BOLD, 18));
+		lblThongTinCaNhan.setBounds(20, 215, 189, 40);
+		pNhapThongTin.add(lblThongTinCaNhan);
+		
+		JLabel lblMaKH = new JLabel("Mã KH:");
+		lblMaKH.setToolTipText("Số điện thoại");
+		lblMaKH.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		lblMaKH.setBounds(40, 270, 120, 40);
+		pNhapThongTin.add(lblMaKH);
+		
+		JLabel lblGioiTinh = new JLabel("Giới Tính");
+		lblGioiTinh.setToolTipText("Số điện thoại");
+		lblGioiTinh.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		lblGioiTinh.setBounds(40, 315, 120, 40);
+		pNhapThongTin.add(lblGioiTinh);
+		
+		JLabel lblMaKhachHang = new JLabel("NV0001");
+		lblMaKhachHang.setToolTipText("Số điện thoại");
+		lblMaKhachHang.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		lblMaKhachHang.setBounds(170, 270, 120, 40);
+		pNhapThongTin.add(lblMaKhachHang);
+		
+		JComboBox<String> cbGioiTinh = new JComboBox<String>();
+		cbGioiTinh.setToolTipText("Giới tính");
+		cbGioiTinh.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		cbGioiTinh.setBorder(null);
+		cbGioiTinh.setBackground(Color.WHITE);
+		cbGioiTinh.setBounds(170, 315, 240, 40);
+		cbGioiTinh.addItem("Nam");
+		cbGioiTinh.addItem("Nữ");
+		pNhapThongTin.add(cbGioiTinh);
+		
+		JLabel lblDiaChi = new JLabel("Địa Chỉ:");
+		lblDiaChi.setToolTipText("Số điện thoại");
+		lblDiaChi.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		lblDiaChi.setBounds(40, 360, 120, 40);
+		pNhapThongTin.add(lblDiaChi);
+		
+		txtDiaChi = new JTextField();
+		txtDiaChi.setToolTipText("Số điện thoại");
+		txtDiaChi.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtDiaChi.setEditable(false);
+		txtDiaChi.setColumns(10);
+		txtDiaChi.setBackground(Color.WHITE);
+		txtDiaChi.setBounds(170, 360, 240, 40);
+		pNhapThongTin.add(txtDiaChi);
+		
+		JLabel lblQuocTich = new JLabel("Quốc Tịch:");
+		lblQuocTich.setToolTipText("Số điện thoại");
+		lblQuocTich.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		lblQuocTich.setBounds(40, 405, 120, 40);
+		pNhapThongTin.add(lblQuocTich);
+		
+		txtQuocTich = new JTextField();
+		txtQuocTich.setToolTipText("Số điện thoại");
+		txtQuocTich.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtQuocTich.setEditable(false);
+		txtQuocTich.setColumns(10);
+		txtQuocTich.setBackground(Color.WHITE);
+		txtQuocTich.setBounds(170, 405, 240, 40);
+		pNhapThongTin.add(txtQuocTich);
 		loadData();
 
 		table.addMouseListener(new MouseListener() {
@@ -244,8 +262,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 			public void mouseClicked(MouseEvent e) {
 				int r = table.getSelectedRow();
 				if (r != -1) {
-					txtMaKH.setEditable(false);
-					txtMaKH.setText(table.getValueAt(r, 0).toString());
+					
 					txtTenKH.setText(table.getValueAt(r, 1).toString());
 					if (table.getValueAt(r, 2).toString().equalsIgnoreCase("Nam"))
 						cbGioiTinh.setSelectedItem("Nam");
@@ -271,8 +288,6 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 //
 //			}
 		});
-
-		btnXoaTrang.addActionListener(this);
 	}
 
 	public void loadData() {
@@ -284,22 +299,19 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 	}
 
 	public void xoaTrang() {
-		txtMaKH.setText("");
 		txtTenKH.setText("");
-		txtTuoi.setText("");
+		
 		txtDiaChi.setText("");
-		txtEmail.setText("");
+	
 		txtSDT.setText("");
-		txtCCCD.setText("");
-		cbGioiTinh.setSelectedIndex(0);
+		
+		
 		txtTenKH.requestFocus();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Object o = e.getSource();
-		if (o.equals(btnXoaTrang)) {
-			xoaTrang();
-		}
+		// TODO Auto-generated method stub
+		
 	}
 }

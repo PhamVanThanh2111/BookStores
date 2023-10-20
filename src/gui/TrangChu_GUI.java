@@ -25,6 +25,7 @@ public class TrangChu_GUI extends JPanel {
 		setLayout(null);
 
 		JPanel pnlMain = new JPanel();
+		pnlMain.setBorder(null);
 		pnlMain.setBackground(new Color(241, 245, 249));
 		pnlMain.setBounds(0, 0, 1300, 720);
 		add(pnlMain);

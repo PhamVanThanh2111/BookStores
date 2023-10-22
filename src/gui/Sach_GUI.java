@@ -7,27 +7,19 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
 
 import connect.ConnectDB;
-import dao.NhanVien_DAO;
-import dao.PhatSinhMa_DAO;
-import dao.Sach_DAO;
 import dao.SanPham_DAO;
-import entity.KhachHang;
 import entity.SanPham;
 
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.List;
-import java.awt.event.ActionEvent;
+
 public class Sach_GUI extends JPanel {
 	/**
 	 * 
@@ -38,8 +30,6 @@ public class Sach_GUI extends JPanel {
 	private JTextField txttenSach;
 	private JTextField txtxuatXu;
 	private JTextField txttacGia;
-	private JTextField txtloaiSach;
-	private JTextField txtnhaXuatBan;
 	private JTextField txtgiaNhap;
 	private JTextField txtgiaBan;
 	private JTextField txtsoTrang;

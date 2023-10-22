@@ -524,7 +524,7 @@ public class NhanVien_GUI extends JPanel {
 		txtLuong.setBounds(960, 70, 160, 33);
 		pNhapThongTin.add(txtLuong);
 		
-		lblChucVu = new JLabel("Quản lý");
+		lblChucVu = new JLabel("");
 		lblChucVu.setToolTipText("Mã nhân viên");
 		lblChucVu.setHorizontalAlignment(SwingConstants.LEFT);
 		lblChucVu.setForeground(new Color(28, 28, 28));
@@ -630,7 +630,6 @@ public class NhanVien_GUI extends JPanel {
 		
 		txtTenNhanVien = new JTextField();
 		txtTenNhanVien.setEditable(false);
-		txtTenNhanVien.setText("Phạm Văn Thành");
 		txtTenNhanVien.setToolTipText("Số điện thoại");
 		txtTenNhanVien.setFont(new Font("SansSerif", Font.BOLD, 20));
 		txtTenNhanVien.setColumns(10);

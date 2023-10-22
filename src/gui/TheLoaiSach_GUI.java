@@ -1,24 +1,14 @@
 package gui;
 
+import java.awt.Color;
+import java.awt.Font;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import java.awt.Color;
 import javax.swing.JButton;
-import javax.swing.border.TitledBorder;
-
 import javax.swing.JScrollPane;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Font;
-import javax.swing.JComboBox;
-import javax.swing.JSplitPane;
-import com.toedter.calendar.JDateChooser;
-import java.awt.Dimension;
-import javax.swing.SwingConstants;
-import javax.swing.JSeparator;
 
 public class TheLoaiSach_GUI extends JPanel {
 

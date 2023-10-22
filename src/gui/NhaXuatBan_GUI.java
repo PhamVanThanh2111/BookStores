@@ -1,20 +1,14 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-
-import javax.swing.border.EtchedBorder;
-import java.awt.Component;
-import javax.swing.Box;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;

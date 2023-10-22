@@ -9,7 +9,6 @@ import java.util.List;
 
 import connect.ConnectDB;
 import entity.SanPham;
-import gui.Sach_GUI;
 
 public class SanPham_DAO {
 //	  private Sach_GUI sach_GUI; 

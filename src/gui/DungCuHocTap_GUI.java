@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;

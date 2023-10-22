@@ -1,27 +1,36 @@
 package gui;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JSeparator;
+import javax.swing.ImageIcon;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -31,14 +40,6 @@ import dao.PhatSinhMa_DAO;
 import dao.TaiKhoan_DAO;
 import entity.NhanVien;
 import entity.TaiKhoan;
-
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JSeparator;
-import javax.swing.ImageIcon;
 
 public class NhanVien_GUI extends JPanel {
 	/**
@@ -107,9 +108,10 @@ public class NhanVien_GUI extends JPanel {
 		txtDiaChi.setBackground(new Color(255, 255, 255));
 		txtDiaChi.setEditable(false);
 		txtDiaChi.setToolTipText("Địa chỉ");
-		txtDiaChi.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtDiaChi.setFont(new Font("SansSerif", Font.BOLD, 18));
 		txtDiaChi.setColumns(10);
 		txtDiaChi.setBounds(170, 652, 240, 40);
+		txtDiaChi.setBorder(null);
 		pNhapThongTin.add(txtDiaChi);
 
 		JLabel lblSoDienThoai = new JLabel("Số Điện Thoại:");
@@ -117,25 +119,18 @@ public class NhanVien_GUI extends JPanel {
 		lblSoDienThoai.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		lblSoDienThoai.setBounds(40, 145, 120, 40);
 		pNhapThongTin.add(lblSoDienThoai);
-
+		
 		txtSoDienThoai = new JTextField();
 		txtSoDienThoai.setBackground(new Color(255, 255, 255));
 		txtSoDienThoai.setEditable(false);
 		txtSoDienThoai.setToolTipText("Số điện thoại");
-		txtSoDienThoai.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtSoDienThoai.setFont(new Font("SansSerif", Font.BOLD, 18));
 		txtSoDienThoai.setColumns(10);
 		txtSoDienThoai.setBounds(170, 145, 240, 40);
+		Border borderDefault = txtSoDienThoai.getBorder();
+		txtSoDienThoai.setBorder(null);
 		pNhapThongTin.add(txtSoDienThoai);
-
-		cbGioiTinh = new JComboBox<String>();
-		cbGioiTinh.setToolTipText("Giới tính");
-		cbGioiTinh.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbGioiTinh.setBounds(170, 607, 240, 40);
-		cbGioiTinh.setBorder(null);
-		cbGioiTinh.addItem("Nam");
-		cbGioiTinh.addItem("Nữ");
-		pNhapThongTin.add(cbGioiTinh);
-
+		
 		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setToolTipText("Email");
 		lblEmail.setFont(new Font("SansSerif", Font.PLAIN, 18));
@@ -146,18 +141,20 @@ public class NhanVien_GUI extends JPanel {
 		txtcCCD.setBackground(new Color(255, 255, 255));
 		txtcCCD.setEditable(false);
 		txtcCCD.setToolTipText("Căn cước công dân");
-		txtcCCD.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtcCCD.setFont(new Font("SansSerif", Font.BOLD, 18));
 		txtcCCD.setColumns(10);
 		txtcCCD.setBounds(170, 562, 240, 40);
+		txtcCCD.setBorder(null);
 		pNhapThongTin.add(txtcCCD);
 
 		txtEmail = new JTextField();
 		txtEmail.setBackground(new Color(255, 255, 255));
 		txtEmail.setEditable(false);
 		txtEmail.setToolTipText("Email");
-		txtEmail.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtEmail.setFont(new Font("SansSerif", Font.BOLD, 18));
 		txtEmail.setColumns(10);
 		txtEmail.setBounds(170, 190, 240, 40);
+		txtEmail.setBorder(null);
 		pNhapThongTin.add(txtEmail);
 
 		PanelRound pDanhSach = new PanelRound();
@@ -174,11 +171,27 @@ public class NhanVien_GUI extends JPanel {
 		scrollPaneNV.setBorder(null);
 		scrollPaneNV.setBackground(new Color(255, 255, 255));
 		pDanhSach.add(scrollPaneNV);
+	
+		dateChooserNgaySinh = new JDateChooser();
+		dateChooserNgaySinh.setBackground(new Color(255, 255, 255));
+		dateChooserNgaySinh.getCalendarButton().setBounds(210, 0, 30, 40);
+		dateChooserNgaySinh.getCalendarButton().setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/calendar.png")));
+		dateChooserNgaySinh.getCalendarButton().setBorder(null);
+		dateChooserNgaySinh.getCalendarButton().setPreferredSize(new Dimension(30, 24));
+		dateChooserNgaySinh.getCalendarButton().setBackground(new Color(255, 255, 255));
+		dateChooserNgaySinh.setToolTipText("Ngày sinh");
+		dateChooserNgaySinh.setBounds(170, 517, 240, 40);
+		dateChooserNgaySinh.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		dateChooserNgaySinh.setDateFormatString("dd/MM/yyyy");
+		dateChooserNgaySinh.setFont(new Font("SansSerif", Font.BOLD, 18));
+		dateChooserNgaySinh.setBorder(null);
+		pNhapThongTin.add(dateChooserNgaySinh);
 
 		String cols[] = { "Mã NV", "Họ Và Tên", "Giới Tính", "Ngày Vào Làm",
 				"Số Điện Thoại", "Địa Chỉ" };
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
+		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		table.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
 		table.setRowHeight(30);
 		table.setDefaultEditor(Object.class, null);
@@ -217,25 +230,35 @@ public class NhanVien_GUI extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
 				int row = table.getSelectedRow();
-				txtDiaChi.setText((String) model.getValueAt(row, 2));
-				try {
-					dateChooserNgaySinh.setDate(
-							new java.sql.Date(simpleDateFormat.parse((String) model.getValueAt(row, 4)).getTime()));
-				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				txtSoDienThoai.setText((String) model.getValueAt(row, 8));
-				txtcCCD.setText((String) model.getValueAt(row, 6));
-				txtEmail.setText((String) model.getValueAt(row, 7));
-				txtLuong.setText(model.getValueAt(row, 10).toString());
-				if (model.getValueAt(row, 3).toString().equalsIgnoreCase("Nam"))
-					cbGioiTinh.setSelectedIndex(1);
-				else if (model.getValueAt(row, 2).toString().equalsIgnoreCase("Nữ"))
-					cbGioiTinh.setSelectedIndex(2);
+				NhanVien nhanVien = nhanVien_DAO.getNhanVienTheoMa(model.getValueAt(row, 0).toString());
+				txtTenNhanVien.setText(nhanVien.getTenNhanVien());
+				lblChucVu.setText(nhanVien.getChucVu());
+				// hinh anh
+				txtSoDienThoai.setText(nhanVien.getSoDienThoai());
+				txtEmail.setText(nhanVien.getEmail());
+				lblMaNhanVienValue.setText(nhanVien.getMaNhanVien());
+				if (nhanVien.getChucVu().equals("Bán hàng"))
+					cbChucVu.setSelectedItem("Bán hàng");
+				else if (nhanVien.getChucVu().equals("Quản lý"))
+					cbChucVu.setSelectedItem("Quản lý");
 				else
-					cbGioiTinh.setSelectedIndex(0);
-				cbCa.setSelectedItem(nhanVien_DAO.getNhanVienTheoMa((String) model.getValueAt(row, 0)).getCa());
+					cbChucVu.setSelectedIndex(-1);
+				if (nhanVien.getMaCa().equals("C01"))
+					cbCa.setSelectedItem("01");
+				else if (nhanVien.getMaCa().equals("C02"))
+					cbCa.setSelectedItem("02");
+				else
+					cbCa.setSelectedIndex(-1);
+				dateChooserNgaySinh.setDate(nhanVien.getNgaySinh());
+				System.out.println(nhanVien.getNgaySinh());
+				txtcCCD.setText(nhanVien.getcCCD());
+				if (nhanVien.getGioiTinh().equals("Nam"))
+					cbGioiTinh.setSelectedItem("Nam");
+				else if (nhanVien.getGioiTinh().equals("Nữ"))
+					cbGioiTinh.setSelectedItem("Nữ");
+				else 
+					cbGioiTinh.setSelectedIndex(-1);
+				txtDiaChi.setText(nhanVien.getDiaChi());
 			}
 		});
 		scrollPaneNV.setViewportView(table);
@@ -265,6 +288,47 @@ public class NhanVien_GUI extends JPanel {
 //		table.getColumnModel().getColumn(9).setPreferredWidth(30);
 //		table.getColumnModel().getColumn(10).setPreferredWidth(50);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
+		
+		cbChucVu = new JComboBox<String>();
+		cbChucVu.setEnabled(false);
+		cbChucVu.setToolTipText("Chức vụ");
+		cbChucVu.setFont(new Font("SansSerif", Font.BOLD, 18));
+		cbChucVu.setBounds(170, 350, 240, 40);
+		cbChucVu.setBorder(null);
+		cbChucVu.setBackground(new Color(255, 255, 255));
+		cbChucVu.setForeground(new Color(0, 0, 0));
+		cbChucVu.addItem("Bán hàng");
+		cbChucVu.addItem("Quản lý");
+		cbChucVu.setSelectedIndex(-1);
+		LayoutManager layoutDefaultCombobox = cbChucVu.getLayout();
+		cbChucVu.setLayout(null);
+		pNhapThongTin.add(cbChucVu);
+		
+		cbCa = new JComboBox<String>();
+		cbCa.setEnabled(false);
+		cbCa.setToolTipText("Chức vụ");
+		cbCa.setFont(new Font("SansSerif", Font.BOLD, 18));
+		cbCa.setBounds(170, 395, 240, 40);
+		cbCa.addItem("01");
+		cbCa.addItem("02");
+		cbCa.setBorder(null);
+		cbCa.setLayout(null);
+		cbCa.setSelectedIndex(-1);
+		pNhapThongTin.add(cbCa);
+		
+		cbGioiTinh = new JComboBox<String>();
+		cbGioiTinh.setBackground(new Color(255, 255, 255));
+		cbGioiTinh.setEnabled(false);
+		cbGioiTinh.setToolTipText("Giới tính");
+		cbGioiTinh.setFont(new Font("SansSerif", Font.BOLD, 18));
+		cbGioiTinh.setBounds(170, 607, 240, 40);
+		cbGioiTinh.setBorder(null);
+		cbGioiTinh.setLayout(null);
+		cbGioiTinh.addItem("Nam");
+		cbGioiTinh.addItem("Nữ");
+		cbGioiTinh.setSelectedIndex(-1);
+		pNhapThongTin.add(cbGioiTinh);
+
 								
 								JLabel lblThongTin = new JLabel("Nhân Viên");
 								lblThongTin.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -281,49 +345,7 @@ public class NhanVien_GUI extends JPanel {
 										btnXoa.setBackground(new Color(73, 129, 158));
 										btnXoa.setForeground(new Color(255, 255, 255));
 										btnXoa.setBounds(395, 660, 135, 40);
-										pDanhSach.add(btnXoa);
 										btnXoa.setFont(new Font("SansSerif", Font.BOLD, 14));
-										
-												JButton btnAdd = new JButton("Thêm");
-												btnAdd.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/add_person.png")));
-												btnAdd.setForeground(new Color(255, 255, 255));
-												btnAdd.setBackground(new Color(73, 129, 158));
-												btnAdd.setBounds(245, 660, 135, 40);
-												btnAdd.setOpaque(true);
-												pDanhSach.add(btnAdd);
-												btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
-												
-														JButton btnSua = new JButton("Sửa");
-														btnSua.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/update_person.png")));
-														btnSua.setBackground(new Color(73, 129, 158));
-														btnSua.setForeground(new Color(255, 255, 255));
-														btnSua.setBounds(545, 660, 135, 40);
-														pDanhSach.add(btnSua);
-														btnSua.setFont(new Font("SansSerif", Font.BOLD, 14));
-														
-														JButton btnTim = new JButton("Tìm");
-														btnTim.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/find_person.png")));
-														btnTim.setBackground(new Color(73, 129, 158));
-														btnTim.setForeground(new Color(255, 255, 255));
-														btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
-														btnTim.setBounds(695, 660, 135, 40);
-														pDanhSach.add(btnTim);
-														btnSua.addActionListener(new ActionListener() {
-
-															@Override
-															public void actionPerformed(ActionEvent e) {
-																// TODO Auto-generated method stub
-																update();
-															}
-														});
-												btnAdd.addActionListener(new ActionListener() {
-
-													@Override
-													public void actionPerformed(ActionEvent e) {
-														// TODO Auto-generated method stub
-														add();
-													}
-												});
 										btnXoa.addActionListener(new ActionListener() {
 
 											@Override
@@ -332,19 +354,70 @@ public class NhanVien_GUI extends JPanel {
 												delete();
 											}
 										});
+										pDanhSach.add(btnXoa);
+										
+												JButton btnAdd = new JButton("Thêm");
+												btnAdd.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/add_person.png")));
+												btnAdd.setForeground(new Color(255, 255, 255));
+												btnAdd.setBackground(new Color(73, 129, 158));
+												btnAdd.setBounds(245, 660, 135, 40);
+												btnAdd.setOpaque(true);
+												btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
+												btnAdd.addActionListener(new ActionListener() {
+													
+													@Override
+													public void actionPerformed(ActionEvent e) {
+														// TODO Auto-generated method stub
+														if (btnAdd.getText().equals("Thêm")) {
+															txtTenNhanVien.setEditable(true);
+															lblChucVu.setVisible(false);
+															txtSoDienThoai.setEditable(true);
+															txtSoDienThoai.setBorder(borderDefault);
+															txtEmail.setEditable(true);
+															txtEmail.setBorder(borderDefault);
+															cbChucVu.setEnabled(true);
+															cbChucVu.setLayout(layoutDefaultCombobox);
+															cbCa.setEnabled(true);
+															cbCa.setLayout(layoutDefaultCombobox);
+															txtcCCD.setEditable(true);
+															txtcCCD.setBorder(borderDefault);
+															cbGioiTinh.setEnabled(true);
+															cbGioiTinh.setLayout(layoutDefaultCombobox);
+															txtDiaChi.setEditable(true);
+															txtDiaChi.setBorder(borderDefault);
+															btnAdd.setText("Xác nhận");
+														}
+														else {
+															add();
+															btnAdd.setText("Lưu");
+														}
+													}
+												});
+												pDanhSach.add(btnAdd);
+												
+														JButton btnSua = new JButton("Sửa");
+														btnSua.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/update_person.png")));
+														btnSua.setBackground(new Color(73, 129, 158));
+														btnSua.setForeground(new Color(255, 255, 255));
+														btnSua.setBounds(545, 660, 135, 40);
+														btnSua.setFont(new Font("SansSerif", Font.BOLD, 14));
+														btnSua.addActionListener(new ActionListener() {
 
-		dateChooserNgaySinh = new JDateChooser();
-		dateChooserNgaySinh.getCalendarButton().setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/calendar.png")));
-		dateChooserNgaySinh.getCalendarButton().setBorder(null);
-		dateChooserNgaySinh.getCalendarButton().setPreferredSize(new Dimension(30, 24));
-		dateChooserNgaySinh.getCalendarButton().setBackground(new Color(255, 255, 255));
-		dateChooserNgaySinh.setToolTipText("Ngày sinh");
-		dateChooserNgaySinh.setBounds(170, 517, 240, 40);
-		pNhapThongTin.add(dateChooserNgaySinh);
-		dateChooserNgaySinh.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		dateChooserNgaySinh.setDateFormatString("dd/MM/yyyy");
-		dateChooserNgaySinh.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		dateChooserNgaySinh.setBorder(null);
+															@Override
+															public void actionPerformed(ActionEvent e) {
+																// TODO Auto-generated method stub
+																update();
+															}
+														});
+														pDanhSach.add(btnSua);
+														
+														JButton btnTim = new JButton("Tìm");
+														btnTim.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/find_person.png")));
+														btnTim.setBackground(new Color(73, 129, 158));
+														btnTim.setForeground(new Color(255, 255, 255));
+														btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
+														btnTim.setBounds(695, 660, 135, 40);
+														pDanhSach.add(btnTim);
 
 		JLabel lblLuong = new JLabel("Lương:");
 		lblLuong.setToolTipText("Lương");
@@ -358,15 +431,6 @@ public class NhanVien_GUI extends JPanel {
 		txtLuong.setColumns(10);
 		txtLuong.setBounds(960, 70, 160, 33);
 		pNhapThongTin.add(txtLuong);
-		
-		cbCa = new JComboBox<String>();
-		cbCa.setToolTipText("Chức vụ");
-		cbCa.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbCa.setBounds(170, 395, 240, 40);
-		cbCa.addItem("01");
-		cbCa.addItem("02");
-		cbCa.setBorder(null);
-		pNhapThongTin.add(cbCa);
 		
 		lblChucVu = new JLabel("Quản lý");
 		lblChucVu.setToolTipText("Mã nhân viên");
@@ -403,9 +467,9 @@ public class NhanVien_GUI extends JPanel {
 		lblMaNV.setBounds(40, 305, 120, 40);
 		pNhapThongTin.add(lblMaNV);
 		
-		lblMaNhanVienValue = new JLabel("NV0001");
+		lblMaNhanVienValue = new JLabel("");
 		lblMaNhanVienValue.setToolTipText("Số điện thoại");
-		lblMaNhanVienValue.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		lblMaNhanVienValue.setFont(new Font("SansSerif", Font.BOLD, 18));
 		lblMaNhanVienValue.setBounds(170, 305, 120, 40);
 		pNhapThongTin.add(lblMaNhanVienValue);
 		
@@ -415,27 +479,19 @@ public class NhanVien_GUI extends JPanel {
 		lblChucVu1.setBounds(40, 350, 120, 40);
 		pNhapThongTin.add(lblChucVu1);
 		
-		cbChucVu = new JComboBox<String>();
-		cbChucVu.setToolTipText("Giới tính");
-		cbChucVu.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbChucVu.setBounds(170, 350, 240, 40);
-		cbChucVu.setBorder(null);
-		cbChucVu.setBackground(new Color(255, 255, 255));
-		pNhapThongTin.add(cbChucVu);
-		
 		JLabel lblCa = new JLabel("Ca:");
 		lblCa.setToolTipText("Số điện thoại");
 		lblCa.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		lblCa.setBounds(40, 395, 120, 40);
 		pNhapThongTin.add(lblCa);
 		
-		JLabel lblT = new JLabel("Thông tin cá nhân:");
-		lblT.setToolTipText("Mã nhân viên");
-		lblT.setHorizontalAlignment(SwingConstants.LEFT);
-		lblT.setForeground(new Color(28, 28, 28));
-		lblT.setFont(new Font("SansSerif", Font.BOLD, 18));
-		lblT.setBounds(20, 467, 189, 40);
-		pNhapThongTin.add(lblT);
+		JLabel lblThongTinCaNhan = new JLabel("Thông tin cá nhân:");
+		lblThongTinCaNhan.setToolTipText("Mã nhân viên");
+		lblThongTinCaNhan.setHorizontalAlignment(SwingConstants.LEFT);
+		lblThongTinCaNhan.setForeground(new Color(28, 28, 28));
+		lblThongTinCaNhan.setFont(new Font("SansSerif", Font.BOLD, 18));
+		lblThongTinCaNhan.setBounds(20, 467, 189, 40);
+		pNhapThongTin.add(lblThongTinCaNhan);
 		
 		JLabel lblNgaySinh = new JLabel("Ngày Sinh");
 		lblNgaySinh.setToolTipText("Số điện thoại");
@@ -449,11 +505,11 @@ public class NhanVien_GUI extends JPanel {
 		lblCccd.setBounds(40, 562, 120, 40);
 		pNhapThongTin.add(lblCccd);
 		
-		JLabel lblGiiTnh = new JLabel("Giới Tính:");
-		lblGiiTnh.setToolTipText("Số điện thoại");
-		lblGiiTnh.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		lblGiiTnh.setBounds(40, 607, 120, 40);
-		pNhapThongTin.add(lblGiiTnh);
+		JLabel lblGioiTinh = new JLabel("Giới Tính:");
+		lblGioiTinh.setToolTipText("Số điện thoại");
+		lblGioiTinh.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		lblGioiTinh.setBounds(40, 607, 120, 40);
+		pNhapThongTin.add(lblGioiTinh);
 		
 		JLabel lblDiaChi = new JLabel("Địa Chỉ:");
 		lblDiaChi.setToolTipText("Số điện thoại");
@@ -469,15 +525,34 @@ public class NhanVien_GUI extends JPanel {
 		btnChonHinhAnh = new JButton("Choose");
 		btnChonHinhAnh.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		btnChonHinhAnh.setBounds(20, 88, 64, 21);
+		btnChonHinhAnh.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JFileChooser fileChooser = new JFileChooser();
+	            // Chỉ cho phép chọn tệp hình ảnh
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files", "jpg", "jpeg", "png");
+                fileChooser.setFileFilter(filter);
+
+                int returnValue = fileChooser.showOpenDialog(null);
+                if (returnValue == JFileChooser.APPROVE_OPTION) {
+                    // Lấy tệp hình ảnh đã chọn
+                    java.io.File selectedFile = fileChooser.getSelectedFile();
+                    
+                    System.out.println("Đã chọn tệp: " + selectedFile.getAbsolutePath());
+                }
+			}
+		});
 		pNhapThongTin.add(btnChonHinhAnh);
 		
 		txtTenNhanVien = new JTextField();
+		txtTenNhanVien.setEditable(false);
 		txtTenNhanVien.setText("Phạm Văn Thành");
 		txtTenNhanVien.setToolTipText("Số điện thoại");
 		txtTenNhanVien.setFont(new Font("SansSerif", Font.BOLD, 20));
 		txtTenNhanVien.setColumns(10);
 		txtTenNhanVien.setBounds(94, 20, 240, 40);
-		txtTenNhanVien.setEditable(false);
 		txtTenNhanVien.setBorder(null);
 		txtTenNhanVien.setBackground(new Color(255, 255, 255));
 		pNhapThongTin.add(txtTenNhanVien);
@@ -529,7 +604,7 @@ public class NhanVien_GUI extends JPanel {
 				nhanVien.setSoDienThoai(txtSoDienThoai.getText());
 				nhanVien.setChucVu(cbChucVu.getSelectedItem().toString());
 				nhanVien.setTaiKhoan(taiKhoan);
-				nhanVien.setCa(cbCa.getSelectedItem() + "");
+				nhanVien.setMaCa(cbCa.getSelectedItem() + "");
 				nhanVien.setHinhAnh("a");
 				nhanVien_DAO.themNhanVien(nhanVien);
 				JOptionPane.showMessageDialog(null, "Thêm nhân viên thành công!");

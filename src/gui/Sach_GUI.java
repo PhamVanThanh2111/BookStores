@@ -17,11 +17,16 @@ import connect.ConnectDB;
 import dao.NhanVien_DAO;
 import dao.PhatSinhMa_DAO;
 import dao.Sach_DAO;
+import dao.SanPham_DAO;
 import entity.KhachHang;
+import entity.SanPham;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.util.List;
 import java.awt.event.ActionEvent;
 public class Sach_GUI extends JPanel {
 	/**
@@ -59,11 +64,10 @@ public class Sach_GUI extends JPanel {
 	private JButton btnDelete;
 	private JButton btnUpdate;
 	private JButton btnlamMoi;
-	private Sach_DAO sach_DAO;
-	private PhatSinhMa_DAO phatSinhMa_DAO;
 	
 	private DefaultTableModel model;
 	private JTable table;
+
 //	private JButton btnChonHinhAnh;
 	/**
 	 * Create the panel.
@@ -76,21 +80,20 @@ public class Sach_GUI extends JPanel {
 		ConnectDB.connect();
 		
 		//Khai báo Dao
-		sach_DAO = new Sach_DAO();
-		phatSinhMa_DAO = new PhatSinhMa_DAO();
+		
 		
 		setLayout(null);
 		
 		JPanel pMain = new JPanel();
 		pMain.setLayout(null);
-		pMain.setBounds(0, 10, 1300, 720);
+		pMain.setBounds(0, 0, 1300, 720);
 		add(pMain);
 		
 		JPanel pThongTin = new JPanel();
 		pThongTin.setLayout(null);
 		pThongTin.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pThongTin.setBackground(Color.WHITE);
-		pThongTin.setBounds(0, 0, 1300, 375);
+		pThongTin.setBounds(0, 0, 1300, 352);
 		pMain.add(pThongTin);
 		
 		lblthongTinSach = new JLabel("Thông Tin Sách");
@@ -193,14 +196,15 @@ public class Sach_GUI extends JPanel {
 		pThongTin.add(txtgiaBan);
 		
 		cbloaiSach = new JComboBox<String>();
-		cbloaiSach.setToolTipText("Giới tính");
+		cbloaiSach.setForeground(new Color(0, 0, 0));
+		cbloaiSach.setToolTipText("Loại Sách");
 		cbloaiSach.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		cbloaiSach.setBorder(null);
 		cbloaiSach.setBounds(600, 70, 255, 40);
 		pThongTin.add(cbloaiSach);
 		
 		cbnhaXuatBan = new JComboBox<String>();
-		cbnhaXuatBan.setToolTipText("Giới tính");
+		cbnhaXuatBan.setToolTipText("Nhà Xuất Bản");
 		cbnhaXuatBan.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		cbnhaXuatBan.setBorder(null);
 		cbnhaXuatBan.setBounds(600, 115, 255, 40);
@@ -253,7 +257,7 @@ public class Sach_GUI extends JPanel {
 		btnAdd.setForeground(Color.WHITE);
 		btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnAdd.setBackground(new Color(73, 129, 158));
-		btnAdd.setBounds(152, 300, 135, 40);
+		btnAdd.setBounds(145, 278, 135, 40);
 		pThongTin.add(btnAdd);
 		
 		btnDelete = new JButton("Xóa");
@@ -261,7 +265,7 @@ public class Sach_GUI extends JPanel {
 		btnDelete.setForeground(Color.WHITE);
 		btnDelete.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnDelete.setBackground(new Color(73, 129, 158));
-		btnDelete.setBounds(439, 300, 135, 40);
+		btnDelete.setBounds(432, 278, 135, 40);
 		pThongTin.add(btnDelete);
 		
 		btnUpdate = new JButton("Sửa");
@@ -269,7 +273,7 @@ public class Sach_GUI extends JPanel {
 		btnUpdate.setForeground(Color.WHITE);
 		btnUpdate.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnUpdate.setBackground(new Color(73, 129, 158));
-		btnUpdate.setBounds(726, 300, 135, 40);
+		btnUpdate.setBounds(719, 278, 135, 40);
 		pThongTin.add(btnUpdate);
 		
 		btnlamMoi = new JButton("Làm mới");
@@ -277,7 +281,7 @@ public class Sach_GUI extends JPanel {
 		btnlamMoi.setForeground(Color.WHITE);
 		btnlamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnlamMoi.setBackground(new Color(73, 129, 158));
-		btnlamMoi.setBounds(1013, 300, 135, 40);
+		btnlamMoi.setBounds(1006, 278, 135, 40);
 		pThongTin.add(btnlamMoi);
 		
 		
@@ -285,31 +289,46 @@ public class Sach_GUI extends JPanel {
 		JPanel pDanhSach = new JPanel();
 		pDanhSach.setBackground(new Color(255, 255, 255));
 		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		pDanhSach.setBounds(0, 385, 1300, 335);
+		pDanhSach.setBounds(0, 362, 1300, 348);
 		pMain.add(pDanhSach);
 		pDanhSach.setLayout(null);
 		
 		JScrollPane scrollPaneSach = new JScrollPane();
-		scrollPaneSach.setBounds(10, 10, 1280, 315);
+		scrollPaneSach.setBounds(20, 44, 1259, 292);
 		scrollPaneSach.setToolTipText("Chọn vào Sách cần hiển thị thông tin");
 		scrollPaneSach.setBorder(null);
 		scrollPaneSach.setBackground(new Color(255, 255, 255));
 		pDanhSach.add(scrollPaneSach);
 		
-		String[] cols = { "Mã Sách", "Tên Sách", "Xuất Xứ", "Giá Nhập", "Giá Bán","" };
-		model = new DefaultTableModel(cols, 0);
-		table = new JTable(model);
-	
+		JLabel lblChiTitSch = new JLabel("Chi Tiết Sách");
+		lblChiTitSch.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblChiTitSch.setBounds(22, 10, 200, 40);
+		pDanhSach.add(lblChiTitSch);
+//		loadData();
+		
 		
 	}
-//	public void loadData() {
-//		for (KhachHang Kh : khachHang_DAO.getAllKhachHang()) {
-//			Object[] object = { Kh.getTenKhachHang(), Kh.getMaKhachHang(), Kh.getGioiTinh(), Kh.getSoDienThoai(),
-//					Kh.getDiaChi() };
-//			model.addRow(object);
-//			table.setRowHeight(25);
-//		}
-//	}
-	
-	
+	public void loadData() {
+	    // Xóa dữ liệu cũ trước khi nạp dữ liệu mới
+	    model.setRowCount(0);
+	    // Lấy danh sách sản phẩm từ DAO 
+	    List<SanPham> sanPhamList = null;
+		try {
+			sanPhamList = SanPham_DAO.getAllSanPham();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	    // Nạp dữ liệu sản phẩm lên bảng
+	    for (SanPham sanPham : sanPhamList) {
+	        Object[] object = {sanPham.getMaSanPham(), sanPham.getTenSanPham(), sanPham.getXuatXu(),
+	                sanPham.getGiaNhap(), sanPham.getGiaBan(), sanPham.getSoLuongTon(),
+	                sanPham.getHinhAnh(), sanPham.getMaNXB(), sanPham.getMaTheLoaiSach(),
+	                sanPham.getTacGia(), sanPham.getSoTrang(), sanPham.getNamXuatBan(),
+	                sanPham.getMaNhaCungCap()};
+	        model.addRow(object);
+	        table.setRowHeight(25);
+	    }
+	}
+
 }

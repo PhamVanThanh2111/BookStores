@@ -8,12 +8,12 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 
-public class concaccon extends JPanel {
+public class concacon extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public concaccon() {
+	public concacon() {
 		setLayout(null);
 		
 		JPanel pChiTiet = new JPanel();

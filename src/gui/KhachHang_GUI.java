@@ -302,7 +302,6 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 			table.setRowHeight(25);
 		}
 	}
-
 	public void xoaTrang() {
 		txtTenKH.setText("");
 

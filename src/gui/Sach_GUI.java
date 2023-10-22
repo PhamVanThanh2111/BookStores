@@ -44,7 +44,6 @@ public class Sach_GUI extends JPanel {
 	private JTextField txtgiaBan;
 	private JTextField txtsoTrang;
 	private JTextField txtsoLuong;
-	private JTextField txtanh;
 	
 	private JLabel  lblthongTinSach;
 	private JLabel	lblmaSach;
@@ -67,6 +66,8 @@ public class Sach_GUI extends JPanel {
 	
 	private DefaultTableModel model;
 	private JTable table;
+	private JLabel lblHinhAnh;
+	private JButton btnChonHinhAnh;
 
 //	private JButton btnChonHinhAnh;
 	/**
@@ -243,15 +244,6 @@ public class Sach_GUI extends JPanel {
 		txtsoLuong.setBounds(1005, 162, 215, 40);
 		pThongTin.add(txtsoLuong);
 		
-		txtanh = new JTextField();
-		txtanh.setToolTipText("Ảnh");
-		txtanh.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtanh.setEditable(false);
-		txtanh.setColumns(10);
-		txtanh.setBackground(Color.WHITE);
-		txtanh.setBounds(1005, 205, 215, 40);
-		pThongTin.add(txtanh);
-		
 		btnAdd = new JButton("Thêm");
 		btnAdd.setOpaque(true);
 		btnAdd.setForeground(Color.WHITE);
@@ -283,6 +275,16 @@ public class Sach_GUI extends JPanel {
 		btnlamMoi.setBackground(new Color(73, 129, 158));
 		btnlamMoi.setBounds(1006, 278, 135, 40);
 		pThongTin.add(btnlamMoi);
+		
+		lblHinhAnh = new JLabel("");
+		lblHinhAnh.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblHinhAnh.setBounds(1005, 205, 215, 40);
+		pThongTin.add(lblHinhAnh);
+		
+		btnChonHinhAnh = new JButton("Choose");
+		btnChonHinhAnh.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		btnChonHinhAnh.setBounds(1077, 218, 74, 21);
+		pThongTin.add(btnChonHinhAnh);
 		
 		
 		// danh sách sách

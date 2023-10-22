@@ -207,7 +207,7 @@ public class NhanVien_DAO {
 		Connection connection = ConnectDB.getConnection();
 		try {
 			PreparedStatement preparedStatement = null;
-			preparedStatement = connection.prepareStatement("insert into NhanVien values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			preparedStatement = connection.prepareStatement("insert into NhanVien values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			preparedStatement.setString(1, nhanVien.getMaNhanVien());
 			preparedStatement.setString(2, nhanVien.getTenNhanVien());
 			preparedStatement.setString(3, nhanVien.getDiaChi());
@@ -252,7 +252,7 @@ public class NhanVien_DAO {
 		Connection connection = ConnectDB.getConnection();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(
-					"update NhanVien set tenNhanVien = ?, diaChi = ?, gioiTinh = ?, ngaySinh = ?, ngayVaoLam = ?, CCCD = ?, email = ?, soDienThoai = ?, chucVu = ?, maCa, hinhAnh = ? where maNhanVien = '"
+					"update NhanVien set tenNhanVien = ?, diaChi = ?, gioiTinh = ?, ngaySinh = ?, ngayVaoLam = ?, CCCD = ?, email = ?, soDienThoai = ?, chucVu = ?, maCa = ?, hinhAnh = ? where maNhanVien = '"
 							+ nhanVien.getMaNhanVien() + "'");
 			preparedStatement.setString(1, nhanVien.getTenNhanVien());
 			preparedStatement.setString(2, nhanVien.getDiaChi());

@@ -7,6 +7,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 import java.awt.Color;
 import javax.swing.JButton;
@@ -16,6 +17,8 @@ public class DanhSachDatHang_GUI extends JPanel {
 	private JButton btnLapHD,btnXoa;
 	private DefaultTableModel model;
 	private JTable table;
+	private JTableHeader tableHeader;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -23,23 +26,47 @@ public class DanhSachDatHang_GUI extends JPanel {
 		setLayout(null);
 		
 		JPanel pMain = new JPanel();
-		pMain.setBounds(0, 10, 1300, 720);
+		pMain.setBounds(0, 0, 1300, 720);
 		add(pMain);
 		pMain.setLayout(null);
 		
-		JLabel lblThongTinDatHang = new JLabel("Thông Tin Đặt Hàng");
-		lblThongTinDatHang.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblThongTinDatHang.setBounds(20, 30, 200, 40);
-		pMain.add(lblThongTinDatHang);
-		
 		JPanel pDanhSachHoaDon = new JPanel();
+		pDanhSachHoaDon.setBackground(new Color(255, 255, 255));
 		pDanhSachHoaDon.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pDanhSachHoaDon.setBounds(0, 0, 750, 720);
 		pMain.add(pDanhSachHoaDon);
 		pDanhSachHoaDon.setLayout(null);
 		
+		JLabel lblThongTinDatHang = new JLabel("Thông Tin Đặt Hàng");
+		lblThongTinDatHang.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblThongTinDatHang.setBounds(20, 30, 200, 40);
+		pDanhSachHoaDon.add(lblThongTinDatHang);
+		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 100, 710, 500);
+	
+		String cols[]= {"Mã HD","Tên KH","SĐT","Tổng Tiền"};
+		model = new DefaultTableModel(cols, 0);
+		table = new JTable(model);
+	
+		table.setToolTipText("Chọn vào hóa đơn cần hiển thị thông tin");
+		table.setRowHeight(30);
+		table.setDefaultEditor(Object.class, null);
+		table.setShowGrid(true);
+		table.setShowHorizontalLines(true);
+		
+		table.setSelectionBackground(new Color(141,208,229));
+		table.setSelectionForeground(new Color(0,0,0));
+		scrollPane.setBackground(new Color(80, 80, 80));
+		scrollPane.setBounds(20, 82, 710, 500);
+		
+		tableHeader = table.getTableHeader();
+		tableHeader.setBackground(new Color(73, 129, 158));
+		tableHeader.setForeground(Color.white);
+		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
+		tableHeader.setReorderingAllowed(false);
+		
+		scrollPane.setViewportView(table);
+		
 		pDanhSachHoaDon.add(scrollPane);
 		
 		btnXoa = new JButton("Xóa");
@@ -57,6 +84,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 		pDanhSachHoaDon.add(btnLapHD);
 		
 		JPanel pThongTinHoaDon = new JPanel();
+		pThongTinHoaDon.setBackground(new Color(255, 255, 255));
 		pThongTinHoaDon.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pThongTinHoaDon.setBounds(770, 0, 530, 720);
 		pMain.add(pThongTinHoaDon);

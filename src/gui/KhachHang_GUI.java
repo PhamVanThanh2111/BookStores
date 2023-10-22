@@ -37,6 +37,8 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 	private JTextField txtDiaChi;
 	private JTextField txtQuocTich;
 	private JTableHeader tableHeader;
+
+	
 	/**
 	 * Create the panel.
 	 */
@@ -45,6 +47,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		setLayout(null);
 
 		JPanel pMain = new JPanel();
+		pMain.setBackground(new Color(241, 245, 249));
 		pMain.setBounds(0, 0, 1300, 720);
 		add(pMain);
 		pMain.setLayout(null);
@@ -59,7 +62,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 
 		JScrollPane scrollPaneKH = new JScrollPane();
 		scrollPaneKH.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
-		scrollPaneKH.setBorder(new LineBorder(new Color(80, 80, 80), 1, true));
+		scrollPaneKH.setBorder(new LineBorder(new Color(80, 80, 80), 2, true));
 		scrollPaneKH.setBackground(new Color(80, 80, 80));
 		scrollPaneKH.setBounds(20, 82, 810, 557);
 		pDanhSach.add(scrollPaneKH);
@@ -75,6 +78,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		tableHeader.setForeground(Color.white);
 		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
 		tableHeader.setReorderingAllowed(false);
+		
 		scrollPaneKH.setViewportView(table);
 		
 		JLabel lblThongTin = new JLabel("Khách Hàng");

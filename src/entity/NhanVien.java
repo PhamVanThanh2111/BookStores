@@ -142,11 +142,11 @@ public class NhanVien {
 		this.cCCD = cCCD;
 	}
 
-	public String getCa() {
+	public String getMaCa() {
 		return maCa;
 	}
 
-	public void setCa(String maCa) {
+	public void setMaCa(String maCa) {
 		this.maCa = maCa;
 	}
 

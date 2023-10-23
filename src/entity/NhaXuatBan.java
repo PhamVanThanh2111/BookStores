@@ -2,23 +2,21 @@ package entity;
 
 import java.util.Objects;
 
-public class NXB {
+public class NhaXuatBan {
 	private String maNXB;
 	private String tenNXB;
 	private String diaChi;
 	private String soDienThoai;
 	private String email;
 
-	public NXB() {
+	public NhaXuatBan() {
 		super();
 	}
-
-	public NXB(String maNXB) {
+	public NhaXuatBan(String maNXB) {
 		super();
 		this.maNXB = maNXB;
 	}
-
-	public NXB(String maNXB, String tenNXB, String diaChi, String soDienThoai, String email) {
+	public NhaXuatBan(String maNXB, String tenNXB, String diaChi, String soDienThoai, String email) {
 		super();
 		this.maNXB = maNXB;
 		this.tenNXB = tenNXB;
@@ -80,7 +78,7 @@ public class NXB {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		NXB other = (NXB) obj;
+		NhaXuatBan other = (NhaXuatBan) obj;
 		return Objects.equals(diaChi, other.diaChi) && Objects.equals(email, other.email)
 				&& Objects.equals(maNXB, other.maNXB) && Objects.equals(soDienThoai, other.soDienThoai)
 				&& Objects.equals(tenNXB, other.tenNXB);

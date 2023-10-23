@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -10,11 +12,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import connect.ConnectDB;
 import dao.SanPham_DAO;
+import entity.NhanVien;
 import entity.SanPham;
 
 import java.sql.SQLException;
@@ -53,7 +59,7 @@ public class Sach_GUI extends JPanel {
 	private JButton btnDelete;
 	private JButton btnUpdate;
 	private JButton btnlamMoi;
-	
+	private JTableHeader tableHeader;
 	private DefaultTableModel model;
 	private JTable table;
 	private JLabel lblHinhAnh;
@@ -292,11 +298,91 @@ public class Sach_GUI extends JPanel {
 		scrollPaneSach.setBackground(new Color(255, 255, 255));
 		pDanhSach.add(scrollPaneSach);
 		
+		String cols[] = { "Mã Sách", "Tên Sách", "Xuất Xứ", "Giá Nhập",
+				"Giá Bán", "Số Lượng Tồn","Nhà Xuất Bản","Thể Loại Sách","Tác Giả","Số Trang","Năm Xuất Bản" };
+		model = new DefaultTableModel(cols, 0);
+		table = new JTable(model);
+		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		table.setToolTipText("Chọn vào sách cần hiển thị thông tin");
+		table.setRowHeight(30);
+		table.setDefaultEditor(Object.class, null);
+		table.setShowGrid(true); 
+		table.setShowHorizontalLines(true);
+		table.setBackground(new Color(255, 255, 255));
+		table.setSelectionBackground(new Color(141, 208, 229));
+		table.setSelectionForeground(new Color(0, 0, 0));
+		table.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		scrollPaneSach.setViewportView(table);
+
+		// header of table
+		tableHeader = table.getTableHeader();
+		tableHeader.setBackground(new Color(73, 129, 158));
+		tableHeader.setForeground(Color.white);
+		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
+		tableHeader.setReorderingAllowed(false);
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+		table.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(7).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(8).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(9).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(10).setCellRenderer(centerRenderer);
+		// set width of table
+//		table.getColumnModel().getColumn(0).setPreferredWidth(30);
+//		table.getColumnModel().getColumn(1).setPreferredWidth(102);
+//		table.getColumnModel().getColumn(2).setPreferredWidth(170);
+//		table.getColumnModel().getColumn(3).setPreferredWidth(35);
+//		table.getColumnModel().getColumn(4).setPreferredWidth(60);
+//		table.getColumnModel().getColumn(5).setPreferredWidth(70);
+//		table.getColumnModel().getColumn(6).setPreferredWidth(50);
+//		table.getColumnModel().getColumn(7).setPreferredWidth(102);
+//		table.getColumnModel().getColumn(8).setPreferredWidth(40);
+//		table.getColumnModel().getColumn(9).setPreferredWidth(30);
+//		table.getColumnModel().getColumn(10).setPreferredWidth(50);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
+		
 		JLabel lblChiTitSch = new JLabel("Chi Tiết Sách");
 		lblChiTitSch.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblChiTitSch.setBounds(22, 10, 200, 40);
 		pDanhSach.add(lblChiTitSch);
-//		loadData();
+		loadData();
 		
 		
 	}
@@ -306,7 +392,7 @@ public class Sach_GUI extends JPanel {
 	    // Lấy danh sách sản phẩm từ DAO 
 	    List<SanPham> sanPhamList = null;
 		try {
-			sanPhamList = SanPham_DAO.getAllSanPham();
+			sanPhamList = SanPham_DAO.getAllSach();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -315,12 +401,15 @@ public class Sach_GUI extends JPanel {
 	    for (SanPham sanPham : sanPhamList) {
 	        Object[] object = {sanPham.getMaSanPham(), sanPham.getTenSanPham(), sanPham.getXuatXu(),
 	                sanPham.getGiaNhap(), sanPham.getGiaBan(), sanPham.getSoLuongTon(),
-	                sanPham.getHinhAnh(), sanPham.getMaNXB(), sanPham.getMaTheLoaiSach(),
+	                sanPham.getMaNXB(), sanPham.getMaTheLoaiSach(),
 	                sanPham.getTacGia(), sanPham.getSoTrang(), sanPham.getNamXuatBan(),
-	                sanPham.getMaNhaCungCap()};
+	               };
 	        model.addRow(object);
 	        table.setRowHeight(25);
 	    }
+	}
+	public void refresh() {
+		loadData();
 	}
 
 }

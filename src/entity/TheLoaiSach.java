@@ -2,20 +2,20 @@ package entity;
 
 import java.util.Objects;
 
-public class LoaiSach {
+public class TheLoaiSach {
 	private String maLoaiSach;
 	private String tenLoaiSach;
 
-	public LoaiSach() {
+	public TheLoaiSach() {
 		super();
 	}
 
-	public LoaiSach(String maLoaiSach) {
+	public TheLoaiSach(String maLoaiSach) {
 		super();
 		this.maLoaiSach = maLoaiSach;
 	}
 
-	public LoaiSach(String maLoaiSach, String tenLoaiSach) {
+	public TheLoaiSach(String maLoaiSach, String tenLoaiSach) {
 		super();
 		this.maLoaiSach = maLoaiSach;
 		this.tenLoaiSach = tenLoaiSach;
@@ -50,7 +50,7 @@ public class LoaiSach {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		LoaiSach other = (LoaiSach) obj;
+		TheLoaiSach other = (TheLoaiSach) obj;
 		return Objects.equals(maLoaiSach, other.maLoaiSach) && Objects.equals(tenLoaiSach, other.tenLoaiSach);
 	}
 

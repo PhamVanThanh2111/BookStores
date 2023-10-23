@@ -2,6 +2,9 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -9,7 +12,14 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableModel;
 
+import dao.TheLoaiSach_DAO;
+import entity.TheLoaiSach;
 public class TheLoaiSach_GUI extends JPanel {
 
 	/**
@@ -18,7 +28,9 @@ public class TheLoaiSach_GUI extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField txtmaTheLoaiSach;
 	private JTextField textField_1;
-
+	private JTable table;
+	private JTableHeader tableHeader;
+	private DefaultTableModel model;
 	/**
 	 * Create the panel.
 	 */
@@ -103,23 +115,95 @@ public class TheLoaiSach_GUI extends JPanel {
 		pThongTin.add(textField_1);
 		
 		JPanel pDanhSach = new JPanel();
-		pDanhSach.setLayout(null);
+		pDanhSach.setBackground(new Color(255, 255, 255));
 		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		pDanhSach.setBackground(Color.WHITE);
-		pDanhSach.setBounds(0, 320, 1300, 400);
+		pDanhSach.setBounds(0, 362, 1300, 348);
 		pMain.add(pDanhSach);
+		pDanhSach.setLayout(null);
 		
-		JScrollPane scrollPaneSach = new JScrollPane();
-		scrollPaneSach.setToolTipText("Chọn vào thể loại  Sách cần hiển thị thông tin");
-		scrollPaneSach.setBorder(null);
-		scrollPaneSach.setBackground(Color.WHITE);
-		scrollPaneSach.setBounds(20, 44, 1259, 335);
-		pDanhSach.add(scrollPaneSach);
+		JScrollPane scrollPaneTheLoaiSach = new JScrollPane();
+		scrollPaneTheLoaiSach.setToolTipText("Chọn vào thể loại Sách cần hiển thị thông tin");
+		scrollPaneTheLoaiSach.setBorder(null);
+		scrollPaneTheLoaiSach.setBackground(Color.WHITE);
+		scrollPaneTheLoaiSach.setBounds(20, 44, 1259, 285);
+		pDanhSach.add(scrollPaneTheLoaiSach);
 		
+		String cols[] = { "Mã Thể Loại Sách","Tên Thể Loại Sách"};
+		model = new DefaultTableModel(cols, 0);
+		table = new JTable(model);
+		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		table.setToolTipText("Chọn vào thể loại sách cần hiển thị thông tin");
+		table.setRowHeight(30);
+		table.setDefaultEditor(Object.class, null);
+		table.setShowGrid(true); 
+		table.setShowHorizontalLines(true);
+		table.setBackground(new Color(255, 255, 255));
+		table.setSelectionBackground(new Color(141, 208, 229));
+		table.setSelectionForeground(new Color(0, 0, 0));
+		table.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		scrollPaneTheLoaiSach.setViewportView(table);
+		
+		tableHeader = table.getTableHeader();
+		tableHeader.setBackground(new Color(73, 129, 158));
+		tableHeader.setForeground(Color.white);
+		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
+		tableHeader.setReorderingAllowed(false);
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+		table.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
 		JLabel lblChiTitTh = new JLabel("Chi Tiết Thể Loại Sách");
 		lblChiTitTh.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblChiTitTh.setBounds(22, 10, 291, 40);
 		pDanhSach.add(lblChiTitTh);
-
+		loadData();
 	}
+	public void loadData() {
+	 
+	    // Lấy danh sách sản phẩm từ DAO 
+	    TheLoaiSach_DAO theLoaiSach_DAO = new TheLoaiSach_DAO();
+	    // Xóa dữ liệu cũ trước khi nạp dữ liệu mới
+	    model.setRowCount(0);
+	    // Nạp dữ liệu sản phẩm lên bảng
+		for (TheLoaiSach theLoaiSach : TheLoaiSach_DAO.getAllListTheLoaiSach()) {
+			Object[] object = { theLoaiSach.getMaLoaiSach(),theLoaiSach.getTenLoaiSach() };
+			model.addRow(object);
+			table.setRowHeight(25);
+		}
+	}
+	public void refresh() {
+		loadData();
+	}
+
 }

@@ -455,6 +455,28 @@ public class NhanVien_GUI extends JPanel {
 											else {
 												update();
 												btnSua.setText("Sửa");
+												btnXoa.setText("Xóa");
+												txtTenNhanVien.setEditable(false); 
+												txtTenNhanVien.setBorder(null); 
+												txtSoDienThoai.setEditable(false); 
+												txtSoDienThoai.setBorder(null); 
+												txtEmail.setEditable(false); 
+												txtEmail.setBorder(null);
+												cbChucVu.setEnabled(false);
+												cbChucVu.setBorder(null);
+												cbChucVu.setLayout(null);
+												cbCa.setEnabled(false);
+												cbCa.setBorder(null);
+												cbCa.setLayout(null);
+												txtcCCD.setEditable(false); 
+												txtcCCD.setBorder(null);
+												cbGioiTinh.setEnabled(false);
+												cbGioiTinh.setBorder(null);
+												cbGioiTinh.setLayout(null);
+												txtDiaChi.setEditable(false); 
+												txtDiaChi.setBorder(null);
+												btnChonHinhAnh.setVisible(false);
+												lblChucVu.setVisible(true);
 											}
 										}
 									});

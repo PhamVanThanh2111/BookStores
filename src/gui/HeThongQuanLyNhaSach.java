@@ -318,6 +318,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		pContent.add(new NhaXuatBan_GUI(), "NhaXuatBan_GUI");
 		pContent.add(new HoaDon_GUI(nhanVien.getMaNhanVien()), "HoaDon_GUI");
 		pContent.add(new TheLoaiSach_GUI(), "LoaiSach_GUI");
+		pContent.add(new HoSo_GUI(), "HoSo_GUI");
 		// sub menu
 		pContent.add(new DanhSachHoaDon_GUI(), "DanhSachHoaDon_GUI");
 		pContent.add(new NhaCungCap_GUI(), "NhaCungCap_GUI");
@@ -342,6 +343,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			public void mouseEntered(MouseEvent e) {
 				lblDangXuat.setBackground(new Color(24, 39, 60));
 				lblDangXuat.setOpaque(true);
+				
 				lblIconDangXuat.setBackground(new Color(24, 39, 60));
 				lblIconDangXuat.setOpaque(true);
 			}
@@ -592,6 +594,16 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				lblHoSo.setBackground(new Color(39, 63, 96));
 				lblIconHoSo.setBackground(new Color(39, 63, 96));
 			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cardLayoutContent.show(pContent, "HoSo_GUI");
+				lblSubMenu1.setText("Hồ Sơ");
+				lblSubMenu2.setText("");
+				lblSubMenu3.setText("");
+				sprDoc1.setVisible(false);
+				sprDoc2.setVisible(false);
+			}
 		});
 		lblHoSo.setOpaque(true);
 		
@@ -614,6 +626,17 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			public void mouseExited(MouseEvent e) {
 				lblHoSo.setBackground(new Color(39, 63, 96));
 				lblIconHoSo.setBackground(new Color(39, 63, 96));
+			}
+			
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cardLayoutContent.show(pContent, "HoSo_GUI");
+				lblSubMenu1.setText("Hồ Sơ");
+				lblSubMenu2.setText("");
+				lblSubMenu3.setText("");
+				sprDoc1.setVisible(false);
+				sprDoc2.setVisible(false);
 			}
 		});
 		pMenu2.add(lblIconHoSo);

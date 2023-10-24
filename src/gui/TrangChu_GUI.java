@@ -75,6 +75,12 @@ public class TrangChu_GUI extends JPanel {
 		lblIconDoanhThu.setBounds(10, 452, 128, 128);
 		pnlDoanhThu.add(lblIconDoanhThu);
 		
+		JLabel lblBackgroundDoanhThu = new JLabel("");
+		lblBackgroundDoanhThu.setIcon(new ImageIcon(TrangChu_GUI.class.getResource("/image/background_doanhthu.jpg")));
+		lblBackgroundDoanhThu.setBounds(0, 0, 45, 13);
+		lblBackgroundDoanhThu.setBounds(0, 0, pnlDoanhThu.getWidth(), pnlDoanhThu.getHeight());
+		pnlDoanhThu.add(lblBackgroundDoanhThu);
+		
 		JPanel pnlThongTinCuaHang = new JPanel();
 		pnlThongTinCuaHang.setBackground(new Color(255, 255, 255));
 		pnlThongTinCuaHang.setBorder(new LineBorder(new Color(0, 0, 0)));

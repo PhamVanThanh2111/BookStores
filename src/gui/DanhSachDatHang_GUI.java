@@ -13,6 +13,10 @@ import java.awt.Color;
 import javax.swing.JButton;
 
 public class DanhSachDatHang_GUI extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JLabel lblMaHoaDon,lblTien,lblTenNhanVien,lblSDThoai,lblTenKhachHang;
 	private JButton btnLapHD,btnXoa;
 	private DefaultTableModel model;

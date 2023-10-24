@@ -9,7 +9,18 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableModel;
+
+import dao.SanPham_DAO;
+import entity.SanPham;
 
 public class DungCuHocTap_GUI extends JPanel {
 
@@ -17,12 +28,15 @@ public class DungCuHocTap_GUI extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField txtmaDCHT;
+	private JTextField txttenDCHT;
+	private JTextField txtnhaCC;
 	private JTextField txtsoLuong;
 	private JTextField txtgiaBan;
 	private JTextField txtgiaNhap;
+	private JTable table;
+	private JTableHeader tableHeader;
+	private DefaultTableModel model;
 
 	/**
 	 * Create the panel.
@@ -62,32 +76,32 @@ public class DungCuHocTap_GUI extends JPanel {
 		lblnhaCC.setBounds(40, 160, 90, 40);
 		pThongTin.add(lblnhaCC);
 		
-		textField = new JTextField();
-		textField.setToolTipText("Mã Sách");
-		textField.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		textField.setEditable(false);
-		textField.setColumns(10);
-		textField.setBackground(Color.WHITE);
-		textField.setBounds(145, 70, 255, 40);
-		pThongTin.add(textField);
+		txtmaDCHT = new JTextField();
+		txtmaDCHT.setToolTipText("Mã Sách");
+		txtmaDCHT.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtmaDCHT.setEditable(false);
+		txtmaDCHT.setColumns(10);
+		txtmaDCHT.setBackground(Color.WHITE);
+		txtmaDCHT.setBounds(145, 70, 255, 40);
+		pThongTin.add(txtmaDCHT);
 		
-		textField_1 = new JTextField();
-		textField_1.setToolTipText("Tên Sách");
-		textField_1.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
-		textField_1.setBackground(Color.WHITE);
-		textField_1.setBounds(145, 115, 255, 40);
-		pThongTin.add(textField_1);
+		txttenDCHT = new JTextField();
+		txttenDCHT.setToolTipText("Tên Sách");
+		txttenDCHT.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txttenDCHT.setEditable(false);
+		txttenDCHT.setColumns(10);
+		txttenDCHT.setBackground(Color.WHITE);
+		txttenDCHT.setBounds(145, 115, 255, 40);
+		pThongTin.add(txttenDCHT);
 		
-		textField_2 = new JTextField();
-		textField_2.setToolTipText("Xuất xứ");
-		textField_2.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		textField_2.setEditable(false);
-		textField_2.setColumns(10);
-		textField_2.setBackground(Color.WHITE);
-		textField_2.setBounds(145, 162, 255, 40);
-		pThongTin.add(textField_2);
+		txtnhaCC = new JTextField();
+		txtnhaCC.setToolTipText("Xuất xứ");
+		txtnhaCC.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtnhaCC.setEditable(false);
+		txtnhaCC.setColumns(10);
+		txtnhaCC.setBackground(Color.WHITE);
+		txtnhaCC.setBounds(145, 162, 255, 40);
+		pThongTin.add(txtnhaCC);
 		
 		JLabel lblgia = new JLabel("Giá Nhập:");
 		lblgia.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -189,17 +203,103 @@ public class DungCuHocTap_GUI extends JPanel {
 		pDanhSach.setBounds(0, 330, 1300, 380);
 		pMain.add(pDanhSach);
 		
-		JScrollPane scrollPaneSach = new JScrollPane();
-		scrollPaneSach.setToolTipText("Chọn vào Sách cần hiển thị thông tin");
-		scrollPaneSach.setBorder(null);
-		scrollPaneSach.setBackground(Color.WHITE);
-		scrollPaneSach.setBounds(20, 51, 1259, 319);
-		pDanhSach.add(scrollPaneSach);
+		JScrollPane scrollPaneDungCuHocTap = new JScrollPane();
+		scrollPaneDungCuHocTap.setToolTipText("Chọn vào Dụng cụ học tập cần hiển thị thông tin");
+		scrollPaneDungCuHocTap.setBorder(null);
+		scrollPaneDungCuHocTap.setBackground(Color.WHITE);
+		scrollPaneDungCuHocTap.setBounds(20, 51, 1259, 319);
+		pDanhSach.add(scrollPaneDungCuHocTap);
+		
+		String cols[] = { "Mã Dụng Cụ Học Tập", "Tên Dụng Cụ Học Tập ", "Xuất Xứ", "Giá Nhập",
+				"Giá Bán", "Số Lượng Tồn","Nhà Cung Cấp" };
+		model = new DefaultTableModel(cols, 0);
+		table = new JTable(model);
+		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		table.setToolTipText("Chọn vào dụng cụ học tập cần hiển thị thông tin");
+		table.setRowHeight(30);
+		table.setDefaultEditor(Object.class, null);
+		table.setShowGrid(true); 
+		table.setShowHorizontalLines(true);
+		table.setBackground(new Color(255, 255, 255));
+		table.setSelectionBackground(new Color(141, 208, 229));
+		table.setSelectionForeground(new Color(0, 0, 0));
+		table.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		scrollPaneDungCuHocTap.setViewportView(table);
+		// header of table
+		tableHeader = table.getTableHeader();
+		tableHeader.setBackground(new Color(73, 129, 158));
+		tableHeader.setForeground(Color.white);
+		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
+		tableHeader.setReorderingAllowed(false);
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+		table.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+		table.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
+		
 		
 		JLabel lblChiTitDng = new JLabel("Chi Tiết Dụng Cụ Học Tập");
 		lblChiTitDng.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblChiTitDng.setBounds(20, 15, 246, 40);
 		pDanhSach.add(lblChiTitDng);
+		loadData();
 
+	}
+	public void loadData() {
+	    // Xóa dữ liệu cũ trước khi nạp dữ liệu mới
+	    model.setRowCount(0);
+	    // Lấy danh sách sản phẩm từ DAO 
+	    List<SanPham> sanPhamList = null;
+		try {
+			sanPhamList = SanPham_DAO.getAllSach();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	    // Nạp dữ liệu sản phẩm lên bảng
+	    for (SanPham sanPham : sanPhamList) {
+	        Object[] object = {sanPham.getMaSanPham(), sanPham.getTenSanPham(), sanPham.getXuatXu(),
+	                sanPham.getGiaNhap(), sanPham.getGiaBan(), sanPham.getSoLuongTon(),sanPham.getMaNhaCungCap()};
+	        model.addRow(object);
+	        table.setRowHeight(25);
+	    }
+	}
+	public void refresh() {
+		loadData();
 	}
 }

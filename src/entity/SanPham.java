@@ -13,7 +13,7 @@ public class SanPham {
 	private String maNXB;
 	private String maTheLoaiSach;
 	private String tacGia;
-	private String soTrang;
+	private int soTrang;
 	private int namXuatBan;
 	private String maNhaCungCap;
 	
@@ -25,9 +25,10 @@ public class SanPham {
 		super();
 		this.maSanPham = maSanPham;
 	}
+	// sách
 	public SanPham(String maSanPham, String tenSanPham, String xuatXu, float giaNhap, float giaBan, int soLuongTon,
-			String hinhAnh, String maNXB, String maTheLoaiSach, String tacGia, String soTrang, int namXuatBan,
-			String maNhaCungCap) {
+			String hinhAnh, String maNXB, String maTheLoaiSach, String tacGia, int soTrang, int namXuatBan
+			) {
 		super();
 		this.maSanPham = maSanPham;
 		this.tenSanPham = tenSanPham;
@@ -41,6 +42,18 @@ public class SanPham {
 		this.tacGia = tacGia;
 		this.soTrang = soTrang;
 		this.namXuatBan = namXuatBan;
+	}
+	// DCHT
+	public SanPham(String maSanPham, String tenSanPham, String xuatXu, float giaNhap, float giaBan, int soLuongTon,
+			String hinhAnh, String maNhaCungCap) {
+		super();
+		this.maSanPham = maSanPham;
+		this.tenSanPham = tenSanPham;
+		this.xuatXu = xuatXu;
+		this.giaNhap = giaNhap;
+		this.giaBan = giaBan;
+		this.soLuongTon = soLuongTon;
+		this.hinhAnh = hinhAnh;
 		this.maNhaCungCap = maNhaCungCap;
 	}
 	public String getMaSanPham() {
@@ -103,10 +116,10 @@ public class SanPham {
 	public void setTacGia(String tacGia) {
 		this.tacGia = tacGia;
 	}
-	public String getSoTrang() {
+	public int getSoTrang() {
 		return soTrang;
 	}
-	public void setSoTrang(String soTrang) {
+	public void setSoTrang(int soTrang) {
 		this.soTrang = soTrang;
 	}
 	public int getNamXuatBan() {

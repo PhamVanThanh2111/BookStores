@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import connect.ConnectDB;
-
 import entity.NhaXuatBan;
 public class NhaXuatBan_DAO {
 
@@ -28,4 +27,28 @@ public class NhaXuatBan_DAO {
         }
         return ds;
     }
+    
+ // get NXB theo ma
+ 	public NhaXuatBan getnhaXuatBanTheoMa(String maNhaXuatBan) {
+ 		NhaXuatBan nhaXuatBan = new NhaXuatBan();
+ 		ConnectDB.getInstance();
+ 		Connection connection = ConnectDB.getConnection();
+ 		try {
+ 			PreparedStatement preparedStatement = connection
+ 					.prepareStatement("select * from NhaXuatBan where maNhaXuatBan = '" + maNhaXuatBan + "'");
+ 			ResultSet resultSet = preparedStatement.executeQuery();
+
+ 			while (resultSet.next()) {
+ 				nhaXuatBan.setMaNXB(resultSet.getString(1));
+ 				nhaXuatBan.setTenNXB(resultSet.getString(2));
+ 				nhaXuatBan.setDiaChi(resultSet.getString(3));
+ 				nhaXuatBan.setSoDienThoai(resultSet.getString(4));
+ 				nhaXuatBan.setEmail(resultSet.getString(5));
+ 			}
+ 		} catch (SQLException e) {
+ 			// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 		}
+ 		return nhaXuatBan;
+ 	}
 }

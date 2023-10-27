@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -16,16 +15,12 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import dao.NhaXuatBan_DAO;
-import entity.KhachHang;
 import entity.NhaXuatBan;
-import entity.NhanVien;
-import entity.SanPham;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.JSeparator;
-import javax.swing.table.TableModel;
 
 public class NhaXuatBan_GUI extends JPanel {
 	/**

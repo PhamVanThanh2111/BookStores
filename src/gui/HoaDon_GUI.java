@@ -6,11 +6,13 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import connect.ConnectDB;
+import dao.SanPham_DAO;
+import entity.SanPham;
+
 import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -31,20 +33,22 @@ public class HoaDon_GUI extends JPanel {
 	private JTextField txtSoLuong;
 	private JComboBox<String> cbTenSP;
 	private JComboBox<String> cbLoaiSP;
-	private DefaultComboBoxModel<String> cbModelTenSP;
 	private JTextField txtMaKhachHang;
 	private JTextField txtTenKhachHang;
 	private JTextField txtSoDienThoai;
 	private JTextField txtDiaChi;
 	private JTextField txtConLai;
 	private JTableHeader tableHeader;
+	private SanPham_DAO sanPham_DAO;
+	
+	
 	/**
 	 * Create the panel.
 	 */
 	public HoaDon_GUI(String maNV) {
 		setBackground(new Color(255, 255, 255));
 		// khai bao DAO
-		
+		sanPham_DAO = new SanPham_DAO();
 
 		// connect
 		ConnectDB.getInstance();
@@ -206,24 +210,22 @@ public class HoaDon_GUI extends JPanel {
 		cbLoaiSP.setBounds(170, 70, 284, 40);
 		cbLoaiSP.addItem("Sách");
 		cbLoaiSP.addItem("Dụng cụ học tập");
-//		cbLoaiSP.addActionListener(new ActionListener() {
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				// TODO Auto-generated method stub
-//				if (cbLoaiSP.getSelectedItem().toString().equals("Sách")) {
-//					loadTenSachIntoComboboxTenSP();
-//				} else {
-//					loadTenDCHTIntoComboboxTenSP();
-//				}
-//			}
-//		});
+		cbLoaiSP.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				loadDataIntoComboboxTenSP(cbLoaiSP.getSelectedItem().toString());
+			}
+		});
 		pThongTinKH.add(cbLoaiSP);
 
 		cbTenSP = new JComboBox<String>();
 		cbTenSP.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		cbTenSP.setBounds(170, 120, 284, 40);
-//		loadTenSachIntoComboboxTenSP();
+		for (SanPham sanPham : sanPham_DAO.getAllSach()) {
+			cbTenSP.addItem(sanPham.getTenSanPham());
+		}
 		pThongTinKH.add(cbTenSP);
 
 		txtSoLuong = new JTextField();
@@ -279,21 +281,17 @@ public class HoaDon_GUI extends JPanel {
 	}
 
 	// load data ten sach vao combobox
-//	private void loadTenSachIntoComboboxTenSP() {
-//		cbModelTenSP = new DefaultComboBoxModel<String>();
-//		cbModelTenSP.removeAllElements();
-//		for (Sach sach : sach_DAO.getAllListSach()) {
-//			cbModelTenSP.addElement(sach.getTenSach());
-//		}
-//		cbTenSP.setModel(cbModelTenSP);
-//	}
-//
-//	private void loadTenDCHTIntoComboboxTenSP() {
-//		cbModelTenSP = new DefaultComboBoxModel<String>();
-//		cbModelTenSP.removeAllElements();
-//		for (DungCuHocTap dungCuHocTap : dungCuHocTap_DAO.getAllListDungCuHocTap()) {
-//			cbModelTenSP.addElement(dungCuHocTap.getTenDungCuHocTap());
-//		}
-//		cbTenSP.setModel(cbModelTenSP);
-//	}
+	private void loadDataIntoComboboxTenSP(String loaiSanPham) {
+		cbTenSP.removeAllItems();
+		if (loaiSanPham.equals("Sách")) {
+			for (SanPham sanPham : sanPham_DAO.getAllSach()) {
+				cbTenSP.addItem(sanPham.getTenSanPham());
+			}
+		}
+		else {
+			for (SanPham sanPham : sanPham_DAO.getAllDungCuHocTap()) {
+				cbTenSP.addItem(sanPham.getTenSanPham());
+			}
+		}
+	}
 }

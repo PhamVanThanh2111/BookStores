@@ -41,6 +41,8 @@ import dao.PhatSinhMa_DAO;
 import dao.TaiKhoan_DAO;
 import entity.NhanVien;
 import entity.TaiKhoan;
+import javax.swing.JDesktopPane;
+import java.awt.FlowLayout;
 
 public class NhanVien_GUI extends JPanel {
 	/**
@@ -72,6 +74,8 @@ public class NhanVien_GUI extends JPanel {
 	private File selectedFile;
 	private String relativePath;
 	private JButton btnXoa;
+	private TimNhanVien_GUI timNhanVien_GUI;
+	private JDesktopPane desktopPane;
 
 	/**
 	 * Create the panel.
@@ -91,11 +95,23 @@ public class NhanVien_GUI extends JPanel {
 		simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 		setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 1300, 720);
+		add(panel);
+		panel.setLayout(null);
+		
+		desktopPane = new JDesktopPane();
+		desktopPane.setBackground(new Color(255, 255, 255));
+		desktopPane.setBounds(0, 0, 1300, 720);
+		panel.add(desktopPane);
+		desktopPane.setLayout(null);
+		
 		JPanel pMain = new JPanel();
 		pMain.setBackground(new Color(241, 245, 249));
 		pMain.setBounds(0, 0, 1300, 720);
-		add(pMain);
 		pMain.setLayout(null);
+		desktopPane.add(pMain);
 
 		JPanel pNhapThongTin = new JPanel();
 		pNhapThongTin.setBackground(new Color(255, 255, 255));
@@ -407,6 +423,7 @@ public class NhanVien_GUI extends JPanel {
 											btnChonHinhAnh.setVisible(false);
 											lblChucVu.setVisible(true);
 											btnAdd.setText("Thêm");
+											btnXoa.setText("Xóa");
 										}
 									}
 								});
@@ -531,6 +548,16 @@ public class NhanVien_GUI extends JPanel {
 											btnTim.setForeground(new Color(255, 255, 255));
 											btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
 											btnTim.setBounds(695, 660, 135, 40);
+											btnTim.addActionListener(new ActionListener() {
+												
+												@Override
+												public void actionPerformed(ActionEvent e) {
+													// TODO Auto-generated method stub
+													desktopPane.removeAll();
+													TimNhanVien timNhanVien = new TimNhanVien();
+													desktopPane.add(timNhanVien).setVisible(true);
+												}
+											});
 											pDanhSach.add(btnTim);
 
 		JLabel lblLuong = new JLabel("Lương:");
@@ -613,11 +640,11 @@ public class NhanVien_GUI extends JPanel {
 		lblNgaySinh.setBounds(40, 517, 120, 40);
 		pNhapThongTin.add(lblNgaySinh);
 		
-		JLabel lblCccd = new JLabel("CCCD:");
-		lblCccd.setToolTipText("Số điện thoại");
-		lblCccd.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		lblCccd.setBounds(40, 562, 120, 40);
-		pNhapThongTin.add(lblCccd);
+		JLabel lblCCCD = new JLabel("CCCD:");
+		lblCCCD.setToolTipText("Số điện thoại");
+		lblCCCD.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		lblCCCD.setBounds(40, 562, 120, 40);
+		pNhapThongTin.add(lblCCCD);
 		
 		JLabel lblGioiTinh = new JLabel("Giới Tính:");
 		lblGioiTinh.setToolTipText("Số điện thoại");

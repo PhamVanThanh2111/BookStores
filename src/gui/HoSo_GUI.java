@@ -2,6 +2,9 @@ package gui;
 
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+
+import entity.NhanVien;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -16,7 +19,7 @@ public class HoSo_GUI extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public HoSo_GUI() {
+	public HoSo_GUI(NhanVien nhanVien) {
 		setLayout(null);
 		
 		JPanel pnlMain = new JPanel();

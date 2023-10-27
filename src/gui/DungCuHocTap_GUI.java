@@ -17,7 +17,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import javax.swing.table.TableModel;
 
 import dao.SanPham_DAO;
 import entity.SanPham;
@@ -37,11 +36,16 @@ public class DungCuHocTap_GUI extends JPanel {
 	private JTable table;
 	private JTableHeader tableHeader;
 	private DefaultTableModel model;
+	private SanPham_DAO sanPham_DAO;
 
 	/**
 	 * Create the panel.
 	 */
 	public DungCuHocTap_GUI() {
+		
+		// khai bao DAO
+		sanPham_DAO = new SanPham_DAO();
+		
 		setLayout(null);
 		
 		JPanel pMain = new JPanel();
@@ -286,7 +290,7 @@ public class DungCuHocTap_GUI extends JPanel {
 	    // Lấy danh sách sản phẩm từ DAO 
 	    List<SanPham> sanPhamList = null;
 		try {
-			sanPhamList = SanPham_DAO.getAllSach();
+			sanPhamList = sanPham_DAO.getAllSach();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

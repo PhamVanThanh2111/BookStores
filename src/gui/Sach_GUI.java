@@ -15,12 +15,12 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import connect.ConnectDB;
+import dao.NhaXuatBan_DAO;
 import dao.SanPham_DAO;
-import entity.NhanVien;
+import dao.TheLoaiSach_DAO;
 import entity.SanPham;
 
 import java.sql.SQLException;
@@ -53,18 +53,22 @@ public class Sach_GUI extends JPanel {
 	private JLabel	lblsoTrang;
 	private JLabel	lblsoLuong;
 	private JLabel	lblanh;
+	private JLabel lblHinhAnh;
+	
 	private JComboBox<String> cbloaiSach;
 	private JComboBox<String> cbnhaXuatBan;
 	private JButton btnAdd;
 	private JButton btnDelete;
 	private JButton btnUpdate;
 	private JButton btnlamMoi;
+	private JButton btnChonHinhAnh;
 	private JTableHeader tableHeader;
 	private DefaultTableModel model;
 	private JTable table;
-	private JLabel lblHinhAnh;
-	private JButton btnChonHinhAnh;
 
+	private NhaXuatBan_DAO nhaXuatBan_DAO;
+	private TheLoaiSach_DAO theLoaiSach_DAO;
+	private SanPham_DAO sanPham_DAO;
 //	private JButton btnChonHinhAnh;
 	/**
 	 * Create the panel.
@@ -77,7 +81,9 @@ public class Sach_GUI extends JPanel {
 		ConnectDB.connect();
 		
 		//Khai báo Dao
-		
+		nhaXuatBan_DAO = new NhaXuatBan_DAO();
+		theLoaiSach_DAO = new TheLoaiSach_DAO();
+		sanPham_DAO = new SanPham_DAO();
 		
 		setLayout(null);
 		
@@ -392,7 +398,7 @@ public class Sach_GUI extends JPanel {
 	    // Lấy danh sách sản phẩm từ DAO 
 	    List<SanPham> sanPhamList = null;
 		try {
-			sanPhamList = SanPham_DAO.getAllSach();
+			sanPhamList = sanPham_DAO.getAllSach();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -401,9 +407,9 @@ public class Sach_GUI extends JPanel {
 	    for (SanPham sanPham : sanPhamList) {
 	        Object[] object = {sanPham.getMaSanPham(), sanPham.getTenSanPham(), sanPham.getXuatXu(),
 	                sanPham.getGiaNhap(), sanPham.getGiaBan(), sanPham.getSoLuongTon(),
-	                sanPham.getMaNXB(), sanPham.getMaTheLoaiSach(),
+	                nhaXuatBan_DAO.getnhaXuatBanTheoMa(sanPham.getMaNXB()).getTenNXB(), theLoaiSach_DAO.getTheLoaiSachTheoMa(sanPham.getMaTheLoaiSach()).getTenLoaiSach(),
 	                sanPham.getTacGia(), sanPham.getSoTrang(), sanPham.getNamXuatBan(),
-	               };
+	        };
 	        model.addRow(object);
 	        table.setRowHeight(25);
 	    }

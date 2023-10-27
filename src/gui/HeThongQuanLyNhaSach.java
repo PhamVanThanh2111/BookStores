@@ -318,7 +318,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		pContent.add(new NhaXuatBan_GUI(), "NhaXuatBan_GUI");
 		pContent.add(new HoaDon_GUI(nhanVien.getMaNhanVien()), "HoaDon_GUI");
 		pContent.add(new TheLoaiSach_GUI(), "LoaiSach_GUI");
-		pContent.add(new HoSo_GUI(), "HoSo_GUI");
+		pContent.add(new HoSo_GUI(nhanVien), "HoSo_GUI");
 		// sub menu
 		pContent.add(new DanhSachHoaDon_GUI(), "DanhSachHoaDon_GUI");
 		pContent.add(new NhaCungCap_GUI(), "NhaCungCap_GUI");

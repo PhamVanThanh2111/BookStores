@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -16,7 +15,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import javax.swing.table.TableModel;
 
 import dao.TheLoaiSach_DAO;
 import entity.TheLoaiSach;
@@ -31,10 +29,15 @@ public class TheLoaiSach_GUI extends JPanel {
 	private JTable table;
 	private JTableHeader tableHeader;
 	private DefaultTableModel model;
+	private TheLoaiSach_DAO theLoaiSach_DAO;
 	/**
 	 * Create the panel.
 	 */
 	public TheLoaiSach_GUI() {
+		
+		// khai bao DAO
+		theLoaiSach_DAO = new TheLoaiSach_DAO();
+		
 		setLayout(null);
 		
 		JPanel pMain = new JPanel();
@@ -190,13 +193,10 @@ public class TheLoaiSach_GUI extends JPanel {
 		loadData();
 	}
 	public void loadData() {
-	 
-	    // Lấy danh sách sản phẩm từ DAO 
-	    TheLoaiSach_DAO theLoaiSach_DAO = new TheLoaiSach_DAO();
 	    // Xóa dữ liệu cũ trước khi nạp dữ liệu mới
 	    model.setRowCount(0);
 	    // Nạp dữ liệu sản phẩm lên bảng
-		for (TheLoaiSach theLoaiSach : TheLoaiSach_DAO.getAllListTheLoaiSach()) {
+		for (TheLoaiSach theLoaiSach : theLoaiSach_DAO.getAllListTheLoaiSach()) {
 			Object[] object = { theLoaiSach.getMaLoaiSach(),theLoaiSach.getTenLoaiSach() };
 			model.addRow(object);
 			table.setRowHeight(25);

@@ -63,8 +63,9 @@ public class HoaDon_GUI extends JPanel {
 		add(pnlMain);
 
 		JPanel pTenKhachHang = new JPanel();
+		pTenKhachHang.setBackground(new Color(255, 255, 255));
 		pTenKhachHang.setLayout(null);
-		pTenKhachHang.setBorder(new LineBorder(new Color(0, 0, 0)));
+		pTenKhachHang.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pTenKhachHang.setBounds(0, 0, 530, 280);
 		pnlMain.add(pTenKhachHang);
 		
@@ -121,9 +122,10 @@ public class HoaDon_GUI extends JPanel {
 		pTenKhachHang.add(txtDiaChi);
 
 		JPanel pChiTietHoaDon = new JPanel();
+		pChiTietHoaDon.setBackground(new Color(255, 255, 255));
 		pChiTietHoaDon.setToolTipText("");
 		pChiTietHoaDon.setLayout(null);
-		pChiTietHoaDon.setBorder(new LineBorder(new Color(0, 0, 0)));
+		pChiTietHoaDon.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pChiTietHoaDon.setBounds(0, 300, 1298, 420);
 		pnlMain.add(pChiTietHoaDon);
 
@@ -183,8 +185,9 @@ public class HoaDon_GUI extends JPanel {
 		pChiTietHoaDon.add(btntHng);
 
 		JPanel pThongTinKH = new JPanel();
+		pThongTinKH.setBackground(new Color(255, 255, 255));
 		pThongTinKH.setBorder(
-				new LineBorder(new Color(0, 0, 0)));
+				new LineBorder(new Color(0, 0, 0), 2));
 		pThongTinKH.setBounds(550, 0, 748, 280);
 		pnlMain.add(pThongTinKH);
 		pThongTinKH.setLayout(null);

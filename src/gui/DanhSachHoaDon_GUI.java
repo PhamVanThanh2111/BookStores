@@ -41,7 +41,7 @@ public class DanhSachHoaDon_GUI extends JPanel {
 	private JTableHeader tableHeaderDanhSachHoaDon;
 	private JTableHeader tableHeaderChiTietHoaDon;
 	private JScrollPane scrChiTietHoaDon;
-
+	
 	/**
 	 * Create the panel.
 	 */
@@ -55,7 +55,7 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		pnlMain.setLayout(null);
 		
 		JPanel pnlThongTinTimKiem = new JPanel();
-		pnlThongTinTimKiem.setBorder(new LineBorder(new Color(0, 0, 0)));
+		pnlThongTinTimKiem.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pnlThongTinTimKiem.setBounds(0, 0, 1299, 180);
 		pnlMain.add(pnlThongTinTimKiem);
 		pnlThongTinTimKiem.setLayout(null);

@@ -3,11 +3,15 @@ package gui;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -17,8 +21,10 @@ import javax.swing.table.JTableHeader;
 import java.awt.Color;
 
 import dao.KhachHang_DAO;
+import dao.PhatSinhMa_DAO;
 import entity.KhachHang;
 
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
@@ -37,15 +43,22 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 	private JTextField txtDiaChi;
 	private JTextField txtQuocTich;
 	private JTableHeader tableHeader;
-
+	private JButton btnThem,btnXoa,btnSua,btnTim;
+	private JComboBox<String> cbGioiTinh ;
+	private PhatSinhMa_DAO phatSinhMa_DAO;
+	private JLabel lblMaKhachHang;
+	private Border borderDefault;
+	private LayoutManager layoutDefaultCombobox;
 	/**
 	 * Create the panel.
 	 */
 	public KhachHang_GUI() {
 		khachHang_DAO = new KhachHang_DAO();
+		phatSinhMa_DAO = new PhatSinhMa_DAO();
 		setLayout(null);
 
 		JPanel pMain = new JPanel();
+		pMain.setBackground(new Color(241, 245, 249));
 		pMain.setBounds(0, 0, 1300, 720);
 		add(pMain);
 		pMain.setLayout(null);
@@ -60,22 +73,25 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 
 		JScrollPane scrollPaneKH = new JScrollPane();
 		scrollPaneKH.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
-		scrollPaneKH.setBorder(new LineBorder(new Color(80, 80, 80), 1, true));
+		scrollPaneKH.setBorder(new LineBorder(new Color(80, 80, 80), 2, true));
 		scrollPaneKH.setBackground(new Color(80, 80, 80));
 		scrollPaneKH.setBounds(20, 82, 810, 557);
 		pDanhSach.add(scrollPaneKH);
 		String[] cols = { "Tên KH", "Mã KH", "Giới Tính", "Số Điện Thoại", "Địa Chỉ" };
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
-
+		table.setRowHeight(25);
 		table.setSelectionBackground(new Color(141, 208, 229));
 		table.setSelectionForeground(new Color(0, 0, 0));
-
+		table.setDefaultEditor(Object.class, null);
+		
+		
 		tableHeader = table.getTableHeader();
 		tableHeader.setBackground(new Color(73, 129, 158));
 		tableHeader.setForeground(Color.white);
 		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
 		tableHeader.setReorderingAllowed(false);
+		
 		scrollPaneKH.setViewportView(table);
 
 		JLabel lblThongTin = new JLabel("Khách Hàng");
@@ -88,27 +104,35 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		separator.setBounds(142, 56, 688, 2);
 		pDanhSach.add(separator);
 
-		JButton btnAdd = new JButton("Thêm");
-		btnAdd.setOpaque(true);
-		btnAdd.setForeground(Color.WHITE);
-		btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnAdd.setBackground(new Color(73, 129, 158));
-		btnAdd.setBounds(395, 660, 135, 40);
-		pDanhSach.add(btnAdd);
+		btnThem = new JButton("Thêm");
+		btnThem.setOpaque(true);
+		btnThem.setForeground(Color.WHITE);
+		btnThem.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnThem.setBackground(new Color(73, 129, 158));
+		btnThem.setBounds(245, 660, 135, 40);
+		pDanhSach.add(btnThem);
 
-		JButton btnXoa = new JButton("Xóa");
+		btnXoa = new JButton("Xóa");
 		btnXoa.setForeground(Color.WHITE);
 		btnXoa.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnXoa.setBackground(new Color(73, 129, 158));
-		btnXoa.setBounds(545, 660, 135, 40);
+		btnXoa.setBounds(395, 660, 135, 40);
 		pDanhSach.add(btnXoa);
 
-		JButton btnSua = new JButton("Sửa");
+		btnSua = new JButton("Sửa");
 		btnSua.setForeground(Color.WHITE);
 		btnSua.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnSua.setBackground(new Color(73, 129, 158));
-		btnSua.setBounds(695, 660, 135, 40);
+		btnSua.setBounds(545, 660, 135, 40);
 		pDanhSach.add(btnSua);
+		
+		btnTim = new JButton("Tìm");
+		btnTim.setOpaque(true);
+		btnTim.setForeground(Color.WHITE);
+		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnTim.setBackground(new Color(73, 129, 158));
+		btnTim.setBounds(694, 660, 135, 40);
+		pDanhSach.add(btnTim);
 
 		JPanel pNhapThongTin = new JPanel();
 		pNhapThongTin.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -162,6 +186,9 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		txtSDT.setColumns(10);
 		txtSDT.setBackground(Color.WHITE);
 		txtSDT.setBounds(170, 145, 240, 40);
+		borderDefault = txtSDT.getBorder();
+		txtSDT.setBorder(null);
+	
 		pNhapThongTin.add(txtSDT);
 
 		JSeparator separator_1 = new JSeparator();
@@ -189,13 +216,13 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		lblGioiTinh.setBounds(40, 315, 120, 40);
 		pNhapThongTin.add(lblGioiTinh);
 
-		JLabel lblMaKhachHang = new JLabel("NV0001");
+		lblMaKhachHang = new JLabel();
 		lblMaKhachHang.setToolTipText("Số điện thoại");
 		lblMaKhachHang.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		lblMaKhachHang.setBounds(170, 270, 120, 40);
 		pNhapThongTin.add(lblMaKhachHang);
 
-		JComboBox<String> cbGioiTinh = new JComboBox<String>();
+		cbGioiTinh = new JComboBox<String>();
 		cbGioiTinh.setToolTipText("Giới tính");
 		cbGioiTinh.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		cbGioiTinh.setBorder(null);
@@ -203,6 +230,13 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		cbGioiTinh.setBounds(170, 315, 240, 40);
 		cbGioiTinh.addItem("Nam");
 		cbGioiTinh.addItem("Nữ");
+		layoutDefaultCombobox = cbGioiTinh.getLayout();
+		cbGioiTinh.setEditable(false);
+		cbGioiTinh.setEnabled(false);
+		cbGioiTinh.setBorder(null);
+		cbGioiTinh.setLayout(null);
+		
+
 		pNhapThongTin.add(cbGioiTinh);
 
 		JLabel lblDiaChi = new JLabel("Địa Chỉ:");
@@ -218,6 +252,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		txtDiaChi.setColumns(10);
 		txtDiaChi.setBackground(Color.WHITE);
 		txtDiaChi.setBounds(170, 360, 240, 40);
+		txtDiaChi.setBorder(null);
 		pNhapThongTin.add(txtDiaChi);
 
 		JLabel lblQuocTich = new JLabel("Quốc Tịch:");
@@ -233,9 +268,14 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		txtQuocTich.setColumns(10);
 		txtQuocTich.setBackground(Color.WHITE);
 		txtQuocTich.setBounds(170, 405, 240, 40);
+		txtQuocTich.setBorder(null);
 		pNhapThongTin.add(txtQuocTich);
 		loadData();
 
+		btnThem.addActionListener(this);
+		btnXoa.addActionListener(this);
+		
+		
 		table.addMouseListener(new MouseListener() {
 
 			@Override
@@ -266,55 +306,171 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 			public void mouseClicked(MouseEvent e) {
 				int r = table.getSelectedRow();
 				if (r != -1) {
-
-					txtTenKH.setText(table.getValueAt(r, 1).toString());
+					lblMaKhachHang.setText(table.getValueAt(r, 1).toString());
+					txtTenKH.setText(table.getValueAt(r, 0).toString());
 					if (table.getValueAt(r, 2).toString().equalsIgnoreCase("Nam"))
 						cbGioiTinh.setSelectedItem("Nam");
 					else
 						cbGioiTinh.setSelectedItem("Nữ");
-
+					txtSDT.setText(table.getValueAt(r, 3).toString());
+					txtDiaChi.setText(table.getValueAt(r, 4).toString());
+					txtQuocTich.setText("Việt Nam");
 				}
 			}
-			// String gt = (String)model.getValueAt(0, 3).toString();
-			// txtMaKH.setText((String) model.getValueAt(row, 0));
-			// txtTenKH.setText((String) model.getValueAt(row, 1));
-			// txtTuoi.setText((String) model.getValueAt(row, 2).toString());
-			// if(gt.equalsIgnoreCase("Nam")) {
-			// cbGioiTinh.setSelectedIndex(1);
-			// }else {
-			// if(gt.equalsIgnoreCase("Nữ"))
-			// cbGioiTinh.setSelectedIndex(0);
-			// }
-			// txtCCCD.setText((String) model.getValueAt(row, 4));
-			// txtEmail.setText((String) model.getValueAt(row, 5));
-			// txtSDT.setText((String) model.getValueAt(row, 6));
-			// txtDiaChi.setText((String) model.getValueAt(row, 7));
-			//
-			// }
+	
 		});
 	}
 
 	public void loadData() {
+		model.setRowCount(0);
 		for (KhachHang Kh : khachHang_DAO.getAllKhachHang()) {
 			Object[] object = { Kh.getTenKhachHang(), Kh.getMaKhachHang(), Kh.getGioiTinh(), Kh.getSoDienThoai(),
 					Kh.getDiaChi() };
 			model.addRow(object);
-			table.setRowHeight(25);
 		}
 	}
 	public void xoaTrang() {
 		txtTenKH.setText("");
-
 		txtDiaChi.setText("");
-
 		txtSDT.setText("");
-
+		cbGioiTinh.setSelectedIndex(-1);
 		txtTenKH.requestFocus();
 	}
 
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
+		Object o = e.getSource();
+		
+		if(o.equals(btnThem)) {
+			if(btnThem.getText().equalsIgnoreCase("Thêm")) {
+			
+				try {
+					xoaTrang();
+					btnThem.setText("Xác Nhận");
+					btnXoa.setText("Hủy");
+					btnSua.setEnabled(false);
+					btnTim.setEnabled(false);
+					txtTenKH.setEditable(true);
+					txtSDT.setEditable(true);
+					cbGioiTinh.setEditable(true);
+					txtDiaChi.setEditable(true);
+					lblMaKhachHang.setText(phatSinhMa_DAO.getMaKhachHang().toString());
+					txtQuocTich.setText("Việt Nam");
+					cbGioiTinh.setLayout(layoutDefaultCombobox);
+					cbGioiTinh.setBorder(borderDefault);
+					cbGioiTinh.setEnabled(true);
+					txtDiaChi.setEditable(true);
+					txtTenKH.setBorder(borderDefault);
+					txtSDT.setBorder(borderDefault);
+					txtDiaChi.setBorder(borderDefault);
+					txtQuocTich.setBorder(borderDefault);
+					
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			
+			}else {
+				if(btnThem.getText().equalsIgnoreCase("Xác Nhận")) {
+					try {
+						themKhachHang();
+						loadData();
+						btnSua.setEnabled(true);
+						btnTim.setEnabled(true);
+						btnThem.setText("Thêm");
+						btnXoa.setText("Xóa");
+						cbGioiTinh.setEnabled(false);
+						cbGioiTinh.setBorder(null);
+						cbGioiTinh.setLayout(null);
+						txtTenKH.setEditable(false);
+						txtSDT.setEditable(false);
+						txtDiaChi.setEditable(false);
+						txtQuocTich.setEditable(false);
+						
+						
+						txtTenKH.setBorder(null);
+						txtSDT.setBorder(null);
+						txtDiaChi.setBorder(null);
+						txtQuocTich.setBorder(null);
+						
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+				
+				}
+			}
+		}else {
+			if(o.equals(btnXoa)){
+				if(btnXoa.getText().equalsIgnoreCase("Hủy")) {
+					btnThem.setText("Thêm");
+					btnXoa.setText("Xóa");
+					btnSua.setEnabled(true);
+					btnTim.setEnabled(true);
+					cbGioiTinh.setEditable(false);
+					cbGioiTinh.setEnabled(false);
+					cbGioiTinh.setBorder(null);
+					cbGioiTinh.setLayout(null);
+					txtTenKH.setEditable(false);
+					txtSDT.setEditable(false);
+					txtDiaChi.setEditable(false);
+					txtQuocTich.setEditable(false);
+					
+					txtTenKH.setBorder(null);
+					txtSDT.setBorder(null);
+					txtDiaChi.setBorder(null);
+					txtQuocTich.setBorder(null);
+				}else {
+					if(btnXoa.getText().equalsIgnoreCase("Xóa")) {
+						try {
+							xoaKhachHang();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				}
+			}
+		}
 	}
+	private void themKhachHang() throws SQLException {
+		if(txtTenKH.getText().equalsIgnoreCase("")||txtSDT.getText().equalsIgnoreCase("")||cbGioiTinh.getSelectedItem().toString().equalsIgnoreCase("")||txtDiaChi.getText().equalsIgnoreCase("")) {
+			JOptionPane.showMessageDialog(null, "Thông Tin Rỗng !");
+			
+		}else {
+			KhachHang khachHang = new KhachHang();
+			khachHang.setMaKhachHang(phatSinhMa_DAO.getMaKhachHang());
+			khachHang.setTenKhachHang(txtTenKH.getText());
+			khachHang.setGioiTinh(cbGioiTinh.getSelectedItem().toString());
+			khachHang.setSoDienThoai(txtSDT.getText());
+			khachHang.setDiaChi(txtDiaChi.getText());
+			//
+			khachHang_DAO.themKhachHang(khachHang);
+			JOptionPane.showMessageDialog(null, "Thêm khách hàng thành công!");
+		}
+	}
+	public void xoaKhachHang() throws SQLException {
+		int row = table.getSelectedRow();
+		if(row !=-1) {
+			int tb = JOptionPane.showConfirmDialog(null, "Bạn Muốn Xóa Khách Hàng ? ", "Delete", JOptionPane.YES_NO_OPTION);
+			if(tb == JOptionPane.YES_OPTION) {
+				khachHang_DAO.xoaKhachHangTheoMa(model.getValueAt(row, 1).toString());
+				JOptionPane.showMessageDialog(null,"Xóa Thành Công");
+				loadData();
+			}
+		}
+	}
+	
+	public boolean suaKhachHang() {
+		
+		if(txtTenKH.getText().equalsIgnoreCase("")||txtSDT.getText().equalsIgnoreCase("")||cbGioiTinh.getSelectedItem().toString().equalsIgnoreCase("")||txtDiaChi.getText().equalsIgnoreCase("")) {
+			JOptionPane.showMessageDialog(null, "Thông Tin Rỗng !");
+		}else {
+			
+		}
+		
+		return false;
+		
+		
+	}
+	
 }

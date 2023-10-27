@@ -226,7 +226,6 @@ public class NhanVien_DAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		connection.close();
 		return false;
 	}

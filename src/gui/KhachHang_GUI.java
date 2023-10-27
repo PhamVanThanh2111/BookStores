@@ -41,7 +41,6 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 	private JTextField txtTenKH;
 	private JTextField txtSDT;
 	private JTextField txtDiaChi;
-	private JTextField txtQuocTich;
 	private JTableHeader tableHeader;
 	private JButton btnThem,btnXoa,btnSua,btnTim;
 	private JComboBox<String> cbGioiTinh ;
@@ -148,13 +147,13 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 
 		txtTenKH = new JTextField();
 		txtTenKH.setToolTipText("Số điện thoại");
-		txtTenKH.setText("Phạm Văn Thành");
+		txtTenKH.setText("");
 		txtTenKH.setFont(new Font("SansSerif", Font.BOLD, 20));
 		txtTenKH.setEditable(false);
 		txtTenKH.setColumns(10);
 		txtTenKH.setBorder(null);
 		txtTenKH.setBackground(Color.WHITE);
-		txtTenKH.setBounds(94, 20, 240, 40);
+		txtTenKH.setBounds(94, 20, 261, 40);
 		pNhapThongTin.add(txtTenKH);
 
 		JLabel lblKhchHng = new JLabel("Khách Hàng");
@@ -235,7 +234,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		cbGioiTinh.setEnabled(false);
 		cbGioiTinh.setBorder(null);
 		cbGioiTinh.setLayout(null);
-		
+		cbGioiTinh.setSelectedIndex(-1);
 
 		pNhapThongTin.add(cbGioiTinh);
 
@@ -254,22 +253,6 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		txtDiaChi.setBounds(170, 360, 240, 40);
 		txtDiaChi.setBorder(null);
 		pNhapThongTin.add(txtDiaChi);
-
-		JLabel lblQuocTich = new JLabel("Quốc Tịch:");
-		lblQuocTich.setToolTipText("Số điện thoại");
-		lblQuocTich.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		lblQuocTich.setBounds(40, 405, 120, 40);
-		pNhapThongTin.add(lblQuocTich);
-
-		txtQuocTich = new JTextField();
-		txtQuocTich.setToolTipText("Số điện thoại");
-		txtQuocTich.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtQuocTich.setEditable(false);
-		txtQuocTich.setColumns(10);
-		txtQuocTich.setBackground(Color.WHITE);
-		txtQuocTich.setBounds(170, 405, 240, 40);
-		txtQuocTich.setBorder(null);
-		pNhapThongTin.add(txtQuocTich);
 		loadData();
 
 		btnThem.addActionListener(this);
@@ -314,7 +297,6 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 						cbGioiTinh.setSelectedItem("Nữ");
 					txtSDT.setText(table.getValueAt(r, 3).toString());
 					txtDiaChi.setText(table.getValueAt(r, 4).toString());
-					txtQuocTich.setText("Việt Nam");
 				}
 			}
 	
@@ -356,7 +338,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 					cbGioiTinh.setEditable(true);
 					txtDiaChi.setEditable(true);
 					lblMaKhachHang.setText(phatSinhMa_DAO.getMaKhachHang().toString());
-					txtQuocTich.setText("Việt Nam");
+					
 					cbGioiTinh.setLayout(layoutDefaultCombobox);
 					cbGioiTinh.setBorder(borderDefault);
 					cbGioiTinh.setEnabled(true);
@@ -364,7 +346,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 					txtTenKH.setBorder(borderDefault);
 					txtSDT.setBorder(borderDefault);
 					txtDiaChi.setBorder(borderDefault);
-					txtQuocTich.setBorder(borderDefault);
+				
 					
 				} catch (SQLException e1) {
 					e1.printStackTrace();
@@ -385,13 +367,13 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 						txtTenKH.setEditable(false);
 						txtSDT.setEditable(false);
 						txtDiaChi.setEditable(false);
-						txtQuocTich.setEditable(false);
+						
 						
 						
 						txtTenKH.setBorder(null);
 						txtSDT.setBorder(null);
 						txtDiaChi.setBorder(null);
-						txtQuocTich.setBorder(null);
+						
 						
 					} catch (SQLException e1) {
 						e1.printStackTrace();
@@ -413,12 +395,12 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 					txtTenKH.setEditable(false);
 					txtSDT.setEditable(false);
 					txtDiaChi.setEditable(false);
-					txtQuocTich.setEditable(false);
+					
 					
 					txtTenKH.setBorder(null);
 					txtSDT.setBorder(null);
 					txtDiaChi.setBorder(null);
-					txtQuocTich.setBorder(null);
+					
 				}else {
 					if(btnXoa.getText().equalsIgnoreCase("Xóa")) {
 						try {

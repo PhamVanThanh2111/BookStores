@@ -12,7 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import java.text.SimpleDateFormat;
+
 import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 
 public class HoSo_GUI extends JPanel {
 
@@ -41,9 +44,11 @@ public class HoSo_GUI extends JPanel {
 		pnlMain.add(lblBackgroundHoSo);
 		
 		JLabel lblAnh = new JLabel("");
+		lblAnh.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAnh.setBounds(40, 30, 256, 256);
 		Border border = BorderFactory.createLineBorder(Color.BLACK,1);
 		lblAnh.setBorder(border);
+		lblAnh.setIcon(new ImageIcon(NhanVien_GUI.class.getResource(nhanVien.getHinhAnh().substring(0, nhanVien.getHinhAnh().lastIndexOf(".")) + "_hoso.png/")));
 		pnlMain.add(lblAnh);
 		
 		JLabel lblThongTinCaNhan = new JLabel("Thông Tin Cá Nhân");
@@ -70,19 +75,22 @@ public class HoSo_GUI extends JPanel {
 		lblGioiTinh.setBounds(60, 411, 87, 40);
 		pnlMain.add(lblGioiTinh);
 		
-		JLabel lblMaNhanVien = new JLabel("NV0001");
+		JLabel lblMaNhanVien = new JLabel();
 		lblMaNhanVien.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblMaNhanVien.setBounds(145, 316, 130, 40);
+		lblMaNhanVien.setText(nhanVien.getMaNhanVien());
 		pnlMain.add(lblMaNhanVien);
 		
-		JLabel lblTrnThanhTm = new JLabel("Mai Lưu Hữu Vinh");
+		JLabel lblTrnThanhTm = new JLabel("");
 		lblTrnThanhTm.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblTrnThanhTm.setBounds(145, 366, 153, 40);
+		lblTrnThanhTm.setText(nhanVien.getTenNhanVien());
 		pnlMain.add(lblTrnThanhTm);
 		
-		JLabel lblGioiTinh1 = new JLabel("Nam");
+		JLabel lblGioiTinh1 = new JLabel("");
 		lblGioiTinh1.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblGioiTinh1.setBounds(145, 411, 139, 40);
+		lblGioiTinh1.setText(nhanVien.getGioiTinh());
 		pnlMain.add(lblGioiTinh1);
 		
 		JLabel lblNgaySinh = new JLabel("Ngày Sinh:");
@@ -105,24 +113,29 @@ public class HoSo_GUI extends JPanel {
 		lblSDT.setBounds(376, 250, 115, 40);
 		pnlMain.add(lblSDT);
 		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		JLabel lblNS = new JLabel("02/10/2003");
 		lblNS.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNS.setBounds(501, 100, 153, 40);
+		lblNS.setText(dateFormat.format(nhanVien.getNgaySinh()));
 		pnlMain.add(lblNS);
 		
-		JLabel lblDC = new JLabel("Bình Thạnh");
+		JLabel lblDC = new JLabel("");
 		lblDC.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblDC.setBounds(501, 150, 153, 40);
+		lblDC.setText(nhanVien.getDiaChi());
 		pnlMain.add(lblDC);
 		
-		JLabel lblCC = new JLabel("07720300****");
+		JLabel lblCC = new JLabel("");
 		lblCC.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblCC.setBounds(501, 200, 153, 40);
+		lblCC.setText(nhanVien.getcCCD());
 		pnlMain.add(lblCC);
 		
-		JLabel lblSDThoai = new JLabel("0388412884");
+		JLabel lblSDThoai = new JLabel();
 		lblSDThoai.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblSDThoai.setBounds(501, 250, 153, 40);
+		lblSDThoai.setText(nhanVien.getSoDienThoai());
 		pnlMain.add(lblSDThoai);
 		
 		JLabel lblNgayVaoLam = new JLabel("Ngày Vào Làm:");
@@ -145,19 +158,22 @@ public class HoSo_GUI extends JPanel {
 		lblCoSo.setBounds(810, 250, 115, 40);
 		pnlMain.add(lblCoSo);
 		
-		JLabel lblNVL = new JLabel("27/10/2023");
+		JLabel lblNVL = new JLabel();
 		lblNVL.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNVL.setBounds(935, 100, 153, 40);
+		lblNVL.setText(dateFormat.format(nhanVien.getNgayVaoLam()));
 		pnlMain.add(lblNVL);
 		
 		JLabel lblCL = new JLabel("01");
 		lblCL.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblCL.setBounds(935, 150, 153, 40);
+		lblCL.setText(nhanVien.getMaCa().substring(1));
 		pnlMain.add(lblCL);
 		
-		JLabel lblCV = new JLabel("Nhân Viên Bán Hàng");
+		JLabel lblCV = new JLabel("");
 		lblCV.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblCV.setBounds(935, 200, 219, 40);
+		lblCV.setText(nhanVien.getChucVu());
 		pnlMain.add(lblCV);
 		
 		JLabel lblCS = new JLabel("Hồ Chí Minh");

@@ -6,9 +6,7 @@ import javax.swing.border.LineBorder;
 
 import entity.NhanVien;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.LayoutManager;
 
 import javax.swing.JLabel;
 import javax.swing.BorderFactory;

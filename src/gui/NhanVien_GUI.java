@@ -13,6 +13,7 @@ import java.io.File;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -20,6 +21,8 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -42,7 +45,6 @@ import dao.TaiKhoan_DAO;
 import entity.NhanVien;
 import entity.TaiKhoan;
 import javax.swing.JDesktopPane;
-import java.awt.FlowLayout;
 
 public class NhanVien_GUI extends JPanel {
 	/**
@@ -76,6 +78,7 @@ public class NhanVien_GUI extends JPanel {
 	private JButton btnXoa;
 	private TimNhanVien_GUI timNhanVien_GUI;
 	private JDesktopPane desktopPane;
+	private ArrayList<NhanVien> ds;
 
 	/**
 	 * Create the panel.
@@ -92,6 +95,8 @@ public class NhanVien_GUI extends JPanel {
 		phatSinhMa_DAO = new PhatSinhMa_DAO();
 		taiKhoan_DAO = new TaiKhoan_DAO();
 
+		ds = new ArrayList<NhanVien>();
+		
 		simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 		setLayout(null);
@@ -105,11 +110,10 @@ public class NhanVien_GUI extends JPanel {
 		desktopPane.setBackground(new Color(255, 255, 255));
 		desktopPane.setBounds(0, 0, 1300, 720);
 		panel.add(desktopPane);
-		desktopPane.setLayout(null);
 		
 		JPanel pMain = new JPanel();
-		pMain.setBackground(new Color(241, 245, 249));
 		pMain.setBounds(0, 0, 1300, 720);
+		pMain.setBackground(new Color(241, 245, 249));
 		pMain.setLayout(null);
 		desktopPane.add(pMain);
 
@@ -541,7 +545,7 @@ public class NhanVien_GUI extends JPanel {
 											}
 										});
 										pDanhSach.add(btnXoa);		
-														
+											
 											JButton btnTim = new JButton("Tìm");
 											btnTim.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/find_person.png")));
 											btnTim.setBackground(new Color(73, 129, 158));
@@ -553,12 +557,57 @@ public class NhanVien_GUI extends JPanel {
 												@Override
 												public void actionPerformed(ActionEvent e) {
 													// TODO Auto-generated method stub
-													desktopPane.removeAll();
-													TimNhanVien timNhanVien = new TimNhanVien();
-													desktopPane.add(timNhanVien).setVisible(true);
+													// null cho lan dau chay va isClose cho nhung click sau
+													if (timNhanVien_GUI == null || timNhanVien_GUI.isClosed()) {
+														timNhanVien_GUI = new TimNhanVien_GUI(ds);
+														timNhanVien_GUI.addInternalFrameListener(new InternalFrameAdapter() {
+												            @Override
+												            public void internalFrameActivated(InternalFrameEvent e) {
+//												                System.out.println("Internal frame is activated.");
+												            }
+
+												            @Override
+												            public void internalFrameDeactivated(InternalFrameEvent e) {
+//												                System.out.println("Internal frame is deactivated.");
+												            }
+
+												            @Override
+												            public void internalFrameOpened(InternalFrameEvent e) {
+//												                System.out.println("Internal frame is opened.");
+												            }
+												            
+												            @Override
+												            public void internalFrameClosed(InternalFrameEvent e) {
+//												                System.out.println("Internal frame is closed.");
+												                model.setRowCount(0);
+												            	loadDataIntoTable(ds);
+												            	ds = new ArrayList<NhanVien>();
+												            }
+												        });
+														desktopPane.add(timNhanVien_GUI).setVisible(true);
+//														loadDataIntoTable(timNhanVien_GUI.searchNhanVien());
+													}
 												}
 											});
+											
 											pDanhSach.add(btnTim);
+											
+											JButton btnLamMoi = new JButton("Làm Mới");
+											btnLamMoi.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/refresh.png")));
+											btnLamMoi.setOpaque(true);
+											btnLamMoi.setForeground(Color.WHITE);
+											btnLamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
+											btnLamMoi.setBackground(new Color(73, 129, 158));
+											btnLamMoi.setBounds(93, 660, 135, 40);
+											btnLamMoi.addActionListener(new ActionListener() {
+												
+												@Override
+												public void actionPerformed(ActionEvent e) {
+													// TODO Auto-generated method stub
+													refresh();
+												}
+											});
+											pDanhSach.add(btnLamMoi);
 
 		JLabel lblLuong = new JLabel("Lương:");
 		lblLuong.setToolTipText("Lương");
@@ -688,12 +737,12 @@ public class NhanVien_GUI extends JPanel {
 		pNhapThongTin.add(txtTenNhanVien);
 
 		// loadData
-		loadDataIntoTable();
+		loadDataIntoTable(nhanVien_DAO.getAllListNhanVien());
 	}
 
-	public void loadDataIntoTable() {
+	public void loadDataIntoTable(ArrayList<NhanVien> nhanViens) {
 		model.setRowCount(0);
-		for (NhanVien nhanVien : nhanVien_DAO.getAllListNhanVien()) {
+		for (NhanVien nhanVien : nhanViens) {
 			Object[] objects = { nhanVien.getMaNhanVien(), nhanVien.getTenNhanVien(),
 					nhanVien.getGioiTinh(),
 					simpleDateFormat.format(nhanVien.getNgayVaoLam()),
@@ -703,7 +752,7 @@ public class NhanVien_GUI extends JPanel {
 	}
 
 	public void refresh() {
-		loadDataIntoTable();
+		loadDataIntoTable(nhanVien_DAO.getAllListNhanVien());
 	}
 
 	public boolean add() {

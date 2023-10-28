@@ -33,7 +33,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 	private JPanel pContent;
 	private CardLayout cardLayoutContent;
 	private JLabel lblNhanVien;
-	private JLabel lblTrangChu;	
+	private JLabel lblTrangChu;
 	private JLabel lblKhachHang;
 	private JLabel lblHoaDon;
 	private JLabel lblSach;
@@ -736,6 +736,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 					lblSubMenu2.setOpaque(true);
 				}
 			}
+			
 			@Override
 			public void mouseExited(MouseEvent e) {
 				if (!lblSubMenu2.getText().equals("")) {
@@ -803,7 +804,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		contentPane.add(lblSubMenu3);
 		
 		JSeparator sprNgang = new JSeparator();
-		sprNgang.setBounds(220, 85, 1300, 2);	
+		sprNgang.setBounds(220, 85, 1300, 2);
 		sprNgang.setForeground(new Color(60, 60, 60));
 		contentPane.add(sprNgang);
 	}

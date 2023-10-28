@@ -17,10 +17,10 @@ public class NhanVien_DAO {
 	private TaiKhoan_DAO taiKhoan_DAO;
 
 	// get all nhan vien
-	public List<NhanVien> getAllListNhanVien() {
+	public ArrayList<NhanVien> getAllListNhanVien() {
 		ConnectDB.getInstance();
 		Connection connection = ConnectDB.getConnection();
-		List<NhanVien> ds = new ArrayList<NhanVien>();
+		ArrayList<NhanVien> ds = new ArrayList<NhanVien>();
 		TaiKhoan taiKhoan;
 		TaiKhoan_DAO taiKhoan_DAO = new TaiKhoan_DAO();
 		try {
@@ -226,6 +226,7 @@ public class NhanVien_DAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		connection.close();
 		return false;
 	}

@@ -201,7 +201,7 @@ public class NhanVien_GUI extends JPanel {
 		dateChooserNgaySinh = new JDateChooser();
 		dateChooserNgaySinh.setBackground(new Color(255, 255, 255));
 		dateChooserNgaySinh.getCalendarButton().setBounds(210, 0, 30, 40);
-		dateChooserNgaySinh.getCalendarButton().setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/calendar.png")));
+		dateChooserNgaySinh.getCalendarButton().setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/calendar.png")));
 		dateChooserNgaySinh.getCalendarButton().setBorder(null);
 		dateChooserNgaySinh.getCalendarButton().setPreferredSize(new Dimension(30, 24));
 		dateChooserNgaySinh.getCalendarButton().setBackground(new Color(255, 255, 255));
@@ -368,7 +368,7 @@ public class NhanVien_GUI extends JPanel {
 								pDanhSach.add(separator);
 								
 								JButton btnAdd = new JButton("Thêm");
-								btnAdd.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/add_person.png")));
+								btnAdd.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/add_person.png")));
 								btnAdd.setForeground(new Color(255, 255, 255));
 								btnAdd.setBackground(new Color(73, 129, 158));
 								btnAdd.setBounds(245, 660, 135, 40);
@@ -434,7 +434,7 @@ public class NhanVien_GUI extends JPanel {
 								pDanhSach.add(btnAdd);
 								
 									JButton btnSua = new JButton("Sửa");
-									btnSua.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/update_person.png")));
+									btnSua.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/update_person.png")));
 									btnSua.setBackground(new Color(73, 129, 158));
 									btnSua.setForeground(new Color(255, 255, 255));
 									btnSua.setBounds(545, 660, 135, 40);
@@ -504,7 +504,7 @@ public class NhanVien_GUI extends JPanel {
 									pDanhSach.add(btnSua);
 								
 										btnXoa = new JButton("Xóa");
-										btnXoa.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/remove_person.png")));
+										btnXoa.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/remove_person.png")));
 										btnXoa.setBackground(new Color(73, 129, 158));
 										btnXoa.setForeground(new Color(255, 255, 255));
 										btnXoa.setBounds(395, 660, 135, 40);
@@ -547,7 +547,7 @@ public class NhanVien_GUI extends JPanel {
 										pDanhSach.add(btnXoa);		
 											
 											JButton btnTim = new JButton("Tìm");
-											btnTim.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/find_person.png")));
+											btnTim.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/find_person.png")));
 											btnTim.setBackground(new Color(73, 129, 158));
 											btnTim.setForeground(new Color(255, 255, 255));
 											btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -593,7 +593,7 @@ public class NhanVien_GUI extends JPanel {
 											pDanhSach.add(btnTim);
 											
 											JButton btnLamMoi = new JButton("Làm Mới");
-											btnLamMoi.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/refresh.png")));
+											btnLamMoi.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/refresh.png")));
 											btnLamMoi.setOpaque(true);
 											btnLamMoi.setForeground(Color.WHITE);
 											btnLamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));

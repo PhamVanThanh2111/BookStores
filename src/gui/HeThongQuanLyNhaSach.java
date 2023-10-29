@@ -61,7 +61,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 	 */
 	public HeThongQuanLyNhaSach(NhanVien nhanVien) throws SQLException {
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage(HeThongQuanLyNhaSach.class.getResource("/image/favicon.jpg")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(HeThongQuanLyNhaSach.class.getResource("/image/HeThong/favicon.jpg")));
 		setForeground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -375,7 +375,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		
 		lblIconTrangChu = new JLabel("");
 		lblIconTrangChu.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIconTrangChu.setIcon(new ImageIcon(HeThongQuanLyNhaSach.class.getResource("/image/home.png")));
+		lblIconTrangChu.setIcon(new ImageIcon(HeThongQuanLyNhaSach.class.getResource("/image/HeThong/home.png")));
 		lblIconTrangChu.setBounds(0, 0, 64, 86);
 		lblIconTrangChu.setOpaque(true);
 		lblIconTrangChu.setBackground(new Color(39, 63, 96));
@@ -407,7 +407,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		pMenu1.add(lblIconTrangChu);
 		
 		lblIconNhanVien = new JLabel("");
-		lblIconNhanVien.setIcon(new ImageIcon(HeThongQuanLyNhaSach.class.getResource("/image/staff.png")));
+		lblIconNhanVien.setIcon(new ImageIcon(HeThongQuanLyNhaSach.class.getResource("/image/HeThong/staff.png")));
 		lblIconNhanVien.setOpaque(true);
 		lblIconNhanVien.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIconNhanVien.setBackground(new Color(39, 63, 96));
@@ -440,7 +440,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		pMenu1.add(lblIconNhanVien);
 		
 		lblIconKhachHang = new JLabel("");
-		lblIconKhachHang.setIcon(new ImageIcon(HeThongQuanLyNhaSach.class.getResource("/image/customer.png")));
+		lblIconKhachHang.setIcon(new ImageIcon(HeThongQuanLyNhaSach.class.getResource("/image/HeThong/customer.png")));
 		lblIconKhachHang.setOpaque(true);
 		lblIconKhachHang.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIconKhachHang.setBackground(new Color(39, 63, 96));
@@ -473,7 +473,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		pMenu1.add(lblIconKhachHang);
 		
 		lblIconSach = new JLabel("");
-		lblIconSach.setIcon(new ImageIcon(HeThongQuanLyNhaSach.class.getResource("/image/book.png")));
+		lblIconSach.setIcon(new ImageIcon(HeThongQuanLyNhaSach.class.getResource("/image/HeThong/book.png")));
 		lblIconSach.setOpaque(true);
 		lblIconSach.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIconSach.setBackground(new Color(39, 63, 96));
@@ -506,7 +506,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		pMenu1.add(lblIconSach);
 		
 		lblIconDCHT = new JLabel("");
-		lblIconDCHT.setIcon(new ImageIcon(HeThongQuanLyNhaSach.class.getResource("/image/pen.png")));
+		lblIconDCHT.setIcon(new ImageIcon(HeThongQuanLyNhaSach.class.getResource("/image/HeThong/pen.png")));
 		lblIconDCHT.setOpaque(true);
 		lblIconDCHT.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIconDCHT.setBackground(new Color(39, 63, 96));
@@ -539,7 +539,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		pMenu1.add(lblIconDCHT);
 		
 		lblIconHoaDon = new JLabel("");
-		lblIconHoaDon.setIcon(new ImageIcon(HeThongQuanLyNhaSach.class.getResource("/image/bill.png")));
+		lblIconHoaDon.setIcon(new ImageIcon(HeThongQuanLyNhaSach.class.getResource("/image/HeThong/bill.png")));
 		lblIconHoaDon.setOpaque(true);
 		lblIconHoaDon.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIconHoaDon.setBackground(new Color(39, 63, 96));
@@ -608,7 +608,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		lblHoSo.setOpaque(true);
 		
 		lblIconHoSo = new JLabel("");
-		lblIconHoSo.setIcon(new ImageIcon(HeThongQuanLyNhaSach.class.getResource("/image/user.png")));
+		lblIconHoSo.setIcon(new ImageIcon(HeThongQuanLyNhaSach.class.getResource("/image/HeThong/user.png")));
 		lblIconHoSo.setOpaque(true);
 		lblIconHoSo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIconHoSo.setBackground(new Color(39, 63, 96));
@@ -642,7 +642,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		pMenu2.add(lblIconHoSo);
 		
 		lblIconDangXuat = new JLabel("");
-		lblIconDangXuat.setIcon(new ImageIcon(HeThongQuanLyNhaSach.class.getResource("/image/logout.png")));
+		lblIconDangXuat.setIcon(new ImageIcon(HeThongQuanLyNhaSach.class.getResource("/image/HeThong/logout.png")));
 		lblIconDangXuat.setOpaque(true);
 		lblIconDangXuat.setHorizontalAlignment(SwingConstants.CENTER);
 		lblIconDangXuat.setBackground(new Color(39, 63, 96));
@@ -674,7 +674,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		pMenu2.add(lblIconDangXuat);
 		
 		JLabel lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(HeThongQuanLyNhaSach.class.getResource("/image/logo.png")));
+		lblLogo.setIcon(new ImageIcon(HeThongQuanLyNhaSach.class.getResource("/image/HeThong/logo.png")));
 		lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLogo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblLogo.setBounds(58, 0, 93, 85);

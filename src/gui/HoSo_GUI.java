@@ -39,7 +39,7 @@ public class HoSo_GUI extends JPanel {
 		
 		JLabel lblBackgroundHoSo = new JLabel("");
 		lblBackgroundHoSo.setBackground(new Color(255, 255, 255));
-		lblBackgroundHoSo.setIcon(new ImageIcon(HoSo_GUI.class.getResource("/image/background_hoso.jpg")));
+		lblBackgroundHoSo.setIcon(new ImageIcon(HoSo_GUI.class.getResource("/image/HeThong/background_hoso.jpg")));
 		lblBackgroundHoSo.setBounds(0, 0, pnlMain.getWidth(), pnlMain.getHeight());
 		pnlMain.add(lblBackgroundHoSo);
 		

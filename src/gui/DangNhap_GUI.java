@@ -62,7 +62,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 		// image
-		setIconImage(Toolkit.getDefaultToolkit().getImage(DangNhap_GUI.class.getResource("/image/favicon.jpg")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(DangNhap_GUI.class.getResource("/image/HeThong/favicon.jpg")));
 		// title
 		lblTitle = new JLabel("ĐĂNG NHẬP");
 		lblTitle.setFont(new Font("Times new roman", Font.BOLD, 40));
@@ -182,7 +182,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		lblBackground.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBackground.setForeground(new Color(255, 0, 0));
 		lblBackground.setBackground(new Color(255, 0, 0));
-		lblBackground.setIcon(new ImageIcon(DangNhap_GUI.class.getResource("/image/background-login.jpg")));
+		lblBackground.setIcon(new ImageIcon(DangNhap_GUI.class.getResource("/image/HeThong/background-login.jpg")));
 		lblBackground.setBounds(0, -25, 741, 529);
 		getContentPane().add(lblBackground);
 

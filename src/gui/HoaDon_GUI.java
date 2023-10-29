@@ -169,7 +169,7 @@ public class HoaDon_GUI extends JPanel {
 		pChiTietHoaDon.add(lblTongTienValue);
 		
 		JButton btnLapHoaDon = new JButton("Lập HD");
-		btnLapHoaDon.setIcon(new ImageIcon(HoaDon_GUI.class.getResource("/image/wallet.png")));
+		btnLapHoaDon.setIcon(new ImageIcon(HoaDon_GUI.class.getResource("/image/HeThong/wallet.png")));
 		btnLapHoaDon.setBackground(new Color(73, 129, 158));
 		btnLapHoaDon.setForeground(new Color(255, 255, 255));
 		btnLapHoaDon.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -177,7 +177,7 @@ public class HoaDon_GUI extends JPanel {
 		pChiTietHoaDon.add(btnLapHoaDon);
 		
 		JButton btntHng = new JButton("Đặt Hàng");
-		btntHng.setIcon(new ImageIcon(HoaDon_GUI.class.getResource("/image/clipboard.png")));
+		btntHng.setIcon(new ImageIcon(HoaDon_GUI.class.getResource("/image/HeThong/clipboard.png")));
 		btntHng.setBackground(new Color(73, 129, 158));
 		btntHng.setForeground(new Color(255, 255, 255));
 		btntHng.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -238,7 +238,7 @@ public class HoaDon_GUI extends JPanel {
 		txtSoLuong.setColumns(10);
 
 		JButton btnThem = new JButton("Thêm");
-		btnThem.setIcon(new ImageIcon(HoaDon_GUI.class.getResource("/image/cart.png")));
+		btnThem.setIcon(new ImageIcon(HoaDon_GUI.class.getResource("/image/HeThong/cart.png")));
 		btnThem.setBackground(new Color(73, 129, 158));
 		btnThem.setForeground(new Color(255, 255, 255));
 		btnThem.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -246,7 +246,7 @@ public class HoaDon_GUI extends JPanel {
 		pThongTinKH.add(btnThem);
 
 		JButton btnXoa = new JButton("Xóa");
-		btnXoa.setIcon(new ImageIcon(HoaDon_GUI.class.getResource("/image/trash-can.png")));
+		btnXoa.setIcon(new ImageIcon(HoaDon_GUI.class.getResource("/image/HeThong/trash-can.png")));
 		btnXoa.setBackground(new Color(73, 129, 158));
 		btnXoa.setForeground(new Color(255, 255, 255));
 		btnXoa.addActionListener(new ActionListener() {
@@ -258,7 +258,7 @@ public class HoaDon_GUI extends JPanel {
 		pThongTinKH.add(btnXoa);
 
 		JButton btnLamMoi = new JButton("Làm Mới");
-		btnLamMoi.setIcon(new ImageIcon(HoaDon_GUI.class.getResource("/image/refresh.png")));
+		btnLamMoi.setIcon(new ImageIcon(HoaDon_GUI.class.getResource("/image/HeThong/refresh.png")));
 		btnLamMoi.setBackground(new Color(73, 129, 158));
 		btnLamMoi.setForeground(new Color(255, 255, 255));
 		btnLamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));

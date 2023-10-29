@@ -71,12 +71,12 @@ public class TrangChu_GUI extends JPanel {
 		pnlDoanhThu.add(lblTongThuValue);
 		
 		JLabel lblIconDoanhThu = new JLabel("");
-		lblIconDoanhThu.setIcon(new ImageIcon(TrangChu_GUI.class.getResource("/image/money.png")));
+		lblIconDoanhThu.setIcon(new ImageIcon(TrangChu_GUI.class.getResource("/image/HeThong/money.png")));
 		lblIconDoanhThu.setBounds(10, 452, 128, 128);
 		pnlDoanhThu.add(lblIconDoanhThu);
 		
 		JLabel lblBackgroundDoanhThu = new JLabel("");
-		lblBackgroundDoanhThu.setIcon(new ImageIcon(TrangChu_GUI.class.getResource("/image/background_doanhthu.jpg")));
+		lblBackgroundDoanhThu.setIcon(new ImageIcon(TrangChu_GUI.class.getResource("/image/HeThong/background_doanhthu.jpg")));
 		lblBackgroundDoanhThu.setBounds(0, 0, 45, 13);
 		lblBackgroundDoanhThu.setBounds(0, 0, pnlDoanhThu.getWidth(), pnlDoanhThu.getHeight());
 		pnlDoanhThu.add(lblBackgroundDoanhThu);
@@ -168,7 +168,7 @@ public class TrangChu_GUI extends JPanel {
 		pnlThongTinCuaHang_1.add(lblGioGhiNhanValue);
 		
 		JLabel lblBackGround = new JLabel("");
-		lblBackGround.setIcon(new ImageIcon(TrangChu_GUI.class.getResource("/image/background_trangchu.png")));
+		lblBackGround.setIcon(new ImageIcon(TrangChu_GUI.class.getResource("/image/HeThong/background_trangchu.png")));
 		lblBackGround.setBounds(1010, 110, 267, 590);
 		pnlMain.add(lblBackGround);
 	}

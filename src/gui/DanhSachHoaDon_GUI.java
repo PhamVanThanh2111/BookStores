@@ -100,7 +100,7 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		dateChooserTuNgay.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		dateChooserTuNgay.setDateFormatString("dd/MM/yyyy");
 		dateChooserTuNgay.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		dateChooserTuNgay.getCalendarButton().setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/calendar.png")));
+		dateChooserTuNgay.getCalendarButton().setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/calendar.png")));
 		dateChooserTuNgay.getCalendarButton().setBorder(null);
 		dateChooserTuNgay.getCalendarButton().setPreferredSize(new Dimension(30, 24));
 		dateChooserTuNgay.getCalendarButton().setBackground(new Color(255, 255, 255));
@@ -118,7 +118,7 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		dateChooserDenNgay.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		dateChooserDenNgay.setDateFormatString("dd/MM/yyyy");
 		dateChooserDenNgay.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		dateChooserDenNgay.getCalendarButton().setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/calendar.png")));
+		dateChooserDenNgay.getCalendarButton().setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/calendar.png")));
 		dateChooserDenNgay.getCalendarButton().setBorder(null);
 		dateChooserDenNgay.getCalendarButton().setPreferredSize(new Dimension(30, 24));
 		dateChooserDenNgay.getCalendarButton().setBackground(new Color(255, 255, 255));

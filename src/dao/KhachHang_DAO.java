@@ -35,6 +35,28 @@ public class KhachHang_DAO {
 		return ds;
 	}
 	
+	public KhachHang getKhachHangTheoSoDienThoai(String soDienThoai) {
+		KhachHang khachHang = new KhachHang();
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		try {
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("select * from KhachHang where soDienThoai = '" + soDienThoai + "'");
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				khachHang.setMaKhachHang(resultSet.getString(1));
+				khachHang.setTenKhachHang(resultSet.getString(2));
+				khachHang.setGioiTinh(resultSet.getString(3));
+				khachHang.setSoDienThoai(resultSet.getString(4));
+				khachHang.setDiaChi(resultSet.getString(5));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return khachHang;
+	}
+	
 	public boolean xoaKhachHangTheoMa(String maKH) throws SQLException {
 		ConnectDB.getInstance();
 		Connection connection = ConnectDB.getConnection();

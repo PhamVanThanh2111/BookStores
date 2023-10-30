@@ -7,21 +7,19 @@ public class HoaDon {
 	private String maNhanVien;
 	private String maKhachHang;
 	private java.sql.Date ngayLap;
-	private long tienKhachDua;
-	private long thanhTien;
+	private float thanhTien;
 
 	public HoaDon() {
 		super();
 	}
 
-	public HoaDon(String maHoaDon, String maNhanVien, String maKhachHang, java.sql.Date ngayLap, long tienKhachDua,
+	public HoaDon(String maHoaDon, String maNhanVien, String maKhachHang, java.sql.Date ngayLap,
 			long thanhTien) {
 		super();
 		this.maHoaDon = maHoaDon;
 		this.maNhanVien = maNhanVien;
 		this.maKhachHang = maKhachHang;
 		this.ngayLap = ngayLap;
-		this.tienKhachDua = tienKhachDua;
 		this.thanhTien = thanhTien;
 	}
 
@@ -57,22 +55,13 @@ public class HoaDon {
 		this.ngayLap = ngayLap;
 	}
 
-	public long getTienKhachDua() {
-		return tienKhachDua;
-	}
-
-	public void setTienKhachDua(long tienKhachDua) {
-		this.tienKhachDua = tienKhachDua;
-	}
-
-	public long getThanhTien() {
+	public float getThanhTien() {
 		return thanhTien;
 	}
 
-	public void setThanhTien(long thanhTien) {
+	public void setThanhTien(float thanhTien) {
 		this.thanhTien = thanhTien;
 	}
-	
 	
 	@Override
 	public int hashCode() {
@@ -94,8 +83,7 @@ public class HoaDon {
 	@Override
 	public String toString() {
 		return "HoaDon [maHoaDon=" + maHoaDon + ", maNhanVien=" + maNhanVien + ", maKhachHang=" + maKhachHang
-				+ ", ngayLap=" + ngayLap + ", tienKhachDua=" + tienKhachDua + ", thanhTien=" + thanhTien + "]";
+				+ ", ngayLap=" + ngayLap + ", thanhTien=" + thanhTien + "]";
 	}
-
 	
 }

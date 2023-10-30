@@ -29,7 +29,7 @@ public class PhatSinhMa_DAO {
 		Connection con = ConnectDB.getConnection();
 		Statement statement = con.createStatement();
 		ResultSet resultSet = statement.executeQuery(
-				"select CONCAT('HD', RIGHT(CONCAT('0000',ISNULL(right(max(maHoaDon),4),0) + 1),4)) from [dbo].[HoaDon] where maHoaDon like 'HD%'");
+				"select CONCAT('HD', RIGHT(CONCAT('00000',ISNULL(right(max(maHoaDon),5),0) + 1),5)) from [dbo].[HoaDon] where maHoaDon like 'HD%'");
 		String maHD = "";
 		while (resultSet.next()) {
 			maHD = resultSet.getString(1);

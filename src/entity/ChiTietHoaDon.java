@@ -2,20 +2,18 @@ package entity;
 
 public class ChiTietHoaDon {
 	private String maHoaDon;
-	private String maSach;
-	private String maDungCuHocTap;
+	private String maSanPham;
 	private int soLuong;
-	private long donGia;
+	private float donGia;
 
 	public ChiTietHoaDon() {
 		super();
 	}
 
-	public ChiTietHoaDon(String maHoaDon, String maSach, String maDungCuHocTap, int soLuong, long donGia) {
+	public ChiTietHoaDon(String maHoaDon, String maSanPham, int soLuong, long donGia) {
 		super();
 		this.maHoaDon = maHoaDon;
-		this.maSach = maSach;
-		this.maDungCuHocTap = maDungCuHocTap;
+		this.maSanPham = maSanPham;
 		this.soLuong = soLuong;
 		this.donGia = donGia;
 	}
@@ -28,20 +26,12 @@ public class ChiTietHoaDon {
 		this.maHoaDon = maHoaDon;
 	}
 
-	public String getMaSach() {
-		return maSach;
+	public String getMaSanPham() {
+		return maSanPham;
 	}
 
-	public void setMaSach(String maSach) {
-		this.maSach = maSach;
-	}
-
-	public String getMaDungCuHocTap() {
-		return maDungCuHocTap;
-	}
-
-	public void setMaDungCuHocTap(String maDungCuHocTap) {
-		this.maDungCuHocTap = maDungCuHocTap;
+	public void setMaSanPham(String maSanPham) {
+		this.maSanPham = maSanPham;
 	}
 
 	public int getSoLuong() {
@@ -52,18 +42,18 @@ public class ChiTietHoaDon {
 		this.soLuong = soLuong;
 	}
 
-	public long getDonGia() {
+	public float getDonGia() {
 		return donGia;
 	}
 
-	public void setDonGia(long donGia) {
+	public void setDonGia(float donGia) {
 		this.donGia = donGia;
 	}
 	
 	@Override
 	public String toString() {
-		return "ChiTietHoaDon [maHoaDon=" + maHoaDon + ", maSach=" + maSach + ", maDungCuHocTap=" + maDungCuHocTap
-				+ ", soLuong=" + soLuong + ", donGia=" + donGia + "]";
+		return "ChiTietHoaDon [maHoaDon=" + maHoaDon + ", maSanPham=" + maSanPham + ", soLuong=" + soLuong + ", donGia="
+				+ donGia + "]";
 	}
 	
 	

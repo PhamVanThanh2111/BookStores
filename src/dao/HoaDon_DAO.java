@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,27 +33,28 @@ public class HoaDon_DAO {
 		}
 		return ds;
 	}
-	
+
 	// get hoa don theo ma
-		public HoaDon getHoaDonTheoMaHoaDon(String maHoaDon) {
-			ConnectDB.getInstance();
-			Connection connection = ConnectDB.getConnection();
-			HoaDon hoaDon = new HoaDon();
-			try {
-				PreparedStatement preparedStatement = connection.prepareStatement("select * from HoaDon where maHoaDon = '"+ maHoaDon +"'");
-				ResultSet resultSet = preparedStatement.executeQuery();
-				while (resultSet.next()) {
-					hoaDon.setMaHoaDon(resultSet.getString(1));
-					hoaDon.setMaNhanVien(resultSet.getString(2));
-					hoaDon.setMaKhachHang(resultSet.getString(3));
-					hoaDon.setNgayLap(resultSet.getDate(4));
-					hoaDon.setThanhTien(resultSet.getFloat(5));
-				}
-			} catch (Exception e) {
-				// TODO: handle exception
+	public HoaDon getHoaDonTheoMaHoaDon(String maHoaDon) {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		HoaDon hoaDon = new HoaDon();
+		try {
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("select * from HoaDon where maHoaDon = '" + maHoaDon + "'");
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				hoaDon.setMaHoaDon(resultSet.getString(1));
+				hoaDon.setMaNhanVien(resultSet.getString(2));
+				hoaDon.setMaKhachHang(resultSet.getString(3));
+				hoaDon.setNgayLap(resultSet.getDate(4));
+				hoaDon.setThanhTien(resultSet.getFloat(5));
 			}
-			return hoaDon;
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
+		return hoaDon;
+	}
 
 	// them hoa don
 	public boolean lapHoaDon(HoaDon hoaDon) throws SQLException {
@@ -74,5 +76,28 @@ public class HoaDon_DAO {
 
 		connection.close();
 		return false;
+	}
+
+	// get danh sach hoa don cua nhan vien theo ngay
+	public ArrayList<HoaDon> getListHoaDonTrongNgayTheoMaNhanVien(String maNhanVien) {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		ArrayList<HoaDon> ds = new ArrayList<HoaDon>();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement("select * from HoaDon where maNhanVien = '"+ maNhanVien +"' and ngayLap = CONVERT(DATE, GETDATE())");
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				HoaDon hoaDon = new HoaDon();
+				hoaDon.setMaHoaDon(resultSet.getString(1));
+				hoaDon.setMaNhanVien(resultSet.getString(2));
+				hoaDon.setMaKhachHang(resultSet.getString(3));
+				hoaDon.setNgayLap(resultSet.getDate(4));
+				hoaDon.setThanhTien(resultSet.getFloat(5));
+				ds.add(hoaDon);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return ds;
 	}
 }

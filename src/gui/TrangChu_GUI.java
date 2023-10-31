@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
 
+import dao.HoaDon_DAO;
+import entity.HoaDon;
 import entity.NhanVien;
 
 import javax.swing.ImageIcon;
@@ -19,12 +21,16 @@ public class TrangChu_GUI extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	private HoaDon_DAO hoaDon_DAO;
+	
 	/**
 	 * Create the panel.
 	 */
 	public TrangChu_GUI(NhanVien nhanVien) {
-
+		
+		// khai bao DAO
+		hoaDon_DAO = new HoaDon_DAO();
+		
 		setLayout(null);
 
 		JPanel pnlMain = new JPanel();
@@ -58,9 +64,10 @@ public class TrangChu_GUI extends JPanel {
 		lblSoLuongGiaoDich.setBounds(34, 60, 170, 32);
 		pnlDoanhThu.add(lblSoLuongGiaoDich);
 		
-		JLabel lblSoLuongGiaoDichValue = new JLabel("20");
+		JLabel lblSoLuongGiaoDichValue = new JLabel();
 		lblSoLuongGiaoDichValue.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblSoLuongGiaoDichValue.setBounds(214, 60, 170, 32);
+		lblSoLuongGiaoDichValue.setText(hoaDon_DAO.getListHoaDonTrongNgayTheoMaNhanVien(nhanVien.getMaNhanVien()).size() + "");
 		pnlDoanhThu.add(lblSoLuongGiaoDichValue);
 		
 		JLabel lblTongThu = new JLabel("Tổng thu:");
@@ -68,9 +75,14 @@ public class TrangChu_GUI extends JPanel {
 		lblTongThu.setBounds(34, 115, 170, 32);
 		pnlDoanhThu.add(lblTongThu);
 		
-		JLabel lblTongThuValue = new JLabel("8.500.000 VND");
+		JLabel lblTongThuValue = new JLabel();
 		lblTongThuValue.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblTongThuValue.setBounds(214, 115, 170, 32);
+		float doanhThu = 0;
+		for (HoaDon hoaDon : hoaDon_DAO.getListHoaDonTrongNgayTheoMaNhanVien(nhanVien.getMaNhanVien())) {
+			doanhThu += hoaDon.getThanhTien();
+		}
+		lblTongThuValue.setText(doanhThu + " VND");
 		pnlDoanhThu.add(lblTongThuValue);
 		
 		JLabel lblIconDoanhThu = new JLabel("");

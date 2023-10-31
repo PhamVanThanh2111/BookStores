@@ -22,6 +22,8 @@ import entity.HoaDon;
 
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
@@ -29,6 +31,7 @@ import java.util.ArrayList;
 
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.Timer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -234,12 +237,11 @@ public class DanhSachHoaDon_GUI extends JPanel {
 				// TODO Auto-generated method stub
 				int row = tableDanhSachHoaDon.getSelectedRow();
 				HoaDon hoaDon = hoaDon_DAO.getHoaDonTheoMaHoaDon(modelDanhSachHoaDon.getValueAt(row, 0).toString());
-				loadChiTietHoaDonTheoMaHoaDon(hoaDon.getMaHoaDon());
+				loadDataIntoTableChiTietHoaDonTheoMaHoaDon(hoaDon.getMaHoaDon());
 			}
 		});
 		scrDanhSachHoaDon.setViewportView(tableDanhSachHoaDon);
-		loadDataIntoTableHoaDon(hoaDon_DAO.getAllListHoaDon());
-		
+		updateTheoThoiGian();
 
 		// header of table
 		tableHeaderDanhSachHoaDon = tableDanhSachHoaDon.getTableHeader();
@@ -250,7 +252,11 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 		tableDanhSachHoaDon.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+		tableDanhSachHoaDon.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
 		tableDanhSachHoaDon.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+		tableDanhSachHoaDon.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+		tableDanhSachHoaDon.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+		tableDanhSachHoaDon.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
 		tableDanhSachHoaDon.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
 		
 		JPanel pnlChiTietHoaDon = new JPanel();
@@ -266,7 +272,7 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		scrChiTietHoaDon.setBackground(new Color(255, 255, 255));
 		pnlChiTietHoaDon.add(scrChiTietHoaDon);
 
-		String colsChiTietHoaDon[] = { "Mã Hóa Đơn", "Mã Sản Phẩm", "Tên Sản Phẩm", "Số Lượng",
+		String colsChiTietHoaDon[] = { "Mã Hóa Đơn", "Tên Sản Phẩm", "Số Lượng",
 				"Đơn Giá" };
 		modelChiTietHoaDon = new DefaultTableModel(colsChiTietHoaDon, 0);
 		tableChiTietHoaDon = new JTable(modelChiTietHoaDon);
@@ -320,7 +326,9 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		tableHeaderChiTietHoaDon.setReorderingAllowed(false);
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 		tableChiTietHoaDon.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+		tableChiTietHoaDon.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
 		tableChiTietHoaDon.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+		tableChiTietHoaDon.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
 		tableChiTietHoaDon.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
 		
 	}
@@ -339,7 +347,7 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		}
 	}
 	
-	private void loadChiTietHoaDonTheoMaHoaDon(String maHoaDon) {
+	private void loadDataIntoTableChiTietHoaDonTheoMaHoaDon(String maHoaDon) {
 		modelChiTietHoaDon.setRowCount(0);
 		for (ChiTietHoaDon chiTietHoaDon : chiTietHoaDon_DAO.getAllChiTietHoaDonTheoMaHoaDon(maHoaDon)) {
 			Object[] objects = {chiTietHoaDon.getMaHoaDon(),
@@ -348,5 +356,15 @@ public class DanhSachHoaDon_GUI extends JPanel {
 								chiTietHoaDon.getDonGia()};
 			modelChiTietHoaDon.addRow(objects);
 		}
+	}
+	
+	private void updateTheoThoiGian() {
+		Timer timer = new Timer(1000, (ActionListener) new ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		        // Thực hiện các hoạt động cập nhật giao diện ở đây
+		    	loadDataIntoTableHoaDon(hoaDon_DAO.getAllListHoaDon());
+		    }
+		});
+		timer.start();
 	}
 }

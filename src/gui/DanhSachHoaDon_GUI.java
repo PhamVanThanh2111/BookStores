@@ -197,6 +197,7 @@ public class DanhSachHoaDon_GUI extends JPanel {
 				 "Tên Nhân Viên" , "Ngày Lập" , "Thành Tiền" };
 		modelDanhSachHoaDon = new DefaultTableModel(cols, 0);
 		tableDanhSachHoaDon = new JTable(modelDanhSachHoaDon);
+		tableDanhSachHoaDon.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		tableDanhSachHoaDon.setToolTipText("Chọn vào hóa đơn cần hiển thị thông tin");
 		tableDanhSachHoaDon.setRowHeight(30);
 		tableDanhSachHoaDon.setDefaultEditor(Object.class, null);
@@ -276,6 +277,7 @@ public class DanhSachHoaDon_GUI extends JPanel {
 				"Đơn Giá" };
 		modelChiTietHoaDon = new DefaultTableModel(colsChiTietHoaDon, 0);
 		tableChiTietHoaDon = new JTable(modelChiTietHoaDon);
+		tableChiTietHoaDon.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		tableChiTietHoaDon.setToolTipText("Chọn vào hóa đơn cần hiển thị thông tin");
 		tableChiTietHoaDon.setRowHeight(30);
 		tableChiTietHoaDon.setDefaultEditor(Object.class, null);

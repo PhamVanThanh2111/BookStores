@@ -331,7 +331,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		pContent.add(new HoaDon_GUI(nhanVien), "HoaDon_GUI");
 		pContent.add(new HoSo_GUI(nhanVien), "HoSo_GUI");
 		// sub menu
-		
+		pContent.add(new DatHang_GUI(nhanVien), "DatHang_GUI");
 		pContent.add(new NhaXuatBan_GUI(), "NhaXuatBan_GUI");
 		pContent.add(new ThongKe_GUI(), "ThongKe_GUI");
 		pContent.add(new TheLoaiSach_GUI(), "LoaiSach_GUI");
@@ -819,8 +819,8 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (lblSubMenu3.getText().equals("Danh Sách Hóa Đơn"))
-					cardLayoutContent.show(pContent, "DanhSachHoaDon_GUI");
+				if (lblSubMenu3.getText().equals("Đặt Hàng"))
+					cardLayoutContent.show(pContent, "DatHang_GUI");
 				if (lblSubMenu3.getText().equals("Nhà Xuất Bản"))
 					cardLayoutContent.show(pContent, "NhaXuatBan_GUI");
 			}

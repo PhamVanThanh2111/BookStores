@@ -563,5 +563,6 @@ public class HoaDon_GUI extends JPanel {
 		cbLoaiSP.setSelectedIndex(-1);
 		txtConLai.setText("");
 		txtSoLuong.setText("");
+		model.setRowCount(0);
 	}
 }

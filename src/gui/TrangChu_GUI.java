@@ -8,6 +8,9 @@ import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
+
+import entity.NhanVien;
+
 import javax.swing.ImageIcon;
 
 
@@ -20,7 +23,7 @@ public class TrangChu_GUI extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public TrangChu_GUI(String maNhanVien) {
+	public TrangChu_GUI(NhanVien nhanVien) {
 
 		setLayout(null);
 
@@ -31,7 +34,7 @@ public class TrangChu_GUI extends JPanel {
 		add(pnlMain);
 		pnlMain.setLayout(null);
 		
-		JLabel lblTieuDe = new JLabel("Chào '"+ "Phạm Văn Thành" +"' , Chúc Bạn Ngày Mới Tốt Lành!");
+		JLabel lblTieuDe = new JLabel("Chào '" + nhanVien.getTenNhanVien() +"' , Chúc Bạn Ngày Mới Tốt Lành!");
 		lblTieuDe.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTieuDe.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblTieuDe.setBounds(413, 28, 494, 58);

@@ -309,14 +309,14 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		cardLayoutContent = new CardLayout();
 		pContent.setLayout(cardLayoutContent);
 		// menu
-		pContent.add(new TrangChu_GUI(nhanVien.getMaNhanVien()), "TrangChu_GUI");
+		pContent.add(new TrangChu_GUI(nhanVien), "TrangChu_GUI");
 		pContent.add(new NhanVien_GUI(), "NhanVien_GUI");
 		pContent.add(new KhachHang_GUI(), "KhachHang_GUI");
 		pContent.add(new ThongKe_GUI(), "ThongKe_GUI");
 		pContent.add(new Sach_GUI(), "Sach_GUI");
 		pContent.add(new DungCuHocTap_GUI(), "DungCuHocTap_GUI");
 		pContent.add(new NhaXuatBan_GUI(), "NhaXuatBan_GUI");
-		pContent.add(new HoaDon_GUI(nhanVien.getMaNhanVien()), "HoaDon_GUI");
+		pContent.add(new HoaDon_GUI(nhanVien), "HoaDon_GUI");
 		pContent.add(new TheLoaiSach_GUI(), "LoaiSach_GUI");
 		pContent.add(new HoSo_GUI(nhanVien), "HoSo_GUI");
 		// sub menu

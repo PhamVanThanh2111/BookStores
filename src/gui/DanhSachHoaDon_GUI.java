@@ -12,12 +12,23 @@ import javax.swing.table.JTableHeader;
 
 import com.toedter.calendar.JDateChooser;
 
+import dao.ChiTietHoaDon_DAO;
+import dao.HoaDon_DAO;
+import dao.KhachHang_DAO;
+import dao.NhanVien_DAO;
+import dao.SanPham_DAO;
+import entity.ChiTietHoaDon;
+import entity.HoaDon;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -41,12 +52,25 @@ public class DanhSachHoaDon_GUI extends JPanel {
 	private JTableHeader tableHeaderDanhSachHoaDon;
 	private JTableHeader tableHeaderChiTietHoaDon;
 	private JScrollPane scrChiTietHoaDon;
+	private HoaDon_DAO hoaDon_DAO;
+	private ChiTietHoaDon_DAO chiTietHoaDon_DAO;
+	private KhachHang_DAO khachHang_DAO;
+	private NhanVien_DAO nhanVien_DAO;
+	private SanPham_DAO sanPham_DAO;
 	
 	/**
 	 * Create the panel.
 	 */
 	public DanhSachHoaDon_GUI() {
-		setBackground(new Color(128, 128, 192));
+		
+		// khai bao DAO
+		hoaDon_DAO = new HoaDon_DAO();
+		khachHang_DAO = new KhachHang_DAO();
+		nhanVien_DAO = new NhanVien_DAO();
+		chiTietHoaDon_DAO = new ChiTietHoaDon_DAO();
+		sanPham_DAO = new SanPham_DAO();
+		
+		setBackground(new Color(255, 255, 255));
 		setLayout(null);
 		
 		JPanel pnlMain = new JPanel();
@@ -161,13 +185,13 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		
 		JScrollPane scrDanhSachHoaDon = new JScrollPane();
 		scrDanhSachHoaDon.setBounds(0, 0, 1299, 250);
-		scrDanhSachHoaDon.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
-		scrDanhSachHoaDon.setBorder(null);
+		scrDanhSachHoaDon.setToolTipText("Chọn vào hóa đơn cần hiển thị thông tin");
+		scrDanhSachHoaDon.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		scrDanhSachHoaDon.setBackground(new Color(255, 255, 255));
 		pnlDanhSachHoaDon.add(scrDanhSachHoaDon);
 
-		String cols[] = { "Mã Hóa Đơn", "Mã Khách Hàng", "Tên Khách Hàng", "Số Điện Thoại",
-				"Mã Nhân Viên", "Tên Nhân Viên" , "Ngày Lập" , "Tổng Tiền" };
+		String cols[] = { "Mã Hóa Đơn", "Tên Khách Hàng", "Số Điện Thoại",
+				 "Tên Nhân Viên" , "Ngày Lập" , "Thành Tiền" };
 		modelDanhSachHoaDon = new DefaultTableModel(cols, 0);
 		tableDanhSachHoaDon = new JTable(modelDanhSachHoaDon);
 		tableDanhSachHoaDon.setToolTipText("Chọn vào hóa đơn cần hiển thị thông tin");
@@ -176,8 +200,9 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		tableDanhSachHoaDon.setShowGrid(true);
 		tableDanhSachHoaDon.setShowHorizontalLines(true);
 		tableDanhSachHoaDon.setBackground(new Color(255, 255, 255));
-		tableDanhSachHoaDon.setSelectionBackground(new Color(216, 236, 244));
-		tableDanhSachHoaDon.setSelectionForeground(new Color(73, 129, 158));
+		tableDanhSachHoaDon.setSelectionBackground(new Color(141, 208, 229));
+		tableDanhSachHoaDon.setSelectionForeground(new Color(0, 0, 0));
+		tableDanhSachHoaDon.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableDanhSachHoaDon.addMouseListener(new MouseListener() {
 
 			@Override
@@ -207,9 +232,14 @@ public class DanhSachHoaDon_GUI extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
+				int row = tableDanhSachHoaDon.getSelectedRow();
+				HoaDon hoaDon = hoaDon_DAO.getHoaDonTheoMaHoaDon(modelDanhSachHoaDon.getValueAt(row, 0).toString());
+				loadChiTietHoaDonTheoMaHoaDon(hoaDon.getMaHoaDon());
 			}
 		});
 		scrDanhSachHoaDon.setViewportView(tableDanhSachHoaDon);
+		loadDataIntoTableHoaDon(hoaDon_DAO.getAllListHoaDon());
+		
 
 		// header of table
 		tableHeaderDanhSachHoaDon = tableDanhSachHoaDon.getTableHeader();
@@ -231,8 +261,8 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		
 		scrChiTietHoaDon = new JScrollPane();
 		scrChiTietHoaDon.setBounds(0, 0, 1299, 250);
-		scrChiTietHoaDon.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
-		scrChiTietHoaDon.setBorder(null);
+		scrChiTietHoaDon.setToolTipText("");
+		scrChiTietHoaDon.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		scrChiTietHoaDon.setBackground(new Color(255, 255, 255));
 		pnlChiTietHoaDon.add(scrChiTietHoaDon);
 
@@ -246,8 +276,9 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		tableChiTietHoaDon.setShowGrid(true);
 		tableChiTietHoaDon.setShowHorizontalLines(true);
 		tableChiTietHoaDon.setBackground(new Color(255, 255, 255));
-		tableChiTietHoaDon.setSelectionBackground(new Color(216, 236, 244));
-		tableChiTietHoaDon.setSelectionForeground(new Color(73, 129, 158));
+		tableChiTietHoaDon.setSelectionBackground(new Color(141, 208, 229));
+		tableChiTietHoaDon.setSelectionForeground(new Color(0, 0, 0));
+		tableChiTietHoaDon.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableChiTietHoaDon.addMouseListener(new MouseListener() {
 
 			@Override
@@ -292,5 +323,30 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		tableChiTietHoaDon.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
 		tableChiTietHoaDon.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
 		
+	}
+	
+	private void loadDataIntoTableHoaDon(ArrayList<HoaDon> danhSachHoaDons) {
+		modelDanhSachHoaDon.setRowCount(0);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		for (HoaDon hoaDon : danhSachHoaDons) {
+			Object[] objects = {hoaDon.getMaHoaDon(), 
+								khachHang_DAO.getKhachHangTheoMaKhachHang(hoaDon.getMaKhachHang()).getTenKhachHang(),
+								khachHang_DAO.getKhachHangTheoMaKhachHang(hoaDon.getMaKhachHang()).getSoDienThoai(),
+								nhanVien_DAO.getNhanVienTheoMa(hoaDon.getMaNhanVien()).getTenNhanVien(), 
+								simpleDateFormat.format(hoaDon.getNgayLap()), 
+								hoaDon.getThanhTien()};
+			modelDanhSachHoaDon.addRow(objects);
+		}
+	}
+	
+	private void loadChiTietHoaDonTheoMaHoaDon(String maHoaDon) {
+		modelChiTietHoaDon.setRowCount(0);
+		for (ChiTietHoaDon chiTietHoaDon : chiTietHoaDon_DAO.getAllChiTietHoaDonTheoMaHoaDon(maHoaDon)) {
+			Object[] objects = {chiTietHoaDon.getMaHoaDon(),
+								sanPham_DAO.getSanPhamTheoMaSanPham(chiTietHoaDon.getMaSanPham()).getTenSanPham(),
+								chiTietHoaDon.getSoLuong(),
+								chiTietHoaDon.getDonGia()};
+			modelChiTietHoaDon.addRow(objects);
+		}
 	}
 }

@@ -21,6 +21,7 @@ import dao.SanPham_DAO;
 import entity.ChiTietHoaDon;
 import entity.HoaDon;
 import entity.KhachHang;
+import entity.NhanVien;
 import entity.SanPham;
 
 import javax.swing.border.LineBorder;
@@ -67,7 +68,7 @@ public class HoaDon_GUI extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public HoaDon_GUI(String maNV) {
+	public HoaDon_GUI(NhanVien nhanVien) {
 		setBackground(new Color(255, 255, 255));
 		// khai bao DAO
 		sanPham_DAO = new SanPham_DAO();
@@ -183,7 +184,7 @@ public class HoaDon_GUI extends JPanel {
 		JScrollPane scrollPane;
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(40, 70, 1218, 296);
-		scrollPane.setToolTipText("");
+		scrollPane.setToolTipText("Chọn vào sản phẩm cần hiển thị thông tin");
 		scrollPane.setBorder(new LineBorder(new Color(80, 80, 80), 1, true));
 		scrollPane.setBackground(new Color(80, 80, 80));
 		pChiTietHoaDon.add(scrollPane);
@@ -288,7 +289,7 @@ public class HoaDon_GUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					lapHoaDon(maNV);
+					lapHoaDon(nhanVien.getMaNhanVien());
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

@@ -11,6 +11,11 @@ public class test {
 //		} else {
 //		    System.out.println(chuoiCon + " không phải là chuỗi con của " + chuoiChua);
 //		}
-		System.out.println(Regular_expression.validatePhoneNumber("0934004524"));
+		if ("Thanh".toLowerCase().contains("t")) {
+			System.out.println("dung");
+		}
+		else {
+			System.out.println("d");
+		}
 	}
 }

@@ -77,9 +77,15 @@ public class NhanVien_GUI extends JPanel {
 	private File selectedFile;
 	private String relativePath;
 	private JButton btnXoa;
+	private JButton btnLamMoi;
+	private JButton btnSua;
+	private JButton btnAdd;
+	private JButton btnTim;
 	private TimNhanVien_GUI timNhanVien_GUI;
 	private JDesktopPane desktopPane;
 	private ArrayList<NhanVien> ds;
+	private Border borderDefault;
+	private LayoutManager layoutDefaultCombobox;
 
 	/**
 	 * Create the panel.
@@ -154,7 +160,7 @@ public class NhanVien_GUI extends JPanel {
 		txtSoDienThoai.setFont(new Font("SansSerif", Font.BOLD, 18));
 		txtSoDienThoai.setColumns(10);
 		txtSoDienThoai.setBounds(170, 145, 240, 40);
-		Border borderDefault = txtSoDienThoai.getBorder();
+		borderDefault = txtSoDienThoai.getBorder();
 		txtSoDienThoai.setBorder(null);
 		pNhapThongTin.add(txtSoDienThoai);
 		
@@ -212,6 +218,7 @@ public class NhanVien_GUI extends JPanel {
 		dateChooserNgaySinh.setDateFormatString("dd/MM/yyyy");
 		dateChooserNgaySinh.setFont(new Font("SansSerif", Font.BOLD, 18));
 		dateChooserNgaySinh.setBorder(null);
+		dateChooserNgaySinh.getDateEditor().setEnabled(false);
 		pNhapThongTin.add(dateChooserNgaySinh);
 
 		String cols[] = { "Mã NV", "Họ Và Tên", "Giới Tính", "Ngày Vào Làm",
@@ -329,7 +336,7 @@ public class NhanVien_GUI extends JPanel {
 		cbChucVu.addItem("Bán hàng");
 		cbChucVu.addItem("Quản lý");
 		cbChucVu.setSelectedIndex(-1);
-		LayoutManager layoutDefaultCombobox = cbChucVu.getLayout();
+		layoutDefaultCombobox = cbChucVu.getLayout();
 		cbChucVu.setLayout(null);
 		pNhapThongTin.add(cbChucVu);
 		
@@ -369,7 +376,7 @@ public class NhanVien_GUI extends JPanel {
 								separator.setBounds(126, 56, 704, 2);
 								pDanhSach.add(separator);
 								
-								JButton btnAdd = new JButton("Thêm");
+								btnAdd = new JButton("Thêm");
 								btnAdd.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/add_person.png")));
 								btnAdd.setForeground(new Color(255, 255, 255));
 								btnAdd.setBackground(new Color(73, 129, 158));
@@ -382,60 +389,28 @@ public class NhanVien_GUI extends JPanel {
 									public void actionPerformed(ActionEvent e) {
 										// TODO Auto-generated method stub
 										if (btnAdd.getText().equals("Thêm")) {
-											txtTenNhanVien.setEditable(true);
-											lblChucVu.setVisible(false);
-											btnChonHinhAnh.setVisible(true);
-											txtSoDienThoai.setEditable(true);
-											txtSoDienThoai.setBorder(borderDefault);
-											txtEmail.setEditable(true);
-											txtEmail.setBorder(borderDefault);
-											cbChucVu.setEnabled(true);
-											cbChucVu.setBorder(borderDefault);
-											cbChucVu.setLayout(layoutDefaultCombobox);
-											cbCa.setEnabled(true);
-											cbCa.setBorder(borderDefault);
-											cbCa.setLayout(layoutDefaultCombobox);
-											txtcCCD.setEditable(true);
-											txtcCCD.setBorder(borderDefault);
-											cbGioiTinh.setEnabled(true);
-											cbGioiTinh.setBorder(borderDefault);
-											cbGioiTinh.setLayout(layoutDefaultCombobox);
-											txtDiaChi.setEditable(true);
-											txtDiaChi.setBorder(borderDefault);
+											enableEdit();
 											btnXoa.setText("Hủy");
 											btnAdd.setText("Xác nhận");
+											btnLamMoi.setEnabled(false);
+											btnSua.setEnabled(false);
+											btnTim.setEnabled(false);
+											
 										}
 										else {
 											add();
-											txtTenNhanVien.setEditable(false); 
-											txtTenNhanVien.setBorder(null); 
-											txtSoDienThoai.setEditable(false); 
-											txtSoDienThoai.setBorder(null); 
-											txtEmail.setEditable(false); 
-											txtEmail.setBorder(null);
-											cbChucVu.setEnabled(false);
-											cbChucVu.setBorder(null);
-											cbChucVu.setLayout(null);
-											cbCa.setEnabled(false);
-											cbCa.setBorder(null);
-											cbCa.setLayout(null);
-											txtcCCD.setEditable(false); 
-											txtcCCD.setBorder(null);
-											cbGioiTinh.setEnabled(false);
-											cbGioiTinh.setBorder(null);
-											cbGioiTinh.setLayout(null);
-											txtDiaChi.setEditable(false); 
-											txtDiaChi.setBorder(null);
-											btnChonHinhAnh.setVisible(false);
-											lblChucVu.setVisible(true);
+											disableEdit();
 											btnAdd.setText("Thêm");
 											btnXoa.setText("Xóa");
+											btnLamMoi.setEnabled(true);
+											btnSua.setEnabled(true);
+											btnTim.setEnabled(true);
 										}
 									}
 								});
 								pDanhSach.add(btnAdd);
 								
-									JButton btnSua = new JButton("Sửa");
+									btnSua = new JButton("Sửa");
 									btnSua.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/update_person.png")));
 									btnSua.setBackground(new Color(73, 129, 158));
 									btnSua.setForeground(new Color(255, 255, 255));
@@ -451,55 +426,22 @@ public class NhanVien_GUI extends JPanel {
 												if (row == -1)
 													JOptionPane.showMessageDialog(null, "Bạn phải chọn vào nhân viên cần sửa!");
 												else {
-													txtTenNhanVien.setEditable(true);
-													lblChucVu.setVisible(false);
-													btnChonHinhAnh.setVisible(true);
-													txtSoDienThoai.setEditable(true);
-													txtSoDienThoai.setBorder(borderDefault);
-													txtEmail.setEditable(true);
-													txtEmail.setBorder(borderDefault);
-													cbChucVu.setEnabled(true);
-													cbChucVu.setBorder(borderDefault);
-													cbChucVu.setLayout(layoutDefaultCombobox);
-													cbCa.setEnabled(true);
-													cbCa.setBorder(borderDefault);
-													cbCa.setLayout(layoutDefaultCombobox);
-													txtcCCD.setEditable(true);
-													txtcCCD.setBorder(borderDefault);
-													cbGioiTinh.setEnabled(true);
-													cbGioiTinh.setBorder(borderDefault);
-													cbGioiTinh.setLayout(layoutDefaultCombobox);
-													txtDiaChi.setEditable(true);
-													txtDiaChi.setBorder(borderDefault);
+													enableEdit();
 													btnXoa.setText("Hủy");
 													btnSua.setText("Xác nhận");
+													btnLamMoi.setEnabled(false);
+													btnAdd.setEnabled(false);
+													btnTim.setEnabled(false);
 												}
 											}
 											else {
 												update();
 												btnSua.setText("Sửa");
 												btnXoa.setText("Xóa");
-												txtTenNhanVien.setEditable(false); 
-												txtTenNhanVien.setBorder(null); 
-												txtSoDienThoai.setEditable(false); 
-												txtSoDienThoai.setBorder(null); 
-												txtEmail.setEditable(false); 
-												txtEmail.setBorder(null);
-												cbChucVu.setEnabled(false);
-												cbChucVu.setBorder(null);
-												cbChucVu.setLayout(null);
-												cbCa.setEnabled(false);
-												cbCa.setBorder(null);
-												cbCa.setLayout(null);
-												txtcCCD.setEditable(false); 
-												txtcCCD.setBorder(null);
-												cbGioiTinh.setEnabled(false);
-												cbGioiTinh.setBorder(null);
-												cbGioiTinh.setLayout(null);
-												txtDiaChi.setEditable(false); 
-												txtDiaChi.setBorder(null);
-												btnChonHinhAnh.setVisible(false);
-												lblChucVu.setVisible(true);
+												disableEdit();
+												btnLamMoi.setEnabled(true);
+												btnAdd.setEnabled(true);
+												btnTim.setEnabled(true);
 											}
 										}
 									});
@@ -519,36 +461,20 @@ public class NhanVien_GUI extends JPanel {
 												if (btnXoa.getText().equals("Xóa"))
 													delete();
 												else {
-													txtTenNhanVien.setEditable(false); 
-													txtTenNhanVien.setBorder(null); 
-													txtSoDienThoai.setEditable(false); 
-													txtSoDienThoai.setBorder(null); 
-													txtEmail.setEditable(false); 
-													txtEmail.setBorder(null);
-													cbChucVu.setEnabled(false);
-													cbChucVu.setBorder(null);
-													cbChucVu.setLayout(null);
-													cbCa.setEnabled(false);
-													cbCa.setBorder(null);
-													cbCa.setLayout(null);
-													txtcCCD.setEditable(false); 
-													txtcCCD.setBorder(null);
-													cbGioiTinh.setEnabled(false);
-													cbGioiTinh.setBorder(null);
-													cbGioiTinh.setLayout(null);
-													txtDiaChi.setEditable(false); 
-													txtDiaChi.setBorder(null);
-													btnChonHinhAnh.setVisible(false);
-													lblChucVu.setVisible(true);
+													disableEdit();
 													btnAdd.setText("Thêm");
 													btnSua.setText("Sửa");
 													btnXoa.setText("Xóa");
+													btnLamMoi.setEnabled(true);
+													btnAdd.setEnabled(true);
+													btnSua.setEnabled(true);
+													btnTim.setEnabled(true);
 												}
 											}
 										});
 										pDanhSach.add(btnXoa);		
 											
-											JButton btnTim = new JButton("Tìm");
+											btnTim = new JButton("Tìm");
 											btnTim.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/find_person.png")));
 											btnTim.setBackground(new Color(73, 129, 158));
 											btnTim.setForeground(new Color(255, 255, 255));
@@ -576,6 +502,7 @@ public class NhanVien_GUI extends JPanel {
 												            @Override
 												            public void internalFrameOpened(InternalFrameEvent e) {
 //												                System.out.println("Internal frame is opened.");
+												            	disableButton();
 												            }
 												            
 												            @Override
@@ -584,6 +511,7 @@ public class NhanVien_GUI extends JPanel {
 												                model.setRowCount(0);
 												            	loadDataIntoTable(ds);
 												            	ds = new ArrayList<NhanVien>();
+												            	enableButton();
 												            }
 												        });
 														desktopPane.add(timNhanVien_GUI).setVisible(true);
@@ -594,7 +522,7 @@ public class NhanVien_GUI extends JPanel {
 											
 											pDanhSach.add(btnTim);
 											
-											JButton btnLamMoi = new JButton("Làm Mới");
+											btnLamMoi = new JButton("Làm Mới");
 											btnLamMoi.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/refresh.png")));
 											btnLamMoi.setOpaque(true);
 											btnLamMoi.setForeground(Color.WHITE);
@@ -978,5 +906,70 @@ public class NhanVien_GUI extends JPanel {
 		}
 		else // JFileChooser.CANCEL_OPTION
 			return false;
+	}
+	
+	private void enableEdit() { 
+		txtTenNhanVien.setEditable(true);
+		lblChucVu.setVisible(false);
+		btnChonHinhAnh.setVisible(true);
+		txtSoDienThoai.setEditable(true);
+		txtSoDienThoai.setBorder(borderDefault);
+		txtEmail.setEditable(true);
+		txtEmail.setBorder(borderDefault);
+		cbChucVu.setEnabled(true);
+		cbChucVu.setBorder(borderDefault);
+		cbChucVu.setLayout(layoutDefaultCombobox);
+		cbCa.setEnabled(true);
+		cbCa.setBorder(borderDefault);
+		cbCa.setLayout(layoutDefaultCombobox);
+		txtcCCD.setEditable(true);
+		txtcCCD.setBorder(borderDefault);
+		cbGioiTinh.setEnabled(true);
+		cbGioiTinh.setBorder(borderDefault);
+		cbGioiTinh.setLayout(layoutDefaultCombobox);
+		txtDiaChi.setEditable(true);
+		txtDiaChi.setBorder(borderDefault);
+		dateChooserNgaySinh.getDateEditor().setEnabled(true);
+	}
+	
+	private void disableEdit() {
+		txtTenNhanVien.setEditable(false); 
+		txtTenNhanVien.setBorder(null); 
+		txtSoDienThoai.setEditable(false); 
+		txtSoDienThoai.setBorder(null); 
+		txtEmail.setEditable(false); 
+		txtEmail.setBorder(null);
+		cbChucVu.setEnabled(false);
+		cbChucVu.setBorder(null);
+		cbChucVu.setLayout(null);
+		cbCa.setEnabled(false);
+		cbCa.setBorder(null);
+		cbCa.setLayout(null);
+		txtcCCD.setEditable(false); 
+		txtcCCD.setBorder(null);
+		cbGioiTinh.setEnabled(false);
+		cbGioiTinh.setBorder(null);
+		cbGioiTinh.setLayout(null);
+		txtDiaChi.setEditable(false); 
+		txtDiaChi.setBorder(null);
+		btnChonHinhAnh.setVisible(false);
+		lblChucVu.setVisible(true);
+		dateChooserNgaySinh.getDateEditor().setEnabled(false);
+	}
+	
+	private void enableButton() {
+		btnLamMoi.setEnabled(true);
+		btnAdd.setEnabled(true);
+		btnXoa.setEnabled(true);
+		btnSua.setEnabled(true);
+		btnTim.setEnabled(true);
+	}
+	
+	private void disableButton() {
+		btnLamMoi.setEnabled(false);
+		btnAdd.setEnabled(false);
+		btnXoa.setEnabled(false);
+		btnSua.setEnabled(false);
+		btnTim.setEnabled(false);
 	}
 }

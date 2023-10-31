@@ -343,7 +343,6 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			public void mouseEntered(MouseEvent e) {
 				lblDangXuat.setBackground(new Color(24, 39, 60));
 				lblDangXuat.setOpaque(true);
-				
 				lblIconDangXuat.setBackground(new Color(24, 39, 60));
 				lblIconDangXuat.setOpaque(true);
 			}

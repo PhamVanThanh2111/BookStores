@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import connect.ConnectDB;
 import entity.ChiTietHoaDon;
-import entity.HoaDon;
 
 public class ChiTietHoaDon_DAO {
 	// them nhan vien

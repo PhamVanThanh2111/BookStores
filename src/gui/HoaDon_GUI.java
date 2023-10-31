@@ -395,6 +395,7 @@ public class HoaDon_GUI extends JPanel {
 							Object[] objects = {cbTenSP.getSelectedItem().toString(), cbLoaiSP.getSelectedItem().toString(), txtSoLuong.getText(), sanPham.getGiaBan(), Integer.parseInt(txtSoLuong.getText()) * sanPham.getGiaBan()};
 							model.addRow(objects);
 							lblTongTienValue.setText(tinhThanhTien() + " VND");
+							
 						}
 						
 					}

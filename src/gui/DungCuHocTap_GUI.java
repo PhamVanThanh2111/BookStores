@@ -119,7 +119,7 @@ public class DungCuHocTap_GUI extends JPanel {
 		
 		JLabel lblgiaNhap = new JLabel("Số Lượng:");
 		lblgiaNhap.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblgiaNhap.setBounds(450, 160, 130, 40);
+		lblgiaNhap.setBounds(438, 160, 98, 40);
 		pThongTin.add(lblgiaNhap);
 		
 		txtsoLuong = new JTextField();
@@ -128,12 +128,12 @@ public class DungCuHocTap_GUI extends JPanel {
 		txtsoLuong.setEditable(false);
 		txtsoLuong.setColumns(10);
 		txtsoLuong.setBackground(Color.WHITE);
-		txtsoLuong.setBounds(600, 162, 255, 40);
+		txtsoLuong.setBounds(550, 162, 255, 40);
 		pThongTin.add(txtsoLuong);
 		
 		JLabel lblanh = new JLabel("Ảnh DCHT:");
 		lblanh.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblanh.setBounds(880, 70, 121, 40);
+		lblanh.setBounds(853, 159, 94, 40);
 		pThongTin.add(lblanh);
 		
 		JButton btnAdd = new JButton("Thêm");
@@ -174,12 +174,12 @@ public class DungCuHocTap_GUI extends JPanel {
 			}
 		});
 		btnChonHinhAnh.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		btnChonHinhAnh.setBounds(1089, 174, 90, 19);
+		btnChonHinhAnh.setBounds(971, 174, 90, 19);
 		pThongTin.add(btnChonHinhAnh);
 		
 		JLabel lblHinhAnh = new JLabel("");
 		lblHinhAnh.setBorder(new LineBorder(new Color(0, 0, 0)));
-		lblHinhAnh.setBounds(983, 25, 289, 180);
+		lblHinhAnh.setBounds(957, 160, 303, 40);
 		pThongTin.add(lblHinhAnh);
 		
 		txtgiaBan = new JTextField();
@@ -188,7 +188,7 @@ public class DungCuHocTap_GUI extends JPanel {
 		txtgiaBan.setEditable(false);
 		txtgiaBan.setColumns(10);
 		txtgiaBan.setBackground(Color.WHITE);
-		txtgiaBan.setBounds(600, 115, 255, 40);
+		txtgiaBan.setBounds(550, 115, 255, 40);
 		pThongTin.add(txtgiaBan);
 		
 		txtgiaNhap = new JTextField();
@@ -197,7 +197,7 @@ public class DungCuHocTap_GUI extends JPanel {
 		txtgiaNhap.setEditable(false);
 		txtgiaNhap.setColumns(10);
 		txtgiaNhap.setBackground(Color.WHITE);
-		txtgiaNhap.setBounds(600, 70, 255, 40);
+		txtgiaNhap.setBounds(550, 70, 255, 40);
 		pThongTin.add(txtgiaNhap);
 		
 		JPanel pDanhSach = new JPanel();

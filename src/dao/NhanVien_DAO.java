@@ -134,7 +134,7 @@ public class NhanVien_DAO {
 		return nhanVien;
 	}
 
-	// get nhan vien theo SDT
+	// get nhan vien theo cccd
 	public NhanVien getNhanVienTheoCCCD(String cccdNV) {
 		NhanVien nhanVien = new NhanVien();
 		ConnectDB.getInstance();

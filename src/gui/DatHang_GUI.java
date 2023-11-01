@@ -13,13 +13,13 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import connect.ConnectDB;
-import dao.ChiTietHoaDon_DAO;
-import dao.HoaDon_DAO;
+import dao.ChiTietPhieuDatHang_DAO;
+import dao.PhieuDatHang_DAO;
 import dao.KhachHang_DAO;
 import dao.PhatSinhMa_DAO;
 import dao.SanPham_DAO;
-import entity.ChiTietHoaDon;
-import entity.HoaDon;
+import entity.ChiTietPhieuDatHang;
+import entity.PhieuDatHang;
 import entity.KhachHang;
 import entity.NhanVien;
 import entity.SanPham;
@@ -39,7 +39,7 @@ import java.sql.SQLException;
 import java.util.Date;
 
 
-public class HoaDon_GUI extends JPanel {
+public class DatHang_GUI extends JPanel {
 
 	/**
 	 * 
@@ -61,20 +61,20 @@ public class HoaDon_GUI extends JPanel {
 	private KhachHang khachHang;
 	private SanPham sanPham;
 	private JLabel lblTongTienValue;
-	private HoaDon_DAO hoaDon_DAO;
-	private ChiTietHoaDon_DAO chiTietHoaDon_DAO;
+	private PhieuDatHang_DAO phieuDatHang_DAO;
+	private ChiTietPhieuDatHang_DAO chiTietPhieuDatHang_DAO;
 	private PhatSinhMa_DAO phatSinhMa_DAO;
 	
 	/**
 	 * Create the panel.
 	 */
-	public HoaDon_GUI(NhanVien nhanVien) {
+	public DatHang_GUI(NhanVien nhanVien) {
 		setBackground(new Color(255, 255, 255));
 		// khai bao DAO
 		sanPham_DAO = new SanPham_DAO();
 		khachHang_DAO = new KhachHang_DAO();
-		hoaDon_DAO = new HoaDon_DAO();
-		chiTietHoaDon_DAO = new ChiTietHoaDon_DAO();
+		phieuDatHang_DAO = new PhieuDatHang_DAO();
+		chiTietPhieuDatHang_DAO = new ChiTietPhieuDatHang_DAO();
 		phatSinhMa_DAO = new PhatSinhMa_DAO();
 
 		// connect
@@ -173,13 +173,13 @@ public class HoaDon_GUI extends JPanel {
 		txtDiaChi.setBounds(174, 220, 336, 40);
 		pTenKhachHang.add(txtDiaChi);
 
-		JPanel pChiTietHoaDon = new JPanel();
-		pChiTietHoaDon.setBackground(new Color(255, 255, 255));
-		pChiTietHoaDon.setToolTipText("");
-		pChiTietHoaDon.setLayout(null);
-		pChiTietHoaDon.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		pChiTietHoaDon.setBounds(0, 300, 1298, 420);
-		pnlMain.add(pChiTietHoaDon);
+		JPanel pChiTietPhieuDatHang = new JPanel();
+		pChiTietPhieuDatHang.setBackground(new Color(255, 255, 255));
+		pChiTietPhieuDatHang.setToolTipText("");
+		pChiTietPhieuDatHang.setLayout(null);
+		pChiTietPhieuDatHang.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		pChiTietPhieuDatHang.setBounds(0, 300, 1298, 420);
+		pnlMain.add(pChiTietPhieuDatHang);
 
 		JScrollPane scrollPane;
 		scrollPane = new JScrollPane();
@@ -187,7 +187,7 @@ public class HoaDon_GUI extends JPanel {
 		scrollPane.setToolTipText("Chọn vào sản phẩm cần hiển thị thông tin");
 		scrollPane.setBorder(new LineBorder(new Color(80, 80, 80), 1, true));
 		scrollPane.setBackground(new Color(80, 80, 80));
-		pChiTietHoaDon.add(scrollPane);
+		pChiTietPhieuDatHang.add(scrollPane);
 
 		String cols[] = { "Tên Mặt Hàng", "Tên Loại", "Số Lượng", "Đơn Giá", "Thành Tiền" };
 		model = new DefaultTableModel(cols, 0);
@@ -259,15 +259,15 @@ public class HoaDon_GUI extends JPanel {
 		table.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
 		
-		JLabel lblThngTinHoaDon = new JLabel("Thông Tin Hóa Đơn");
-		lblThngTinHoaDon.setFont(new Font("SansSerif", Font.BOLD, 18));
-		lblThngTinHoaDon.setBounds(20, 20, 203, 40);
-		pChiTietHoaDon.add(lblThngTinHoaDon);
+		JLabel lblThngTinPhieuDatHang = new JLabel("Thông Tin Hóa Đơn");
+		lblThngTinPhieuDatHang.setFont(new Font("SansSerif", Font.BOLD, 18));
+		lblThngTinPhieuDatHang.setBounds(20, 20, 203, 40);
+		pChiTietPhieuDatHang.add(lblThngTinPhieuDatHang);
 		
 		JLabel lblTongTien = new JLabel("Tổng Tiền:");
 		lblTongTien.setFont(new Font("SansSerif", Font.BOLD, 18));
 		lblTongTien.setBounds(70, 373, 110, 40);
-		pChiTietHoaDon.add(lblTongTien);
+		pChiTietPhieuDatHang.add(lblTongTien);
 		
 		lblTongTienValue = new JLabel("");
 		lblTongTienValue.setHorizontalAlignment(SwingConstants.CENTER);
@@ -275,28 +275,28 @@ public class HoaDon_GUI extends JPanel {
 		lblTongTienValue.setFont(new Font("SansSerif", Font.BOLD, 18));
 		lblTongTienValue.setBounds(175, 373, 166, 40);
 		lblTongTienValue.setBorder(new LineBorder(new Color(0, 0, 0)));
-		pChiTietHoaDon.add(lblTongTienValue);
+		pChiTietPhieuDatHang.add(lblTongTienValue);
 		
-		JButton btnLapHoaDon = new JButton("Lập HD");
-		btnLapHoaDon.setIcon(new ImageIcon(HoaDon_GUI.class.getResource("/image/HeThong/wallet.png")));
-		btnLapHoaDon.setBackground(new Color(73, 129, 158));
-		btnLapHoaDon.setForeground(new Color(255, 255, 255));
-		btnLapHoaDon.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnLapHoaDon.setBounds(1093, 373, 135, 40);
-		btnLapHoaDon.addActionListener(new ActionListener() {
+		JButton btnDatHang = new JButton("Đặt");
+		btnDatHang.setIcon(new ImageIcon(DatHang_GUI.class.getResource("/image/HeThong/wallet.png")));
+		btnDatHang.setBackground(new Color(73, 129, 158));
+		btnDatHang.setForeground(new Color(255, 255, 255));
+		btnDatHang.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnDatHang.setBounds(1093, 373, 135, 40);
+		btnDatHang.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					lapHoaDon(nhanVien.getMaNhanVien());
+					lapPhieuDatHang(nhanVien.getMaNhanVien());
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		pChiTietHoaDon.add(btnLapHoaDon);
+		pChiTietPhieuDatHang.add(btnDatHang);
 
 		JPanel pThongTinKH = new JPanel();
 		pThongTinKH.setBackground(new Color(255, 255, 255));
@@ -364,7 +364,7 @@ public class HoaDon_GUI extends JPanel {
 		txtSoLuong.setColumns(10);
 
 		JButton btnThem = new JButton("Thêm");
-		btnThem.setIcon(new ImageIcon(HoaDon_GUI.class.getResource("/image/HeThong/cart.png")));
+		btnThem.setIcon(new ImageIcon(DatHang_GUI.class.getResource("/image/HeThong/cart.png")));
 		btnThem.setBackground(new Color(73, 129, 158));
 		btnThem.setForeground(new Color(255, 255, 255));
 		btnThem.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -408,7 +408,7 @@ public class HoaDon_GUI extends JPanel {
 		pThongTinKH.add(btnThem);
 
 		JButton btnXoa = new JButton("Xóa");
-		btnXoa.setIcon(new ImageIcon(HoaDon_GUI.class.getResource("/image/HeThong/trash-can.png")));
+		btnXoa.setIcon(new ImageIcon(DatHang_GUI.class.getResource("/image/HeThong/trash-can.png")));
 		btnXoa.setBackground(new Color(73, 129, 158));
 		btnXoa.setForeground(new Color(255, 255, 255));
 		btnXoa.addActionListener(new ActionListener() {
@@ -438,7 +438,7 @@ public class HoaDon_GUI extends JPanel {
 				lamMoi();
 			}
 		});
-		btnLamMoi.setIcon(new ImageIcon(HoaDon_GUI.class.getResource("/image/HeThong/refresh.png")));
+		btnLamMoi.setIcon(new ImageIcon(DatHang_GUI.class.getResource("/image/HeThong/refresh.png")));
 		btnLamMoi.setBackground(new Color(73, 129, 158));
 		btnLamMoi.setForeground(new Color(255, 255, 255));
 		btnLamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -463,7 +463,7 @@ public class HoaDon_GUI extends JPanel {
 		pThongTinKH.add(txtConLai);
 		
 		JButton btnSua = new JButton("Sửa");
-		btnSua.setIcon(new ImageIcon(HoaDon_GUI.class.getResource("/image/HeThong/update.png")));
+		btnSua.setIcon(new ImageIcon(DatHang_GUI.class.getResource("/image/HeThong/update.png")));
 		btnSua.setForeground(Color.WHITE);
 		btnSua.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnSua.setBackground(new Color(73, 129, 158));
@@ -534,24 +534,24 @@ public class HoaDon_GUI extends JPanel {
 		return false;
 	}
 	
-	private void lapHoaDon(String maNhanVien) throws SQLException {
-		HoaDon hoaDon = new HoaDon();
-		String maHoaDon = phatSinhMa_DAO.getMaHoaDon();
-		hoaDon.setMaHoaDon(maHoaDon);
-		hoaDon.setMaNhanVien(maNhanVien);
-		hoaDon.setMaKhachHang(khachHang.getMaKhachHang());
-		hoaDon.setNgayLap(new java.sql.Date(new Date().getTime()));
-		hoaDon.setThanhTien(tinhThanhTien());
-		hoaDon_DAO.lapHoaDon(hoaDon);
+	private void lapPhieuDatHang(String maNhanVien) throws SQLException {
+		PhieuDatHang phieuDatHang = new PhieuDatHang();
+		String maPhieuDatHang = phatSinhMa_DAO.getMaPhieuDatHang();
+		phieuDatHang.setMaPhieuDatHang(maPhieuDatHang);
+		phieuDatHang.setMaNhanVien(maNhanVien);
+		phieuDatHang.setMaKhachHang(khachHang.getMaKhachHang());
+		phieuDatHang.setNgayLap(new java.sql.Date(new Date().getTime()));
+		phieuDatHang.setThanhTien(tinhThanhTien());
+		phieuDatHang_DAO.lapPhieuDatHang(phieuDatHang);
 		for (int i = 0; i < model.getRowCount(); i++) {
-			ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon();
-			chiTietHoaDon.setMaHoaDon(maHoaDon);
-			chiTietHoaDon.setMaSanPham(sanPham_DAO.getSanPhamTheoTenSanPham(model.getValueAt(i, 0).toString()).getMaSanPham());
-			chiTietHoaDon.setSoLuong(Integer.parseInt(model.getValueAt(i, 2).toString()));
-			chiTietHoaDon.setDonGia(Float.parseFloat(model.getValueAt(i, 3).toString()));
-			chiTietHoaDon_DAO.themChiTietHoaDon(chiTietHoaDon);
+			ChiTietPhieuDatHang chiTietPhieuDatHang = new ChiTietPhieuDatHang();
+			chiTietPhieuDatHang.setMaPhieuDatHang(maPhieuDatHang);
+			chiTietPhieuDatHang.setMaSanPham(sanPham_DAO.getSanPhamTheoTenSanPham(model.getValueAt(i, 0).toString()).getMaSanPham());
+			chiTietPhieuDatHang.setSoLuong(Integer.parseInt(model.getValueAt(i, 2).toString()));
+			chiTietPhieuDatHang.setDonGia(Float.parseFloat(model.getValueAt(i, 3).toString()));
+			chiTietPhieuDatHang_DAO.themChiTietPhieuDatHang(chiTietPhieuDatHang);
 		}
-		JOptionPane.showMessageDialog(null, "Lập hóa đơn thành công!");
+		JOptionPane.showMessageDialog(null, "Đặt hàng thành công!");
 	}
 	
 	private void lamMoi() {

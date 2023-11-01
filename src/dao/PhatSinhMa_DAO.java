@@ -107,4 +107,18 @@ public class PhatSinhMa_DAO {
 		return maTaiKhoan;
 	}
 
+	// phieu dat hang
+	public String getMaPhieuDatHang() throws SQLException {
+		ConnectDB.getInstance();
+		Connection con = ConnectDB.getConnection();
+		Statement statement = con.createStatement();
+		ResultSet resultSet = statement.executeQuery(
+				"select CONCAT('PD', RIGHT(CONCAT('00000',ISNULL(right(max(maPhieuDatHang),5),0) + 1),5)) from [dbo].[PhieuDatHang] where maPhieuDatHang like 'PD%'");
+		String maTaiKhoan = "";
+		while (resultSet.next()) {
+			maTaiKhoan = resultSet.getString(1);
+		}
+		return maTaiKhoan;
+	}
+
 }

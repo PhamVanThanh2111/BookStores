@@ -21,10 +21,7 @@ public class KhachHang_DAO {
 			ResultSet result = preparedStatement.executeQuery();
 
 			while (result.next()) {
-				ds.add(new KhachHang(result.getString(1), 
-						result.getString(2), 
-						result.getString(3), 
-						result.getString(4),
+				ds.add(new KhachHang(result.getString(1), result.getString(2), result.getString(3), result.getString(4),
 						result.getString(5)));
 			}
 
@@ -42,6 +39,28 @@ public class KhachHang_DAO {
 		try {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement("select * from KhachHang where soDienThoai = '" + soDienThoai + "'");
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				khachHang.setMaKhachHang(resultSet.getString(1));
+				khachHang.setTenKhachHang(resultSet.getString(2));
+				khachHang.setGioiTinh(resultSet.getString(3));
+				khachHang.setSoDienThoai(resultSet.getString(4));
+				khachHang.setDiaChi(resultSet.getString(5));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return khachHang;
+	}
+	
+	public KhachHang getKhachHangTheoMaKhachHang(String maKhachHang) {
+		KhachHang khachHang = new KhachHang();
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		try {
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("select * from KhachHang where maKhachHang = '" + maKhachHang + "'");
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				khachHang.setMaKhachHang(resultSet.getString(1));

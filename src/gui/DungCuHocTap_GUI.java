@@ -290,7 +290,7 @@ public class DungCuHocTap_GUI extends JPanel {
 	    // Lấy danh sách sản phẩm từ DAO 
 	    List<SanPham> sanPhamList = null;
 		try {
-			sanPhamList = sanPham_DAO.getAllSach();
+			sanPhamList = sanPham_DAO.getAllDungCuHocTap();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -85,7 +84,6 @@ public class NhanVien_GUI extends JPanel {
 	private JDesktopPane desktopPane;
 	private ArrayList<NhanVien> ds;
 	private Border borderDefault;
-	private LayoutManager layoutDefaultCombobox;
 
 	/**
 	 * Create the panel.
@@ -326,43 +324,46 @@ public class NhanVien_GUI extends JPanel {
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
 		
 		cbChucVu = new JComboBox<String>();
-		cbChucVu.setEnabled(false);
 		cbChucVu.setToolTipText("Chức vụ");
 		cbChucVu.setFont(new Font("SansSerif", Font.BOLD, 18));
 		cbChucVu.setBounds(170, 350, 240, 40);
-		cbChucVu.setBorder(null);
 		cbChucVu.setBackground(new Color(255, 255, 255));
 		cbChucVu.setForeground(new Color(0, 0, 0));
 		cbChucVu.addItem("Bán hàng");
 		cbChucVu.addItem("Quản lý");
 		cbChucVu.setSelectedIndex(-1);
-		layoutDefaultCombobox = cbChucVu.getLayout();
-		cbChucVu.setLayout(null);
+		cbChucVu.setEnabled(false);
+		cbChucVu.setBorder(null);
+//		cbChucVu.setLayout(null);
 		pNhapThongTin.add(cbChucVu);
 		
 		cbCa = new JComboBox<String>();
-		cbCa.setEnabled(false);
-		cbCa.setToolTipText("Chức vụ");
+		cbCa.setToolTipText("Ca");
 		cbCa.setFont(new Font("SansSerif", Font.BOLD, 18));
 		cbCa.setBounds(170, 395, 240, 40);
+		cbCa.setBackground(new Color(255, 255, 255));
+		cbCa.setForeground(new Color(0, 0, 0));
 		cbCa.addItem("01");
 		cbCa.addItem("02");
-		cbCa.setBorder(null);
-		cbCa.setLayout(null);
 		cbCa.setSelectedIndex(-1);
+		cbCa.setEnabled(false);
+		cbCa.setBorder(null);
+//		cbCa.setLayout(null);
 		pNhapThongTin.add(cbCa);
 		
 		cbGioiTinh = new JComboBox<String>();
-		cbGioiTinh.setBackground(new Color(255, 255, 255));
-		cbGioiTinh.setEnabled(false);
 		cbGioiTinh.setToolTipText("Giới tính");
 		cbGioiTinh.setFont(new Font("SansSerif", Font.BOLD, 18));
 		cbGioiTinh.setBounds(170, 607, 240, 40);
-		cbGioiTinh.setBorder(null);
-		cbGioiTinh.setLayout(null);
+		cbGioiTinh.setBackground(new Color(255, 255, 255));
+		cbGioiTinh.setForeground(new Color(0, 0, 0));
+		cbGioiTinh.setEnabled(false);
 		cbGioiTinh.addItem("Nam");
 		cbGioiTinh.addItem("Nữ");
 		cbGioiTinh.setSelectedIndex(-1);
+		cbGioiTinh.setEnabled(false);
+		cbGioiTinh.setBorder(null);
+//		cbGioiTinh.setLayout(null);
 		pNhapThongTin.add(cbGioiTinh);
 
 								
@@ -918,15 +919,15 @@ public class NhanVien_GUI extends JPanel {
 		txtEmail.setBorder(borderDefault);
 		cbChucVu.setEnabled(true);
 		cbChucVu.setBorder(borderDefault);
-		cbChucVu.setLayout(layoutDefaultCombobox);
+//		cbChucVu.setLayout(layoutDefaultCombobox);
 		cbCa.setEnabled(true);
 		cbCa.setBorder(borderDefault);
-		cbCa.setLayout(layoutDefaultCombobox);
+//		cbCa.setLayout(layoutDefaultCombobox);
 		txtcCCD.setEditable(true);
 		txtcCCD.setBorder(borderDefault);
 		cbGioiTinh.setEnabled(true);
 		cbGioiTinh.setBorder(borderDefault);
-		cbGioiTinh.setLayout(layoutDefaultCombobox);
+//		cbGioiTinh.setLayout(layoutDefaultCombobox);
 		txtDiaChi.setEditable(true);
 		txtDiaChi.setBorder(borderDefault);
 		dateChooserNgaySinh.getDateEditor().setEnabled(true);
@@ -941,15 +942,15 @@ public class NhanVien_GUI extends JPanel {
 		txtEmail.setBorder(null);
 		cbChucVu.setEnabled(false);
 		cbChucVu.setBorder(null);
-		cbChucVu.setLayout(null);
+//		cbChucVu.setLayout(null);
 		cbCa.setEnabled(false);
 		cbCa.setBorder(null);
-		cbCa.setLayout(null);
+//		cbCa.setLayout(null);
 		txtcCCD.setEditable(false); 
 		txtcCCD.setBorder(null);
 		cbGioiTinh.setEnabled(false);
 		cbGioiTinh.setBorder(null);
-		cbGioiTinh.setLayout(null);
+//		cbGioiTinh.setLayout(null);
 		txtDiaChi.setEditable(false); 
 		txtDiaChi.setBorder(null);
 		btnChonHinhAnh.setVisible(false);

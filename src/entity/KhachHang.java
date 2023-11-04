@@ -70,7 +70,7 @@ public class KhachHang {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(maKhachHang, soDienThoai);
+		return Objects.hash(soDienThoai);
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public class KhachHang {
 		if (getClass() != obj.getClass())
 			return false;
 		KhachHang other = (KhachHang) obj;
-		return Objects.equals(maKhachHang, other.maKhachHang) && Objects.equals(soDienThoai, other.soDienThoai);
+		return Objects.equals(soDienThoai, other.soDienThoai);
 	}
 
 	@Override

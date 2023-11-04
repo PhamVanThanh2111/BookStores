@@ -121,4 +121,18 @@ public class PhatSinhMa_DAO {
 		return maTaiKhoan;
 	}
 
+	// dung cu hoc tap
+	public String getMaDCHT() throws SQLException {
+		ConnectDB.getInstance();
+		Connection con = ConnectDB.getConnection();
+		Statement statement = con.createStatement();
+		ResultSet resultSet = statement.executeQuery(
+				"select CONCAT('DCHT', RIGHT(CONCAT('00000',ISNULL(right(max(maSanPham),5),0) + 1),5)) from [dbo].[SanPham] where maSanPham like 'DCHT%'");
+		String maDCHT = "";
+		while (resultSet.next()) {
+			maDCHT = resultSet.getString(1);
+		}
+		return maDCHT;
+	}
+	
 }

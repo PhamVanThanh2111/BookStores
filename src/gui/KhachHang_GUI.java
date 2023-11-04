@@ -48,6 +48,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 	private JLabel lblMaKhachHang;
 	private Border borderDefault;
 	private LayoutManager layoutDefaultCombobox;
+
 	/**
 	 * Create the panel.
 	 */
@@ -55,7 +56,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		khachHang_DAO = new KhachHang_DAO();
 		phatSinhMa_DAO = new PhatSinhMa_DAO();
 		setLayout(null);
-
+	
 		JPanel pMain = new JPanel();
 		pMain.setBackground(new Color(241, 245, 249));
 		pMain.setBounds(0, 0, 1300, 720);
@@ -254,34 +255,32 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		txtDiaChi.setBorder(null);
 		pNhapThongTin.add(txtDiaChi);
 		loadData();
-
+	
 		btnThem.addActionListener(this);
 		btnXoa.addActionListener(this);
-		
+		btnSua.addActionListener(this);
+		btnTim.addActionListener(this);
 		
 		table.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
+			
 
 			}
 
@@ -333,19 +332,8 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 					btnXoa.setText("Hủy");
 					btnSua.setEnabled(false);
 					btnTim.setEnabled(false);
-					txtTenKH.setEditable(true);
-					txtSDT.setEditable(true);
-					cbGioiTinh.setEditable(true);
-					txtDiaChi.setEditable(true);
 					lblMaKhachHang.setText(phatSinhMa_DAO.getMaKhachHang().toString());
-					
-					cbGioiTinh.setLayout(layoutDefaultCombobox);
-					cbGioiTinh.setBorder(borderDefault);
-					cbGioiTinh.setEnabled(true);
-					txtDiaChi.setEditable(true);
-					txtTenKH.setBorder(borderDefault);
-					txtSDT.setBorder(borderDefault);
-					txtDiaChi.setBorder(borderDefault);
+					openText();
 				
 					
 				} catch (SQLException e1) {
@@ -361,18 +349,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 						btnTim.setEnabled(true);
 						btnThem.setText("Thêm");
 						btnXoa.setText("Xóa");
-						cbGioiTinh.setEnabled(false);
-						cbGioiTinh.setBorder(null);
-						cbGioiTinh.setLayout(null);
-						txtTenKH.setEditable(false);
-						txtSDT.setEditable(false);
-						txtDiaChi.setEditable(false);
-						
-						
-						
-						txtTenKH.setBorder(null);
-						txtSDT.setBorder(null);
-						txtDiaChi.setBorder(null);
+						closeText();
 						
 						
 					} catch (SQLException e1) {
@@ -388,28 +365,56 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 					btnXoa.setText("Xóa");
 					btnSua.setEnabled(true);
 					btnTim.setEnabled(true);
-					cbGioiTinh.setEditable(false);
-					cbGioiTinh.setEnabled(false);
-					cbGioiTinh.setBorder(null);
-					cbGioiTinh.setLayout(null);
-					txtTenKH.setEditable(false);
-					txtSDT.setEditable(false);
-					txtDiaChi.setEditable(false);
-					
-					
-					txtTenKH.setBorder(null);
-					txtSDT.setBorder(null);
-					txtDiaChi.setBorder(null);
+					closeText();
 					
 				}else {
 					if(btnXoa.getText().equalsIgnoreCase("Xóa")) {
-						try {
-							xoaKhachHang();
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
+						int r = table.getSelectedRow();
+						if(r==-1) {
+							JOptionPane.showMessageDialog(null, "Bạn Chưa Chọn Khách Hàng !");
+						}else {
+							try {
+								xoaKhachHang();
+							} catch (SQLException e1) {
+								e1.printStackTrace();
+							}
 						}
 					}
+				}
+			}else {
+				if(o.equals(btnSua)) {
+					int r = table.getSelectedRow();
+					if(r==-1) {
+						JOptionPane.showMessageDialog(null, "Bạn Chưa Chọn Khách Hàng !");
+					}else {
+						if(btnSua.getText().equalsIgnoreCase("Sửa")) {
+							btnSua.setText("Xác Nhận");
+							btnTim.setText("Hủy");
+							btnThem.setEnabled(false);
+							btnXoa.setEnabled(false);
+							openText();
+						}else {
+							if(btnSua.getText().equalsIgnoreCase("Xác Nhận")) {
+								btnSua.setText("Sửa");
+								btnTim.setText("Tìm");
+								suaKhachHang();
+								closeText();
+								btnThem.setEnabled(true);
+								btnXoa.setEnabled(true);
+							}
+						}
+					}
+				}else {
+					if(o.equals(btnTim)) {
+						if(btnTim.getText().equalsIgnoreCase("Hủy")) {
+							btnSua.setText("Sửa");
+							btnTim.setText("Tìm");
+							btnThem.setEnabled(true);
+							btnXoa.setEnabled(true);
+							closeText();
+						}
+					}
+					
 				}
 			}
 		}
@@ -441,18 +446,53 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 			}
 		}
 	}
+	public void closeText() {
+		cbGioiTinh.setEditable(false);
+		cbGioiTinh.setEnabled(false);
+		cbGioiTinh.setBorder(null);
+		cbGioiTinh.setLayout(null);
+		txtTenKH.setEditable(false);
+		txtSDT.setEditable(false);
+		txtDiaChi.setEditable(false);
+		txtTenKH.setBorder(null);
+		txtSDT.setBorder(null);
+		txtDiaChi.setBorder(null);
+	}
 	
+	public void openText() {
+		txtTenKH.setEditable(true);
+		txtSDT.setEditable(true);
+		cbGioiTinh.setEditable(true);
+		txtDiaChi.setEditable(true);
+		cbGioiTinh.setLayout(layoutDefaultCombobox);
+		cbGioiTinh.setBorder(borderDefault);
+		cbGioiTinh.setEnabled(true);
+		txtDiaChi.setEditable(true);
+		txtTenKH.setBorder(borderDefault);
+		txtSDT.setBorder(borderDefault);
+		txtDiaChi.setBorder(borderDefault);
+		
+	}
 	public boolean suaKhachHang() {
 		
 		if(txtTenKH.getText().equalsIgnoreCase("")||txtSDT.getText().equalsIgnoreCase("")||cbGioiTinh.getSelectedItem().toString().equalsIgnoreCase("")||txtDiaChi.getText().equalsIgnoreCase("")) {
 			JOptionPane.showMessageDialog(null, "Thông Tin Rỗng !");
 		}else {
-			
+			KhachHang khachHang = new KhachHang();
+			khachHang.setMaKhachHang(lblMaKhachHang.getText());
+			khachHang.setTenKhachHang(txtTenKH.getText());
+			khachHang.setSoDienThoai(txtSDT.getText());
+			khachHang.setDiaChi(txtDiaChi.getText());
+			khachHang.setGioiTinh(cbGioiTinh.getSelectedItem().toString());
+			try {
+				khachHang_DAO.suaKhachHangTheoMa(khachHang);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			JOptionPane.showMessageDialog(null, "Cập Nhập Khách Hàng Thành Công");
+			loadData();
 		}
-		
 		return false;
-		
-		
 	}
 	
 }

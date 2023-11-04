@@ -2,19 +2,26 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 import dao.NhaXuatBan_DAO;
+import dao.PhatSinhMa_DAO;
 import entity.NhaXuatBan;
 
 import javax.swing.JScrollPane;
@@ -31,18 +38,29 @@ public class NhaXuatBan_GUI extends JPanel {
 	private DefaultTableModel model;
 	private JTable table;
 	private JTableHeader tableHeader;
-	private JTextField txtsoDienThoai;
-	private JTextField txtEmail;
+
+	
 	private JTextField txttenNhaXuatBan;
 	private JTextField txtdiaChi;
-
+	private JTextField txtsoDienThoai;
+	private JTextField txtEmail;
+	
+	private NhaXuatBan_DAO nhaXuatBan_DAO;
+	private PhatSinhMa_DAO phatSinhMa_DAO;
 	/**
 	 * Create the panel.
 	 */
 	public NhaXuatBan_GUI() {
 
 		// Khai bao DAO
-
+		nhaXuatBan_DAO = new NhaXuatBan_DAO();
+		phatSinhMa_DAO = new PhatSinhMa_DAO();
+		
+		
+		
+		
+		
+		
 		setLayout(null);
 
 		JPanel pMain = new JPanel();
@@ -273,48 +291,134 @@ public class NhaXuatBan_GUI extends JPanel {
 		separator.setBounds(154, 50, 676, 2);
 		pDanhSach.add(separator);
 
-		JButton btnXoa = new JButton("Xóa");
-		btnXoa.setForeground(Color.WHITE);
-		btnXoa.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnXoa.setBackground(new Color(73, 129, 158));
-		btnXoa.setBounds(395, 660, 135, 40);
-		pDanhSach.add(btnXoa);
+		JButton btnDelete = new JButton("Xóa");
+		btnDelete.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/remove_person.png")));
+		btnDelete.setForeground(Color.WHITE);
+		btnDelete.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnDelete.setBackground(new Color(73, 129, 158));
+		btnDelete.setBounds(395, 660, 135, 40);
+		pDanhSach.add(btnDelete);
 
 		JButton btnAdd = new JButton("Thêm");
 		btnAdd.setOpaque(true);
+		btnAdd.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/add_person.png")));
 		btnAdd.setForeground(Color.WHITE);
 		btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnAdd.setBackground(new Color(73, 129, 158));
 		btnAdd.setBounds(245, 660, 135, 40);
-		pDanhSach.add(btnAdd);
+		btnAdd.addActionListener(new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        int row = table.getSelectedRow();
+		        if (btnAdd.getText().equals("Thêm")) {
+		        	txttenNhaXuatBan.setEditable(false); 
+		        	txttenNhaXuatBan.setBorder(null);
+		        	txtdiaChi.setEditable(false); 
+					txtdiaChi.setBorder(null);
+					txtsoDienThoai.setEditable(false); 
+					txtsoDienThoai.setBorder(null); 
+					txtEmail.setEditable(false); 
+					txtEmail.setBorder(null);
+					
+		
+		            if (row == -1) {
+		            	
+		                JOptionPane.showMessageDialog(null, "Bạn phải chọn vào nhà xuất bản cần sửa!");
+		            } else {
+		              
+		                
+//		                btnXoa.setText("Hủy");
+		                btnAdd.setText("Xác nhận");
+		            }
+		        } else {
+//		        	update
+		            
+		            btnAdd.setText("Thêm");
+//		            btnXoa.setText("Xóa");
+		        }
+		    }
+		});
 
-		JButton btnSua = new JButton("Sửa");
-		btnSua.setForeground(Color.WHITE);
-		btnSua.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnSua.setBackground(new Color(73, 129, 158));
-		btnSua.setBounds(545, 660, 135, 40);
-		pDanhSach.add(btnSua);
+		pDanhSach.add(btnAdd);
+		
+
+		JButton btnUpdate = new JButton("Sửa");
+		btnUpdate.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/update_person.png")));
+		btnUpdate.setForeground(Color.WHITE);
+		btnUpdate.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnUpdate.setBackground(new Color(73, 129, 158));
+		btnUpdate.setBounds(545, 660, 135, 40);
+		pDanhSach.add(btnUpdate);
 
 		JButton btnTim = new JButton("Tìm");
+		btnTim.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/find_person.png")));
 		btnTim.setForeground(Color.WHITE);
 		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnTim.setBackground(new Color(73, 129, 158));
 		btnTim.setBounds(695, 660, 135, 40);
 		pDanhSach.add(btnTim);
 
-		loadData();
+		
+		//load Data
+		loadData(nhaXuatBan_DAO.getAllNhaXuatBan());
 
 	}
 	// đưa dữ liệu lên bảng
-	public void loadData() {
-		NhaXuatBan_DAO nhaXuatBan_DAO = new NhaXuatBan_DAO();
+	public void loadData(List<NhaXuatBan> list) {
 		model.setRowCount(0);
 		for (NhaXuatBan nhaXuatBan : nhaXuatBan_DAO.getAllNhaXuatBan()) {
-			Object[] object = { nhaXuatBan.getMaNXB(), nhaXuatBan.getTenNXB(), nhaXuatBan.getDiaChi(),
+			Object[] object = { nhaXuatBan.getMaNhaXuatBan(), nhaXuatBan.getTenNhaXuatBan(), nhaXuatBan.getDiaChi(),
 					nhaXuatBan.getSoDienThoai(), nhaXuatBan.getEmail()};
 			model.addRow(object);
 			table.setRowHeight(25);
 		}
+	}
+	public void refresh() {
+		loadData(nhaXuatBan_DAO.getAllNhaXuatBan());
+	}
+	// thêm nhà xuất bản
+	public boolean addNhaXuatBan() {
+	    if (txttenNhaXuatBan.getText().equals("")) {
+	        JOptionPane.showMessageDialog(null, "Tên nhà xuất bản không được để trống!");
+	        txttenNhaXuatBan.requestFocus();
+	        return false;
+	    }
+	    else if (txtdiaChi.getText().equals("")) {
+	        JOptionPane.showMessageDialog(null, "Địa chỉ nhà xuất bản không được để trống!");
+	        txtdiaChi.requestFocus();
+	        return false;
+	    }
+	    else if (txtsoDienThoai.getText().equals("")) {
+	        JOptionPane.showMessageDialog(null, "Số điện thoại nhà xuất bản không được để trống!");
+	        txtsoDienThoai.requestFocus();
+	        return false;
+	    }
+	    else if (txtEmail.getText().equals("")) {
+	        JOptionPane.showMessageDialog(null, "Email nhà xuất bản không được để trống!");
+	        txtEmail.requestFocus();
+	        return false;
+	    }
+	    else {
+	        try {
+	            NhaXuatBan nhaXuatBan = new NhaXuatBan();
+	            nhaXuatBan.setMaNhaXuatBan(phatSinhMa_DAO.getMaNhaXuatBan());
+	            nhaXuatBan.setTenNhaXuatBan(txttenNhaXuatBan.getText());
+	            nhaXuatBan.setDiaChi(txtdiaChi.getText());
+	            nhaXuatBan.setEmail(txtEmail.getText());
+	            nhaXuatBan.setSoDienThoai(txtsoDienThoai.getText());
+
+	            // Gọi phương thức thêm nhà xuất bản từ đối tượng nhaXuatBan_DAO
+	            nhaXuatBan_DAO.themNhaXuatBan(nhaXuatBan);
+
+	            JOptionPane.showMessageDialog(null, "Thêm nhà xuất bản thành công!");
+	            refresh(); // Gọi hàm này để làm mới giao diện sau khi thêm
+	            return true;
+	        } catch (SQLException e1) {
+	            JOptionPane.showMessageDialog(null, "Thêm nhà xuất bản thất bại!");
+	            e1.printStackTrace();
+	            return false;
+	        }
+	    }
 	}
 
 }

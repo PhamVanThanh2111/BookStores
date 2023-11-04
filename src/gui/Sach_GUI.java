@@ -15,6 +15,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import connect.ConnectDB;
@@ -247,6 +248,7 @@ public class Sach_GUI extends JPanel {
 		pThongTin.add(txtsoLuong);
 		
 		btnAdd = new JButton("Thêm");
+		btnAdd.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/add_person.png")));
 		btnAdd.setOpaque(true);
 		btnAdd.setForeground(Color.WHITE);
 		btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -255,6 +257,7 @@ public class Sach_GUI extends JPanel {
 		pThongTin.add(btnAdd);
 		
 		btnDelete = new JButton("Xóa");
+		btnDelete.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/remove_person.png")));
 		btnDelete.setOpaque(true);
 		btnDelete.setForeground(Color.WHITE);
 		btnDelete.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -263,6 +266,7 @@ public class Sach_GUI extends JPanel {
 		pThongTin.add(btnDelete);
 		
 		btnUpdate = new JButton("Sửa");
+		btnUpdate.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/update_person.png")));
 		btnUpdate.setOpaque(true);
 		btnUpdate.setForeground(Color.WHITE);
 		btnUpdate.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -272,6 +276,7 @@ public class Sach_GUI extends JPanel {
 		
 		btnlamMoi = new JButton("Làm mới");
 		btnlamMoi.setOpaque(true);
+		btnlamMoi.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/refresh.png")));
 		btnlamMoi.setForeground(Color.WHITE);
 		btnlamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnlamMoi.setBackground(new Color(73, 129, 158));
@@ -407,7 +412,7 @@ public class Sach_GUI extends JPanel {
 	    for (SanPham sanPham : sanPhamList) {
 	        Object[] object = {sanPham.getMaSanPham(), sanPham.getTenSanPham(), sanPham.getXuatXu(),
 	                sanPham.getGiaNhap(), sanPham.getGiaBan(), sanPham.getSoLuongTon(),
-	                nhaXuatBan_DAO.getnhaXuatBanTheoMa(sanPham.getMaNXB()).getTenNXB(), theLoaiSach_DAO.getTheLoaiSachTheoMa(sanPham.getMaTheLoaiSach()).getTenLoaiSach(),
+	                nhaXuatBan_DAO.getnhaXuatBanTheoMa(sanPham.getMaNXB()).getTenNhaXuatBan(), theLoaiSach_DAO.getTheLoaiSachTheoMa(sanPham.getMaTheLoaiSach()).getTenLoaiSach(),
 	                sanPham.getTacGia(), sanPham.getSoTrang(), sanPham.getNamXuatBan(),
 	        };
 	        model.addRow(object);

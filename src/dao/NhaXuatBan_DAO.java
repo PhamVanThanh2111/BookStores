@@ -39,8 +39,8 @@ public class NhaXuatBan_DAO {
  			ResultSet resultSet = preparedStatement.executeQuery();
 
  			while (resultSet.next()) {
- 				nhaXuatBan.setMaNXB(resultSet.getString(1));
- 				nhaXuatBan.setTenNXB(resultSet.getString(2));
+ 				nhaXuatBan.setMaNhaXuatBan(maNhaXuatBan);
+ 				nhaXuatBan.setTenNhaXuatBan(maNhaXuatBan);
  				nhaXuatBan.setDiaChi(resultSet.getString(3));
  				nhaXuatBan.setSoDienThoai(resultSet.getString(4));
  				nhaXuatBan.setEmail(resultSet.getString(5));
@@ -51,4 +51,27 @@ public class NhaXuatBan_DAO {
  		}
  		return nhaXuatBan;
  	}
+ // thêm nhà xuất bản
+ 	public boolean themNhaXuatBan(NhaXuatBan nhaXuatBan) throws SQLException {
+ 	    ConnectDB.getInstance();
+ 	    Connection connection = ConnectDB.getConnection();
+ 	    try {
+ 	        PreparedStatement preparedStatement = null;
+ 	        preparedStatement = connection.prepareStatement("INSERT INTO NhaXuatBan VALUES (?,?,?,?,?)");
+ 	        preparedStatement.setString(1, nhaXuatBan.getMaNhaXuatBan());
+ 	        preparedStatement.setString(2, nhaXuatBan.getTenNhaXuatBan());
+ 	        preparedStatement.setString(3, nhaXuatBan.getDiaChi());
+ 	        preparedStatement.setString(4, nhaXuatBan.getSoDienThoai());
+ 	        preparedStatement.setString(5, nhaXuatBan.getEmail());
+ 	        return preparedStatement.executeUpdate() > 0;
+ 	    } catch (SQLException e) {
+ 	        e.printStackTrace();
+ 	    } finally {
+ 	        if (connection != null) {
+ 	            connection.close();
+ 	        }
+ 	    }
+ 	    return false;
+ 	}
+
 }

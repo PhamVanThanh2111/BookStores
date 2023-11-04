@@ -3,73 +3,60 @@ package entity;
 import java.util.Objects;
 
 public class NhaXuatBan {
-	private String maNXB;
-	private String tenNXB;
+	private String maNhaXuatBan;
+	private String tenNhaXuatBan;
 	private String diaChi;
 	private String soDienThoai;
 	private String email;
-
 	public NhaXuatBan() {
 		super();
 	}
-	public NhaXuatBan(String maNXB) {
+	public NhaXuatBan(String maNhaXuatBan) {
 		super();
-		this.maNXB = maNXB;
+		this.maNhaXuatBan = maNhaXuatBan;
 	}
-	public NhaXuatBan(String maNXB, String tenNXB, String diaChi, String soDienThoai, String email) {
+	public NhaXuatBan(String maNhaXuatBan, String tenNhaXuatBan, String diaChi, String soDienThoai, String email) {
 		super();
-		this.maNXB = maNXB;
-		this.tenNXB = tenNXB;
+		this.maNhaXuatBan = maNhaXuatBan;
+		this.tenNhaXuatBan = tenNhaXuatBan;
 		this.diaChi = diaChi;
 		this.soDienThoai = soDienThoai;
 		this.email = email;
 	}
-
-	public String getMaNXB() {
-		return maNXB;
+	public String getMaNhaXuatBan() {
+		return maNhaXuatBan;
 	}
-
-	public void setMaNXB(String maNXB) {
-		this.maNXB = maNXB;
+	public void setMaNhaXuatBan(String maNhaXuatBan) {
+		this.maNhaXuatBan = maNhaXuatBan;
 	}
-
-	public String getTenNXB() {
-		return tenNXB;
+	public String getTenNhaXuatBan() {
+		return tenNhaXuatBan;
 	}
-
-	public void setTenNXB(String tenNXB) {
-		this.tenNXB = tenNXB;
+	public void setTenNhaXuatBan(String tenNhaXuatBan) {
+		this.tenNhaXuatBan = tenNhaXuatBan;
 	}
-
 	public String getDiaChi() {
 		return diaChi;
 	}
-
 	public void setDiaChi(String diaChi) {
 		this.diaChi = diaChi;
 	}
-
 	public String getSoDienThoai() {
 		return soDienThoai;
 	}
-
 	public void setSoDienThoai(String soDienThoai) {
 		this.soDienThoai = soDienThoai;
 	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(diaChi, email, maNXB, soDienThoai, tenNXB);
+		return Objects.hash(maNhaXuatBan);
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -79,15 +66,12 @@ public class NhaXuatBan {
 		if (getClass() != obj.getClass())
 			return false;
 		NhaXuatBan other = (NhaXuatBan) obj;
-		return Objects.equals(diaChi, other.diaChi) && Objects.equals(email, other.email)
-				&& Objects.equals(maNXB, other.maNXB) && Objects.equals(soDienThoai, other.soDienThoai)
-				&& Objects.equals(tenNXB, other.tenNXB);
+		return Objects.equals(maNhaXuatBan, other.maNhaXuatBan);
 	}
-
 	@Override
 	public String toString() {
-		return "NXB [maNXB=" + maNXB + ", tenNXB=" + tenNXB + ", diaChi=" + diaChi + ", soDienThoai=" + soDienThoai
-				+ ", email=" + email + "]";
+		return "NhaXuatBan [maNhaXuatBan=" + maNhaXuatBan + ", tenNhaXuatBan=" + tenNhaXuatBan + ", diaChi=" + diaChi
+				+ ", soDienThoai=" + soDienThoai + ", email=" + email + "]";
 	}
-
+	
 }

@@ -181,7 +181,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 
 		txtSDT = new JTextField();
 		txtSDT.setToolTipText("Số điện thoại");
-		txtSDT.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtSDT.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		txtSDT.setEditable(false);
 		txtSDT.setColumns(10);
 		txtSDT.setBackground(Color.WHITE);
@@ -224,7 +224,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 
 		cbGioiTinh = new JComboBox<String>();
 		cbGioiTinh.setToolTipText("Giới tính");
-		cbGioiTinh.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		cbGioiTinh.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		cbGioiTinh.setBorder(null);
 		cbGioiTinh.setBackground(Color.WHITE);
 		cbGioiTinh.setBounds(170, 315, 240, 40);
@@ -247,7 +247,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 
 		txtDiaChi = new JTextField();
 		txtDiaChi.setToolTipText("Số điện thoại");
-		txtDiaChi.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtDiaChi.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		txtDiaChi.setEditable(false);
 		txtDiaChi.setColumns(10);
 		txtDiaChi.setBackground(Color.WHITE);

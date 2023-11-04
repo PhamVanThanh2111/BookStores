@@ -4,6 +4,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.toedter.calendar.JDateChooser;
+
 import dao.NhanVien_DAO;
 import entity.NhanVien;
 
@@ -12,8 +14,12 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 
@@ -63,17 +69,17 @@ public class TimNhanVien_GUI extends JInternalFrame {
 		
 		JLabel lblNewLabel = new JLabel("Mã Nhân Viên:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel.setBounds(20, 72, 127, 40);
+		lblNewLabel.setBounds(20, 87, 127, 40);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblTnNhnVin = new JLabel("Tên Nhân Viên:");
 		lblTnNhnVin.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblTnNhnVin.setBounds(20, 163, 127, 40);
+		lblTnNhnVin.setBounds(20, 167, 127, 40);
 		contentPane.add(lblTnNhnVin);
 		
 		JLabel lblaCh = new JLabel("Địa Chỉ:");
 		lblaCh.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblaCh.setBounds(20, 244, 127, 40);
+		lblaCh.setBounds(20, 248, 127, 40);
 		contentPane.add(lblaCh);
 		
 		JLabel lblGiiTnh = new JLabel("Giới Tính:");
@@ -86,14 +92,30 @@ public class TimNhanVien_GUI extends JInternalFrame {
 		lblNgySinh.setBounds(20, 406, 127, 40);
 		contentPane.add(lblNgySinh);
 		
+		JDateChooser dateChooserNgaySinh = new JDateChooser();
+		dateChooserNgaySinh.setBackground(new Color(255, 255, 255));
+		dateChooserNgaySinh.getCalendarButton().setBounds(210, 0, 30, 40);
+		dateChooserNgaySinh.getCalendarButton().setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/calendar.png")));
+		dateChooserNgaySinh.getCalendarButton().setBorder(null);
+		dateChooserNgaySinh.getCalendarButton().setPreferredSize(new Dimension(30, 24));
+		dateChooserNgaySinh.getCalendarButton().setBackground(new Color(255, 255, 255));
+		dateChooserNgaySinh.setToolTipText("Ngày sinh");
+		dateChooserNgaySinh.setBounds(155, 406, 240, 40);
+		dateChooserNgaySinh.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		dateChooserNgaySinh.setDateFormatString("dd/MM/yyyy");
+		dateChooserNgaySinh.setFont(new Font("SansSerif", Font.BOLD, 18));
+		dateChooserNgaySinh.setBorder(null);
+		dateChooserNgaySinh.getDateEditor().setEnabled(false);
+		contentPane.add(dateChooserNgaySinh);
+		
 		JLabel lblCccd = new JLabel("CCCD:");
 		lblCccd.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblCccd.setBounds(422, 72, 127, 40);
+		lblCccd.setBounds(422, 87, 127, 40);
 		contentPane.add(lblCccd);
 		
 		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblEmail.setBounds(422, 152, 127, 40);
+		lblEmail.setBounds(422, 167, 127, 40);
 		contentPane.add(lblEmail);
 		
 		JLabel lblSinThoi = new JLabel("Số Điện Thoại:");
@@ -113,32 +135,32 @@ public class TimNhanVien_GUI extends JInternalFrame {
 		
 		txtMaNhanVien = new JTextField();
 		txtMaNhanVien.setColumns(10);
-		txtMaNhanVien.setBounds(157, 72, 238, 40);
+		txtMaNhanVien.setBounds(157, 87, 238, 40);
 		contentPane.add(txtMaNhanVien);
 		
 		txtTenNhanVien = new JTextField();
 		txtTenNhanVien.setColumns(10);
-		txtTenNhanVien.setBounds(157, 163, 238, 40);
+		txtTenNhanVien.setBounds(157, 167, 238, 40);
 		contentPane.add(txtTenNhanVien);
 		
 		txtDiaChi = new JTextField();
 		txtDiaChi.setColumns(10);
-		txtDiaChi.setBounds(157, 244, 238, 40);
+		txtDiaChi.setBounds(157, 248, 238, 40);
 		contentPane.add(txtDiaChi);
 		
 		txtCCCD = new JTextField();
 		txtCCCD.setColumns(10);
-		txtCCCD.setBounds(572, 72, 238, 40);
+		txtCCCD.setBounds(572, 87, 238, 40);
 		contentPane.add(txtCCCD);
 		
 		txtEmail = new JTextField();
 		txtEmail.setColumns(10);
-		txtEmail.setBounds(572, 152, 238, 40);
+		txtEmail.setBounds(572, 167, 238, 40);
 		contentPane.add(txtEmail);
 		
 		txtSoDienThoai = new JTextField();
 		txtSoDienThoai.setColumns(10);
-		txtSoDienThoai.setBounds(572, 244, 238, 40);
+		txtSoDienThoai.setBounds(572, 248, 238, 40);
 		contentPane.add(txtSoDienThoai);
 		
 		JButton btnTim = new JButton("Tìm");
@@ -158,7 +180,7 @@ public class TimNhanVien_GUI extends JInternalFrame {
 		btnTim.setForeground(Color.WHITE);
 		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnTim.setBackground(new Color(73, 129, 158));
-		btnTim.setBounds(675, 456, 135, 40);
+		btnTim.setBounds(691, 465, 135, 40);
 		contentPane.add(btnTim);
 		
 		cmbChucVu = new JComboBox<String>();
@@ -186,7 +208,7 @@ public class TimNhanVien_GUI extends JInternalFrame {
 		btnquayLai.setForeground(Color.WHITE);
 		btnquayLai.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnquayLai.setBackground(new Color(73, 129, 158));
-		btnquayLai.setBounds(20, 21, 135, 40);
+		btnquayLai.setBounds(10, 10, 135, 40);
 		btnquayLai.addActionListener(new ActionListener() {
 			
 			@Override
@@ -221,31 +243,57 @@ public class TimNhanVien_GUI extends JInternalFrame {
 	}
 	
 	public void searchNhanVien() {
-		String gioiTinh = "";
-		String chucVu = "";
-		String ca = "";
-		if (cmbGioiTinh.getSelectedIndex() != -1) {
-			gioiTinh = cmbGioiTinh.getSelectedItem().toString();
-		}
-		if (cmbChucVu.getSelectedIndex() != -1) {
-			chucVu = cmbChucVu.getSelectedItem().toString();
-		}
-		if (cmbCa.getSelectedIndex() != -1) {
-			ca = cmbCa.getSelectedItem().toString();
-		}
 		for (NhanVien nhanVien : nhanVien_DAO.getAllListNhanVien()) {
-			if (
-					nhanVien.getMaNhanVien().equalsIgnoreCase(txtMaNhanVien.getText()) ||
-					nhanVien.getTenNhanVien().contains(txtTenNhanVien.getText()) ||
-					nhanVien.getDiaChi().contains(txtDiaChi.getText()) ||
-					nhanVien.getcCCD().contains(txtCCCD.getText()) ||
-					nhanVien.getEmail().contains(txtEmail.getText()) ||
-					nhanVien.getSoDienThoai().contains(txtSoDienThoai.getText()) ||
-					nhanVien.getGioiTinh().equalsIgnoreCase(gioiTinh) ||
-					nhanVien.getChucVu().equalsIgnoreCase(chucVu) ||
-					nhanVien.getMaCa().equalsIgnoreCase("C" + ca)) {
+			boolean thoaMan = false;
+			if (!txtMaNhanVien.getText().isEmpty()) {
+				if (nhanVien.getMaNhanVien().equalsIgnoreCase(txtMaNhanVien.getText())) {
+					thoaMan = true;
+				}
+			}
+			if (!txtTenNhanVien.getText().isEmpty()) {
+				if (nhanVien.getTenNhanVien().toLowerCase().contains(txtTenNhanVien.getText().toLowerCase())) {
+					thoaMan = true;
+				}
+			}
+			if (!txtDiaChi.getText().isEmpty()) {
+				if (nhanVien.getDiaChi().toLowerCase().contains(txtDiaChi.getText().toLowerCase())) {
+					thoaMan = true;
+				}
+			}
+			if (!txtCCCD.getText().isEmpty()) {
+				if (nhanVien.getcCCD().toLowerCase().contains(txtCCCD.getText().toLowerCase())) {
+					thoaMan = true;
+				}
+			}
+			if (!txtEmail.getText().isEmpty()) {
+				if (nhanVien.getEmail().toLowerCase().contains(txtEmail.getText().toLowerCase())) {
+					thoaMan = true;
+				}
+			}
+			if (!txtSoDienThoai.getText().isEmpty()) {
+				if (nhanVien.getSoDienThoai().toLowerCase().contains(txtSoDienThoai.getText().toLowerCase())) {
+					thoaMan = true;
+				}
+			}
+			if (cmbChucVu.getSelectedIndex() != -1) {
+				if (nhanVien.getChucVu().toLowerCase().contains(cmbChucVu.getSelectedItem().toString().toLowerCase())) {
+					thoaMan = true;
+				}
+			}
+			if (cmbGioiTinh.getSelectedIndex() != -1) {
+				if (nhanVien.getGioiTinh().toLowerCase().contains(cmbGioiTinh.getSelectedItem().toString().toLowerCase())) {
+					thoaMan = true;
+				}
+			}
+			if (cmbCa.getSelectedIndex() != -1) {
+				if (nhanVien.getMaCa().toLowerCase().contains("C" + cmbCa.getSelectedItem().toString().toLowerCase())) {
+					thoaMan = true;
+				}
+			}
+			
+			if (thoaMan) {
 				ds.add(nhanVien);
-			}	
+			}
 		}
 	}
 	

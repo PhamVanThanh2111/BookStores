@@ -45,6 +45,8 @@ import dao.TaiKhoan_DAO;
 import entity.NhanVien;
 import entity.TaiKhoan;
 import javax.swing.JDesktopPane;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class NhanVien_GUI extends JPanel {
 	/**
@@ -176,6 +178,7 @@ public class NhanVien_GUI extends JPanel {
 		txtcCCD.setColumns(10);
 		txtcCCD.setBounds(170, 562, 240, 40);
 		txtcCCD.setBorder(null);
+		
 		pNhapThongTin.add(txtcCCD);
 
 		txtEmail = new JTextField();
@@ -188,11 +191,10 @@ public class NhanVien_GUI extends JPanel {
 		txtEmail.setBorder(null);
 		pNhapThongTin.add(txtEmail);
 
-		PanelRound pDanhSach = new PanelRound();
+		JPanel pDanhSach = new JPanel();
 		pDanhSach.setBackground(new Color(255, 255, 255));
 		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pDanhSach.setBounds(0, 0, 850, 720);
-		pDanhSach.setRoundTopLeft(16);
 		pMain.add(pDanhSach);
 		pDanhSach.setLayout(null);
 
@@ -972,5 +974,12 @@ public class NhanVien_GUI extends JPanel {
 		btnXoa.setEnabled(false);
 		btnSua.setEnabled(false);
 		btnTim.setEnabled(false);
+	}
+	
+	private boolean trung(String aString) {
+		if (aString.equals("0934004524")) {
+			return true;
+		}
+		return false;
 	}
 }

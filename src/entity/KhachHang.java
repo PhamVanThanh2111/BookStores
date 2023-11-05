@@ -84,7 +84,6 @@ public class KhachHang {
 		KhachHang other = (KhachHang) obj;
 		return Objects.equals(soDienThoai, other.soDienThoai);
 	}
-
 	@Override
 	public String toString() {
 		return "KhachHang [maKhachHang=" + maKhachHang + ", tenKhachHang=" + tenKhachHang + ", gioiTinh=" + gioiTinh

@@ -30,6 +30,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
+
 public class KhachHang_GUI extends JPanel implements ActionListener {
 	/**
 	 * 
@@ -180,8 +181,42 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		pNhapThongTin.add(lblSoDienThoai);
 
 		txtSDT = new JTextField();
+	
+		
+//				txtSDT.addKeyListener(new KeyAdapter() {
+//					@Override
+//					public void keyPressed(KeyEvent e) {
+//						if (e.getKeyCode() == KeyEvent.VK_NUMPAD0 ||
+//							e.getKeyCode() == KeyEvent.VK_NUMPAD1 ||
+//							e.getKeyCode() == KeyEvent.VK_NUMPAD2 ||
+//							e.getKeyCode() == KeyEvent.VK_NUMPAD3 ||
+//							e.getKeyCode() == KeyEvent.VK_NUMPAD4 ||
+//							e.getKeyCode() == KeyEvent.VK_NUMPAD5 ||
+//							e.getKeyCode() == KeyEvent.VK_NUMPAD6 ||
+//							e.getKeyCode() == KeyEvent.VK_NUMPAD7 ||
+//							e.getKeyCode() == KeyEvent.VK_NUMPAD8 ||
+//							e.getKeyCode() == KeyEvent.VK_NUMPAD9 ||
+//							e.getKeyCode() == KeyEvent.VK_0 ||
+//							e.getKeyCode() == KeyEvent.VK_1 ||
+//							e.getKeyCode() == KeyEvent.VK_2 ||
+//							e.getKeyCode() == KeyEvent.VK_3 ||
+//							e.getKeyCode() == KeyEvent.VK_4 ||
+//							e.getKeyCode() == KeyEvent.VK_5 ||
+//							e.getKeyCode() == KeyEvent.VK_6 ||
+//							e.getKeyCode() == KeyEvent.VK_7 ||
+//							e.getKeyCode() == KeyEvent.VK_8 ||
+//							e.getKeyCode() == KeyEvent.VK_9) {
+//							if (txtSDT.getText().length() == 9) {
+//								if (kiemTraTrungSDT(txtSDT.getText())) {
+//									JOptionPane.showMessageDialog(null, "Số Điện Thoại Đã Tồn Tại !");
+//								}
+//							}
+//						}
+//					}
+//				});
+
 		txtSDT.setToolTipText("Số điện thoại");
-		txtSDT.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtSDT.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		txtSDT.setEditable(false);
 		txtSDT.setColumns(10);
 		txtSDT.setBackground(Color.WHITE);
@@ -224,7 +259,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 
 		cbGioiTinh = new JComboBox<String>();
 		cbGioiTinh.setToolTipText("Giới tính");
-		cbGioiTinh.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		cbGioiTinh.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		cbGioiTinh.setBorder(null);
 		cbGioiTinh.setBackground(Color.WHITE);
 		cbGioiTinh.setBounds(170, 315, 240, 40);
@@ -247,7 +282,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 
 		txtDiaChi = new JTextField();
 		txtDiaChi.setToolTipText("Số điện thoại");
-		txtDiaChi.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtDiaChi.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		txtDiaChi.setEditable(false);
 		txtDiaChi.setColumns(10);
 		txtDiaChi.setBackground(Color.WHITE);
@@ -365,6 +400,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 					btnXoa.setText("Xóa");
 					btnSua.setEnabled(true);
 					btnTim.setEnabled(true);
+					xoaTrang();
 					closeText();
 					
 				}else {
@@ -411,6 +447,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 							btnTim.setText("Tìm");
 							btnThem.setEnabled(true);
 							btnXoa.setEnabled(true);
+							xoaTrang();	
 							closeText();
 						}
 					}
@@ -473,6 +510,17 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		txtDiaChi.setBorder(borderDefault);
 		
 	}
+	
+//	private boolean kiemTraTrungSDT(String sDT) {
+//		
+//		for(KhachHang khachHang : khachHang_DAO.getAllKhachHang()) {
+//			if(khachHang.getSoDienThoai().equals(sDT)) {
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
+//	
 	public boolean suaKhachHang() {
 		
 		if(txtTenKH.getText().equalsIgnoreCase("")||txtSDT.getText().equalsIgnoreCase("")||cbGioiTinh.getSelectedItem().toString().equalsIgnoreCase("")||txtDiaChi.getText().equalsIgnoreCase("")) {
@@ -482,6 +530,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 			khachHang.setMaKhachHang(lblMaKhachHang.getText());
 			khachHang.setTenKhachHang(txtTenKH.getText());
 			khachHang.setSoDienThoai(txtSDT.getText());
+			JOptionPane.showMessageDialog(null, "Số Điện Thoại Đã Tồn Tại !");
 			khachHang.setDiaChi(txtDiaChi.getText());
 			khachHang.setGioiTinh(cbGioiTinh.getSelectedItem().toString());
 			try {
@@ -494,5 +543,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		}
 		return false;
 	}
+	
+	
 	
 }

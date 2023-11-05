@@ -264,12 +264,12 @@ public class NhaXuatBan_GUI extends JPanel {
 		
 		JLabel lblNh = new JLabel("Nhà Xuất Bản");
 		lblNh.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblNh.setBounds(20, 22, 130, 40);
+		lblNh.setBounds(20, 20, 130, 40);
 		pDanhSach.add(lblNh);
 
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(60, 60, 60));
-		separator.setBounds(154, 50, 676, 2);
+		separator.setBounds(154, 40, 676, 2);
 		pDanhSach.add(separator);
 
 		JButton btnXoa = new JButton("Xóa");

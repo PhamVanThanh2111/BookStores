@@ -57,7 +57,7 @@ public class TimNhanVien_GUI extends JInternalFrame {
 		this.ds = ds;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 845, 549);
+		setBounds(100, 100, 846, 552);
 		getContentPane().setLayout(null);
 		
 		JPanel contentPane = new JPanel();
@@ -100,7 +100,7 @@ public class TimNhanVien_GUI extends JInternalFrame {
 		dateChooserNgaySinh.getCalendarButton().setPreferredSize(new Dimension(30, 24));
 		dateChooserNgaySinh.getCalendarButton().setBackground(new Color(255, 255, 255));
 		dateChooserNgaySinh.setToolTipText("Ngày sinh");
-		dateChooserNgaySinh.setBounds(155, 406, 240, 40);
+		dateChooserNgaySinh.setBounds(155, 406, 238, 40);
 		dateChooserNgaySinh.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		dateChooserNgaySinh.setDateFormatString("dd/MM/yyyy");
 		dateChooserNgaySinh.setFont(new Font("SansSerif", Font.BOLD, 18));

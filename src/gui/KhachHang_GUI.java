@@ -12,23 +12,31 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.Color;
+import java.awt.FlowLayout;
 
 import dao.KhachHang_DAO;
 import dao.PhatSinhMa_DAO;
 import entity.KhachHang;
+import entity.NhanVien;
 
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
+import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
 
 
 public class KhachHang_GUI extends JPanel implements ActionListener {
@@ -49,19 +57,32 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 	private JLabel lblMaKhachHang;
 	private Border borderDefault;
 	private LayoutManager layoutDefaultCombobox;
-
+	private TimKiemKhachHang_GUI timKiemKhachHang_GUI;
+	private ArrayList<KhachHang> ds;
+	private JDesktopPane desktopPane;
+	
 	/**
 	 * Create the panel.
 	 */
 	public KhachHang_GUI() {
 		khachHang_DAO = new KhachHang_DAO();
 		phatSinhMa_DAO = new PhatSinhMa_DAO();
+		ds = new ArrayList<KhachHang>();
 		setLayout(null);
-	
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 1300, 720);
+		add(panel);
+		panel.setLayout(null);
+		
+		desktopPane = new JDesktopPane();
+		desktopPane.setBounds(0, 0, 1300, 720);
+		panel.add(desktopPane);
+		
 		JPanel pMain = new JPanel();
 		pMain.setBackground(new Color(241, 245, 249));
 		pMain.setBounds(0, 0, 1300, 720);
-		add(pMain);
+		desktopPane.add(pMain);
 		pMain.setLayout(null);
 
 		JPanel pDanhSach = new JPanel();
@@ -134,7 +155,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		btnTim.setBackground(new Color(73, 129, 158));
 		btnTim.setBounds(694, 660, 135, 40);
 		pDanhSach.add(btnTim);
-
+		
 		JPanel pNhapThongTin = new JPanel();
 		pNhapThongTin.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pNhapThongTin.setBackground(new Color(255, 255, 255));
@@ -289,13 +310,16 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		txtDiaChi.setBounds(170, 360, 240, 40);
 		txtDiaChi.setBorder(null);
 		pNhapThongTin.add(txtDiaChi);
-		loadData();
+		loadData(khachHang_DAO.getAllKhachHang());
 	
 		btnThem.addActionListener(this);
 		btnXoa.addActionListener(this);
 		btnSua.addActionListener(this);
 		btnTim.addActionListener(this);
+			
 		
+		
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.addMouseListener(new MouseListener() {
 
 			@Override
@@ -336,10 +360,9 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 	
 		});
 	}
-
-	public void loadData() {
+	public void loadData(ArrayList<KhachHang> ds) {
 		model.setRowCount(0);
-		for (KhachHang Kh : khachHang_DAO.getAllKhachHang()) {
+		for (KhachHang Kh : ds) {
 			Object[] object = { Kh.getTenKhachHang(), Kh.getMaKhachHang(), Kh.getGioiTinh(), Kh.getSoDienThoai(),
 					Kh.getDiaChi() };
 			model.addRow(object);
@@ -379,7 +402,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 				if(btnThem.getText().equalsIgnoreCase("Xác Nhận")) {
 					try {
 						themKhachHang();
-						loadData();
+						loadData(khachHang_DAO.getAllKhachHang());
 						btnSua.setEnabled(true);
 						btnTim.setEnabled(true);
 						btnThem.setText("Thêm");
@@ -449,6 +472,43 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 							btnXoa.setEnabled(true);
 							xoaTrang();	
 							closeText();
+						}else {
+							if(btnTim.getText().equalsIgnoreCase("Tìm")){
+								btnThem.setEnabled(false);
+								btnXoa.setEnabled(false);
+								btnSua.setEnabled(false);
+								if (timKiemKhachHang_GUI == null || timKiemKhachHang_GUI.isClosed()) {
+									timKiemKhachHang_GUI = new TimKiemKhachHang_GUI(ds);
+									timKiemKhachHang_GUI.addInternalFrameListener(new InternalFrameAdapter() {
+							            @Override
+							            public void internalFrameActivated(InternalFrameEvent e) {
+//							                System.out.println("Internal frame is activated.");
+							            }
+
+							            @Override
+							            public void internalFrameDeactivated(InternalFrameEvent e) {
+//							                System.out.println("Internal frame is deactivated.");
+							            }
+
+							            @Override
+							            public void internalFrameOpened(InternalFrameEvent e) {
+//							                System.out.println("Internal frame is opened.");
+//							            	disableButton();
+							            }
+							            
+							            @Override
+							            public void internalFrameClosed(InternalFrameEvent e) {
+//							                System.out.println("Internal frame is closed.");
+							            	loadData(ds);
+							            	ds.removeAll(ds);
+							            	btnThem.setEnabled(true);
+											btnXoa.setEnabled(true);
+											btnSua.setEnabled(true);
+							            }
+							        });
+									desktopPane.add(timKiemKhachHang_GUI).setVisible(true);
+								}
+							}
 						}
 					}
 					
@@ -479,7 +539,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 			if(tb == JOptionPane.YES_OPTION) {
 				khachHang_DAO.xoaKhachHangTheoMa(model.getValueAt(row, 1).toString());
 				JOptionPane.showMessageDialog(null,"Xóa Thành Công");
-				loadData();
+				loadData(khachHang_DAO.getAllKhachHang());
 			}
 		}
 	}
@@ -539,11 +599,8 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 				e.printStackTrace();
 			}
 			JOptionPane.showMessageDialog(null, "Cập Nhập Khách Hàng Thành Công");
-			loadData();
+			loadData(khachHang_DAO.getAllKhachHang());
 		}
 		return false;
 	}
-	
-	
-	
 }

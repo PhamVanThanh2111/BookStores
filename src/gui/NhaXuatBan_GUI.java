@@ -207,9 +207,8 @@ public class NhaXuatBan_GUI extends JPanel {
 		lblTenNXB.setBounds(40, 359, 120, 40);
 		pNhapThongTin.add(lblTenNXB);
 
-		PanelRound pDanhSach = new PanelRound();
+		JPanel pDanhSach = new JPanel();
 		pDanhSach.setLayout(null);
-		pDanhSach.setRoundTopLeft(16);
 		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pDanhSach.setBackground(Color.WHITE);
 		pDanhSach.setBounds(0, 0, 857, 720);

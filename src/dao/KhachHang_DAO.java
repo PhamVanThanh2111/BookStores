@@ -11,8 +11,8 @@ import connect.ConnectDB;
 import entity.KhachHang;
 
 public class KhachHang_DAO {
-	public List<KhachHang> getAllKhachHang() {
-		List<KhachHang> ds = new ArrayList<KhachHang>();
+	public ArrayList<KhachHang> getAllKhachHang() {
+		ArrayList<KhachHang> ds = new ArrayList<KhachHang>();
 		ConnectDB.getInstance(); // luon luon co
 		Connection con = ConnectDB.getConnection(); // luon luon co
 

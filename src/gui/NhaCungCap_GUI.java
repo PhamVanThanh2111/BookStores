@@ -166,9 +166,8 @@ public class NhaCungCap_GUI extends JPanel {
 		txtdiaChi.setBounds(170, 412, 240, 40);
 		pNhapThongTin.add(txtdiaChi);
 		
-		PanelRound pDanhSach = new PanelRound();
+		JPanel pDanhSach = new JPanel();
 		pDanhSach.setLayout(null);
-		pDanhSach.setRoundTopLeft(16);
 		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pDanhSach.setBackground(Color.WHITE);
 		pDanhSach.setBounds(0, 0, 850, 720);
@@ -237,12 +236,12 @@ public class NhaCungCap_GUI extends JPanel {
 		
 		JLabel lblnhaCungCap = new JLabel("Nhà Cung Cấp");
 		lblnhaCungCap.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblnhaCungCap.setBounds(20, 22, 130, 40);
+		lblnhaCungCap.setBounds(20, 20, 130, 40);
 		pDanhSach.add(lblnhaCungCap);
 		
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(60, 60, 60));
-		separator.setBounds(154, 50, 676, 2);
+		separator.setBounds(154, 40, 676, 2);
 		pDanhSach.add(separator);
 		
 		JButton btnXoa = new JButton("Xóa");

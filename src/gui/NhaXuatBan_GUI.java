@@ -27,6 +27,8 @@ import entity.NhaXuatBan;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 import javax.swing.JSeparator;
 
 public class NhaXuatBan_GUI extends JPanel {
@@ -306,39 +308,44 @@ public class NhaXuatBan_GUI extends JPanel {
 		btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnAdd.setBackground(new Color(73, 129, 158));
 		btnAdd.setBounds(245, 660, 135, 40);
+//		btnAdd.addActionListener(new ActionListener() {
+//		    @Override
+//		    public void actionPerformed(ActionEvent e) {
+//		        int row = table.getSelectedRow();
+//		        if (btnAdd.getText().equals("Thêm")) {
+//		        	txttenNhaXuatBan.setEditable(false); 
+//		        	txttenNhaXuatBan.setBorder(null);
+//		        	txtdiaChi.setEditable(false); 
+//					txtdiaChi.setBorder(null);
+//					txtsoDienThoai.setEditable(false); 
+//					txtsoDienThoai.setBorder(null); 
+//					txtEmail.setEditable(false); 
+//					txtEmail.setBorder(null);
+//					
+//		            if (row == -1) {
+//		            	
+//		                JOptionPane.showMessageDialog(null, "Bạn phải chọn vào nhà xuất bản cần sửa!");
+//		            } else {
+//		              
+//		                
+//
+//		                btnAdd.setText("Xác nhận");
+//		            }
+//		        } else {
+////		        	update
+//		            
+//		            btnAdd.setText("Thêm");
+//		        }
+//		    }
+//		});
 		btnAdd.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		        int row = table.getSelectedRow();
-		        if (btnAdd.getText().equals("Thêm")) {
-		        	txttenNhaXuatBan.setEditable(false); 
-		        	txttenNhaXuatBan.setBorder(null);
-		        	txtdiaChi.setEditable(false); 
-					txtdiaChi.setBorder(null);
-					txtsoDienThoai.setEditable(false); 
-					txtsoDienThoai.setBorder(null); 
-					txtEmail.setEditable(false); 
-					txtEmail.setBorder(null);
-					
-		
-		            if (row == -1) {
-		            	
-		                JOptionPane.showMessageDialog(null, "Bạn phải chọn vào nhà xuất bản cần sửa!");
-		            } else {
-		              
-		                
-//		                btnXoa.setText("Hủy");
-		                btnAdd.setText("Xác nhận");
-		            }
-		        } else {
-//		        	update
-		            
-		            btnAdd.setText("Thêm");
-//		            btnXoa.setText("Xóa");
-		        }
-		    }
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			addNhaXuatBan();	
+			}
 		});
-
 		pDanhSach.add(btnAdd);
 		
 
@@ -376,6 +383,7 @@ public class NhaXuatBan_GUI extends JPanel {
 	public void refresh() {
 		loadData(nhaXuatBan_DAO.getAllNhaXuatBan());
 	}
+	
 	// thêm nhà xuất bản
 	public boolean addNhaXuatBan() {
 	    if (txttenNhaXuatBan.getText().equals("")) {
@@ -404,8 +412,8 @@ public class NhaXuatBan_GUI extends JPanel {
 	            nhaXuatBan.setMaNhaXuatBan(phatSinhMa_DAO.getMaNhaXuatBan());
 	            nhaXuatBan.setTenNhaXuatBan(txttenNhaXuatBan.getText());
 	            nhaXuatBan.setDiaChi(txtdiaChi.getText());
-	            nhaXuatBan.setEmail(txtEmail.getText());
 	            nhaXuatBan.setSoDienThoai(txtsoDienThoai.getText());
+	            nhaXuatBan.setEmail(txtEmail.getText());
 
 	            // Gọi phương thức thêm nhà xuất bản từ đối tượng nhaXuatBan_DAO
 	            nhaXuatBan_DAO.themNhaXuatBan(nhaXuatBan);
@@ -419,6 +427,7 @@ public class NhaXuatBan_GUI extends JPanel {
 	            return false;
 	        }
 	    }
+	    
 	}
 
 }

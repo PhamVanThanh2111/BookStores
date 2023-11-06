@@ -404,7 +404,6 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 				sanPham.setGiaBan(Float.parseFloat(txtgiaBan.getText()));
 				sanPham.setSoLuongTon(Integer.parseInt(txtsoLuong.getText()));
 				
-				
 				//
 				if (cbNhaCC.getSelectedIndex() != -1) {
 					nhacc  = nhaCC_DAO.getNhaCungCapTheoTen(cbNhaCC.getSelectedItem().toString());
@@ -419,6 +418,36 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 			}
 		}
 	}
+	
+//	public boolean suaDCHT() {
+//		int r = table.getSelectedRow();
+//		if(r==-1) {
+//			JOptionPane.showMessageDialog(null, "Bạn Chưa Chọn Sản Phẩm !");
+//		}else {
+//			if(txtmaDCHT.getText().equalsIgnoreCase("")||
+//				txttenDCHT.getText().equalsIgnoreCase("")||
+//				txtgiaNhap.getText().equalsIgnoreCase("")||
+//				txtgiaBan.getText().equalsIgnoreCase("")||
+//				txtXuatXu.getText().equalsIgnoreCase("")||
+//				txtsoLuong.getText().equalsIgnoreCase("")||
+//				cbNhaCC.getSelectedIndex()==-1) {
+//				JOptionPane.showMessageDialog(null, "Thông Tin Rỗng !");
+//			}else {
+//				openText();
+//				SanPham sanPham = new SanPham();
+//				
+//				sanPham.setMaSanPham(txtmaDCHT.getText());
+//				san
+//				
+//				
+//			}
+//			
+//			
+//		}
+//		
+//		
+//		return false;
+//	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object o  = e.getSource();

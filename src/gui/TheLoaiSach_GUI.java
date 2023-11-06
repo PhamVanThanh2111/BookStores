@@ -207,6 +207,8 @@ public class TheLoaiSach_GUI extends JPanel {
 			table.setRowHeight(25);
 		}
 	}
+	
+	
 	public void refresh() {
 		loadData();
 	}

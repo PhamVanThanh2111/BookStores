@@ -553,6 +553,7 @@ public class NhaXuatBan_GUI extends JPanel {
 				return false;
 		}
 	}
+	
 	//Sửa nhà xuất bản theo mã
 	public boolean update() {
 		int row = table.getSelectedRow();
@@ -604,6 +605,7 @@ public class NhaXuatBan_GUI extends JPanel {
 			}
 		return false;	
 	}
+	
 	private void enableEdit() {
 	    txtTenNhaXuatBan.setEditable(true);
 	    txtDiaChi.setEditable(true);
@@ -630,6 +632,7 @@ public class NhaXuatBan_GUI extends JPanel {
 		btnUpdate.setEnabled(true);
 		btnTim.setEnabled(true);
 	}
+	
 	
 	private void disableButton() {
 		btnLamMoi.setEnabled(false);

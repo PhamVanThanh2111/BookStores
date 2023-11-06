@@ -11,23 +11,14 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.renderer.category.StandardBarPainter;
 
-import javax.swing.JLabel;
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
-import java.awt.GridLayout;
-import java.awt.SystemColor;
-import java.awt.CardLayout;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.awt.Color;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import javax.swing.SpringLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import net.miginfocom.swing.MigLayout;
+
+import dao.HoaDon_DAO;
+import entity.HoaDon;
 
 public class ThongKe_GUI extends JPanel {
 
@@ -40,11 +31,15 @@ public class ThongKe_GUI extends JPanel {
 	private CategoryPlot category;
 	private ChartPanel chartPanel;
 	private JPanel panel;
+	private HoaDon_DAO hoaDon_DAO;
 
 	/**
 	 * Create the panel.
 	 */
 	public ThongKe_GUI() {
+		// khai bao DAO
+		hoaDon_DAO = new HoaDon_DAO();
+		
 		setLayout(null);
 		
 		panel = new JPanel();
@@ -55,14 +50,20 @@ public class ThongKe_GUI extends JPanel {
 	
 	private void showBarChart() {
 		dataset = new DefaultCategoryDataset();
+		LocalDate date = LocalDate.now();
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		for (int i = 0; i <= 6; i++) {
+//			System.out.println(date.minusDays(i));
+			dataset.addValue(tinhDoanhThuTheoNgay(date.minusDays(i)), "", dateFormat.format(date.minusDays(i)).toString());
+		}
 		
-		dataset.addValue(23, "Nam", "Nam");
+//		dataset.addValue(23, "Nam", "Nam");
+//		
+//		dataset.addValue(27, "Nữ", "Nữ");
+//		
+//		dataset.addValue(2, "Bê đe", "Bê đê");
 		
-		dataset.addValue(27, "Nữ", "Nữ");
-		
-		dataset.addValue(2, "Bê đe", "Bê đê");
-		
-		chart = ChartFactory.createBarChart("TI LE NAM NU", "GIOI TINH", "SO LUONG", dataset, PlotOrientation.VERTICAL, true, true, false);
+		chart = ChartFactory.createBarChart("DOANH THU", "NGÀY", "VND", dataset, PlotOrientation.VERTICAL, true, true, false);
 		
 		category = chart.getCategoryPlot();
 		category.setBackgroundPaint(new Color(255, 255, 255));//change background color
@@ -80,5 +81,13 @@ public class ThongKe_GUI extends JPanel {
 		chartPanel = new ChartPanel(chart);
 		panel.add(chartPanel);
 		panel.validate();
+	}
+	
+	private float tinhDoanhThuTheoNgay(LocalDate date) {
+		float doanhThu = 0;
+		for (HoaDon hoaDon : hoaDon_DAO.getListHoaDonTheoNgay(date)) {
+			doanhThu += hoaDon.getThanhTien();
+		}
+		return doanhThu;
 	}
 }

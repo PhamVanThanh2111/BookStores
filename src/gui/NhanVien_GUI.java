@@ -45,8 +45,6 @@ import dao.TaiKhoan_DAO;
 import entity.NhanVien;
 import entity.TaiKhoan;
 import javax.swing.JDesktopPane;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class NhanVien_GUI extends JPanel {
 	/**
@@ -513,7 +511,7 @@ public class NhanVien_GUI extends JPanel {
 //												                System.out.println("Internal frame is closed.");
 												                model.setRowCount(0);
 												            	loadDataIntoTable(ds);
-												            	ds = new ArrayList<NhanVien>();
+												            	ds.removeAll(ds);
 												            	enableButton();
 												            }
 												        });
@@ -974,12 +972,5 @@ public class NhanVien_GUI extends JPanel {
 		btnXoa.setEnabled(false);
 		btnSua.setEnabled(false);
 		btnTim.setEnabled(false);
-	}
-	
-	private boolean trung(String aString) {
-		if (aString.equals("0934004524")) {
-			return true;
-		}
-		return false;
 	}
 }

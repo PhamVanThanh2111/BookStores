@@ -6,7 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -14,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -23,13 +26,17 @@ import javax.swing.table.JTableHeader;
 import dao.NhaXuatBan_DAO;
 import dao.PhatSinhMa_DAO;
 import entity.NhaXuatBan;
+import entity.NhanVien;
+import entity.TaiKhoan;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 import javax.swing.JSeparator;
+import javax.swing.JDesktopPane;
 
 public class NhaXuatBan_GUI extends JPanel {
 	/**
@@ -42,13 +49,27 @@ public class NhaXuatBan_GUI extends JPanel {
 	private JTableHeader tableHeader;
 
 	
-	private JTextField txttenNhaXuatBan;
-	private JTextField txtdiaChi;
-	private JTextField txtsoDienThoai;
+	private JTextField txtTenNhaXuatBan;
+	private JTextField txtDiaChi;
+	private JTextField txtSoDienThoai;
 	private JTextField txtEmail;
+	
+	private JLabel lblMaNXBValue;
+	private JLabel lblTenNXB ;
+	
+	private JButton btnLamMoi;
+	private JButton btnDelete;
+	private	JButton btnAdd ;
+	private JButton btnUpdate;
+	private JButton btnTim;
+
 	
 	private NhaXuatBan_DAO nhaXuatBan_DAO;
 	private PhatSinhMa_DAO phatSinhMa_DAO;
+	
+	private TimNhaXuatBan_GUI timNhaXuatBan_GUI ;
+	private ArrayList<NhaXuatBan> ds;
+	private Border borderDefault;
 	/**
 	 * Create the panel.
 	 */
@@ -58,18 +79,24 @@ public class NhaXuatBan_GUI extends JPanel {
 		nhaXuatBan_DAO = new NhaXuatBan_DAO();
 		phatSinhMa_DAO = new PhatSinhMa_DAO();
 		
-		
-		
-		
-		
+		ds = new ArrayList<NhaXuatBan>();
 		
 		setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 1300, 720);
+		add(panel);
+		panel.setLayout(null);
+		
+		JDesktopPane desktopPane = new JDesktopPane();
+		desktopPane.setBounds(0, 0, 1300, 720);
+		panel.add(desktopPane);
 
 		JPanel pMain = new JPanel();
 		pMain.setLayout(null);
 		pMain.setBackground(new Color(241, 245, 249));
 		pMain.setBounds(0, 0, 1300, 720);
-		add(pMain);
+		desktopPane.add(pMain);
 
 		JPanel pNhapThongTin = new JPanel();
 		pNhapThongTin.setLayout(null);
@@ -78,30 +105,25 @@ public class NhaXuatBan_GUI extends JPanel {
 		pNhapThongTin.setBounds(869, 0, 430, 720);
 		pMain.add(pNhapThongTin);
 
-		JLabel lblHinhAnh = new JLabel("");
-		lblHinhAnh.setBorder(new LineBorder(new Color(0, 0, 0)));
-		lblHinhAnh.setBounds(20, 20, 90, 90);
-		pNhapThongTin.add(lblHinhAnh);
-
 		JLabel lblSoDienThoai = new JLabel("Số Điện Thoại:");
 		lblSoDienThoai.setToolTipText("Số điện thoại");
 		lblSoDienThoai.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		lblSoDienThoai.setBounds(40, 201, 120, 40);
+		lblSoDienThoai.setBounds(40, 115, 120, 40);
 		pNhapThongTin.add(lblSoDienThoai);
 
-		txtsoDienThoai = new JTextField();
-		txtsoDienThoai.setToolTipText("Số điện thoại");
-		txtsoDienThoai.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtsoDienThoai.setEditable(false);
-		txtsoDienThoai.setColumns(10);
-		txtsoDienThoai.setBackground(Color.WHITE);
-		txtsoDienThoai.setBounds(170, 201, 240, 40);
-		pNhapThongTin.add(txtsoDienThoai);
+		txtSoDienThoai = new JTextField();
+		txtSoDienThoai.setToolTipText("Số điện thoại");
+		txtSoDienThoai.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtSoDienThoai.setEditable(false);
+		txtSoDienThoai.setColumns(10);
+		txtSoDienThoai.setBackground(Color.WHITE);
+		txtSoDienThoai.setBounds(170, 115, 240, 40);
+		pNhapThongTin.add(txtSoDienThoai);
 
 		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setToolTipText("Email");
 		lblEmail.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		lblEmail.setBounds(40, 246, 56, 40);
+		lblEmail.setBounds(40, 160, 56, 40);
 		pNhapThongTin.add(lblEmail);
 
 		txtEmail = new JTextField();
@@ -110,7 +132,7 @@ public class NhaXuatBan_GUI extends JPanel {
 		txtEmail.setEditable(false);
 		txtEmail.setColumns(10);
 		txtEmail.setBackground(Color.WHITE);
-		txtEmail.setBounds(170, 246, 240, 40);
+		txtEmail.setBounds(170, 160, 240, 40);
 		pNhapThongTin.add(txtEmail);
 
 		JLabel lblLuong = new JLabel("Lương:");
@@ -119,107 +141,80 @@ public class NhaXuatBan_GUI extends JPanel {
 		lblLuong.setBounds(880, 70, 56, 33);
 		pNhapThongTin.add(lblLuong);
 
-		JLabel lblnNXB = new JLabel("NXB");
-		lblnNXB.setToolTipText("Mã nhà xuất bản");
-		lblnNXB.setHorizontalAlignment(SwingConstants.LEFT);
-		lblnNXB.setForeground(new Color(28, 28, 28));
-		lblnNXB.setFont(new Font("SansSerif", Font.ITALIC, 20));
-		lblnNXB.setBounds(120, 50, 177, 40);
-		pNhapThongTin.add(lblnNXB);
-
 		JLabel lblThongTinLienLac = new JLabel("Thông Tin Liên Lạc:");
 		lblThongTinLienLac.setToolTipText("Nhà Xuất Bản");
 		lblThongTinLienLac.setHorizontalAlignment(SwingConstants.LEFT);
 		lblThongTinLienLac.setForeground(new Color(28, 28, 28));
 		lblThongTinLienLac.setFont(new Font("SansSerif", Font.BOLD, 18));
-		lblThongTinLienLac.setBounds(20, 156, 189, 40);
+		lblThongTinLienLac.setBounds(20, 65, 189, 40);
 		pNhapThongTin.add(lblThongTinLienLac);
 
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setForeground(new Color(60, 60, 60));
-		separator_1.setBounds(20, 310, 390, 2);
+		separator_1.setBounds(20, 275, 390, 2);
 		pNhapThongTin.add(separator_1);
 
 		JLabel lblthongTinNXB = new JLabel("Thông Tin Nhà Xuất Bản:");
-		lblthongTinNXB.setToolTipText("Mã nhân viên");
+		lblthongTinNXB.setToolTipText("Thông tin nhà XB");
 		lblthongTinNXB.setHorizontalAlignment(SwingConstants.LEFT);
 		lblthongTinNXB.setForeground(new Color(28, 28, 28));
 		lblthongTinNXB.setFont(new Font("SansSerif", Font.BOLD, 18));
-		lblthongTinNXB.setBounds(20, 322, 270, 40);
+		lblthongTinNXB.setBounds(20, 317, 270, 40);
 		pNhapThongTin.add(lblthongTinNXB);
 
-		JLabel lblmaNXB = new JLabel("Mã NXB:");
-		lblmaNXB.setToolTipText("Số điện thoại");
-		lblmaNXB.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		lblmaNXB.setBounds(40, 367, 120, 40);
-		pNhapThongTin.add(lblmaNXB);
-
-		JLabel lblMaNXB = new JLabel("NV0001");
-		lblMaNXB.setToolTipText("Số điện thoại");
+		JLabel lblMaNXB = new JLabel("Mã NXB:");
+		lblMaNXB.setToolTipText("mã nhà xuất bản");
 		lblMaNXB.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		lblMaNXB.setBounds(170, 367, 120, 40);
+		lblMaNXB.setBounds(40, 409, 120, 40);
 		pNhapThongTin.add(lblMaNXB);
+
+		lblMaNXBValue = new JLabel("NV0001");
+		lblMaNXBValue.setToolTipText("Số điện thoại");
+		lblMaNXBValue.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		lblMaNXBValue.setBounds(170, 409, 120, 40);
+		pNhapThongTin.add(lblMaNXBValue);
 
 		JLabel lbldiaChi = new JLabel("Địa Chỉ:");
 		lbldiaChi.setToolTipText("Địa chỉ nhà xuất bản");
 		lbldiaChi.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		lbldiaChi.setBounds(40, 412, 120, 40);
+		lbldiaChi.setBounds(40, 454, 120, 40);
 		pNhapThongTin.add(lbldiaChi);
 
-		JButton btnChonHinhAnh = new JButton("Choose");
-		btnChonHinhAnh.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		btnChonHinhAnh.setBounds(30, 116, 64, 21);
-		pNhapThongTin.add(btnChonHinhAnh);
+		txtTenNhaXuatBan = new JTextField();
+		txtTenNhaXuatBan.setHorizontalAlignment(SwingConstants.CENTER);
+		txtTenNhaXuatBan.setToolTipText("tên nhà xuất bản");
+		txtTenNhaXuatBan.setText("Nhà Xuất Bản Trẻ");
+		txtTenNhaXuatBan.setFont(new Font("SansSerif", Font.BOLD, 20));
+		txtTenNhaXuatBan.setEditable(false);
+		txtTenNhaXuatBan.setColumns(10);
+		txtTenNhaXuatBan.setBorder(null);
+		txtTenNhaXuatBan.setBackground(Color.WHITE);
+		txtTenNhaXuatBan.setBounds(170, 358, 240, 40);
+		pNhapThongTin.add(txtTenNhaXuatBan);
 
-		txttenNhaXuatBan = new JTextField();
-		txttenNhaXuatBan.setToolTipText("Số điện thoại");
-		txttenNhaXuatBan.setText("Nhà Xuất Bản Trẻ");
-		txttenNhaXuatBan.setFont(new Font("SansSerif", Font.BOLD, 20));
-		txttenNhaXuatBan.setEditable(false);
-		txttenNhaXuatBan.setColumns(10);
-		txttenNhaXuatBan.setBorder(null);
-		txttenNhaXuatBan.setBackground(Color.WHITE);
-		txttenNhaXuatBan.setBounds(120, 20, 240, 40);
-		pNhapThongTin.add(txttenNhaXuatBan);
-
-		txtdiaChi = new JTextField();
-		txtdiaChi.setToolTipText("Email");
-		txtdiaChi.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtdiaChi.setEditable(false);
-		txtdiaChi.setColumns(10);
-		txtdiaChi.setBackground(Color.WHITE);
-		txtdiaChi.setBounds(170, 412, 240, 40);
-		pNhapThongTin.add(txtdiaChi);
+		txtDiaChi = new JTextField();
+		txtDiaChi.setToolTipText("Địa chỉ nhà xuất bản");
+		txtDiaChi.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtDiaChi.setEditable(false);
+		txtDiaChi.setColumns(10);
+		txtDiaChi.setBackground(Color.WHITE);
+		txtDiaChi.setBounds(170, 454, 240, 40);
+		pNhapThongTin.add(txtDiaChi);
+		
+		lblTenNXB = new JLabel("Tên NXB:");
+		lblTenNXB.setToolTipText("tên nhà xuất bả");
+		lblTenNXB.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		lblTenNXB.setBounds(40, 359, 120, 40);
+		pNhapThongTin.add(lblTenNXB);
 
 		PanelRound pDanhSach = new PanelRound();
 		pDanhSach.setLayout(null);
 		pDanhSach.setRoundTopLeft(16);
 		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pDanhSach.setBackground(Color.WHITE);
-		pDanhSach.setBounds(0, 0, 850, 720);
+		pDanhSach.setBounds(0, 0, 857, 720);
 		pMain.add(pDanhSach);
 
-//		JScrollPane scrollPaneNXB = new JScrollPane();
-//		scrollPaneNXB.setToolTipText("Chọn vào nhà xuất bản cần hiển thị thông tin");
-//		scrollPaneNXB.setBorder(null);
-//		scrollPaneNXB.setBackground(Color.WHITE);
-//		scrollPaneNXB.setBounds(20, 70, 810, 569);
-//		pDanhSach.add(scrollPaneNXB);
-//
-//		scrollPaneNXB.setViewportView(table);
-//
-//		table = new JTable(model);
-//		table.setToolTipText("Chọn vào nhà xuất bản cần hiển thị thông tin");
-//		table.setShowHorizontalLines(true);
-//		table.setShowGrid(true);
-//		table.setSelectionForeground(Color.BLACK);
-//		table.setSelectionBackground(new Color(141, 208, 229));
-//		table.setRowHeight(30);
-//		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
-//		table.setBackground(Color.WHITE);
-//		table.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
-//		table.setBounds(20, 649, 810, -577);
-//		pDanhSach.add(table);
 		JScrollPane scrollPaneNXB = new JScrollPane();
 		scrollPaneNXB.setToolTipText("Chọn vào nhà xuất bản cần hiển thị thông tin");
 		scrollPaneNXB.setBorder(new LineBorder(new Color(80, 80, 80), 1, true));
@@ -231,15 +226,16 @@ public class NhaXuatBan_GUI extends JPanel {
 		model = new DefaultTableModel(cols, 0);
 		
 		table = new JTable(model);
-		
 		table.setRowHeight(25);
 		table.setSelectionBackground(new Color(141, 208, 229));
 		table.setSelectionForeground(new Color(0, 0, 0));
+		table.setDefaultEditor(Object.class, null);
 		tableHeader = table.getTableHeader();
 		tableHeader.setBackground(new Color(73, 129, 158));
 		tableHeader.setForeground(Color.white);
 		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
 		tableHeader.setReorderingAllowed(false);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.addMouseListener(new MouseListener() {
 
 			@Override
@@ -269,6 +265,15 @@ public class NhaXuatBan_GUI extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
+				int row = table.getSelectedRow();
+			    if (row >= 0) { // Ensure a row is selected  
+			        NhaXuatBan nhaXuatBan = nhaXuatBan_DAO.getnhaXuatBanTheoMa(model.getValueAt(row, 0).toString());
+			        lblMaNXBValue.setText(nhaXuatBan.getMaNhaXuatBan());   
+			        txtTenNhaXuatBan.setText(nhaXuatBan.getTenNhaXuatBan());
+			        txtDiaChi.setText(nhaXuatBan.getDiaChi());
+			        txtSoDienThoai.setText(nhaXuatBan.getSoDienThoai());
+			        txtEmail.setText(nhaXuatBan.getEmail());
+			        }
 				
 			}
 		});
@@ -281,124 +286,217 @@ public class NhaXuatBan_GUI extends JPanel {
 		table.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
 		table.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
 		
-		
-		
-		JLabel lblNh = new JLabel("Nhà Xuất Bản");
-		lblNh.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblNh.setBounds(20, 22, 130, 40);
-		pDanhSach.add(lblNh);
-
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(60, 60, 60));
-		separator.setBounds(154, 50, 676, 2);
+		separator.setBounds(154, 40, 676, 2);
 		pDanhSach.add(separator);
 
-		JButton btnDelete = new JButton("Xóa");
-		btnDelete.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/remove_person.png")));
-		btnDelete.setForeground(Color.WHITE);
-		btnDelete.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnDelete.setBackground(new Color(73, 129, 158));
-		btnDelete.setBounds(395, 660, 135, 40);
-		pDanhSach.add(btnDelete);
-
-		JButton btnAdd = new JButton("Thêm");
+		btnAdd = new JButton("Thêm");
 		btnAdd.setOpaque(true);
 		btnAdd.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/add_person.png")));
 		btnAdd.setForeground(Color.WHITE);
 		btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnAdd.setBackground(new Color(73, 129, 158));
-		btnAdd.setBounds(245, 660, 135, 40);
-//		btnAdd.addActionListener(new ActionListener() {
-//		    @Override
-//		    public void actionPerformed(ActionEvent e) {
-//		        int row = table.getSelectedRow();
-//		        if (btnAdd.getText().equals("Thêm")) {
-//		        	txttenNhaXuatBan.setEditable(false); 
-//		        	txttenNhaXuatBan.setBorder(null);
-//		        	txtdiaChi.setEditable(false); 
-//					txtdiaChi.setBorder(null);
-//					txtsoDienThoai.setEditable(false); 
-//					txtsoDienThoai.setBorder(null); 
-//					txtEmail.setEditable(false); 
-//					txtEmail.setBorder(null);
-//					
-//		            if (row == -1) {
-//		            	
-//		                JOptionPane.showMessageDialog(null, "Bạn phải chọn vào nhà xuất bản cần sửa!");
-//		            } else {
-//		              
-//		                
-//
-//		                btnAdd.setText("Xác nhận");
-//		            }
-//		        } else {
-////		        	update
-//		            
-//		            btnAdd.setText("Thêm");
-//		        }
-//		    }
-//		});
+		btnAdd.setBounds(239, 660, 135, 40);
 		btnAdd.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-			addNhaXuatBan();	
+				if (btnAdd.getText().equals("Thêm")) {
+					enableEdit();
+					btnDelete.setText("Hủy");
+					btnAdd.setText("Xác nhận");
+					btnLamMoi.setEnabled(false);
+					btnUpdate.setEnabled(false);
+					btnTim.setEnabled(false);
+					
+				}
+				else {
+					add();
+					disableEdit();
+					btnAdd.setText("Thêm");
+					btnDelete.setText("Xóa");
+					btnLamMoi.setEnabled(true);
+					btnUpdate.setEnabled(true);
+					btnTim.setEnabled(true);
+				}
 			}
 		});
 		pDanhSach.add(btnAdd);
 		
-
-		JButton btnUpdate = new JButton("Sửa");
+		btnDelete = new JButton("Xóa");
+		btnDelete.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/remove_person.png")));
+		btnDelete.setForeground(Color.WHITE);
+		btnDelete.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnDelete.setBackground(new Color(73, 129, 158));
+		btnDelete.setBounds(391, 660, 135, 40);
+		btnDelete.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (btnDelete.getText().equals("Xóa"))
+					delete();
+				else {
+					disableEdit();
+					btnAdd.setText("Thêm");
+					btnUpdate.setText("Sửa");
+					btnDelete.setText("Xóa");
+					btnLamMoi.setEnabled(true);
+					btnAdd.setEnabled(true);
+					btnUpdate.setEnabled(true);
+					btnTim.setEnabled(true);
+				}
+			}
+		});
+		pDanhSach.add(btnDelete);
+		
+			
+		
+		btnUpdate = new JButton("Sửa");
 		btnUpdate.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/update_person.png")));
 		btnUpdate.setForeground(Color.WHITE);
 		btnUpdate.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnUpdate.setBackground(new Color(73, 129, 158));
-		btnUpdate.setBounds(545, 660, 135, 40);
+		btnUpdate.setBounds(543, 660, 135, 40);
+		btnUpdate.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int row = table.getSelectedRow();
+				if (btnUpdate.getText().equals("Sửa")) {
+					if (row == -1)
+						JOptionPane.showMessageDialog(null, "Bạn phải chọn vào nhân viên cần sửa!");
+					else {
+						enableEdit();
+						btnDelete.setText("Hủy");
+						btnUpdate.setText("Xác nhận");
+						btnLamMoi.setEnabled(false);
+						btnAdd.setEnabled(false);
+						btnTim.setEnabled(false);
+					}
+				}
+				else {
+					update();
+					btnUpdate.setText("Sửa");
+					btnDelete.setText("Xóa");
+					disableEdit();
+					btnLamMoi.setEnabled(true);
+					btnAdd.setEnabled(true);
+					btnTim.setEnabled(true);
+				}
+			}	
+		});
 		pDanhSach.add(btnUpdate);
 
-		JButton btnTim = new JButton("Tìm");
+		
+		btnTim = new JButton("Tìm");
 		btnTim.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/find_person.png")));
 		btnTim.setForeground(Color.WHITE);
 		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnTim.setBackground(new Color(73, 129, 158));
 		btnTim.setBounds(695, 660, 135, 40);
-		pDanhSach.add(btnTim);
+		btnTim.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				// null cho lan dau chay va isClose cho nhung click sau
+				if (timNhaXuatBan_GUI == null || timNhaXuatBan_GUI.isClosed()) {
+					timNhaXuatBan_GUI = new TimNhaXuatBan_GUI(ds);
+					timNhaXuatBan_GUI.addInternalFrameListener(new InternalFrameAdapter() {
+			            @Override
+			            public void internalFrameActivated(InternalFrameEvent e) {
+//			                System.out.println("Internal frame is activated.");
+			            }
 
+			            @Override
+			            public void internalFrameDeactivated(InternalFrameEvent e) {
+//			                System.out.println("Internal frame is deactivated.");
+			            }
+
+			            @Override
+			            public void internalFrameOpened(InternalFrameEvent e) {
+//			                System.out.println("Internal frame is opened.");
+			            	disableButton();
+			            }
+			            
+			            @Override
+			            public void internalFrameClosed(InternalFrameEvent e) {
+//			                System.out.println("Internal frame is closed.");
+			                model.setRowCount(0);
+			            	loadDataIntoTable(ds);
+			            	ds.removeAll(ds);
+			            	enableButton();
+			            }
+			        });
+					desktopPane.add(timNhaXuatBan_GUI).setVisible(true);					
+				}
+			}
+					
+		});
+		pDanhSach.add(btnTim);
+		
+		
+		btnLamMoi = new JButton("Làm Mới");
+		btnLamMoi.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/refresh.png")));
+		btnLamMoi.setOpaque(true);
+		btnLamMoi.setForeground(Color.WHITE);
+		btnLamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnLamMoi.setBackground(new Color(73, 129, 158));
+		btnLamMoi.setBounds(87, 660, 135, 40);
+		btnLamMoi.addActionListener(new  ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				refresh();
+			}
+		
+		});
+		pDanhSach.add(btnLamMoi);
 		
 		//load Data
-		loadData(nhaXuatBan_DAO.getAllNhaXuatBan());
+		refresh();
 
 	}
 	// đưa dữ liệu lên bảng
-	public void loadData(List<NhaXuatBan> list) {
+	private void loadDataIntoTable(ArrayList <NhaXuatBan> list) {
 		model.setRowCount(0);
-		for (NhaXuatBan nhaXuatBan : nhaXuatBan_DAO.getAllNhaXuatBan()) {
+		for (NhaXuatBan nhaXuatBan : list) {
 			Object[] object = { nhaXuatBan.getMaNhaXuatBan(), nhaXuatBan.getTenNhaXuatBan(), nhaXuatBan.getDiaChi(),
 					nhaXuatBan.getSoDienThoai(), nhaXuatBan.getEmail()};
 			model.addRow(object);
-			table.setRowHeight(25);
 		}
 	}
-	public void refresh() {
-		loadData(nhaXuatBan_DAO.getAllNhaXuatBan());
+	private void refresh() {
+		loadDataIntoTable(nhaXuatBan_DAO.getAllListNhaXuatBan());
 	}
+//	private void xoaTrang() {
+//	    txtTenNhaXuatBan.setText("");
+//	    txtDiaChi.setText("");
+//	    txtSoDienThoai.setText("");
+//	    txtEmail.setText("");
+//	    txtTenNhaXuatBan.requestFocus();
+//	}
 	
-	// thêm nhà xuất bản
-	public boolean addNhaXuatBan() {
-	    if (txttenNhaXuatBan.getText().equals("")) {
+	// Thêm nhà xuất bản
+	public boolean add() {
+	    if (txtTenNhaXuatBan.getText().equals("")) {
 	        JOptionPane.showMessageDialog(null, "Tên nhà xuất bản không được để trống!");
-	        txttenNhaXuatBan.requestFocus();
+	        txtTenNhaXuatBan.requestFocus();
 	        return false;
 	    }
-	    else if (txtdiaChi.getText().equals("")) {
+	    else if (txtDiaChi.getText().equals("")) {
 	        JOptionPane.showMessageDialog(null, "Địa chỉ nhà xuất bản không được để trống!");
-	        txtdiaChi.requestFocus();
+	        txtDiaChi.requestFocus();
 	        return false;
 	    }
-	    else if (txtsoDienThoai.getText().equals("")) {
+	    else if (txtSoDienThoai.getText().equals("")) {
 	        JOptionPane.showMessageDialog(null, "Số điện thoại nhà xuất bản không được để trống!");
-	        txtsoDienThoai.requestFocus();
+	        txtSoDienThoai.requestFocus();
 	        return false;
 	    }
 	    else if (txtEmail.getText().equals("")) {
@@ -409,17 +507,16 @@ public class NhaXuatBan_GUI extends JPanel {
 	    else {
 	        try {
 	            NhaXuatBan nhaXuatBan = new NhaXuatBan();
+	            nhaXuatBan.setTenNhaXuatBan(txtTenNhaXuatBan.getText());
 	            nhaXuatBan.setMaNhaXuatBan(phatSinhMa_DAO.getMaNhaXuatBan());
-	            nhaXuatBan.setTenNhaXuatBan(txttenNhaXuatBan.getText());
-	            nhaXuatBan.setDiaChi(txtdiaChi.getText());
-	            nhaXuatBan.setSoDienThoai(txtsoDienThoai.getText());
+	            nhaXuatBan.setDiaChi(txtDiaChi.getText());
+	            nhaXuatBan.setSoDienThoai(txtSoDienThoai.getText());
 	            nhaXuatBan.setEmail(txtEmail.getText());
 
-	            // Gọi phương thức thêm nhà xuất bản từ đối tượng nhaXuatBan_DAO
 	            nhaXuatBan_DAO.themNhaXuatBan(nhaXuatBan);
 
 	            JOptionPane.showMessageDialog(null, "Thêm nhà xuất bản thành công!");
-	            refresh(); // Gọi hàm này để làm mới giao diện sau khi thêm
+	            refresh(); 
 	            return true;
 	        } catch (SQLException e1) {
 	            JOptionPane.showMessageDialog(null, "Thêm nhà xuất bản thất bại!");
@@ -429,5 +526,117 @@ public class NhaXuatBan_GUI extends JPanel {
 	    }
 	    
 	}
-
+	
+	//Xóa nhà xuất bản
+	public boolean delete() {
+		int row = table.getSelectedRow();
+		if (row == -1) {
+			JOptionPane.showMessageDialog(null, "Bạn phải chọn nhà xuất bản cần xóa!");
+			return false;
+		} else {
+			int option = JOptionPane.showConfirmDialog(null,
+					"Bạn có chắc muốn xóa nhà xuất bản '" + model.getValueAt(row, 0) + "' chứ?", "Xóa?",
+					JOptionPane.YES_NO_OPTION);
+			if (option == JOptionPane.YES_OPTION) {
+				try {
+					
+					nhaXuatBan_DAO .xoaNhaXuatBanMa(model.getValueAt(row, 0).toString());
+					JOptionPane.showMessageDialog(null, "Xóa thành công nhân viên '" + model.getValueAt(row, 0) + "'!");
+					refresh();
+					return true;
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null,
+							"Xóa nhà xuất bản '" + model.getValueAt(row, 0) + "' không thành công!");
+					return false;
+				}
+			} else
+				return false;
+		}
+	}
+	//Sửa nhà xuất bản theo mã
+	public boolean update() {
+		int row = table.getSelectedRow();
+		if (row == -1) {
+			JOptionPane.showMessageDialog(null, "Bạn phải chọn nhà xuất bản cần sửa!");
+		}
+		else
+			if (txtTenNhaXuatBan.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Tên nhà xuất bản không được để trống!");
+				txtTenNhaXuatBan.requestFocus();
+				return false;
+			}
+			else if (txtSoDienThoai.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Số điện thoại nhà xuất bản không được để trống!");
+				txtSoDienThoai.requestFocus();
+				return false;
+			}
+			else if (txtEmail.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Email nhà xuất bản không được để trống!");
+				txtEmail.requestFocus();
+				return false;
+			}
+			else if (txtDiaChi.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Địa chỉ nhà xuất bản không được để trống!");
+				txtDiaChi.requestFocus();
+				return false;
+			}
+			else {
+				int option = JOptionPane.showConfirmDialog(null,
+						"Bạn có chắc muốn sửa nhà xuất bản? '" + model.getValueAt(row, 0) + "' chứ?", "Sửa?",
+						JOptionPane.YES_NO_OPTION);
+				if (option == JOptionPane.YES_OPTION) {
+					try {
+						NhaXuatBan nhaXuatBan = new NhaXuatBan(lblMaNXBValue.getText(), txtTenNhaXuatBan.getText(), txtDiaChi.getText(),
+								txtEmail.getText(), txtSoDienThoai.getText());
+						nhaXuatBan_DAO.suaNhaXuatBanTheoMa(nhaXuatBan);
+						JOptionPane.showMessageDialog(null, "Sửa thành công nhà xuất bản '" + model.getValueAt(row, 0) + "'!");
+						refresh();
+						return true;
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(null,
+								"Sửa nhân viên '\" + model.getValueAt(row, 0) + \"' không thành công!");
+						return false;
+					}
+				} else {
+					return false;
+				}
+			}
+		return false;	
+	}
+	private void enableEdit() {
+	    txtTenNhaXuatBan.setEditable(true);
+	    txtDiaChi.setEditable(true);
+	    txtDiaChi.setBorder(borderDefault);
+	    txtSoDienThoai.setEditable(true);
+	    txtSoDienThoai.setBorder(borderDefault);
+	    txtEmail.setEditable(true);
+	    txtEmail.setBorder(borderDefault);
+	}	
+	private void disableEdit() {
+	    txtTenNhaXuatBan.setEditable(false);
+	    txtTenNhaXuatBan.setBorder(null); 
+	    txtDiaChi.setEditable(false); 
+		txtDiaChi.setBorder(null);
+		txtSoDienThoai.setEditable(false); 
+		txtSoDienThoai.setBorder(null); 
+		txtEmail.setEditable(false); 
+		txtEmail.setBorder(null);
+	}
+	private void enableButton() {
+		btnLamMoi.setEnabled(true);
+		btnAdd.setEnabled(true);
+		btnDelete.setEnabled(true);
+		btnUpdate.setEnabled(true);
+		btnTim.setEnabled(true);
+	}
+	
+	private void disableButton() {
+		btnLamMoi.setEnabled(false);
+		btnAdd.setEnabled(false);
+		btnDelete.setEnabled(false);
+		btnUpdate.setEnabled(false);
+		btnTim.setEnabled(false);
+	}
 }

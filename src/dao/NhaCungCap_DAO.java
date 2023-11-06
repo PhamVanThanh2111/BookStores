@@ -9,6 +9,8 @@ import java.util.List;
 import connect.ConnectDB;
 
 import entity.NhaCungCap;
+import entity.NhaXuatBan;
+import entity.SanPham;
 public class NhaCungCap_DAO {
 
     public List<NhaCungCap> getAllNhaCungCap() {
@@ -28,4 +30,50 @@ public class NhaCungCap_DAO {
         }
         return ds;
     }
+    
+    public NhaCungCap getNhaCCTheoMa(String maNCC) {
+    	
+    	NhaCungCap nhaCungCap = new NhaCungCap();
+ 		ConnectDB.getInstance();
+ 		Connection connection = ConnectDB.getConnection();
+ 		try {
+ 			PreparedStatement preparedStatement = connection
+ 					.prepareStatement("select * from NhaCungCap where maNhaCungCap = '" + maNCC + "'");
+ 			ResultSet resultSet = preparedStatement.executeQuery();
+
+ 			while (resultSet.next()) {
+ 				nhaCungCap.setMaNCC(resultSet.getString(1));
+ 				nhaCungCap.setTenNCC(resultSet.getString(2));
+ 				nhaCungCap.setDiaChi(resultSet.getString(3));
+ 				nhaCungCap.setSoDienThoai(resultSet.getString(4));
+ 				nhaCungCap.setEmail(resultSet.getString(5));
+ 			}
+ 		} catch (SQLException e) {
+ 			// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 		}
+ 		return nhaCungCap;
+    }
+    
+    public NhaCungCap getNhaCungCapTheoTen(String tenNhaCC) {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		NhaCungCap nhaCungCap = new NhaCungCap();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement("select * from NhaCungCap where tenNhaCungCap = N'" + tenNhaCC + "'");
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				nhaCungCap.setMaNCC(resultSet.getString(1));
+				nhaCungCap.setTenNCC(resultSet.getString(2));
+				nhaCungCap.setDiaChi(resultSet.getString(3));
+				nhaCungCap.setSoDienThoai(resultSet.getString(4));
+				nhaCungCap.setEmail(resultSet.getString(5));
+				
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return nhaCungCap;
+	}
+	
 }

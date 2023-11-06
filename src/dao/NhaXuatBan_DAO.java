@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import connect.ConnectDB;
 import entity.NhaXuatBan;
+import entity.NhanVien;
 public class NhaXuatBan_DAO {
 
-    public List<NhaXuatBan> getAllNhaXuatBan() {
-        List<NhaXuatBan> ds = new ArrayList<>();
+	// get all nhà xuất bản
+    public ArrayList<NhaXuatBan> getAllListNhaXuatBan() {
+    	ArrayList<NhaXuatBan> ds = new ArrayList<>();
         ConnectDB.getInstance();
         Connection con = ConnectDB.getConnection();
 
@@ -39,8 +41,8 @@ public class NhaXuatBan_DAO {
  			ResultSet resultSet = preparedStatement.executeQuery();
 
  			while (resultSet.next()) {
- 				nhaXuatBan.setMaNhaXuatBan(maNhaXuatBan);
- 				nhaXuatBan.setTenNhaXuatBan(maNhaXuatBan);
+ 				nhaXuatBan.setMaNhaXuatBan(resultSet.getString(1));
+ 				nhaXuatBan.setTenNhaXuatBan(resultSet.getString(2));
  				nhaXuatBan.setDiaChi(resultSet.getString(3));
  				nhaXuatBan.setSoDienThoai(resultSet.getString(4));
  				nhaXuatBan.setEmail(resultSet.getString(5));
@@ -66,12 +68,43 @@ public class NhaXuatBan_DAO {
  	        return preparedStatement.executeUpdate() > 0;
  	    } catch (SQLException e) {
  	        e.printStackTrace();
- 	    } finally {
- 	        if (connection != null) {
- 	            connection.close();
- 	        }
- 	    }
+ 	    } 
  	    return false;
  	}
 
+ // xóa nhà xuất bản
+ 	public boolean xoaNhaXuatBanMa(String maNXB) throws SQLException {
+ 		ConnectDB.getInstance();
+ 		Connection connection = ConnectDB.getConnection();
+ 		try {
+ 			PreparedStatement preparedStatement = connection
+ 					.prepareStatement("delete from NhaXuatBan where maNhaXuatBan = '" + maNXB + "'");
+ 			return preparedStatement.executeUpdate() > 0;
+ 		} catch (Exception e) {
+ 			// TODO: handle exception
+ 			e.printStackTrace();
+ 		}
+ 		connection.close();
+ 		return false;
+ 	}
+ 	// sửa nhà xuất bản theo mã
+ 	public boolean suaNhaXuatBanTheoMa(NhaXuatBan nhaXuatBan) throws SQLException {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(
+					"update NhaXuatBan set tenNhaXuatBan = ?,diaChi =  ?,soDienThoai = ?, email =? where maNhaXuatBan = '"
+							+ nhaXuatBan.getMaNhaXuatBan() + "'");
+			preparedStatement.setString(1, nhaXuatBan.getTenNhaXuatBan());
+			preparedStatement.setString(2, nhaXuatBan.getDiaChi());
+			preparedStatement.setString(3, nhaXuatBan.getSoDienThoai() );
+			preparedStatement.setString(4, nhaXuatBan.getEmail());
+			return preparedStatement.executeUpdate() > 0;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		connection.close();
+		return false;
+	}
 }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import connect.ConnectDB;
+import entity.KhachHang;
 import entity.SanPham;
 
 public class SanPham_DAO {
@@ -108,4 +109,62 @@ public class SanPham_DAO {
 		}
 		return sanPham;
 	}
+	
+//	Them DCHT
+	public boolean themSanPham(SanPham sanPham) throws SQLException {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		try {
+			PreparedStatement preparedstamets =null;
+			preparedstamets=connection.prepareStatement("insert into SanPham values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			preparedstamets.setString(1, sanPham.getMaSanPham());
+			preparedstamets.setString(2, sanPham.getTenSanPham());
+			preparedstamets.setString(3, sanPham.getXuatXu());
+			preparedstamets.setFloat(4, sanPham.getGiaNhap());
+			preparedstamets.setFloat(5, sanPham.getGiaBan());
+			preparedstamets.setInt(6, sanPham.getSoLuongTon());
+			preparedstamets.setString(7, sanPham.getHinhAnh());
+			preparedstamets.setString(8, sanPham.getMaNXB());
+			preparedstamets.setString(9 , sanPham.getMaTheLoaiSach());
+			preparedstamets.setString(10, sanPham.getTacGia());
+			preparedstamets.setInt(11, sanPham.getSoTrang());
+			preparedstamets.setInt(12, sanPham.getNamXuatBan());
+			preparedstamets.setString(13, sanPham.getMaNhaCungCap());
+			return preparedstamets.executeUpdate() > 0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		connection.close();
+
+		return false;
+	}
+	
+	public boolean suaSanPhamTheoMa(SanPham sanPham) throws SQLException {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		
+		try {
+			PreparedStatement preparedstaments = 
+					connection.prepareStatement("update SanPham settenSanPham=?,xuatXu=?,giaNhap=?,giaBan=?,soLuongTon=?,maNXB=?,maTheLoaiSach=?,tacGia=?,soTrang=?,namXuatBan=?,maNhaCungCap=?,hinhAnh=? "
+							+ "where maSanPham= '"+sanPham.getMaSanPham()+"' ");
+			preparedstaments.setString(1,sanPham.getTenSanPham());
+			preparedstaments.setString(2,sanPham.getXuatXu());
+			preparedstaments.setFloat(3,sanPham.getGiaNhap());
+			preparedstaments.setFloat(4,sanPham.getGiaBan());
+			preparedstaments.setInt(5,sanPham.getSoLuongTon());
+			preparedstaments.setString(6,sanPham.getMaNXB());
+			preparedstaments.setString(7,sanPham.getMaTheLoaiSach());
+			preparedstaments.setString(8,sanPham.getTacGia());
+			preparedstaments.setInt(9,sanPham.getSoTrang());
+			preparedstaments.setInt(10,sanPham.getNamXuatBan());
+			preparedstaments.setString(11,sanPham.getMaNhaCungCap());
+			preparedstaments.setString(12,sanPham.getHinhAnh());
+		} catch (SQLException e) {
+			// TODO: handle exception
+		}
+		connection.close();
+		return false;	
+	}
+	
+	
 }

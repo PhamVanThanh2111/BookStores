@@ -1,4 +1,4 @@
-package dao;
+	package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,7 +19,6 @@ public class KhachHang_DAO {
 		try {
 			PreparedStatement preparedStatement = con.prepareStatement("select * from KhachHang");
 			ResultSet result = preparedStatement.executeQuery();
-
 			while (result.next()) {
 				ds.add(new KhachHang(result.getString(1), result.getString(2), result.getString(3), result.getString(4),
 						result.getString(5)));
@@ -94,15 +93,14 @@ public class KhachHang_DAO {
 	public boolean suaKhachHangTheoMa(KhachHang khachHang) throws SQLException {
 		ConnectDB.getInstance();
 		Connection connection = ConnectDB.getConnection();
-		
 		try {
 			PreparedStatement preparedstaments = 
-					connection.prepareStatement("update KhachHang settenKhachHang=?,gioiTinh=?,soDienThoai=?,diaChi=? "
-							+ "where maKhachHang = '"+khachHang.getMaKhachHang()+"' ");
+					connection.prepareStatement("update KhachHang set tenKhachHang = ?,gioiTinh = ?,soDienThoai= ?,diaChi= ? where maKhachHang ='"+khachHang.getMaKhachHang()+"'");
 			preparedstaments.setString(1,khachHang.getTenKhachHang());
 			preparedstaments.setString(2,khachHang.getGioiTinh());
 			preparedstaments.setString(3,khachHang.getSoDienThoai());
 			preparedstaments.setString(4,khachHang.getDiaChi());
+			return preparedstaments.executeUpdate() > 0;
 		} catch (SQLException e) {
 			// TODO: handle exception
 		}

@@ -768,7 +768,6 @@ public class NhanVien_GUI extends JPanel {
 		}
 
 	}
-
 	public boolean delete() {
 		int row = table.getSelectedRow();
 		if (row == -1) {

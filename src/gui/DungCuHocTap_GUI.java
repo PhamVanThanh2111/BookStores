@@ -222,12 +222,12 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		pThongTin.add(txtXuatXu);
 		
 		cbNhaCC = new JComboBox<String>();
-		cbNhaCC.setSelectedIndex(-1);
 		cbNhaCC.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		cbNhaCC.setBounds(144, 160, 255, 40);
-		
-		// Load Nhà Cung Cấp lên CB
 		loadCBNhaCC();
+		cbNhaCC.setSelectedIndex(-1);
+		// Load Nhà Cung Cấp lên CB
+		
 		
 		
 		
@@ -286,6 +286,9 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		loadData();
 		btnlamMoi.addActionListener(this);
 		btnAdd.addActionListener(this);
+		btnUpdate.addActionListener(this);
+		btnDelete.addActionListener(this);
+		
 		
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.addMouseListener(new MouseListener() {
@@ -324,7 +327,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 				txtgiaNhap.setText((String)model.getValueAt(r, 3).toString());
 				txtgiaBan.setText((String)model.getValueAt(r, 4).toString());
 				txtsoLuong.setText((String)model.getValueAt(r, 5).toString());
-				cbNhaCC.setSelectedItem(model.getValueAt(r, 6).toString());
+				cbNhaCC.setSelectedItem((String)model.getValueAt(r, 6));
 			}
 		});;
 		
@@ -419,35 +422,37 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		}
 	}
 	
-//	public boolean suaDCHT() {
-//		int r = table.getSelectedRow();
-//		if(r==-1) {
-//			JOptionPane.showMessageDialog(null, "Bạn Chưa Chọn Sản Phẩm !");
-//		}else {
-//			if(txtmaDCHT.getText().equalsIgnoreCase("")||
-//				txttenDCHT.getText().equalsIgnoreCase("")||
-//				txtgiaNhap.getText().equalsIgnoreCase("")||
-//				txtgiaBan.getText().equalsIgnoreCase("")||
-//				txtXuatXu.getText().equalsIgnoreCase("")||
-//				txtsoLuong.getText().equalsIgnoreCase("")||
-//				cbNhaCC.getSelectedIndex()==-1) {
-//				JOptionPane.showMessageDialog(null, "Thông Tin Rỗng !");
-//			}else {
-//				openText();
-//				SanPham sanPham = new SanPham();
-//				
-//				sanPham.setMaSanPham(txtmaDCHT.getText());
-//				san
-//				
-//				
-//			}
-//			
-//			
-//		}
-//		
-//		
-//		return false;
-//	}
+	public boolean suaDCHT() throws SQLException {
+			if(txtmaDCHT.getText().equalsIgnoreCase("")||
+				txttenDCHT.getText().equalsIgnoreCase("")||
+				txtgiaNhap.getText().equalsIgnoreCase("")||
+				txtgiaBan.getText().equalsIgnoreCase("")||
+				txtXuatXu.getText().equalsIgnoreCase("")||
+				txtsoLuong.getText().equalsIgnoreCase("")||
+				cbNhaCC.getSelectedIndex()==-1) {
+				JOptionPane.showMessageDialog(null, "Thông Tin Rỗng !");
+			}else {
+				
+				SanPham sanPham = new SanPham();
+				sanPham.setMaSanPham(txtmaDCHT.getText());
+				sanPham.setTenSanPham(txttenDCHT.getText());
+				sanPham.setXuatXu(txtXuatXu.getText());
+				sanPham.setGiaNhap(Float.parseFloat(txtgiaNhap.getText()));
+				sanPham.setGiaBan(Float.parseFloat(txtgiaBan.getText()));
+				sanPham.setSoLuongTon(Integer.parseInt(txtsoLuong.getText()));
+				sanPham.setHinhAnh("a");
+				sanPham.setMaNXB(null);		
+				sanPham.setMaTheLoaiSach(null);
+				sanPham.setSoTrang(0);
+				sanPham.setTacGia(null);
+				sanPham.setNamXuatBan(0);
+				sanPham.setMaNhaCungCap(nhaCC_DAO.getNhaCungCapTheoTen(cbNhaCC.getSelectedItem().toString()).getMaNCC());
+				sanPham_DAO.suaSanPhamTheoMa(sanPham);
+				JOptionPane.showMessageDialog(null, "Cập Nhập Sản Phẩm Thành Công !");
+			}
+
+		return false;
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object o  = e.getSource();
@@ -476,6 +481,48 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 							closeText();
 							loadData();
 						}
+					}
+				}
+			}else {
+				if(o.equals(btnUpdate)) {
+				
+						if(btnUpdate.getText().equalsIgnoreCase("Sửa")) {
+							int r = table.getSelectedRow();
+							if(r==-1) {
+								JOptionPane.showMessageDialog(null, "Bạn Chưa Chọn Sản Phẩm !");
+							}else {
+								openText();
+								btnAdd.setEnabled(false);
+								btnUpdate.setText("Xác Nhận");
+								btnDelete.setText("Hủy");
+						}
+					}else {
+						if(btnUpdate.getText().equalsIgnoreCase("Xác Nhận")) {
+							closeText();
+							btnAdd.setEnabled(true);
+							btnUpdate.setText("Sửa");
+							btnDelete.setText("Xóa");
+							try {
+								suaDCHT();
+								loadData();	
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							
+						}
+					}
+				}else {
+					if(o.equals(btnDelete)) {
+						if(btnDelete.getText().equalsIgnoreCase("Hủy")) {
+							btnAdd.setEnabled(true);
+							closeText();
+							btnDelete.setText("Xóa");
+							btnUpdate.setText("Sửa");
+							btnUpdate.setEnabled(true);
+							btnAdd.setText("Thêm");
+						}
+						
 					}
 				}
 			}

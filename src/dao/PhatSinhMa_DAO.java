@@ -71,7 +71,7 @@ public class PhatSinhMa_DAO {
 		Connection con = ConnectDB.getConnection();
 		Statement statement = con.createStatement();
 		ResultSet resultSet = statement.executeQuery(
-				"select CONCAT('NXB', RIGHT(CONCAT('0000',ISNULL(right(max(maNXB),4),0) + 1),4)) from [dbo].[NXB] where maNXB like 'NXB%'");
+				"select CONCAT('NXB', RIGHT(CONCAT('0000',ISNULL(right(max(maNhaXuatBan),4),0) + 1),4)) from [dbo].[NhaXuatBan] where maNhaXuatBan like 'NXB%'");
 		String maNXB = "";
 		while (resultSet.next()) {
 			maNXB = resultSet.getString(1);

@@ -8,6 +8,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
@@ -59,6 +60,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		
 		JButton btnAdd = new JButton("Thêm");
 		btnAdd.setOpaque(true);
+		btnAdd.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/add_person.png")));
 		btnAdd.setForeground(Color.WHITE);
 		btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnAdd.setBackground(new Color(73, 129, 158));
@@ -67,6 +69,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		
 		JButton btnDelete = new JButton("Xóa");
 		btnDelete.setOpaque(true);
+		btnDelete.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/remove_person.png")));
 		btnDelete.setForeground(Color.WHITE);
 		btnDelete.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnDelete.setBackground(new Color(73, 129, 158));
@@ -75,6 +78,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		
 		JButton btnUpdate = new JButton("Sửa");
 		btnUpdate.setOpaque(true);
+		btnUpdate.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/update_person.png")));
 		btnUpdate.setForeground(Color.WHITE);
 		btnUpdate.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnUpdate.setBackground(new Color(73, 129, 158));
@@ -83,6 +87,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		
 		JButton btnlamMoi = new JButton("Làm mới");
 		btnlamMoi.setOpaque(true);
+		btnlamMoi.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/refresh.png")));
 		btnlamMoi.setForeground(Color.WHITE);
 		btnlamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnlamMoi.setBackground(new Color(73, 129, 158));
@@ -202,6 +207,8 @@ public class TheLoaiSach_GUI extends JPanel {
 			table.setRowHeight(25);
 		}
 	}
+	
+	
 	public void refresh() {
 		loadData();
 	}

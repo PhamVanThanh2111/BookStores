@@ -9,8 +9,6 @@ import java.util.List;
 import connect.ConnectDB;
 
 import entity.NhaCungCap;
-import entity.NhaXuatBan;
-import entity.SanPham;
 public class NhaCungCap_DAO {
 
     public List<NhaCungCap> getAllNhaCungCap() {

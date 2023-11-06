@@ -166,9 +166,8 @@ public class NhaCungCap_GUI extends JPanel {
 		txtdiaChi.setBounds(170, 412, 240, 40);
 		pNhapThongTin.add(txtdiaChi);
 		
-		PanelRound pDanhSach = new PanelRound();
+		JPanel pDanhSach = new JPanel();
 		pDanhSach.setLayout(null);
-		pDanhSach.setRoundTopLeft(16);
 		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pDanhSach.setBackground(Color.WHITE);
 		pDanhSach.setBounds(0, 0, 850, 720);

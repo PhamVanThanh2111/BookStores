@@ -176,6 +176,7 @@ public class NhanVien_GUI extends JPanel {
 		txtcCCD.setColumns(10);
 		txtcCCD.setBounds(170, 562, 240, 40);
 		txtcCCD.setBorder(null);
+		
 		pNhapThongTin.add(txtcCCD);
 
 		txtEmail = new JTextField();
@@ -188,11 +189,10 @@ public class NhanVien_GUI extends JPanel {
 		txtEmail.setBorder(null);
 		pNhapThongTin.add(txtEmail);
 
-		PanelRound pDanhSach = new PanelRound();
+		JPanel pDanhSach = new JPanel();
 		pDanhSach.setBackground(new Color(255, 255, 255));
 		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pDanhSach.setBounds(0, 0, 850, 720);
-		pDanhSach.setRoundTopLeft(16);
 		pMain.add(pDanhSach);
 		pDanhSach.setLayout(null);
 
@@ -511,7 +511,7 @@ public class NhanVien_GUI extends JPanel {
 //												                System.out.println("Internal frame is closed.");
 												                model.setRowCount(0);
 												            	loadDataIntoTable(ds);
-												            	ds = new ArrayList<NhanVien>();
+												            	ds.removeAll(ds);
 												            	enableButton();
 												            }
 												        });

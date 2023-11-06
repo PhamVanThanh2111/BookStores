@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import connect.ConnectDB;
-import entity.KhachHang;
 import entity.SanPham;
 
 public class SanPham_DAO {

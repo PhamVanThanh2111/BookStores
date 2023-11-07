@@ -6,8 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -24,6 +26,8 @@ import javax.swing.table.JTableHeader;
 import dao.NhaXuatBan_DAO;
 import dao.PhatSinhMa_DAO;
 import entity.NhaXuatBan;
+import entity.NhanVien;
+import entity.TaiKhoan;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -44,7 +48,6 @@ public class NhaXuatBan_GUI extends JPanel {
 	private JTable table;
 	private JTableHeader tableHeader;
 
-	
 	private JTextField txtTenNhaXuatBan;
 	private JTextField txtDiaChi;
 	private JTextField txtSoDienThoai;

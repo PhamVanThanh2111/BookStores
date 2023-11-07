@@ -177,7 +177,7 @@ public class NhaCungCap_GUI extends JPanel {
 		scrollPaneNCC.setToolTipText("Chọn vào nhà cung cấp cần hiển thị thông tin");
 		scrollPaneNCC.setBorder(new LineBorder(new Color(80, 80, 80), 1, true));
 		scrollPaneNCC.setBackground(new Color(80, 80, 80));
-		scrollPaneNCC.setBounds(20, 82, 810, 557);
+		scrollPaneNCC.setBounds(20, 100, 810, 545);
 		pDanhSach.add(scrollPaneNCC);
 		
 		String cols[] = { "Mã Nhà Cung Cấp ", "Tên Nhà Cung Cấp", "Địa Chỉ", "Số Điện Thoại", "Email" };
@@ -235,13 +235,13 @@ public class NhaCungCap_GUI extends JPanel {
 		
 		
 		JLabel lblnhaCungCap = new JLabel("Nhà Cung Cấp");
-		lblnhaCungCap.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblnhaCungCap.setBounds(20, 20, 130, 40);
+		lblnhaCungCap.setFont(new Font("SansSerif", Font.BOLD, 18));
+		lblnhaCungCap.setBounds(20, 40, 130, 40);
 		pDanhSach.add(lblnhaCungCap);
 		
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(60, 60, 60));
-		separator.setBounds(154, 40, 676, 2);
+		separator.setBounds(154, 60, 676, 2);
 		pDanhSach.add(separator);
 		
 		JButton btnXoa = new JButton("Xóa");

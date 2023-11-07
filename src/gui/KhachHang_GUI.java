@@ -93,7 +93,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		scrollPaneKH.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
 		scrollPaneKH.setBorder(new LineBorder(new Color(80, 80, 80), 2, true));
 		scrollPaneKH.setBackground(new Color(80, 80, 80));
-		scrollPaneKH.setBounds(20, 82, 810, 557);
+		scrollPaneKH.setBounds(20, 100, 810, 545);
 		pDanhSach.add(scrollPaneKH);
 		String[] cols = { "Tên KH", "Mã KH", "Giới Tính", "Số Điện Thoại", "Địa Chỉ" };
 		model = new DefaultTableModel(cols, 0);
@@ -114,12 +114,12 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 
 		JLabel lblThongTin = new JLabel("Khách Hàng");
 		lblThongTin.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblThongTin.setBounds(20, 40, 133, 32);
+		lblThongTin.setBounds(20, 40, 133, 40);
 		pDanhSach.add(lblThongTin);
 
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(60, 60, 60));
-		separator.setBounds(142, 56, 688, 2);
+		separator.setBounds(142, 60, 688, 2);
 		pDanhSach.add(separator);
 
 		btnThem = new JButton("Thêm");

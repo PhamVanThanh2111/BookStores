@@ -198,7 +198,7 @@ public class NhanVien_GUI extends JPanel {
 		pDanhSach.setLayout(null);
 
 		JScrollPane scrollPaneNV = new JScrollPane();
-		scrollPaneNV.setBounds(20, 82, 810, 557);
+		scrollPaneNV.setBounds(20, 100, 810, 545);
 		scrollPaneNV.setToolTipText("Chọn vào nhân viên cần hiển thị thông tin");
 		scrollPaneNV.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		scrollPaneNV.setBackground(new Color(255, 255, 255));
@@ -369,13 +369,13 @@ public class NhanVien_GUI extends JPanel {
 
 								
 								JLabel lblThongTin = new JLabel("Nhân Viên");
-								lblThongTin.setFont(new Font("Tahoma", Font.BOLD, 18));
-								lblThongTin.setBounds(20, 40, 133, 32);
+								lblThongTin.setFont(new Font("SansSerif", Font.BOLD, 18));
+								lblThongTin.setBounds(20, 40, 130, 40);
 								pDanhSach.add(lblThongTin);
 								
 								JSeparator separator = new JSeparator();
 								separator.setForeground(new Color(60, 60, 60));
-								separator.setBounds(126, 56, 704, 2);
+								separator.setBounds(126, 60, 704, 2);
 								pDanhSach.add(separator);
 								
 								btnAdd = new JButton("Thêm");

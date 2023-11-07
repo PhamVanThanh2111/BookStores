@@ -268,7 +268,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		});
 		pMenu1.add(lblSach);
 		
-		lblDungCuHocTap = new JLabel("DCHT");
+		lblDungCuHocTap = new JLabel("Dụng Cụ Học Tập");
 		lblDungCuHocTap.setToolTipText("Dụng cụ học tập");
 		lblDungCuHocTap.setHorizontalAlignment(SwingConstants.LEFT);
 		lblDungCuHocTap.setForeground(Color.WHITE);

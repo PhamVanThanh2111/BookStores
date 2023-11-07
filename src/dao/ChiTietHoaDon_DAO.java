@@ -4,12 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import connect.ConnectDB;
 import entity.ChiTietHoaDon;
-import entity.HoaDon;
 
 public class ChiTietHoaDon_DAO {
 	// them nhan vien

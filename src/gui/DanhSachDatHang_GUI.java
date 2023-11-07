@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import javax.swing.Timer;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -133,6 +132,10 @@ public class DanhSachDatHang_GUI extends JPanel {
 				int row = tableDSPD.getSelectedRow();
 				PhieuDatHang phieuDatHang = phieuDatHang_DAO.getPhieuDatHangTheoMaPhieuDatHang(modelDSPD.getValueAt(row, 0).toString());
 				loadDataIntoTableChiTietPhieuDatTheoMaPhieuDat(phieuDatHang.getMaPhieuDatHang());
+				lblMaPhieuDatHangValue.setText(modelDSPD.getValueAt(row, 0).toString());
+				lblTenKhachHang.setText(modelDSPD.getValueAt(row, 1).toString());
+				lblSDThoai.setText(modelDSPD.getValueAt(row, 2).toString());
+				lblTenNhanVien.setText(modelDSPD.getValueAt(row, 3).toString());
 			}
 		});
 		scrDanhSachHoaDon.setViewportView(tableDSPD);
@@ -167,6 +170,21 @@ public class DanhSachDatHang_GUI extends JPanel {
 		btnLapHD.setBounds(445, 640, 135, 40);
 		pDanhSachDatHang.add(btnLapHD);
 		
+		JButton btnLamMoi = new JButton("Làm Mới");
+		btnLamMoi.setForeground(Color.WHITE);
+		btnLamMoi.setFont(new Font("Tahoma", Font.BOLD, 18));
+		btnLamMoi.setBackground(new Color(73, 129, 158));
+		btnLamMoi.setBounds(294, 640, 135, 40);
+		btnLamMoi.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+		    	loadDataIntoTableDanhSachPhieuDatHang(phieuDatHang_DAO.getAllListPhieuDatHang());
+			}
+		});
+		pDanhSachDatHang.add(btnLamMoi);
+		
 		JPanel pThongTinChiTiet = new JPanel();
 		pThongTinChiTiet.setBackground(new Color(255, 255, 255));
 		pThongTinChiTiet.setBorder(new LineBorder(new Color(0, 0, 0), 2));
@@ -179,12 +197,12 @@ public class DanhSachDatHang_GUI extends JPanel {
 		lblThongTinChiTiet.setBounds(20, 30, 200, 40);
 		pThongTinChiTiet.add(lblThongTinChiTiet);
 		
-		JLabel lblMaPhieuDatHang = new JLabel("Mã Hóa Đơn:");
+		JLabel lblMaPhieuDatHang = new JLabel("Mã Phiếu Đặt:");
 		lblMaPhieuDatHang.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblMaPhieuDatHang.setBounds(40, 120, 113, 40);
+		lblMaPhieuDatHang.setBounds(40, 120, 150, 40);
 		pThongTinChiTiet.add(lblMaPhieuDatHang);
 		
-		lblMaPhieuDatHangValue = new JLabel("HD0002");
+		lblMaPhieuDatHangValue = new JLabel();
 		lblMaPhieuDatHangValue.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblMaPhieuDatHangValue.setBounds(210, 120, 150, 40);
 		pThongTinChiTiet.add(lblMaPhieuDatHangValue);
@@ -194,7 +212,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 		lblTenKH.setBounds(40, 165, 150, 40);
 		pThongTinChiTiet.add(lblTenKH);
 		
-		lblTenKhachHang = new JLabel("Trần Thanh Tâm");
+		lblTenKhachHang = new JLabel();
 		lblTenKhachHang.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblTenKhachHang.setBounds(210, 165, 282, 40);
 		pThongTinChiTiet.add(lblTenKhachHang);
@@ -204,7 +222,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 		lblSDT.setBounds(40, 210, 150, 40);
 		pThongTinChiTiet.add(lblSDT);
 		
-		lblSDThoai = new JLabel("0388412884");
+		lblSDThoai = new JLabel();
 		lblSDThoai.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblSDThoai.setBounds(210, 210, 282, 40);
 		pThongTinChiTiet.add(lblSDThoai);
@@ -214,7 +232,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 		lblTenNV.setBounds(40, 255, 150, 40);
 		pThongTinChiTiet.add(lblTenNV);
 		
-		lblTenNhanVien = new JLabel("Trịnh Minh Kha");
+		lblTenNhanVien = new JLabel();
 		lblTenNhanVien.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblTenNhanVien.setBounds(210, 255, 282, 40);
 		pThongTinChiTiet.add(lblTenNhanVien);
@@ -298,7 +316,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 		lblTien.setBounds(360, 550, 150, 40);
 		pThongTinChiTiet.add(lblTien);
 
-		updateTheoThoiGian();
+    	loadDataIntoTableDanhSachPhieuDatHang(phieuDatHang_DAO.getAllListPhieuDatHang());
 	}
 	
 	private void loadDataIntoTableDanhSachPhieuDatHang(ArrayList<PhieuDatHang> danhSachPhieuDatHangs) {
@@ -324,19 +342,5 @@ public class DanhSachDatHang_GUI extends JPanel {
 								chiTietPhieuDatHang.getDonGia()};
 			modelCTPD.addRow(objects);
 		}
-	}
-	
-	private void updateTheoThoiGian() {
-		Timer timer = new Timer(1000, (ActionListener) new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        // Thực hiện các hoạt động cập nhật giao diện ở đây
-		    	loadDataIntoTableDanhSachPhieuDatHang(phieuDatHang_DAO.getAllListPhieuDatHang());
-		    }
-		});
-		timer.start();
-	}
-	
-	private void clickTableDSPD() {
-		
 	}
 }

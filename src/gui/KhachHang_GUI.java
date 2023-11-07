@@ -21,12 +21,10 @@ import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.Color;
-import java.awt.FlowLayout;
 
 import dao.KhachHang_DAO;
 import dao.PhatSinhMa_DAO;
 import entity.KhachHang;
-import entity.NhanVien;
 
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -36,8 +34,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.JDesktopPane;
-import javax.swing.JFrame;
-
 
 public class KhachHang_GUI extends JPanel implements ActionListener {
 	/**

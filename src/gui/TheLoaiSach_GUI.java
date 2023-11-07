@@ -2,11 +2,16 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,7 +22,9 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import dao.PhatSinhMa_DAO;
 import dao.TheLoaiSach_DAO;
+import entity.NhaXuatBan;
 import entity.TheLoaiSach;
 public class TheLoaiSach_GUI extends JPanel {
 
@@ -25,12 +32,23 @@ public class TheLoaiSach_GUI extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField txtmaTheLoaiSach;
-	private JTextField textField_1;
+	private JTextField txtMaTheLoaiSach;
+	private JTextField txtTenTheLoaiSach;
+	
 	private JTable table;
+	
 	private JTableHeader tableHeader;
 	private DefaultTableModel model;
+	
 	private TheLoaiSach_DAO theLoaiSach_DAO;
+	private PhatSinhMa_DAO phatSinhMa_DAO;
+	
+	private JButton btnLamMoi;
+	private JButton btnDelete;
+	private	JButton btnAdd ;
+	private JButton btnUpdate;
+	private JButton btnTim;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -38,7 +56,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		
 		// khai bao DAO
 		theLoaiSach_DAO = new TheLoaiSach_DAO();
-		
+		phatSinhMa_DAO = new PhatSinhMa_DAO();
 		setLayout(null);
 		
 		JPanel pMain = new JPanel();
@@ -53,74 +71,153 @@ public class TheLoaiSach_GUI extends JPanel {
 		pThongTin.setBounds(0, 0, 1300, 300);
 		pMain.add(pThongTin);
 		
-		JLabel lblThngTinTh = new JLabel("Thông Tin Thể Loại Sách");
-		lblThngTinTh.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblThngTinTh.setBounds(20, 15, 300, 40);
-		pThongTin.add(lblThngTinTh);
+		JLabel lblThongTinTheLoaiSach = new JLabel("Thông Tin Thể Loại Sách");
+		lblThongTinTheLoaiSach.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblThongTinTheLoaiSach.setBounds(20, 15, 300, 40);
+		pThongTin.add(lblThongTinTheLoaiSach);
 		
-		JButton btnAdd = new JButton("Thêm");
+		btnAdd = new JButton("Thêm");
 		btnAdd.setOpaque(true);
 		btnAdd.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/add_person.png")));
 		btnAdd.setForeground(Color.WHITE);
 		btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnAdd.setBackground(new Color(73, 129, 158));
 		btnAdd.setBounds(145, 200, 135, 40);
+		btnAdd.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (btnAdd.getText().equals("Thêm")) {
+					enableEdit();
+					btnDelete.setText("Hủy");
+					btnAdd.setText("Xác nhận");
+					btnLamMoi.setEnabled(false);
+					btnUpdate.setEnabled(false);
+//					btnTim.setEnabled(false);
+					
+				}
+				else {
+					add();
+					disableEdit();
+					btnAdd.setText("Thêm");
+					btnDelete.setText("Xóa");
+					btnLamMoi.setEnabled(true);
+					btnUpdate.setEnabled(true);
+//					btnTim.setEnabled(true);
+				}
+			}
+
+		});
 		pThongTin.add(btnAdd);
 		
-		JButton btnDelete = new JButton("Xóa");
+		
+		btnDelete = new JButton("Xóa");
 		btnDelete.setOpaque(true);
 		btnDelete.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/remove_person.png")));
 		btnDelete.setForeground(Color.WHITE);
 		btnDelete.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnDelete.setBackground(new Color(73, 129, 158));
 		btnDelete.setBounds(432, 200, 135, 40);
+		btnDelete.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (btnDelete.getText().equals("Xóa"))
+					try {
+						delete();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				else {
+					disableEdit();
+					btnAdd.setText("Thêm");
+					btnUpdate.setText("Sửa");
+					btnDelete.setText("Xóa");
+					btnLamMoi.setEnabled(true);
+					btnAdd.setEnabled(true);
+					btnUpdate.setEnabled(true);
+					btnTim.setEnabled(true);
+				}
+			}
+		});
 		pThongTin.add(btnDelete);
 		
-		JButton btnUpdate = new JButton("Sửa");
+		btnUpdate = new JButton("Sửa");
 		btnUpdate.setOpaque(true);
 		btnUpdate.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/update_person.png")));
 		btnUpdate.setForeground(Color.WHITE);
 		btnUpdate.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnUpdate.setBackground(new Color(73, 129, 158));
 		btnUpdate.setBounds(719, 200, 135, 40);
+		btnUpdate.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int row = table.getSelectedRow();
+				if (btnUpdate.getText().equals("Sửa")) {
+					if (row == -1)
+						JOptionPane.showMessageDialog(null, "Bạn phải chọn vào thể lọai sách cần sửa!");
+					else {
+						enableEdit();
+						btnDelete.setText("Hủy");
+						btnUpdate.setText("Xác nhận");
+						btnLamMoi.setEnabled(false);
+						btnAdd.setEnabled(false);
+						btnTim.setEnabled(false);
+					}
+				}
+				else {
+					update();
+					btnUpdate.setText("Sửa");
+					btnDelete.setText("Xóa");
+					disableEdit();
+					btnLamMoi.setEnabled(true);
+					btnAdd.setEnabled(true);
+					btnTim.setEnabled(true);
+				}
+			}	
+		});
 		pThongTin.add(btnUpdate);
 		
-		JButton btnlamMoi = new JButton("Làm mới");
-		btnlamMoi.setOpaque(true);
-		btnlamMoi.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/refresh.png")));
-		btnlamMoi.setForeground(Color.WHITE);
-		btnlamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnlamMoi.setBackground(new Color(73, 129, 158));
-		btnlamMoi.setBounds(1006, 200, 135, 40);
-		pThongTin.add(btnlamMoi);
+		btnLamMoi = new JButton("Làm mới");
+		btnLamMoi.setOpaque(true);
+		btnLamMoi.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/refresh.png")));
+		btnLamMoi.setForeground(Color.WHITE);
+		btnLamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnLamMoi.setBackground(new Color(73, 129, 158));
+		btnLamMoi.setBounds(1006, 200, 135, 40);
+		pThongTin.add(btnLamMoi);
 		
-		JLabel lblmaTheLoaiSach = new JLabel("Mã Thể Loại Sách:");
-		lblmaTheLoaiSach.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblmaTheLoaiSach.setBounds(50, 100, 150, 40);
-		pThongTin.add(lblmaTheLoaiSach);
+		JLabel lblMaTheLoaiSach = new JLabel("Mã Thể Loại Sách:");
+		lblMaTheLoaiSach.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblMaTheLoaiSach.setBounds(50, 100, 150, 40);
+		pThongTin.add(lblMaTheLoaiSach);
 		
-		JLabel lbltenTheLoaiSach = new JLabel("Tên Thể Loại Sách:");
-		lbltenTheLoaiSach.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lbltenTheLoaiSach.setBounds(680, 100, 175, 40);
-		pThongTin.add(lbltenTheLoaiSach);
+		JLabel lblTenTheLoaiSach = new JLabel("Tên Thể Loại Sách:");
+		lblTenTheLoaiSach.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblTenTheLoaiSach.setBounds(680, 100, 175, 40);
+		pThongTin.add(lblTenTheLoaiSach);
 		
-		txtmaTheLoaiSach = new JTextField();
-		txtmaTheLoaiSach.setToolTipText("Mã Sách");
-		txtmaTheLoaiSach.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtmaTheLoaiSach.setEditable(false);
-		txtmaTheLoaiSach.setColumns(10);
-		txtmaTheLoaiSach.setBackground(Color.WHITE);
-		txtmaTheLoaiSach.setBounds(220, 100, 400, 40);
-		pThongTin.add(txtmaTheLoaiSach);
+		txtMaTheLoaiSach = new JTextField();
+		txtMaTheLoaiSach.setToolTipText("Mã  Thể Loại Sách");
+		txtMaTheLoaiSach.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtMaTheLoaiSach.setEditable(false);
+		txtMaTheLoaiSach.setColumns(10);
+		txtMaTheLoaiSach.setBackground(Color.WHITE);
+		txtMaTheLoaiSach.setBounds(220, 100, 400, 40);
+		pThongTin.add(txtMaTheLoaiSach);
 		
-		textField_1 = new JTextField();
-		textField_1.setToolTipText("Mã Sách");
-		textField_1.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		textField_1.setEditable(false);
-		textField_1.setColumns(10);
-		textField_1.setBackground(Color.WHITE);
-		textField_1.setBounds(850, 100, 400, 40);
-		pThongTin.add(textField_1);
+		txtTenTheLoaiSach = new JTextField();
+		txtTenTheLoaiSach.setToolTipText("Tên thể loại sách");
+		txtTenTheLoaiSach.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtTenTheLoaiSach.setEditable(false);
+		txtTenTheLoaiSach.setColumns(10);
+		txtTenTheLoaiSach.setBackground(Color.WHITE);
+		txtTenTheLoaiSach.setBounds(850, 100, 400, 40);
+		pThongTin.add(txtTenTheLoaiSach);
 		
 		JPanel pDanhSach = new JPanel();
 		pDanhSach.setBackground(new Color(255, 255, 255));
@@ -177,7 +274,12 @@ public class TheLoaiSach_GUI extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				
+				int row = table.getSelectedRow();
+			    if (row >= 0) { // Ensure a row is selected  
+			        TheLoaiSach	theLoaiSach = theLoaiSach_DAO.getTheLoaiSachTheoMa(model.getValueAt(row, 0).toString());
+			        txtMaTheLoaiSach.setText(theLoaiSach.getmaTheLoaiSach());
+			        txtTenTheLoaiSach.setText(theLoaiSach.gettenTheLoaiSach());
+			        }
 			}
 		});
 		scrollPaneTheLoaiSach.setViewportView(table);
@@ -191,26 +293,139 @@ public class TheLoaiSach_GUI extends JPanel {
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 		table.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
 		table.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
-		JLabel lblChiTitTh = new JLabel("Chi Tiết Thể Loại Sách");
-		lblChiTitTh.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblChiTitTh.setBounds(22, 10, 291, 40);
-		pDanhSach.add(lblChiTitTh);
-		loadData();
+		JLabel lblChiTitTheLoaiSach = new JLabel("Chi Tiết Thể Loại Sách");
+		lblChiTitTheLoaiSach.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblChiTitTheLoaiSach.setBounds(22, 10, 291, 40);
+		pDanhSach.add(lblChiTitTheLoaiSach);
+		refresh();
+		;
 	}
-	public void loadData() {
+
+
+	// đổ dữ liệu lên bảng
+	public void loadDataIntoTable(List<TheLoaiSach> list) {
 	    // Xóa dữ liệu cũ trước khi nạp dữ liệu mới
 	    model.setRowCount(0);
 	    // Nạp dữ liệu sản phẩm lên bảng
 		for (TheLoaiSach theLoaiSach : theLoaiSach_DAO.getAllListTheLoaiSach()) {
-			Object[] object = { theLoaiSach.getMaLoaiSach(),theLoaiSach.getTenLoaiSach() };
+			Object[] object = { theLoaiSach.getmaTheLoaiSach(),theLoaiSach.gettenTheLoaiSach() };
 			model.addRow(object);
-			table.setRowHeight(25);
 		}
 	}
-	
-	
+	// làm mới
 	public void refresh() {
-		loadData();
+		loadDataIntoTable(theLoaiSach_DAO.getAllListTheLoaiSach());
 	}
+	// Thêm thể loại sách
+	public boolean add() {
+	    if (txtTenTheLoaiSach.getText().equals("")) {
+	        JOptionPane.showMessageDialog(null, "Tên thể loại sách không được để trống!");
+	        txtTenTheLoaiSach.requestFocus();
+	        return false;
+	    } else {
+	        try {
+	        	TheLoaiSach theLoaiSach = new TheLoaiSach();
+	        	
+	            theLoaiSach.setmaTheLoaiSach(phatSinhMa_DAO.getMaTheLoaiSach());
+	            theLoaiSach.settenTheLoaiSach(txtTenTheLoaiSach.getText()); 
+	            theLoaiSach_DAO.themTheLoaiSach(theLoaiSach); 
+	            JOptionPane.showMessageDialog(null, "Thêm thể loại sách thành công!");
+	            refresh(); 
+	            return true;
+	        } catch (SQLException e1) {
+	            JOptionPane.showMessageDialog(null, "Thêm thể loại sách thất bại!");
+	            e1.printStackTrace();
+	            return false;
+	        }
+	    }
+	}
+	//Xóa thể loại sách
+		public boolean delete() throws SQLException {
+			int row = table.getSelectedRow();
+			if (row == -1) {
+				JOptionPane.showMessageDialog(null, "Bạn phải chọn thể loại sách cần xóa!");
+				return false;
+			} else {
+				int option = JOptionPane.showConfirmDialog(null,
+						"Bạn có chắc muốn xóa thể loại sách '" + model.getValueAt(row, 0) + "' chứ?", "Xóa?",
+						JOptionPane.YES_NO_OPTION);
+				if (option == JOptionPane.YES_OPTION) {
+					try {
+						theLoaiSach_DAO.xoaTheLoaiSach(model.getValueAt(row, 0).toString());
+						JOptionPane.showMessageDialog(null, "Xóa thành công thể loại sách '" + model.getValueAt(row, 0) + "'!");
+						refresh();
+						return true;					
+					} catch (Exception e) {
+						// TODO: handle exception
+					JOptionPane.showMessageDialog(null, "Không thể xóa thể loại sách này vì đã tồn tại sách!");
+					refresh();
+					return false;
+					}
+				}
+				return false;
+			}
+		}
+		//Sửa nhà xuất bản theo mã
+		public boolean update() {
+			int row = table.getSelectedRow();
+			if (row == -1) {
+				JOptionPane.showMessageDialog(null, "Bạn phải chọn thể loại sách cần sửa!");
+			}
+			else
+				if (txtTenTheLoaiSach.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Tên thể loại sách không được để trống!");
+					txtTenTheLoaiSach.requestFocus();
+					return false;
+				}
+				else {
+					int option = JOptionPane.showConfirmDialog(null,
+							"Bạn có chắc muốn sửa thể loại sách? '" + model.getValueAt(row, 0) + "' chứ?", "Sửa?",
+							JOptionPane.YES_NO_OPTION);
+					if (option == JOptionPane.YES_OPTION) {
+						try {
+							TheLoaiSach theLoaiSach = new TheLoaiSach(txtTenTheLoaiSach.getText());
+							theLoaiSach_DAO.suaTheLoaiSachTheoMa(theLoaiSach);
+							JOptionPane.showMessageDialog(null, "Sửa thành công thể loại sách '" + model.getValueAt(row, 0) + "'!");
+							refresh();
+							return true;
+						} catch (SQLException e1) {
+//							 TODO Auto-generated catch block
+							JOptionPane.showMessageDialog(null,
+									"Sửa thể loại sách '\" + model.getValueAt(row, 0) + \"' không thành công!");
+							return false;
+						}
+					} else {
+						return false;
+					}
+				}
+			return false;	
+		}
+		
+
+	private void enableEdit() {
+	    txtTenTheLoaiSach.setEditable(true);
+	}
+
+	private void disableEdit() {
+	    txtTenTheLoaiSach.setEditable(false);
+	    txtTenTheLoaiSach.setBorder(null);
+	}
+
+	private void enableButton() {
+	    btnLamMoi.setEnabled(true);
+	    btnAdd.setEnabled(true);
+	    btnDelete.setEnabled(true);
+	    btnUpdate.setEnabled(true);
+	    btnTim.setEnabled(true);
+	}
+
+	private void disableButton() {
+	    btnLamMoi.setEnabled(false);
+	    btnAdd.setEnabled(false);
+	    btnDelete.setEnabled(false);
+	    btnUpdate.setEnabled(false);
+	    btnTim.setEnabled(false);
+	}
+
 
 }

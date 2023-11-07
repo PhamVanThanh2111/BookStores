@@ -276,6 +276,7 @@ public class NhaXuatBan_GUI extends JPanel {
 				
 			}
 		});
+		
 		scrollPaneNXB.setViewportView(table);
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
@@ -351,8 +352,6 @@ public class NhaXuatBan_GUI extends JPanel {
 		});
 		pDanhSach.add(btnDelete);
 		
-			
-		
 		btnUpdate = new JButton("Sửa");
 		btnUpdate.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/update_person.png")));
 		btnUpdate.setForeground(Color.WHITE);
@@ -367,7 +366,7 @@ public class NhaXuatBan_GUI extends JPanel {
 				int row = table.getSelectedRow();
 				if (btnUpdate.getText().equals("Sửa")) {
 					if (row == -1)
-						JOptionPane.showMessageDialog(null, "Bạn phải chọn vào nhân viên cần sửa!");
+						JOptionPane.showMessageDialog(null, "Bạn phải chọn vào nhà xuất bản cần sửa!");
 					else {
 						enableEdit();
 						btnDelete.setText("Hủy");
@@ -540,7 +539,7 @@ public class NhaXuatBan_GUI extends JPanel {
 				try {
 					
 					nhaXuatBan_DAO .xoaNhaXuatBanMa(model.getValueAt(row, 0).toString());
-					JOptionPane.showMessageDialog(null, "Xóa thành công nhân viên '" + model.getValueAt(row, 0) + "'!");
+					JOptionPane.showMessageDialog(null, "Xóa thành công thể loại sách '" + model.getValueAt(row, 0) + "'!");
 					refresh();
 					return true;
 				} catch (SQLException e1) {
@@ -596,7 +595,7 @@ public class NhaXuatBan_GUI extends JPanel {
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						JOptionPane.showMessageDialog(null,
-								"Sửa nhân viên '\" + model.getValueAt(row, 0) + \"' không thành công!");
+								"Sửa nhà xuất bản '\" + model.getValueAt(row, 0) + \"' không thành công!");
 						return false;
 					}
 				} else {

@@ -3,43 +3,43 @@ package entity;
 import java.util.Objects;
 
 public class TheLoaiSach {
-	private String maLoaiSach;
-	private String tenLoaiSach;
+	private String maTheLoaiSach;
+	private String tenTheLoaiSach;
 
 	public TheLoaiSach() {
 		super();
 	}
 
-	public TheLoaiSach(String maLoaiSach) {
+	public TheLoaiSach(String maTheLoaiSach) {
 		super();
-		this.maLoaiSach = maLoaiSach;
+		this.maTheLoaiSach = maTheLoaiSach;
 	}
 
-	public TheLoaiSach(String maLoaiSach, String tenLoaiSach) {
+	public TheLoaiSach(String maTheLoaiSach, String tenTheLoaiSach) {
 		super();
-		this.maLoaiSach = maLoaiSach;
-		this.tenLoaiSach = tenLoaiSach;
+		this.maTheLoaiSach = maTheLoaiSach;
+		this.tenTheLoaiSach = tenTheLoaiSach;
 	}
 
-	public String getMaLoaiSach() {
-		return maLoaiSach;
+	public String getmaTheLoaiSach() {
+		return maTheLoaiSach;
 	}
 
-	public void setMaLoaiSach(String maLoaiSach) {
-		this.maLoaiSach = maLoaiSach;
+	public void setmaTheLoaiSach(String maTheLoaiSach) {
+		this.maTheLoaiSach = maTheLoaiSach;
 	}
 
-	public String getTenLoaiSach() {
-		return tenLoaiSach;
+	public String gettenTheLoaiSach() {
+		return tenTheLoaiSach;
 	}
 
-	public void setTenLoaiSach(String tenLoaiSach) {
-		this.tenLoaiSach = tenLoaiSach;
+	public void settenTheLoaiSach(String tenTheLoaiSach) {
+		this.tenTheLoaiSach = tenTheLoaiSach;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(maLoaiSach, tenLoaiSach);
+		return Objects.hash(maTheLoaiSach, tenTheLoaiSach);
 	}
 
 	@Override
@@ -51,12 +51,12 @@ public class TheLoaiSach {
 		if (getClass() != obj.getClass())
 			return false;
 		TheLoaiSach other = (TheLoaiSach) obj;
-		return Objects.equals(maLoaiSach, other.maLoaiSach) && Objects.equals(tenLoaiSach, other.tenLoaiSach);
+		return Objects.equals(maTheLoaiSach, other.maTheLoaiSach) && Objects.equals(tenTheLoaiSach, other.tenTheLoaiSach);
 	}
 
 	@Override
 	public String toString() {
-		return "LoaiSach [maLoaiSach=" + maLoaiSach + ", tenLoaiSach=" + tenLoaiSach + "]";
+		return "LoaiSach [maTheLoaiSach=" + maTheLoaiSach + ", tenTheLoaiSach=" + tenTheLoaiSach + "]";
 	}
 
 }

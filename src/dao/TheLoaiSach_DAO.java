@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
+
 import connect.ConnectDB;
 import entity.TheLoaiSach;
 
@@ -38,14 +41,60 @@ public class TheLoaiSach_DAO {
  			ResultSet resultSet = preparedStatement.executeQuery();
 
  			while (resultSet.next()) {
- 				theLoaiSach.setMaLoaiSach(resultSet.getString(1));
- 				theLoaiSach.setTenLoaiSach(resultSet.getString(2));
+ 				theLoaiSach.setmaTheLoaiSach(resultSet.getString(1));
+ 				theLoaiSach.settenTheLoaiSach(resultSet.getString(2));
  			}
  		} catch (SQLException e) {
- 			// TODO Auto-generated catch block
+ 			// TODO Auto-generated catch bslock
  			e.printStackTrace();
  		}
  		return theLoaiSach;
  	}
-
+ // Thêm thể loại sách
+ 	public boolean themTheLoaiSach(TheLoaiSach theLoaiSach) throws SQLException {
+ 	    ConnectDB.getInstance();
+ 	    Connection connection = ConnectDB.getConnection();
+ 	    try {
+ 	        PreparedStatement preparedStatement = null;
+ 	        preparedStatement = connection.prepareStatement("INSERT INTO TheLoaiSach VALUES (?, ?)");
+ 	        preparedStatement.setString(1, theLoaiSach.getmaTheLoaiSach());
+ 	        preparedStatement.setString(2, theLoaiSach.gettenTheLoaiSach());
+ 	        return preparedStatement.executeUpdate() > 0;
+ 	    } catch (SQLException e) {
+ 	        e.printStackTrace();
+ 	    }
+ 	    return false;
+ 	}
+ 	 // xóa Thể loại sách
+ 	public boolean xoaTheLoaiSach(String maTheLoaiSach) throws SQLException {
+ 		ConnectDB.getInstance();
+ 		Connection connection = ConnectDB.getConnection();
+ 		try {
+ 			PreparedStatement preparedStatement = connection
+ 					.prepareStatement("delete from TheLoaiSach where maTheLoaiSach = '" + maTheLoaiSach + "'");
+ 			return preparedStatement.executeUpdate() > 0;
+ 		} catch (Exception e) {
+ 			// TODO: handle exception
+ 			e.printStackTrace();
+ 		}
+ 		connection.close();
+ 		return false;
+ 	}
+ // sửa thể loại sách theo mã
+  	public boolean suaTheLoaiSachTheoMa(TheLoaiSach theLoaiSach) throws SQLException {
+ 		ConnectDB.getInstance();
+ 		Connection connection = ConnectDB.getConnection();
+ 		try {
+ 			PreparedStatement preparedStatement = connection.prepareStatement(
+ 					"update TheLoaiSach set tenTheLoaiSach = ? where maTheLoaiSach = '"
+ 							+  theLoaiSach.getmaTheLoaiSach() + "'");
+ 			preparedStatement.setString(1, theLoaiSach.gettenTheLoaiSach());
+ 			return preparedStatement.executeUpdate() > 0;
+ 		} catch (Exception e) {
+ 			// TODO: handle exception
+ 			e.printStackTrace();
+ 		}
+ 		connection.close();
+ 		return false;
+ 	}
 }

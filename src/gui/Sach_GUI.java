@@ -412,7 +412,7 @@ public class Sach_GUI extends JPanel {
 			Object[] object = { sanPham.getMaSanPham(), sanPham.getTenSanPham(), sanPham.getXuatXu(),
 					sanPham.getGiaNhap(), sanPham.getGiaBan(), sanPham.getSoLuongTon(),
 					nhaXuatBan_DAO.getnhaXuatBanTheoMa(sanPham.getMaNXB()).getTenNhaXuatBan(),
-					theLoaiSach_DAO.getTheLoaiSachTheoMa(sanPham.getMaTheLoaiSach()).getTenLoaiSach(),
+					theLoaiSach_DAO.getTheLoaiSachTheoMa(sanPham.getMaTheLoaiSach()).gettenTheLoaiSach(),
 					sanPham.getTacGia(), sanPham.getSoTrang(), sanPham.getNamXuatBan(),
 			};
 			model.addRow(object);

@@ -37,18 +37,18 @@ public class PhatSinhMa_DAO {
 		return maHD;
 	}
 
-	// ma Loai Sach
-	public String getMaLoaiSach() throws SQLException {
+	// ma The Loai Sach
+	public String getMaTheLoaiSach() throws SQLException {
 		ConnectDB.getInstance();
 		Connection con = ConnectDB.getConnection();
 		Statement statement = con.createStatement();
 		ResultSet resultSet = statement.executeQuery(
-				"select CONCAT('LS', RIGHT(CONCAT('0000',ISNULL(right(max(maLoaiSach),4),0) + 1),4)) from [dbo].[LoaiSach] where maLoaiSach like 'LS%'");
-		String maLS = "";
+				"select CONCAT('TL', RIGHT(CONCAT('0000',ISNULL(right(max(maTheLoaiSach),4),0) + 1),4)) from [dbo].[TheLoaiSach] where maTheLoaiSach like 'TL%'");
+		String maTL = "";
 		while (resultSet.next()) {
-			maLS = resultSet.getString(1);
+			maTL = resultSet.getString(1);
 		}
-		return maLS;
+		return maTL;
 	}
 
 	// ma Sach

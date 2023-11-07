@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import connect.ConnectDB;
-
+import entity.KhachHang;
 import entity.NhaCungCap;
 public class NhaCungCap_DAO {
 
@@ -72,6 +72,27 @@ public class NhaCungCap_DAO {
 			// TODO: handle exception
 		}
 		return nhaCungCap;
+	}
+    
+    public boolean themNhaCC(NhaCungCap nhaCC) throws SQLException {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		try {
+			PreparedStatement preparedstamets =null;
+			preparedstamets=connection.prepareStatement("insert into NhaCungCap values (?,?,?,?,?)");
+			preparedstamets.setString(1, nhaCC.getMaNCC());
+			preparedstamets.setString(2, nhaCC.getTenNCC());
+			preparedstamets.setString(3, nhaCC.getDiaChi());
+			preparedstamets.setString(4, nhaCC.getSoDienThoai());
+			preparedstamets.setString(5, nhaCC.getEmail());
+			return preparedstamets.executeUpdate() > 0;
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		connection.close();
+
+		return false;
 	}
 	
 }

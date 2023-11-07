@@ -135,4 +135,19 @@ public class PhatSinhMa_DAO {
 		return maDCHT;
 	}
 	
+	// nhacungcap
+	
+	public String getMaNhaCungCap() throws SQLException {
+		ConnectDB.getInstance();
+		Connection con = ConnectDB.getConnection();
+		Statement statement = con.createStatement();
+		ResultSet resultSet = statement.executeQuery(
+				"select CONCAT('NCC', RIGHT(CONCAT('0000',ISNULL(right(max(maNhaCungCap),4),0) + 1),4)) from [dbo].[NhaCungCap] where maNhaCungCap like 'NCC%'");
+		String maNCC = "";
+		while (resultSet.next()) {
+			maNCC = resultSet.getString(1);
+		}
+		return maNCC;
+	}
+	
 }

@@ -144,6 +144,7 @@ public class NhanVien_GUI extends JPanel {
 		txtDiaChi.setColumns(10);
 		txtDiaChi.setBounds(170, 652, 240, 40);
 		txtDiaChi.setBorder(null);
+		txtDiaChi.setFocusable(false);
 		pNhapThongTin.add(txtDiaChi);
 
 		JLabel lblSoDienThoai = new JLabel("Số Điện Thoại:");
@@ -161,6 +162,7 @@ public class NhanVien_GUI extends JPanel {
 		txtSoDienThoai.setBounds(170, 145, 240, 40);
 		borderDefault = txtSoDienThoai.getBorder();
 		txtSoDienThoai.setBorder(null);
+		txtSoDienThoai.setFocusable(false);
 		pNhapThongTin.add(txtSoDienThoai);
 		
 		JLabel lblEmail = new JLabel("Email:");
@@ -177,7 +179,7 @@ public class NhanVien_GUI extends JPanel {
 		txtcCCD.setColumns(10);
 		txtcCCD.setBounds(170, 562, 240, 40);
 		txtcCCD.setBorder(null);
-		
+		txtcCCD.setFocusable(false);
 		pNhapThongTin.add(txtcCCD);
 
 		txtEmail = new JTextField();
@@ -188,6 +190,7 @@ public class NhanVien_GUI extends JPanel {
 		txtEmail.setColumns(10);
 		txtEmail.setBounds(170, 190, 240, 40);
 		txtEmail.setBorder(null);
+		txtEmail.setFocusable(false);
 		pNhapThongTin.add(txtEmail);
 
 		JPanel pDanhSach = new JPanel();
@@ -460,8 +463,9 @@ public class NhanVien_GUI extends JPanel {
 											@Override
 											public void actionPerformed(ActionEvent e) {
 												// TODO Auto-generated method stub
-												if (btnXoa.getText().equals("Xóa"))
+												if (btnXoa.getText().equals("Xóa")) {
 													delete();
+												}
 												else {
 													disableEdit();
 													btnAdd.setText("Thêm");
@@ -666,6 +670,7 @@ public class NhanVien_GUI extends JPanel {
 		txtTenNhanVien.setBounds(94, 20, 240, 40);
 		txtTenNhanVien.setBorder(null);
 		txtTenNhanVien.setBackground(new Color(255, 255, 255));
+		txtTenNhanVien.setFocusable(false);
 		pNhapThongTin.add(txtTenNhanVien);
 
 		// loadData
@@ -779,23 +784,24 @@ public class NhanVien_GUI extends JPanel {
 					"Bạn có chắc muốn xóa nhân viên '" + model.getValueAt(row, 0) + "' chứ?", "Xóa?",
 					JOptionPane.YES_NO_OPTION);
 			if (option == JOptionPane.YES_OPTION) {
+				String maTaiKhoan = nhanVien_DAO.getNhanVienTheoMa((String) model.getValueAt(row, 0))
+						.getTaiKhoan().getTaiKhoan();
 				try {
-					String maTaiKhoan = nhanVien_DAO.getNhanVienTheoMa((String) model.getValueAt(row, 0))
-							.getTaiKhoan().getTaiKhoan();
 					nhanVien_DAO.xoaNhanVienTheoMa(model.getValueAt(row, 0).toString());
-					// Nếu xóa nhân viên thì xóa luôn tài khoản của nhân viên đó
 					taiKhoan_DAO.xoaTaiKhoan(maTaiKhoan);
-					JOptionPane.showMessageDialog(null, "Xóa thành công nhân viên '" + model.getValueAt(row, 0) + "'!");
-					refresh();
-					return true;
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null,
-							"Xóa nhân viên '" + model.getValueAt(row, 0) + "' không thành công!");
+				} catch (Exception e) {
+					// TODO: handle exception
+					JOptionPane.showMessageDialog(null, "Không được xóa nhân viên này. Bởi vì sẽ mất toàn bộ dữ liệu hóa đơn và phiếu đặt của nhân viên này!");
 					return false;
 				}
-			} else
+				// Nếu xóa nhân viên thì xóa luôn tài khoản của nhân viên đó
+				JOptionPane.showMessageDialog(null,
+						"Xóa nhân viên '" + model.getValueAt(row, 0) + "' thành công!");
+				refresh();
+				return true;
+			} else {
 				return false;
+			}
 		}
 	}
 

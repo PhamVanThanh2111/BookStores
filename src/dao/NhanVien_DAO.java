@@ -234,16 +234,10 @@ public class NhanVien_DAO {
 	public boolean xoaNhanVienTheoMa(String maNV) throws SQLException {
 		ConnectDB.getInstance();
 		Connection connection = ConnectDB.getConnection();
-		try {
-			PreparedStatement preparedStatement = connection
+		PreparedStatement preparedStatement = connection
 					.prepareStatement("delete from NhanVien where maNhanVien = '" + maNV + "'");
-			return preparedStatement.executeUpdate() > 0;
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-		}
-		connection.close();
-		return false;
+//		preparedStatement.close();
+		return preparedStatement.executeUpdate() > 0;
 	}
 
 	public boolean suaNhanVienTheoMa(NhanVien nhanVien) throws SQLException {

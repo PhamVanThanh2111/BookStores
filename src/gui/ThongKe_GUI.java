@@ -3,6 +3,7 @@ package gui;
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
@@ -20,8 +21,9 @@ import org.jfree.chart.renderer.category.StandardBarPainter;
 import org.jfree.chart.title.LegendTitle;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-
+import java.util.Date;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -34,6 +36,8 @@ import dao.ChiTietHoaDon_DAO;
 import dao.HoaDon_DAO;
 import entity.ChiTietHoaDon;
 import entity.HoaDon;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 public class ThongKe_GUI extends JPanel {
 
@@ -91,7 +95,7 @@ public class ThongKe_GUI extends JPanel {
 		pnlMain.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblChonNgay = new JLabel("Chọn Ngày");
+		JLabel lblChonNgay = new JLabel("Chọn Ngày:");
 		lblChonNgay.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblChonNgay.setBounds(20, 20, 255, 40);
 		panel.add(lblChonNgay);
@@ -107,15 +111,16 @@ public class ThongKe_GUI extends JPanel {
 		panel.add(lblDenNgay);
 		
 		dateChooserTuNgay = new JDateChooser();
-		dateChooserTuNgay = new JDateChooser();
-//		dateChooserTuNgay.addPropertyChangeListener(new PropertyChangeListener() {
-//			public void propertyChange(PropertyChangeEvent evt) {
-//				Date tuNgay = dateChooserTuNgay.getDate();
-//				if (tuNgay.after(new Date())) {
-//					JOptionPane.showMessageDialog(null, "Không được chọn sau ngày hiện tại!");
-//				}
-//			}
-//		});
+		dateChooserTuNgay.addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent evt) {
+				if (dateChooserTuNgay.getDate() != null) {
+					if (dateChooserTuNgay.getDate().after(new Date())) {
+						JOptionPane.showMessageDialog(null, "Không được chọn sau ngày hôm nay!");
+						dateChooserTuNgay.setDate(null);
+					}
+				}
+			}
+		});
 		dateChooserTuNgay.setBackground(new Color(255, 255, 255));
 		dateChooserTuNgay.getCalendarButton().setBounds(210, 0, 30, 40);
 		dateChooserTuNgay.getCalendarButton().setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/calendar.png")));
@@ -132,24 +137,19 @@ public class ThongKe_GUI extends JPanel {
 		panel.add(dateChooserTuNgay);
 		
 		dateChooserDenNgay = new JDateChooser();
-//		dateChooserDenNgay.addPropertyChangeListener(new PropertyChangeListener() {
-//			public void propertyChange(PropertyChangeEvent evt) {
-//				Date tuNgay = dateChooserTuNgay.getDate();
-//				Date denNgay = dateChooserDenNgay.getDate();
-//				if (tuNgay.after(denNgay)) {
-//					JOptionPane.showMessageDialog(null, "Thứ tự ngày không hợp lệ!");
-//				}
-//				else if (denNgay.after(new Date())) {
-//					JOptionPane.showMessageDialog(null, "Không được chọn sau ngày hiện tại!");
-//				}
-//				else if (getKhoangCachGiuaHaiNgay(tuNgay, denNgay) > 7) {
-//					JOptionPane.showMessageDialog(null, "Tối đa 7 ngày!");
-//				}
-//				else {
-//					
-//				}
-//			}
-//		});
+		dateChooserDenNgay.addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent evt) {
+				if (dateChooserDenNgay.getDate() != null) {
+					Date tuNgay = dateChooserTuNgay.getDate();
+					Date denNgay = dateChooserDenNgay.getDate();
+					if (kiemTraNgayHopLe(tuNgay, denNgay)) {
+						thongKeTrongKhoang(doiLocalDate(tuNgay), doiLocalDate(denNgay));
+//					System.out.println(doiLocalDate(tuNgay));
+//					System.out.println(doiLocalDate(denNgay));
+					}
+				}
+			}
+		});
 		dateChooserDenNgay.setBackground(new Color(255, 255, 255));
 		dateChooserDenNgay.getCalendarButton().setBounds(210, 0, 30, 40);
 		dateChooserDenNgay.getCalendarButton().setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/calendar.png")));
@@ -165,31 +165,53 @@ public class ThongKe_GUI extends JPanel {
 		dateChooserDenNgay.getDateEditor().setEnabled(false);
 		panel.add(dateChooserDenNgay);
 		
-		JButton btnXacNhan = new JButton("Xác Nhận");
-		btnXacNhan.setForeground(Color.WHITE);
-		btnXacNhan.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnXacNhan.setBackground(new Color(73, 129, 158));
-		btnXacNhan.setBounds(122, 209, 135, 40);
-		btnXacNhan.addActionListener(new ActionListener() {
+		JButton btnLamMoi = new JButton("Làm Mới");
+		btnLamMoi.setForeground(Color.WHITE);
+		btnLamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnLamMoi.setBackground(new Color(73, 129, 158));
+		btnLamMoi.setBounds(230, 289, 135, 40);
+		btnLamMoi.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				refresh();
+				dateChooserTuNgay.setDate(null);
+				dateChooserDenNgay.setDate(null);
 			}
 		});
-		panel.add(btnXacNhan);
+		panel.add(btnLamMoi);
 		
-		showBarChartDoanhThu();
-		showBarChartSoLuong();
+		JLabel lblThngKCui = new JLabel("Thống Kê Cuối Ngày:");
+		lblThngKCui.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblThngKCui.setBounds(20, 213, 255, 40);
+		panel.add(lblThngKCui);
+		
+		JButton btnThongKe = new JButton("Thống Kê");
+		btnThongKe.setForeground(Color.WHITE);
+		btnThongKe.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnThongKe.setBackground(new Color(73, 129, 158));
+		btnThongKe.setBounds(27, 289, 135, 40);
+		btnThongKe.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				thongKeTrongKhoang(LocalDate.now(), LocalDate.now());
+			}
+		});
+		panel.add(btnThongKe);
+		
+		refresh();
 	}
 	
-	private void showBarChartDoanhThu() {
+	private void showBarChartDoanhThu(LocalDate tuNgay, LocalDate denNgay) {
 		datasetDoanhThu = new DefaultCategoryDataset();
-		LocalDate date = LocalDate.now();
 		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		for (int i = 0; i <= 6; i++) {
-			datasetDoanhThu.addValue(tinhDoanhThuTheoNgay(date.minusDays(i)), "Doanh thu", dateFormat.format(date.minusDays(i)).toString());
+		int i = 0;
+		while (i <= tinhKhoangCachGiuaHaiNgay(doiDate(tuNgay), doiDate(denNgay))) {
+			datasetDoanhThu.addValue(tinhDoanhThuTheoNgay(tuNgay.plusDays(i)), "Doanh thu", dateFormat.format(tuNgay.plusDays(i)).toString());
+			i++;
 		}
 		
 		chartDoanhThu = ChartFactory.createBarChart("DOANH THU", "NGÀY", "VND", datasetDoanhThu, PlotOrientation.VERTICAL, true, true, false);
@@ -210,23 +232,25 @@ public class ThongKe_GUI extends JPanel {
 		chartPanelDoanhThu = new ChartPanel(chartDoanhThu);
 		pnlThongKeDoanhThu.add(chartPanelDoanhThu);
 		pnlThongKeDoanhThu.validate();
+		
 	}
 	
-	private void showBarChartSoLuong() {
+	private void showBarChartSoLuong(LocalDate tuNgay, LocalDate denNgay) {
 		datasetSoLuong = new DefaultCategoryDataset();
-		LocalDate date = LocalDate.now();
 		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		
 		// add value
-		for (int i = 0; i <= 6; i++) {
-			datasetSoLuong.addValue(hoaDon_DAO.getListHoaDonTheoNgay(date.minusDays(i)).size(), "Hóa đơn", dateFormat.format(date.minusDays(i)).toString());
-			datasetSoLuong.addValue(tinhSoLuongSanPhamBanDuocTheoNgay(date.minusDays(i)), "Sản phẩm", dateFormat.format(date.minusDays(i)).toString());
+		int i = 0;
+		while (i <= tinhKhoangCachGiuaHaiNgay(doiDate(tuNgay), doiDate(denNgay))) {
+			datasetSoLuong.addValue(hoaDon_DAO.getListHoaDonTheoNgay(tuNgay.plusDays(i)).size(), "Hóa đơn", dateFormat.format(tuNgay.plusDays(i)).toString());
+			datasetSoLuong.addValue(tinhSoLuongSanPhamBanDuocTheoNgay(tuNgay.plusDays(i)), "Sản phẩm", dateFormat.format(tuNgay.plusDays(i)).toString());
+			i++;
 		}
 		
 		chartSoLuong = ChartFactory.createBarChart("SỐ LƯỢNG SẢN PHẨM VÀ SỐ LƯỢNG HÓA ĐƠN BÁN ĐƯỢC", "NGÀY", "SỐ LƯỢNG", datasetSoLuong, PlotOrientation.VERTICAL, true, true, false);
 		
 		categorySoLuong = chartSoLuong.getCategoryPlot();
-		categorySoLuong.setBackgroundPaint(new Color(255, 255, 255));//change background color
+		categorySoLuong.setBackgroundPaint(new Color(255, 255, 255)); //change background color
 
 	    //set  bar chart color
 	    ((BarRenderer)categorySoLuong.getRenderer()).setBarPainter(new StandardBarPainter());
@@ -259,4 +283,46 @@ public class ThongKe_GUI extends JPanel {
 		return soLuong;
 	}
 	
+	private void refresh() {
+		showBarChartDoanhThu(LocalDate.now().minusDays(6), LocalDate.now());
+		showBarChartSoLuong(LocalDate.now().minusDays(6), LocalDate.now());
+	}
+	
+	private int tinhKhoangCachGiuaHaiNgay(Date d1, Date d2) {
+		return (int) ((d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+	}
+	
+	private void thongKeTrongKhoang(LocalDate tuNgay, LocalDate denNgay) {
+		showBarChartDoanhThu(tuNgay, denNgay);
+		showBarChartSoLuong(tuNgay, denNgay);
+	}
+	
+	private LocalDate doiLocalDate(Date date) {
+		return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+	}
+	
+	private Date doiDate(LocalDate localDate) {
+		return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+	}
+	
+	private boolean kiemTraNgayHopLe(Date tuNgay, Date denNgay) {
+		if (tuNgay.after(denNgay)) {
+			JOptionPane.showMessageDialog(null, "Thứ tự ngày không hợp lệ!");
+			dateChooserTuNgay.setDate(null);
+			dateChooserDenNgay.setDate(null);
+			return false;
+		}
+		else if (denNgay.after(new Date())) {
+			JOptionPane.showMessageDialog(null, "Không được chọn sau ngày hiện tại!");
+			dateChooserDenNgay.setDate(null);
+			return false;
+		}
+		else if (tinhKhoangCachGiuaHaiNgay(tuNgay, denNgay) >= 7) {
+			JOptionPane.showMessageDialog(null, "Tối đa 7 ngày!");
+			dateChooserTuNgay.setDate(null);
+			dateChooserDenNgay.setDate(null);
+			return false;
+		}
+		return true;
+	}
 }

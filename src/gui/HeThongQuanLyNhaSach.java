@@ -98,12 +98,13 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				lblIconNhanVien.setBackground(new Color(24, 39, 60));
 				lblIconNhanVien.setOpaque(true);
 			}
+			
 			@Override
 			public void mouseExited(MouseEvent e) {
 				lblNhanVien.setBackground(new Color(39, 63, 96));
 				lblIconNhanVien.setBackground(new Color(39, 63, 96));
 			}
-
+			
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				cardLayoutContent.show(pContent, "NhanVien_GUI");

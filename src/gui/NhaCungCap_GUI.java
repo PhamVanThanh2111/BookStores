@@ -55,18 +55,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 		nhaCungCap_DAO = new NhaCungCap_DAO();
 		phatSinhMa_DAO = new PhatSinhMa_DAO();
 		
-		setLayout(null);
 		
-		String cols[] = { "Mã Nhà Cung Cấp ", "Tên Nhà Cung Cấp", "Địa Chỉ", "Số Điện Thoại", "Email" };
-		model = new DefaultTableModel(cols, 0);
-		tableHeader.setBackground(new Color(73, 129, 158));
-		tableHeader.setForeground(Color.white);
-		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
-		tableHeader.setReorderingAllowed(false);
-		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-		loadData();
-		closeFocusTXT();
 		
 		JPanel pMain = new JPanel();
 		pMain.setLayout(null);
@@ -201,6 +190,8 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 		pDanhSach.add(scrollPaneNCC);
 		
 		borderDefault = txtEmail.getBorder();
+		String cols[] = { "Mã Nhà Cung Cấp ", "Tên Nhà Cung Cấp", "Địa Chỉ", "Số Điện Thoại", "Email" };
+		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
 		
 		table.setRowHeight(25);
@@ -209,10 +200,19 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 		
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setDefaultEditor(Object.class, null);
+				
+		
 		
 		tableHeader = table.getTableHeader();
-		
-		
+
+		tableHeader.setBackground(new Color(73, 129, 158));
+		tableHeader.setForeground(Color.white);
+		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
+		tableHeader.setReorderingAllowed(false);
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+		loadData();
+		closeFocusTXT();
 		table.addMouseListener(new MouseListener() {
 
 			@Override
@@ -303,6 +303,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 		btnXoa.addActionListener(this);
 		btnTim.addActionListener(this);
 		btnSua.addActionListener(this);
+		setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1300, 720);

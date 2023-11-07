@@ -134,7 +134,6 @@ public class SanPham_DAO {
 			e.printStackTrace();
 		}
 		connection.close();
-
 		return false;
 	}
 	
@@ -144,8 +143,9 @@ public class SanPham_DAO {
 		
 		try {
 			PreparedStatement preparedstaments = 
-					connection.prepareStatement("update SanPham settenSanPham=?,xuatXu=?,giaNhap=?,giaBan=?,soLuongTon=?,maNXB=?,maTheLoaiSach=?,tacGia=?,soTrang=?,namXuatBan=?,maNhaCungCap=?,hinhAnh=? "
-							+ "where maSanPham= '"+sanPham.getMaSanPham()+"' ");
+					connection.prepareStatement("update SanPham set tenSanPham=?,xuatXu=?,giaNhap=?,giaban=?,soLuongTon=?,maNXB=?,"
+							+ " maTheLoaiSach=?,tacGia=?,soTrang=?,namXuatBan=?,maNhaCungCap=?,hinhAnh=? "
+							+ " where maSanPham = '"+sanPham.getMaSanPham()+"'");
 			preparedstaments.setString(1,sanPham.getTenSanPham());
 			preparedstaments.setString(2,sanPham.getXuatXu());
 			preparedstaments.setFloat(3,sanPham.getGiaNhap());
@@ -158,6 +158,7 @@ public class SanPham_DAO {
 			preparedstaments.setInt(10,sanPham.getNamXuatBan());
 			preparedstaments.setString(11,sanPham.getMaNhaCungCap());
 			preparedstaments.setString(12,sanPham.getHinhAnh());
+			return preparedstaments.executeUpdate() > 0;
 		} catch (SQLException e) {
 			// TODO: handle exception
 		}

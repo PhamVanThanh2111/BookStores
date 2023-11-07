@@ -1,7 +1,5 @@
 package gui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -15,12 +13,15 @@ import javax.swing.JTextField;
 
 import dao.KhachHang_DAO;
 import entity.KhachHang;
-import entity.NhanVien;
 
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 
 public class TimKiemKhachHang_GUI extends JInternalFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField txtMaKH;
 	private JTextField txtTenKH;
 	private JTextField txtSDT;

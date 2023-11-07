@@ -26,6 +26,7 @@ import dao.PhatSinhMa_DAO;
 import dao.TheLoaiSach_DAO;
 import entity.NhaXuatBan;
 import entity.TheLoaiSach;
+import javax.swing.JDesktopPane;
 public class TheLoaiSach_GUI extends JPanel {
 
 	/**
@@ -35,19 +36,29 @@ public class TheLoaiSach_GUI extends JPanel {
 	private JTextField txtMaTheLoaiSach;
 	private JTextField txtTenTheLoaiSach;
 	
+	private JPanel panel;
+	private JPanel pThongTin;
+	private JLabel lblThongTinTheLoaiSach;
+	private JLabel lblMaTheLoaiSach;
 	private JTable table;
-	
-	private JTableHeader tableHeader;
-	private DefaultTableModel model;
-	
-	private TheLoaiSach_DAO theLoaiSach_DAO;
-	private PhatSinhMa_DAO phatSinhMa_DAO;
+	private JLabel lblTenTheLoaiSach;
+	private JPanel pDanhSach;
 	
 	private JButton btnLamMoi;
 	private JButton btnDelete;
 	private	JButton btnAdd ;
 	private JButton btnUpdate;
 	private JButton btnTim;
+	
+	private JScrollPane scrollPaneTheLoaiSach;
+	
+	private JTableHeader tableHeader;
+	
+	private DefaultTableModel model;
+	
+	private TheLoaiSach_DAO theLoaiSach_DAO;
+	private PhatSinhMa_DAO phatSinhMa_DAO;
+
 	
 	/**
 	 * Create the panel.
@@ -59,19 +70,20 @@ public class TheLoaiSach_GUI extends JPanel {
 		phatSinhMa_DAO = new PhatSinhMa_DAO();
 		setLayout(null);
 		
-		JPanel pMain = new JPanel();
-		pMain.setLayout(null);
-		pMain.setBounds(0, 0, 1300, 720);
-		add(pMain);
+	
+		panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBounds(0, 0, 1300, 720);
+		add(panel);
 		
-		JPanel pThongTin = new JPanel();
+		pThongTin = new JPanel();
 		pThongTin.setLayout(null);
 		pThongTin.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pThongTin.setBackground(Color.WHITE);
 		pThongTin.setBounds(0, 0, 1300, 300);
-		pMain.add(pThongTin);
+		panel.add(pThongTin);
 		
-		JLabel lblThongTinTheLoaiSach = new JLabel("Thông Tin Thể Loại Sách");
+		lblThongTinTheLoaiSach = new JLabel("Thông Tin Thể Loại Sách");
 		lblThongTinTheLoaiSach.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblThongTinTheLoaiSach.setBounds(20, 15, 300, 40);
 		pThongTin.add(lblThongTinTheLoaiSach);
@@ -86,14 +98,14 @@ public class TheLoaiSach_GUI extends JPanel {
 		btnAdd.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				 //TODO Auto-generated method stub
 				if (btnAdd.getText().equals("Thêm")) {
 					enableEdit();
 					btnDelete.setText("Hủy");
 					btnAdd.setText("Xác nhận");
 					btnLamMoi.setEnabled(false);
 					btnUpdate.setEnabled(false);
-//					btnTim.setEnabled(false);
+					btnTim.setEnabled(false);
 					
 				}
 				else {
@@ -103,7 +115,7 @@ public class TheLoaiSach_GUI extends JPanel {
 					btnDelete.setText("Xóa");
 					btnLamMoi.setEnabled(true);
 					btnUpdate.setEnabled(true);
-//					btnTim.setEnabled(true);
+					btnTim.setEnabled(true);
 				}
 			}
 
@@ -122,14 +134,13 @@ public class TheLoaiSach_GUI extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				 //TODO Auto-generated method stub
 				if (btnDelete.getText().equals("Xóa"))
 					try {
 						delete();
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					} catch (Exception e2) {
+						 //TODO: handle exception
+					}		
 				else {
 					disableEdit();
 					btnAdd.setText("Thêm");
@@ -155,7 +166,7 @@ public class TheLoaiSach_GUI extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				 //TODO Auto-generated method stub
 				int row = table.getSelectedRow();
 				if (btnUpdate.getText().equals("Sửa")) {
 					if (row == -1)
@@ -191,12 +202,12 @@ public class TheLoaiSach_GUI extends JPanel {
 		btnLamMoi.setBounds(1006, 200, 135, 40);
 		pThongTin.add(btnLamMoi);
 		
-		JLabel lblMaTheLoaiSach = new JLabel("Mã Thể Loại Sách:");
+		lblMaTheLoaiSach = new JLabel("Mã Thể Loại Sách:");
 		lblMaTheLoaiSach.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblMaTheLoaiSach.setBounds(50, 100, 150, 40);
 		pThongTin.add(lblMaTheLoaiSach);
 		
-		JLabel lblTenTheLoaiSach = new JLabel("Tên Thể Loại Sách:");
+		lblTenTheLoaiSach = new JLabel("Tên Thể Loại Sách:");
 		lblTenTheLoaiSach.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblTenTheLoaiSach.setBounds(680, 100, 175, 40);
 		pThongTin.add(lblTenTheLoaiSach);
@@ -207,7 +218,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		txtMaTheLoaiSach.setEditable(false);
 		txtMaTheLoaiSach.setColumns(10);
 		txtMaTheLoaiSach.setBackground(Color.WHITE);
-		txtMaTheLoaiSach.setBounds(220, 100, 400, 40);
+		txtMaTheLoaiSach.setBounds(227, 102, 400, 40);
 		pThongTin.add(txtMaTheLoaiSach);
 		
 		txtTenTheLoaiSach = new JTextField();
@@ -219,14 +230,15 @@ public class TheLoaiSach_GUI extends JPanel {
 		txtTenTheLoaiSach.setBounds(850, 100, 400, 40);
 		pThongTin.add(txtTenTheLoaiSach);
 		
-		JPanel pDanhSach = new JPanel();
+		
+		pDanhSach = new JPanel();
 		pDanhSach.setBackground(new Color(255, 255, 255));
 		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pDanhSach.setBounds(0, 362, 1300, 348);
-		pMain.add(pDanhSach);
+		panel.add(pDanhSach);
 		pDanhSach.setLayout(null);
 		
-		JScrollPane scrollPaneTheLoaiSach = new JScrollPane();
+		scrollPaneTheLoaiSach = new JScrollPane();
 		scrollPaneTheLoaiSach.setToolTipText("Chọn vào thể loại Sách cần hiển thị thông tin");
 		scrollPaneTheLoaiSach.setBorder(null);
 		scrollPaneTheLoaiSach.setBackground(Color.WHITE);
@@ -249,13 +261,13 @@ public class TheLoaiSach_GUI extends JPanel {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
+				 //TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
+				 //TODO Auto-generated method stub
 
 			}
 
@@ -267,7 +279,7 @@ public class TheLoaiSach_GUI extends JPanel {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
+				 //TODO Auto-generated method stub
 
 			}
 
@@ -275,7 +287,7 @@ public class TheLoaiSach_GUI extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
 				int row = table.getSelectedRow();
-			    if (row >= 0) { // Ensure a row is selected  
+			    if (row >= 0) {  
 			        TheLoaiSach	theLoaiSach = theLoaiSach_DAO.getTheLoaiSachTheoMa(model.getValueAt(row, 0).toString());
 			        txtMaTheLoaiSach.setText(theLoaiSach.getmaTheLoaiSach());
 			        txtTenTheLoaiSach.setText(theLoaiSach.gettenTheLoaiSach());
@@ -297,6 +309,11 @@ public class TheLoaiSach_GUI extends JPanel {
 		lblChiTitTheLoaiSach.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblChiTitTheLoaiSach.setBounds(22, 10, 291, 40);
 		pDanhSach.add(lblChiTitTheLoaiSach);
+		
+		JDesktopPane desktopPane = new JDesktopPane();
+		desktopPane.setBounds(0, 0, 1, 1);
+		panel.add(desktopPane);
+		desktopPane.setLayout(null);
 		refresh();
 		;
 	}
@@ -304,15 +321,15 @@ public class TheLoaiSach_GUI extends JPanel {
 
 	// đổ dữ liệu lên bảng
 	public void loadDataIntoTable(List<TheLoaiSach> list) {
-	    // Xóa dữ liệu cũ trước khi nạp dữ liệu mới
+	   //  Xóa dữ liệu cũ trước khi nạp dữ liệu mới
 	    model.setRowCount(0);
-	    // Nạp dữ liệu sản phẩm lên bảng
+	   //  Nạp dữ liệu sản phẩm lên bảng
 		for (TheLoaiSach theLoaiSach : theLoaiSach_DAO.getAllListTheLoaiSach()) {
 			Object[] object = { theLoaiSach.getmaTheLoaiSach(),theLoaiSach.gettenTheLoaiSach() };
 			model.addRow(object);
 		}
 	}
-	// làm mới
+	 //làm mới
 	public void refresh() {
 		loadDataIntoTable(theLoaiSach_DAO.getAllListTheLoaiSach());
 	}
@@ -340,7 +357,7 @@ public class TheLoaiSach_GUI extends JPanel {
 	    }
 	}
 	//Xóa thể loại sách
-		public boolean delete() throws SQLException {
+		public boolean delete() {
 			int row = table.getSelectedRow();
 			if (row == -1) {
 				JOptionPane.showMessageDialog(null, "Bạn phải chọn thể loại sách cần xóa!");
@@ -354,53 +371,53 @@ public class TheLoaiSach_GUI extends JPanel {
 						theLoaiSach_DAO.xoaTheLoaiSach(model.getValueAt(row, 0).toString());
 						JOptionPane.showMessageDialog(null, "Xóa thành công thể loại sách '" + model.getValueAt(row, 0) + "'!");
 						refresh();
-						return true;					
-					} catch (Exception e) {
-						// TODO: handle exception
-					JOptionPane.showMessageDialog(null, "Không thể xóa thể loại sách này vì đã tồn tại sách!");
-					refresh();
-					return false;
-					}
-				}
-				return false;
-			}
-		}
-		//Sửa nhà xuất bản theo mã
-		public boolean update() {
-			int row = table.getSelectedRow();
-			if (row == -1) {
-				JOptionPane.showMessageDialog(null, "Bạn phải chọn thể loại sách cần sửa!");
-			}
-			else
-				if (txtTenTheLoaiSach.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Tên thể loại sách không được để trống!");
-					txtTenTheLoaiSach.requestFocus();
-					return false;
-				}
-				else {
-					int option = JOptionPane.showConfirmDialog(null,
-							"Bạn có chắc muốn sửa thể loại sách? '" + model.getValueAt(row, 0) + "' chứ?", "Sửa?",
-							JOptionPane.YES_NO_OPTION);
-					if (option == JOptionPane.YES_OPTION) {
-						try {
-							TheLoaiSach theLoaiSach = new TheLoaiSach(txtTenTheLoaiSach.getText());
-							theLoaiSach_DAO.suaTheLoaiSachTheoMa(theLoaiSach);
-							JOptionPane.showMessageDialog(null, "Sửa thành công thể loại sách '" + model.getValueAt(row, 0) + "'!");
-							refresh();
-							return true;
-						} catch (SQLException e1) {
-//							 TODO Auto-generated catch block
-							JOptionPane.showMessageDialog(null,
-									"Sửa thể loại sách '\" + model.getValueAt(row, 0) + \"' không thành công!");
-							return false;
-						}
-					} else {
+						return true;
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(null,
+								"Xóa thể loại sách '" + model.getValueAt(row, 0) + "' không thành công!");
 						return false;
 					}
-				}
-			return false;	
+				} else
+					return false;
+			}
 		}
-		
+	//Sửa nhà xuất bản theo mã
+	public boolean update() {
+		int row = table.getSelectedRow();
+		if (row == -1) {
+			JOptionPane.showMessageDialog(null, "Bạn phải chọn thể loại sách cần sửa!");
+		}
+		else
+			if (txtTenTheLoaiSach.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Tên thể loại sách không được để trống!");
+				txtTenTheLoaiSach.requestFocus();
+				return false;
+			}
+			else {
+				int option = JOptionPane.showConfirmDialog(null,
+						"Bạn có chắc muốn sửa thể loại sách? '" + model.getValueAt(row, 0) + "' chứ?", "Sửa?",
+						JOptionPane.YES_NO_OPTION);
+				if (option == JOptionPane.YES_OPTION) {
+					try {
+						TheLoaiSach theLoaiSach = new TheLoaiSach(txtMaTheLoaiSach.getText(),txtTenTheLoaiSach.getText());
+						theLoaiSach_DAO.suaTheLoaiSachTheoMa(theLoaiSach);
+						JOptionPane.showMessageDialog(null, "Sửa thành công thể loại sách '" + model.getValueAt(row, 0) + "'!");
+						refresh();
+						return true;
+					} catch (SQLException e1) {
+						 //TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(null,
+								"Sửa thể loại sách '\" + model.getValueAt(row, 0) + \"' không thành công!");
+						return false;
+					}
+				} else {
+					return false;
+				}
+			}
+		return false;	
+	}
+	
 
 	private void enableEdit() {
 	    txtTenTheLoaiSach.setEditable(true);
@@ -411,6 +428,7 @@ public class TheLoaiSach_GUI extends JPanel {
 	    txtTenTheLoaiSach.setBorder(null);
 	}
 
+	@SuppressWarnings("unused")
 	private void enableButton() {
 	    btnLamMoi.setEnabled(true);
 	    btnAdd.setEnabled(true);
@@ -419,6 +437,7 @@ public class TheLoaiSach_GUI extends JPanel {
 	    btnTim.setEnabled(true);
 	}
 
+	@SuppressWarnings("unused")
 	private void disableButton() {
 	    btnLamMoi.setEnabled(false);
 	    btnAdd.setEnabled(false);
@@ -426,6 +445,4 @@ public class TheLoaiSach_GUI extends JPanel {
 	    btnUpdate.setEnabled(false);
 	    btnTim.setEnabled(false);
 	}
-
-
 }

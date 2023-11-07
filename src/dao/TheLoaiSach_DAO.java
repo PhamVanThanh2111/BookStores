@@ -4,12 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import connect.ConnectDB;
+import entity.NhaXuatBan;
 import entity.TheLoaiSach;
 
 public class TheLoaiSach_DAO {
@@ -65,20 +67,43 @@ public class TheLoaiSach_DAO {
  	    }
  	    return false;
  	}
- 	 // xóa Thể loại sách
- 	public boolean xoaTheLoaiSach(String maTheLoaiSach) throws SQLException {
- 		ConnectDB.getInstance();
- 		Connection connection = ConnectDB.getConnection();
- 		try {
- 			PreparedStatement preparedStatement = connection
- 					.prepareStatement("delete from TheLoaiSach where maTheLoaiSach = '" + maTheLoaiSach + "'");
- 			return preparedStatement.executeUpdate() > 0;
- 		} catch (Exception e) {
- 			// TODO: handle exception
- 			e.printStackTrace();
- 		}
- 		connection.close();
- 		return false;
+ 	 // xóa thể loại sách
+ 	 	public boolean xoaTheLoaiSach(String maTheLoaiSach) throws SQLException {
+ 	 		ConnectDB.getInstance();
+ 	 		Connection connection = ConnectDB.getConnection();
+ 	 		try {
+ 	 			PreparedStatement preparedStatement = connection
+ 	 					.prepareStatement("delete from TheLoaiSach where maTheLoaiSach = '" + maTheLoaiSach + "'");
+ 	 			return preparedStatement.executeUpdate() > 0;
+ 	 		} catch (Exception e) {
+ 	 			// TODO: handle exception
+ 	 			e.printStackTrace();
+ 	 		}
+ 	 		connection.close();
+ 	 		return false;
+ 	 	}
+ 	// kiểm tra xóa (nếu thể loại sách đã tồn tại sách thì không được xóa)
+ 	public boolean isTheLoaiSachDaTonTai(String maTheLoaiSach) throws SQLException {
+ 	    ConnectDB.getInstance();
+ 	    Connection connection = ConnectDB.getConnection();
+
+ 	    try {
+ 	        PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM Sach WHERE MaTheLoaiSach = ?");
+ 	        preparedStatement.setString(1, maTheLoaiSach);
+ 	        ResultSet resultSet = preparedStatement.executeQuery();
+ 	        if (resultSet.next()) {
+ 	            int count = resultSet.getInt(1);
+ 	            return count > 0;
+ 	        }
+ 	    } catch (SQLException e) {
+ 	        e.printStackTrace();
+ 	    } 
+ 	    finally {
+ 	        if (connection != null) {
+ 	            connection.close();
+	        }
+ 	    }
+ 	    return false;
  	}
  // sửa thể loại sách theo mã
   	public boolean suaTheLoaiSachTheoMa(TheLoaiSach theLoaiSach) throws SQLException {

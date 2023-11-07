@@ -536,9 +536,8 @@ public class NhaXuatBan_GUI extends JPanel {
 					JOptionPane.YES_NO_OPTION);
 			if (option == JOptionPane.YES_OPTION) {
 				try {
-					
 					nhaXuatBan_DAO .xoaNhaXuatBanMa(model.getValueAt(row, 0).toString());
-					JOptionPane.showMessageDialog(null, "Xóa thành công thể loại sách '" + model.getValueAt(row, 0) + "'!");
+					JOptionPane.showMessageDialog(null, "Xóa thành công nhà xuất bản '" + model.getValueAt(row, 0) + "'!");
 					refresh();
 					return true;
 				} catch (SQLException e1) {

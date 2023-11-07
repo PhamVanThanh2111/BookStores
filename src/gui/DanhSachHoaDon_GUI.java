@@ -31,7 +31,6 @@ import java.util.ArrayList;
 
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.Timer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -178,6 +177,14 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		btnLamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnLamMoi.setBackground(new Color(73, 129, 158));
 		btnLamMoi.setBounds(1142, 120, 135, 40);
+		btnLamMoi.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+		    	loadDataIntoTableHoaDon(hoaDon_DAO.getAllListHoaDon());
+			}
+		});
 		pnlThongTinTimKiem.add(btnLamMoi);
 		
 		JPanel pnlDanhSachHoaDon = new JPanel();
@@ -242,7 +249,6 @@ public class DanhSachHoaDon_GUI extends JPanel {
 			}
 		});
 		scrDanhSachHoaDon.setViewportView(tableDanhSachHoaDon);
-		updateTheoThoiGian();
 
 		// header of table
 		tableHeaderDanhSachHoaDon = tableDanhSachHoaDon.getTableHeader();
@@ -333,6 +339,8 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		tableChiTietHoaDon.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
 		tableChiTietHoaDon.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
 		
+		loadDataIntoTableHoaDon(hoaDon_DAO.getAllListHoaDon());
+		
 	}
 	
 	private void loadDataIntoTableHoaDon(ArrayList<HoaDon> danhSachHoaDons) {
@@ -358,15 +366,5 @@ public class DanhSachHoaDon_GUI extends JPanel {
 								chiTietHoaDon.getDonGia()};
 			modelChiTietHoaDon.addRow(objects);
 		}
-	}
-	
-	private void updateTheoThoiGian() {
-		Timer timer = new Timer(1000, (ActionListener) new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        // Thực hiện các hoạt động cập nhật giao diện ở đây
-		    	loadDataIntoTableHoaDon(hoaDon_DAO.getAllListHoaDon());
-		    }
-		});
-		timer.start();
 	}
 }

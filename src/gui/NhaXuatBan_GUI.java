@@ -48,7 +48,6 @@ public class NhaXuatBan_GUI extends JPanel {
 	private JTable table;
 	private JTableHeader tableHeader;
 
-	
 	private JTextField txtTenNhaXuatBan;
 	private JTextField txtDiaChi;
 	private JTextField txtSoDienThoai;

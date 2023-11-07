@@ -111,12 +111,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					try {
-						login();
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					btnLogin.doClick();
 				}
 			}
 		});
@@ -163,12 +158,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					try {
-						login();
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					btnLogin.doClick();
 				}
 			}
 		});

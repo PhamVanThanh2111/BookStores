@@ -27,8 +27,10 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
-public class TimNhanVien_GUI extends JInternalFrame {
+public class TimKiemNhanVien_GUI extends JInternalFrame {
 
 	/**
 	 * 
@@ -45,11 +47,12 @@ public class TimNhanVien_GUI extends JInternalFrame {
 	private JComboBox<String> cmbGioiTinh;
 	private ArrayList<NhanVien> ds;
 	private NhanVien_DAO nhanVien_DAO;
+	private JButton btnTim;
 	
 	/**
 	 * Create the frame.
 	 */
-	public TimNhanVien_GUI(ArrayList<NhanVien> ds) {
+	public TimKiemNhanVien_GUI(ArrayList<NhanVien> ds) {
 
 		// khai bao DAO
 		nhanVien_DAO = new NhanVien_DAO();
@@ -134,36 +137,84 @@ public class TimNhanVien_GUI extends JInternalFrame {
 		contentPane.add(lblTiK);
 		
 		txtMaNhanVien = new JTextField();
+		txtMaNhanVien.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		txtMaNhanVien.setColumns(10);
 		txtMaNhanVien.setBounds(157, 87, 238, 40);
 		contentPane.add(txtMaNhanVien);
 		
 		txtTenNhanVien = new JTextField();
+		txtTenNhanVien.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		txtTenNhanVien.setColumns(10);
 		txtTenNhanVien.setBounds(157, 167, 238, 40);
 		contentPane.add(txtTenNhanVien);
 		
 		txtDiaChi = new JTextField();
+		txtDiaChi.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		txtDiaChi.setColumns(10);
 		txtDiaChi.setBounds(157, 248, 238, 40);
 		contentPane.add(txtDiaChi);
 		
 		txtCCCD = new JTextField();
+		txtCCCD.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		txtCCCD.setColumns(10);
 		txtCCCD.setBounds(572, 87, 238, 40);
 		contentPane.add(txtCCCD);
 		
 		txtEmail = new JTextField();
+		txtEmail.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		txtEmail.setColumns(10);
 		txtEmail.setBounds(572, 167, 238, 40);
 		contentPane.add(txtEmail);
 		
 		txtSoDienThoai = new JTextField();
+		txtSoDienThoai.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		txtSoDienThoai.setColumns(10);
 		txtSoDienThoai.setBounds(572, 248, 238, 40);
 		contentPane.add(txtSoDienThoai);
 		
-		JButton btnTim = new JButton("Tìm");
+		btnTim = new JButton("Tìm");
 		btnTim.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!duLieuRong()) {

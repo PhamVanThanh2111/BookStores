@@ -5,10 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import connect.ConnectDB;
 import entity.NhaXuatBan;
-import entity.NhanVien;
 public class NhaXuatBan_DAO {
 
 	// get all nhà xuất bản

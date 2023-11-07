@@ -784,22 +784,21 @@ public class NhanVien_GUI extends JPanel {
 					"Bạn có chắc muốn xóa nhân viên '" + model.getValueAt(row, 0) + "' chứ?", "Xóa?",
 					JOptionPane.YES_NO_OPTION);
 			if (option == JOptionPane.YES_OPTION) {
+				String maTaiKhoan = nhanVien_DAO.getNhanVienTheoMa((String) model.getValueAt(row, 0))
+						.getTaiKhoan().getTaiKhoan();
 				try {
-					String maTaiKhoan = nhanVien_DAO.getNhanVienTheoMa((String) model.getValueAt(row, 0))
-							.getTaiKhoan().getTaiKhoan();
 					nhanVien_DAO.xoaNhanVienTheoMa(model.getValueAt(row, 0).toString());
-					// Nếu xóa nhân viên thì xóa luôn tài khoản của nhân viên đó
 					taiKhoan_DAO.xoaTaiKhoan(maTaiKhoan);
-					JOptionPane.showMessageDialog(null,
-							"Xóa nhân viên '" + model.getValueAt(row, 0) + "' thành công!");
-					refresh();
-					return true;
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null,
-							"Xóa nhân viên '" + model.getValueAt(row, 0) + "' không thành công!");
+				} catch (Exception e) {
+					// TODO: handle exception
+					JOptionPane.showMessageDialog(null, "Không được xóa nhân viên này. Bởi vì sẽ mất toàn bộ dữ liệu hóa đơn và phiếu đặt của nhân viên này!");
 					return false;
 				}
+				// Nếu xóa nhân viên thì xóa luôn tài khoản của nhân viên đó
+				JOptionPane.showMessageDialog(null,
+						"Xóa nhân viên '" + model.getValueAt(row, 0) + "' thành công!");
+				refresh();
+				return true;
 			} else {
 				return false;
 			}

@@ -9,9 +9,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.swing.border.LineBorder;
 
+import dao.Ca_DAO;
 import dao.HoaDon_DAO;
 import entity.HoaDon;
 import entity.NhanVien;
@@ -28,6 +32,7 @@ public class TrangChu_GUI extends JPanel {
 	private JLabel lblSoLuongGiaoDichValue;
 	private NhanVien nhanVien;
 	private JLabel lblTongThuValue;
+	private Ca_DAO ca_DAO;
 	
 	/**
 	 * Create the panel.
@@ -36,6 +41,7 @@ public class TrangChu_GUI extends JPanel {
 		
 		// khai bao DAO
 		hoaDon_DAO = new HoaDon_DAO();
+		ca_DAO = new Ca_DAO();
 		
 		this.nhanVien = nhanVien;
 		
@@ -169,20 +175,25 @@ public class TrangChu_GUI extends JPanel {
 		lblGioGhiNhan.setBounds(34, 179, 112, 32);
 		pnlThongTinCaLam.add(lblGioGhiNhan);
 		
-		JLabel lblThoiGianValue = new JLabel("14h - 22h");
+		JLabel lblThoiGianValue = new JLabel();
 		lblThoiGianValue.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblThoiGianValue.setBounds(164, 69, 267, 32);
+		lblThoiGianValue.setText(ca_DAO.getCaTheoMa(nhanVien.getMaCa()).getThoiGian());
 		pnlThongTinCaLam.add(lblThoiGianValue);
 		
-		JLabel lblNgayLamValue = new JLabel("09/09/2023");
+		JLabel lblNgayLamValue = new JLabel();
 		lblNgayLamValue.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNgayLamValue.setBounds(164, 124, 267, 32);
 		pnlThongTinCaLam.add(lblNgayLamValue);
 		
-		JLabel lblGioGhiNhanValue = new JLabel("14:00");
+		JLabel lblGioGhiNhanValue = new JLabel();
 		lblGioGhiNhanValue.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblGioGhiNhanValue.setBounds(164, 179, 267, 32);
 		pnlThongTinCaLam.add(lblGioGhiNhanValue);
+		
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		lblNgayLamValue.setText(dateFormat.format(LocalDate.now()).toString());
+		lblGioGhiNhanValue.setText(LocalTime.now().getHour() + ":" + LocalTime.now().getMinute());
 		
 		JLabel lblBackGround = new JLabel("");
 		lblBackGround.setIcon(new ImageIcon(TrangChu_GUI.class.getResource("/image/HeThong/background_trangchu.png")));

@@ -10,8 +10,8 @@ import connect.ConnectDB;
 import entity.NhaCungCap;
 public class NhaCungCap_DAO {
 
-    public List<NhaCungCap> getAllNhaCungCap() {
-        List<NhaCungCap> ds = new ArrayList<>();
+    public ArrayList<NhaCungCap> getAllNhaCungCap() {
+    	ArrayList<NhaCungCap> ds = new ArrayList<>();
         ConnectDB.getInstance();
         Connection con = ConnectDB.getConnection();
 

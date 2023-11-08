@@ -62,7 +62,11 @@ public class NhaXuatBan_GUI extends JPanel {
 	private NhaXuatBan_DAO nhaXuatBan_DAO;
 	private PhatSinhMa_DAO phatSinhMa_DAO;
 	
+<<<<<<< HEAD
 	private TimKiemNhaXuatBan_GUI timKiemNhaXuatBan_GUI ;
+=======
+	private TimKiemNhaXuatBan_GUI timNhaXuatBan_GUI ;
+>>>>>>> a358802b52804b864119c99ba53309538a6abc3e
 	private ArrayList<NhaXuatBan> ds;
 	private Border borderDefault;
 	/**
@@ -396,9 +400,15 @@ public class NhaXuatBan_GUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				// null cho lan dau chay va isClose cho nhung click sau
+<<<<<<< HEAD
 				if (timKiemNhaXuatBan_GUI == null || timKiemNhaXuatBan_GUI.isClosed()) {
 					timKiemNhaXuatBan_GUI = new TimKiemNhaXuatBan_GUI(ds);
 					timKiemNhaXuatBan_GUI.addInternalFrameListener(new InternalFrameAdapter() {
+=======
+				if (timNhaXuatBan_GUI == null || timNhaXuatBan_GUI.isClosed()) {
+					timNhaXuatBan_GUI = new TimKiemNhaXuatBan_GUI(ds);
+					timNhaXuatBan_GUI.addInternalFrameListener(new InternalFrameAdapter() {
+>>>>>>> a358802b52804b864119c99ba53309538a6abc3e
 			            @Override
 			            public void internalFrameActivated(InternalFrameEvent e) {
 //			                System.out.println("Internal frame is activated.");

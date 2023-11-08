@@ -10,10 +10,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.awt.Color;
 
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
@@ -27,6 +30,7 @@ import javax.swing.table.JTableHeader;
 
 import dao.NhaCungCap_DAO;
 import dao.PhatSinhMa_DAO;
+import entity.KhachHang;
 import entity.NhaCungCap;
 import javax.swing.JDesktopPane;
 
@@ -48,13 +52,16 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 	private NhaCungCap_DAO nhaCungCap_DAO;
 	private PhatSinhMa_DAO phatSinhMa_DAO;
 	private JButton btnXoa,btnThem,btnSua,btnTim;
+	private ArrayList<NhaCungCap> ds;
+	private TimKiemNhaCungCap timKiemNhaCungCap;
+	private JDesktopPane desktopPane;
 	
 	public NhaCungCap_GUI() {
 		
 		
 		nhaCungCap_DAO = new NhaCungCap_DAO();
 		phatSinhMa_DAO = new PhatSinhMa_DAO();
-		
+		ds = new ArrayList<NhaCungCap>();
 		
 		
 		JPanel pMain = new JPanel();
@@ -211,7 +218,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 		tableHeader.setReorderingAllowed(false);
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-		loadData();
+		loadData(nhaCungCap_DAO.getAllNhaCungCap());
 		closeFocusTXT();
 		table.addMouseListener(new MouseListener() {
 
@@ -311,21 +318,20 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 		panel.setLayout(null);
 		
 		
-		JDesktopPane desktopPane = new JDesktopPane();
+		desktopPane = new JDesktopPane();
 		desktopPane.setBounds(0, 0, 1300, 720);
 		
 		desktopPane.add(pMain);
 		panel.add(desktopPane);
 	}
 	// đưa dữ liệu lên bảng
-		public void loadData() {
-			NhaCungCap_DAO nhaCungCap_DAO = new NhaCungCap_DAO();
+		public void loadData(ArrayList<NhaCungCap>ds) {
+			
 			model.setRowCount(0);
-			for (NhaCungCap NhaCungCap : nhaCungCap_DAO.getAllNhaCungCap()) {
+			for (NhaCungCap NhaCungCap : ds) {
 				Object[] object = { NhaCungCap.getMaNCC(), NhaCungCap.getTenNCC(), NhaCungCap.getDiaChi(),
 						NhaCungCap.getSoDienThoai(), NhaCungCap.getEmail()};
 				model.addRow(object);
-				table.setRowHeight(25);
 			}
 		}
 	public void openFocusTXT() {
@@ -390,7 +396,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 			
 			nhaCungCap_DAO.themNhaCC(nhaCC);
 			JOptionPane.showMessageDialog(null, "Thêm Nhà Cung Cấp Thành Công !");
-			loadData();
+			loadData(nhaCungCap_DAO.getAllNhaCungCap());
 		}
 	}
 	
@@ -401,7 +407,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 			if(tb == JOptionPane.YES_OPTION) {
 				nhaCungCap_DAO.xoaNhaCungCapTheoMa((String)model.getValueAt(row, 0));
 				JOptionPane.showMessageDialog(null,"Xóa Thành Công");
-				loadData();
+				loadData(nhaCungCap_DAO.getAllNhaCungCap());
 			}
 		}
 	}
@@ -425,7 +431,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 				nhaCungCap_DAO.suaNhaCungCapTheoMa(nhaCC);
 				
 				JOptionPane.showMessageDialog(null, "Cập Nhập Nhà Cung Cấp Thành Công !");
-				loadData();
+				loadData(nhaCungCap_DAO.getAllNhaCungCap());
 				
 			}
 	}
@@ -526,6 +532,43 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 							btnSua.setText("Sửa");
 							btnTim.setText("Tìm");
 							closeFocusTXT();
+						}else {
+							if(btnTim.getText().equalsIgnoreCase("Tìm")) {
+								btnThem.setEnabled(false);
+								btnXoa.setEnabled(false);
+								btnSua.setEnabled(false);
+								if (timKiemNhaCungCap == null || timKiemNhaCungCap.isClosed()) {
+									timKiemNhaCungCap = new TimKiemNhaCungCap(ds);
+									timKiemNhaCungCap.addInternalFrameListener(new InternalFrameAdapter() {
+							            @Override
+							            public void internalFrameActivated(InternalFrameEvent e) {
+//							                System.out.println("Internal frame is activated.");
+							            }
+
+							            @Override
+							            public void internalFrameDeactivated(InternalFrameEvent e) {
+//							                System.out.println("Internal frame is deactivated.");
+							            }
+
+							            @Override
+							            public void internalFrameOpened(InternalFrameEvent e) {
+//							                System.out.println("Internal frame is opened.");
+//							            	disableButton();
+							            }
+							            
+							            @Override
+							            public void internalFrameClosed(InternalFrameEvent e) {
+//							                System.out.println("Internal frame is closed.");
+							            	loadData(ds);
+							            	ds.removeAll(ds);
+							            	btnThem.setEnabled(true);
+											btnXoa.setEnabled(true);
+											btnSua.setEnabled(true);
+							            }
+							        });
+									desktopPane.add(timKiemNhaCungCap).setVisible(true);
+								}
+							}
 						}
 					}
 				}

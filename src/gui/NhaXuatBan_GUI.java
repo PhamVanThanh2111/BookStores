@@ -62,7 +62,7 @@ public class NhaXuatBan_GUI extends JPanel {
 	private NhaXuatBan_DAO nhaXuatBan_DAO;
 	private PhatSinhMa_DAO phatSinhMa_DAO;
 	
-	private TimNhaXuatBan_GUI timNhaXuatBan_GUI ;
+	private TimKiemNhaXuatBan_GUI timNhaXuatBan_GUI ;
 	private ArrayList<NhaXuatBan> ds;
 	private Border borderDefault;
 	/**
@@ -399,7 +399,7 @@ public class NhaXuatBan_GUI extends JPanel {
 				// TODO Auto-generated method stub
 				// null cho lan dau chay va isClose cho nhung click sau
 				if (timNhaXuatBan_GUI == null || timNhaXuatBan_GUI.isClosed()) {
-					timNhaXuatBan_GUI = new TimNhaXuatBan_GUI(ds);
+					timNhaXuatBan_GUI = new TimKiemNhaXuatBan_GUI(ds);
 					timNhaXuatBan_GUI.addInternalFrameListener(new InternalFrameAdapter() {
 			            @Override
 			            public void internalFrameActivated(InternalFrameEvent e) {

@@ -19,7 +19,7 @@ import javax.swing.border.EmptyBorder;
 import dao.NhaXuatBan_DAO;
 import entity.NhaXuatBan;
 
-public class TimNhaXuatBan_GUI extends JInternalFrame {
+public class TimKiemNhaXuatBan_GUI extends JInternalFrame {
 
 	/**
 	 * 
@@ -38,7 +38,7 @@ public class TimNhaXuatBan_GUI extends JInternalFrame {
 	 * Create the frame.
 	 */
 
-	public TimNhaXuatBan_GUI(ArrayList<NhaXuatBan> ds) {
+	public TimKiemNhaXuatBan_GUI(ArrayList<NhaXuatBan> ds) {
 
 		// khai bao DAO
 		nhaXuatBan_DAO = new NhaXuatBan_DAO();

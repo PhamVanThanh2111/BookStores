@@ -24,7 +24,6 @@ import javax.swing.table.JTableHeader;
 
 import dao.PhatSinhMa_DAO;
 import dao.TheLoaiSach_DAO;
-import entity.NhaXuatBan;
 import entity.TheLoaiSach;
 import javax.swing.JDesktopPane;
 public class TheLoaiSach_GUI extends JPanel {
@@ -201,6 +200,15 @@ public class TheLoaiSach_GUI extends JPanel {
 		btnLamMoi.setBackground(new Color(73, 129, 158));
 		btnLamMoi.setBounds(1006, 200, 135, 40);
 		pThongTin.add(btnLamMoi);
+		
+		btnTim = new JButton("Tìm");
+		btnTim.setOpaque(true);
+		btnTim.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/refresh.png")));
+		btnTim.setForeground(Color.WHITE);
+		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnTim.setBackground(new Color(73, 129, 158));
+		btnTim.setBounds(1106, 200, 135, 40);
+		pThongTin.add(btnTim);
 		
 		lblMaTheLoaiSach = new JLabel("Mã Thể Loại Sách:");
 		lblMaTheLoaiSach.setFont(new Font("Tahoma", Font.PLAIN, 18));

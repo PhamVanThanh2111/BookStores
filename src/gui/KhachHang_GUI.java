@@ -101,6 +101,10 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		table.setRowHeight(25);
 		table.setSelectionBackground(new Color(141, 208, 229));
 		table.setSelectionForeground(new Color(0, 0, 0));
+		
+		
+		
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setDefaultEditor(Object.class, null);
 		
 		
@@ -313,9 +317,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		btnSua.addActionListener(this);
 		btnTim.addActionListener(this);
 			
-		
-		
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
 		table.addMouseListener(new MouseListener() {
 
 			@Override
@@ -516,7 +518,8 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		if(txtTenKH.getText().equalsIgnoreCase("")||txtSDT.getText().equalsIgnoreCase("")||cbGioiTinh.getSelectedItem().toString().equalsIgnoreCase("")||txtDiaChi.getText().equalsIgnoreCase("")) {
 			JOptionPane.showMessageDialog(null, "Thông Tin Rỗng !");
 			
-		}else {
+		}
+		if(!txtTenKH.getText().equalsIgnoreCase("")&&!txtSDT.getText().equalsIgnoreCase("")&&!cbGioiTinh.getSelectedItem().toString().equalsIgnoreCase("")&&!txtDiaChi.getText().equalsIgnoreCase("")) {
 			KhachHang khachHang = new KhachHang();
 			khachHang.setMaKhachHang(phatSinhMa_DAO.getMaKhachHang());
 			khachHang.setTenKhachHang(txtTenKH.getText());
@@ -581,7 +584,10 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		
 		if(txtTenKH.getText().equalsIgnoreCase("")||txtSDT.getText().equalsIgnoreCase("")||cbGioiTinh.getSelectedItem().toString().equalsIgnoreCase("")||txtDiaChi.getText().equalsIgnoreCase("")) {
 			JOptionPane.showMessageDialog(null, "Thông Tin Rỗng !");
-		}else {
+			
+			
+		}
+		if(!txtTenKH.getText().equalsIgnoreCase("")&&!txtSDT.getText().equalsIgnoreCase("")&&!cbGioiTinh.getSelectedItem().toString().equalsIgnoreCase("")&&!txtDiaChi.getText().equalsIgnoreCase("")){
 			KhachHang khachHang = new KhachHang();
 			khachHang.setMaKhachHang(lblMaKhachHang.getText());
 			khachHang.setTenKhachHang(txtTenKH.getText());

@@ -4,14 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
 
 import connect.ConnectDB;
-import entity.NhaXuatBan;
 import entity.TheLoaiSach;
 
 public class TheLoaiSach_DAO {

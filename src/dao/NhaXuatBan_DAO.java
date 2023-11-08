@@ -70,20 +70,14 @@ public class NhaXuatBan_DAO {
  	    return false;
  	}
 
- // xóa nhà xuất bản
- 	public boolean xoaNhaXuatBanMa(String maNXB) throws SQLException {
+ // xoa nhà xuất bản theo mã
+ 	public boolean xoaNhaXuatBanTheoMa(String maNhaXuatBan) throws SQLException {
  		ConnectDB.getInstance();
  		Connection connection = ConnectDB.getConnection();
- 		try {
- 			PreparedStatement preparedStatement = connection
- 					.prepareStatement("delete from NhaXuatBan where maNhaXuatBan = '" + maNXB + "'");
- 			return preparedStatement.executeUpdate() > 0;
- 		} catch (Exception e) {
- 			// TODO: handle exception
- 			e.printStackTrace();
- 		}
- 		connection.close();
- 		return false;
+ 		PreparedStatement preparedStatement = connection
+ 					.prepareStatement("delete from NhaXuatBan where maNhaXuatBan = '" + maNhaXuatBan + "'");
+// 		preparedStatement.close();
+ 		return preparedStatement.executeUpdate() > 0;
  	}
  	// sửa nhà xuất bản theo mã
  	public boolean suaNhaXuatBanTheoMa(NhaXuatBan nhaXuatBan) throws SQLException {

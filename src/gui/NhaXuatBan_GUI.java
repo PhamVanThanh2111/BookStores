@@ -62,7 +62,7 @@ public class NhaXuatBan_GUI extends JPanel {
 	private NhaXuatBan_DAO nhaXuatBan_DAO;
 	private PhatSinhMa_DAO phatSinhMa_DAO;
 	
-	private TimNhaXuatBan_GUI timNhaXuatBan_GUI ;
+	private TimKiemNhaXuatBan_GUI timKiemNhaXuatBan_GUI ;
 	private ArrayList<NhaXuatBan> ds;
 	private Border borderDefault;
 	/**
@@ -392,14 +392,13 @@ public class NhaXuatBan_GUI extends JPanel {
 		btnTim.setBackground(new Color(73, 129, 158));
 		btnTim.setBounds(695, 660, 135, 40);
 		btnTim.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				// null cho lan dau chay va isClose cho nhung click sau
-				if (timNhaXuatBan_GUI == null || timNhaXuatBan_GUI.isClosed()) {
-					timNhaXuatBan_GUI = new TimNhaXuatBan_GUI(ds);
-					timNhaXuatBan_GUI.addInternalFrameListener(new InternalFrameAdapter() {
+				if (timKiemNhaXuatBan_GUI == null || timKiemNhaXuatBan_GUI.isClosed()) {
+					timKiemNhaXuatBan_GUI = new TimKiemNhaXuatBan_GUI(ds);
+					timKiemNhaXuatBan_GUI.addInternalFrameListener(new InternalFrameAdapter() {
 			            @Override
 			            public void internalFrameActivated(InternalFrameEvent e) {
 //			                System.out.println("Internal frame is activated.");
@@ -425,7 +424,7 @@ public class NhaXuatBan_GUI extends JPanel {
 			            	enableButton();
 			            }
 			        });
-					desktopPane.add(timNhaXuatBan_GUI).setVisible(true);					
+					desktopPane.add(timKiemNhaXuatBan_GUI).setVisible(true);					
 				}
 			}
 					
@@ -524,7 +523,7 @@ public class NhaXuatBan_GUI extends JPanel {
 	public boolean delete() {
 		int row = table.getSelectedRow();
 		if (row == -1) {
-			JOptionPane.showMessageDialog(null, "Bạn phải chọn nhà xuất bản cần xóa!");
+			JOptionPane.showInternalMessageDialog(null, "Bạn phải chọn nhà xuất bản cần xóa!");
 			return false;
 		} else {
 			int option = JOptionPane.showConfirmDialog(null,
@@ -532,18 +531,18 @@ public class NhaXuatBan_GUI extends JPanel {
 					JOptionPane.YES_NO_OPTION);
 			if (option == JOptionPane.YES_OPTION) {
 				try {
-					nhaXuatBan_DAO .xoaNhaXuatBanMa(model.getValueAt(row, 0).toString());
-					JOptionPane.showMessageDialog(null, "Xóa thành công nhà xuất bản '" + model.getValueAt(row, 0) + "'!");
-					refresh();
-					return true;
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null,
-							"Xóa nhà xuất bản '" + model.getValueAt(row, 0) + "' không thành công!");
+					nhaXuatBan_DAO.xoaNhaXuatBanTheoMa(model.getValueAt(row, 0).toString());
+				} catch (Exception e) {
+					// TODO: handle exception
+					JOptionPane.showMessageDialog(null, "Không được xóa nhà xuất bản này. Bởi vì sẽ mất toàn bộ dữ liệu sách của nhà xuất bản này!");
 					return false;
 				}
-			} else
+				JOptionPane.showMessageDialog(null, "Xóa nhà xuất bản '" + model.getValueAt(row, 0) + "' thành công!");
+				refresh();
+				return true;
+			} else {
 				return false;
+			}
 		}
 	}
 	

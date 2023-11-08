@@ -7,16 +7,20 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -24,8 +28,10 @@ import javax.swing.table.JTableHeader;
 
 import dao.PhatSinhMa_DAO;
 import dao.TheLoaiSach_DAO;
+import entity.NhaXuatBan;
 import entity.TheLoaiSach;
 import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
 public class TheLoaiSach_GUI extends JPanel {
 
 	/**
@@ -58,7 +64,10 @@ public class TheLoaiSach_GUI extends JPanel {
 	private TheLoaiSach_DAO theLoaiSach_DAO;
 	private PhatSinhMa_DAO phatSinhMa_DAO;
 
+	private JDesktopPane desktopPane ;
 	
+	private JInternalFrame timKiemTheLoaiSach_GUI ;
+	private ArrayList<TheLoaiSach> ds;
 	/**
 	 * Create the panel.
 	 */
@@ -67,20 +76,46 @@ public class TheLoaiSach_GUI extends JPanel {
 		// khai bao DAO
 		theLoaiSach_DAO = new TheLoaiSach_DAO();
 		phatSinhMa_DAO = new PhatSinhMa_DAO();
+		
+		ds = new ArrayList<TheLoaiSach>();
+		
+		
 		setLayout(null);
 		
-	
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBounds(0, 0, 1300, 720);
 		add(panel);
+		
+		
+		desktopPane = new JDesktopPane();
+		desktopPane.setBounds(0, 0, 1300, 720);
+		panel.add(desktopPane);
+		desktopPane.setLayout(null);
+		
+		JPanel pMain = new JPanel();
+		pMain.setLayout(null);
+		pMain.setBackground(new Color(241, 245, 249));
+		pMain.setBounds(0, 0, 1300, 720);
+		desktopPane.add(pMain);
+		
+		
+		pDanhSach = new JPanel();
+		pDanhSach.setBackground(new Color(255, 255, 255));
+		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		pDanhSach.setBounds(0, 362, 1300, 348);
+
+		pMain.add(pDanhSach);
+		pDanhSach.setLayout(null);
+		
 		
 		pThongTin = new JPanel();
 		pThongTin.setLayout(null);
 		pThongTin.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pThongTin.setBackground(Color.WHITE);
 		pThongTin.setBounds(0, 0, 1300, 300);
-		panel.add(pThongTin);
+		pMain.add(pThongTin);
+		
 		
 		lblThongTinTheLoaiSach = new JLabel("Thông Tin Thể Loại Sách");
 		lblThongTinTheLoaiSach.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -93,7 +128,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		btnAdd.setForeground(Color.WHITE);
 		btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnAdd.setBackground(new Color(73, 129, 158));
-		btnAdd.setBounds(145, 200, 135, 40);
+		btnAdd.setBounds(104, 200, 135, 40);
 		btnAdd.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -128,7 +163,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		btnDelete.setForeground(Color.WHITE);
 		btnDelete.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnDelete.setBackground(new Color(73, 129, 158));
-		btnDelete.setBounds(432, 200, 135, 40);
+		btnDelete.setBounds(343, 200, 135, 40);
 		btnDelete.addActionListener(new ActionListener() {
 			
 			@Override
@@ -160,7 +195,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		btnUpdate.setForeground(Color.WHITE);
 		btnUpdate.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnUpdate.setBackground(new Color(73, 129, 158));
-		btnUpdate.setBounds(719, 200, 135, 40);
+		btnUpdate.setBounds(582, 200, 135, 40);
 		btnUpdate.addActionListener(new ActionListener() {
 			
 			@Override
@@ -198,7 +233,16 @@ public class TheLoaiSach_GUI extends JPanel {
 		btnLamMoi.setForeground(Color.WHITE);
 		btnLamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnLamMoi.setBackground(new Color(73, 129, 158));
-		btnLamMoi.setBounds(1006, 200, 135, 40);
+		btnLamMoi.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				refresh();
+			}
+		});
+		btnLamMoi.setBounds(821, 200, 135, 40);
+		
 		pThongTin.add(btnLamMoi);
 		
 		btnTim = new JButton("Tìm");
@@ -207,7 +251,45 @@ public class TheLoaiSach_GUI extends JPanel {
 		btnTim.setForeground(Color.WHITE);
 		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnTim.setBackground(new Color(73, 129, 158));
-		btnTim.setBounds(1106, 200, 135, 40);
+		btnTim.setBounds(1060, 200, 135, 40);
+		btnTim.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				// null cho lan dau chay va isClose cho nhung click sau
+				if (timKiemTheLoaiSach_GUI == null || timKiemTheLoaiSach_GUI.isClosed()) {
+					timKiemTheLoaiSach_GUI = new TimKiemTheLoaiSach_GUI(ds);
+					timKiemTheLoaiSach_GUI.addInternalFrameListener(new InternalFrameAdapter() {
+			            @Override
+			            public void internalFrameActivated(InternalFrameEvent e) {
+//			                System.out.println("Internal frame is activated.");
+			            }
+
+			            @Override
+			            public void internalFrameDeactivated(InternalFrameEvent e) {
+//			                System.out.println("Internal frame is deactivated.");
+			            }
+
+			            @Override
+			            public void internalFrameOpened(InternalFrameEvent e) {
+//			                System.out.println("Internal frame is opened.");
+			            	disableButton();
+			            }
+			            
+			            @Override
+			            public void internalFrameClosed(InternalFrameEvent e) {
+			                System.out.println("Internal frame is closed.");
+			                model.setRowCount(0);
+			            	loadDataIntoTable(ds);
+			            	ds.removeAll(ds);
+			            	enableButton();
+			            }
+			        });
+					desktopPane.add(timKiemTheLoaiSach_GUI).setVisible(true);					
+				}
+			}
+			
+		});
 		pThongTin.add(btnTim);
 		
 		lblMaTheLoaiSach = new JLabel("Mã Thể Loại Sách:");
@@ -238,14 +320,6 @@ public class TheLoaiSach_GUI extends JPanel {
 		txtTenTheLoaiSach.setBounds(850, 100, 400, 40);
 		pThongTin.add(txtTenTheLoaiSach);
 		
-		
-		pDanhSach = new JPanel();
-		pDanhSach.setBackground(new Color(255, 255, 255));
-		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		pDanhSach.setBounds(0, 362, 1300, 348);
-		panel.add(pDanhSach);
-		pDanhSach.setLayout(null);
-		
 		scrollPaneTheLoaiSach = new JScrollPane();
 		scrollPaneTheLoaiSach.setToolTipText("Chọn vào thể loại Sách cần hiển thị thông tin");
 		scrollPaneTheLoaiSach.setBorder(null);
@@ -265,6 +339,9 @@ public class TheLoaiSach_GUI extends JPanel {
 		table.setBackground(new Color(255, 255, 255));
 		table.setSelectionBackground(new Color(141, 208, 229));
 		table.setSelectionForeground(new Color(0, 0, 0));
+		// chỉ chọn được 1 dòng dữ liệu
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
 		table.addMouseListener(new MouseListener() {
 
 			@Override
@@ -318,10 +395,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		lblChiTitTheLoaiSach.setBounds(22, 10, 291, 40);
 		pDanhSach.add(lblChiTitTheLoaiSach);
 		
-		JDesktopPane desktopPane = new JDesktopPane();
-		desktopPane.setBounds(0, 0, 1, 1);
-		panel.add(desktopPane);
-		desktopPane.setLayout(null);
+	
 		refresh();
 		;
 	}
@@ -364,32 +438,34 @@ public class TheLoaiSach_GUI extends JPanel {
 	        }
 	    }
 	}
-	//Xóa thể loại sách
-		public boolean delete() {
-			int row = table.getSelectedRow();
-			if (row == -1) {
-				JOptionPane.showMessageDialog(null, "Bạn phải chọn thể loại sách cần xóa!");
-				return false;
-			} else {
-				int option = JOptionPane.showConfirmDialog(null,
-						"Bạn có chắc muốn xóa thể loại sách '" + model.getValueAt(row, 0) + "' chứ?", "Xóa?",
-						JOptionPane.YES_NO_OPTION);
-				if (option == JOptionPane.YES_OPTION) {
-					try {
-						theLoaiSach_DAO.xoaTheLoaiSach(model.getValueAt(row, 0).toString());
-						JOptionPane.showMessageDialog(null, "Xóa thành công thể loại sách '" + model.getValueAt(row, 0) + "'!");
-						refresh();
-						return true;
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(null,
-								"Xóa thể loại sách '" + model.getValueAt(row, 0) + "' không thành công!");
-						return false;
-					}
-				} else
+	// Xóa thể loại sách
+	public boolean delete() {
+		int row = table.getSelectedRow();
+		if (row == -1) {
+			JOptionPane.showInternalMessageDialog(null, "Bạn phải chọn thể loại sách cần xóa!");
+			return false;
+		} else {
+			int option = JOptionPane.showConfirmDialog(null,
+					"Bạn có chắc muốn xóa thể loại sách '" + model.getValueAt(row, 0) + "' chứ?", "Xóa?",
+					JOptionPane.YES_NO_OPTION);
+			if (option == JOptionPane.YES_OPTION) {
+				try {
+					theLoaiSach_DAO.xoaTheLoaiSachTheoMa(model.getValueAt(row, 0).toString());
+				} catch (Exception e) {
+					// TODO: handle exception
+					JOptionPane.showMessageDialog(null, "Không được xóa thể loại sách này. Bởi vì sẽ mất toàn bộ dữ liệu sách và nhà xuất bản của thể loại sách này!");
 					return false;
+				}
+				// Nếu xóa nhân viên thì xóa luôn tài khoản của nhân viên đó
+				JOptionPane.showMessageDialog(null,
+						"Xóa nhân viên '" + model.getValueAt(row, 0) + "' thành công!");
+				refresh();
+				return true;
+			} else {
+				return false;
 			}
 		}
+	}
 	//Sửa nhà xuất bản theo mã
 	public boolean update() {
 		int row = table.getSelectedRow();
@@ -436,7 +512,6 @@ public class TheLoaiSach_GUI extends JPanel {
 	    txtTenTheLoaiSach.setBorder(null);
 	}
 
-	@SuppressWarnings("unused")
 	private void enableButton() {
 	    btnLamMoi.setEnabled(true);
 	    btnAdd.setEnabled(true);
@@ -445,7 +520,6 @@ public class TheLoaiSach_GUI extends JPanel {
 	    btnTim.setEnabled(true);
 	}
 
-	@SuppressWarnings("unused")
 	private void disableButton() {
 	    btnLamMoi.setEnabled(false);
 	    btnAdd.setEnabled(false);

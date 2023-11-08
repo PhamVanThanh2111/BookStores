@@ -18,8 +18,9 @@ import javax.swing.border.EmptyBorder;
 
 import dao.NhaXuatBan_DAO;
 import entity.NhaXuatBan;
+import entity.TheLoaiSach;
 
-public class TimNhaXuatBan_GUI extends JInternalFrame {
+public class TimKiemNhaXuatBan_GUI extends JInternalFrame {
 
 	/**
 	 * 
@@ -38,7 +39,7 @@ public class TimNhaXuatBan_GUI extends JInternalFrame {
 	 * Create the frame.
 	 */
 
-	public TimNhaXuatBan_GUI(ArrayList<NhaXuatBan> ds) {
+	public TimKiemNhaXuatBan_GUI(ArrayList<NhaXuatBan> ds) {
 
 		// khai bao DAO
 		nhaXuatBan_DAO = new NhaXuatBan_DAO();
@@ -105,26 +106,7 @@ public class TimNhaXuatBan_GUI extends JInternalFrame {
 		txtSoDienThoai.setBounds(585, 168, 238, 40);
 		contentPane.add(txtSoDienThoai);
 
-		JButton btnTim = new JButton("Tìm");
-		btnTim.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (!duLieuRong()) {
-					searchNhaXuatBan();
-					try {
-						setClosed(true);
-					} catch (PropertyVetoException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}
-			}
-
-		});
-		btnTim.setForeground(Color.WHITE);
-		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnTim.setBackground(new Color(73, 129, 158));
-		btnTim.setBounds(688, 259, 135, 40);
-		contentPane.add(btnTim);
+		
 
 		JButton btnQuayLai = new JButton("← Quay Lại");
 		btnQuayLai.setForeground(Color.WHITE);
@@ -146,9 +128,27 @@ public class TimNhaXuatBan_GUI extends JInternalFrame {
 			}
 		});
 		contentPane.add(btnQuayLai);
+		JButton btnTim = new JButton("Tìm");
+		btnTim.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (!duLieuRong()) {
+					searchNhaXuatBan();
+					try {
+						setClosed(true);
+					} catch (PropertyVetoException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
 
+		});
+		btnTim.setForeground(Color.WHITE);
+		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnTim.setBackground(new Color(73, 129, 158));
+		btnTim.setBounds(688, 259, 135, 40);
+		contentPane.add(btnTim);
 	}
-
 	private void searchNhaXuatBan() {
 		// TODO Auto-generated method stub
 		for (NhaXuatBan nhaXuatBan : nhaXuatBan_DAO.getAllListNhaXuatBan()) {

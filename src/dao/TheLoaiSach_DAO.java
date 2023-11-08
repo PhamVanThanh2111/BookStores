@@ -64,21 +64,15 @@ public class TheLoaiSach_DAO {
  	    }
  	    return false;
  	}
- 	 // xóa thể loại sách
- 	 	public boolean xoaTheLoaiSach(String maTheLoaiSach) throws SQLException {
- 	 		ConnectDB.getInstance();
- 	 		Connection connection = ConnectDB.getConnection();
- 	 		try {
- 	 			PreparedStatement preparedStatement = connection
- 	 					.prepareStatement("delete from TheLoaiSach where maTheLoaiSach = '" + maTheLoaiSach + "'");
- 	 			return preparedStatement.executeUpdate() > 0;
- 	 		} catch (Exception e) {
- 	 			// TODO: handle exception
- 	 			e.printStackTrace();
- 	 		}
- 	 		connection.close();
- 	 		return false;
- 	 	}
+ 	// xoa thể loại sách
+ 		public boolean xoaTheLoaiSachTheoMa(String maTheLoaiSach) throws SQLException {
+ 			ConnectDB.getInstance();
+ 			Connection connection = ConnectDB.getConnection();
+ 			PreparedStatement preparedStatement = connection
+ 						.prepareStatement("delete from TheLoaiSach where maTheLoaiSach = '" + maTheLoaiSach + "'");
+// 			preparedStatement.close();
+ 			return preparedStatement.executeUpdate() > 0;
+ 		}
  	// kiểm tra xóa (nếu thể loại sách đã tồn tại sách thì không được xóa)
  	public boolean isTheLoaiSachDaTonTai(String maTheLoaiSach) throws SQLException {
  	    ConnectDB.getInstance();

@@ -432,7 +432,6 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 				cbNhaCC.getSelectedIndex()==-1) {
 				JOptionPane.showMessageDialog(null, "Thông Tin Rỗng !");
 			}else {
-				
 				SanPham sanPham = new SanPham();
 				sanPham.setMaSanPham(txtmaDCHT.getText());
 				sanPham.setTenSanPham(txttenDCHT.getText());

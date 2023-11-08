@@ -28,6 +28,7 @@ import javax.swing.table.JTableHeader;
 import dao.NhaCungCap_DAO;
 import dao.PhatSinhMa_DAO;
 import entity.NhaCungCap;
+import javax.swing.JDesktopPane;
 
 public class NhaCungCap_GUI extends JPanel implements ActionListener {
 
@@ -54,13 +55,12 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 		nhaCungCap_DAO = new NhaCungCap_DAO();
 		phatSinhMa_DAO = new PhatSinhMa_DAO();
 		
-		setLayout(null);
+		
 		
 		JPanel pMain = new JPanel();
 		pMain.setLayout(null);
 		pMain.setBackground(new Color(241, 245, 249));
 		pMain.setBounds(0, 0, 1300, 720);
-		add(pMain);
 		
 		JPanel pNhapThongTin = new JPanel();
 		pNhapThongTin.setLayout(null);
@@ -190,7 +190,6 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 		pDanhSach.add(scrollPaneNCC);
 		
 		borderDefault = txtEmail.getBorder();
-		
 		String cols[] = { "Mã Nhà Cung Cấp ", "Tên Nhà Cung Cấp", "Địa Chỉ", "Số Điện Thoại", "Email" };
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
@@ -201,14 +200,19 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 		
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setDefaultEditor(Object.class, null);
+				
+		
 		
 		tableHeader = table.getTableHeader();
+
 		tableHeader.setBackground(new Color(73, 129, 158));
 		tableHeader.setForeground(Color.white);
 		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
 		tableHeader.setReorderingAllowed(false);
-		
-		
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+		loadData();
+		closeFocusTXT();
 		table.addMouseListener(new MouseListener() {
 
 			@Override
@@ -249,8 +253,6 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 			}
 		});
 		scrollPaneNCC.setViewportView(table);
-		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 		table.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
 		table.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
 		table.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
@@ -296,11 +298,24 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 		btnTim.setBackground(new Color(73, 129, 158));
 		btnTim.setBounds(695, 660, 135, 40);
 		pDanhSach.add(btnTim);	
-		loadData();
-		closeFocusTXT();
 		
 		btnThem.addActionListener(this);
+		btnXoa.addActionListener(this);
+		btnTim.addActionListener(this);
+		btnSua.addActionListener(this);
+		setLayout(null);
 		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 1300, 720);
+		add(panel);
+		panel.setLayout(null);
+		
+		
+		JDesktopPane desktopPane = new JDesktopPane();
+		desktopPane.setBounds(0, 0, 1300, 720);
+		
+		desktopPane.add(pMain);
+		panel.add(desktopPane);
 	}
 	// đưa dữ liệu lên bảng
 		public void loadData() {
@@ -377,9 +392,42 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 			JOptionPane.showMessageDialog(null, "Thêm Nhà Cung Cấp Thành Công !");
 			loadData();
 		}
-		
-		
-		
+	}
+	
+	public void xoaNhaCungCap() throws SQLException {
+		int row = table.getSelectedRow();
+		if(row !=-1) {
+			int tb = JOptionPane.showConfirmDialog(null, "Bạn Muốn Xóa Nhà Cung Cấp ? ", "Delete", JOptionPane.YES_NO_OPTION);
+			if(tb == JOptionPane.YES_OPTION) {
+				nhaCungCap_DAO.xoaNhaCungCapTheoMa((String)model.getValueAt(row, 0));
+				JOptionPane.showMessageDialog(null,"Xóa Thành Công");
+				loadData();
+			}
+		}
+	}
+	
+	public void suaNhaCungCap() throws SQLException {
+		if(txtTenNhaCungCap.getText().equalsIgnoreCase("")
+				||txtSDT.getText().equalsIgnoreCase("")
+				||txtEmail.getText().equalsIgnoreCase("")
+				||txtDiaChi.getText().equalsIgnoreCase("")) {
+				JOptionPane.showMessageDialog(null, "Thông Tin Rỗng !");
+			}else {
+			
+				NhaCungCap nhaCC = new NhaCungCap();
+				
+				nhaCC.setMaNCC(lblMaNCC.getText());
+				nhaCC.setTenNCC(txtTenNhaCungCap.getText());
+				nhaCC.setSoDienThoai(txtSDT.getText());
+				nhaCC.setDiaChi(txtDiaChi.getText());
+				nhaCC.setEmail(txtEmail.getText());
+				
+				nhaCungCap_DAO.suaNhaCungCapTheoMa(nhaCC);
+				
+				JOptionPane.showMessageDialog(null, "Cập Nhập Nhà Cung Cấp Thành Công !");
+				loadData();
+				
+			}
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -412,12 +460,77 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					
+				}
+			}
+		}else {
+			if(o.equals(btnXoa)) {
+				if(btnXoa.getText().equalsIgnoreCase("Hủy")) {
+					btnThem.setText("Thêm");
+					btnXoa.setText("Xóa");
+					btnTim.setEnabled(true);
+					btnSua.setEnabled(true);
+					closeFocusTXT();
+				}else {
+					if(btnXoa.getText().equalsIgnoreCase("Xóa")) {
+						int r = table.getSelectedRow();
+						if(r==-1) {
+							JOptionPane.showMessageDialog(null, "Bạn Chưa Chọn Nhà Cung Cấp!");
+						}else {
+							try {
+								xoaNhaCungCap();
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+						
+					}
+				}
+			}else {
+				if(o.equals(btnSua)) {
+					if(btnSua.getText().equalsIgnoreCase("Sửa")) {
+						int r = table.getSelectedRow();
+						if(r==-1) {
+							JOptionPane.showMessageDialog(null, "Bạn Chưa Chọn Nhà Cung Cấp!");
+						}else {
+							btnThem.setEnabled(false);
+							btnXoa.setEnabled(false);
+							btnSua.setText("Xác Nhận");
+							btnTim.setText("Hủy");
+							openFocusTXT();
+						}
+					}else {
+						if(btnSua.getText().equalsIgnoreCase("Xác Nhận")) {
+							
+							int tb = JOptionPane.showConfirmDialog(null, "Bạn Muốn Cập Nhập Nhà Cung Cấp ? ", "Delete", JOptionPane.YES_NO_OPTION);
+							if(tb == JOptionPane.YES_OPTION) {
+								btnThem.setEnabled(true);
+								btnXoa.setEnabled(true);
+								btnSua.setText("Sửa");
+								btnTim.setText("Tìm");
+								try {
+									suaNhaCungCap();
+								} catch (SQLException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+								closeFocusTXT();
+							}	
+						}
+					}
+				}else {
+					if(o.equals(btnTim)) {
+						if(btnTim.getText().equalsIgnoreCase("Hủy")) {
+							btnThem.setEnabled(true);
+							btnXoa.setEnabled(true);
+							btnSua.setText("Sửa");
+							btnTim.setText("Tìm");
+							closeFocusTXT();
+						}
+					}
 				}
 			}
 		}
 		
 	}
-	
-	
 }

@@ -93,5 +93,38 @@ public class NhaCungCap_DAO {
 
 		return false;
 	}
+    
+	public boolean xoaNhaCungCapTheoMa(String maNCC) throws SQLException {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		
+		try {
+			PreparedStatement preparedstaments = 
+					connection.prepareStatement("delete from NhaCungCap Where maNhaCungCap = '"+maNCC+"'");
+				return preparedstaments.executeUpdate()>0;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		connection.close();
+		return false;
+	}
 	
+	
+    public boolean suaNhaCungCapTheoMa(NhaCungCap nhaCC) throws SQLException {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		try {
+			PreparedStatement preparedstaments = 
+					connection.prepareStatement("update NhaCungCap set tenNhaCungCap = ?,diaChi = ?,soDienThoai= ?,email= ? where maNhaCungCap ='"+nhaCC.getMaNCC()+"'");
+			preparedstaments.setString(1,nhaCC.getTenNCC());
+			preparedstaments.setString(2,nhaCC.getDiaChi());
+			preparedstaments.setString(3,nhaCC.getSoDienThoai());
+			preparedstaments.setString(4,nhaCC.getEmail());
+			return preparedstaments.executeUpdate() > 0;
+		} catch (SQLException e) {
+			// TODO: handle exception
+		}
+		connection.close();
+		return false;	
+	}
 }

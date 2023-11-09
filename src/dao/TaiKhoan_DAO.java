@@ -45,16 +45,15 @@ public class TaiKhoan_DAO {
 		return false;
 	}
 
-	public boolean suaTaiKhoan(TaiKhoan tk) {
+	public boolean suaTaiKhoan(TaiKhoan taiKhoan) {
 		ConnectDB.getInstance();
 		Connection con = ConnectDB.getConnection();
 		PreparedStatement stmt = null;
-		int n = 0;
 		try {
-			stmt = con.prepareStatement("update TaiKhoan set matKhau = ? where maTK = ?");
-			stmt.setString(2, tk.getTaiKhoan());
-			stmt.setString(1, tk.getMatKhau());
-			n = stmt.executeUpdate();
+			stmt = con.prepareStatement("update TaiKhoan set matKhau = ? where taiKhoan = ?");
+			stmt.setString(2, taiKhoan.getTaiKhoan());
+			stmt.setString(1, taiKhoan.getMatKhau());
+			return stmt.executeUpdate() > 0;
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -66,7 +65,7 @@ public class TaiKhoan_DAO {
 				e2.printStackTrace();
 			}
 		}
-		return n > 0;
+		return false;
 	}
 
 	// Load ds TK

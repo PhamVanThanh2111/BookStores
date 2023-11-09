@@ -3,6 +3,8 @@ package gui;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 
 import entity.NhanVien;
 
@@ -12,10 +14,14 @@ import javax.swing.JLabel;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
+import javax.swing.JButton;
+import javax.swing.JDesktopPane;
 
 public class HoSo_GUI extends JPanel {
 
@@ -23,19 +29,68 @@ public class HoSo_GUI extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	private DoiMatKhau_GUI doiMatKhau_GUI;
 	/**
 	 * Create the panel.
 	 */
 	public HoSo_GUI(NhanVien nhanVien) {
 		setLayout(null);
 		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 1300, 720);
+		add(panel);
+		panel.setLayout(null);
+		
+		JDesktopPane desktopPane = new JDesktopPane();
+		desktopPane.setBounds(0, 0, 1300, 720);
+		panel.add(desktopPane);
+		
 		JPanel pnlMain = new JPanel();
 		pnlMain.setBackground(new Color(255, 255, 255));
 		pnlMain.setBorder(new LineBorder(new Color(0, 0, 0)));
 		pnlMain.setBounds(0, 0, 1300, 720);
-		add(pnlMain);
+		desktopPane.add(pnlMain);
 		pnlMain.setLayout(null);
+		
+		JButton btnDoiMatKhau = new JButton("Đổi mật khẩu");
+		btnDoiMatKhau.setForeground(Color.WHITE);
+		btnDoiMatKhau.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnDoiMatKhau.setBackground(new Color(73, 129, 158));
+		btnDoiMatKhau.setBounds(1155, 670, 135, 40);
+		btnDoiMatKhau.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (doiMatKhau_GUI == null || doiMatKhau_GUI.isClosed()) {
+					doiMatKhau_GUI = new DoiMatKhau_GUI(nhanVien);
+					doiMatKhau_GUI.addInternalFrameListener(new InternalFrameAdapter() {
+			            @Override
+			            public void internalFrameActivated(InternalFrameEvent e) {
+//			                System.out.println("Internal frame is activated.");
+			            }
+
+			            @Override
+			            public void internalFrameDeactivated(InternalFrameEvent e) {
+//			                System.out.println("Internal frame is deactivated.");
+			            }
+
+			            @Override
+			            public void internalFrameOpened(InternalFrameEvent e) {
+//			                System.out.println("Internal frame is opened.");
+			            }
+			            
+			            @Override
+			            public void internalFrameClosed(InternalFrameEvent e) {
+//			                System.out.println("Internal frame is closed.");
+			            }
+			        });
+					desktopPane.add(doiMatKhau_GUI).setVisible(true);
+//					loadDataIntoTable(doiMatKhau_GUI.searchNhanVien());
+				}
+			}
+		});
+		pnlMain.add(btnDoiMatKhau);
 		
 		JLabel lblBackgroundHoSo = new JLabel("");
 		lblBackgroundHoSo.setBackground(new Color(255, 255, 255));

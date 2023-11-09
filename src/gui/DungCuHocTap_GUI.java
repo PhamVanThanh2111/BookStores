@@ -60,6 +60,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 	private File selectedFile;
 	private String relativePath;
 	private JLabel lblHinhAnh;
+	private JButton btnChonHinhAnh;
 	/**
 	 * Create the panel.
 	 */
@@ -192,7 +193,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		btnlamMoi.setBounds(821, 298, 135, 40);
 		pThongTin.add(btnlamMoi);
 		
-		JButton btnChonHinhAnh = new JButton("Choose");
+		btnChonHinhAnh = new JButton("Choose");
 		btnChonHinhAnh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				chooseFile();
@@ -362,6 +363,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 			btnAdd.setEnabled(false);
 			btnDelete.setEnabled(false);
 			btnUpdate.setEnabled(false);
+			btnChonHinhAnh.setEnabled(false);
 		}
 		
 	}

@@ -240,6 +240,7 @@ public class HoaDon_GUI extends JPanel {
 				loadDataIntoComboboxTenSP(cbLoaiSP.getSelectedItem().toString());
 				cbTenSP.setSelectedItem(model.getValueAt(row, 0));
 				txtSoLuong.setText(model.getValueAt(row, 2).toString());
+				txtConLai.setText((sanPham_DAO.getSanPhamTheoTenSanPham(cbTenSP.getSelectedItem().toString()).getSoLuongTon() - Integer.parseInt(txtSoLuong.getText())) + "");
 			}
 		});
 		scrollPane.setViewportView(table);
@@ -395,7 +396,7 @@ public class HoaDon_GUI extends JPanel {
 							Object[] objects = {cbTenSP.getSelectedItem().toString(), cbLoaiSP.getSelectedItem().toString(), txtSoLuong.getText(), sanPham.getGiaBan(), Integer.parseInt(txtSoLuong.getText()) * sanPham.getGiaBan()};
 							model.addRow(objects);
 							lblTongTienValue.setText(tinhThanhTien() + " VND");
-							
+							txtConLai.setText(Integer.parseInt(txtConLai.getText()) - Integer.parseInt(txtSoLuong.getText()) + "");
 						}
 						
 					}
@@ -478,23 +479,29 @@ public class HoaDon_GUI extends JPanel {
 					JOptionPane.showInternalMessageDialog(null, "Bạn phải chọn sản phẩm cần sửa!");
 				}
 				else {
-					model.setValueAt(cbTenSP.getSelectedItem().toString(), row, 0);
-					model.setValueAt(cbLoaiSP.getSelectedItem().toString(), row, 1);
-					try {
-						if (Integer.parseInt(txtSoLuong.getText()) <= 0) {
-							JOptionPane.showMessageDialog(null, "Số lượng phải lớn hơn không!");
+					if (Integer.parseInt(txtConLai.getText()) < Integer.parseInt(txtSoLuong.getText())) {
+						JOptionPane.showMessageDialog(null, "Không đủ sản phẩm!");
+					}
+					else {
+						model.setValueAt(cbTenSP.getSelectedItem().toString(), row, 0);
+						model.setValueAt(cbLoaiSP.getSelectedItem().toString(), row, 1);
+						try {
+							if (Integer.parseInt(txtSoLuong.getText()) <= 0) {
+								JOptionPane.showMessageDialog(null, "Số lượng phải lớn hơn không!");
+							}
+							else {
+								model.setValueAt(txtSoLuong.getText(), row, 2);
+							}
+							model.setValueAt(sanPham.getGiaBan(), row, 3);
+							model.setValueAt(Integer.parseInt(txtSoLuong.getText()) * sanPham.getGiaBan(), row, 4);
+							lblTongTienValue.setText(tinhThanhTien() + " VND");
+							txtConLai.setText(Integer.parseInt(txtConLai.getText()) - Integer.parseInt(txtSoLuong.getText()) + "");
+						} catch (Exception e2) {
+							// TODO: handle exception
+							JOptionPane.showMessageDialog(null, "Số lượng phải là số!");
 						}
-						else {
-							model.setValueAt(txtSoLuong.getText(), row, 2);
-						}
-					} catch (Exception e2) {
-						// TODO: handle exception
-						JOptionPane.showMessageDialog(null, "Số lượng phải là số!");
 					}
 					
-					model.setValueAt(sanPham.getGiaBan(), row, 3);
-					model.setValueAt(Integer.parseInt(txtSoLuong.getText()) * sanPham.getGiaBan(), row, 4);
-					lblTongTienValue.setText(tinhThanhTien() + " VND");
 				}
 			}
 		});
@@ -544,12 +551,15 @@ public class HoaDon_GUI extends JPanel {
 		hoaDon.setThanhTien(tinhThanhTien());
 		hoaDon_DAO.lapHoaDon(hoaDon);
 		for (int i = 0; i < model.getRowCount(); i++) {
+			String maSanPham = sanPham_DAO.getSanPhamTheoTenSanPham(model.getValueAt(i, 0).toString()).getMaSanPham();
+			int soLuong = Integer.parseInt(model.getValueAt(i, 2).toString());
 			ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon();
 			chiTietHoaDon.setMaHoaDon(maHoaDon);
-			chiTietHoaDon.setMaSanPham(sanPham_DAO.getSanPhamTheoTenSanPham(model.getValueAt(i, 0).toString()).getMaSanPham());
-			chiTietHoaDon.setSoLuong(Integer.parseInt(model.getValueAt(i, 2).toString()));
+			chiTietHoaDon.setMaSanPham(maSanPham);
+			chiTietHoaDon.setSoLuong(soLuong);
 			chiTietHoaDon.setDonGia(Float.parseFloat(model.getValueAt(i, 3).toString()));
 			chiTietHoaDon_DAO.themChiTietHoaDon(chiTietHoaDon);
+			sanPham_DAO.banSanPham(maSanPham, soLuong);
 		}
 		JOptionPane.showMessageDialog(null, "Lập hóa đơn thành công!");
 	}

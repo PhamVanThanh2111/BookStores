@@ -499,6 +499,7 @@ public class DatHang_GUI extends JPanel {
 							model.setValueAt(sanPham.getGiaBan(), row, 3);
 							model.setValueAt(Integer.parseInt(txtSoLuong.getText()) * sanPham.getGiaBan(), row, 4);
 							lblTongTienValue.setText(tinhThanhTien() + " VND");
+							txtConLai.setText(Integer.parseInt(txtConLai.getText()) - Integer.parseInt(txtSoLuong.getText()) + "");
 						} catch (Exception e2) {
 							// TODO: handle exception
 							JOptionPane.showMessageDialog(null, "Số lượng phải là số!");

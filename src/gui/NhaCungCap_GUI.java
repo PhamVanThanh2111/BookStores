@@ -400,16 +400,24 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 		}
 	}
 	
-	public void xoaNhaCungCap() throws SQLException {
+	public boolean xoaNhaCungCap() {
 		int row = table.getSelectedRow();
 		if(row !=-1) {
 			int tb = JOptionPane.showConfirmDialog(null, "Bạn Muốn Xóa Nhà Cung Cấp ? ", "Delete", JOptionPane.YES_NO_OPTION);
 			if(tb == JOptionPane.YES_OPTION) {
-				nhaCungCap_DAO.xoaNhaCungCapTheoMa((String)model.getValueAt(row, 0));
-				JOptionPane.showMessageDialog(null,"Xóa Thành Công");
+				try {
+					nhaCungCap_DAO.xoaNhaCungCapTheoMa((String)model.getValueAt(row, 0));
+				
+				} catch (SQLException e) {
+					JOptionPane.showMessageDialog(null, "Nhà Cung Cấp Không Được Phép Xóa!");
+					return false;
+				}
+				JOptionPane.showMessageDialog(null, "Xóa Thành Công");
 				loadData(nhaCungCap_DAO.getAllNhaCungCap());
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	public void suaNhaCungCap() throws SQLException {
@@ -482,12 +490,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 						if(r==-1) {
 							JOptionPane.showMessageDialog(null, "Bạn Chưa Chọn Nhà Cung Cấp!");
 						}else {
-							try {
-								xoaNhaCungCap();
-							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
+							xoaNhaCungCap();
 						}
 						
 					}

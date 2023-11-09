@@ -7,13 +7,16 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.sql.SQLException;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -26,8 +29,10 @@ import dao.NhaCungCap_DAO;
 import dao.PhatSinhMa_DAO;
 import dao.SanPham_DAO;
 import entity.NhaCungCap;
+import entity.NhanVien;
 import entity.SanPham;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 
 public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 
@@ -50,6 +55,10 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 	private NhaCungCap_DAO nhaCC_DAO;
 	private NhaCungCap nhacc;
 	private JComboBox<String> cbNhaCC;
+	private JFileChooser fileChooser;
+	private File selectedFile;
+	private String relativePath;
+	private JLabel lblHinhAnh;
 	/**
 	 * Create the panel.
 	 */
@@ -70,7 +79,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		pThongTin.setLayout(null);
 		pThongTin.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pThongTin.setBackground(Color.WHITE);
-		pThongTin.setBounds(0, 0, 1300, 320);
+		pThongTin.setBounds(0, 0, 1300, 360);
 		pMain.add(pThongTin);
 		
 		JLabel lblthongTinDCHT = new JLabel("Thông Tin Dụng Cụ Học Tập");
@@ -116,17 +125,17 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		
 		JLabel lblgia = new JLabel("Giá Nhập:");
 		lblgia.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblgia.setBounds(450, 70, 130, 40);
+		lblgia.setBounds(450, 115, 130, 40);
 		pThongTin.add(lblgia);
 		
 		JLabel lblnhaXuatBan = new JLabel("Giá Bán:");
 		lblnhaXuatBan.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblnhaXuatBan.setBounds(450, 115, 130, 40);
+		lblnhaXuatBan.setBounds(450, 160, 130, 40);
 		pThongTin.add(lblnhaXuatBan);
 		
 		JLabel lblgiaNhap = new JLabel("Số Lượng:");
 		lblgiaNhap.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblgiaNhap.setBounds(450, 160, 98, 40);
+		lblgiaNhap.setBounds(450, 205, 98, 40);
 		pThongTin.add(lblgiaNhap);
 		
 		txtsoLuong = new JTextField();
@@ -135,20 +144,15 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		txtsoLuong.setEditable(false);
 		txtsoLuong.setColumns(10);
 		txtsoLuong.setBackground(Color.WHITE);
-		txtsoLuong.setBounds(550, 160, 255, 40);
+		txtsoLuong.setBounds(550, 205, 255, 40);
 		pThongTin.add(txtsoLuong);
-		
-		JLabel lblanh = new JLabel("Ảnh DCHT:");
-		lblanh.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblanh.setBounds(853, 160, 94, 40);
-		pThongTin.add(lblanh);
 		
 		btnAdd = new JButton("Thêm");
 		btnAdd.setOpaque(true);
 		btnAdd.setForeground(Color.WHITE);
 		btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnAdd.setBackground(new Color(73, 129, 158));
-		btnAdd.setBounds(145, 250, 135, 40);
+		btnAdd.setBounds(128, 298, 135, 40);
 		pThongTin.add(btnAdd);
 		
 		btnDelete = new JButton("Xóa");
@@ -156,7 +160,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		btnDelete.setForeground(Color.WHITE);
 		btnDelete.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnDelete.setBackground(new Color(73, 129, 158));
-		btnDelete.setBounds(432, 250, 135, 40);
+		btnDelete.setBounds(415, 298, 135, 40);
 		pThongTin.add(btnDelete);
 		
 		btnUpdate = new JButton("Sửa");
@@ -164,7 +168,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		btnUpdate.setForeground(Color.WHITE);
 		btnUpdate.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnUpdate.setBackground(new Color(73, 129, 158));
-		btnUpdate.setBounds(719, 250, 135, 40);
+		btnUpdate.setBounds(702, 298, 135, 40);
 		pThongTin.add(btnUpdate);
 		
 		btnlamMoi = new JButton("Làm mới");
@@ -172,21 +176,22 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		btnlamMoi.setForeground(Color.WHITE);
 		btnlamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnlamMoi.setBackground(new Color(73, 129, 158));
-		btnlamMoi.setBounds(1006, 250, 135, 40);
+		btnlamMoi.setBounds(989, 298, 135, 40);
 		pThongTin.add(btnlamMoi);
 		
 		JButton btnChonHinhAnh = new JButton("Choose");
 		btnChonHinhAnh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				chooseFile();
 			}
 		});
 		btnChonHinhAnh.setFont(new Font("Tahoma", Font.PLAIN, 9));
-		btnChonHinhAnh.setBounds(971, 174, 90, 19);
+		btnChonHinhAnh.setBounds(1003, 226, 90, 19);
 		pThongTin.add(btnChonHinhAnh);
 		
-		JLabel lblHinhAnh = new JLabel("");
+		lblHinhAnh = new JLabel("");
 		lblHinhAnh.setBorder(new LineBorder(new Color(0, 0, 0)));
-		lblHinhAnh.setBounds(957, 160, 303, 40);
+		lblHinhAnh.setBounds(857, 70, 397, 146);
 		pThongTin.add(lblHinhAnh);
 		
 		txtgiaBan = new JTextField();
@@ -195,7 +200,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		txtgiaBan.setEditable(false);
 		txtgiaBan.setColumns(10);
 		txtgiaBan.setBackground(Color.WHITE);
-		txtgiaBan.setBounds(550, 115, 255, 40);
+		txtgiaBan.setBounds(550, 160, 255, 40);
 		pThongTin.add(txtgiaBan);
 		
 		txtgiaNhap = new JTextField();
@@ -204,12 +209,12 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		txtgiaNhap.setEditable(false);
 		txtgiaNhap.setColumns(10);
 		txtgiaNhap.setBackground(Color.WHITE);
-		txtgiaNhap.setBounds(550, 70, 255, 40);
+		txtgiaNhap.setBounds(550, 115, 255, 40);
 		pThongTin.add(txtgiaNhap);
 		
 		JLabel lblXutX = new JLabel("Xuất Xứ:");
 		lblXutX.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblXutX.setBounds(853, 115, 94, 40);
+		lblXutX.setBounds(40, 205, 94, 40);
 		pThongTin.add(lblXutX);
 		
 		txtXuatXu = new JTextField();
@@ -218,12 +223,12 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		txtXuatXu.setEditable(false);
 		txtXuatXu.setColumns(10);
 		txtXuatXu.setBackground(Color.WHITE);
-		txtXuatXu.setBounds(957, 115, 303, 40);
+		txtXuatXu.setBounds(145, 205, 255, 40);
 		pThongTin.add(txtXuatXu);
 		
 		cbNhaCC = new JComboBox<String>();
 		cbNhaCC.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbNhaCC.setBounds(144, 160, 255, 40);
+		cbNhaCC.setBounds(145, 160, 255, 40);
 		loadCBNhaCC();
 		cbNhaCC.setSelectedIndex(-1);
 		// Load Nhà Cung Cấp lên CB
@@ -237,14 +242,14 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		pDanhSach.setLayout(null);
 		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pDanhSach.setBackground(Color.WHITE);
-		pDanhSach.setBounds(0, 330, 1300, 380);
+		pDanhSach.setBounds(0, 370, 1300, 342);
 		pMain.add(pDanhSach);
 		
 		JScrollPane scrollPaneDungCuHocTap = new JScrollPane();
 		scrollPaneDungCuHocTap.setToolTipText("Chọn vào Dụng cụ học tập cần hiển thị thông tin");
 		scrollPaneDungCuHocTap.setBorder(null);
 		scrollPaneDungCuHocTap.setBackground(Color.WHITE);
-		scrollPaneDungCuHocTap.setBounds(20, 51, 1259, 319);
+		scrollPaneDungCuHocTap.setBounds(20, 70, 1259, 250);
 		pDanhSach.add(scrollPaneDungCuHocTap);
 		
 		String cols[] = { "Mã Dụng Cụ Học Tập", "Tên Dụng Cụ Học Tập ", "Xuất Xứ", "Giá Nhập",
@@ -321,6 +326,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 			public void mouseClicked(MouseEvent e) {
 				
 				int r = table.getSelectedRow();
+				SanPham dungCuHocTap= sanPham_DAO.getSanPhamTheoMaSanPham((String)model.getValueAt(r, 0).toString());
 				txtmaDCHT.setText((String)model.getValueAt(r, 0));
 				txttenDCHT.setText((String)model.getValueAt(r, 1));
 				txtXuatXu.setText((String)model.getValueAt(r, 2));
@@ -328,6 +334,8 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 				txtgiaBan.setText((String)model.getValueAt(r, 4).toString());
 				txtsoLuong.setText((String)model.getValueAt(r, 5).toString());
 				cbNhaCC.setSelectedItem((String)model.getValueAt(r, 6));
+				lblHinhAnh.setIcon(new ImageIcon(DungCuHocTap_GUI.class.getResource(dungCuHocTap.getHinhAnh())));
+				relativePath = dungCuHocTap.getHinhAnh();
 			}
 		});;
 		
@@ -412,7 +420,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 					nhacc  = nhaCC_DAO.getNhaCungCapTheoTen(cbNhaCC.getSelectedItem().toString());
 				}
 				sanPham.setMaNhaCungCap(nhacc.getMaNCC());
-				sanPham.setHinhAnh("a");
+				sanPham.setHinhAnh(relativePath);
 				sanPham_DAO.themSanPham(sanPham);
 				JOptionPane.showMessageDialog(null, "Thêm Sản Phẩm Thành Công !");
 				
@@ -439,7 +447,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 				sanPham.setGiaNhap(Float.parseFloat(txtgiaNhap.getText()));
 				sanPham.setGiaBan(Float.parseFloat(txtgiaBan.getText()));
 				sanPham.setSoLuongTon(Integer.parseInt(txtsoLuong.getText()));
-				sanPham.setHinhAnh("a");
+				sanPham.setHinhAnh(relativePath);
 				sanPham.setMaNXB(null);		
 				sanPham.setMaTheLoaiSach(null);
 				sanPham.setSoTrang(0);
@@ -451,6 +459,38 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 			}
 
 		return false;
+	}
+	
+	private boolean chooseFile() { 
+		fileChooser = new JFileChooser();
+		// Chỉ cho phép chọn tệp hình ảnh
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files", "jpg", "jpeg", "png");
+		fileChooser.setFileFilter(filter);
+		// Thiết lập thư mục mặc định khi mở
+		File defaultDirectory = new File(System.getProperty("user.dir") + "/data/image");
+		fileChooser.setCurrentDirectory(defaultDirectory);
+		
+		// chon file
+		int returnValue = fileChooser.showOpenDialog(null);
+		selectedFile = fileChooser.getSelectedFile();
+		
+		try {
+			String absolutePath = selectedFile.getAbsolutePath();
+			absolutePath = absolutePath.replace("\\", "/");
+			// cắt chuỗi từ /image về sau
+			relativePath = absolutePath.substring(absolutePath.indexOf("/image"));
+		} catch (Exception e) {
+			// TODO: handle exception
+			JOptionPane.showMessageDialog(null, "Bạn chưa chọn file!");
+		}
+		
+		if (returnValue == JFileChooser.APPROVE_OPTION) {
+			// Nhấn Open file
+			lblHinhAnh.setIcon(new ImageIcon(NhanVien_GUI.class.getResource(relativePath)));
+			return true;
+		}
+		else // JFileChooser.CANCEL_OPTION
+			return false;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -508,7 +548,6 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
-							
 						}
 					}
 				}else {
@@ -521,7 +560,6 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 							btnUpdate.setEnabled(true);
 							btnAdd.setText("Thêm");
 						}
-						
 					}
 				}
 			}

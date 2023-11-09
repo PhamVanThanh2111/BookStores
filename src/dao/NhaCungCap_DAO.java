@@ -97,16 +97,10 @@ public class NhaCungCap_DAO {
 	public boolean xoaNhaCungCapTheoMa(String maNCC) throws SQLException {
 		ConnectDB.getInstance();
 		Connection connection = ConnectDB.getConnection();
-		
-		try {
 			PreparedStatement preparedstaments = 
-					connection.prepareStatement("delete from NhaCungCap Where maNhaCungCap = '"+maNCC+"'");
-				return preparedstaments.executeUpdate()>0;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		connection.close();
-		return false;
+					connection.prepareStatement("delete from NhaCungCap Where maNhaCungCap = '" +maNCC+ "'");
+//			preparedstaments.close();
+			return preparedstaments.executeUpdate()>0;
 	}
 	
 	

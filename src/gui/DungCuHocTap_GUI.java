@@ -7,6 +7,8 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
@@ -18,7 +20,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -29,11 +31,9 @@ import dao.NhaCungCap_DAO;
 import dao.PhatSinhMa_DAO;
 import dao.SanPham_DAO;
 import entity.NhaCungCap;
-import entity.NhanVien;
 import entity.SanPham;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
-import java.awt.FlowLayout;
 import javax.swing.JDesktopPane;
 
 public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
@@ -61,6 +61,10 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 	private File selectedFile;
 	private String relativePath;
 	private JLabel lblHinhAnh;
+	private ArrayList<SanPham> ds;
+	private JButton btnTim;
+	private JDesktopPane desktopPane;
+	private TimKiemDungCuHoctap timKiemDungCuHoctap;
 	/**
 	 * Create the panel.
 	 */
@@ -78,7 +82,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		panel.setLayout(null);
 	
 		
-		JDesktopPane desktopPane = new JDesktopPane();
+		desktopPane = new JDesktopPane();
 		desktopPane.setBounds(0, 0, 1300, 720);
 		panel.add(desktopPane);
 		
@@ -248,7 +252,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		
 		pThongTin.add(cbNhaCC);
 		
-		JButton btnTim = new JButton("Tìm");
+		btnTim = new JButton("Tìm");
 		btnTim.setOpaque(true);
 		btnTim.setForeground(Color.WHITE);
 		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -308,12 +312,12 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		lblChiTeitDungCuHocTap.setBounds(20, 15, 246, 40);
 		pDanhSach.add(lblChiTeitDungCuHocTap);
 		
-		loadData();
+		loadData(sanPham_DAO.getAllDungCuHocTap());
 		btnlamMoi.addActionListener(this);
 		btnAdd.addActionListener(this);
 		btnUpdate.addActionListener(this);
 		btnDelete.addActionListener(this);
-		
+		btnTim.addActionListener(this);
 		
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.addMouseListener(new MouseListener() {
@@ -360,19 +364,19 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		});;
 		
 	}
-	public void loadData() {
+	public void loadData(ArrayList<SanPham> ds) {
 	    // Xóa dữ liệu cũ trước khi nạp dữ liệu mới
 	    model.setRowCount(0);
 	    // Lấy danh sách sản phẩm từ DAO 
-	    List<SanPham> sanPhamList = null;
+	  
 		try {
-			sanPhamList = sanPham_DAO.getAllDungCuHocTap();
+			ds = sanPham_DAO.getAllDungCuHocTap();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 	    // Nạp dữ liệu sản phẩm lên bảng
-	    for (SanPham sanPham : sanPhamList) {
+	    for (SanPham sanPham : ds) {
 	        Object[] object = {sanPham.getMaSanPham(), sanPham.getTenSanPham(), sanPham.getXuatXu(),
 	                sanPham.getGiaNhap(), sanPham.getGiaBan(), sanPham.getSoLuongTon(),nhaCC_DAO.getNhaCCTheoMa(sanPham.getMaNhaCungCap()).getTenNCC()};
 	        model.addRow(object);
@@ -397,7 +401,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 	}
 	
 	public void refresh() {
-		loadData();
+		loadData(sanPham_DAO.getAllDungCuHocTap());
 	}
 	public void closeText() {
 		txttenDCHT.setEditable(false);
@@ -539,7 +543,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 							btnDelete.setText("Xóa");
 							btnUpdate.setEnabled(true);
 							closeText();
-							loadData();
+							loadData(sanPham_DAO.getAllDungCuHocTap());
 						}
 					}
 				}
@@ -564,7 +568,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 							btnDelete.setText("Xóa");
 							try {
 								suaDCHT();
-								loadData();	
+								loadData(sanPham_DAO.getAllDungCuHocTap());	
 							} catch (SQLException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
@@ -585,6 +589,45 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 						if(o.equals(btnlamMoi)) {
 							loadCBNhaCC();
 							lamMoi();
+						}else {
+							if(o.equals(btnTim)) {
+								btnAdd.setEnabled(false);
+								btnDelete.setEnabled(false);
+								btnUpdate.setEnabled(false);
+								btnlamMoi.setEnabled(false);
+								if (timKiemDungCuHoctap == null || timKiemDungCuHoctap.isClosed()) {
+									timKiemDungCuHoctap = new TimKiemDungCuHoctap(ds);
+									timKiemDungCuHoctap.addInternalFrameListener(new InternalFrameAdapter() {
+							            @Override
+							            public void internalFrameActivated(InternalFrameEvent e) {
+//							                System.out.println("Internal frame is activated.");
+							            }
+
+							            @Override
+							            public void internalFrameDeactivated(InternalFrameEvent e) {
+//							                System.out.println("Internal frame is deactivated.");
+							            }
+
+							            @Override
+							            public void internalFrameOpened(InternalFrameEvent e) {
+//							                System.out.println("Internal frame is opened.");
+//							            	disableButton();
+							            }
+							            
+							            @Override
+							            public void internalFrameClosed(InternalFrameEvent e) {
+//							                System.out.println("Internal frame is closed.");
+							            	loadData(ds);
+							            	ds.removeAll(ds);
+							            	btnAdd.setEnabled(true);
+											btnDelete.setEnabled(true);
+											btnUpdate.setEnabled(true);
+											btnlamMoi.setEnabled(true);
+							            }
+							        });
+									desktopPane.add(timKiemDungCuHoctap).setVisible(true);
+								}
+							}
 						}
 					}
 				}

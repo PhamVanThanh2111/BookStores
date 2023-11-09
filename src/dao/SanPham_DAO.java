@@ -13,8 +13,8 @@ import entity.SanPham;
 public class SanPham_DAO {
 	// Lấy sách
 
-	public List<SanPham> getAllSach() {
-		List<SanPham> ds = new ArrayList<SanPham>();
+	public ArrayList<SanPham> getAllSach() {
+		ArrayList<SanPham> ds = new ArrayList<SanPham>();
 		ConnectDB.getInstance();
 		Connection con = ConnectDB.getConnection();
 		try {
@@ -61,8 +61,8 @@ public class SanPham_DAO {
 	}
 
 	// Lấy Dụng Cụ Học Tập
-	public List<SanPham> getAllDungCuHocTap() {
-		List<SanPham> ds = new ArrayList<SanPham>();
+	public ArrayList<SanPham> getAllDungCuHocTap() {
+		ArrayList<SanPham> ds = new ArrayList<SanPham>();
 		ConnectDB.getInstance();
 		Connection con = ConnectDB.getConnection();
 		try {

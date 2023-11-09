@@ -30,8 +30,9 @@ import javax.swing.table.JTableHeader;
 
 import dao.NhaCungCap_DAO;
 import dao.PhatSinhMa_DAO;
-import entity.KhachHang;
 import entity.NhaCungCap;
+import entity.NhanVien;
+
 import javax.swing.JDesktopPane;
 
 public class NhaCungCap_GUI extends JPanel implements ActionListener {
@@ -56,7 +57,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 	private TimKiemNhaCungCap timKiemNhaCungCap;
 	private JDesktopPane desktopPane;
 	
-	public NhaCungCap_GUI() {
+	public NhaCungCap_GUI(NhanVien nhanVien) {
 		
 		
 		nhaCungCap_DAO = new NhaCungCap_DAO();
@@ -323,6 +324,13 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 		
 		desktopPane.add(pMain);
 		panel.add(desktopPane);
+		
+		if (nhanVien.getChucVu().equals("Bán hàng")) {
+			btnThem.setEnabled(false);
+			btnXoa.setEnabled(false);
+			btnSua.setEnabled(false);
+		}
+		
 	}
 	// đưa dữ liệu lên bảng
 		public void loadData(ArrayList<NhaCungCap>ds) {

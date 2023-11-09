@@ -33,7 +33,6 @@ import entity.NhanVien;
 import entity.SanPham;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
-import java.awt.FlowLayout;
 import javax.swing.JDesktopPane;
 
 public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
@@ -64,7 +63,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 	/**
 	 * Create the panel.
 	 */
-	public DungCuHocTap_GUI() {
+	public DungCuHocTap_GUI(NhanVien nhanVien) {
 		
 		// khai bao DAO
 		sanPham_DAO = new SanPham_DAO();
@@ -359,7 +358,15 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 			}
 		});;
 		
+		if (nhanVien.getChucVu().equals("Bán hàng")) {
+			btnlamMoi.setEnabled(false);
+			btnAdd.setEnabled(false);
+			btnDelete.setEnabled(false);
+			btnUpdate.setEnabled(false);
+		}
+		
 	}
+	
 	public void loadData() {
 	    // Xóa dữ liệu cũ trước khi nạp dữ liệu mới
 	    model.setRowCount(0);

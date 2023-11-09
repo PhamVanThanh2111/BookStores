@@ -24,6 +24,7 @@ import javax.swing.table.JTableHeader;
 import dao.NhaXuatBan_DAO;
 import dao.PhatSinhMa_DAO;
 import entity.NhaXuatBan;
+import entity.NhanVien;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -68,7 +69,7 @@ public class NhaXuatBan_GUI extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public NhaXuatBan_GUI() {
+	public NhaXuatBan_GUI(NhanVien nhanVien) {
 
 		// Khai bao DAO
 		nhaXuatBan_DAO = new NhaXuatBan_DAO();
@@ -381,7 +382,7 @@ public class NhaXuatBan_GUI extends JPanel {
 			}
 		});
 		pDanhSach.add(btnUpdate);
-
+		
 		btnTim = new JButton("Tìm");
 		btnTim.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/find_person.png")));
 		btnTim.setForeground(Color.WHITE);
@@ -448,7 +449,13 @@ public class NhaXuatBan_GUI extends JPanel {
 
 		// load Data
 		refresh();
-
+		
+		if (nhanVien.getChucVu().equals("Bán hàng")) {
+			btnLamMoi.setEnabled(false);
+			btnAdd.setEnabled(false);
+			btnDelete.setEnabled(false);
+			btnUpdate.setEnabled(false);
+		}
 	}
 
 	// đưa dữ liệu lên bảng
@@ -510,7 +517,6 @@ public class NhaXuatBan_GUI extends JPanel {
 				return false;
 			}
 		}
-
 	}
 
 	// Xóa nhà xuất bản

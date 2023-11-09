@@ -28,7 +28,7 @@ import javax.swing.table.JTableHeader;
 
 import dao.PhatSinhMa_DAO;
 import dao.TheLoaiSach_DAO;
-import entity.NhaXuatBan;
+import entity.NhanVien;
 import entity.TheLoaiSach;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
@@ -71,7 +71,7 @@ public class TheLoaiSach_GUI extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public TheLoaiSach_GUI() {
+	public TheLoaiSach_GUI(NhanVien nhanVien) {
 		
 		// khai bao DAO
 		theLoaiSach_DAO = new TheLoaiSach_DAO();
@@ -292,6 +292,14 @@ public class TheLoaiSach_GUI extends JPanel {
 			
 		});
 		pThongTin.add(btnTim);
+		
+		if (nhanVien.getChucVu().equals("Bán hàng")) {
+			
+			btnAdd.setEnabled(false);
+			btnDelete.setEnabled(false);
+			btnUpdate.setEnabled(false);
+			btnLamMoi.setEnabled(false);
+		}
 		
 		lblMaTheLoaiSach = new JLabel("Mã Thể Loại Sách:");
 		lblMaTheLoaiSach.setFont(new Font("Tahoma", Font.PLAIN, 18));

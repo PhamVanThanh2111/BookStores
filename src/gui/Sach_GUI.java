@@ -28,6 +28,7 @@ import dao.PhatSinhMa_DAO;
 import dao.SanPham_DAO;
 import dao.TheLoaiSach_DAO;
 import entity.NhaXuatBan;
+import entity.NhanVien;
 import entity.SanPham;
 import entity.TheLoaiSach;
 
@@ -95,7 +96,7 @@ public class Sach_GUI extends JPanel {
 	 * 
 	 * @throws SQLException
 	 */
-	public Sach_GUI() throws SQLException {
+	public Sach_GUI(NhanVien nhanVien) throws SQLException {
 		// connect
 		ConnectDB.getInstance();
 		ConnectDB.connect();
@@ -375,7 +376,7 @@ public class Sach_GUI extends JPanel {
 		btnLamMoi.setBackground(new Color(73, 129, 158));
 		btnLamMoi.setBounds(1006, 278, 135, 40);
 		pThongTin.add(btnLamMoi);
-
+		
 		lblHinhAnh = new JLabel("");
 		lblHinhAnh.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblHinhAnh.setBounds(1005, 205, 215, 40);
@@ -385,6 +386,10 @@ public class Sach_GUI extends JPanel {
 		btnChonHinhAnh.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		btnChonHinhAnh.setBounds(1077, 218, 74, 21);
 		pThongTin.add(btnChonHinhAnh);
+		
+		if (nhanVien.getChucVu().equals("Bán hàng")) {
+			disableButton();
+		}
 		
 		txtNamXuatBan = new JTextField();
 		txtNamXuatBan.setToolTipText("năm xuất bả");
@@ -510,6 +515,7 @@ public class Sach_GUI extends JPanel {
 		loadDataIntoComboboxTenNhaXuatBan();
 		loadDataIntoComboboxTenLoaiSach();
 	}
+	
 	protected void loadDataIntoComboboxTenSP(String string) {
 		// TODO Auto-generated method stub
 		

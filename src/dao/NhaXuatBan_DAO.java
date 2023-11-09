@@ -51,6 +51,29 @@ public class NhaXuatBan_DAO {
  		}
  		return nhaXuatBan;
  	}
+ // get NXB theo tên
+  	public NhaXuatBan getnhaXuatBanTheoTen(String tenNhaXuatBan) {
+  		NhaXuatBan nhaXuatBan = new NhaXuatBan();
+  		ConnectDB.getInstance();
+  		Connection connection = ConnectDB.getConnection();
+  		try {
+  			PreparedStatement preparedStatement = connection
+  					.prepareStatement("select * from NhaXuatBan where tenNhaXuatBan = N'" + tenNhaXuatBan + "'");
+  			ResultSet resultSet = preparedStatement.executeQuery();
+
+  			while (resultSet.next()) {
+  				nhaXuatBan.setMaNhaXuatBan(resultSet.getString(1));
+  				nhaXuatBan.setTenNhaXuatBan(resultSet.getString(2));
+  				nhaXuatBan.setDiaChi(resultSet.getString(3));
+  				nhaXuatBan.setSoDienThoai(resultSet.getString(4));
+  				nhaXuatBan.setEmail(resultSet.getString(5));
+  			}
+  		} catch (SQLException e) {
+  			// TODO Auto-generated catch block
+  			e.printStackTrace();
+  		}
+  		return nhaXuatBan;
+  	}
  // thêm nhà xuất bản
  	public boolean themNhaXuatBan(NhaXuatBan nhaXuatBan) throws SQLException {
  	    ConnectDB.getInstance();
@@ -69,6 +92,7 @@ public class NhaXuatBan_DAO {
  	    } 
  	    return false;
  	}
+ 
 
  // xóa nhà xuất bản theo mã
  	public boolean xoaNhaXuatBanTheoMa(String maNhaXuatBan) throws SQLException {

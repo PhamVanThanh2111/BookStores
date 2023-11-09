@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import connect.ConnectDB;
+import entity.NhanVien;
 import entity.SanPham;
 
 public class SanPham_DAO {
@@ -59,7 +60,15 @@ public class SanPham_DAO {
 		}
 		return sanPham;
 	}
-
+	// Xóa sách 
+	public boolean xoaSachTheoMa(String maSach) throws SQLException {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		PreparedStatement preparedStatement = connection
+					.prepareStatement("delete from SanPham where maSanPham = '" + maSach + "'");
+//		preparedStatement.close();
+		return preparedStatement.executeUpdate() > 0;
+	}
 	// Lấy Dụng Cụ Học Tập
 	public List<SanPham> getAllDungCuHocTap() {
 		List<SanPham> ds = new ArrayList<SanPham>();

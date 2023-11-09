@@ -465,7 +465,7 @@ public class TheLoaiSach_GUI extends JPanel {
 			}
 		}
 	}
-	//Sửa nhà xuất bản theo mã
+	//Sửa thể loại sách theo mã
 	public boolean update() {
 		int row = table.getSelectedRow();
 		if (row == -1) {

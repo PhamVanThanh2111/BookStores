@@ -249,7 +249,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		scrollPaneDungCuHocTap.setToolTipText("Chọn vào Dụng cụ học tập cần hiển thị thông tin");
 		scrollPaneDungCuHocTap.setBorder(null);
 		scrollPaneDungCuHocTap.setBackground(Color.WHITE);
-		scrollPaneDungCuHocTap.setBounds(20, 70, 1259, 250);
+		scrollPaneDungCuHocTap.setBounds(30, 65, 1259, 250);
 		pDanhSach.add(scrollPaneDungCuHocTap);
 		
 		String cols[] = { "Mã Dụng Cụ Học Tập", "Tên Dụng Cụ Học Tập ", "Xuất Xứ", "Giá Nhập",
@@ -457,7 +457,6 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 				sanPham_DAO.suaSanPhamTheoMa(sanPham);
 				JOptionPane.showMessageDialog(null, "Cập Nhập Sản Phẩm Thành Công !");
 			}
-
 		return false;
 	}
 	

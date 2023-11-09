@@ -49,6 +49,26 @@ public class TheLoaiSach_DAO {
  		}
  		return theLoaiSach;
  	}
+	// get TheLoaiSach theo tên
+ 	public TheLoaiSach getTheLoaiSachTheoTen(String tenTheLoaiSach) {
+ 		TheLoaiSach theLoaiSach = new TheLoaiSach();
+ 		ConnectDB.getInstance();
+ 		Connection connection = ConnectDB.getConnection();
+ 		try {
+ 			PreparedStatement preparedStatement = connection
+ 					.prepareStatement("select * from TheLoaiSach where tenTheLoaiSach = '" + tenTheLoaiSach + "'");
+ 			ResultSet resultSet = preparedStatement.executeQuery();
+
+ 			while (resultSet.next()) {
+ 				theLoaiSach.setmaTheLoaiSach(resultSet.getString(1));
+ 				theLoaiSach.settenTheLoaiSach(resultSet.getString(2));
+ 			}
+ 		} catch (SQLException e) {
+ 			// TODO Auto-generated catch bslock
+ 			e.printStackTrace();
+ 		}
+ 		return theLoaiSach;
+ 	}
  // Thêm thể loại sách
  	public boolean themTheLoaiSach(TheLoaiSach theLoaiSach) throws SQLException {
  	    ConnectDB.getInstance();

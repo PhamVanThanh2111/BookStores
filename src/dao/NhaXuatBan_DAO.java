@@ -70,7 +70,7 @@ public class NhaXuatBan_DAO {
  	    return false;
  	}
 
- // xoa nhà xuất bản theo mã
+ // xóa nhà xuất bản theo mã
  	public boolean xoaNhaXuatBanTheoMa(String maNhaXuatBan) throws SQLException {
  		ConnectDB.getInstance();
  		Connection connection = ConnectDB.getConnection();

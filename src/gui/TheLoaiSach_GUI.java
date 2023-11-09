@@ -278,9 +278,10 @@ public class TheLoaiSach_GUI extends JPanel {
 			            
 			            @Override
 			            public void internalFrameClosed(InternalFrameEvent e) {
-			                System.out.println("Internal frame is closed.");
+//			                System.out.println("Internal frame is closed.");
 			                model.setRowCount(0);
 			            	loadDataIntoTable(ds);
+//			            	System.out.println(ds);
 			            	ds.removeAll(ds);
 			            	enableButton();
 			            }
@@ -399,14 +400,12 @@ public class TheLoaiSach_GUI extends JPanel {
 		refresh();
 		;
 	}
-
-
 	// đổ dữ liệu lên bảng
 	public void loadDataIntoTable(List<TheLoaiSach> list) {
 	   //  Xóa dữ liệu cũ trước khi nạp dữ liệu mới
 	    model.setRowCount(0);
 	   //  Nạp dữ liệu sản phẩm lên bảng
-		for (TheLoaiSach theLoaiSach : theLoaiSach_DAO.getAllListTheLoaiSach()) {
+		for (TheLoaiSach theLoaiSach : list ) {
 			Object[] object = { theLoaiSach.getmaTheLoaiSach(),theLoaiSach.gettenTheLoaiSach() };
 			model.addRow(object);
 		}

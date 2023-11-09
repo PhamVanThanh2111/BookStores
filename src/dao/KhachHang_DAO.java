@@ -78,15 +78,11 @@ public class KhachHang_DAO {
 		ConnectDB.getInstance();
 		Connection connection = ConnectDB.getConnection();
 		
-		try {
+		
 			PreparedStatement preparedstaments = 
 					connection.prepareStatement("delete from KhachHang Where maKhachHang = '"+maKH+"'");
-				return preparedstaments.executeUpdate()>0;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		connection.close();
-		return false;
+			preparedstaments.close();
+			return preparedstaments.executeUpdate()>0;
 	}
 	
 	public boolean suaKhachHangTheoMa(KhachHang khachHang) throws SQLException {

@@ -536,9 +536,12 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		if(row !=-1) {
 			int tb = JOptionPane.showConfirmDialog(null, "Bạn Muốn Xóa Khách Hàng ? ", "Delete", JOptionPane.YES_NO_OPTION);
 			if(tb == JOptionPane.YES_OPTION) {
-				khachHang_DAO.xoaKhachHangTheoMa(model.getValueAt(row, 1).toString());
-				JOptionPane.showMessageDialog(null,"Xóa Thành Công");
-				loadData(khachHang_DAO.getAllKhachHang());
+				try {
+					khachHang_DAO.xoaKhachHangTheoMa(model.getValueAt(row, 1).toString());
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, "Khách Hàng Đang Có Hóa Đơn Trong Cửa Hàng !");
+				}
+			
 			}
 		}
 	}

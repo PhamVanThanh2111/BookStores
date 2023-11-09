@@ -70,7 +70,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		pThongTin.setLayout(null);
 		pThongTin.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pThongTin.setBackground(Color.WHITE);
-		pThongTin.setBounds(0, 0, 1300, 320);
+		pThongTin.setBounds(0, 0, 1300, 360);
 		pMain.add(pThongTin);
 		
 		JLabel lblthongTinDCHT = new JLabel("Thông Tin Dụng Cụ Học Tập");
@@ -116,17 +116,17 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		
 		JLabel lblgia = new JLabel("Giá Nhập:");
 		lblgia.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblgia.setBounds(450, 70, 130, 40);
+		lblgia.setBounds(450, 115, 130, 40);
 		pThongTin.add(lblgia);
 		
 		JLabel lblnhaXuatBan = new JLabel("Giá Bán:");
 		lblnhaXuatBan.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblnhaXuatBan.setBounds(450, 115, 130, 40);
+		lblnhaXuatBan.setBounds(450, 160, 130, 40);
 		pThongTin.add(lblnhaXuatBan);
 		
 		JLabel lblgiaNhap = new JLabel("Số Lượng:");
 		lblgiaNhap.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblgiaNhap.setBounds(450, 160, 98, 40);
+		lblgiaNhap.setBounds(450, 205, 98, 40);
 		pThongTin.add(lblgiaNhap);
 		
 		txtsoLuong = new JTextField();
@@ -135,20 +135,15 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		txtsoLuong.setEditable(false);
 		txtsoLuong.setColumns(10);
 		txtsoLuong.setBackground(Color.WHITE);
-		txtsoLuong.setBounds(550, 160, 255, 40);
+		txtsoLuong.setBounds(550, 205, 255, 40);
 		pThongTin.add(txtsoLuong);
-		
-		JLabel lblanh = new JLabel("Ảnh DCHT:");
-		lblanh.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblanh.setBounds(853, 160, 94, 40);
-		pThongTin.add(lblanh);
 		
 		btnAdd = new JButton("Thêm");
 		btnAdd.setOpaque(true);
 		btnAdd.setForeground(Color.WHITE);
 		btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnAdd.setBackground(new Color(73, 129, 158));
-		btnAdd.setBounds(145, 250, 135, 40);
+		btnAdd.setBounds(128, 298, 135, 40);
 		pThongTin.add(btnAdd);
 		
 		btnDelete = new JButton("Xóa");
@@ -156,7 +151,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		btnDelete.setForeground(Color.WHITE);
 		btnDelete.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnDelete.setBackground(new Color(73, 129, 158));
-		btnDelete.setBounds(432, 250, 135, 40);
+		btnDelete.setBounds(415, 298, 135, 40);
 		pThongTin.add(btnDelete);
 		
 		btnUpdate = new JButton("Sửa");
@@ -164,7 +159,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		btnUpdate.setForeground(Color.WHITE);
 		btnUpdate.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnUpdate.setBackground(new Color(73, 129, 158));
-		btnUpdate.setBounds(719, 250, 135, 40);
+		btnUpdate.setBounds(702, 298, 135, 40);
 		pThongTin.add(btnUpdate);
 		
 		btnlamMoi = new JButton("Làm mới");
@@ -172,7 +167,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		btnlamMoi.setForeground(Color.WHITE);
 		btnlamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnlamMoi.setBackground(new Color(73, 129, 158));
-		btnlamMoi.setBounds(1006, 250, 135, 40);
+		btnlamMoi.setBounds(989, 298, 135, 40);
 		pThongTin.add(btnlamMoi);
 		
 		JButton btnChonHinhAnh = new JButton("Choose");
@@ -186,7 +181,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		
 		JLabel lblHinhAnh = new JLabel("");
 		lblHinhAnh.setBorder(new LineBorder(new Color(0, 0, 0)));
-		lblHinhAnh.setBounds(957, 160, 303, 40);
+		lblHinhAnh.setBounds(855, 70, 128, 128);
 		pThongTin.add(lblHinhAnh);
 		
 		txtgiaBan = new JTextField();
@@ -195,7 +190,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		txtgiaBan.setEditable(false);
 		txtgiaBan.setColumns(10);
 		txtgiaBan.setBackground(Color.WHITE);
-		txtgiaBan.setBounds(550, 115, 255, 40);
+		txtgiaBan.setBounds(550, 160, 255, 40);
 		pThongTin.add(txtgiaBan);
 		
 		txtgiaNhap = new JTextField();
@@ -204,12 +199,12 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		txtgiaNhap.setEditable(false);
 		txtgiaNhap.setColumns(10);
 		txtgiaNhap.setBackground(Color.WHITE);
-		txtgiaNhap.setBounds(550, 70, 255, 40);
+		txtgiaNhap.setBounds(550, 115, 255, 40);
 		pThongTin.add(txtgiaNhap);
 		
 		JLabel lblXutX = new JLabel("Xuất Xứ:");
 		lblXutX.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblXutX.setBounds(853, 115, 94, 40);
+		lblXutX.setBounds(40, 205, 94, 40);
 		pThongTin.add(lblXutX);
 		
 		txtXuatXu = new JTextField();
@@ -218,12 +213,12 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		txtXuatXu.setEditable(false);
 		txtXuatXu.setColumns(10);
 		txtXuatXu.setBackground(Color.WHITE);
-		txtXuatXu.setBounds(957, 115, 303, 40);
+		txtXuatXu.setBounds(145, 205, 255, 40);
 		pThongTin.add(txtXuatXu);
 		
 		cbNhaCC = new JComboBox<String>();
 		cbNhaCC.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbNhaCC.setBounds(144, 160, 255, 40);
+		cbNhaCC.setBounds(145, 160, 255, 40);
 		loadCBNhaCC();
 		cbNhaCC.setSelectedIndex(-1);
 		// Load Nhà Cung Cấp lên CB
@@ -237,14 +232,14 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		pDanhSach.setLayout(null);
 		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pDanhSach.setBackground(Color.WHITE);
-		pDanhSach.setBounds(0, 330, 1300, 380);
+		pDanhSach.setBounds(0, 370, 1300, 342);
 		pMain.add(pDanhSach);
 		
 		JScrollPane scrollPaneDungCuHocTap = new JScrollPane();
 		scrollPaneDungCuHocTap.setToolTipText("Chọn vào Dụng cụ học tập cần hiển thị thông tin");
 		scrollPaneDungCuHocTap.setBorder(null);
 		scrollPaneDungCuHocTap.setBackground(Color.WHITE);
-		scrollPaneDungCuHocTap.setBounds(20, 51, 1259, 319);
+		scrollPaneDungCuHocTap.setBounds(20, 70, 1259, 250);
 		pDanhSach.add(scrollPaneDungCuHocTap);
 		
 		String cols[] = { "Mã Dụng Cụ Học Tập", "Tên Dụng Cụ Học Tập ", "Xuất Xứ", "Giá Nhập",

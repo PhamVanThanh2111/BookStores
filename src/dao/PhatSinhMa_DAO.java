@@ -78,6 +78,19 @@ public class PhatSinhMa_DAO {
 		}
 		return maNXB;
 	}
+	// mã Sản Phẩm (Sách)
+	public String getMaSanPham() throws SQLException {
+	    ConnectDB.getInstance();
+	    Connection con = ConnectDB.getConnection();
+	    Statement statement = con.createStatement();
+	    ResultSet resultSet = statement.executeQuery(
+	            "SELECT CONCAT('SP', RIGHT(CONCAT('0000', ISNULL(RIGHT(MAX(maSanPham), 4), 0) + 1), 4)) FROM [dbo].[SanPham] WHERE maSanPham LIKE 'SP%'");
+	    String maSanPham = "";
+	    while (resultSet.next()) {
+	        maSanPham = resultSet.getString(1);
+	    }
+	    return maSanPham;
+	}
 
 	// ma Khach Hang
 	public String getMaKhachHang() throws SQLException {

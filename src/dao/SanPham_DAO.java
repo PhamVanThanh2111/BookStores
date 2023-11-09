@@ -32,6 +32,33 @@ public class SanPham_DAO {
 
 		return ds;
 	}
+	//Lấy tên theo mã sách
+	public SanPham getTenSachTheoTenSanPham(String tenSanPham) {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		SanPham sanPham = new SanPham();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement("select * from SanPham where tenSanPham = N'" + tenSanPham + "'");
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				sanPham.setMaSanPham(resultSet.getString(1));
+				sanPham.setTenSanPham(resultSet.getString(2));
+				sanPham.setXuatXu(resultSet.getString(3));
+				sanPham.setGiaNhap(resultSet.getFloat(4));
+				sanPham.setGiaBan(resultSet.getFloat(5));
+				sanPham.setSoLuongTon(resultSet.getInt(6));
+				sanPham.setHinhAnh(resultSet.getString(7));
+				sanPham.setMaNXB(resultSet.getString(8));
+				sanPham.setMaTheLoaiSach(resultSet.getString(9));
+				sanPham.setTacGia(resultSet.getString(10));
+				sanPham.setSoTrang(resultSet.getInt(11));
+				sanPham.setNamXuatBan(resultSet.getInt(12));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return sanPham;
+	}
 
 	// Lấy Dụng Cụ Học Tập
 	public List<SanPham> getAllDungCuHocTap() {
@@ -52,7 +79,6 @@ public class SanPham_DAO {
 
 		return ds;
 	}
-
 	public SanPham getSanPhamTheoTenSanPham(String tenSanPham) {
 		ConnectDB.getInstance();
 		Connection connection = ConnectDB.getConnection();

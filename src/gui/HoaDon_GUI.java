@@ -289,11 +289,16 @@ public class HoaDon_GUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				try {
-					lapHoaDon(nhanVien.getMaNhanVien());
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				if (tinhThanhTien() > 0) {
+					try {
+						lapHoaDon(nhanVien.getMaNhanVien());
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Chưa có sản phẩm nào!");
 				}
 			}
 		});
@@ -525,9 +530,14 @@ public class HoaDon_GUI extends JPanel {
 	}
 	
 	private float tinhThanhTien() {
-		float thanhTien = Float.parseFloat(model.getValueAt(0, 4).toString());
-		for (int i = 1; i < model.getRowCount(); i++) {
-			thanhTien += Float.parseFloat(model.getValueAt(i, 4).toString());
+		float thanhTien =  0;
+		try {
+			thanhTien = Float.parseFloat(model.getValueAt(0, 4).toString());
+			for (int i = 1; i < model.getRowCount(); i++) {
+				thanhTien += Float.parseFloat(model.getValueAt(i, 4).toString());
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 		return thanhTien;
 	}

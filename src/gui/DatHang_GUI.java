@@ -289,11 +289,16 @@ public class DatHang_GUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				try {
-					lapPhieuDatHang(nhanVien.getMaNhanVien());
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				if (tinhThanhTien() > 0) {
+					try {
+						lapPhieuDatHang(nhanVien.getMaNhanVien());
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Chưa có sản phẩm nào!");
 				}
 			}
 		});

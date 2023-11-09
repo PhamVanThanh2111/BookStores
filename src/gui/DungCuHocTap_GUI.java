@@ -359,7 +359,6 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		});;
 		
 		if (nhanVien.getChucVu().equals("Bán hàng")) {
-			btnlamMoi.setEnabled(false);
 			btnAdd.setEnabled(false);
 			btnDelete.setEnabled(false);
 			btnUpdate.setEnabled(false);

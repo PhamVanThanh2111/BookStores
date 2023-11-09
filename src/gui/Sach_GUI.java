@@ -389,6 +389,7 @@ public class Sach_GUI extends JPanel {
 		
 		if (nhanVien.getChucVu().equals("Bán hàng")) {
 			disableButton();
+			btnLamMoi.setEnabled(true);
 		}
 		
 		txtNamXuatBan = new JTextField();

@@ -451,7 +451,6 @@ public class NhaXuatBan_GUI extends JPanel {
 		refresh();
 		
 		if (nhanVien.getChucVu().equals("Bán hàng")) {
-			btnLamMoi.setEnabled(false);
 			btnAdd.setEnabled(false);
 			btnDelete.setEnabled(false);
 			btnUpdate.setEnabled(false);

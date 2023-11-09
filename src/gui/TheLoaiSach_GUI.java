@@ -298,7 +298,6 @@ public class TheLoaiSach_GUI extends JPanel {
 			btnAdd.setEnabled(false);
 			btnDelete.setEnabled(false);
 			btnUpdate.setEnabled(false);
-			btnLamMoi.setEnabled(false);
 		}
 		
 		lblMaTheLoaiSach = new JLabel("Mã Thể Loại Sách:");

@@ -33,6 +33,8 @@ import entity.NhanVien;
 import entity.SanPham;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
+import java.awt.FlowLayout;
+import javax.swing.JDesktopPane;
 
 public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 
@@ -70,16 +72,28 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		nhaCC_DAO = new NhaCungCap_DAO();
 		setLayout(null);
 		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 1300, 720);
+		add(panel);
+		panel.setLayout(null);
+	
+		
+		JDesktopPane desktopPane = new JDesktopPane();
+		desktopPane.setBounds(0, 0, 1300, 720);
+		panel.add(desktopPane);
+		
 		JPanel pMain = new JPanel();
-		pMain.setLayout(null);
 		pMain.setBounds(0, 0, 1300, 720);
-		add(pMain);
+		pMain.setLayout(null);
+		desktopPane.add(pMain);
+	
+		
 		
 		JPanel pThongTin = new JPanel();
 		pThongTin.setLayout(null);
 		pThongTin.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pThongTin.setBackground(Color.WHITE);
-		pThongTin.setBounds(0, 0, 1300, 360);
+		pThongTin.setBounds(0, 0, 1300, 370);
 		pMain.add(pThongTin);
 		
 		JLabel lblthongTinDCHT = new JLabel("Thông Tin Dụng Cụ Học Tập");
@@ -152,7 +166,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		btnAdd.setForeground(Color.WHITE);
 		btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnAdd.setBackground(new Color(73, 129, 158));
-		btnAdd.setBounds(128, 298, 135, 40);
+		btnAdd.setBounds(104, 298, 135, 40);
 		pThongTin.add(btnAdd);
 		
 		btnDelete = new JButton("Xóa");
@@ -160,7 +174,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		btnDelete.setForeground(Color.WHITE);
 		btnDelete.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnDelete.setBackground(new Color(73, 129, 158));
-		btnDelete.setBounds(415, 298, 135, 40);
+		btnDelete.setBounds(343, 298, 135, 40);
 		pThongTin.add(btnDelete);
 		
 		btnUpdate = new JButton("Sửa");
@@ -168,7 +182,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		btnUpdate.setForeground(Color.WHITE);
 		btnUpdate.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnUpdate.setBackground(new Color(73, 129, 158));
-		btnUpdate.setBounds(702, 298, 135, 40);
+		btnUpdate.setBounds(582, 298, 135, 40);
 		pThongTin.add(btnUpdate);
 		
 		btnlamMoi = new JButton("Làm mới");
@@ -176,7 +190,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		btnlamMoi.setForeground(Color.WHITE);
 		btnlamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnlamMoi.setBackground(new Color(73, 129, 158));
-		btnlamMoi.setBounds(989, 298, 135, 40);
+		btnlamMoi.setBounds(821, 298, 135, 40);
 		pThongTin.add(btnlamMoi);
 		
 		JButton btnChonHinhAnh = new JButton("Choose");
@@ -231,18 +245,22 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		cbNhaCC.setBounds(145, 160, 255, 40);
 		loadCBNhaCC();
 		cbNhaCC.setSelectedIndex(-1);
-		// Load Nhà Cung Cấp lên CB
-		
-		
-		
 		
 		pThongTin.add(cbNhaCC);
+		
+		JButton btnTim = new JButton("Tìm");
+		btnTim.setOpaque(true);
+		btnTim.setForeground(Color.WHITE);
+		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnTim.setBackground(new Color(73, 129, 158));
+		btnTim.setBounds(1060, 298, 135, 40);
+		pThongTin.add(btnTim);
 		
 		JPanel pDanhSach = new JPanel();
 		pDanhSach.setLayout(null);
 		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pDanhSach.setBackground(Color.WHITE);
-		pDanhSach.setBounds(0, 370, 1300, 342);
+		pDanhSach.setBounds(0, 380, 1300, 340);
 		pMain.add(pDanhSach);
 		
 		JScrollPane scrollPaneDungCuHocTap = new JScrollPane();
@@ -282,12 +300,14 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		table.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
 		table.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
 		table.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
+		desktopPane.setLayout(null);
 		
 		
-		JLabel lblChiTitDng = new JLabel("Chi Tiết Dụng Cụ Học Tập");
-		lblChiTitDng.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblChiTitDng.setBounds(20, 15, 246, 40);
-		pDanhSach.add(lblChiTitDng);
+		JLabel lblChiTeitDungCuHocTap = new JLabel("Chi Tiết Dụng Cụ Học Tập");
+		lblChiTeitDungCuHocTap.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblChiTeitDungCuHocTap.setBounds(20, 15, 246, 40);
+		pDanhSach.add(lblChiTeitDungCuHocTap);
+		
 		loadData();
 		btnlamMoi.addActionListener(this);
 		btnAdd.addActionListener(this);
@@ -360,6 +380,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 	    }
 	}
 	public void loadCBNhaCC() {
+		cbNhaCC.removeAll();
 		for(NhaCungCap nhaCC : nhaCC_DAO.getAllNhaCungCap()) {
 			cbNhaCC.addItem(nhaCC.getTenNCC());
 		}
@@ -559,6 +580,11 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 							btnUpdate.setText("Sửa");
 							btnUpdate.setEnabled(true);
 							btnAdd.setText("Thêm");
+						}
+					}else {
+						if(o.equals(btnlamMoi)) {
+							loadCBNhaCC();
+							lamMoi();
 						}
 					}
 				}

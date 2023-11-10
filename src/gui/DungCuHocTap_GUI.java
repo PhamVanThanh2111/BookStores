@@ -30,7 +30,6 @@ import javax.swing.table.JTableHeader;
 import dao.NhaCungCap_DAO;
 import dao.PhatSinhMa_DAO;
 import dao.SanPham_DAO;
-import entity.KhachHang;
 import entity.NhaCungCap;
 import entity.NhanVien;
 import entity.SanPham;

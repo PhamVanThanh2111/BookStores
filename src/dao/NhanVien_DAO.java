@@ -239,7 +239,7 @@ public class NhanVien_DAO {
 		preparedStatement.close();
 		return preparedStatement.executeUpdate() > 0;
 	}
-
+	// sửa nhân viên 
 	public boolean suaNhanVien(NhanVien nhanVien) throws SQLException {
 		ConnectDB.getInstance();
 		Connection connection = ConnectDB.getConnection();

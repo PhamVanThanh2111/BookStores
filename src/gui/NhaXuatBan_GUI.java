@@ -284,7 +284,7 @@ public class NhaXuatBan_GUI extends JPanel {
 
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(60, 60, 60));
-		separator.setBounds(154, 40, 676, 2);
+		separator.setBounds(20, 40, 810, 2);
 		pDanhSach.add(separator);
 
 		btnAdd = new JButton("Thêm");

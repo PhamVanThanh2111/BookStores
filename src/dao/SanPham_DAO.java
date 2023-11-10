@@ -197,7 +197,36 @@ public class SanPham_DAO {
 //		connection.close();
 		return false;
 	}
-	
+	// sửa sản phẩm
+	public boolean suaSanPhamTheoMaSach(SanPham sanPham) {
+	    ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+
+		try {
+		    String query = "UPDATE SanPham SET tenSanPham = ?, xuatXu = ?, giaNhap = ?, giaBan = ?, soLuongTon = ?, hinhAnh = ?, maNXB = ?, maTheLoaiSach = ?, tacGia = ?, soTrang = ?, namXuatBan = ? WHERE maSanPham = ?" + sanPham.getMaSanPham() + "'";
+		    
+		    try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+		        preparedStatement.setString(1, sanPham.getTenSanPham());
+		        preparedStatement.setString(2, sanPham.getXuatXu());
+		        preparedStatement.setFloat(3, sanPham.getGiaNhap());
+		        preparedStatement.setFloat(4, sanPham.getGiaBan());
+		        preparedStatement.setInt(5, sanPham.getSoLuongTon());
+		        preparedStatement.setString(6, sanPham.getHinhAnh());
+		        preparedStatement.setString(7, sanPham.getMaNXB());
+		        preparedStatement.setString(8, sanPham.getMaTheLoaiSach());
+		        preparedStatement.setString(9, sanPham.getTacGia());
+		        preparedStatement.setInt(10, sanPham.getSoTrang());
+		        preparedStatement.setInt(11, sanPham.getNamXuatBan());
+		        preparedStatement.setString(12, sanPham.getMaSanPham());
+
+		        return preparedStatement.executeUpdate() > 0;
+		    }
+		} catch (SQLException e) {
+		    e.printStackTrace();
+		}
+
+	    return false;
+	}
 	// ban san pham, soLuong là số lượng sản phẩm bán đi
 	public boolean banSanPham(String maSanPham, int soLuong) throws SQLException {
 		ConnectDB.getInstance();

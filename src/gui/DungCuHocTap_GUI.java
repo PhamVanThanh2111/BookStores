@@ -30,7 +30,6 @@ import javax.swing.table.JTableHeader;
 import dao.NhaCungCap_DAO;
 import dao.PhatSinhMa_DAO;
 import dao.SanPham_DAO;
-import entity.KhachHang;
 import entity.NhaCungCap;
 import entity.NhanVien;
 import entity.SanPham;
@@ -625,9 +624,6 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 							            public void internalFrameClosed(InternalFrameEvent e) {
 //							                System.out.println("Internal frame is closed.");
 							            	loadData(ds);
-							            	for(SanPham sanPham : ds ) {
-							            		System.out.println(sanPham+"\n");
-							            	}
 							            	ds.removeAll(ds);
 							            	btnAdd.setEnabled(true);
 											btnDelete.setEnabled(true);

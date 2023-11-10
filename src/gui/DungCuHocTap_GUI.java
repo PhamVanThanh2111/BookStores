@@ -625,9 +625,6 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 							            public void internalFrameClosed(InternalFrameEvent e) {
 //							                System.out.println("Internal frame is closed.");
 							            	loadData(ds);
-							            	for(SanPham sanPham : ds ) {
-							            		System.out.println(sanPham+"\n");
-							            	}
 							            	ds.removeAll(ds);
 							            	btnAdd.setEnabled(true);
 											btnDelete.setEnabled(true);

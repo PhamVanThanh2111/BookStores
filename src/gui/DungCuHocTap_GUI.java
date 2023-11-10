@@ -5,7 +5,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
+import java.awt.LayoutManager;
 import java.awt.Color;
+
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
@@ -67,6 +70,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 	private JDesktopPane desktopPane;
 	private TimKiemDungCuHoctap timKiemDungCuHoctap;
 	private JButton btnChonHinhAnh;
+	private Border borderDefault;
 	/**
 	 * Create the panel.
 	 */
@@ -143,6 +147,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		txttenDCHT.setColumns(10);
 		txttenDCHT.setBackground(Color.WHITE);
 		txttenDCHT.setBounds(145, 115, 255, 40);
+		borderDefault = txttenDCHT.getBorder();
 		pThongTin.add(txttenDCHT);
 		
 		JLabel lblgia = new JLabel("Giá Nhập:");
@@ -251,6 +256,8 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		cbNhaCC = new JComboBox<String>();
 		cbNhaCC.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		cbNhaCC.setBounds(145, 160, 255, 40);
+		cbNhaCC.setBackground(new Color(255, 255, 255));
+		cbNhaCC.setForeground(new Color(0, 0, 0));
 		loadCBNhaCC();
 		cbNhaCC.setSelectedIndex(-1);
 		
@@ -375,7 +382,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		btnUpdate.addActionListener(this);
 		btnDelete.addActionListener(this);
 		btnTim.addActionListener(this);
-		
+		closeText();
 		
 		
 	}
@@ -416,7 +423,13 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		txtgiaNhap.setEditable(false);
 		txtgiaBan.setEditable(false);
 		txtsoLuong.setEditable(false);
-
+		
+		txttenDCHT.setFocusable(false);
+		txtXuatXu.setFocusable(false);
+		txtgiaNhap.setFocusable(false);
+		txtgiaBan.setFocusable(false);
+		txtsoLuong.setFocusable(false);
+		cbNhaCC.setEnabled(false);
 	}
 	
 	public void openText() {
@@ -425,6 +438,16 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		txtgiaNhap.setEditable(true);
 		txtgiaBan.setEditable(true);
 		txtsoLuong.setEditable(true);
+		
+		txttenDCHT.setFocusable(true);
+		txtXuatXu.setFocusable(true);
+		txtgiaNhap.setFocusable(true);
+		txtgiaBan.setFocusable(true);
+		txtsoLuong.setFocusable(true);
+		cbNhaCC.setEnabled(true);
+		
+		cbNhaCC.setBorder(borderDefault);
+
 	}
 	
 	public void themDCHT() {

@@ -123,13 +123,13 @@ public class TimKiemTheLoaiSach_GUI extends JInternalFrame {
 		for (TheLoaiSach theLoaiSach : theLoaiSach_DAO.getAllListTheLoaiSach()) {
 			boolean thoaMan = false;
 			if (!txtMaTheLoaiSach.getText().isEmpty()) {
-				if (theLoaiSach.getmaTheLoaiSach().equalsIgnoreCase(txtMaTheLoaiSach.getText())) {
+				if (theLoaiSach.getmaTheLoaiSach().equalsIgnoreCase(txtMaTheLoaiSach.getText().trim())) {
 					thoaMan = true;
 				}
 			}
 			if (!txtTenTheLoaiSach.getText().isEmpty()) {
 				if (theLoaiSach.gettenTheLoaiSach().toLowerCase()
-						.contains(txtTenTheLoaiSach.getText().toLowerCase())) {
+						.contains(txtTenTheLoaiSach.getText().toLowerCase().trim())) {
 					thoaMan = true;
 				}
 			}

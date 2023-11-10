@@ -317,7 +317,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		btnXoa.addActionListener(this);
 		btnSua.addActionListener(this);
 		btnTim.addActionListener(this);
-			
+		closeText();
 
 		table.addMouseListener(new MouseListener() {
 
@@ -557,6 +557,12 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		txtTenKH.setBorder(null);
 		txtSDT.setBorder(null);
 		txtDiaChi.setBorder(null);
+		
+		txtDiaChi.setFocusable(false);
+		txtTenKH.setFocusable(false);
+		txtSDT.setFocusable(false);
+		txtDiaChi.setFocusable(false);
+		
 	}
 	
 	public void openText() {
@@ -571,6 +577,12 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		txtTenKH.setBorder(borderDefault);
 		txtSDT.setBorder(borderDefault);
 		txtDiaChi.setBorder(borderDefault);
+		
+		
+		txtDiaChi.setFocusable(true);
+		txtTenKH.setFocusable(true);
+		txtSDT.setFocusable(true);
+		txtDiaChi.setFocusable(true);
 		
 	}
 	

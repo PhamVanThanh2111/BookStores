@@ -297,47 +297,47 @@ public class TimKiemNhanVien_GUI extends JInternalFrame {
 		for (NhanVien nhanVien : nhanVien_DAO.getAllListNhanVien()) {
 			boolean thoaMan = false;
 			if (!txtMaNhanVien.getText().isEmpty()) {
-				if (nhanVien.getMaNhanVien().equalsIgnoreCase(txtMaNhanVien.getText())) {
+				if (nhanVien.getMaNhanVien().equalsIgnoreCase(txtMaNhanVien.getText().trim())) {
 					thoaMan = true;
 				}
 			}
 			if (!txtTenNhanVien.getText().isEmpty()) {
-				if (nhanVien.getTenNhanVien().toLowerCase().contains(txtTenNhanVien.getText().toLowerCase())) {
+				if (nhanVien.getTenNhanVien().toLowerCase().contains(txtTenNhanVien.getText().toLowerCase().trim())) {
 					thoaMan = true;
 				}
 			}
 			if (!txtDiaChi.getText().isEmpty()) {
-				if (nhanVien.getDiaChi().toLowerCase().contains(txtDiaChi.getText().toLowerCase())) {
+				if (nhanVien.getDiaChi().toLowerCase().contains(txtDiaChi.getText().toLowerCase().trim())) {
 					thoaMan = true;
 				}
 			}
 			if (!txtCCCD.getText().isEmpty()) {
-				if (nhanVien.getcCCD().toLowerCase().contains(txtCCCD.getText().toLowerCase())) {
+				if (nhanVien.getcCCD().toLowerCase().contains(txtCCCD.getText().toLowerCase().trim())) {
 					thoaMan = true;
 				}
 			}
 			if (!txtEmail.getText().isEmpty()) {
-				if (nhanVien.getEmail().toLowerCase().contains(txtEmail.getText().toLowerCase())) {
+				if (nhanVien.getEmail().toLowerCase().contains(txtEmail.getText().toLowerCase().trim())) {
 					thoaMan = true;
 				}
 			}
 			if (!txtSoDienThoai.getText().isEmpty()) {
-				if (nhanVien.getSoDienThoai().toLowerCase().contains(txtSoDienThoai.getText().toLowerCase())) {
+				if (nhanVien.getSoDienThoai().toLowerCase().contains(txtSoDienThoai.getText().toLowerCase().trim())) {
 					thoaMan = true;
 				}
 			}
 			if (cmbChucVu.getSelectedIndex() != -1) {
-				if (nhanVien.getChucVu().toLowerCase().contains(cmbChucVu.getSelectedItem().toString().toLowerCase())) {
+				if (nhanVien.getChucVu().toLowerCase().contains(cmbChucVu.getSelectedItem().toString().toLowerCase().trim())) {
 					thoaMan = true;
 				}
 			}
 			if (cmbGioiTinh.getSelectedIndex() != -1) {
-				if (nhanVien.getGioiTinh().toLowerCase().contains(cmbGioiTinh.getSelectedItem().toString().toLowerCase())) {
+				if (nhanVien.getGioiTinh().toLowerCase().contains(cmbGioiTinh.getSelectedItem().toString().toLowerCase().trim())) {
 					thoaMan = true;
 				}
 			}
 			if (cmbCa.getSelectedIndex() != -1) {
-				if (nhanVien.getMaCa().toLowerCase().contains("C" + cmbCa.getSelectedItem().toString().toLowerCase())) {
+				if (nhanVien.getMaCa().toLowerCase().contains("C" + cmbCa.getSelectedItem().toString().toLowerCase().trim())) {
 					thoaMan = true;
 				}
 			}

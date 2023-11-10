@@ -132,27 +132,27 @@ public class TimKiemNhaCungCap extends JInternalFrame {
 		for (NhaCungCap nhacc: nhaCungCap_Dao.getAllNhaCungCap()) {
 			boolean thoaMan = false;
 			if (!txtMaNhaCungCap.getText().isEmpty()) {
-				if (nhacc.getMaNCC().equalsIgnoreCase(txtMaNhaCungCap.getText())) {
+				if (nhacc.getMaNCC().equalsIgnoreCase(txtMaNhaCungCap.getText().trim())) {
 					thoaMan = true;
 				}
 			}
 			if (!txtTenNhaCungCap.getText().isEmpty()) {
-				if (nhacc.getTenNCC().toLowerCase().contains(txtTenNhaCungCap.getText().toLowerCase())) {
+				if (nhacc.getTenNCC().toLowerCase().contains(txtTenNhaCungCap.getText().toLowerCase().trim())) {
 					thoaMan = true;
 				}
 			}
 			if (!txtDiaChi.getText().isEmpty()) {
-				if (nhacc.getDiaChi().toLowerCase().contains(txtDiaChi.getText().toLowerCase())) {
+				if (nhacc.getDiaChi().toLowerCase().contains(txtDiaChi.getText().toLowerCase().trim())) {
 					thoaMan = true;
 				}
 			}
 			if (!txtSDT.getText().isEmpty()) {
-				if (nhacc.getSoDienThoai().toLowerCase().contains(txtSDT.getText().toLowerCase())) {
+				if (nhacc.getSoDienThoai().toLowerCase().contains(txtSDT.getText().toLowerCase().trim())) {
 					thoaMan = true;
 				}
 			}
 			if (!txtEmail.getText().isEmpty()) {
-				if (nhacc.getEmail().toLowerCase().contains(txtEmail.getText().toLowerCase())) {
+				if (nhacc.getEmail().toLowerCase().contains(txtEmail.getText().toLowerCase().trim())) {
 					thoaMan = true;
 				}
 			}

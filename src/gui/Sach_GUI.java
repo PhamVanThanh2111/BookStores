@@ -32,6 +32,7 @@ import entity.SanPham;
 import entity.TheLoaiSach;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Sach_GUI extends JPanel {
@@ -297,7 +298,6 @@ public class Sach_GUI extends JPanel {
 			}
 		});
 		pThongTin.add(btnAdd);
-
 		btnDelete = new JButton("Xóa");
 		btnDelete.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/remove_person.png")));
 		btnDelete.setOpaque(true);
@@ -335,36 +335,30 @@ public class Sach_GUI extends JPanel {
 		btnUpdate.setBounds(719, 278, 135, 40);
 		btnUpdate.addActionListener(new ActionListener() {
 
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				int row = table.getSelectedRow();
 				if (btnUpdate.getText().equals("Sửa")) {
 					if (row == -1)
-						JOptionPane.showMessageDialog(null, "Bạn phải chọn vào sách cần sửa!");
+						JOptionPane.showMessageDialog(null, "Bạn phải chọn vào nhân viên cần sửa!");
 					else {
 						enableEdit();
 						btnDelete.setText("Hủy");
 						btnUpdate.setText("Xác nhận");
 						btnLamMoi.setEnabled(false);
 						btnAdd.setEnabled(false);
-						// btnTim.setEnabled(false);
+//						btnTim.setEnabled(false);
 					}
-				} else {
-					try {
-						update();
-						loadData();
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+				}
+				else {
+					update();
 					btnUpdate.setText("Sửa");
 					btnDelete.setText("Xóa");
 					disableEdit();
 					btnLamMoi.setEnabled(true);
 					btnAdd.setEnabled(true);
-					// btnTim.setEnabled(true);
+//					btnTim.setEnabled(true);
 				}
 			}
 		});
@@ -424,8 +418,8 @@ public class Sach_GUI extends JPanel {
 		scrollPaneSach.setBackground(new Color(255, 255, 255));
 		pDanhSach.add(scrollPaneSach);
 
-		String cols[] = { "Mã Sách", "Tên Sách", "Xuất Xứ", "Giá Nhập",
-				"Giá Bán", "Số Lượng Tồn", "Nhà Xuất Bản", "Thể Loại Sách", "Tác Giả", "Số Trang", "Năm Xuất Bản" };
+		String cols[] = { "Mã Sách", "Tên Sách", "Xuất Xứ", "Giá Nhập", "Giá Bán", "Số Lượng Tồn", "Nhà Xuất Bản",
+				"Thể Loại Sách", "Tác Giả", "Số Trang", "Năm Xuất Bản" };
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -512,7 +506,7 @@ public class Sach_GUI extends JPanel {
 		lblChiTitSch.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblChiTitSch.setBounds(22, 10, 200, 40);
 		pDanhSach.add(lblChiTitSch);
-		loadData();
+		loadData(sanPham_DAO.getAllSach());
 		loadDataIntoComboboxTenNhaXuatBan();
 		loadDataIntoComboboxTenLoaiSach();
 	}
@@ -523,25 +517,14 @@ public class Sach_GUI extends JPanel {
 	}
 
 	// load Data lên bảng
-	public void loadData() {
-		// Xóa dữ liệu cũ trước khi nạp dữ liệu mới
+	public void loadData(ArrayList<SanPham> ds) {
 		model.setRowCount(0);
-		// Lấy danh sách sản phẩm từ DAO
-		List<SanPham> sanPhamList = null;
-		try {
-			sanPhamList = sanPham_DAO.getAllSach();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		// Nạp dữ liệu sản phẩm lên bảng
-		for (SanPham sanPham : sanPhamList) {
+		for (SanPham sanPham : ds) {
 			Object[] object = { sanPham.getMaSanPham(), sanPham.getTenSanPham(), sanPham.getXuatXu(),
 					sanPham.getGiaNhap(), sanPham.getGiaBan(), sanPham.getSoLuongTon(),
 					nhaXuatBan_DAO.getnhaXuatBanTheoMa(sanPham.getMaNXB()).getTenNhaXuatBan(),
 					theLoaiSach_DAO.getTheLoaiSachTheoMa(sanPham.getMaTheLoaiSach()).gettenTheLoaiSach(),
-					sanPham.getTacGia(), sanPham.getSoTrang(), sanPham.getNamXuatBan(),
-			};
+					sanPham.getTacGia(), sanPham.getSoTrang(), sanPham.getNamXuatBan(), };
 			model.addRow(object);
 		}
 	}
@@ -580,7 +563,7 @@ public class Sach_GUI extends JPanel {
 	}
 
 	public void refresh() {
-		loadData();
+		loadData(sanPham_DAO.getAllSach());
 	}
 
 	// thêm sách
@@ -658,7 +641,6 @@ public class Sach_GUI extends JPanel {
 			}
 		}
 	}
-
 	// xóa sách
 	public boolean delete() {
 		int row = table.getSelectedRow();
@@ -676,8 +658,7 @@ public class Sach_GUI extends JPanel {
 					JOptionPane.showMessageDialog(null, "Không thể xóa sách này. Có thể đã có dữ liệu liên quan!");
 					return false;
 				}
-				JOptionPane.showMessageDialog(null,
-						"Xóa sách '" + model.getValueAt(row, 1) + "' thành công!");
+				JOptionPane.showMessageDialog(null, "Xóa sách '" + model.getValueAt(row, 1) + "' thành công!");
 				refresh();
 				return true;
 			} else {
@@ -685,25 +666,50 @@ public class Sach_GUI extends JPanel {
 			}
 		}
 	}
+
 	// sửa sách
-	public boolean update() throws SQLException {
-		if(txtMaSach.getText().equalsIgnoreCase("")||
-			    txtTenSach.getText().equalsIgnoreCase("")||
-			    txtGiaBan.getText().equalsIgnoreCase("")||
-			    txtGiaNhap.getText().equalsIgnoreCase("")||
-			    txtXuatXu.getText().equalsIgnoreCase("")||
-			    txtSoLuong.getText().equalsIgnoreCase("")||
-			    txtSoTrang.getText().equalsIgnoreCase("")||
-			    txtNamXuatBan.getText().equalsIgnoreCase("")||
-			    txtTacGia.getText().equalsIgnoreCase("")||
-			    cbTenNhaXuatBan.getSelectedIndex()==-1 ||
-			    cbTenLoaiSach.getSelectedIndex()==-1) {
-			    JOptionPane.showMessageDialog(null, "Thông Tin Rỗng !");
-			} else {
-				int row = table.getSelectedRow();
-				int option = JOptionPane.showConfirmDialog(null,
-			                "Bạn có chắc muốn sửa sách '" + model.getValueAt(row, 0) + "' chứ?", "Sửa?",
-			                JOptionPane.YES_NO_OPTION);
+	public boolean update() {
+		int row = table.getSelectedRow();
+		if (row == -1) {
+			JOptionPane.showMessageDialog(null, "Bạn phải chọn sách cần sửa!");
+		} else if (txtTenSach.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Tên sách không được để trống!");
+			txtTenSach.requestFocus();
+			return false;
+		} else if (txtXuatXu.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Xuất xứ của sách không được để trống!");
+			txtXuatXu.requestFocus();
+			return false;
+		} else if (txtTacGia.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Tác giả của sách không được để trống!");
+			txtTacGia.requestFocus();
+			return false;
+		} else if (txtGiaNhap.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Giá nhập của sách không được để trống!");
+			txtGiaNhap.requestFocus();
+			return false;
+		} else if (txtGiaBan.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Giá bán của sách không được để trống!");
+			txtGiaBan.requestFocus();
+			return false;
+		} else if (txtNamXuatBan.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Năm xuất bản của sách không được để trống!");
+			txtNamXuatBan.requestFocus();
+			return false;
+		} else if (txtSoTrang.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Số trang của sách không được để trống!");
+			txtSoTrang.requestFocus();
+			return false;
+		} else if (txtSoLuong.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Số lượng của sách không được để trống!");
+			txtSoLuong.requestFocus();
+			return false;
+		} else {
+			int option = JOptionPane.showConfirmDialog(null,
+					"Bạn có chắc muốn sửa sách ? '" + model.getValueAt(row, 0) + "' chứ?", "Sửa?",
+					JOptionPane.YES_NO_OPTION);
+			if (option == JOptionPane.YES_OPTION) {
+				try {
 					SanPham sanPham = new SanPham();
 	                sanPham.setMaSanPham(txtMaSach.getText());
 	                sanPham.setTenSanPham(txtTenSach.getText());
@@ -712,22 +718,73 @@ public class Sach_GUI extends JPanel {
 	                sanPham.setGiaBan(Float.parseFloat(txtGiaBan.getText()));
 	                sanPham.setSoLuongTon(Integer.parseInt(txtSoLuong.getText()));
 	                sanPham.setHinhAnh(relativePath);
-	                sanPham.setMaNXB(null);       
-	                sanPham.setMaTheLoaiSach(null);
-//	                sanPham.setSoTrang(Integer.parseInt(txtSoTrang.getText()));
-	                sanPham.setSoTrang(0);
+	                sanPham.setMaNXB(nhaXuatBan_DAO.getnhaXuatBanTheoTen(cbTenNhaXuatBan.getSelectedItem().toString())
+	                        .getMaNhaXuatBan());
+	                sanPham.setMaTheLoaiSach(theLoaiSach_DAO
+	                        .getTheLoaiSachTheoTen(cbTenLoaiSach.getSelectedItem().toString()).getmaTheLoaiSach());
 	                sanPham.setTacGia(txtTacGia.getText());
-//	                sanPham.setNamXuatBan(Integer.parseInt(txtNamXuatBan.getText()));
-	                sanPham.setNamXuatBan(0);
-	                sanPham.setMaNhaCungCap(null);
-	
+	                sanPham.setSoTrang(Integer.parseInt(txtSoTrang.getText()));
+	                sanPham.setNamXuatBan(Integer.parseInt(txtNamXuatBan.getText()));
+	                sanPham.setMaNhaCungCap("");
+
 	                sanPham_DAO.suaSanPhamTheoMa(sanPham);
 	                JOptionPane.showMessageDialog(null, "Sửa thành công sách '" + model.getValueAt(row, 0) + "'!");
-//	                refresh();
-	                return false;			      
+	                return true;
+	                
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null,
+							"Sửa sách '\" + model.getValueAt(row, 0) + \"' không thành công!");
+					return false;
+				}
+			} else {
+				return false;
+			}
 		}
-	return false;
-}
+		return false;
+	}
+//	public boolean update() throws SQLException {
+//	    if (txtMaSach.getText().equalsIgnoreCase("") || txtXuatXu.getText().equalsIgnoreCase("")
+//	            || txtGiaNhap.getText().equalsIgnoreCase("") || txtGiaBan.getText().equalsIgnoreCase("")
+//	            || txtSoLuong.getText().equalsIgnoreCase("") || txtTacGia.getText().equalsIgnoreCase("")
+//	            || txtSoTrang.getText().equalsIgnoreCase("") || txtNamXuatBan.getText().equalsIgnoreCase("")
+//	            || cbTenNhaXuatBan.getSelectedIndex() == -1
+//	            || cbTenLoaiSach.getSelectedIndex() == -1) {
+//	        JOptionPane.showMessageDialog(null, "Thông Tin Rỗng !");
+//	    } else {
+//	        int row = table.getSelectedRow();
+//	        int option = JOptionPane.showConfirmDialog(null,
+//	                "Bạn có chắc muốn sửa sách '" + model.getValueAt(row, 0) + "' chứ?", "Sửa?",
+//	                JOptionPane.YES_NO_OPTION);
+//	        if (option == JOptionPane.YES_OPTION) {
+//	            try {
+//	                SanPham sanPham = new SanPham();
+//	                sanPham.setMaSanPham(txtMaSach.getText());
+//	                sanPham.setTenSanPham(txtTenSach.getText());
+//	                sanPham.setXuatXu(txtXuatXu.getText());
+//	                sanPham.setGiaNhap(Float.parseFloat(txtGiaNhap.getText()));
+//	                sanPham.setGiaBan(Float.parseFloat(txtGiaBan.getText()));
+//	                sanPham.setSoLuongTon(Integer.parseInt(txtSoLuong.getText()));
+//	                sanPham.setHinhAnh(relativePath);
+//	                sanPham.setMaNXB(nhaXuatBan_DAO.getnhaXuatBanTheoTen(cbTenNhaXuatBan.getSelectedItem().toString())
+//	                        .getMaNhaXuatBan());
+//	                sanPham.setMaTheLoaiSach(theLoaiSach_DAO
+//	                        .getTheLoaiSachTheoTen(cbTenLoaiSach.getSelectedItem().toString()).getmaTheLoaiSach());
+//	                sanPham.setTacGia(txtTacGia.getText());
+//	                sanPham.setSoTrang(Integer.parseInt(txtSoTrang.getText()));
+//	                sanPham.setNamXuatBan(Integer.parseInt(txtNamXuatBan.getText()));
+//	                sanPham.setMaNhaCungCap("");
+//
+//	                sanPham_DAO.suaSanPhamTheoMa(sanPham);
+//	                JOptionPane.showMessageDialog(null, "Sửa thành công sách '" + model.getValueAt(row, 0) + "'!");
+//	                return true;
+//	            } catch (NumberFormatException e) {
+//	                JOptionPane.showMessageDialog(null, "Nhập thông tin số không hợp lệ!");
+//	            }
+//	        }
+//	    }
+//	    return false;
+//	}
 
 
 	private void enableEdit() {
@@ -739,7 +796,6 @@ public class Sach_GUI extends JPanel {
 		txtSoTrang.setEditable(true);
 		txtSoLuong.setEditable(true);
 		txtNamXuatBan.setEditable(true);
-
 		cbTenLoaiSach.setEnabled(true);
 		cbTenNhaXuatBan.setEnabled(true);
 	}
@@ -758,6 +814,7 @@ public class Sach_GUI extends JPanel {
 		cbTenNhaXuatBan.setEnabled(false);
 	}
 
+	@SuppressWarnings("unused")
 	private void enableButton() {
 		btnLamMoi.setEnabled(true);
 		btnAdd.setEnabled(true);

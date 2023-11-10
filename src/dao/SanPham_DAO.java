@@ -13,8 +13,8 @@ import entity.SanPham;
 public class SanPham_DAO {
 	// Lấy sách
 
-	public List<SanPham> getAllSach() {
-		List<SanPham> ds = new ArrayList<SanPham>();
+	public ArrayList<SanPham> getAllSach() {
+		ArrayList<SanPham> ds = new ArrayList<SanPham>();
 		ConnectDB.getInstance();
 		Connection con = ConnectDB.getConnection();
 		try {
@@ -29,7 +29,6 @@ public class SanPham_DAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		return ds;
 	}
 	//Lấy tên theo mã sách
@@ -174,29 +173,28 @@ public class SanPham_DAO {
 	public boolean suaSanPhamTheoMa(SanPham sanPham) throws SQLException {
 		ConnectDB.getInstance();
 		Connection connection = ConnectDB.getConnection();
-
 		try {
 			PreparedStatement preparedstaments = connection.prepareStatement(
-					"update SanPham set tenSanPham=?,xuatXu=?,giaNhap=?,giaban=?,soLuongTon=?,maNXB=?,"
-							+ " maTheLoaiSach=?,tacGia=?,soTrang=?,namXuatBan=?,maNhaCungCap=?,hinhAnh=? "
+					"update SanPham set tenSanPham=?,xuatXu=?,giaNhap=?,giaBan=?,soLuongTon=?, hinhAnh=? ,maNXB=?,"
+							+ " maTheLoaiSach=?,tacGia=?,soTrang=?,namXuatBan=?,maNhaCungCap=? "
 							+ " where maSanPham = '" + sanPham.getMaSanPham() + "'");
 			preparedstaments.setString(1, sanPham.getTenSanPham());
 			preparedstaments.setString(2, sanPham.getXuatXu());
 			preparedstaments.setFloat(3, sanPham.getGiaNhap());
 			preparedstaments.setFloat(4, sanPham.getGiaBan());
 			preparedstaments.setInt(5, sanPham.getSoLuongTon());
-			preparedstaments.setString(6, sanPham.getMaNXB());
-			preparedstaments.setString(7, sanPham.getMaTheLoaiSach());
-			preparedstaments.setString(8, sanPham.getTacGia());
-			preparedstaments.setInt(9, sanPham.getSoTrang());
-			preparedstaments.setInt(10, sanPham.getNamXuatBan());
-			preparedstaments.setString(11, sanPham.getMaNhaCungCap());
-			preparedstaments.setString(12, sanPham.getHinhAnh());
+			preparedstaments.setString(6, sanPham.getHinhAnh());
+			preparedstaments.setString(7, sanPham.getMaNXB());
+			preparedstaments.setString(8, sanPham.getMaTheLoaiSach());
+			preparedstaments.setString(9, sanPham.getTacGia());
+			preparedstaments.setInt(10, sanPham.getSoTrang());
+			preparedstaments.setInt(11, sanPham.getNamXuatBan());
+			preparedstaments.setString(12, sanPham.getMaNhaCungCap());
 			return preparedstaments.executeUpdate() > 0;
 		} catch (SQLException e) {
 			// TODO: handle exception
 		}
-		connection.close();
+//		connection.close();
 		return false;
 	}
 	

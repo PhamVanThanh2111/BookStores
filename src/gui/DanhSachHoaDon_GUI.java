@@ -22,8 +22,6 @@ import entity.HoaDon;
 
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
@@ -168,24 +166,8 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		btnTim.setForeground(Color.WHITE);
 		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnTim.setBackground(new Color(73, 129, 158));
-		btnTim.setBounds(876, 120, 135, 40);
+		btnTim.setBounds(1142, 120, 135, 40);
 		pnlThongTinTimKiem.add(btnTim);
-		
-		JButton btnLamMoi = new JButton("Làm Mới");
-		btnLamMoi.setOpaque(true);
-		btnLamMoi.setForeground(Color.WHITE);
-		btnLamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnLamMoi.setBackground(new Color(73, 129, 158));
-		btnLamMoi.setBounds(1142, 120, 135, 40);
-		btnLamMoi.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-		    	loadDataIntoTableHoaDon(hoaDon_DAO.getAllListHoaDon());
-			}
-		});
-		pnlThongTinTimKiem.add(btnLamMoi);
 		
 		JPanel pnlDanhSachHoaDon = new JPanel();
 		pnlDanhSachHoaDon.setBorder(new LineBorder(new Color(0, 0, 0)));

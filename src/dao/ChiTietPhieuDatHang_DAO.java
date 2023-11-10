@@ -10,6 +10,9 @@ import connect.ConnectDB;
 import entity.ChiTietPhieuDatHang;
 
 public class ChiTietPhieuDatHang_DAO {
+	
+	private SanPham_DAO sanPham_DAO;
+	
 	// them nhan vien
 	public boolean themChiTietPhieuDatHang(ChiTietPhieuDatHang chiTietPhieuDatHang) throws SQLException {
 		ConnectDB.getInstance();
@@ -37,7 +40,8 @@ public class ChiTietPhieuDatHang_DAO {
 		Connection connection = ConnectDB.getConnection();
 		ArrayList<ChiTietPhieuDatHang> ds = new ArrayList<ChiTietPhieuDatHang>();
 		try {
-			PreparedStatement preparedStatement = connection.prepareStatement("select * from ChiTietPhieuDatHang where maPhieuDatHang = '"+ maPhieuDatHang +"'");
+			PreparedStatement preparedStatement = connection.prepareStatement(
+					"select * from ChiTietPhieuDatHang where maPhieuDatHang = '" + maPhieuDatHang + "'");
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				ChiTietPhieuDatHang ChiTietPhieuDatHang = new ChiTietPhieuDatHang();
@@ -51,5 +55,25 @@ public class ChiTietPhieuDatHang_DAO {
 			// TODO: handle exception
 		}
 		return ds;
+	}
+
+	// xóa
+	public boolean xoaChiTietPhieuDatHang(String maPhieuDatHang) throws SQLException {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		try {
+			sanPham_DAO = new SanPham_DAO();
+			for (ChiTietPhieuDatHang chiTietPhieuDatHang : getAllChiTietPhieuDatHangTheoMaPhieuDatHang(maPhieuDatHang)) {
+				sanPham_DAO.banSanPham(chiTietPhieuDatHang.getMaSanPham(), -chiTietPhieuDatHang.getSoLuong());
+			}
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("delete from ChiTietPhieuDatHang where maPhieuDatHang = '" + maPhieuDatHang + "'");
+			return preparedStatement.executeUpdate() > 0;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		connection.close();
+		return false;
 	}
 }

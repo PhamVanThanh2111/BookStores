@@ -38,7 +38,6 @@ import javax.swing.ImageIcon;
 
 import com.toedter.calendar.JDateChooser;
 
-import connect.ConnectDB;
 import dao.NhanVien_DAO;
 import dao.PhatSinhMa_DAO;
 import dao.TaiKhoan_DAO;
@@ -90,10 +89,7 @@ public class NhanVien_GUI extends JPanel {
 	 * 
 	 * @throws SQLException
 	 */
-	public NhanVien_GUI() throws SQLException {
-		// connect
-		ConnectDB.getInstance();
-		ConnectDB.connect();
+	public NhanVien_GUI() {
 
 		// khai bao DAO
 		nhanVien_DAO = new NhanVien_DAO();

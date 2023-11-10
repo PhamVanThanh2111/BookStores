@@ -800,7 +800,6 @@ public class NhanVien_GUI extends JPanel {
 			}
 		}
 	}
-
 	public boolean update() {
 		if (txtTenNhanVien.getText().equals("")) {
 			JOptionPane.showMessageDialog(null, "Tên nhân viên không được để trống!");
@@ -878,7 +877,6 @@ public class NhanVien_GUI extends JPanel {
 			}
 		}
 	}
-	
 	private boolean chooseFile() { 
 		fileChooser = new JFileChooser();
 		// Chỉ cho phép chọn tệp hình ảnh

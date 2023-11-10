@@ -284,7 +284,7 @@ public class NhaXuatBan_GUI extends JPanel {
 
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(60, 60, 60));
-		separator.setBounds(154, 40, 676, 2);
+		separator.setBounds(20, 40, 810, 2);
 		pDanhSach.add(separator);
 
 		btnAdd = new JButton("Thêm");
@@ -574,8 +574,7 @@ public class NhaXuatBan_GUI extends JPanel {
 			if (option == JOptionPane.YES_OPTION) {
 				try {
 					NhaXuatBan nhaXuatBan = new NhaXuatBan(lblMaNXBValue.getText(), txtTenNhaXuatBan.getText(),
-							txtDiaChi.getText(),
-							txtEmail.getText(), txtSoDienThoai.getText());
+							txtDiaChi.getText(),txtSoDienThoai.getText(),txtEmail.getText() );
 					nhaXuatBan_DAO.suaNhaXuatBanTheoMa(nhaXuatBan);
 					JOptionPane.showMessageDialog(null,
 							"Sửa thành công nhà xuất bản '" + model.getValueAt(row, 0) + "'!");
@@ -603,7 +602,6 @@ public class NhaXuatBan_GUI extends JPanel {
 		txtEmail.setEditable(true);
 		txtEmail.setBorder(borderDefault);
 	}
-
 	private void disableEdit() {
 		txtTenNhaXuatBan.setEditable(false);
 		txtTenNhaXuatBan.setBorder(null);
@@ -614,7 +612,6 @@ public class NhaXuatBan_GUI extends JPanel {
 		txtEmail.setEditable(false);
 		txtEmail.setBorder(null);
 	}
-
 	private void enableButton() {
 		btnLamMoi.setEnabled(true);
 		btnAdd.setEnabled(true);
@@ -622,7 +619,6 @@ public class NhaXuatBan_GUI extends JPanel {
 		btnUpdate.setEnabled(true);
 		btnTim.setEnabled(true);
 	}
-
 	private void disableButton() {
 		btnLamMoi.setEnabled(false);
 		btnAdd.setEnabled(false);

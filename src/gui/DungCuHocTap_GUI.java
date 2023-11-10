@@ -30,6 +30,7 @@ import javax.swing.table.JTableHeader;
 import dao.NhaCungCap_DAO;
 import dao.PhatSinhMa_DAO;
 import dao.SanPham_DAO;
+import entity.KhachHang;
 import entity.NhaCungCap;
 import entity.NhanVien;
 import entity.SanPham;
@@ -76,6 +77,8 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		sanPham_DAO = new SanPham_DAO();
 		phatSinhMa_DAO = new PhatSinhMa_DAO();
 		nhaCC_DAO = new NhaCungCap_DAO();
+		ds = new ArrayList<SanPham>();
+
 		setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -315,12 +318,8 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		pDanhSach.add(lblChiTeitDungCuHocTap);
 		
 		loadData(sanPham_DAO.getAllDungCuHocTap());
-		btnlamMoi.addActionListener(this);
-		btnAdd.addActionListener(this);
-		btnUpdate.addActionListener(this);
-		btnDelete.addActionListener(this);
-		btnTim.addActionListener(this);
 		
+
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.addMouseListener(new MouseListener() {
 			
@@ -372,19 +371,19 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 			btnChonHinhAnh.setEnabled(false);
 		}
 		
+		btnlamMoi.addActionListener(this);
+		btnAdd.addActionListener(this);
+		btnUpdate.addActionListener(this);
+		btnDelete.addActionListener(this);
+		btnTim.addActionListener(this);
+		
+		
+		
 	}
 	public void loadData(ArrayList<SanPham> ds) {
 	    // Xóa dữ liệu cũ trước khi nạp dữ liệu mới
 	    model.setRowCount(0);
-	    // Lấy danh sách sản phẩm từ DAO 
-	  
-		try {
-			ds = sanPham_DAO.getAllDungCuHocTap();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-	    // Nạp dữ liệu sản phẩm lên bảng
+
 	    for (SanPham sanPham : ds) {
 	        Object[] object = {sanPham.getMaSanPham(), sanPham.getTenSanPham(), sanPham.getXuatXu(),
 	                sanPham.getGiaNhap(), sanPham.getGiaBan(), sanPham.getSoLuongTon(),nhaCC_DAO.getNhaCCTheoMa(sanPham.getMaNhaCungCap()).getTenNCC()};
@@ -626,6 +625,9 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 							            public void internalFrameClosed(InternalFrameEvent e) {
 //							                System.out.println("Internal frame is closed.");
 							            	loadData(ds);
+							            	for(SanPham sanPham : ds ) {
+							            		System.out.println(sanPham+"\n");
+							            	}
 							            	ds.removeAll(ds);
 							            	btnAdd.setEnabled(true);
 											btnDelete.setEnabled(true);

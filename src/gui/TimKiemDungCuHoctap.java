@@ -1,53 +1,55 @@
 package gui;
 
-import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JButton;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyVetoException;
 import java.util.ArrayList;
-
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-
 import dao.NhaCungCap_DAO;
 import dao.SanPham_DAO;
-import entity.KhachHang;
 import entity.NhaCungCap;
 import entity.SanPham;
-
 import javax.swing.JComboBox;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class TimKiemDungCuHoctap extends JInternalFrame {
-	private JTextField txtMaDCHT;
-	private JTextField txtTenDCHT;
-	private JTextField txtGiaBan;
-	private JTextField txtSoLuong;
-	private ArrayList<SanPham> ds;
-	private SanPham_DAO sanPham_DAO;
-	private JComboBox<String> cbNhaCC;
-	private NhaCungCap_DAO nhaCungCap_DAO;
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private JTextField txtMaDCHT;
+	private JTextField txtTenDCHT;
+	private JTextField txtGiaBan;
+	private JTextField txtSoLuong;
+	private ArrayList<SanPham>ds;
+	private SanPham_DAO sanPham_DAO;
+	private JComboBox<String> cbNhaCC;
+	private NhaCungCap_DAO nhaCungCap_DAO;
+	private JButton btnTim;
 
-	/**
-	 * Launch the application.
-	 */
-
-	public TimKiemDungCuHoctap(ArrayList<SanPham> ds) {
-		this.ds=ds;
-		SanPham_DAO sanPham_DAO = new SanPham_DAO(); 
+	public TimKiemDungCuHoctap(ArrayList<SanPham>ds) {
+		sanPham_DAO = new SanPham_DAO(); 
 		nhaCungCap_DAO = new NhaCungCap_DAO();
+		this.ds=ds;
 		setBounds(100, 100, 922, 415);
 		getContentPane().setLayout(null);
 		
 		txtMaDCHT = new JTextField();
+		txtMaDCHT.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		txtMaDCHT.setColumns(10);
 		txtMaDCHT.setBounds(220, 80, 240, 40);
 		getContentPane().add(txtMaDCHT);
@@ -61,8 +63,13 @@ public class TimKiemDungCuHoctap extends JInternalFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				loadAll();
+				try {
+					setClosed(true);
+				} catch (PropertyVetoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		getContentPane().add(btnquayLai);
@@ -78,14 +85,33 @@ public class TimKiemDungCuHoctap extends JInternalFrame {
 		getContentPane().add(lblTnDcht);
 		
 		txtTenDCHT = new JTextField();
+		txtTenDCHT.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		txtTenDCHT.setColumns(10);
 		txtTenDCHT.setBounds(220, 140, 240, 40);
 		getContentPane().add(txtTenDCHT);
 		
 		cbNhaCC = new JComboBox<String>();
+		cbNhaCC.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		cbNhaCC.setSelectedIndex(-1);
 		cbNhaCC.setBounds(220, 200, 240, 40);
+		loadCBNCC();
+		cbNhaCC.setSelectedIndex(-1);
 		getContentPane().add(cbNhaCC);
+		
 		
 		JLabel lblNhaCungCap = new JLabel("Nhà Cung Cấp:");
 		lblNhaCungCap.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -103,26 +129,55 @@ public class TimKiemDungCuHoctap extends JInternalFrame {
 		getContentPane().add(lblGiaBan);
 		
 		txtGiaBan = new JTextField();
+		txtGiaBan.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		txtGiaBan.setColumns(10);
 		txtGiaBan.setBounds(610, 140, 240, 40);
 		getContentPane().add(txtGiaBan);
 		
 		txtSoLuong = new JTextField();
+		txtSoLuong.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		txtSoLuong.setColumns(10);
 		txtSoLuong.setBounds(610, 200, 240, 40);
 		getContentPane().add(txtSoLuong);
 		
-		JButton btnTim = new JButton("Tìm");
+		btnTim = new JButton("Tìm");
 		btnTim.setForeground(Color.WHITE);
 		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnTim.setBackground(new Color(73, 129, 158));
 		btnTim.setBounds(750, 270, 135, 40);
-		
+		btnTim.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				searchDungCuHocTap();
+				try {
+					setClosed(true);
+				} catch (PropertyVetoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		} );
 		getContentPane().add(btnTim);
 		
 	}
 	
-	public void searchKhachHang() {
+	public void searchDungCuHocTap() {
 		for (SanPham sanPham: sanPham_DAO.getAllDungCuHocTap()) {
 			boolean thoaMan = false;
 			if (!txtMaDCHT.getText().isEmpty()) {
@@ -145,21 +200,27 @@ public class TimKiemDungCuHoctap extends JInternalFrame {
 					thoaMan = true;
 				}
 			}
-			NhaCungCap tenNhaCC= nhaCungCap_DAO.getNhaCCTheoMa(sanPham.getMaNhaCungCap().toString());
+		
 			
 			if (cbNhaCC.getSelectedIndex()!=-1) {
-				if (tenNhaCC.getTenNCC().toLowerCase().contains(cbNhaCC.getSelectedItem().toString().toLowerCase())) {
+				 NhaCungCap tenNhaCC= nhaCungCap_DAO.getNhaCCTheoMa(sanPham.getMaNhaCungCap());
+				if (tenNhaCC.getTenNCC().toLowerCase().equalsIgnoreCase(cbNhaCC.getSelectedItem().toString().toLowerCase())) {
 					thoaMan = true;
 				}
 			}
 			if (thoaMan) {
-				ds.add(sanPham);
+				ds.add(sanPham);	
 			}
 		}
 	}
 	
+	public void loadCBNCC() {
+		for(NhaCungCap nhaCungCap : nhaCungCap_DAO.getAllNhaCungCap()) {
+			cbNhaCC.addItem(nhaCungCap.getTenNCC());
+		}
+	}
 	public void loadAll() {
-		for (SanPham sanPham: sanPham_DAO.getAllDungCuHocTap()) {
+		for (SanPham sanPham : sanPham_DAO.getAllDungCuHocTap()) {
 			ds.add(sanPham);
 		}
 	}

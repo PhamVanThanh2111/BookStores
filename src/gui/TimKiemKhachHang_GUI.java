@@ -114,7 +114,6 @@ public class TimKiemKhachHang_GUI extends JInternalFrame {
 		btnTim.setBackground(new Color(73, 129, 158));
 		btnTim.setBounds(750, 270, 135, 40);
 		btnTim.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub

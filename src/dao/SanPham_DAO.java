@@ -68,8 +68,8 @@ public class SanPham_DAO {
 		return preparedStatement.executeUpdate() > 0;
 	}
 	// Lấy Dụng Cụ Học Tập
-	public List<SanPham> getAllDungCuHocTap() {
-		List<SanPham> ds = new ArrayList<SanPham>();
+	public ArrayList<SanPham> getAllDungCuHocTap() {
+		ArrayList<SanPham> ds = new ArrayList<SanPham>();
 		ConnectDB.getInstance();
 		Connection con = ConnectDB.getConnection();
 		try {

@@ -103,10 +103,10 @@ public class TimKiemKhachHang_GUI extends JInternalFrame {
 		cbGioiTinh.setBounds(220, 200, 240, 40);
 		getContentPane().add(cbGioiTinh);
 		
-		JLabel lblGiiTnh = new JLabel("Giới Tính:");
-		lblGiiTnh.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblGiiTnh.setBounds(70, 200, 127, 40);
-		getContentPane().add(lblGiiTnh);
+		JLabel lblGioiTinh = new JLabel("Giới Tính:");
+		lblGioiTinh.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblGioiTinh.setBounds(70, 200, 127, 40);
+		getContentPane().add(lblGioiTinh);
 		
 		JButton btnTim = new JButton("Tìm");
 		btnTim.setForeground(Color.WHITE);
@@ -114,7 +114,6 @@ public class TimKiemKhachHang_GUI extends JInternalFrame {
 		btnTim.setBackground(new Color(73, 129, 158));
 		btnTim.setBounds(750, 270, 135, 40);
 		btnTim.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub

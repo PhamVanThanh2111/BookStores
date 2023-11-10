@@ -61,6 +61,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 	 * Create the panel.
 	 */
 	public KhachHang_GUI() {
+		
 		khachHang_DAO = new KhachHang_DAO();
 		phatSinhMa_DAO = new PhatSinhMa_DAO();
 		ds = new ArrayList<KhachHang>();

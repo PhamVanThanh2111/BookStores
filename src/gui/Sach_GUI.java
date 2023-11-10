@@ -22,7 +22,6 @@ import javax.swing.table.JTableHeader;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import connect.ConnectDB;
 import dao.NhaXuatBan_DAO;
 import dao.PhatSinhMa_DAO;
 import dao.SanPham_DAO;
@@ -96,10 +95,7 @@ public class Sach_GUI extends JPanel {
 	 * 
 	 * @throws SQLException
 	 */
-	public Sach_GUI(NhanVien nhanVien) throws SQLException {
-		// connect
-		ConnectDB.getInstance();
-		ConnectDB.connect();
+	public Sach_GUI(NhanVien nhanVien) {
 
 		// Khai báo Dao
 		nhaXuatBan_DAO = new NhaXuatBan_DAO();

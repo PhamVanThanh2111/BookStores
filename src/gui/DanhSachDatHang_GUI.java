@@ -2,11 +2,15 @@ package gui;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Date;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -18,12 +22,17 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import dao.ChiTietHoaDon_DAO;
 import dao.ChiTietPhieuDatHang_DAO;
+import dao.HoaDon_DAO;
 import dao.KhachHang_DAO;
 import dao.NhanVien_DAO;
+import dao.PhatSinhMa_DAO;
 import dao.PhieuDatHang_DAO;
 import dao.SanPham_DAO;
+import entity.ChiTietHoaDon;
 import entity.ChiTietPhieuDatHang;
+import entity.HoaDon;
 import entity.PhieuDatHang;
 
 import java.awt.Color;
@@ -47,6 +56,9 @@ public class DanhSachDatHang_GUI extends JPanel {
 	private NhanVien_DAO nhanVien_DAO;
 	private ChiTietPhieuDatHang_DAO chiTietPhieuDatHang_DAO;
 	private SanPham_DAO sanPham_DAO;
+	private PhatSinhMa_DAO phatSinhMa_DAO;
+	private HoaDon_DAO hoaDon_DAO;
+	private ChiTietHoaDon_DAO chiTietHoaDon_DAO;
 	
 	/**
 	 * Create the panel.
@@ -59,6 +71,9 @@ public class DanhSachDatHang_GUI extends JPanel {
 		nhanVien_DAO = new NhanVien_DAO();
 		chiTietPhieuDatHang_DAO = new ChiTietPhieuDatHang_DAO();
 		sanPham_DAO = new SanPham_DAO();
+		phatSinhMa_DAO = new PhatSinhMa_DAO();
+		hoaDon_DAO = new HoaDon_DAO();
+		chiTietHoaDon_DAO = new ChiTietHoaDon_DAO();
 		
 		setLayout(null);
 		
@@ -130,7 +145,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
 				int row = tableDSPD.getSelectedRow();
-				PhieuDatHang phieuDatHang = phieuDatHang_DAO.getPhieuDatHangTheoMaPhieuDatHang(modelDSPD.getValueAt(row, 0).toString());
+				PhieuDatHang phieuDatHang = phieuDatHang_DAO.getPhieuDatHangTheoMa(modelDSPD.getValueAt(row, 0).toString());
 				loadDataIntoTableChiTietPhieuDatTheoMaPhieuDat(phieuDatHang.getMaPhieuDatHang());
 				lblMaPhieuDatHangValue.setText(modelDSPD.getValueAt(row, 0).toString());
 				lblTenKhachHang.setText(modelDSPD.getValueAt(row, 1).toString());
@@ -162,6 +177,14 @@ public class DanhSachDatHang_GUI extends JPanel {
 		btnXoa.setBackground(new Color(73, 129, 158));
 		btnXoa.setFont(new Font("Tahoma", Font.BOLD, 18));
 		btnXoa.setBounds(595, 640, 135, 40);
+		btnXoa.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				delete();
+			}
+		});
 		pDanhSachDatHang.add(btnXoa);
 		
 		btnLapHD = new JButton("Lập HD");
@@ -169,22 +192,15 @@ public class DanhSachDatHang_GUI extends JPanel {
 		btnLapHD.setFont(new Font("Tahoma", Font.BOLD, 18));
 		btnLapHD.setBackground(new Color(73, 129, 158));
 		btnLapHD.setBounds(445, 640, 135, 40);
-		pDanhSachDatHang.add(btnLapHD);
-		
-		JButton btnLamMoi = new JButton("Làm Mới");
-		btnLamMoi.setForeground(Color.WHITE);
-		btnLamMoi.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnLamMoi.setBackground(new Color(73, 129, 158));
-		btnLamMoi.setBounds(294, 640, 135, 40);
-		btnLamMoi.addActionListener(new ActionListener() {
+		btnLapHD.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-		    	loadDataIntoTableDanhSachPhieuDatHang(phieuDatHang_DAO.getAllListPhieuDatHang());
+				lapHoaDon();
 			}
 		});
-		pDanhSachDatHang.add(btnLamMoi);
+		pDanhSachDatHang.add(btnLapHD);
 		
 		JPanel pThongTinChiTiet = new JPanel();
 		pThongTinChiTiet.setBackground(new Color(255, 255, 255));
@@ -342,6 +358,83 @@ public class DanhSachDatHang_GUI extends JPanel {
 								chiTietPhieuDatHang.getSoLuong(),
 								chiTietPhieuDatHang.getDonGia()};
 			modelCTPD.addRow(objects);
+		}
+	}
+	
+	private void refresh() {
+		loadDataIntoTableDanhSachPhieuDatHang(phieuDatHang_DAO.getAllListPhieuDatHang());
+	}
+	
+	private boolean delete() {
+		int row = tableDSPD.getSelectedRow();
+		if (row == -1) {
+			JOptionPane.showInternalMessageDialog(null, "Bạn phải chọn sản phẩm cần xóa!");
+			return false;
+		} else {
+			int option = JOptionPane.showConfirmDialog(null,
+					"Bạn có chắc muốn xóa phiếu đặt hàng '" + modelDSPD.getValueAt(row, 0) + "' chứ?", "Xóa?",
+					JOptionPane.YES_NO_OPTION);
+			if (option == JOptionPane.YES_OPTION) {
+				try {
+					chiTietPhieuDatHang_DAO.xoaChiTietPhieuDatHang(modelDSPD.getValueAt(row, 0).toString());
+					phieuDatHang_DAO.xoaPhieuDatHangTheoMa(modelDSPD.getValueAt(row, 0).toString());
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				JOptionPane.showMessageDialog(null,
+						"Xóa phiếu đặt hàng '" + modelDSPD.getValueAt(row, 0) + "' thành công!");
+				refresh();
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
+	
+	private boolean lapHoaDon() {
+		int row = tableDSPD.getSelectedRow();
+		if (row != -1) {
+			PhieuDatHang phieuDatHang = phieuDatHang_DAO.getPhieuDatHangTheoMa(modelDSPD.getValueAt(row, 0).toString());
+			HoaDon hoaDon = new HoaDon();
+			try {
+				
+				// thêm hóa đơn
+				String maHoaDon = phatSinhMa_DAO.getMaHoaDon();
+				hoaDon.setMaHoaDon(maHoaDon);
+				hoaDon.setMaNhanVien(phieuDatHang.getMaNhanVien());
+				hoaDon.setMaKhachHang(phieuDatHang.getMaKhachHang());
+				hoaDon.setNgayLap(new Date(new java.util.Date().getTime()));
+				hoaDon.setThanhTien(phieuDatHang.getThanhTien());
+				hoaDon_DAO.lapHoaDon(hoaDon);
+				
+				// thêm chi tiết hóa đơn
+				for (ChiTietPhieuDatHang chiTietPhieuDatHang : chiTietPhieuDatHang_DAO.getAllChiTietPhieuDatHangTheoMaPhieuDatHang(modelDSPD.getValueAt(row, 0).toString())) {
+					ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon();
+					chiTietHoaDon.setMaHoaDon(maHoaDon);
+					chiTietHoaDon.setMaSanPham(chiTietPhieuDatHang.getMaSanPham());
+					chiTietHoaDon.setSoLuong(chiTietPhieuDatHang.getSoLuong());
+					chiTietHoaDon.setDonGia(chiTietPhieuDatHang.getDonGia());
+					chiTietHoaDon_DAO.themChiTietHoaDon(chiTietHoaDon);
+				}
+				
+				// xóa chi tiết phiếu đặt hàng
+				chiTietPhieuDatHang_DAO.xoaChiTietPhieuDatHang(phieuDatHang.getMaPhieuDatHang());
+
+				// xóa phiếu đặt hàng
+				phieuDatHang_DAO.xoaPhieuDatHangTheoMa(phieuDatHang.getMaPhieuDatHang());
+				JOptionPane.showMessageDialog(null, "Lập hóa đơn thành công!");
+				refresh();
+				return true;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Bạn chưa chọn phiếu đặt hàng!");
+			return false;
 		}
 	}
 }

@@ -34,7 +34,7 @@ public class PhieuDatHang_DAO {
 	}
 
 	// get hoa don theo ma
-	public PhieuDatHang getPhieuDatHangTheoMaPhieuDatHang(String maPhieuDatHang) {
+	public PhieuDatHang getPhieuDatHangTheoMa(String maPhieuDatHang) {
 		ConnectDB.getInstance();
 		Connection connection = ConnectDB.getConnection();
 		PhieuDatHang PhieuDatHang = new PhieuDatHang();
@@ -77,4 +77,19 @@ public class PhieuDatHang_DAO {
 		return false;
 	}
 
+	// xoa phieu dat hang
+	public boolean xoaPhieuDatHangTheoMa(String maPhieuDatHang) throws SQLException {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		try {
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("delete from PhieuDatHang where maPhieuDatHang = '" + maPhieuDatHang + "'");
+			return preparedStatement.executeUpdate() > 0;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		connection.close();
+		return false;
+	}
 }

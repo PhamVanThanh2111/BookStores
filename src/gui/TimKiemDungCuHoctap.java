@@ -32,6 +32,11 @@ public class TimKiemDungCuHoctap extends JInternalFrame {
 	private JComboBox<String> cbNhaCC;
 	private NhaCungCap_DAO nhaCungCap_DAO;
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Launch the application.
 	 */
 

@@ -31,6 +31,7 @@ import dao.NhaCungCap_DAO;
 import dao.PhatSinhMa_DAO;
 import dao.SanPham_DAO;
 import entity.NhaCungCap;
+import entity.NhanVien;
 import entity.SanPham;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -65,10 +66,11 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 	private JButton btnTim;
 	private JDesktopPane desktopPane;
 	private TimKiemDungCuHoctap timKiemDungCuHoctap;
+	private JButton btnChonHinhAnh;
 	/**
 	 * Create the panel.
 	 */
-	public DungCuHocTap_GUI() {
+	public DungCuHocTap_GUI(NhanVien nhanVien) {
 		
 		// khai bao DAO
 		sanPham_DAO = new SanPham_DAO();
@@ -197,7 +199,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		btnlamMoi.setBounds(821, 298, 135, 40);
 		pThongTin.add(btnlamMoi);
 		
-		JButton btnChonHinhAnh = new JButton("Choose");
+		btnChonHinhAnh = new JButton("Choose");
 		btnChonHinhAnh.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				chooseFile();
@@ -271,7 +273,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		scrollPaneDungCuHocTap.setToolTipText("Chọn vào Dụng cụ học tập cần hiển thị thông tin");
 		scrollPaneDungCuHocTap.setBorder(null);
 		scrollPaneDungCuHocTap.setBackground(Color.WHITE);
-		scrollPaneDungCuHocTap.setBounds(20, 70, 1259, 250);
+		scrollPaneDungCuHocTap.setBounds(30, 65, 1259, 250);
 		pDanhSach.add(scrollPaneDungCuHocTap);
 		
 		String cols[] = { "Mã Dụng Cụ Học Tập", "Tên Dụng Cụ Học Tập ", "Xuất Xứ", "Giá Nhập",
@@ -362,6 +364,13 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 				relativePath = dungCuHocTap.getHinhAnh();
 			}
 		});;
+		
+		if (nhanVien.getChucVu().equals("Bán hàng")) {
+			btnAdd.setEnabled(false);
+			btnDelete.setEnabled(false);
+			btnUpdate.setEnabled(false);
+			btnChonHinhAnh.setEnabled(false);
+		}
 		
 	}
 	public void loadData(ArrayList<SanPham> ds) {
@@ -482,7 +491,6 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 				sanPham_DAO.suaSanPhamTheoMa(sanPham);
 				JOptionPane.showMessageDialog(null, "Cập Nhập Sản Phẩm Thành Công !");
 			}
-
 		return false;
 	}
 	

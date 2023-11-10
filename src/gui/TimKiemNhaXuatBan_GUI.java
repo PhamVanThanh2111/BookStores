@@ -18,7 +18,6 @@ import javax.swing.border.EmptyBorder;
 
 import dao.NhaXuatBan_DAO;
 import entity.NhaXuatBan;
-import entity.TheLoaiSach;
 
 public class TimKiemNhaXuatBan_GUI extends JInternalFrame {
 

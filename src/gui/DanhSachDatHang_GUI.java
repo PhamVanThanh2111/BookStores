@@ -136,6 +136,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 				lblTenKhachHang.setText(modelDSPD.getValueAt(row, 1).toString());
 				lblSDThoai.setText(modelDSPD.getValueAt(row, 2).toString());
 				lblTenNhanVien.setText(modelDSPD.getValueAt(row, 3).toString());
+				lblTien.setText(modelDSPD.getValueAt(row, 5) + " VND");
 			}
 		});
 		scrDanhSachHoaDon.setViewportView(tableDSPD);
@@ -310,7 +311,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 		lblTongTien.setBounds(240, 550, 122, 40);
 		pThongTinChiTiet.add(lblTongTien);
 		
-		lblTien = new JLabel("80.000 VND");
+		lblTien = new JLabel("");
 		lblTien.setForeground(new Color(255, 0, 0));
 		lblTien.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblTien.setBounds(360, 550, 150, 40);

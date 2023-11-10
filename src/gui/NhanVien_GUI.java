@@ -867,7 +867,7 @@ public class NhanVien_GUI extends JPanel {
 							cbGioiTinh.getSelectedItem().toString(), ngaySinh, ngayVaoLam, txtcCCD.getText(),
 							txtEmail.getText(), txtSoDienThoai.getText(), cbChucVu.getSelectedItem().toString(),
 							taiKhoan, "C" + cbCa.getSelectedItem(), relativePath);
-					nhanVien_DAO.suaNhanVienTheoMa(nhanVien);
+					nhanVien_DAO.suaNhanVien(nhanVien);
 					JOptionPane.showMessageDialog(null, "Sửa thành công nhân viên '" + model.getValueAt(row, 0) + "'!");
 					refresh();
 					return true;

@@ -1,7 +1,6 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,12 +13,13 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import dao.NhaCungCap_DAO;
-import entity.KhachHang;
 import entity.NhaCungCap;
 
-import javax.swing.JComboBox;
-
 public class TimKiemNhaCungCap extends JInternalFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField txtMaNhaCungCap;
 	private JTextField txtTenNhaCungCap;
 	private JTextField txtSDT;

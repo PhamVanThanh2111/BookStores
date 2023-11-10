@@ -240,6 +240,7 @@ public class DatHang_GUI extends JPanel {
 				loadDataIntoComboboxTenSP(cbLoaiSP.getSelectedItem().toString());
 				cbTenSP.setSelectedItem(model.getValueAt(row, 0));
 				txtSoLuong.setText(model.getValueAt(row, 2).toString());
+				txtConLai.setText((sanPham_DAO.getSanPhamTheoTenSanPham(cbTenSP.getSelectedItem().toString()).getSoLuongTon() - Integer.parseInt(txtSoLuong.getText())) + "");
 			}
 		});
 		scrollPane.setViewportView(table);
@@ -288,11 +289,16 @@ public class DatHang_GUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				try {
-					lapPhieuDatHang(nhanVien.getMaNhanVien());
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				if (tinhThanhTien() > 0) {
+					try {
+						lapPhieuDatHang(nhanVien.getMaNhanVien());
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Chưa có sản phẩm nào!");
 				}
 			}
 		});
@@ -395,7 +401,11 @@ public class DatHang_GUI extends JPanel {
 							Object[] objects = {cbTenSP.getSelectedItem().toString(), cbLoaiSP.getSelectedItem().toString(), txtSoLuong.getText(), sanPham.getGiaBan(), Integer.parseInt(txtSoLuong.getText()) * sanPham.getGiaBan()};
 							model.addRow(objects);
 							lblTongTienValue.setText(tinhThanhTien() + " VND");
-							
+							try {
+								txtConLai.setText(Integer.parseInt(txtConLai.getText()) - Integer.parseInt(txtSoLuong.getText()) + "");
+							} catch (Exception e2) {
+								// TODO: handle exception
+							}
 						}
 						
 					}
@@ -478,23 +488,28 @@ public class DatHang_GUI extends JPanel {
 					JOptionPane.showInternalMessageDialog(null, "Bạn phải chọn sản phẩm cần sửa!");
 				}
 				else {
-					model.setValueAt(cbTenSP.getSelectedItem().toString(), row, 0);
-					model.setValueAt(cbLoaiSP.getSelectedItem().toString(), row, 1);
-					try {
-						if (Integer.parseInt(txtSoLuong.getText()) <= 0) {
-							JOptionPane.showMessageDialog(null, "Số lượng phải lớn hơn không!");
-						}
-						else {
-							model.setValueAt(txtSoLuong.getText(), row, 2);
-						}
-					} catch (Exception e2) {
-						// TODO: handle exception
-						JOptionPane.showMessageDialog(null, "Số lượng phải là số!");
+					if (Integer.parseInt(txtConLai.getText()) < Integer.parseInt(txtSoLuong.getText())) {
+						JOptionPane.showMessageDialog(null, "Không đủ sản phẩm!");
 					}
-					
-					model.setValueAt(sanPham.getGiaBan(), row, 3);
-					model.setValueAt(Integer.parseInt(txtSoLuong.getText()) * sanPham.getGiaBan(), row, 4);
-					lblTongTienValue.setText(tinhThanhTien() + " VND");
+					else {
+						model.setValueAt(cbTenSP.getSelectedItem().toString(), row, 0);
+						model.setValueAt(cbLoaiSP.getSelectedItem().toString(), row, 1);
+						try {
+							if (Integer.parseInt(txtSoLuong.getText()) <= 0) {
+								JOptionPane.showMessageDialog(null, "Số lượng phải lớn hơn không!");
+							}
+							else {
+								model.setValueAt(txtSoLuong.getText(), row, 2);
+							}
+							model.setValueAt(sanPham.getGiaBan(), row, 3);
+							model.setValueAt(Integer.parseInt(txtSoLuong.getText()) * sanPham.getGiaBan(), row, 4);
+							lblTongTienValue.setText(tinhThanhTien() + " VND");
+							txtConLai.setText(Integer.parseInt(txtConLai.getText()) - Integer.parseInt(txtSoLuong.getText()) + "");
+						} catch (Exception e2) {
+							// TODO: handle exception
+							JOptionPane.showMessageDialog(null, "Số lượng phải là số!");
+						}
+					}
 				}
 			}
 		});
@@ -518,9 +533,14 @@ public class DatHang_GUI extends JPanel {
 	}
 	
 	private float tinhThanhTien() {
-		float thanhTien = Float.parseFloat(model.getValueAt(0, 4).toString());
-		for (int i = 1; i < model.getRowCount(); i++) {
-			thanhTien += Float.parseFloat(model.getValueAt(i, 4).toString());
+		float thanhTien = 0;
+		try {
+			thanhTien = Float.parseFloat(model.getValueAt(0, 4).toString());
+			for (int i = 1; i < model.getRowCount(); i++) {
+				thanhTien += Float.parseFloat(model.getValueAt(i, 4).toString());
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 		return thanhTien;
 	}
@@ -534,6 +554,16 @@ public class DatHang_GUI extends JPanel {
 		return false;
 	}
 	
+//	private int soLuongSanPhamDuTinh(String tenSanPham) { 
+//		int soLuong = sanPham_DAO.getSanPhamTheoTenSanPham(tenSanPham).getSoLuongTon();
+//		for (int i = 0; i < model.getRowCount(); i++) {
+//			if (model.getValueAt(i, 0).equals(tenSanPham)) {
+//				return true;
+//			}
+//		}
+//		return soLuong;
+//	}
+	
 	private void lapPhieuDatHang(String maNhanVien) throws SQLException {
 		PhieuDatHang phieuDatHang = new PhieuDatHang();
 		String maPhieuDatHang = phatSinhMa_DAO.getMaPhieuDatHang();
@@ -544,12 +574,15 @@ public class DatHang_GUI extends JPanel {
 		phieuDatHang.setThanhTien(tinhThanhTien());
 		phieuDatHang_DAO.lapPhieuDatHang(phieuDatHang);
 		for (int i = 0; i < model.getRowCount(); i++) {
+			String maSanPham = sanPham_DAO.getSanPhamTheoTenSanPham(model.getValueAt(i, 0).toString()).getMaSanPham();
+			int soLuong = Integer.parseInt(model.getValueAt(i, 2).toString());
 			ChiTietPhieuDatHang chiTietPhieuDatHang = new ChiTietPhieuDatHang();
 			chiTietPhieuDatHang.setMaPhieuDatHang(maPhieuDatHang);
-			chiTietPhieuDatHang.setMaSanPham(sanPham_DAO.getSanPhamTheoTenSanPham(model.getValueAt(i, 0).toString()).getMaSanPham());
-			chiTietPhieuDatHang.setSoLuong(Integer.parseInt(model.getValueAt(i, 2).toString()));
+			chiTietPhieuDatHang.setMaSanPham(maSanPham);
+			chiTietPhieuDatHang.setSoLuong(soLuong);
 			chiTietPhieuDatHang.setDonGia(Float.parseFloat(model.getValueAt(i, 3).toString()));
 			chiTietPhieuDatHang_DAO.themChiTietPhieuDatHang(chiTietPhieuDatHang);
+			sanPham_DAO.banSanPham(maSanPham, soLuong);
 		}
 		JOptionPane.showMessageDialog(null, "Đặt hàng thành công!");
 	}

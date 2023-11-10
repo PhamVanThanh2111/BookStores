@@ -49,13 +49,13 @@ public class HeThongQuanLyNhaSach extends JFrame {
 	private JLabel lblIconHoaDon;
 	private JLabel lblIconHoSo;
 	private JLabel lblIconDangXuat;
-	private JLabel lblSubMenu2;
-	private JLabel lblSubMenu4;
-	private JSeparator sprDoc2;
-	private JLabel lblSubMenu3;
-	private JSeparator sprDoc1;
-	private JSeparator sprDoc3;
 	private JLabel lblSubMenu1;
+	private JLabel lblSubMenu2;
+	private JLabel lblSubMenu3;
+	private JLabel lblSubMenu4;
+	private JSeparator sprDoc1;
+	private JSeparator sprDoc2;
+	private JSeparator sprDoc3;
 
 	/**
 	 * Create the frame.
@@ -107,58 +107,70 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				cardLayoutContent.show(pContent, "NhanVien_GUI");
-				lblSubMenu1.setText("Nhân Viên");
-				lblSubMenu2.setText("Thống Kê");
-				lblSubMenu3.setText("Đặt Hàng");
-				lblSubMenu4.setText("Danh Sách Đặt Hàng");
-				sprDoc1.setVisible(true);
-				sprDoc2.setVisible(true);
-				sprDoc3.setVisible(true);
+				if (nhanVien.getChucVu().equals("Quản lý")) {
+					cardLayoutContent.show(pContent, "NhanVien_GUI");
+					lblSubMenu1.setText("Nhân Viên");
+					lblSubMenu2.setText("Thống Kê");
+					lblSubMenu3.setText("Đặt Hàng");
+					lblSubMenu4.setText("Danh Sách Đặt Hàng");
+					sprDoc1.setVisible(true);
+					sprDoc2.setVisible(true);
+					sprDoc3.setVisible(true);
+				}
+				else {
+					cardLayoutContent.show(pContent, "ThongKe_GUI");
+					lblSubMenu1.setText("Thống Kê");
+					lblSubMenu2.setText("Đặt Hàng");
+					lblSubMenu3.setText("Danh Sách Đặt Hàng");
+					lblSubMenu4.setText("");
+					sprDoc1.setVisible(true);
+					sprDoc2.setVisible(true);
+					sprDoc3.setVisible(false);
+				}
 			}
 		});
-		
-				lblTrangChu = new JLabel("Trang Chủ");
-				lblTrangChu.setHorizontalAlignment(SwingConstants.LEFT);
-				lblTrangChu.setForeground(Color.WHITE);
-				lblTrangChu.setFont(new Font("SansSerif", Font.BOLD, 20));
-				lblTrangChu.setBorder(null);
-				lblTrangChu.setBackground(new Color(39, 63, 96));
-				lblTrangChu.setBounds(62, 0, 138, 86);
-				lblTrangChu.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseEntered(MouseEvent e) {
-						lblTrangChu.setBackground(new Color(24, 39, 60));
-						lblTrangChu.setOpaque(true);
-						lblIconTrangChu.setBackground(new Color(24, 39, 60));
-						lblIconTrangChu.setOpaque(true);
-					}
-
-					@Override
-					public void mouseExited(MouseEvent e) {
-						lblTrangChu.setBackground(new Color(39, 63, 96));
-						lblIconTrangChu.setBackground(new Color(39, 63, 96));
-					}
-
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						cardLayoutContent.show(pContent, "TrangChu_GUI");
-						lblSubMenu1.setText("Trang Chủ");
-						lblSubMenu2.setText("");
-						lblSubMenu3.setText("");
-						lblSubMenu4.setText("");
-						sprDoc1.setVisible(false);
-						sprDoc2.setVisible(false);
-						sprDoc3.setVisible(false);
-					}
-				});
-				pMenu1.add(lblTrangChu);
 		lblNhanVien.setForeground(new Color(255, 255, 255));
 		lblNhanVien.setBackground(new Color(39, 63, 96));
 		lblNhanVien.setFont(new Font("SansSerif", Font.BOLD, 20));
 		lblNhanVien.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNhanVien.setBounds(62, 96, 138, 86);
 		pMenu1.add(lblNhanVien);
+		
+		lblTrangChu = new JLabel("Trang Chủ");
+		lblTrangChu.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTrangChu.setForeground(Color.WHITE);
+		lblTrangChu.setFont(new Font("SansSerif", Font.BOLD, 20));
+		lblTrangChu.setBorder(null);
+		lblTrangChu.setBackground(new Color(39, 63, 96));
+		lblTrangChu.setBounds(62, 0, 138, 86);
+		lblTrangChu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lblTrangChu.setBackground(new Color(24, 39, 60));
+				lblTrangChu.setOpaque(true);
+				lblIconTrangChu.setBackground(new Color(24, 39, 60));
+				lblIconTrangChu.setOpaque(true);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblTrangChu.setBackground(new Color(39, 63, 96));
+				lblIconTrangChu.setBackground(new Color(39, 63, 96));
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cardLayoutContent.show(pContent, "TrangChu_GUI");
+				lblSubMenu1.setText("Trang Chủ");
+				lblSubMenu2.setText("");
+				lblSubMenu3.setText("");
+				lblSubMenu4.setText("");
+				sprDoc1.setVisible(false);
+				sprDoc2.setVisible(false);
+				sprDoc3.setVisible(false);
+			}
+		});
+		pMenu1.add(lblTrangChu);
 
 		lblKhachHang = new JLabel("Khách Hàng");
 		lblKhachHang.setHorizontalAlignment(SwingConstants.LEFT);
@@ -304,16 +316,6 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			}
 		});
 		pMenu1.add(lblDungCuHocTap);
-		if (nhanVien.getChucVu().equalsIgnoreCase("Bán hàng")) {
-			// menu cac chuc nang danh cho nhân viên bán hàng
-			lblHoSo.setVisible(true);
-			lblNhanVien.setVisible(false);
-			lblTrangChu.setVisible(false);
-			lblKhachHang.setBounds(10, 40, 160, 64);
-			lblHoaDon.setBounds(10, 144, 160, 64);
-			lblSach.setBounds(10, 248, 160, 64);
-			lblHoSo.setBounds(10, 352, 160, 64);
-		}
 
 		pContent = new JPanel();
 		pContent.setBorder(null);
@@ -327,17 +329,17 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		pContent.add(new TrangChu_GUI(nhanVien), "TrangChu_GUI");
 		pContent.add(new NhanVien_GUI(), "NhanVien_GUI");
 		pContent.add(new KhachHang_GUI(), "KhachHang_GUI");
-		pContent.add(new Sach_GUI(), "Sach_GUI");
-		pContent.add(new DungCuHocTap_GUI(), "DungCuHocTap_GUI");
+		pContent.add(new Sach_GUI(nhanVien), "Sach_GUI");
+		pContent.add(new DungCuHocTap_GUI(nhanVien), "DungCuHocTap_GUI");
 		pContent.add(new HoaDon_GUI(nhanVien), "HoaDon_GUI");
 		pContent.add(new HoSo_GUI(nhanVien), "HoSo_GUI");
 		// sub menu
 		pContent.add(new DatHang_GUI(nhanVien), "DatHang_GUI");
-		pContent.add(new NhaXuatBan_GUI(), "NhaXuatBan_GUI");
+		pContent.add(new NhaXuatBan_GUI(nhanVien), "NhaXuatBan_GUI");
 		pContent.add(new ThongKe_GUI(), "ThongKe_GUI");
-		pContent.add(new TheLoaiSach_GUI(), "LoaiSach_GUI");
+		pContent.add(new TheLoaiSach_GUI(nhanVien), "LoaiSach_GUI");
 		pContent.add(new DanhSachHoaDon_GUI(), "DanhSachHoaDon_GUI");
-		pContent.add(new NhaCungCap_GUI(), "NhaCungCap_GUI");
+		pContent.add(new NhaCungCap_GUI(nhanVien), "NhaCungCap_GUI");
 		pContent.add(new DanhSachDatHang_GUI(), "DanhSachDatHang_GUI");
 		cardLayoutContent.show(pContent, "TrangChu_GUI");
 		
@@ -374,7 +376,16 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				int option = JOptionPane.showConfirmDialog(null, "Bạn có thực sự muốn thoát?", "Thoát?",
 						JOptionPane.YES_NO_OPTION);
 				if (option == JOptionPane.YES_OPTION) {
-					System.exit(0);
+					DangNhap_GUI dangNhap_GUI;
+					try {
+						dangNhap_GUI = new DangNhap_GUI();
+						setVisible(false);
+					dangNhap_GUI.setVisible(true);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
 				}
 			}
 		});
@@ -446,14 +457,26 @@ public class HeThongQuanLyNhaSach extends JFrame {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				cardLayoutContent.show(pContent, "NhanVien_GUI");
-				lblSubMenu1.setText("Nhân Viên");
-				lblSubMenu2.setText("Thống Kê");
-				lblSubMenu3.setText("Đặt Hàng");
-				lblSubMenu4.setText("Danh Sách Đặt Hàng");
-				sprDoc1.setVisible(true);
-				sprDoc2.setVisible(true);
-				sprDoc3.setVisible(true);
+				if (nhanVien.getChucVu().equals("Quản lý")) {
+					cardLayoutContent.show(pContent, "NhanVien_GUI");
+					lblSubMenu1.setText("Nhân Viên");
+					lblSubMenu2.setText("Thống Kê");
+					lblSubMenu3.setText("Đặt Hàng");
+					lblSubMenu4.setText("Danh Sách Đặt Hàng");
+					sprDoc1.setVisible(true);
+					sprDoc2.setVisible(true);
+					sprDoc3.setVisible(true);
+				}
+				else {
+					cardLayoutContent.show(pContent, "ThongKe_GUI");
+					lblSubMenu1.setText("Thống Kê");
+					lblSubMenu2.setText("Đặt Hàng");
+					lblSubMenu3.setText("Danh Sách Đặt Hàng");
+					lblSubMenu4.setText("");
+					sprDoc1.setVisible(true);
+					sprDoc2.setVisible(true);
+					sprDoc3.setVisible(false);
+				}
 			}
 		});
 		pMenu1.add(lblIconNhanVien);
@@ -738,6 +761,9 @@ public class HeThongQuanLyNhaSach extends JFrame {
 					cardLayoutContent.show(pContent, "DungCuHocTap_GUI");
 				else if (lblSubMenu1.getText().equals("Hóa Đơn"))
 					cardLayoutContent.show(pContent, "HoaDon_GUI");
+				else if (lblSubMenu1.getText().equals("Thống Kê")) {
+					cardLayoutContent.show(pContent, "ThongKe_GUI");
+				}
 			}
 		});
 		lblSubMenu1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -776,14 +802,22 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (lblSubMenu2.getText().equals("Thống Kê"))
+				if (lblSubMenu2.getText().equals("Thống Kê")) {
 					cardLayoutContent.show(pContent, "ThongKe_GUI");
-				else if (lblSubMenu2.getText().equals("Loại Sách"))
+				}
+				else if (lblSubMenu2.getText().equals("Loại Sách")) {
 					cardLayoutContent.show(pContent, "LoaiSach_GUI");
-				else if (lblSubMenu2.getText().equals("Nhà Cung Cấp"))
+				}
+				else if (lblSubMenu2.getText().equals("Nhà Cung Cấp")) {
 					cardLayoutContent.show(pContent, "NhaCungCap_GUI");
-				else
+				}
+				else if (lblSubMenu2.getText().equals("Danh Sách Hóa Đơn")) {
 					cardLayoutContent.show(pContent, "DanhSachHoaDon_GUI");
+				}
+				else if (lblSubMenu2.getText().equals("Đặt Hàng")) {
+					cardLayoutContent.show(pContent, "DatHang_GUI");
+				}
+					
 			}
 		});
 		lblSubMenu2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -820,10 +854,18 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (lblSubMenu3.getText().equals("Đặt Hàng"))
+				if (lblSubMenu3.getText().equals("Đặt Hàng")) {
 					cardLayoutContent.show(pContent, "DatHang_GUI");
-				if (lblSubMenu3.getText().equals("Nhà Xuất Bản"))
+				}
+					
+				if (lblSubMenu3.getText().equals("Nhà Xuất Bản")) {
 					cardLayoutContent.show(pContent, "NhaXuatBan_GUI");
+				}
+				
+				if (lblSubMenu3.getText().equals("Danh Sách Đặt Hàng")) {
+					cardLayoutContent.show(pContent, "DanhSachDatHang_GUI");
+				}
+					
 			}
 		});
 		lblSubMenu3.setHorizontalAlignment(SwingConstants.CENTER);
@@ -860,8 +902,10 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (lblSubMenu4.getText().equals("Danh Sách Đặt Hàng"))
+				if (lblSubMenu4.getText().equals("Danh Sách Đặt Hàng")) {
 					cardLayoutContent.show(pContent, "DanhSachDatHang_GUI");
+				}
+					
 			}
 		});
 		lblSubMenu4.setHorizontalAlignment(SwingConstants.CENTER);
@@ -875,7 +919,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		contentPane.add(sprNgang);
 		
 	}
-
+	
 	public static void main(String[] args) {
 		try {
 		    UIManager.setLookAndFeel(new FlatMacLightLaf());

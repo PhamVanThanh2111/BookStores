@@ -236,7 +236,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 				countSaiMatKhau++;
 			} else {
 				NhanVien nhanVien = nhanVien_DAO.getNhanVienTheoTaiKhoan(taiKhoan.getTaiKhoan());
-				HeThongQuanLyNhaSach trangChu_GUI = new HeThongQuanLyNhaSach();
+				HeThongQuanLyNhaSach trangChu_GUI = new HeThongQuanLyNhaSach(nhanVien);
 				trangChu_GUI.setVisible(true);
 				this.setVisible(false);
 			}

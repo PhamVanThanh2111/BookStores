@@ -5,7 +5,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
-import java.awt.LayoutManager;
 import java.awt.Color;
 
 import javax.swing.border.Border;
@@ -60,7 +59,6 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 	private JTextField txtXuatXu;
 	private NhaCungCap_DAO nhaCC_DAO;
 	private NhaCungCap nhacc;
-	private JComboBox<String> cbNhaCC;
 	private JFileChooser fileChooser;
 	private File selectedFile;
 	private String relativePath;
@@ -71,6 +69,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 	private TimKiemDungCuHoctap timKiemDungCuHoctap;
 	private JButton btnChonHinhAnh;
 	private Border borderDefault;
+	private JComboBox<String> cbNhaCC;
 	/**
 	 * Create the panel.
 	 */
@@ -252,17 +251,8 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		txtXuatXu.setBackground(Color.WHITE);
 		txtXuatXu.setBounds(145, 205, 255, 40);
 		pThongTin.add(txtXuatXu);
-		
-		cbNhaCC = new JComboBox<String>();
-		cbNhaCC.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbNhaCC.setBounds(145, 160, 255, 40);
-		cbNhaCC.setBackground(new Color(255, 255, 255));
-		cbNhaCC.setForeground(new Color(0, 0, 0));
-		loadCBNhaCC();
-		cbNhaCC.setSelectedIndex(-1);
-		
-		pThongTin.add(cbNhaCC);
-		
+	
+
 		btnTim = new JButton("Tìm");
 		btnTim.setOpaque(true);
 		btnTim.setForeground(Color.WHITE);
@@ -270,6 +260,17 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		btnTim.setBackground(new Color(73, 129, 158));
 		btnTim.setBounds(1060, 298, 135, 40);
 		pThongTin.add(btnTim);
+		
+		cbNhaCC = new JComboBox<String>();
+		cbNhaCC.setToolTipText("Nhà Xuất Bản");
+		cbNhaCC.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		cbNhaCC.setBorder(null);
+		cbNhaCC.setBounds(145, 160, 255, 40);
+		cbNhaCC.setBorder(borderDefault);
+		cbNhaCC.setEnabled(false);
+		loadCBNhaCC();
+		cbNhaCC.setSelectedIndex(-1);
+		pThongTin.add(cbNhaCC);
 		
 		JPanel pDanhSach = new JPanel();
 		pDanhSach.setLayout(null);
@@ -398,7 +399,6 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 	    }
 	}
 	public void loadCBNhaCC() {
-		cbNhaCC.removeAll();
 		for(NhaCungCap nhaCC : nhaCC_DAO.getAllNhaCungCap()) {
 			cbNhaCC.addItem(nhaCC.getTenNCC());
 		}
@@ -430,6 +430,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 		txtgiaBan.setFocusable(false);
 		txtsoLuong.setFocusable(false);
 		cbNhaCC.setEnabled(false);
+
 	}
 	
 	public void openText() {
@@ -613,6 +614,7 @@ public class DungCuHocTap_GUI extends JPanel  implements ActionListener{
 							btnUpdate.setText("Sửa");
 							btnUpdate.setEnabled(true);
 							btnAdd.setText("Thêm");
+							lamMoi();
 						}
 					}else {
 						if(o.equals(btnlamMoi)) {

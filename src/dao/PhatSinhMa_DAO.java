@@ -57,7 +57,7 @@ public class PhatSinhMa_DAO {
 		Connection con = ConnectDB.getConnection();
 		Statement statement = con.createStatement();
 		ResultSet resultSet = statement.executeQuery(
-				"select CONCAT('S', RIGHT(CONCAT('0000',ISNULL(right(max(maSach),4),0) + 1),4)) from [dbo].[Sach] where maSach like 'S%'");
+				"select CONCAT('S', RIGHT(CONCAT('00000',ISNULL(right(max(maSanPham),5),0) + 1),5)) from [dbo].[SanPham] where maSanPham like 'S%'");
 		String maSach = "";
 		while (resultSet.next()) {
 			maSach = resultSet.getString(1);
@@ -78,20 +78,7 @@ public class PhatSinhMa_DAO {
 		}
 		return maNXB;
 	}
-	// mã Sản Phẩm (Sách)
-	public String getMaSanPham() throws SQLException {
-	    ConnectDB.getInstance();
-	    Connection con = ConnectDB.getConnection();
-	    Statement statement = con.createStatement();
-	    ResultSet resultSet = statement.executeQuery(
-	            "SELECT CONCAT('SP', RIGHT(CONCAT('0000', ISNULL(RIGHT(MAX(maSanPham), 4), 0) + 1), 4)) FROM [dbo].[SanPham] WHERE maSanPham LIKE 'SP%'");
-	    String maSanPham = "";
-	    while (resultSet.next()) {
-	        maSanPham = resultSet.getString(1);
-	    }
-	    return maSanPham;
-	}
-
+	
 	// ma Khach Hang
 	public String getMaKhachHang() throws SQLException {
 		ConnectDB.getInstance();

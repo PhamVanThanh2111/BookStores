@@ -6,6 +6,8 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.awt.Color;
+
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
@@ -57,7 +59,6 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 	private JTextField txtXuatXu;
 	private NhaCungCap_DAO nhaCC_DAO;
 	private NhaCungCap nhacc;
-	private JComboBox<String> cbNhaCC;
 	private JFileChooser fileChooser;
 	private File selectedFile;
 	private String relativePath;
@@ -67,7 +68,8 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 	private JDesktopPane desktopPane;
 	private TimKiemDungCuHoctap timKiemDungCuHoctap;
 	private JButton btnChonHinhAnh;
-
+	private Border borderDefault;
+	private JComboBox<String> cbNhaCC;
 	/**
 	 * Create the panel.
 	 */
@@ -144,6 +146,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		txttenDCHT.setColumns(10);
 		txttenDCHT.setBackground(Color.WHITE);
 		txttenDCHT.setBounds(145, 115, 255, 40);
+		borderDefault = txttenDCHT.getBorder();
 		pThongTin.add(txttenDCHT);
 		
 		JLabel lblgia = new JLabel("Giá Nhập:");
@@ -248,15 +251,8 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		txtXuatXu.setBackground(Color.WHITE);
 		txtXuatXu.setBounds(145, 205, 255, 40);
 		pThongTin.add(txtXuatXu);
-		
-		cbNhaCC = new JComboBox<String>();
-		cbNhaCC.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbNhaCC.setBounds(145, 160, 255, 40);
-		loadCBNhaCC();
-		cbNhaCC.setSelectedIndex(-1);
-		
-		pThongTin.add(cbNhaCC);
-		
+	
+
 		btnTim = new JButton("Tìm");
 		btnTim.setOpaque(true);
 		btnTim.setForeground(Color.WHITE);
@@ -264,6 +260,17 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		btnTim.setBackground(new Color(73, 129, 158));
 		btnTim.setBounds(1060, 298, 135, 40);
 		pThongTin.add(btnTim);
+		
+		cbNhaCC = new JComboBox<String>();
+		cbNhaCC.setToolTipText("Nhà Xuất Bản");
+		cbNhaCC.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		cbNhaCC.setBorder(null);
+		cbNhaCC.setBounds(145, 160, 255, 40);
+		cbNhaCC.setBorder(borderDefault);
+		cbNhaCC.setEnabled(false);
+		loadCBNhaCC();
+		cbNhaCC.setSelectedIndex(-1);
+		pThongTin.add(cbNhaCC);
 		
 		JPanel pDanhSach = new JPanel();
 		pDanhSach.setLayout(null);
@@ -376,7 +383,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		btnUpdate.addActionListener(this);
 		btnDelete.addActionListener(this);
 		btnTim.addActionListener(this);
-		
+		closeText();
 		
 		
 	}
@@ -576,7 +583,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 						@Override
 						public void internalFrameOpened(InternalFrameEvent e) {
 //			                System.out.println("Internal frame is opened.");
-//			            	disableButton();
+							btnlamMoi.setEnabled(false);
 						}
 
 						@Override
@@ -584,9 +591,6 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 //			                System.out.println("Internal frame is closed.");
 							loadData(ds);
 							ds.removeAll(ds);
-							btnAdd.setEnabled(true);
-							btnDelete.setEnabled(true);
-							btnUpdate.setEnabled(true);
 							btnlamMoi.setEnabled(true);
 						}
 					});
@@ -709,8 +713,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 	}
 
 	public void loadCBNhaCC() {
-		cbNhaCC.removeAll();
-		for (NhaCungCap nhaCC : nhaCC_DAO.getAllNhaCungCap()) {
+		for(NhaCungCap nhaCC : nhaCC_DAO.getAllNhaCungCap()) {
 			cbNhaCC.addItem(nhaCC.getTenNCC());
 		}
 	}
@@ -723,6 +726,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		txtgiaBan.setText("");
 		txtsoLuong.setText("");
 		cbNhaCC.setSelectedIndex(-1);
+		lblHinhAnh.removeAll();
 	}
 
 	public void refresh() {
@@ -735,6 +739,13 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		txtgiaNhap.setEditable(false);
 		txtgiaBan.setEditable(false);
 		txtsoLuong.setEditable(false);
+		
+		txttenDCHT.setFocusable(false);
+		txtXuatXu.setFocusable(false);
+		txtgiaNhap.setFocusable(false);
+		txtgiaBan.setFocusable(false);
+		txtsoLuong.setFocusable(false);
+		cbNhaCC.setEnabled(false);
 
 	}
 
@@ -744,6 +755,16 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		txtgiaNhap.setEditable(true);
 		txtgiaBan.setEditable(true);
 		txtsoLuong.setEditable(true);
+		
+		txttenDCHT.setFocusable(true);
+		txtXuatXu.setFocusable(true);
+		txtgiaNhap.setFocusable(true);
+		txtgiaBan.setFocusable(true);
+		txtsoLuong.setFocusable(true);
+		cbNhaCC.setEnabled(true);
+		
+		cbNhaCC.setBorder(borderDefault);
+
 	}
 
 	public void themDCHT() {
@@ -777,7 +798,22 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 			}
 		}
 	}
-
+	public boolean xoaDungCuHocTap() {
+		int row = table.getSelectedRow();
+		if(row !=-1) {
+			int tb = JOptionPane.showConfirmDialog(null, "Bạn Muốn Xóa Sản Phẩm? ", "Delete", JOptionPane.YES_NO_OPTION);
+			if(tb == JOptionPane.YES_OPTION) {
+				try {
+					sanPham_DAO.xoaSachTheoMa((String) model.getValueAt(row, 0));
+					JOptionPane.showMessageDialog(null, "Xóa Thành Công !");
+					refresh();
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, "Sản Phẩm Tồn Tại Trong Hóa Đơn !");
+				}
+			}
+		}
+		return false;
+	}
 	public boolean suaDCHT() throws SQLException {
 		if (txtmaDCHT.getText().equalsIgnoreCase("") || txttenDCHT.getText().equalsIgnoreCase("")
 				|| txtgiaNhap.getText().equalsIgnoreCase("") || txtgiaBan.getText().equalsIgnoreCase("")
@@ -904,6 +940,17 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 							btnUpdate.setText("Sửa");
 							btnUpdate.setEnabled(true);
 							btnAdd.setText("Thêm");
+							lamMoi();
+						}else {
+							if(btnDelete.getText().equalsIgnoreCase("Xóa")) {
+								int r = table.getSelectedRow();
+								if(r==-1) {
+									JOptionPane.showMessageDialog(null, "Bạn Chưa Chọn Sản Phẩm !");
+								}else {
+									xoaDungCuHocTap();
+									lamMoi();
+								}
+							}
 						}
 					} else {
 						if (o.equals(btnlamMoi)) {

@@ -203,40 +203,6 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		pNhapThongTin.add(lblSoDienThoai);
 
 		txtSDT = new JTextField();
-	
-		
-//				txtSDT.addKeyListener(new KeyAdapter() {
-//					@Override
-//					public void keyPressed(KeyEvent e) {
-//						if (e.getKeyCode() == KeyEvent.VK_NUMPAD0 ||
-//							e.getKeyCode() == KeyEvent.VK_NUMPAD1 ||
-//							e.getKeyCode() == KeyEvent.VK_NUMPAD2 ||
-//							e.getKeyCode() == KeyEvent.VK_NUMPAD3 ||
-//							e.getKeyCode() == KeyEvent.VK_NUMPAD4 ||
-//							e.getKeyCode() == KeyEvent.VK_NUMPAD5 ||
-//							e.getKeyCode() == KeyEvent.VK_NUMPAD6 ||
-//							e.getKeyCode() == KeyEvent.VK_NUMPAD7 ||
-//							e.getKeyCode() == KeyEvent.VK_NUMPAD8 ||
-//							e.getKeyCode() == KeyEvent.VK_NUMPAD9 ||
-//							e.getKeyCode() == KeyEvent.VK_0 ||
-//							e.getKeyCode() == KeyEvent.VK_1 ||
-//							e.getKeyCode() == KeyEvent.VK_2 ||
-//							e.getKeyCode() == KeyEvent.VK_3 ||
-//							e.getKeyCode() == KeyEvent.VK_4 ||
-//							e.getKeyCode() == KeyEvent.VK_5 ||
-//							e.getKeyCode() == KeyEvent.VK_6 ||
-//							e.getKeyCode() == KeyEvent.VK_7 ||
-//							e.getKeyCode() == KeyEvent.VK_8 ||
-//							e.getKeyCode() == KeyEvent.VK_9) {
-//							if (txtSDT.getText().length() == 9) {
-//								if (kiemTraTrungSDT(txtSDT.getText())) {
-//									JOptionPane.showMessageDialog(null, "Số Điện Thoại Đã Tồn Tại !");
-//								}
-//							}
-//						}
-//					}
-//				});
-
 		txtSDT.setToolTipText("Số điện thoại");
 		txtSDT.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		txtSDT.setEditable(false);
@@ -317,7 +283,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		btnXoa.addActionListener(this);
 		btnSua.addActionListener(this);
 		btnTim.addActionListener(this);
-			
+		closeText();
 
 		table.addMouseListener(new MouseListener() {
 
@@ -391,7 +357,6 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 					btnTim.setEnabled(false);
 					lblMaKhachHang.setText(phatSinhMa_DAO.getMaKhachHang().toString());
 					openText();
-				
 					
 				} catch (SQLException e1) {
 					e1.printStackTrace();
@@ -401,17 +366,16 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 				if(btnThem.getText().equalsIgnoreCase("Xác Nhận")) {
 					try {
 						themKhachHang();
-						loadData(khachHang_DAO.getAllKhachHang());
-						btnSua.setEnabled(true);
-						btnTim.setEnabled(true);
-						btnThem.setText("Thêm");
-						btnXoa.setText("Xóa");
-						closeText();
-						
-						
 					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+					loadData(khachHang_DAO.getAllKhachHang());
+					btnSua.setEnabled(true);
+					btnTim.setEnabled(true);
+					btnThem.setText("Thêm");
+					btnXoa.setText("Xóa");
+					closeText();
 				
 				}
 			}
@@ -518,7 +482,6 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 	private void themKhachHang() throws SQLException {
 		if(txtTenKH.getText().equalsIgnoreCase("")||txtSDT.getText().equalsIgnoreCase("")||cbGioiTinh.getSelectedItem().toString().equalsIgnoreCase("")||txtDiaChi.getText().equalsIgnoreCase("")) {
 			JOptionPane.showMessageDialog(null, "Thông Tin Rỗng !");
-			
 		}
 		if(!txtTenKH.getText().equalsIgnoreCase("")&&!txtSDT.getText().equalsIgnoreCase("")&&!cbGioiTinh.getSelectedItem().toString().equalsIgnoreCase("")&&!txtDiaChi.getText().equalsIgnoreCase("")) {
 			KhachHang khachHang = new KhachHang();
@@ -527,9 +490,13 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 			khachHang.setGioiTinh(cbGioiTinh.getSelectedItem().toString());
 			khachHang.setSoDienThoai(txtSDT.getText());
 			khachHang.setDiaChi(txtDiaChi.getText());
-			//
-			khachHang_DAO.themKhachHang(khachHang);
-			JOptionPane.showMessageDialog(null, "Thêm khách hàng thành công!");
+			if(!kiemTraTrungSDT(txtSDT.getText())) {
+				khachHang_DAO.themKhachHang(khachHang);
+				JOptionPane.showMessageDialog(null, "Thêm Khách Hàng Thành Công");
+			}else{
+				JOptionPane.showMessageDialog(null, "Số Điện Thoại Đã Tồn Tại");
+
+			}
 		}
 	}
 	public void xoaKhachHang() throws SQLException {
@@ -538,7 +505,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 			int tb = JOptionPane.showConfirmDialog(null, "Bạn Muốn Xóa Khách Hàng ? ", "Delete", JOptionPane.YES_NO_OPTION);
 			if(tb == JOptionPane.YES_OPTION) {
 				try {
-					khachHang_DAO.xoaKhachHangTheoMa(model.getValueAt(row, 1).toString());
+					khachHang_DAO.xoaKhachHangTheoMa((String)model.getValueAt(row,1));
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, "Khách Hàng Đang Có Hóa Đơn Trong Cửa Hàng !");
 				}
@@ -557,6 +524,12 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		txtTenKH.setBorder(null);
 		txtSDT.setBorder(null);
 		txtDiaChi.setBorder(null);
+		
+		txtDiaChi.setFocusable(false);
+		txtTenKH.setFocusable(false);
+		txtSDT.setFocusable(false);
+		txtDiaChi.setFocusable(false);
+		
 	}
 	
 	public void openText() {
@@ -572,18 +545,23 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		txtSDT.setBorder(borderDefault);
 		txtDiaChi.setBorder(borderDefault);
 		
+		
+		txtDiaChi.setFocusable(true);
+		txtTenKH.setFocusable(true);
+		txtSDT.setFocusable(true);
+		txtDiaChi.setFocusable(true);
+		
 	}
 	
-//	private boolean kiemTraTrungSDT(String sDT) {
-//		
-//		for(KhachHang khachHang : khachHang_DAO.getAllKhachHang()) {
-//			if(khachHang.getSoDienThoai().equals(sDT)) {
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
-//	
+	private boolean kiemTraTrungSDT(String sDT) {
+		for(KhachHang khachHang : khachHang_DAO.getAllKhachHang()) {
+			if(khachHang.getSoDienThoai().equalsIgnoreCase(sDT.trim())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public boolean suaKhachHang() {
 		
 		if(txtTenKH.getText().equalsIgnoreCase("")||txtSDT.getText().equalsIgnoreCase("")||cbGioiTinh.getSelectedItem().toString().equalsIgnoreCase("")||txtDiaChi.getText().equalsIgnoreCase("")) {

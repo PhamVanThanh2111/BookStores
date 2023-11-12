@@ -181,22 +181,22 @@ public class TimKiemDungCuHoctap extends JInternalFrame {
 		for (SanPham sanPham: sanPham_DAO.getAllDungCuHocTap()) {
 			boolean thoaMan = false;
 			if (!txtMaDCHT.getText().isEmpty()) {
-				if (sanPham.getMaSanPham().equalsIgnoreCase(txtMaDCHT.getText())) {
+				if (sanPham.getMaSanPham().equalsIgnoreCase(txtMaDCHT.getText().trim())) {
 					thoaMan = true;
 				}
 			}
 			if (!txtTenDCHT.getText().isEmpty()) {
-				if (sanPham.getTenSanPham().toLowerCase().contains(txtTenDCHT.getText().toLowerCase())) {
+				if (sanPham.getTenSanPham().toLowerCase().contains(dinhDangChuoi(txtTenDCHT.getText().toLowerCase().trim()))) {
 					thoaMan = true;
 				}
 			}
 			if (!txtGiaBan.getText().isEmpty()) {
-				if (sanPham.getGiaBan()==Integer.parseInt(txtGiaBan.getText())) {
+				if (sanPham.getGiaBan()==Integer.parseInt(dinhDangChuoi(txtGiaBan.getText().trim()))) {
 					thoaMan = true;
 				}
 			}
 			if (!txtSoLuong.getText().isEmpty()) {
-				if (sanPham.getSoLuongTon()==Integer.parseInt(txtSoLuong.getText())) {
+				if (sanPham.getSoLuongTon()==Integer.parseInt(dinhDangChuoi(txtSoLuong.getText().trim()))) {
 					thoaMan = true;
 				}
 			}
@@ -223,5 +223,11 @@ public class TimKiemDungCuHoctap extends JInternalFrame {
 		for (SanPham sanPham : sanPham_DAO.getAllDungCuHocTap()) {
 			ds.add(sanPham);
 		}
+	}
+	public String dinhDangChuoi(String chuoi) {
+		String s ="";
+		s=chuoi;
+		s=s.replaceAll("\\s+", " ");
+		return s;
 	}
 }

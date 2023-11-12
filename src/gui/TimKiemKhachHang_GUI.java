@@ -138,22 +138,22 @@ public class TimKiemKhachHang_GUI extends JInternalFrame {
 		for (KhachHang khachHang: khachHang_DAO.getAllKhachHang()) {
 			boolean thoaMan = false;
 			if (!txtMaKH.getText().isEmpty()) {
-				if (khachHang.getMaKhachHang().equalsIgnoreCase(txtMaKH.getText())) {
+				if (khachHang.getMaKhachHang().equalsIgnoreCase(txtMaKH.getText().trim())) {
 					thoaMan = true;
 				}
 			}
 			if (!txtTenKH.getText().isEmpty()) {
-				if (khachHang.getTenKhachHang().toLowerCase().contains(txtTenKH.getText().toLowerCase())) {
+				if (khachHang.getTenKhachHang().toLowerCase().contains(txtTenKH.getText().toLowerCase().trim())) {
 					thoaMan = true;
 				}
 			}
 			if (!txtDiaChi.getText().isEmpty()) {
-				if (khachHang.getDiaChi().toLowerCase().contains(txtDiaChi.getText().toLowerCase())) {
+				if (khachHang.getDiaChi().toLowerCase().contains(txtDiaChi.getText().toLowerCase().trim())) {
 					thoaMan = true;
 				}
 			}
 			if (!txtSDT.getText().isEmpty()) {
-				if (khachHang.getSoDienThoai().toLowerCase().contains(txtSDT.getText().toLowerCase())) {
+				if (khachHang.getSoDienThoai().toLowerCase().contains(txtSDT.getText().toLowerCase().trim())) {
 					thoaMan = true;
 				}
 			}
@@ -173,4 +173,5 @@ public class TimKiemKhachHang_GUI extends JInternalFrame {
 			ds.add(khachHang);
 		}
 	}
+
 }

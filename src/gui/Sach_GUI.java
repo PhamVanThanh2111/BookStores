@@ -1028,17 +1028,17 @@ public class Sach_GUI extends JPanel {
 		} else {
 			try {
 				SanPham sanPham = new SanPham();
-				sanPham.setMaSanPham(phatSinhMa_DAO.getMaSanPham());
+				sanPham.setMaSanPham(phatSinhMa_DAO.getMaSach());
 				sanPham.setTenSanPham(txtTenSach.getText());
 				sanPham.setXuatXu(txtXuatXu.getText());
 				sanPham.setGiaNhap(Float.parseFloat(txtGiaNhap.getText()));
 				sanPham.setGiaBan(Float.parseFloat(txtGiaBan.getText()));
 				sanPham.setSoLuongTon(Integer.parseInt(txtSoLuong.getText()));
-				if (cbTenNhaXuatBan.getSelectedIndex() != 1) {
+				if (cbTenNhaXuatBan.getSelectedIndex() != -1) {
 					nhaXuatBan = nhaXuatBan_DAO.getnhaXuatBanTheoTen(cbTenNhaXuatBan.getSelectedItem().toString());
 				}
 				sanPham.setMaNXB(nhaXuatBan.getMaNhaXuatBan());
-				if (cbTenLoaiSach.getSelectedIndex() != 1) {
+				if (cbTenLoaiSach.getSelectedIndex() != -1) {
 					theLoaiSach = theLoaiSach_DAO.getTheLoaiSachTheoTen(cbTenLoaiSach.getSelectedItem().toString());
 				}
 				sanPham.setMaTheLoaiSach(theLoaiSach.getmaTheLoaiSach());

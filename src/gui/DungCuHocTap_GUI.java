@@ -729,6 +729,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		txtgiaBan.setText("");
 		txtsoLuong.setText("");
 		cbNhaCC.setSelectedIndex(-1);
+		lblHinhAnh.removeAll();
 	}
 
 	public void refresh() {
@@ -800,7 +801,22 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 			}
 		}
 	}
-
+	public boolean xoaDungCuHocTap() {
+		int row = table.getSelectedRow();
+		if(row !=-1) {
+			int tb = JOptionPane.showConfirmDialog(null, "Bạn Muốn Xóa Sản Phẩm? ", "Delete", JOptionPane.YES_NO_OPTION);
+			if(tb == JOptionPane.YES_OPTION) {
+				try {
+					sanPham_DAO.xoaSachTheoMa((String) model.getValueAt(row, 0));
+					JOptionPane.showMessageDialog(null, "Xóa Thành Công !");
+					refresh();
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, "Sản Phẩm Tồn Tại Trong Hóa Đơn !");
+				}
+			}
+		}
+		return false;
+	}
 	public boolean suaDCHT() throws SQLException {
 		if (txtmaDCHT.getText().equalsIgnoreCase("") || txttenDCHT.getText().equalsIgnoreCase("")
 				|| txtgiaNhap.getText().equalsIgnoreCase("") || txtgiaBan.getText().equalsIgnoreCase("")
@@ -928,6 +944,16 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 							btnUpdate.setEnabled(true);
 							btnAdd.setText("Thêm");
 							lamMoi();
+						}else {
+							if(btnDelete.getText().equalsIgnoreCase("Xóa")) {
+								int r = table.getSelectedRow();
+								if(r==-1) {
+									JOptionPane.showMessageDialog(null, "Bạn Chưa Chọn Sản Phẩm !");
+								}else {
+									xoaDungCuHocTap();
+									lamMoi();
+								}
+							}
 						}
 					} else {
 						if (o.equals(btnlamMoi)) {

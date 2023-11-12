@@ -1096,7 +1096,7 @@ public class Sach_GUI extends JPanel {
 			}
 		}
 	}
-
+	
 	// sửa sách
 	public boolean update() {
 		int row = table.getSelectedRow();

@@ -583,7 +583,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 						@Override
 						public void internalFrameOpened(InternalFrameEvent e) {
 //			                System.out.println("Internal frame is opened.");
-//			            	disableButton();
+							btnlamMoi.setEnabled(false);
 						}
 
 						@Override
@@ -591,9 +591,6 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 //			                System.out.println("Internal frame is closed.");
 							loadData(ds);
 							ds.removeAll(ds);
-							btnAdd.setEnabled(true);
-							btnDelete.setEnabled(true);
-							btnUpdate.setEnabled(true);
 							btnlamMoi.setEnabled(true);
 						}
 					});

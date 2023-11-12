@@ -30,6 +30,12 @@ public class ConnectDB {
 	}
 
 	public static Connection getConnection() {
+		try {
+			connect();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return con;
 	}
 	public static void main(String[] args) throws SQLException {

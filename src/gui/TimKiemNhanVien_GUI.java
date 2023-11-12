@@ -25,6 +25,8 @@ import javax.swing.JFrame;
 
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
@@ -48,6 +50,7 @@ public class TimKiemNhanVien_GUI extends JInternalFrame {
 	private ArrayList<NhanVien> ds;
 	private NhanVien_DAO nhanVien_DAO;
 	private JButton btnTim;
+	private JDateChooser dateChooserNgaySinh;
 	
 	/**
 	 * Create the frame.
@@ -95,7 +98,7 @@ public class TimKiemNhanVien_GUI extends JInternalFrame {
 		lblNgySinh.setBounds(20, 406, 127, 40);
 		contentPane.add(lblNgySinh);
 		
-		JDateChooser dateChooserNgaySinh = new JDateChooser();
+		dateChooserNgaySinh = new JDateChooser();
 		dateChooserNgaySinh.setBackground(new Color(255, 255, 255));
 		dateChooserNgaySinh.getCalendarButton().setBounds(210, 0, 30, 40);
 		dateChooserNgaySinh.getCalendarButton().setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/calendar.png")));
@@ -286,7 +289,8 @@ public class TimKiemNhanVien_GUI extends JInternalFrame {
 				txtSoDienThoai.getText().equals("") &&
 				cmbChucVu.getSelectedIndex() == -1 &&
 				cmbCa.getSelectedIndex() == -1 &&
-				cmbGioiTinh.getSelectedIndex() == -1) {
+				cmbGioiTinh.getSelectedIndex() == -1 &&
+				dateChooserNgaySinh.getDate() == null) {
 			JOptionPane.showMessageDialog(null, "Bạn phải điền ít nhất một thông tin!");
 			return true;
 		}
@@ -338,6 +342,19 @@ public class TimKiemNhanVien_GUI extends JInternalFrame {
 			}
 			if (cmbCa.getSelectedIndex() != -1) {
 				if (nhanVien.getMaCa().toLowerCase().contains("C" + cmbCa.getSelectedItem().toString().toLowerCase())) {
+					thoaMan = true;
+				}
+			}
+			if (dateChooserNgaySinh.getDate() != null) {
+				LocalDate localDateChon = dateChooserNgaySinh.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+				int ngayChon = localDateChon.getDayOfMonth();
+				int thangChon = localDateChon.getMonthValue();
+				int namChon = localDateChon.getYear();
+				LocalDate localDateNgaySinh = nhanVien.getNgaySinh().toLocalDate();
+				int ngaySinh = localDateNgaySinh.getDayOfMonth();
+				int thangSinh = localDateNgaySinh.getMonthValue();
+				int namSinh = localDateNgaySinh.getYear();
+				if (ngayChon == ngaySinh && thangChon == thangSinh && namChon == namSinh) {
 					thoaMan = true;
 				}
 			}

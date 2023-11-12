@@ -4,16 +4,11 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.toedter.calendar.JDateChooser;
 
-import dao.NhaCungCap_DAO;
 import dao.NhaXuatBan_DAO;
-import dao.NhanVien_DAO;
 import dao.SanPham_DAO;
 import dao.TheLoaiSach_DAO;
-import entity.NhaCungCap;
 import entity.NhaXuatBan;
-import entity.NhanVien;
 import entity.SanPham;
 import entity.TheLoaiSach;
 
@@ -22,11 +17,8 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JTextField;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;

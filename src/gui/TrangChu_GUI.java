@@ -3,12 +3,9 @@ package gui;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.Timer;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -30,7 +27,6 @@ public class TrangChu_GUI extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private HoaDon_DAO hoaDon_DAO;
 	private JLabel lblSoLuongGiaoDichValue;
-	private NhanVien nhanVien;
 	private JLabel lblTongThuValue;
 	private Ca_DAO ca_DAO;
 	
@@ -42,8 +38,6 @@ public class TrangChu_GUI extends JPanel {
 		// khai bao DAO
 		hoaDon_DAO = new HoaDon_DAO();
 		ca_DAO = new Ca_DAO();
-		
-		this.nhanVien = nhanVien;
 		
 		setLayout(null);
 
@@ -200,21 +194,11 @@ public class TrangChu_GUI extends JPanel {
 		lblBackGround.setBounds(1010, 110, 267, 590);
 		pnlMain.add(lblBackGround);
 		
-		updateTheoThoiGian();
-	}
-	
-	private void updateTheoThoiGian() {
-		Timer timer = new Timer(1000, (ActionListener) new ActionListener() {
-		    public void actionPerformed(ActionEvent e) {
-		        // Thực hiện các hoạt động cập nhật giao diện ở đây
-				lblSoLuongGiaoDichValue.setText(hoaDon_DAO.getListHoaDonTrongNgayTheoMaNhanVien(nhanVien.getMaNhanVien()).size() + "");
-				float doanhThu = 0;
-				for (HoaDon hoaDon : hoaDon_DAO.getListHoaDonTrongNgayTheoMaNhanVien(nhanVien.getMaNhanVien())) {
-					doanhThu += hoaDon.getThanhTien();
-				}
-				lblTongThuValue.setText(doanhThu + " VND");
-		    }
-		});
-		timer.start();
+		lblSoLuongGiaoDichValue.setText(hoaDon_DAO.getListHoaDonTrongNgayTheoMaNhanVien(nhanVien.getMaNhanVien()).size() + "");
+		float doanhThu = 0;
+		for (HoaDon hoaDon : hoaDon_DAO.getListHoaDonTrongNgayTheoMaNhanVien(nhanVien.getMaNhanVien())) {
+			doanhThu += hoaDon.getThanhTien();
+		}
+		lblTongThuValue.setText(doanhThu + " VND");
 	}
 }

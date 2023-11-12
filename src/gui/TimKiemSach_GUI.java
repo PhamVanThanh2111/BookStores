@@ -4,16 +4,11 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.toedter.calendar.JDateChooser;
 
-import dao.NhaCungCap_DAO;
 import dao.NhaXuatBan_DAO;
-import dao.NhanVien_DAO;
 import dao.SanPham_DAO;
 import dao.TheLoaiSach_DAO;
-import entity.NhaCungCap;
 import entity.NhaXuatBan;
-import entity.NhanVien;
 import entity.SanPham;
 import entity.TheLoaiSach;
 
@@ -22,11 +17,8 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JTextField;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
 
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -109,32 +101,32 @@ public class TimKiemSach_GUI extends JInternalFrame {
 		
 		JLabel lblNamXuatBan = new JLabel("Năm Xuất Bản:");
 		lblNamXuatBan.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNamXuatBan.setBounds(830, 248, 127, 40);
+		lblNamXuatBan.setBounds(819, 248, 127, 40);
 		contentPane.add(lblNamXuatBan);
 		
 		JLabel lblCccd = new JLabel("Loại Sách:");
 		lblCccd.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblCccd.setBounds(422, 87, 127, 40);
+		lblCccd.setBounds(410, 87, 127, 40);
 		contentPane.add(lblCccd);
 		
 		JLabel lblNhaXuatBan = new JLabel("Nhà Xuất Bản:");
 		lblNhaXuatBan.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNhaXuatBan.setBounds(422, 167, 127, 40);
+		lblNhaXuatBan.setBounds(410, 167, 127, 40);
 		contentPane.add(lblNhaXuatBan);
 		
 		JLabel lblGiaNhap = new JLabel("Giá Nhập:");
 		lblGiaNhap.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblGiaNhap.setBounds(422, 244, 127, 40);
+		lblGiaNhap.setBounds(410, 244, 127, 40);
 		contentPane.add(lblGiaNhap);
 		
 		JLabel lblGiaBan = new JLabel("Giá Bán:");
 		lblGiaBan.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblGiaBan.setBounds(422, 330, 127, 40);
+		lblGiaBan.setBounds(410, 330, 127, 40);
 		contentPane.add(lblGiaBan);
 		
 		JLabel lblSoTrang = new JLabel("Số Trang:");
 		lblSoTrang.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblSoTrang.setBounds(830, 90, 127, 40);
+		lblSoTrang.setBounds(819, 90, 127, 40);
 		contentPane.add(lblSoTrang);
 		
 		txtMaSach = new JTextField();
@@ -148,7 +140,7 @@ public class TimKiemSach_GUI extends JInternalFrame {
 			}
 		});
 		txtMaSach.setColumns(10);
-		txtMaSach.setBounds(157, 87, 238, 40);
+		txtMaSach.setBounds(133, 87, 238, 40);
 		contentPane.add(txtMaSach);
 		
 		txtTenSach = new JTextField();
@@ -162,7 +154,7 @@ public class TimKiemSach_GUI extends JInternalFrame {
 			}
 		});
 		txtTenSach.setColumns(10);
-		txtTenSach.setBounds(157, 167, 238, 40);
+		txtTenSach.setBounds(133, 167, 238, 40);
 		contentPane.add(txtTenSach);
 		
 		txtXuatXu = new JTextField();
@@ -175,7 +167,7 @@ public class TimKiemSach_GUI extends JInternalFrame {
 			}
 		});
 		txtXuatXu.setColumns(10);
-		txtXuatXu.setBounds(157, 248, 238, 40);
+		txtXuatXu.setBounds(133, 248, 238, 40);
 		contentPane.add(txtXuatXu);
 		
 		txtNamXuatBan = new JTextField();
@@ -201,13 +193,13 @@ public class TimKiemSach_GUI extends JInternalFrame {
 			}
 		});
 		txtGiaNhap.setColumns(10);
-		txtGiaNhap.setBounds(572, 248, 238, 40);
+		txtGiaNhap.setBounds(547, 248, 238, 40);
 		contentPane.add(txtGiaNhap);
 		
 		btnTim = new JButton("Tìm");
 		btnTim.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!duLieuRong()) {
+				if (duLieuRong()) {
 					searchSach();
 					try {
 						setClosed(true);
@@ -225,7 +217,7 @@ public class TimKiemSach_GUI extends JInternalFrame {
 		contentPane.add(btnTim);
 		
 		cmbTheLoaiSach = new JComboBox<String>();
-		cmbTheLoaiSach.setBounds(572, 90, 238, 40);
+		cmbTheLoaiSach.setBounds(547, 90, 238, 40);
 		cmbTheLoaiSach.setSelectedIndex(-1);
 		cmbTheLoaiSach.addKeyListener(new KeyAdapter() {
 			@Override
@@ -261,12 +253,12 @@ public class TimKiemSach_GUI extends JInternalFrame {
 		
 		txtTacGia = new JTextField();
 		txtTacGia.setColumns(10);
-		txtTacGia.setBounds(157, 330, 238, 40);
+		txtTacGia.setBounds(133, 330, 238, 40);
 		contentPane.add(txtTacGia);
 		
 		cmbNhaXuatBan = new JComboBox<String>();
 		cmbNhaXuatBan.setSelectedIndex(-1);
-		cmbNhaXuatBan.setBounds(572, 167, 238, 40);
+		cmbNhaXuatBan.setBounds(547, 167, 238, 40);
 		cmbNhaXuatBan.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -280,7 +272,7 @@ public class TimKiemSach_GUI extends JInternalFrame {
 		
 		txtGiaBan = new JTextField();
 		txtGiaBan.setColumns(10);
-		txtGiaBan.setBounds(572, 330, 238, 40);
+		txtGiaBan.setBounds(547, 330, 238, 40);
 		contentPane.add(txtGiaBan);
 		
 		txtSoTrang = new JTextField();
@@ -290,7 +282,7 @@ public class TimKiemSach_GUI extends JInternalFrame {
 		
 		JLabel lblSoLuong = new JLabel("Số Lượng :");
 		lblSoLuong.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblSoLuong.setBounds(830, 167, 127, 40);
+		lblSoLuong.setBounds(819, 167, 127, 40);
 		contentPane.add(lblSoLuong);
 		
 		txtSoLuong = new JTextField();
@@ -314,76 +306,142 @@ public class TimKiemSach_GUI extends JInternalFrame {
 				txtNamXuatBan.getText().equals("") &&
 				cmbTheLoaiSach.getSelectedIndex() == -1) {
 			JOptionPane.showMessageDialog(null, "Bạn phải điền ít nhất một thông tin!");
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 	
+	public boolean kTraThoaMan( SanPham sanPham) {
+		boolean thoaMan	 = false;
+		if (sanPham.getMaSanPham().equalsIgnoreCase(txtMaSach.getText())) {
+				thoaMan = true;
+		}
+		else if (sanPham.getTenSanPham().equalsIgnoreCase(txtTenSach.getText())) {
+				thoaMan = true;
+		}
+		else if (sanPham.getTenSanPham().equalsIgnoreCase(txtXuatXu.getText())) {
+				thoaMan = true;
+		}
+		else if (sanPham.getGiaBan()==Float.parseFloat(txtGiaNhap.getText())) {
+				thoaMan = true;
+		}
+		else if (sanPham.getGiaBan()==Float.parseFloat(txtGiaBan.getText())) {
+				thoaMan = true;
+		}
+		else if (sanPham.getSoLuongTon()==Integer.parseInt(txtSoLuong.getText())) {
+				thoaMan = true;
+		}
+		else if (cmbNhaXuatBan.getSelectedIndex()!=-1) {
+			 NhaXuatBan tenNhaXuatBan= nhaXuatBan_DAO.getnhaXuatBanTheoMa(sanPham.getMaNXB());
+			if (tenNhaXuatBan.getTenNhaXuatBan().toLowerCase().equalsIgnoreCase(cmbNhaXuatBan.getSelectedItem().toString().toLowerCase())) {
+//				System.out.println(tenNhaXuatBan.getTenNhaXuatBan());
+				thoaMan = true;
+			}
+		}
+		
+		else if (cmbTheLoaiSach.getSelectedIndex()!=-1) {
+			 TheLoaiSach tenTheLoaiSach= theLoaiSach_DAO.getTheLoaiSachTheoMa(sanPham.getMaTheLoaiSach());
+			if (tenTheLoaiSach.gettenTheLoaiSach().toLowerCase().equalsIgnoreCase(cmbTheLoaiSach.getSelectedItem().toString().toLowerCase())) {
+				thoaMan = true;
+			}
+		}
+		else if (!txtTacGia.getText().isEmpty()) {
+			if (sanPham.getTenSanPham().toLowerCase().contains(txtTacGia.getText().toLowerCase())) {
+				thoaMan = true;
+			}
+		}
+		else if (!txtSoTrang.getText().isEmpty()) {
+			if (sanPham.getSoLuongTon()==Integer.parseInt(txtSoTrang.getText())) {
+				thoaMan = true;
+			}
+		}
+		else if (!txtNamXuatBan.getText().isEmpty()) {
+			if (sanPham.getSoLuongTon()==Integer.parseInt(txtNamXuatBan.getText())) {
+				thoaMan = true;
+			}
+		}
+		return closable;
+	}
 	public void searchSach() {
 		for (SanPham sanPham: sanPham_DAO.getAllSach()) {
-			boolean thoaMan = false;
+//			boolean thoaMan	 = false;
 			if (!txtMaSach.getText().isEmpty()) {
 				if (sanPham.getMaSanPham().equalsIgnoreCase(txtMaSach.getText())) {
-					thoaMan = true;
+//					thoaMan = true;
+					ds.add(sanPham);
 				}
 			}
-			if (!txtTenSach.getText().isEmpty()) {
-				if (sanPham.getTenSanPham().toLowerCase().contains(txtTenSach.getText().toLowerCase())) {
-					thoaMan = true;
+			//toLowerCase() chuyển đổi tất cả các ký tự trong một chuỗi thành chữ thường.
+			else if (!txtTenSach.getText().isEmpty()) {
+				if (sanPham.getTenSanPham().equalsIgnoreCase(txtTenSach.getText())) {
+//					thoaMan = true;
+					ds.add(sanPham);
 				}
 			}
-			if (!txtXuatXu.getText().isEmpty()) {
-				if (sanPham.getTenSanPham().toLowerCase().contains(txtXuatXu.getText().toLowerCase())) {
-					thoaMan = true;
+			else if (!txtXuatXu.getText().isEmpty()) {
+				if (sanPham.getTenSanPham().equalsIgnoreCase(txtXuatXu.getText())) {
+//					thoaMan = true;
+					ds.add(sanPham);
 				}
 			}
-			if (!txtGiaNhap.getText().isEmpty()) {
-				if (sanPham.getGiaBan()==Integer.parseInt(txtGiaNhap.getText())) {
-					thoaMan = true;
+			else if (!txtGiaNhap.getText().isEmpty()) {
+				if (sanPham.getGiaBan()==Float.parseFloat(txtGiaNhap.getText())) {
+//					thoaMan = true;
+					ds.add(sanPham);
 				}
 			}
-			if (!txtGiaBan.getText().isEmpty()) {
-				if (sanPham.getGiaBan()==Integer.parseInt(txtGiaBan.getText())) {
-					thoaMan = true;
+			else if (!txtGiaBan.getText().isEmpty()) {
+				if (sanPham.getGiaBan()==Float.parseFloat(txtGiaBan.getText())) {
+//					thoaMan = true;
+					ds.add(sanPham);
 				}
 			}
-			if (!txtSoLuong.getText().isEmpty()) {
+			else if (!txtSoLuong.getText().isEmpty()) {
 				if (sanPham.getSoLuongTon()==Integer.parseInt(txtSoLuong.getText())) {
-					thoaMan = true;
+//					thoaMan = true;
+					ds.add(sanPham);
 				}
 			}
-			if (cmbNhaXuatBan.getSelectedIndex()!=-1) {
-				 NhaXuatBan tenNhaXuatBan= nhaXuatBan_DAO.getnhaXuatBanTheoMa(sanPham.getMaNXB());
-				if (tenNhaXuatBan.getTenNhaXuatBan().toLowerCase().equalsIgnoreCase(cmbNhaXuatBan.getSelectedItem().toString().toLowerCase())) {
-					System.out.println(tenNhaXuatBan.getTenNhaXuatBan());
-					thoaMan = true;
-				}
+			else if (cmbNhaXuatBan.getSelectedIndex()!=-1) {
+//				 NhaXuatBan tenNhaXuatBan= nhaXuatBan_DAO.getnhaXuatBanTheoMa(sanPham.getMaNXB());
+//				if (tenNhaXuatBan.getTenNhaXuatBan().toLowerCase().equalsIgnoreCase(cmbNhaXuatBan.getSelectedItem().toString().toLowerCase())) {
+////					System.out.println(tenNhaXuatBan.getTenNhaXuatBan());
+////					thoaMan = true;
+//					ds.add(sanPham);
+//				}
+				int i = cmbNhaXuatBan.getSelectedIndex();
+//				sanPham.getTenSanPham().equalsIgnoreCase(nhazbs.get(i).gett);
 			}
-			if (thoaMan) {
-				ds.add(sanPham);	
-			}
+			
+//			if (thoaMan) {
+//				ds.add(sanPham);	
+//			}
 			if (cmbTheLoaiSach.getSelectedIndex()!=-1) {
 				 TheLoaiSach tenTheLoaiSach= theLoaiSach_DAO.getTheLoaiSachTheoMa(sanPham.getMaTheLoaiSach());
 				if (tenTheLoaiSach.gettenTheLoaiSach().toLowerCase().equalsIgnoreCase(cmbTheLoaiSach.getSelectedItem().toString().toLowerCase())) {
-					thoaMan = true;
+//					thoaMan = true;
+					ds.add(sanPham);
 				}
 			}
-			if (thoaMan) {
-				ds.add(sanPham);	
-			}
+//			if (thoaMan) {
+//				ds.add(sanPham);	
+//			}
 			if (!txtTacGia.getText().isEmpty()) {
 				if (sanPham.getTenSanPham().toLowerCase().contains(txtTacGia.getText().toLowerCase())) {
-					thoaMan = true;
+//					thoaMan = true;
+					ds.add(sanPham);
 				}
 			}
 			if (!txtSoTrang.getText().isEmpty()) {
 				if (sanPham.getSoLuongTon()==Integer.parseInt(txtSoTrang.getText())) {
-					thoaMan = true;
+//					thoaMan = true;
+					ds.add(sanPham);
 				}
 			}
 			if (!txtNamXuatBan.getText().isEmpty()) {
 				if (sanPham.getSoLuongTon()==Integer.parseInt(txtNamXuatBan.getText())) {
-					thoaMan = true;
+//					thoaMan = true;
+					ds.add(sanPham);
 				}
 			}
 		}
@@ -397,14 +455,12 @@ public class TimKiemSach_GUI extends JInternalFrame {
 			}
 
 		}
-
 		// load cbTenTheLoaiSachs
 		private void loadDataIntoComboboxTenLoaiSach() {
 
 			for (TheLoaiSach theLoaiSach : theLoaiSach_DAO.getAllListTheLoaiSach()) {
 				cmbTheLoaiSach.addItem(theLoaiSach.gettenTheLoaiSach());
 			}
-
 		}
 	public void loadAll() {
 		for (SanPham sanPham : sanPham_DAO.getAllSach()) {

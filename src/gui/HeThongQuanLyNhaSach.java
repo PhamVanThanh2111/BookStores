@@ -385,15 +385,10 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				int option = JOptionPane.showConfirmDialog(null, "Bạn có thực sự muốn thoát?", "Thoát?",
 						JOptionPane.YES_NO_OPTION);
 				if (option == JOptionPane.YES_OPTION) {
-					DangNhap_GUI dangNhap_GUI;
-					try {
-						dangNhap_GUI = new DangNhap_GUI();
-						setVisible(false);
-						dangNhap_GUI.setVisible(true);
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					HeThongQuanLyNhaSach heThongQuanLyNhaSach;
+					heThongQuanLyNhaSach = new HeThongQuanLyNhaSach();
+					setVisible(false);
+					heThongQuanLyNhaSach.setVisible(true);
 
 				}
 			}
@@ -730,7 +725,11 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				int option = JOptionPane.showConfirmDialog(null, "Bạn có thực sự muốn thoát?", "Thoát?",
 						JOptionPane.YES_NO_OPTION);
 				if (option == JOptionPane.YES_OPTION) {
-					System.exit(0);
+					HeThongQuanLyNhaSach heThongQuanLyNhaSach;
+					heThongQuanLyNhaSach = new HeThongQuanLyNhaSach();
+					setVisible(false);
+					heThongQuanLyNhaSach.setVisible(true);
+
 				}
 			}
 		});
@@ -1298,6 +1297,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		contentPane.add(btnDangNhap);
 	}
 
+	
 	public static void main(String[] args) {
 		try {
 			UIManager.setLookAndFeel(new FlatMacLightLaf());

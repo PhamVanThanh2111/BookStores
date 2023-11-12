@@ -789,11 +789,9 @@ public class NhanVien_GUI extends JPanel {
 					nhanVien_DAO.xoaNhanVienTheoMa(model.getValueAt(row, 0).toString());
 					taiKhoan_DAO.xoaTaiKhoan(maTaiKhoan);
 				} catch (Exception e) {
-					// TODO: handle exception
 					JOptionPane.showMessageDialog(null, "Không được xóa nhân viên này. Bởi vì sẽ mất toàn bộ dữ liệu hóa đơn và phiếu đặt của nhân viên này!");
 					return false;
 				}
-				// Nếu xóa nhân viên thì xóa luôn tài khoản của nhân viên đó
 				JOptionPane.showMessageDialog(null,
 						"Xóa nhân viên '" + model.getValueAt(row, 0) + "' thành công!");
 				refresh();

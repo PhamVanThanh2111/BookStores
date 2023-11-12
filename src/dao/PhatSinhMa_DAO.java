@@ -85,7 +85,7 @@ public class PhatSinhMa_DAO {
 		Connection con = ConnectDB.getConnection();
 		Statement statement = con.createStatement();
 		ResultSet resultSet = statement.executeQuery(
-				"select CONCAT('KH', RIGHT(CONCAT('0000',ISNULL(right(max(maKhachHang),4),0) + 1),4)) from [dbo].[KhachHang] where maKhachHang like 'KH%'");
+				"select CONCAT('KH', RIGHT(CONCAT('00000',ISNULL(right(max(maKhachHang),5),0) + 1),5)) from [dbo].[KhachHang] where maKhachHang like 'KH%'");
 		String maKH = "";
 		while (resultSet.next()) {
 			maKH = resultSet.getString(1);

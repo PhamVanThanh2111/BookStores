@@ -236,7 +236,6 @@ public class NhanVien_DAO {
 		Connection connection = ConnectDB.getConnection();
 		PreparedStatement preparedStatement = connection
 					.prepareStatement("delete from NhanVien where maNhanVien = '" + maNV + "'");
-		preparedStatement.close();
 		return preparedStatement.executeUpdate() > 0;
 	}
 	// sửa nhân viên 

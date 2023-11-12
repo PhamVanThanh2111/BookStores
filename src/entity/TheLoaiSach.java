@@ -38,23 +38,6 @@ public class TheLoaiSach {
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(maTheLoaiSach, tenTheLoaiSach);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		TheLoaiSach other = (TheLoaiSach) obj;
-		return Objects.equals(maTheLoaiSach, other.maTheLoaiSach) && Objects.equals(tenTheLoaiSach, other.tenTheLoaiSach);
-	}
-
-	@Override
 	public String toString() {
 		return "LoaiSach [maTheLoaiSach=" + maTheLoaiSach + ", tenTheLoaiSach=" + tenTheLoaiSach + "]";
 	}

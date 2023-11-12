@@ -56,7 +56,7 @@ public class TheLoaiSach_DAO {
  		Connection connection = ConnectDB.getConnection();
  		try {
  			PreparedStatement preparedStatement = connection
- 					.prepareStatement("select * from TheLoaiSach where tenTheLoaiSach = '" + tenTheLoaiSach + "'");
+ 					.prepareStatement("select * from TheLoaiSach where tenTheLoaiSach = N'" + tenTheLoaiSach + "'");
  			ResultSet resultSet = preparedStatement.executeQuery();
 
  			while (resultSet.next()) {

@@ -398,7 +398,7 @@ public class Sach_GUI extends JPanel {
 				lamMoi();
 			}
 		});
-		
+
 		pThongTin.add(btnLamMoi);
 
 		lblHinhAnh = new JLabel("");
@@ -947,11 +947,6 @@ public class Sach_GUI extends JPanel {
 		loadDataIntoComboboxTenLoaiSach();
 	}
 
-	protected void loadDataIntoComboboxTenSP(String string) {
-		// TODO Auto-generated method stub
-
-	}
-
 	// load Data lên bảng
 	public void loadData(ArrayList<SanPham> ds) {
 		model.setRowCount(0);
@@ -965,9 +960,10 @@ public class Sach_GUI extends JPanel {
 			table.setRowHeight(25);
 		}
 	}
+
 	// load cbTenNhaXuatBan
 	private void loadDataIntoComboboxTenNhaXuatBan() {
-//		cbTenNhaXuatBan.removeAll();
+		cbTenNhaXuatBan.removeAllItems();
 		for (NhaXuatBan nhaXuatBan : nhaXuatBan_DAO.getAllListNhaXuatBan()) {
 			cbTenNhaXuatBan.addItem(nhaXuatBan.getTenNhaXuatBan());
 		}
@@ -976,11 +972,12 @@ public class Sach_GUI extends JPanel {
 
 	// load cbTenTheLoaiSachs
 	private void loadDataIntoComboboxTenLoaiSach() {
-//		cbTenLoaiSach.removeAll();
+		cbTenLoaiSach.removeAllItems();
 		for (TheLoaiSach theLoaiSach : theLoaiSach_DAO.getAllListTheLoaiSach()) {
 			cbTenLoaiSach.addItem(theLoaiSach.gettenTheLoaiSach());
 		}
 	}
+
 	// làm mới dữ liệu trên bảng
 	public void lamMoi() {
 		txtMaSach.setText("");
@@ -1049,13 +1046,9 @@ public class Sach_GUI extends JPanel {
 				sanPham.setGiaNhap(Float.parseFloat(txtGiaNhap.getText()));
 				sanPham.setGiaBan(Float.parseFloat(txtGiaBan.getText()));
 				sanPham.setSoLuongTon(Integer.parseInt(txtSoLuong.getText()));
-				if (cbTenNhaXuatBan.getSelectedIndex() != -1) {
-					nhaXuatBan = nhaXuatBan_DAO.getnhaXuatBanTheoTen(cbTenNhaXuatBan.getSelectedItem().toString());
-				}
+				nhaXuatBan = nhaXuatBan_DAO.getnhaXuatBanTheoTen(cbTenNhaXuatBan.getSelectedItem().toString());
 				sanPham.setMaNXB(nhaXuatBan.getMaNhaXuatBan());
-				if (cbTenLoaiSach.getSelectedIndex() != -1) {
-					theLoaiSach = theLoaiSach_DAO.getTheLoaiSachTheoTen(cbTenLoaiSach.getSelectedItem().toString());
-				}
+				theLoaiSach = theLoaiSach_DAO.getTheLoaiSachTheoTen(cbTenLoaiSach.getSelectedItem().toString());
 				sanPham.setMaTheLoaiSach(theLoaiSach.getmaTheLoaiSach());
 				sanPham.setTacGia(txtTacGia.getText());
 				sanPham.setSoTrang(Integer.parseInt(txtSoTrang.getText()));
@@ -1101,74 +1094,75 @@ public class Sach_GUI extends JPanel {
 			}
 		}
 	}
-	
+
 	// sửa sách
 	public boolean update() {
 		int row = table.getSelectedRow();
 		if (row == -1) {
 			JOptionPane.showMessageDialog(null, "Bạn phải chọn sách cần sửa!");
 			return false;
-			} else if (txtXuatXu.getText().equals("")) {
-				JOptionPane.showMessageDialog(null, "Xuất xứ của sách không được để trống!");
-				txtXuatXu.requestFocus();
-				return false;
-			} else if (txtTacGia.getText().equals("")) {
-				JOptionPane.showMessageDialog(null, "Tác giả của sách không được để trống!");
-				txtTacGia.requestFocus();
-				return false;
-			} else if (txtGiaNhap.getText().equals("")) {
-				JOptionPane.showMessageDialog(null, "Giá nhập của sách không được để trống!");
-				txtGiaNhap.requestFocus();
-				return false;
-			} else if (txtGiaBan.getText().equals("")) {
-				JOptionPane.showMessageDialog(null, "Giá bán của sách không được để trống!");
-				txtGiaBan.requestFocus();
-				return false;
-			} else if (txtNamXuatBan.getText().equals("")) {
-				JOptionPane.showMessageDialog(null, "Năm xuất bản của sách không được để trống!");
-				txtNamXuatBan.requestFocus();
-				return false;
-			} else if (txtSoTrang.getText().equals("")) {
-				JOptionPane.showMessageDialog(null, "Số trang của sách không được để trống!");
-				txtSoTrang.requestFocus();
-				return false;
-			} else if (txtSoLuong.getText().equals("")) {
-				JOptionPane.showMessageDialog(null, "Số lượng của sách không được để trống!");
-				txtSoLuong.requestFocus();
-				return false;
-			} else {
-				int option = JOptionPane.showConfirmDialog(null,
-						"Bạn có chắc muốn sửa sách ? '" + model.getValueAt(row, 0) + "' chứ?", "Sửa?",
-						JOptionPane.YES_NO_OPTION);
-				if (option == JOptionPane.YES_OPTION) {
-					SanPham sanPham = new SanPham();
-					sanPham.setMaSanPham(txtMaSach.getText());
-					sanPham.setTenSanPham(txtTenSach.getText());
-					sanPham.setXuatXu(txtXuatXu.getText());
-					sanPham.setGiaNhap(Float.parseFloat(txtGiaNhap.getText()));
-					sanPham.setGiaBan(Float.parseFloat(txtGiaBan.getText()));
-					sanPham.setSoLuongTon(Integer.parseInt(txtSoLuong.getText()));
-					sanPham.setHinhAnh("a");
-					sanPham.setMaNXB(nhaXuatBan_DAO.getnhaXuatBanTheoTen(cbTenNhaXuatBan.getSelectedItem().toString())
-							.getMaNhaXuatBan());
-					sanPham.setMaTheLoaiSach(
-							theLoaiSach_DAO.getTheLoaiSachTheoTen(cbTenLoaiSach.getSelectedItem().toString().toString())
-									.getmaTheLoaiSach());
-					sanPham.setTacGia(txtTacGia.getText());
-					sanPham.setSoTrang(Integer.parseInt(txtSoTrang.getText()));
-					sanPham.setNamXuatBan(Integer.parseInt(txtNamXuatBan.getText()));
-					sanPham.setMaNhaCungCap("");
+		} else if (txtXuatXu.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Xuất xứ của sách không được để trống!");
+			txtXuatXu.requestFocus();
+			return false;
+		} else if (txtTacGia.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Tác giả của sách không được để trống!");
+			txtTacGia.requestFocus();
+			return false;
+		} else if (txtGiaNhap.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Giá nhập của sách không được để trống!");
+			txtGiaNhap.requestFocus();
+			return false;
+		} else if (txtGiaBan.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Giá bán của sách không được để trống!");
+			txtGiaBan.requestFocus();
+			return false;
+		} else if (txtNamXuatBan.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Năm xuất bản của sách không được để trống!");
+			txtNamXuatBan.requestFocus();
+			return false;
+		} else if (txtSoTrang.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Số trang của sách không được để trống!");
+			txtSoTrang.requestFocus();
+			return false;
+		} else if (txtSoLuong.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Số lượng của sách không được để trống!");
+			txtSoLuong.requestFocus();
+			return false;
+		} else {
+			int option = JOptionPane.showConfirmDialog(null,
+					"Bạn có chắc muốn sửa sách ? '" + model.getValueAt(row, 0) + "' chứ?", "Sửa?",
+					JOptionPane.YES_NO_OPTION);
+			if (option == JOptionPane.YES_OPTION) {
+				SanPham sanPham = new SanPham();
+				sanPham.setMaSanPham(txtMaSach.getText());
+				sanPham.setTenSanPham(txtTenSach.getText());
+				sanPham.setXuatXu(txtXuatXu.getText());
+				sanPham.setGiaNhap(Float.parseFloat(txtGiaNhap.getText()));
+				sanPham.setGiaBan(Float.parseFloat(txtGiaBan.getText()));
+				sanPham.setSoLuongTon(Integer.parseInt(txtSoLuong.getText()));
+				sanPham.setHinhAnh("a");
+				sanPham.setMaNXB(nhaXuatBan_DAO.getnhaXuatBanTheoTen(cbTenNhaXuatBan.getSelectedItem().toString())
+						.getMaNhaXuatBan());
+				sanPham.setMaTheLoaiSach(
+						theLoaiSach_DAO.getTheLoaiSachTheoTen(cbTenLoaiSach.getSelectedItem().toString().toString())
+								.getmaTheLoaiSach());
+				sanPham.setTacGia(txtTacGia.getText());
+				sanPham.setSoTrang(Integer.parseInt(txtSoTrang.getText()));
+				sanPham.setNamXuatBan(Integer.parseInt(txtNamXuatBan.getText()));
+				sanPham.setMaNhaCungCap("");
 
 //		            sanPham_DAO.suaSanPhamTheoMa(sanPham);
-					sanPham_DAO.suaSanPhamTheoMaSach(sanPham);
-					JOptionPane.showMessageDialog(null, "Sửa thành công sách '" + model.getValueAt(row, 0) + "'!");
-					refresh();
-					return true;
-				} else {
-return false;
-				}
+				sanPham_DAO.suaSanPhamTheoMaSach(sanPham);
+				JOptionPane.showMessageDialog(null, "Sửa thành công sách '" + model.getValueAt(row, 0) + "'!");
+				refresh();
+				return true;
+			} else {
+				return false;
 			}
 		}
+	}
+
 	private void enableEdit() {
 		txtMaSach.setEditable(true);
 		txtMaSach.setBorder(borderDefault);

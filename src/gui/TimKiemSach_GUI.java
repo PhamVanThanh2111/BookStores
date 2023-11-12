@@ -412,7 +412,6 @@ public class TimKiemSach_GUI extends JInternalFrame {
 				int i = cmbNhaXuatBan.getSelectedIndex();
 //				sanPham.getTenSanPham().equalsIgnoreCase(nhazbs.get(i).gett);
 			}
-			
 //			if (thoaMan) {
 //				ds.add(sanPham);	
 //			}

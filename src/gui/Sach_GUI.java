@@ -15,9 +15,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -30,7 +29,6 @@ import dao.NhaXuatBan_DAO;
 import dao.PhatSinhMa_DAO;
 import dao.SanPham_DAO;
 import dao.TheLoaiSach_DAO;
-import entity.NhaCungCap;
 import entity.NhaXuatBan;
 import entity.NhanVien;
 import entity.SanPham;
@@ -38,7 +36,6 @@ import entity.TheLoaiSach;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JDesktopPane;
 
 public class Sach_GUI extends JPanel {
@@ -78,7 +75,7 @@ public class Sach_GUI extends JPanel {
 	private JButton btnDelete;
 	private JButton btnUpdate;
 	private JButton btnLamMoi;
-	private JButton btnChonHinhAnh;
+//	private JButton btnChonHinhAnh;
 	private JTableHeader tableHeader;
 	private DefaultTableModel model;
 	private JTable table;
@@ -99,7 +96,8 @@ public class Sach_GUI extends JPanel {
 
 	private JButton btnTim;
 
-	private String relativePath;
+//	private String relativePath;
+	private Border borderDefault;
 
 	// private JButton btnChonHinhAnh;
 	/**
@@ -418,7 +416,6 @@ public class Sach_GUI extends JPanel {
 		btnTim.setBackground(new Color(73, 129, 158));
 		btnTim.setBounds(1060, 278, 135, 40);
 		btnTim.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -444,13 +441,18 @@ public class Sach_GUI extends JPanel {
 						@Override
 						public void internalFrameClosed(InternalFrameEvent e) {
 //			                System.out.println("Internal frame is closed.");
-							model.setRowCount(0);
-							loadData(ds);
-							ds.removeAll(ds);
+//							model.setRowCount(0);
 							enableButton();
+							loadData(ds);
+			            	ds.removeAll(ds);
+			            	btnAdd.setEnabled(true);
+							btnDelete.setEnabled(true);
+							btnUpdate.setEnabled(true);
+							btnUpdate.setEnabled(true);
 						}
 					});
 					desktopPane.add(timKiemSach_GUI).setVisible(true);
+//					loadDataIntoTable(timKiemSach_GUI.searchSach());
 				}
 			}
 		});
@@ -579,10 +581,9 @@ public class Sach_GUI extends JPanel {
 					theLoaiSach_DAO.getTheLoaiSachTheoMa(sanPham.getMaTheLoaiSach()).gettenTheLoaiSach(),
 					sanPham.getTacGia(), sanPham.getSoTrang(), sanPham.getNamXuatBan(), };
 			model.addRow(object);
+			table.setRowHeight(25);
 		}
 	}
-	
-
 	// load cbTenNhaXuatBan
 	private void loadDataIntoComboboxTenNhaXuatBan() {
 
@@ -592,7 +593,7 @@ public class Sach_GUI extends JPanel {
 
 	}
 
-	// load cbTenTheLoaiSachs
+//	 load cbTenTheLoaiSachs
 	private void loadDataIntoComboboxTenLoaiSach() {
 
 		for (TheLoaiSach theLoaiSach : theLoaiSach_DAO.getAllListTheLoaiSach()) {
@@ -720,7 +721,6 @@ public class Sach_GUI extends JPanel {
 			}
 		}
 	}
-
 	// sửa sách
 	public boolean update() {
 		int row = table.getSelectedRow();
@@ -794,32 +794,54 @@ public class Sach_GUI extends JPanel {
 			}
 		}
 	}
-
 	private void enableEdit() {
+		txtMaSach.setEditable(true);
+		txtMaSach.setBorder(borderDefault);
 		txtTenSach.setEditable(true);
+		txtTenSach.setBorder(null);
 		txtXuatXu.setEditable(true);
+		txtXuatXu.setBorder(null);
 		txtTacGia.setEditable(true);
+		txtTacGia.setBorder(null);
 		txtGiaNhap.setEditable(true);
+		txtGiaNhap.setBorder(null);
 		txtGiaBan.setEditable(true);
+		txtGiaBan.setBorder(null);
 		txtSoTrang.setEditable(true);
+		txtSoTrang.setBorder(null);
 		txtSoLuong.setEditable(true);
+		txtSoLuong.setBorder(null);
 		txtNamXuatBan.setEditable(true);
+		txtNamXuatBan.setBorder(null);
 		cbTenLoaiSach.setEnabled(true);
+		cbTenLoaiSach.setBorder(null);
 		cbTenNhaXuatBan.setEnabled(true);
+		cbTenNhaXuatBan.setBorder(null);
 	}
 
 	private void disableEdit() {
+		txtMaSach.setEditable(false);
+		txtMaSach.setBorder(borderDefault);
 		txtTenSach.setEditable(false);
+		txtTenSach.setBorder(null);
 		txtXuatXu.setEditable(false);
+		txtXuatXu.setBorder(null);
 		txtTacGia.setEditable(false);
+		txtTacGia.setBorder(null);
 		txtGiaNhap.setEditable(false);
+		txtGiaNhap.setBorder(null);
 		txtGiaBan.setEditable(false);
+		txtGiaBan.setBorder(null);
 		txtSoTrang.setEditable(false);
+		txtSoTrang.setBorder(null);
 		txtSoLuong.setEditable(false);
+		txtSoLuong.setBorder(null);
 		txtNamXuatBan.setEditable(false);
-
+		txtNamXuatBan.setBorder(null);
 		cbTenLoaiSach.setEnabled(false);
+		cbTenLoaiSach.setBorder(null);
 		cbTenNhaXuatBan.setEnabled(false);
+		cbTenNhaXuatBan.setBorder(null);
 	}
 
 	@SuppressWarnings("unused")
@@ -827,6 +849,7 @@ public class Sach_GUI extends JPanel {
 		btnLamMoi.setEnabled(true);
 		btnAdd.setEnabled(true);
 		btnUpdate.setEnabled(true);
+		btnDelete.setEnabled(true);
 //		btnChonHinhAnh.setEnabled(true);
 	}
 

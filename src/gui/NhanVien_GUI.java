@@ -483,7 +483,6 @@ public class NhanVien_GUI extends JPanel {
 											btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
 											btnTim.setBounds(695, 660, 135, 40);
 											btnTim.addActionListener(new ActionListener() {
-												
 												@Override
 												public void actionPerformed(ActionEvent e) {
 													// TODO Auto-generated method stub

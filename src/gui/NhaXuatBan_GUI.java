@@ -702,7 +702,7 @@ public class NhaXuatBan_GUI extends JPanel {
 						@Override
 						public void internalFrameOpened(InternalFrameEvent e) {
 							// System.out.println("Internal frame is opened.");
-							disableButton();
+							btnLamMoi.setVisible(false);
 						}
 
 						@Override
@@ -711,7 +711,7 @@ public class NhaXuatBan_GUI extends JPanel {
 							model.setRowCount(0);
 							loadDataIntoTable(ds);
 							ds.removeAll(ds);
-							enableButton();
+							btnLamMoi.setVisible(true);
 						}
 					});
 					desktopPane.add(timKiemNhaXuatBan_GUI).setVisible(true);

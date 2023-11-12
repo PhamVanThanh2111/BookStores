@@ -75,7 +75,7 @@ public class Sach_GUI extends JPanel {
 	private JButton btnDelete;
 	private JButton btnUpdate;
 	private JButton btnLamMoi;
-//	private JButton btnChonHinhAnh;
+	// private JButton btnChonHinhAnh;
 	private JTableHeader tableHeader;
 	private DefaultTableModel model;
 	private JTable table;
@@ -96,8 +96,9 @@ public class Sach_GUI extends JPanel {
 
 	private JButton btnTim;
 
-//	private String relativePath;
+	// private String relativePath;
 	private Border borderDefault;
+//	private String relativePath;
 
 	// private JButton btnChonHinhAnh;
 	/**
@@ -124,12 +125,12 @@ public class Sach_GUI extends JPanel {
 		JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBounds(0, 0, 1300, 720);
 		panel.add(desktopPane);
-//		pMain.add(desktopPane);
+		// pMain.add(desktopPane);
 
 		JPanel pMain = new JPanel();
 		pMain.setLayout(null);
 		pMain.setBounds(0, 0, 1300, 720);
-//		add(pMain);
+		// add(pMain);
 		desktopPane.add(pMain);
 
 		JPanel pThongTin = new JPanel();
@@ -243,15 +244,17 @@ public class Sach_GUI extends JPanel {
 		cbTenLoaiSach.setForeground(new Color(0, 0, 0));
 		cbTenLoaiSach.setToolTipText("Loại Sách");
 		cbTenLoaiSach.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbTenLoaiSach.setBorder(null);
 		cbTenLoaiSach.setBounds(600, 70, 255, 40);
+		loadDataIntoComboboxTenLoaiSach();
+		cbTenLoaiSach.setSelectedIndex(-1);
 		pThongTin.add(cbTenLoaiSach);
 
 		cbTenNhaXuatBan = new JComboBox<String>();
 		cbTenNhaXuatBan.setToolTipText("Nhà Xuất Bản");
 		cbTenNhaXuatBan.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbTenNhaXuatBan.setBorder(null);
 		cbTenNhaXuatBan.setBounds(600, 115, 255, 40);
+		loadDataIntoComboboxTenNhaXuatBan();
+		cbTenNhaXuatBan.setSelectedIndex(-1);
 		pThongTin.add(cbTenNhaXuatBan);
 
 		lblSoTrang = new JLabel("Số Trang:");
@@ -386,6 +389,16 @@ public class Sach_GUI extends JPanel {
 		btnLamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnLamMoi.setBackground(new Color(73, 129, 158));
 		btnLamMoi.setBounds(821, 278, 135, 40);
+		btnLamMoi.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				loadDataIntoComboboxTenLoaiSach();
+				loadDataIntoComboboxTenNhaXuatBan();
+				lamMoi();
+			}
+		});
+		
 		pThongTin.add(btnLamMoi);
 
 		lblHinhAnh = new JLabel("");
@@ -424,35 +437,38 @@ public class Sach_GUI extends JPanel {
 					timKiemSach_GUI.addInternalFrameListener(new InternalFrameAdapter() {
 						@Override
 						public void internalFrameActivated(InternalFrameEvent e) {
-//			                System.out.println("Internal frame is activated.");
+							// System.out.println("Internal frame is activated.");
 						}
 
 						@Override
 						public void internalFrameDeactivated(InternalFrameEvent e) {
-//			                System.out.println("Internal frame is deactivated.");
+							// System.out.println("Internal frame is deactivated.");
 						}
 
 						@Override
 						public void internalFrameOpened(InternalFrameEvent e) {
-//			                System.out.println("Internal frame is opened.");
+							// System.out.println("Internal frame is opened.");
 							disableButton();
 						}
 
 						@Override
 						public void internalFrameClosed(InternalFrameEvent e) {
+							// System.out.println("Internal frame is closed.");
+							// model.setRowCount(0);
 //			                System.out.println("Internal frame is closed.");
 //							model.setRowCount(0);
-							enableButton();
-							loadData(ds);
-			            	ds.removeAll(ds);
-			            	btnAdd.setEnabled(true);
+							btnAdd.setEnabled(true);
 							btnDelete.setEnabled(true);
 							btnUpdate.setEnabled(true);
 							btnUpdate.setEnabled(true);
+							model.setRowCount(0);
+							loadData(ds);
+							ds.removeAll(ds);
+							enableButton();
 						}
 					});
 					desktopPane.add(timKiemSach_GUI).setVisible(true);
-//					loadDataIntoTable(timKiemSach_GUI.searchSach());
+					// loadDataIntoTable(timKiemSach_GUI.searchSach());
 				}
 			}
 		});
@@ -526,7 +542,7 @@ public class Sach_GUI extends JPanel {
 					txtGiaBan.setText(model.getValueAt(row, 4).toString());
 					txtSoLuong.setText(model.getValueAt(row, 5).toString());
 					cbTenNhaXuatBan.setSelectedItem(model.getValueAt(row, 6));
-
+					cbTenLoaiSach.setSelectedItem(model.getValueAt(row, 7));
 					txtTacGia.setText(model.getValueAt(row, 8).toString());
 					txtSoTrang.setText(model.getValueAt(row, 9).toString());
 					txtNamXuatBan.setText(model.getValueAt(row, 10).toString());
@@ -585,12 +601,12 @@ public class Sach_GUI extends JPanel {
 		JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBounds(0, 0, 1300, 720);
 		panel.add(desktopPane);
-//		pMain.add(desktopPane);
+		// pMain.add(desktopPane);
 
 		JPanel pMain = new JPanel();
 		pMain.setLayout(null);
 		pMain.setBounds(0, 0, 1300, 720);
-//		add(pMain);
+		// add(pMain);
 		desktopPane.add(pMain);
 
 		JPanel pThongTin = new JPanel();
@@ -794,23 +810,23 @@ public class Sach_GUI extends JPanel {
 					timKiemSach_GUI.addInternalFrameListener(new InternalFrameAdapter() {
 						@Override
 						public void internalFrameActivated(InternalFrameEvent e) {
-//			                System.out.println("Internal frame is activated.");
+							// System.out.println("Internal frame is activated.");
 						}
 
 						@Override
 						public void internalFrameDeactivated(InternalFrameEvent e) {
-//			                System.out.println("Internal frame is deactivated.");
+							// System.out.println("Internal frame is deactivated.");
 						}
 
 						@Override
 						public void internalFrameOpened(InternalFrameEvent e) {
-//			                System.out.println("Internal frame is opened.");
+							// System.out.println("Internal frame is opened.");
 							btnLamMoi.setEnabled(false);
 						}
 
 						@Override
 						public void internalFrameClosed(InternalFrameEvent e) {
-//			                System.out.println("Internal frame is closed.");
+							// System.out.println("Internal frame is closed.");
 							model.setRowCount(0);
 							loadData(ds);
 							ds.removeAll(ds);
@@ -951,21 +967,20 @@ public class Sach_GUI extends JPanel {
 	}
 	// load cbTenNhaXuatBan
 	private void loadDataIntoComboboxTenNhaXuatBan() {
-
+//		cbTenNhaXuatBan.removeAll();
 		for (NhaXuatBan nhaXuatBan : nhaXuatBan_DAO.getAllListNhaXuatBan()) {
 			cbTenNhaXuatBan.addItem(nhaXuatBan.getTenNhaXuatBan());
 		}
-
 	}
+	// load cbTenTheLoaiSachs
 
 	// load cbTenTheLoaiSachs
 	private void loadDataIntoComboboxTenLoaiSach() {
-
+//		cbTenLoaiSach.removeAll();
 		for (TheLoaiSach theLoaiSach : theLoaiSach_DAO.getAllListTheLoaiSach()) {
 			cbTenLoaiSach.addItem(theLoaiSach.gettenTheLoaiSach());
 		}
 	}
-
 	// làm mới dữ liệu trên bảng
 	public void lamMoi() {
 		txtMaSach.setText("");
@@ -1086,6 +1101,7 @@ public class Sach_GUI extends JPanel {
 			}
 		}
 	}
+	
 	// sửa sách
 	public boolean update() {
 		int row = table.getSelectedRow();
@@ -1209,7 +1225,7 @@ return false;
 		btnAdd.setEnabled(true);
 		btnUpdate.setEnabled(true);
 		btnDelete.setEnabled(true);
-//		btnChonHinhAnh.setEnabled(true);
+		// btnChonHinhAnh.setEnabled(true);
 	}
 
 	private void disableButton() {
@@ -1217,6 +1233,6 @@ return false;
 		btnAdd.setEnabled(false);
 		btnDelete.setEnabled(false);
 		btnUpdate.setEnabled(false);
-//		btnChonHinhAnh.setEnabled(false);
+		// btnChonHinhAnh.setEnabled(false);
 	}
 }

@@ -232,7 +232,8 @@ public class TheLoaiSach_GUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				refresh();
+				lamMoi();
+//				refresh();
 			}
 		});
 		btnLamMoi.setBounds(821, 200, 135, 40);
@@ -631,7 +632,14 @@ public class TheLoaiSach_GUI extends JPanel {
 		}
 	}
 
-	// làm mới
+	// làm mới dữ liệu trên bảng
+	public void lamMoi() {
+		txtMaTheLoaiSach.setText("");
+		txtTenTheLoaiSach.setText("");
+	}
+
+	
+	// làm mới bảng
 	public void refresh() {
 		loadDataIntoTable(theLoaiSach_DAO.getAllListTheLoaiSach());
 	}

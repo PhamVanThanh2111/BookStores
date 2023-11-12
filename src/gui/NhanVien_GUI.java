@@ -140,7 +140,6 @@ public class NhanVien_GUI extends JPanel {
 		txtDiaChi.setColumns(10);
 		txtDiaChi.setBounds(170, 652, 240, 40);
 		txtDiaChi.setBorder(null);
-		txtDiaChi.setFocusable(false);
 		pNhapThongTin.add(txtDiaChi);
 
 		JLabel lblSoDienThoai = new JLabel("Số Điện Thoại:");
@@ -158,7 +157,6 @@ public class NhanVien_GUI extends JPanel {
 		txtSoDienThoai.setBounds(170, 145, 240, 40);
 		borderDefault = txtSoDienThoai.getBorder();
 		txtSoDienThoai.setBorder(null);
-		txtSoDienThoai.setFocusable(false);
 		pNhapThongTin.add(txtSoDienThoai);
 		
 		JLabel lblEmail = new JLabel("Email:");
@@ -175,7 +173,6 @@ public class NhanVien_GUI extends JPanel {
 		txtcCCD.setColumns(10);
 		txtcCCD.setBounds(170, 562, 240, 40);
 		txtcCCD.setBorder(null);
-		txtcCCD.setFocusable(false);
 		pNhapThongTin.add(txtcCCD);
 
 		txtEmail = new JTextField();
@@ -186,7 +183,6 @@ public class NhanVien_GUI extends JPanel {
 		txtEmail.setColumns(10);
 		txtEmail.setBounds(170, 190, 240, 40);
 		txtEmail.setBorder(null);
-		txtEmail.setFocusable(false);
 		pNhapThongTin.add(txtEmail);
 
 		JPanel pDanhSach = new JPanel();
@@ -391,6 +387,7 @@ public class NhanVien_GUI extends JPanel {
 										// TODO Auto-generated method stub
 										if (btnAdd.getText().equals("Thêm")) {
 											enableEdit();
+											focusable();
 											btnXoa.setText("Hủy");
 											btnAdd.setText("Xác nhận");
 											btnLamMoi.setEnabled(false);
@@ -401,6 +398,7 @@ public class NhanVien_GUI extends JPanel {
 										else {
 											add();
 											disableEdit();
+											unfocusable();
 											btnAdd.setText("Thêm");
 											btnXoa.setText("Xóa");
 											btnLamMoi.setEnabled(true);
@@ -428,6 +426,7 @@ public class NhanVien_GUI extends JPanel {
 													JOptionPane.showMessageDialog(null, "Bạn phải chọn vào nhân viên cần sửa!");
 												else {
 													enableEdit();
+													focusable();
 													btnXoa.setText("Hủy");
 													btnSua.setText("Xác nhận");
 													btnLamMoi.setEnabled(false);
@@ -440,6 +439,7 @@ public class NhanVien_GUI extends JPanel {
 												btnSua.setText("Sửa");
 												btnXoa.setText("Xóa");
 												disableEdit();
+												unfocusable();
 												btnLamMoi.setEnabled(true);
 												btnAdd.setEnabled(true);
 												btnTim.setEnabled(true);
@@ -504,6 +504,7 @@ public class NhanVien_GUI extends JPanel {
 												            public void internalFrameOpened(InternalFrameEvent e) {
 //												                System.out.println("Internal frame is opened.");
 												            	disableButton();
+												            	unfocusable();
 												            }
 												            
 												            @Override
@@ -513,6 +514,7 @@ public class NhanVien_GUI extends JPanel {
 												            	loadDataIntoTable(ds);
 												            	ds.removeAll(ds);
 												            	enableButton();
+												            	focusable();
 												            }
 												        });
 														desktopPane.add(timNhanVien_GUI).setVisible(true);
@@ -665,11 +667,13 @@ public class NhanVien_GUI extends JPanel {
 		txtTenNhanVien.setBounds(94, 20, 240, 40);
 		txtTenNhanVien.setBorder(null);
 		txtTenNhanVien.setBackground(new Color(255, 255, 255));
-		txtTenNhanVien.setFocusable(false);
 		pNhapThongTin.add(txtTenNhanVien);
 
 		// loadData
 		loadDataIntoTable(nhanVien_DAO.getAllListNhanVien());
+		
+		// unfocus
+		unfocusable();
 	}
 
 	public void loadDataIntoTable(ArrayList<NhanVien> nhanViens) {
@@ -971,5 +975,21 @@ public class NhanVien_GUI extends JPanel {
 		btnXoa.setEnabled(false);
 		btnSua.setEnabled(false);
 		btnTim.setEnabled(false);
+	}
+	
+	private void unfocusable() {
+		txtTenNhanVien.setFocusable(false);
+		txtSoDienThoai.setFocusable(false);
+		txtEmail.setFocusable(false);
+		txtcCCD.setFocusable(false);
+		txtDiaChi.setFocusable(false);
+	}
+	
+	private void focusable() {
+		txtTenNhanVien.setFocusable(true);
+		txtSoDienThoai.setFocusable(true);
+		txtEmail.setFocusable(true);
+		txtcCCD.setFocusable(true);
+		txtDiaChi.setFocusable(true);
 	}
 }

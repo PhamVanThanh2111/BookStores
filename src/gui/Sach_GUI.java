@@ -172,6 +172,7 @@ public class Sach_GUI extends JPanel {
 		txtMaSach.setColumns(10);
 		txtMaSach.setBackground(Color.WHITE);
 		txtMaSach.setBounds(145, 70, 255, 40);
+		txtMaSach.setBorder(null);
 		pThongTin.add(txtMaSach);
 
 		txtTenSach = new JTextField();
@@ -181,6 +182,7 @@ public class Sach_GUI extends JPanel {
 		txtTenSach.setColumns(10);
 		txtTenSach.setBackground(Color.WHITE);
 		txtTenSach.setBounds(145, 115, 255, 40);
+		txtTenSach.setBorder(null);
 		pThongTin.add(txtTenSach);
 
 		txtXuatXu = new JTextField();
@@ -190,6 +192,7 @@ public class Sach_GUI extends JPanel {
 		txtXuatXu.setColumns(10);
 		txtXuatXu.setBackground(Color.WHITE);
 		txtXuatXu.setBounds(145, 160, 255, 40);
+		txtXuatXu.setBorder(null);
 		pThongTin.add(txtXuatXu);
 
 		txtTacGia = new JTextField();
@@ -199,6 +202,7 @@ public class Sach_GUI extends JPanel {
 		txtTacGia.setColumns(10);
 		txtTacGia.setBackground(Color.WHITE);
 		txtTacGia.setBounds(145, 207, 255, 40);
+		txtTacGia.setBorder(null);
 		pThongTin.add(txtTacGia);
 
 		lblLoaiSach = new JLabel("Loại Sách:");
@@ -229,6 +233,7 @@ public class Sach_GUI extends JPanel {
 		txtGiaNhap.setColumns(10);
 		txtGiaNhap.setBackground(Color.WHITE);
 		txtGiaNhap.setBounds(600, 160, 255, 40);
+		txtGiaNhap.setBorder(null);
 		pThongTin.add(txtGiaNhap);
 
 		txtGiaBan = new JTextField();
@@ -238,6 +243,7 @@ public class Sach_GUI extends JPanel {
 		txtGiaBan.setColumns(10);
 		txtGiaBan.setBackground(Color.WHITE);
 		txtGiaBan.setBounds(600, 205, 255, 40);
+		txtGiaBan.setBorder(null);
 		pThongTin.add(txtGiaBan);
 
 		cmbTenLoaiSach = new JComboBox<String>();
@@ -247,6 +253,7 @@ public class Sach_GUI extends JPanel {
 		cmbTenLoaiSach.setBounds(600, 70, 255, 40);
 		loadDataIntoComboboxTenLoaiSach();
 		cmbTenLoaiSach.setSelectedIndex(-1);
+		cmbTenLoaiSach.setBorder(null);
 		pThongTin.add(cmbTenLoaiSach);
 
 		cmbTenNhaXuatBan = new JComboBox<String>();
@@ -255,6 +262,7 @@ public class Sach_GUI extends JPanel {
 		cmbTenNhaXuatBan.setBounds(600, 115, 255, 40);
 		loadDataIntoComboboxTenNhaXuatBan();
 		cmbTenNhaXuatBan.setSelectedIndex(-1);
+		cmbTenNhaXuatBan.setBorder(null);
 		pThongTin.add(cmbTenNhaXuatBan);
 
 		lblSoTrang = new JLabel("Số Trang:");
@@ -279,6 +287,7 @@ public class Sach_GUI extends JPanel {
 		txtSoTrang.setColumns(10);
 		txtSoTrang.setBackground(Color.WHITE);
 		txtSoTrang.setBounds(1005, 115, 215, 40);
+		txtSoTrang.setBorder(null);
 		pThongTin.add(txtSoTrang);
 
 		txtSoLuong = new JTextField();
@@ -288,6 +297,7 @@ public class Sach_GUI extends JPanel {
 		txtSoLuong.setColumns(10);
 		txtSoLuong.setBackground(Color.WHITE);
 		txtSoLuong.setBounds(1005, 162, 215, 40);
+		txtSoLuong.setBorder(null);
 		pThongTin.add(txtSoLuong);
 
 		btnAdd = new JButton("Thêm");
@@ -411,6 +421,7 @@ public class Sach_GUI extends JPanel {
 		txtNamXuatBan.setColumns(10);
 		txtNamXuatBan.setBackground(Color.WHITE);
 		txtNamXuatBan.setBounds(1005, 65, 215, 40);
+		txtNamXuatBan.setBorder(null);
 		pThongTin.add(txtNamXuatBan);
 
 		lblNamXuatBan = new JLabel("Năm XB::");

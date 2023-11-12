@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.beans.PropertyVetoException;
 import java.util.ArrayList;
 
@@ -31,6 +33,7 @@ public class TimKiemTheLoaiSach_GUI extends JInternalFrame {
 	private TheLoaiSach_DAO theLoaiSach_DAO;
 	private ArrayList<TheLoaiSach> ds;
 
+	private JButton btnTim;
 
 	/**
 	 * Create the frame.
@@ -68,12 +71,28 @@ public class TimKiemTheLoaiSach_GUI extends JInternalFrame {
 		txtTenTheLoaiSach.setToolTipText("Nhập vào tên của thể loại sách cần tìm");
 		txtTenTheLoaiSach.setColumns(10);
 		txtTenTheLoaiSach.setBounds(309, 145, 390, 40);
+		txtTenTheLoaiSach.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		contentPane.add(txtTenTheLoaiSach);
 
 		txtMaTheLoaiSach = new JTextField();
 		txtMaTheLoaiSach.setToolTipText("Nhập vào mã thể loại sách cần tìm");
 		txtMaTheLoaiSach.setColumns(10);
 		txtMaTheLoaiSach.setBounds(309, 91, 390, 40);
+		txtMaTheLoaiSach.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		contentPane.add(txtMaTheLoaiSach);
 
 		JButton btnQuayLai = new JButton("← Quay Lại");
@@ -97,7 +116,8 @@ public class TimKiemTheLoaiSach_GUI extends JInternalFrame {
 		});
 		
 		contentPane.add(btnQuayLai);
-		JButton btnTim = new JButton("Tìm");
+		btnTim = new JButton("Tìm");
+		btnTim.setMnemonic(KeyEvent.VK_ENTER);
 		btnTim.setForeground(Color.WHITE);
 		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnTim.setBackground(new Color(73, 129, 158));

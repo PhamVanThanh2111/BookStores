@@ -4,9 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.beans.PropertyVetoException;
 import java.util.ArrayList;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -30,10 +33,10 @@ public class TimKiemNhaXuatBan_GUI extends JInternalFrame {
 	private JTextField txtDiaChi;
 	private JTextField txtSoDienThoai;
 	private JTextField txtEmail;
-
 	private NhaXuatBan_DAO nhaXuatBan_DAO;
 	private ArrayList<NhaXuatBan> ds;
 
+	private JButton btnTim;
 	/**
 	 * Create the frame.
 	 */
@@ -83,32 +86,73 @@ public class TimKiemNhaXuatBan_GUI extends JInternalFrame {
 		txtMaNhaXuatBan = new JTextField();
 		txtMaNhaXuatBan.setColumns(10);
 		txtMaNhaXuatBan.setBounds(157, 87, 238, 40);
+		txtMaNhaXuatBan.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		contentPane.add(txtMaNhaXuatBan);
 
 		txtTenNhaXuatBan = new JTextField();
 		txtTenNhaXuatBan.setColumns(10);
 		txtTenNhaXuatBan.setBounds(157, 167, 238, 40);
+		txtTenNhaXuatBan.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		contentPane.add(txtTenNhaXuatBan);
 
 		txtDiaChi = new JTextField();
 		txtDiaChi.setColumns(10);
 		txtDiaChi.setBounds(157, 248, 238, 40);
+		txtDiaChi.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		contentPane.add(txtDiaChi);
 
 		txtEmail = new JTextField();
 		txtEmail.setColumns(10);
 		txtEmail.setBounds(585, 87, 238, 40);
+		txtEmail.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		contentPane.add(txtEmail);
 
 		txtSoDienThoai = new JTextField();
 		txtSoDienThoai.setColumns(10);
 		txtSoDienThoai.setBounds(585, 168, 238, 40);
+		txtSoDienThoai.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		contentPane.add(txtSoDienThoai);
 
 		
 
 		JButton btnQuayLai = new JButton("← Quay Lại");
 		btnQuayLai.setForeground(Color.WHITE);
+		btnQuayLai.setMnemonic(KeyEvent.VK_ENTER);
 		btnQuayLai.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnQuayLai.setBackground(new Color(73, 129, 158));
 		btnQuayLai.setBounds(10, 10, 135, 40);
@@ -124,10 +168,11 @@ public class TimKiemNhaXuatBan_GUI extends JInternalFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				
 			}
 		});
 		contentPane.add(btnQuayLai);
-		JButton btnTim = new JButton("Tìm");
+		btnTim = new JButton("Tìm");
 		btnTim.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!duLieuRong()) {
@@ -187,6 +232,16 @@ public class TimKiemNhaXuatBan_GUI extends JInternalFrame {
 		}
 	}
 
+	// Inner class để xử lý sự kiện khi nhấn Enter
+    private class EnterKeyListener extends KeyAdapter {
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            	AbstractButton btnTim = null;
+				btnTim.doClick();
+            }
+        }
+    }
 	private boolean duLieuRong() {
 		// TODO Auto-generated method stub
 		if (txtMaNhaXuatBan.getText().equals("") && txtTenNhaXuatBan.getText().equals("")
@@ -201,6 +256,6 @@ public class TimKiemNhaXuatBan_GUI extends JInternalFrame {
 		for (NhaXuatBan nhaXuatBan : nhaXuatBan_DAO.getAllListNhaXuatBan()) {
 			ds.add(nhaXuatBan);
 		}
-	}
+	}	
 
 }

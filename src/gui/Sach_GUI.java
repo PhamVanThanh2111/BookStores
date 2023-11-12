@@ -96,14 +96,9 @@ public class Sach_GUI extends JPanel {
 
 	private JButton btnTim;
 
-<<<<<<< HEAD
 	// private String relativePath;
 	private Border borderDefault;
-	private String relativePath;
-=======
 //	private String relativePath;
-	private Border borderDefault;
->>>>>>> fce6f56aa4af0f1bcb61f51cef519b457b2e41b0
 
 	// private JButton btnChonHinhAnh;
 	/**
@@ -249,15 +244,17 @@ public class Sach_GUI extends JPanel {
 		cbTenLoaiSach.setForeground(new Color(0, 0, 0));
 		cbTenLoaiSach.setToolTipText("Loại Sách");
 		cbTenLoaiSach.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbTenLoaiSach.setBorder(null);
 		cbTenLoaiSach.setBounds(600, 70, 255, 40);
+		loadDataIntoComboboxTenLoaiSach();
+		cbTenLoaiSach.setSelectedIndex(-1);
 		pThongTin.add(cbTenLoaiSach);
 
 		cbTenNhaXuatBan = new JComboBox<String>();
 		cbTenNhaXuatBan.setToolTipText("Nhà Xuất Bản");
 		cbTenNhaXuatBan.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbTenNhaXuatBan.setBorder(null);
 		cbTenNhaXuatBan.setBounds(600, 115, 255, 40);
+		loadDataIntoComboboxTenNhaXuatBan();
+		cbTenNhaXuatBan.setSelectedIndex(-1);
 		pThongTin.add(cbTenNhaXuatBan);
 
 		lblSoTrang = new JLabel("Số Trang:");
@@ -392,6 +389,16 @@ public class Sach_GUI extends JPanel {
 		btnLamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnLamMoi.setBackground(new Color(73, 129, 158));
 		btnLamMoi.setBounds(821, 278, 135, 40);
+		btnLamMoi.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				loadDataIntoComboboxTenLoaiSach();
+				loadDataIntoComboboxTenNhaXuatBan();
+				lamMoi();
+			}
+		});
+		
 		pThongTin.add(btnLamMoi);
 
 		lblHinhAnh = new JLabel("");
@@ -446,27 +453,18 @@ public class Sach_GUI extends JPanel {
 
 						@Override
 						public void internalFrameClosed(InternalFrameEvent e) {
-<<<<<<< HEAD
 							// System.out.println("Internal frame is closed.");
 							// model.setRowCount(0);
-=======
 //			                System.out.println("Internal frame is closed.");
 //							model.setRowCount(0);
->>>>>>> fce6f56aa4af0f1bcb61f51cef519b457b2e41b0
-							enableButton();
-							loadData(ds);
-							ds.removeAll(ds);
 							btnAdd.setEnabled(true);
 							btnDelete.setEnabled(true);
 							btnUpdate.setEnabled(true);
 							btnUpdate.setEnabled(true);
-<<<<<<< HEAD
 							model.setRowCount(0);
 							loadData(ds);
 							ds.removeAll(ds);
 							enableButton();
-=======
->>>>>>> fce6f56aa4af0f1bcb61f51cef519b457b2e41b0
 						}
 					});
 					desktopPane.add(timKiemSach_GUI).setVisible(true);
@@ -544,7 +542,7 @@ public class Sach_GUI extends JPanel {
 					txtGiaBan.setText(model.getValueAt(row, 4).toString());
 					txtSoLuong.setText(model.getValueAt(row, 5).toString());
 					cbTenNhaXuatBan.setSelectedItem(model.getValueAt(row, 6));
-
+					cbTenLoaiSach.setSelectedItem(model.getValueAt(row, 7));
 					txtTacGia.setText(model.getValueAt(row, 8).toString());
 					txtSoTrang.setText(model.getValueAt(row, 9).toString());
 					txtNamXuatBan.setText(model.getValueAt(row, 10).toString());
@@ -584,11 +582,6 @@ public class Sach_GUI extends JPanel {
 		loadDataIntoComboboxTenLoaiSach();
 	}
 
-<<<<<<< HEAD
-	// <<<<<<<HEAD=======
-
-=======
->>>>>>> fce6f56aa4af0f1bcb61f51cef519b457b2e41b0
 	public Sach_GUI() {
 
 		// Khai báo Dao
@@ -953,10 +946,7 @@ public class Sach_GUI extends JPanel {
 		loadDataIntoComboboxTenNhaXuatBan();
 		loadDataIntoComboboxTenLoaiSach();
 	}
-<<<<<<< HEAD
-=======
 
->>>>>>> fce6f56aa4af0f1bcb61f51cef519b457b2e41b0
 	protected void loadDataIntoComboboxTenSP(String string) {
 		// TODO Auto-generated method stub
 
@@ -977,28 +967,20 @@ public class Sach_GUI extends JPanel {
 	}
 	// load cbTenNhaXuatBan
 	private void loadDataIntoComboboxTenNhaXuatBan() {
-
+//		cbTenNhaXuatBan.removeAll();
 		for (NhaXuatBan nhaXuatBan : nhaXuatBan_DAO.getAllListNhaXuatBan()) {
 			cbTenNhaXuatBan.addItem(nhaXuatBan.getTenNhaXuatBan());
 		}
-
 	}
-
-	// load cbTenTheLoaiSachs
-<<<<<<< HEAD
-
 	// load cbTenTheLoaiSachs
 
-
-=======
->>>>>>> fce6f56aa4af0f1bcb61f51cef519b457b2e41b0
+	// load cbTenTheLoaiSachs
 	private void loadDataIntoComboboxTenLoaiSach() {
-
+//		cbTenLoaiSach.removeAll();
 		for (TheLoaiSach theLoaiSach : theLoaiSach_DAO.getAllListTheLoaiSach()) {
 			cbTenLoaiSach.addItem(theLoaiSach.gettenTheLoaiSach());
 		}
 	}
-
 	// làm mới dữ liệu trên bảng
 	public void lamMoi() {
 		txtMaSach.setText("");
@@ -1187,10 +1169,6 @@ return false;
 				}
 			}
 		}
-<<<<<<< HEAD
-
-=======
->>>>>>> fce6f56aa4af0f1bcb61f51cef519b457b2e41b0
 	private void enableEdit() {
 		txtMaSach.setEditable(true);
 		txtMaSach.setBorder(borderDefault);

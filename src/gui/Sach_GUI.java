@@ -96,9 +96,14 @@ public class Sach_GUI extends JPanel {
 
 	private JButton btnTim;
 
+<<<<<<< HEAD
 	// private String relativePath;
 	private Border borderDefault;
 	private String relativePath;
+=======
+//	private String relativePath;
+	private Border borderDefault;
+>>>>>>> fce6f56aa4af0f1bcb61f51cef519b457b2e41b0
 
 	// private JButton btnChonHinhAnh;
 	/**
@@ -441,8 +446,13 @@ public class Sach_GUI extends JPanel {
 
 						@Override
 						public void internalFrameClosed(InternalFrameEvent e) {
+<<<<<<< HEAD
 							// System.out.println("Internal frame is closed.");
 							// model.setRowCount(0);
+=======
+//			                System.out.println("Internal frame is closed.");
+//							model.setRowCount(0);
+>>>>>>> fce6f56aa4af0f1bcb61f51cef519b457b2e41b0
 							enableButton();
 							loadData(ds);
 							ds.removeAll(ds);
@@ -450,10 +460,13 @@ public class Sach_GUI extends JPanel {
 							btnDelete.setEnabled(true);
 							btnUpdate.setEnabled(true);
 							btnUpdate.setEnabled(true);
+<<<<<<< HEAD
 							model.setRowCount(0);
 							loadData(ds);
 							ds.removeAll(ds);
 							enableButton();
+=======
+>>>>>>> fce6f56aa4af0f1bcb61f51cef519b457b2e41b0
 						}
 					});
 					desktopPane.add(timKiemSach_GUI).setVisible(true);
@@ -571,8 +584,11 @@ public class Sach_GUI extends JPanel {
 		loadDataIntoComboboxTenLoaiSach();
 	}
 
+<<<<<<< HEAD
 	// <<<<<<<HEAD=======
 
+=======
+>>>>>>> fce6f56aa4af0f1bcb61f51cef519b457b2e41b0
 	public Sach_GUI() {
 
 		// Khai báo Dao
@@ -937,6 +953,10 @@ public class Sach_GUI extends JPanel {
 		loadDataIntoComboboxTenNhaXuatBan();
 		loadDataIntoComboboxTenLoaiSach();
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> fce6f56aa4af0f1bcb61f51cef519b457b2e41b0
 	protected void loadDataIntoComboboxTenSP(String string) {
 		// TODO Auto-generated method stub
 
@@ -965,10 +985,13 @@ public class Sach_GUI extends JPanel {
 	}
 
 	// load cbTenTheLoaiSachs
+<<<<<<< HEAD
 
 	// load cbTenTheLoaiSachs
 
 
+=======
+>>>>>>> fce6f56aa4af0f1bcb61f51cef519b457b2e41b0
 	private void loadDataIntoComboboxTenLoaiSach() {
 
 		for (TheLoaiSach theLoaiSach : theLoaiSach_DAO.getAllListTheLoaiSach()) {
@@ -1160,11 +1183,14 @@ public class Sach_GUI extends JPanel {
 					refresh();
 					return true;
 				} else {
-					return false;
+return false;
 				}
 			}
 		}
+<<<<<<< HEAD
 
+=======
+>>>>>>> fce6f56aa4af0f1bcb61f51cef519b457b2e41b0
 	private void enableEdit() {
 		txtMaSach.setEditable(true);
 		txtMaSach.setBorder(borderDefault);

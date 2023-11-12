@@ -52,7 +52,7 @@ public class NhaXuatBan_DAO {
  		return nhaXuatBan;
  	}
  // get NXB theo tên
-  	public NhaXuatBan getnhaXuatBanTheoTen(String tenNhaXuatBan) {
+  	public NhaXuatBan getnhaXuatBanTheoTen(String tenNhaXuatBan ) {
   		NhaXuatBan nhaXuatBan = new NhaXuatBan();
   		ConnectDB.getInstance();
   		Connection connection = ConnectDB.getConnection();
@@ -92,8 +92,6 @@ public class NhaXuatBan_DAO {
  	    } 
  	    return false;
  	}
- 
-
  // xóa nhà xuất bản theo mã
  	public boolean xoaNhaXuatBanTheoMa(String maNhaXuatBan) throws SQLException {
  		ConnectDB.getInstance();

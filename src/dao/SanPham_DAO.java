@@ -203,7 +203,7 @@ public class SanPham_DAO {
 		Connection connection = ConnectDB.getConnection();
 
 		try {
-		    String query = "UPDATE SanPham SET tenSanPham = ?, xuatXu = ?, giaNhap = ?, giaBan = ?, soLuongTon = ?, hinhAnh = ?, maNXB = ?, maTheLoaiSach = ?, tacGia = ?, soTrang = ?, namXuatBan = ? WHERE maSanPham = ?" + sanPham.getMaSanPham() + "'";
+		    String query = "UPDATE SanPham SET tenSanPham = ?, xuatXu = ?, giaNhap = ?, giaBan = ?, soLuongTon = ?, hinhAnh = ?, maNXB = ?, maTheLoaiSach = ?, tacGia = ?, soTrang = ?, namXuatBan = ? WHERE maSanPham = '" + sanPham.getMaSanPham() + "'";
 		    
 		    try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 		        preparedStatement.setString(1, sanPham.getTenSanPham());
@@ -217,8 +217,6 @@ public class SanPham_DAO {
 		        preparedStatement.setString(9, sanPham.getTacGia());
 		        preparedStatement.setInt(10, sanPham.getSoTrang());
 		        preparedStatement.setInt(11, sanPham.getNamXuatBan());
-		        preparedStatement.setString(12, sanPham.getMaSanPham());
-
 		        return preparedStatement.executeUpdate() > 0;
 		    }
 		} catch (SQLException e) {

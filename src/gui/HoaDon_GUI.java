@@ -64,7 +64,6 @@ public class HoaDon_GUI extends JPanel {
 	private HoaDon_DAO hoaDon_DAO;
 	private ChiTietHoaDon_DAO chiTietHoaDon_DAO;
 	private PhatSinhMa_DAO phatSinhMa_DAO;
-	
 	/**
 	 * Create the panel.
 	 */
@@ -303,6 +302,7 @@ public class HoaDon_GUI extends JPanel {
 			}
 		});
 		pChiTietHoaDon.add(btnLapHoaDon);
+		
 
 		JPanel pThongTinKH = new JPanel();
 		pThongTinKH.setBackground(new Color(255, 255, 255));

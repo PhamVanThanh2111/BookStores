@@ -482,6 +482,13 @@ public class Sach_GUI extends JPanel {
 			}
 		});
 		pThongTin.add(btnTim);
+		
+		if (nhanVien.getChucVu().equals("Bán hàng")) {
+			btnAdd.setEnabled(false);
+			btnDelete.setEnabled(false);
+			btnUpdate.setEnabled(false);
+			btnLamMoi.setEnabled(false);
+		}
 
 		// danh sách sách
 		pDanhSach = new JPanel();
@@ -966,6 +973,7 @@ public class Sach_GUI extends JPanel {
 		loadData(sanPham_DAO.getAllSach());
 	}
 
+	
 	// load Data lên bảng
 	public void loadData(ArrayList<SanPham> ds) {
 		model.setRowCount(0);

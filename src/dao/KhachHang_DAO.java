@@ -51,7 +51,7 @@ public class KhachHang_DAO {
 		return khachHang;
 	}
 
-	public KhachHang getKhachHangTheoMaKhachHang(String maKhachHang) {
+	public KhachHang getKhachHangTheoMa(String maKhachHang) {
 		KhachHang khachHang = new KhachHang();
 		ConnectDB.getInstance();
 		Connection connection = ConnectDB.getConnection();

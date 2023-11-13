@@ -19,12 +19,19 @@ import dao.NhanVien_DAO;
 import dao.SanPham_DAO;
 import entity.ChiTietHoaDon;
 import entity.HoaDon;
+import entity.KhachHang;
 
 import javax.swing.JLabel;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 
 import javax.swing.JTextField;
@@ -33,6 +40,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class DanhSachHoaDon_GUI extends JPanel {
 
@@ -57,6 +66,7 @@ public class DanhSachHoaDon_GUI extends JPanel {
 	private KhachHang_DAO khachHang_DAO;
 	private NhanVien_DAO nhanVien_DAO;
 	private SanPham_DAO sanPham_DAO;
+	private JButton btnTim;
 	
 	/**
 	 * Create the panel.
@@ -95,10 +105,18 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		pnlThongTinTimKiem.add(lblMaHoaDon);
 		
 		txtMaHoaDon = new JTextField();
+		txtMaHoaDon.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		txtMaHoaDon.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtMaHoaDon.setEditable(false);
 		txtMaHoaDon.setColumns(10);
 		txtMaHoaDon.setBounds(174, 70, 250, 40);
+		
 		pnlThongTinTimKiem.add(txtMaHoaDon);
 		
 		JLabel lblTenKhachHang = new JLabel("Tên Khách Hàng:");
@@ -107,8 +125,15 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		pnlThongTinTimKiem.add(lblTenKhachHang);
 		
 		txtTenKhachHang = new JTextField();
+		txtTenKhachHang.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		txtTenKhachHang.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtTenKhachHang.setEditable(false);
 		txtTenKhachHang.setColumns(10);
 		txtTenKhachHang.setBounds(174, 120, 250, 40);
 		pnlThongTinTimKiem.add(txtTenKhachHang);
@@ -155,19 +180,49 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		pnlThongTinTimKiem.add(lblSoDienThoai);
 		
 		txtSoDienThoai = new JTextField();
+		txtSoDienThoai.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		txtSoDienThoai.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtSoDienThoai.setEditable(false);
 		txtSoDienThoai.setColumns(10);
 		txtSoDienThoai.setBounds(601, 120, 250, 40);
 		pnlThongTinTimKiem.add(txtSoDienThoai);
 		
-		JButton btnTim = new JButton("Tìm");
+		btnTim = new JButton("Tìm");
 		btnTim.setOpaque(true);
 		btnTim.setForeground(Color.WHITE);
 		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnTim.setBackground(new Color(73, 129, 158));
 		btnTim.setBounds(1142, 120, 135, 40);
+		btnTim.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				loadDataIntoTableHoaDon(timHoaDon());
+			}
+		});
 		pnlThongTinTimKiem.add(btnTim);
+		
+		JButton btnLamMoi = new JButton("Làm Mới");
+		btnLamMoi.setOpaque(true);
+		btnLamMoi.setForeground(Color.WHITE);
+		btnLamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnLamMoi.setBackground(new Color(73, 129, 158));
+		btnLamMoi.setBounds(876, 120, 135, 40);
+		btnLamMoi.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				loadDataIntoTableHoaDon(hoaDon_DAO.getAllListHoaDon());
+			}
+		});
+		pnlThongTinTimKiem.add(btnLamMoi);
 		
 		JPanel pnlDanhSachHoaDon = new JPanel();
 		pnlDanhSachHoaDon.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -330,8 +385,8 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		for (HoaDon hoaDon : danhSachHoaDons) {
 			Object[] objects = {hoaDon.getMaHoaDon(), 
-								khachHang_DAO.getKhachHangTheoMaKhachHang(hoaDon.getMaKhachHang()).getTenKhachHang(),
-								khachHang_DAO.getKhachHangTheoMaKhachHang(hoaDon.getMaKhachHang()).getSoDienThoai(),
+								khachHang_DAO.getKhachHangTheoMa(hoaDon.getMaKhachHang()).getTenKhachHang(),
+								khachHang_DAO.getKhachHangTheoMa(hoaDon.getMaKhachHang()).getSoDienThoai(),
 								nhanVien_DAO.getNhanVienTheoMa(hoaDon.getMaNhanVien()).getTenNhanVien(), 
 								simpleDateFormat.format(hoaDon.getNgayLap()), 
 								hoaDon.getThanhTien()};
@@ -348,5 +403,73 @@ public class DanhSachHoaDon_GUI extends JPanel {
 								chiTietHoaDon.getDonGia()};
 			modelChiTietHoaDon.addRow(objects);
 		}
+	}
+	
+	private ArrayList<HoaDon> timHoaDon() {
+		ArrayList<HoaDon> ds = new ArrayList<HoaDon>();
+		for (HoaDon hoaDon : hoaDon_DAO.getAllListHoaDon()) {
+			boolean thoaMan = false;
+			
+			if (!txtMaHoaDon.getText().isEmpty()) {
+				if (txtMaHoaDon.getText().equalsIgnoreCase(hoaDon.getMaHoaDon())) {
+					thoaMan = true;
+				}
+			}
+			
+			if (!txtTenKhachHang.getText().isEmpty()) {
+				KhachHang khachHang = khachHang_DAO.getKhachHangTheoMa(hoaDon.getMaKhachHang());
+				if (khachHang.getTenKhachHang().toLowerCase().contains(txtTenKhachHang.getText().toLowerCase())) {
+					thoaMan = true;
+				}
+			}
+			
+			if (!txtSoDienThoai.getText().isEmpty()) {
+				KhachHang khachHang = khachHang_DAO.getKhachHangTheoMa(hoaDon.getMaKhachHang());
+				if (khachHang.getSoDienThoai().contains(txtSoDienThoai.getText())) {
+					thoaMan = true;
+				}
+			}
+			
+			if (dateChooserTuNgay.getDate() != null && dateChooserDenNgay.getDate() != null) {
+				if ((hoaDon.getNgayLap().after(dateChooserTuNgay.getDate()) ||
+					kiemTraNgayBang(hoaDon.getNgayLap(), dateChooserTuNgay.getDate())) &&
+					(hoaDon.getNgayLap().before(dateChooserDenNgay.getDate()) ||
+					kiemTraNgayBang(hoaDon.getNgayLap(), dateChooserDenNgay.getDate()))) {
+					thoaMan = true;
+				}
+			}
+			else if (dateChooserTuNgay.getDate() != null && dateChooserDenNgay.getDate() == null) {
+				if (hoaDon.getNgayLap().after(dateChooserTuNgay.getDate()) ||
+					kiemTraNgayBang(hoaDon.getNgayLap(), dateChooserTuNgay.getDate())) {
+					thoaMan = true;
+				}
+			}
+			else if (dateChooserTuNgay.getDate() == null && dateChooserDenNgay.getDate() != null) {
+				if (hoaDon.getNgayLap().before(dateChooserDenNgay.getDate()) ||
+					kiemTraNgayBang(hoaDon.getNgayLap(), dateChooserDenNgay.getDate())) {
+					thoaMan = true;
+				}
+			}
+			
+			if (thoaMan) {
+				ds.add(hoaDon);
+			}
+		}
+		return ds;
+	}
+	
+	private boolean kiemTraNgayBang(Date d1, java.util.Date d2) {
+		LocalDate localDateChon = d2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		int ngayChon = localDateChon.getDayOfMonth();
+		int thangChon = localDateChon.getMonthValue();
+		int namChon = localDateChon.getYear();
+		LocalDate localDateNgaySQL = d1.toLocalDate();
+		int ngaySQL = localDateNgaySQL.getDayOfMonth();
+		int thangSQL = localDateNgaySQL.getMonthValue();
+		int namSQL = localDateNgaySQL.getYear();
+		if (ngayChon == ngaySQL && thangChon == thangSQL && namChon == namSQL) {
+			return true;
+		}
+		return false;
 	}
 }

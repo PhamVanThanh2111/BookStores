@@ -734,17 +734,17 @@ public class Sach_GUI extends JPanel {
 
 		lblSoTrang = new JLabel("Số Trang:");
 		lblSoTrang.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblSoTrang.setBounds(900, 115, 90, 40);
+		lblSoTrang.setBounds(890, 115, 100, 40);
 		pThongTin.add(lblSoTrang);
 
 		lblSoLuong = new JLabel("Số Lượng:");
 		lblSoLuong.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblSoLuong.setBounds(900, 160, 90, 40);
+		lblSoLuong.setBounds(890, 160, 100, 40);
 		pThongTin.add(lblSoLuong);
 
 		lblAnh = new JLabel("Ảnh:");
 		lblAnh.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblAnh.setBounds(900, 205, 80, 40);
+		lblAnh.setBounds(890, 205, 90, 40);
 		pThongTin.add(lblAnh);
 
 		txtSoTrang = new JTextField();

@@ -112,6 +112,7 @@ public class NhaXuatBan_GUI extends JPanel {
 		txtSoDienThoai.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtSoDienThoai.setEditable(false);
 		txtSoDienThoai.setColumns(10);
+		txtSoDienThoai.setBorder(null);
 		txtSoDienThoai.setBackground(Color.WHITE);
 		txtSoDienThoai.setBounds(170, 115, 240, 40);
 		pNhapThongTin.add(txtSoDienThoai);
@@ -128,6 +129,7 @@ public class NhaXuatBan_GUI extends JPanel {
 		txtEmail.setEditable(false);
 		txtEmail.setColumns(10);
 		txtEmail.setBackground(Color.WHITE);
+		txtEmail.setBorder(null);
 		txtEmail.setBounds(170, 160, 240, 40);
 		pNhapThongTin.add(txtEmail);
 
@@ -193,6 +195,7 @@ public class NhaXuatBan_GUI extends JPanel {
 		txtDiaChi.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtDiaChi.setEditable(false);
 		txtDiaChi.setColumns(10);
+		txtDiaChi.setBorder(null);
 		txtDiaChi.setBackground(Color.WHITE);
 		txtDiaChi.setBounds(170, 454, 240, 40);
 		pNhapThongTin.add(txtDiaChi);
@@ -500,6 +503,7 @@ public class NhaXuatBan_GUI extends JPanel {
 		txtSoDienThoai.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtSoDienThoai.setEditable(false);
 		txtSoDienThoai.setColumns(10);
+		txtSoDienThoai.setBorder(null);
 		txtSoDienThoai.setBackground(Color.WHITE);
 		txtSoDienThoai.setBounds(170, 115, 240, 40);
 		pNhapThongTin.add(txtSoDienThoai);
@@ -515,6 +519,7 @@ public class NhaXuatBan_GUI extends JPanel {
 		txtEmail.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtEmail.setEditable(false);
 		txtEmail.setColumns(10);
+		txtEmail.setBorder(null);
 		txtEmail.setBackground(Color.WHITE);
 		txtEmail.setBounds(170, 160, 240, 40);
 		pNhapThongTin.add(txtEmail);
@@ -584,6 +589,7 @@ public class NhaXuatBan_GUI extends JPanel {
 		txtDiaChi.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtDiaChi.setEditable(false);
 		txtDiaChi.setColumns(10);
+		txtDiaChi.setBorder(null);
 		txtDiaChi.setBackground(Color.WHITE);
 		txtDiaChi.setBounds(170, 454, 240, 40);
 		pNhapThongTin.add(txtDiaChi);

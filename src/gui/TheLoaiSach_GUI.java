@@ -26,6 +26,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import dao.NhaXuatBan_DAO;
 import dao.PhatSinhMa_DAO;
 import dao.TheLoaiSach_DAO;
 import entity.NhanVien;
@@ -132,6 +133,7 @@ public class TheLoaiSach_GUI extends JPanel {
 				// TODO Auto-generated method stub
 				if (btnAdd.getText().equals("Thêm")) {
 					enableEdit();
+					focusable();
 					btnDelete.setText("Hủy");
 					btnAdd.setText("Xác nhận");
 					btnLamMoi.setEnabled(false);
@@ -141,6 +143,7 @@ public class TheLoaiSach_GUI extends JPanel {
 				} else {
 					add();
 					disableEdit();
+					unfocusable();
 					btnAdd.setText("Thêm");
 					btnDelete.setText("Xóa");
 					btnLamMoi.setEnabled(true);
@@ -202,6 +205,7 @@ public class TheLoaiSach_GUI extends JPanel {
 						JOptionPane.showMessageDialog(null, "Bạn phải chọn vào thể lọai sách cần sửa!");
 					else {
 						enableEdit();
+						focusable();
 						btnDelete.setText("Hủy");
 						btnUpdate.setText("Xác nhận");
 						btnLamMoi.setEnabled(false);
@@ -210,6 +214,7 @@ public class TheLoaiSach_GUI extends JPanel {
 					}
 				} else {
 					update();
+					unfocusable();
 					btnUpdate.setText("Sửa");
 					btnDelete.setText("Xóa");
 					disableEdit();
@@ -239,7 +244,6 @@ public class TheLoaiSach_GUI extends JPanel {
 		btnLamMoi.setBounds(821, 200, 135, 40);
 
 		pThongTin.add(btnLamMoi);
-
 		btnTim = new JButton("Tìm");
 		btnTim.setOpaque(true);
 		btnTim.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/refresh.png")));
@@ -269,6 +273,7 @@ public class TheLoaiSach_GUI extends JPanel {
 						public void internalFrameOpened(InternalFrameEvent e) {
 //			                System.out.println("Internal frame is opened.");
 							disableButton();
+							unfocusable();
 						}
 
 						@Override
@@ -279,6 +284,7 @@ public class TheLoaiSach_GUI extends JPanel {
 //			            	System.out.println(ds);
 							ds.removeAll(ds);
 							enableButton();
+							focusable();
 						}
 					});
 					desktopPane.add(timKiemTheLoaiSach_GUI).setVisible(true);
@@ -497,6 +503,7 @@ public class TheLoaiSach_GUI extends JPanel {
 						public void internalFrameOpened(InternalFrameEvent e) {
 //			                System.out.println("Internal frame is opened.");
 							btnLamMoi.setEnabled(false);
+							
 						}
 
 						@Override
@@ -507,6 +514,7 @@ public class TheLoaiSach_GUI extends JPanel {
 //			            	System.out.println(ds);
 							ds.removeAll(ds);
 							btnLamMoi.setEnabled(true);
+							
 						}
 					});
 					desktopPane.add(timKiemTheLoaiSach_GUI).setVisible(true);
@@ -618,8 +626,11 @@ public class TheLoaiSach_GUI extends JPanel {
 		lblChiTitTheLoaiSach.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblChiTitTheLoaiSach.setBounds(22, 10, 291, 40);
 		pDanhSach.add(lblChiTitTheLoaiSach);
-
-		refresh();
+		// loadData
+		loadDataIntoTable(theLoaiSach_DAO.getAllListTheLoaiSach());
+		// unfocus
+		unfocusable();
+//		refresh();
 		;
 	}
 
@@ -639,8 +650,6 @@ public class TheLoaiSach_GUI extends JPanel {
 		txtMaTheLoaiSach.setText("");
 		txtTenTheLoaiSach.setText("");
 	}
-
-	
 	// làm mới bảng
 	public void refresh() {
 		loadDataIntoTable(theLoaiSach_DAO.getAllListTheLoaiSach());
@@ -669,7 +678,6 @@ public class TheLoaiSach_GUI extends JPanel {
 			}
 		}
 	}
-
 	// Xóa thể loại sách
 	public boolean delete() {
 		int row = table.getSelectedRow();
@@ -732,7 +740,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		}
 		return false;
 	}
-
+	
 	private void enableEdit() {
 		txtTenTheLoaiSach.setEditable(true);
 	}
@@ -756,5 +764,13 @@ public class TheLoaiSach_GUI extends JPanel {
 		btnDelete.setEnabled(false);
 		btnUpdate.setEnabled(false);
 		btnTim.setEnabled(false);
+	}
+	private void unfocusable() {
+		txtTenTheLoaiSach.setFocusable(false);
+		txtMaTheLoaiSach.setFocusable(false);
+	}
+	private void focusable() {
+		txtTenTheLoaiSach.setFocusable(true);
+		txtMaTheLoaiSach.setFocusable(true);
 	}
 }

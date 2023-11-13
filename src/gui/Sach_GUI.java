@@ -314,6 +314,7 @@ public class Sach_GUI extends JPanel {
 				// TODO Auto-generated method stub
 				if (btnAdd.getText().equals("Thêm")) {
 					enableEdit();
+					focusable();
 					btnDelete.setText("Hủy");
 					btnAdd.setText("Xác nhận");
 					btnLamMoi.setEnabled(false);
@@ -323,6 +324,7 @@ public class Sach_GUI extends JPanel {
 				} else {
 					add();
 					disableEdit();
+					unfocusable();
 					btnAdd.setText("Thêm");
 					btnDelete.setText("Xóa");
 					btnLamMoi.setEnabled(true);
@@ -332,6 +334,8 @@ public class Sach_GUI extends JPanel {
 			}
 		});
 		pThongTin.add(btnAdd);
+		
+		
 		btnDelete = new JButton("Xóa");
 		btnDelete.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/remove_person.png")));
 		btnDelete.setOpaque(true);
@@ -374,6 +378,7 @@ public class Sach_GUI extends JPanel {
 				// TODO Auto-generated method stub
 				if (btnUpdate.getText().equals("Sửa")) {
 					enableEdit();
+					focusable();
 					btnDelete.setText("Hủy");
 					btnUpdate.setText("Xác nhận");
 					btnLamMoi.setEnabled(false);
@@ -381,6 +386,7 @@ public class Sach_GUI extends JPanel {
 					btnTim.setEnabled(false);
 				} else {
 					update();
+					unfocusable();
 					btnUpdate.setText("Sửa");
 					btnDelete.setText("Xóa");
 					disableEdit();
@@ -458,6 +464,7 @@ public class Sach_GUI extends JPanel {
 						public void internalFrameOpened(InternalFrameEvent e) {
 							// System.out.println("Internal frame is opened.");
 							disableButton();
+							unfocusable();
 						}
 
 						@Override
@@ -474,6 +481,7 @@ public class Sach_GUI extends JPanel {
 							loadData(ds);
 							ds.removeAll(ds);
 							enableButton();
+							focusable();
 						}
 					});
 					desktopPane.add(timKiemSach_GUI).setVisible(true);
@@ -587,6 +595,8 @@ public class Sach_GUI extends JPanel {
 		pDanhSach.add(lblChiTitSch);
 
 		loadData(sanPham_DAO.getAllSach());
+		// unfocus
+		unfocusable();
 	}
 
 	
@@ -962,8 +972,12 @@ public class Sach_GUI extends JPanel {
 		lblChiTitSch.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblChiTitSch.setBounds(22, 10, 200, 40);
 		pDanhSach.add(lblChiTitSch);
-
+		
+		// loadData
 		loadData(sanPham_DAO.getAllSach());
+		// unfocus
+		unfocusable();
+		
 	}
 
 	// load Data lên bảng
@@ -1247,5 +1261,29 @@ public class Sach_GUI extends JPanel {
 		btnDelete.setEnabled(false);
 		btnUpdate.setEnabled(false);
 		// btnChonHinhAnh.setEnabled(false);
+	}
+	
+	private void focusable() {
+		txtMaSach.setFocusable(true);
+		txtTenSach.setFocusable(true);
+		txtXuatXu.setFocusable(true);
+		txtTacGia.setFocusable(true);
+		txtGiaNhap.setFocusable(true);
+		txtGiaBan.setFocusable(true);
+		txtSoLuong.setFocusable(true);
+		txtSoTrang.setFocusable(true);
+		txtNamXuatBan.setFocusable(true);
+	}
+	
+	private void unfocusable() {
+		txtMaSach.setFocusable(false);
+		txtTenSach.setFocusable(false);
+		txtXuatXu.setFocusable(false);
+		txtTacGia.setFocusable(false);
+		txtGiaNhap.setFocusable(false);
+		txtGiaBan.setFocusable(false);
+		txtSoLuong.setFocusable(false);
+		txtSoTrang.setFocusable(false);
+		txtNamXuatBan.setFocusable(false);
 	}
 }

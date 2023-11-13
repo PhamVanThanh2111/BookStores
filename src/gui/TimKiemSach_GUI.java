@@ -287,51 +287,6 @@ public class TimKiemSach_GUI extends JInternalFrame {
 		return true;
 	}
 
-//	public boolean kTraThoaMan(SanPham sanPham) {
-//		boolean thoaMan = false;
-//		if (sanPham.getMaSanPham().equalsIgnoreCase(txtMaSach.getText())) {
-//			thoaMan = true;
-//		} else if (sanPham.getTenSanPham().equalsIgnoreCase(txtTenSach.getText())) {
-//			thoaMan = true;
-//		} else if (sanPham.getTenSanPham().equalsIgnoreCase(txtXuatXu.getText())) {
-//			thoaMan = true;
-//		} else if (sanPham.getGiaBan() == Float.parseFloat(txtGiaNhap.getText())) {
-//			thoaMan = true;
-//		} else if (sanPham.getGiaBan() == Float.parseFloat(txtGiaBan.getText())) {
-//			thoaMan = true;
-//		} else if (sanPham.getSoLuongTon() == Integer.parseInt(txtSoLuong.getText())) {
-//			thoaMan = true;
-//		} else if (cmbNhaXuatBan.getSelectedIndex() != -1) {
-//			NhaXuatBan tenNhaXuatBan = nhaXuatBan_DAO.getnhaXuatBanTheoMa(sanPham.getMaNXB());
-//			if (tenNhaXuatBan.getTenNhaXuatBan().toLowerCase()
-//					.equalsIgnoreCase(cmbNhaXuatBan.getSelectedItem().toString().toLowerCase())) {
-////				System.out.println(tenNhaXuatBan.getTenNhaXuatBan());
-//				thoaMan = true;
-//			}
-//		}
-//
-//		else if (cmbTheLoaiSach.getSelectedIndex() != -1) {
-//			TheLoaiSach tenTheLoaiSach = theLoaiSach_DAO.getTheLoaiSachTheoMa(sanPham.getMaTheLoaiSach());
-//			if (tenTheLoaiSach.gettenTheLoaiSach().toLowerCase()
-//					.equalsIgnoreCase(cmbTheLoaiSach.getSelectedItem().toString().toLowerCase())) {
-//				thoaMan = true;
-//			}
-//		} else if (!txtTacGia.getText().isEmpty()) {
-//			if (sanPham.getTenSanPham().toLowerCase().contains(txtTacGia.getText().toLowerCase())) {
-//				thoaMan = true;
-//			}
-//		} else if (!txtSoTrang.getText().isEmpty()) {
-//			if (sanPham.getSoLuongTon() == Integer.parseInt(txtSoTrang.getText())) {
-//				thoaMan = true;
-//			}
-//		} else if (!txtNamXuatBan.getText().isEmpty()) {
-//			if (sanPham.getSoLuongTon() == Integer.parseInt(txtNamXuatBan.getText())) {
-//				thoaMan = true;
-//			}
-//		}
-//		return closable;
-//	}
-
 	public void searchSach() {
 		for (SanPham sanPham : sanPham_DAO.getAllSach()) {
 			boolean thoaMan = false;
@@ -352,54 +307,14 @@ public class TimKiemSach_GUI extends JInternalFrame {
 					thoaMan = true;
 				}
 			}
-			else if (!txtGiaNhap.getText().isEmpty()) {
-				if (sanPham.getGiaBan()==Float.parseFloat(txtGiaNhap.getText())) {
-//					thoaMan = true;
-					ds.add(sanPham);
-				}
-			}
-			else if (!txtGiaBan.getText().isEmpty()) {
-				if (sanPham.getGiaBan()==Float.parseFloat(txtGiaBan.getText())) {
-//					thoaMan = true;
-					ds.add(sanPham);
-				}
-			}
-			else if (!txtSoLuong.getText().isEmpty()) {
-				if (sanPham.getSoLuongTon()==Integer.parseInt(txtSoLuong.getText())) {
-//					thoaMan = true;
-					ds.add(sanPham);
-				}
-			}
-			else if (cmbNhaXuatBan.getSelectedIndex()!=-1) {
-//				 NhaXuatBan tenNhaXuatBan= nhaXuatBan_DAO.getnhaXuatBanTheoMa(sanPham.getMaNXB());
-//				if (tenNhaXuatBan.getTenNhaXuatBan().toLowerCase().equalsIgnoreCase(cmbNhaXuatBan.getSelectedItem().toString().toLowerCase())) {
-////					System.out.println(tenNhaXuatBan.getTenNhaXuatBan());
-////					thoaMan = true;
-//					ds.add(sanPham);
-//				}
-				int i = cmbNhaXuatBan.getSelectedIndex();
-//				sanPham.getTenSanPham().equalsIgnoreCase(nhazbs.get(i).gett);
-			}
-//			if (thoaMan) {
-//				ds.add(sanPham);	
-//			}
-			if (cmbTheLoaiSach.getSelectedIndex()!=-1) {
-				 TheLoaiSach tenTheLoaiSach= theLoaiSach_DAO.getTheLoaiSachTheoMa(sanPham.getMaTheLoaiSach());
-				if (tenTheLoaiSach.gettenTheLoaiSach().toLowerCase().equalsIgnoreCase(cmbTheLoaiSach.getSelectedItem().toString().toLowerCase())) {
-//					thoaMan = true;
-					ds.add(sanPham);
-				}
-			}
-//			if (thoaMan) {
-//				ds.add(sanPham);	
-//			}
 			if (!txtTacGia.getText().isEmpty()) {
 				if (sanPham.getTenSanPham().toLowerCase().contains(txtTacGia.getText().toLowerCase())) {
 					thoaMan = true;
 				}
 			}
 			if (cmbTheLoaiSach.getSelectedIndex() != -1) {
-				TheLoaiSach theLoaiSach = theLoaiSach_DAO.getTheLoaiSachTheoTen(cmbTheLoaiSach.getSelectedItem().toString());
+				TheLoaiSach theLoaiSach = theLoaiSach_DAO
+						.getTheLoaiSachTheoTen(cmbTheLoaiSach.getSelectedItem().toString());
 				if (theLoaiSach.getmaTheLoaiSach().equals(sanPham.getMaTheLoaiSach())) {
 					thoaMan = true;
 				}
@@ -435,7 +350,7 @@ public class TimKiemSach_GUI extends JInternalFrame {
 					thoaMan = true;
 				}
 			}
-			
+
 			if (thoaMan) {
 				ds.add(sanPham);
 			}

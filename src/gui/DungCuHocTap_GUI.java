@@ -70,6 +70,8 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 	private JButton btnChonHinhAnh;
 	private Border borderDefault;
 	private JComboBox<String> cbNhaCC;
+	private KhoiPhucDungCuHocTap_GUI khoiPhucDuLieu;
+	private JButton btnKhoiPhuc;
 	/**
 	 * Create the panel.
 	 */
@@ -178,7 +180,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		btnAdd.setForeground(Color.WHITE);
 		btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnAdd.setBackground(new Color(73, 129, 158));
-		btnAdd.setBounds(104, 298, 135, 40);
+		btnAdd.setBounds(70, 298, 135, 40);
 		pThongTin.add(btnAdd);
 		
 		btnDelete = new JButton("Xóa");
@@ -186,7 +188,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		btnDelete.setForeground(Color.WHITE);
 		btnDelete.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnDelete.setBackground(new Color(73, 129, 158));
-		btnDelete.setBounds(343, 298, 135, 40);
+		btnDelete.setBounds(275, 298, 135, 40);
 		pThongTin.add(btnDelete);
 		
 		btnUpdate = new JButton("Sửa");
@@ -194,7 +196,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		btnUpdate.setForeground(Color.WHITE);
 		btnUpdate.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnUpdate.setBackground(new Color(73, 129, 158));
-		btnUpdate.setBounds(582, 298, 135, 40);
+		btnUpdate.setBounds(480, 298, 135, 40);
 		pThongTin.add(btnUpdate);
 		
 		btnlamMoi = new JButton("Làm mới");
@@ -202,7 +204,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		btnlamMoi.setForeground(Color.WHITE);
 		btnlamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnlamMoi.setBackground(new Color(73, 129, 158));
-		btnlamMoi.setBounds(821, 298, 135, 40);
+		btnlamMoi.setBounds(685, 298, 135, 40);
 		pThongTin.add(btnlamMoi);
 		
 		btnChonHinhAnh = new JButton("Choose");
@@ -258,7 +260,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		btnTim.setForeground(Color.WHITE);
 		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnTim.setBackground(new Color(73, 129, 158));
-		btnTim.setBounds(1060, 298, 135, 40);
+		btnTim.setBounds(890, 298, 135, 40);
 		pThongTin.add(btnTim);
 		
 		cbNhaCC = new JComboBox<String>();
@@ -271,6 +273,14 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		loadCBNhaCC();
 		cbNhaCC.setSelectedIndex(-1);
 		pThongTin.add(cbNhaCC);
+		
+		btnKhoiPhuc = new JButton("Khôi Phục");
+		btnKhoiPhuc.setOpaque(true);
+		btnKhoiPhuc.setForeground(Color.WHITE);
+		btnKhoiPhuc.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnKhoiPhuc.setBackground(new Color(73, 129, 158));
+		btnKhoiPhuc.setBounds(1095, 298, 135, 40);
+		pThongTin.add(btnKhoiPhuc);
 		
 		JPanel pDanhSach = new JPanel();
 		pDanhSach.setLayout(null);
@@ -383,9 +393,8 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		btnUpdate.addActionListener(this);
 		btnDelete.addActionListener(this);
 		btnTim.addActionListener(this);
+		btnKhoiPhuc.addActionListener(this);
 		closeText();
-		
-		
 	}
 	
 	public DungCuHocTap_GUI() {
@@ -804,7 +813,21 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 			int tb = JOptionPane.showConfirmDialog(null, "Bạn Muốn Xóa Sản Phẩm? ", "Delete", JOptionPane.YES_NO_OPTION);
 			if(tb == JOptionPane.YES_OPTION) {
 				try {
-					sanPham_DAO.xoaSachTheoMa((String) model.getValueAt(row, 0));
+					SanPham sanPham = new SanPham();
+					sanPham.setMaSanPham(txtmaDCHT.getText());
+					sanPham.setTenSanPham(txttenDCHT.getText());
+					sanPham.setXuatXu(txtXuatXu.getText());
+					sanPham.setGiaNhap(Float.parseFloat(txtgiaNhap.getText()));
+					sanPham.setGiaBan(Float.parseFloat(txtgiaBan.getText()));
+					sanPham.setSoLuongTon(Integer.parseInt(txtsoLuong.getText()));
+					sanPham.setHinhAnh(relativePath);
+					sanPham.setMaNXB(null);
+					sanPham.setMaTheLoaiSach(null);
+					sanPham.setSoTrang(0);
+					sanPham.setTacGia(null);
+					sanPham.setNamXuatBan(0);
+					sanPham.setMaNhaCungCap(nhaCC_DAO.getNhaCungCapTheoTen(cbNhaCC.getSelectedItem().toString()).getMaNCC());
+					sanPham_DAO.suaMaDCHT(sanPham);
 					JOptionPane.showMessageDialog(null, "Xóa Thành Công !");
 					refresh();
 				} catch (Exception e) {
@@ -993,6 +1016,48 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 										}
 									});
 									desktopPane.add(timKiemDungCuHoctap).setVisible(true);
+								}
+							}else {
+								if(o.equals(btnKhoiPhuc)) {
+									btnAdd.setEnabled(false);
+									btnDelete.setEnabled(false);
+									btnUpdate.setEnabled(false);
+									btnlamMoi.setEnabled(false);
+									btnlamMoi.setEnabled(false);
+									btnTim.setEnabled(false);
+									if (khoiPhucDuLieu == null || khoiPhucDuLieu.isClosed()) {
+										khoiPhucDuLieu = new KhoiPhucDungCuHocTap_GUI(ds);
+										khoiPhucDuLieu.addInternalFrameListener(new InternalFrameAdapter() {
+											@Override
+											public void internalFrameActivated(InternalFrameEvent e) {
+//								                System.out.println("Internal frame is activated.");
+											}
+
+											@Override
+											public void internalFrameDeactivated(InternalFrameEvent e) {
+//								                System.out.println("Internal frame is deactivated.");
+											}
+
+											@Override
+											public void internalFrameOpened(InternalFrameEvent e) {
+//								                System.out.println("Internal frame is opened.");
+//								            	disableButton();
+											}
+
+											@Override
+											public void internalFrameClosed(InternalFrameEvent e) {
+//								                System.out.println("Internal frame is closed.");
+												loadData(ds);
+												ds.removeAll(ds);
+												btnAdd.setEnabled(true);
+												btnDelete.setEnabled(true);
+												btnUpdate.setEnabled(true);
+												btnlamMoi.setEnabled(true);
+												btnTim.setEnabled(true);
+											}
+										});
+										desktopPane.add(khoiPhucDuLieu).setVisible(true);
+									}
 								}
 							}
 						}

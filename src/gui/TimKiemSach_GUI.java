@@ -245,6 +245,14 @@ public class TimKiemSach_GUI extends JInternalFrame {
 		txtTacGia = new JTextField();
 		txtTacGia.setColumns(10);
 		txtTacGia.setBounds(133, 330, 238, 40);
+		txtTacGia.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		contentPane.add(txtTacGia);
 
 		cmbNhaXuatBan = new JComboBox<String>();
@@ -256,11 +264,27 @@ public class TimKiemSach_GUI extends JInternalFrame {
 		txtGiaBan = new JTextField();
 		txtGiaBan.setColumns(10);
 		txtGiaBan.setBounds(547, 330, 238, 40);
+		txtGiaBan.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		contentPane.add(txtGiaBan);
 
 		txtSoTrang = new JTextField();
 		txtSoTrang.setColumns(10);
 		txtSoTrang.setBounds(967, 87, 238, 40);
+		txtSoTrang.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		contentPane.add(txtSoTrang);
 
 		JLabel lblSoLuong = new JLabel("Số Lượng :");
@@ -271,6 +295,14 @@ public class TimKiemSach_GUI extends JInternalFrame {
 		txtSoLuong = new JTextField();
 		txtSoLuong.setColumns(10);
 		txtSoLuong.setBounds(967, 167, 238, 40);
+		txtSoLuong.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		contentPane.add(txtSoLuong);
 	}
 

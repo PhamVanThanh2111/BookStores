@@ -40,6 +40,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class DanhSachHoaDon_GUI extends JPanel {
 
@@ -64,6 +66,7 @@ public class DanhSachHoaDon_GUI extends JPanel {
 	private KhachHang_DAO khachHang_DAO;
 	private NhanVien_DAO nhanVien_DAO;
 	private SanPham_DAO sanPham_DAO;
+	private JButton btnTim;
 	
 	/**
 	 * Create the panel.
@@ -102,9 +105,18 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		pnlThongTinTimKiem.add(lblMaHoaDon);
 		
 		txtMaHoaDon = new JTextField();
+		txtMaHoaDon.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		txtMaHoaDon.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtMaHoaDon.setColumns(10);
 		txtMaHoaDon.setBounds(174, 70, 250, 40);
+		
 		pnlThongTinTimKiem.add(txtMaHoaDon);
 		
 		JLabel lblTenKhachHang = new JLabel("Tên Khách Hàng:");
@@ -113,6 +125,14 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		pnlThongTinTimKiem.add(lblTenKhachHang);
 		
 		txtTenKhachHang = new JTextField();
+		txtTenKhachHang.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		txtTenKhachHang.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtTenKhachHang.setColumns(10);
 		txtTenKhachHang.setBounds(174, 120, 250, 40);
@@ -160,12 +180,20 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		pnlThongTinTimKiem.add(lblSoDienThoai);
 		
 		txtSoDienThoai = new JTextField();
+		txtSoDienThoai.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnTim.doClick();
+				}
+			}
+		});
 		txtSoDienThoai.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtSoDienThoai.setColumns(10);
 		txtSoDienThoai.setBounds(601, 120, 250, 40);
 		pnlThongTinTimKiem.add(txtSoDienThoai);
 		
-		JButton btnTim = new JButton("Tìm");
+		btnTim = new JButton("Tìm");
 		btnTim.setOpaque(true);
 		btnTim.setForeground(Color.WHITE);
 		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
@@ -179,6 +207,22 @@ public class DanhSachHoaDon_GUI extends JPanel {
 			}
 		});
 		pnlThongTinTimKiem.add(btnTim);
+		
+		JButton btnLamMoi = new JButton("Làm Mới");
+		btnLamMoi.setOpaque(true);
+		btnLamMoi.setForeground(Color.WHITE);
+		btnLamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnLamMoi.setBackground(new Color(73, 129, 158));
+		btnLamMoi.setBounds(876, 120, 135, 40);
+		btnLamMoi.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				loadDataIntoTableHoaDon(hoaDon_DAO.getAllListHoaDon());
+			}
+		});
+		pnlThongTinTimKiem.add(btnLamMoi);
 		
 		JPanel pnlDanhSachHoaDon = new JPanel();
 		pnlDanhSachHoaDon.setBorder(new LineBorder(new Color(0, 0, 0)));

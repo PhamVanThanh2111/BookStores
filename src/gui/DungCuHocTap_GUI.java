@@ -402,12 +402,8 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 				relativePath = dungCuHocTap.getHinhAnh();
 			}
 		});
-<<<<<<< HEAD
 		;
 
-=======
-		
->>>>>>> 5784baeec5bc9c37f8e5ee34eabb95442f62495e
 		if (nhanVien.getChucVu().equals("Bán hàng")) {
 			btnAdd.setEnabled(false);
 			btnDelete.setEnabled(false);

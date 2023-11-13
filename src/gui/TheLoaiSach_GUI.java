@@ -310,6 +310,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		txtMaTheLoaiSach.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtMaTheLoaiSach.setEditable(false);
 		txtMaTheLoaiSach.setColumns(10);
+		txtMaTheLoaiSach.setBorder(null);
 		txtMaTheLoaiSach.setBackground(Color.WHITE);
 		txtMaTheLoaiSach.setBounds(227, 102, 400, 40);
 		pThongTin.add(txtMaTheLoaiSach);
@@ -319,6 +320,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		txtTenTheLoaiSach.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtTenTheLoaiSach.setEditable(false);
 		txtTenTheLoaiSach.setColumns(10);
+		txtTenTheLoaiSach.setBorder(null);
 		txtTenTheLoaiSach.setBackground(Color.WHITE);
 		txtTenTheLoaiSach.setBounds(850, 100, 400, 40);
 		pThongTin.add(txtTenTheLoaiSach);

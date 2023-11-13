@@ -163,5 +163,16 @@ public class PhatSinhMa_DAO {
 		return maDCHT;
 	}
 	
-	
+	public String getMaSachXoa() throws SQLException {
+		ConnectDB.getInstance();
+		Connection con = ConnectDB.getConnection();
+		Statement statement = con.createStatement();
+		ResultSet resultSet = statement.executeQuery(
+				"select CONCAT('XS', RIGHT(CONCAT('0000',ISNULL(right(max(maSanPham),4),0) + 1),4)) from [dbo].[SanPham] where maSanPham like 'XDCHT%'");
+		String maDCHT = "";
+		while (resultSet.next()) {
+			maDCHT = resultSet.getString(1);
+		}
+		return maDCHT;
+	}
 }

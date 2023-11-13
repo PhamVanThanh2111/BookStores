@@ -67,6 +67,25 @@ public class SanPham_DAO {
 //		preparedStatement.close();
 		return preparedStatement.executeUpdate() > 0;
 	}
+	// khôi phục Sách
+	public ArrayList<SanPham> getAllSachXoa() {
+		ArrayList<SanPham> ds = new ArrayList<SanPham>();
+		ConnectDB.getInstance();
+		Connection con = ConnectDB.getConnection();
+		try {
+			PreparedStatement preparedStatement = con
+					.prepareStatement("select * from SanPham where maSanPham like 'XS%'");
+			ResultSet result = preparedStatement.executeQuery();
+			while (result.next()) {
+				ds.add(new SanPham(result.getString(1), result.getString(2), result.getString(3), result.getFloat(4),
+						result.getFloat(5), result.getInt(6), result.getString(7), result.getString(8),
+						result.getString(9), result.getString(10), result.getInt(11), result.getInt(12)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ds;
+	}
 	// Lấy Dụng Cụ Học Tập
 	public ArrayList<SanPham> getAllDungCuHocTap() {
 		ArrayList<SanPham> ds = new ArrayList<SanPham>();
@@ -272,7 +291,21 @@ public class SanPham_DAO {
 //		connection.close();
 		return false;
 	}
-	
+	public boolean khoiPhucSanPham01(SanPham sanPham) throws SQLException {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		phatSinhMa_DAO =new PhatSinhMa_DAO();
+		try {
+			PreparedStatement preparedstaments = connection.prepareStatement(
+					"update SanPham set maSanPham= ? where maSanPham = '" + sanPham.getMaSanPham() + "'");
+			preparedstaments.setString(1, phatSinhMa_DAO.getMaSachXoa());
+			return preparedstaments.executeUpdate() > 0;
+		} catch (SQLException e) {
+			
+		}
+//		connection.close();
+		return false;
+	}
 	public ArrayList<SanPham> getAllDCHTXoa() {
 		ArrayList<SanPham> ds = new ArrayList<SanPham>();
 		ConnectDB.getInstance();
@@ -291,4 +324,5 @@ public class SanPham_DAO {
 
 		return ds;
 	}
+	
 }

@@ -97,11 +97,17 @@ public class Sach_GUI extends JPanel {
 	private TheLoaiSach theLoaiSach;
 	private ArrayList<SanPham> ds;
 	private Border borderDefault;
+	
+	
 	private JButton btnTim;
 	private JButton btnChonHinhAnh;
+	private JButton btnKhoiPhuc;
 	private String relativePath;
+	
 	private JFileChooser fileChooser;
 	private File selectedFile;
+	
+	private KhoiPhucSach_GUI khoiPhucSach_GUI;
 
 	// private JButton btnChonHinhAnh;
 	/**
@@ -307,7 +313,7 @@ public class Sach_GUI extends JPanel {
 		btnAdd.setForeground(Color.WHITE);
 		btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnAdd.setBackground(new Color(73, 129, 158));
-		btnAdd.setBounds(104, 297, 135, 40);
+		btnAdd.setBounds(70, 297, 135, 40);
 		btnAdd.addActionListener(new ActionListener() {
 
 			@Override
@@ -345,7 +351,7 @@ public class Sach_GUI extends JPanel {
 		btnDelete.setForeground(Color.WHITE);
 		btnDelete.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnDelete.setBackground(new Color(73, 129, 158));
-		btnDelete.setBounds(343, 297, 135, 40);
+		btnDelete.setBounds(275, 297, 135, 40);
 		btnDelete.addActionListener(new ActionListener() {
 
 			@Override
@@ -373,7 +379,7 @@ public class Sach_GUI extends JPanel {
 		btnUpdate.setForeground(Color.WHITE);
 		btnUpdate.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnUpdate.setBackground(new Color(73, 129, 158));
-		btnUpdate.setBounds(582, 297, 135, 40);
+		btnUpdate.setBounds(480, 297, 135, 40);
 		btnUpdate.addActionListener(new ActionListener() {
 
 			@Override
@@ -409,7 +415,7 @@ public class Sach_GUI extends JPanel {
 		btnLamMoi.setForeground(Color.WHITE);
 		btnLamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnLamMoi.setBackground(new Color(73, 129, 158));
-		btnLamMoi.setBounds(821, 297, 135, 40);
+		btnLamMoi.setBounds(685, 297, 135, 40);
 		btnLamMoi.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -447,7 +453,7 @@ public class Sach_GUI extends JPanel {
 		btnTim.setForeground(Color.WHITE);
 		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnTim.setBackground(new Color(73, 129, 158));
-		btnTim.setBounds(1060, 297, 135, 40);
+		btnTim.setBounds(890, 297, 135, 40);
 		btnTim.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -505,6 +511,59 @@ public class Sach_GUI extends JPanel {
 			}
 		});
 		pThongTin.add(btnChonHinhAnh);
+		btnKhoiPhuc = new JButton("Khôi Phục");
+		btnKhoiPhuc.setOpaque(true);
+		btnKhoiPhuc.setForeground(Color.WHITE);
+		btnKhoiPhuc.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnKhoiPhuc.setBackground(new Color(73, 129, 158));
+		btnKhoiPhuc.setBounds(1095, 297, 135, 40);
+		btnKhoiPhuc.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (khoiPhucSach_GUI == null || khoiPhucSach_GUI.isClosed()) {
+					khoiPhucSach_GUI = new KhoiPhucSach_GUI(ds);
+					khoiPhucSach_GUI.addInternalFrameListener(new InternalFrameAdapter() {
+						@Override
+						public void internalFrameActivated(InternalFrameEvent e) {
+							// System.out.println("Internal frame is activated.");
+						}
+
+						@Override
+						public void internalFrameDeactivated(InternalFrameEvent e) {
+							// System.out.println("Internal frame is deactivated.");
+						}
+
+						@Override
+						public void internalFrameOpened(InternalFrameEvent e) {
+							// System.out.println("Internal frame is opened.");
+							disableButton();
+							unfocusable();
+						}
+
+						@Override
+						public void internalFrameClosed(InternalFrameEvent e) {
+							// System.out.println("Internal frame is closed.");
+							// model.setRowCount(0);
+//			                System.out.println("Internal frame is closed.");
+//							model.setRowCount(0);
+							btnAdd.setEnabled(true);
+							btnDelete.setEnabled(true);
+							btnUpdate.setEnabled(true);
+							btnUpdate.setEnabled(true);
+							model.setRowCount(0);
+							loadData(ds);
+							ds.removeAll(ds);
+							enableButton();
+							focusable();
+						}
+					});
+					desktopPane.add(khoiPhucSach_GUI).setVisible(true);
+					// loadDataIntoTable(timKiemSach_GUI.searchSach());
+				}
+			}
+		});
+		pThongTin.add(btnKhoiPhuc);
 
 		offFocus();
 
@@ -586,13 +645,12 @@ public class Sach_GUI extends JPanel {
 			}
 			//
 		});
-		if (nhanVien.getChucVu().equals("Bán hàng")) {
-			btnAdd.setEnabled(false);
-			btnDelete.setEnabled(false);
-			btnUpdate.setEnabled(false);
-			btnChonHinhAnh.setEnabled(false);
-
-		}
+//		if (nhanVien.getChucVu().equals("Bán hàng")) {
+//			btnAdd.setEnabled(false);
+//			btnDelete.setEnabled(false);
+//			btnUpdate.setEnabled(false);
+//			btnChonHinhAnh.setEnabled(false);
+//		}
 		
 		scrollPaneSach.setViewportView(table);
 		// header of table
@@ -1144,28 +1202,65 @@ public class Sach_GUI extends JPanel {
 	}
 	// xóa sách
 	public boolean delete() {
+//		int row = table.getSelectedRow();
+//		if (row == -1) {
+//			JOptionPane.showMessageDialog(null, "Bạn phải chọn sách cần xóa!");
+//			return false;
+//		} else {
+//			int option = JOptionPane.showConfirmDialog(null,
+//					"Bạn có chắc muốn xóa sách '" + model.getValueAt(row, 1) + "' chứ?", "Xóa?",
+//					JOptionPane.YES_NO_OPTION);
+//			if (option == JOptionPane.YES_OPTION) {
+//				try {
+//					sanPham_DAO.xoaSachTheoMa(model.getValueAt(row, 0).toString());
+//				} catch (Exception e) {
+//					JOptionPane.showMessageDialog(null, "Không thể xóa sách này. Có thể đã có dữ liệu liên quan!");
+//					return false;
+//				}
+//				JOptionPane.showMessageDialog(null, "Xóa sách '" + model.getValueAt(row, 1) + "' thành công!");
+//				refresh();
+//				return true;
+//			} else {
+//				return false;
+//			}
+//		}
 		int row = table.getSelectedRow();
-		if (row == -1) {
-			JOptionPane.showMessageDialog(null, "Bạn phải chọn sách cần xóa!");
-			return false;
-		} else {
-			int option = JOptionPane.showConfirmDialog(null,
-					"Bạn có chắc muốn xóa sách '" + model.getValueAt(row, 1) + "' chứ?", "Xóa?",
-					JOptionPane.YES_NO_OPTION);
-			if (option == JOptionPane.YES_OPTION) {
-				try {
-					sanPham_DAO.xoaSachTheoMa(model.getValueAt(row, 0).toString());
-				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, "Không thể xóa sách này. Có thể đã có dữ liệu liên quan!");
-					return false;
+		if(row !=-1) {
+			int tb = JOptionPane.showConfirmDialog(null, "Bạn Muốn Xóa Sản Phẩm? ", "Delete", JOptionPane.YES_NO_OPTION);
+			if(tb == JOptionPane.YES_OPTION) {
+				if(tb == JOptionPane.YES_OPTION) {
+					try {
+						SanPham sanPham = new SanPham();
+						sanPham.setMaSanPham(txtMaSach.getText());
+						sanPham.setTenSanPham(txtTenSach.getText());
+						sanPham.setXuatXu(txtXuatXu.getText());
+						sanPham.setGiaNhap(Float.parseFloat(txtGiaNhap.getText()));
+						sanPham.setGiaBan(Float.parseFloat(txtGiaBan.getText()));
+						sanPham.setSoLuongTon(Integer.parseInt(txtSoLuong.getText()));
+						sanPham.setHinhAnh(relativePath);
+						sanPham.setMaNXB(nhaXuatBan_DAO.getnhaXuatBanTheoTen(cmbTenNhaXuatBan.getSelectedItem().toString())
+								.getMaNhaXuatBan());
+						sanPham.setMaTheLoaiSach(
+								theLoaiSach_DAO.getTheLoaiSachTheoTen(cmbTenLoaiSach.getSelectedItem().toString().toString())
+										.getmaTheLoaiSach());
+						sanPham.setTacGia(txtTacGia.getText());
+						sanPham.setSoTrang(Integer.parseInt(txtSoTrang.getText()));
+						sanPham.setNamXuatBan(Integer.parseInt(txtNamXuatBan.getText()));
+						sanPham.setMaNhaCungCap("");
+
+//				            sanPham_DAO.suaSanPhamTheoMa(sanPham);
+						sanPham_DAO.khoiPhucSanPham01(sanPham);
+						
+					JOptionPane.showMessageDialog(null, "Xóa Thành Công !");
+					refresh();
+					} catch (Exception e) {
+						JOptionPane.showMessageDialog(null, "Sản Phẩm Tồn Tại Trong Hóa Đơn !");
+					}
 				}
-				JOptionPane.showMessageDialog(null, "Xóa sách '" + model.getValueAt(row, 1) + "' thành công!");
-				refresh();
-				return true;
-			} else {
-				return false;
 			}
 		}
+		
+		return false ;
 	}
 
 	// sửa sách

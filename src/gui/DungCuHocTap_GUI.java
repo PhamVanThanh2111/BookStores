@@ -827,6 +827,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 					sanPham.setTacGia(null);
 					sanPham.setNamXuatBan(0);
 					sanPham.setMaNhaCungCap(nhaCC_DAO.getNhaCungCapTheoTen(cbNhaCC.getSelectedItem().toString()).getMaNCC());
+					
 					sanPham_DAO.suaMaDCHT(sanPham);
 					JOptionPane.showMessageDialog(null, "Xóa Thành Công !");
 					refresh();

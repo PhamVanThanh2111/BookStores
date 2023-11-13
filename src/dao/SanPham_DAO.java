@@ -86,6 +86,36 @@ public class SanPham_DAO {
 		}
 		return ds;
 	}
+	// sửa Mã Sách
+	public boolean suaMaSach(SanPham sanPham) throws SQLException {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		phatSinhMa_DAO =new PhatSinhMa_DAO();
+		try {
+			PreparedStatement preparedstaments = connection.prepareStatement(
+					"update SanPham set maSanPham= ? where maSanPham = '" + sanPham.getMaSanPham() + "'");
+			preparedstaments.setString(1, phatSinhMa_DAO.getMaSachXoa01());
+			return preparedstaments.executeUpdate() > 0;
+		} catch (SQLException e) {
+		}
+//		connection.close();
+		return false;
+	}
+	// khôi phục sản phẩm sách
+	public boolean khoiPhucSanPham01(SanPham sanPham) throws SQLException {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		phatSinhMa_DAO =new PhatSinhMa_DAO();
+		try {
+			PreparedStatement preparedstaments = connection.prepareStatement(
+					"update SanPham set maSanPham= ? where maSanPham = '" + sanPham.getMaSanPham() + "'");
+			preparedstaments.setString(1, phatSinhMa_DAO.getMaSach());
+			return preparedstaments.executeUpdate() > 0;
+		} catch (SQLException e) {
+		}
+//		connection.close();
+		return false;
+	}
 	// Lấy Dụng Cụ Học Tập
 	public ArrayList<SanPham> getAllDungCuHocTap() {
 		ArrayList<SanPham> ds = new ArrayList<SanPham>();
@@ -284,21 +314,6 @@ public class SanPham_DAO {
 			PreparedStatement preparedstaments = connection.prepareStatement(
 					"update SanPham set maSanPham= ? where maSanPham = '" + sanPham.getMaSanPham() + "'");
 			preparedstaments.setString(1, phatSinhMa_DAO.getMaDCHT());
-			return preparedstaments.executeUpdate() > 0;
-		} catch (SQLException e) {
-			
-		}
-//		connection.close();
-		return false;
-	}
-	public boolean khoiPhucSanPham01(SanPham sanPham) throws SQLException {
-		ConnectDB.getInstance();
-		Connection connection = ConnectDB.getConnection();
-		phatSinhMa_DAO =new PhatSinhMa_DAO();
-		try {
-			PreparedStatement preparedstaments = connection.prepareStatement(
-					"update SanPham set maSanPham= ? where maSanPham = '" + sanPham.getMaSanPham() + "'");
-			preparedstaments.setString(1, phatSinhMa_DAO.getMaSachXoa());
 			return preparedstaments.executeUpdate() > 0;
 		} catch (SQLException e) {
 			

@@ -328,6 +328,7 @@ public class Sach_GUI extends JPanel {
 					btnUpdate.setEnabled(false);
 					btnTim.setEnabled(false);
 					btnChonHinhAnh.setEnabled(true);
+					btnKhoiPhuc.setEnabled(false);
 
 				} else {
 					add();
@@ -339,6 +340,7 @@ public class Sach_GUI extends JPanel {
 					btnUpdate.setEnabled(true);
 					btnTim.setEnabled(true);
 					btnChonHinhAnh.setEnabled(true);
+					btnKhoiPhuc.setEnabled(true);
 				}
 			}
 		});
@@ -394,6 +396,7 @@ public class Sach_GUI extends JPanel {
 					btnAdd.setEnabled(false);
 					btnTim.setEnabled(false);
 					btnChonHinhAnh.setEnabled(true);
+					btnKhoiPhuc.setEnabled(false);
 				} else {
 					update();
 					unfocusable();
@@ -404,6 +407,7 @@ public class Sach_GUI extends JPanel {
 					btnAdd.setEnabled(true);
 					btnTim.setEnabled(true);
 					btnChonHinhAnh.setEnabled(false);
+					btnKhoiPhuc.setEnabled(true);
 				}
 			}
 		});
@@ -428,6 +432,7 @@ public class Sach_GUI extends JPanel {
 
 		lblHinhAnh = new JLabel("");
 		lblHinhAnh.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblHinhAnh.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHinhAnh.setBounds(1023, 15, 250, 200);
 		pThongTin.add(lblHinhAnh);
 
@@ -510,7 +515,9 @@ public class Sach_GUI extends JPanel {
 				chooseFile();
 			}
 		});
+		
 		pThongTin.add(btnChonHinhAnh);
+		
 		btnKhoiPhuc = new JButton("Khôi Phục");
 		btnKhoiPhuc.setOpaque(true);
 		btnKhoiPhuc.setForeground(Color.WHITE);
@@ -1249,17 +1256,15 @@ public class Sach_GUI extends JPanel {
 						sanPham.setMaNhaCungCap("");
 
 //				            sanPham_DAO.suaSanPhamTheoMa(sanPham);
-						sanPham_DAO.khoiPhucSanPham01(sanPham);
-						
-					JOptionPane.showMessageDialog(null, "Xóa Thành Công !");
-					refresh();
+						sanPham_DAO.suaMaSach(sanPham);
+						JOptionPane.showMessageDialog(null, "Xóa Thành Công !");
+						refresh();
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(null, "Sản Phẩm Tồn Tại Trong Hóa Đơn !");
 					}
 				}
 			}
 		}
-		
 		return false ;
 	}
 
@@ -1417,6 +1422,7 @@ public class Sach_GUI extends JPanel {
 		btnUpdate.setEnabled(true);
 		btnDelete.setEnabled(true);
 		btnChonHinhAnh.setEnabled(true);
+		btnKhoiPhuc.setEnabled(true);
 	}
 	private void offFocus() {
 		txtMaSach.setFocusable(false);
@@ -1449,6 +1455,7 @@ public class Sach_GUI extends JPanel {
 		btnDelete.setEnabled(false);
 		btnUpdate.setEnabled(false);
 		btnChonHinhAnh.setEnabled(false);
+		btnKhoiPhuc.setEnabled(false);
 	}
 	
 	private void focusable() {

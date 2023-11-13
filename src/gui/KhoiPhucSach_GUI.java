@@ -120,7 +120,7 @@ public class KhoiPhucSach_GUI extends JInternalFrame {
 				SanPham sanpham = new SanPham();
 				sanpham.setMaSanPham((String) model.getValueAt(row, 0));
 				try {
-					sanPham_DAO.khoiPhucSanPham(sanpham);
+					sanPham_DAO.khoiPhucSanPham01(sanpham);
 
 					loadData(sanPham_DAO.getAllSachXoa());
 				} catch (SQLException e1) {

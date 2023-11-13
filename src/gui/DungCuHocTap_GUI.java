@@ -907,7 +907,6 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 				excelFilePath += ".xlsx";
 			}
 			loadFile();
-			System.out.println("a");
 			try {
 				wordkbook = new XSSFWorkbook();
 				XSSFSheet sheet = wordkbook.createSheet("Danh Sách");
@@ -965,7 +964,6 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 					cell.setCellValue(ds.get(i).getMaNhaCungCap());
 					System.out.println("a");
 				}
-//				File file = new File("E://a.xlsx");
 				FileOutputStream fis = new FileOutputStream(excelFilePath);
 				wordkbook.write(fis);
 				fis.close();

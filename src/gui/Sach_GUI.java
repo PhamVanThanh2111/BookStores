@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.io.FileOutputStream;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -24,6 +25,13 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -97,7 +105,7 @@ public class Sach_GUI extends JPanel {
 	private TheLoaiSach theLoaiSach;
 	private ArrayList<SanPham> ds;
 	private Border borderDefault;
-	
+	private JButton btnXuatFile;
 	
 	private JButton btnTim;
 	private JButton btnChonHinhAnh;
@@ -106,7 +114,8 @@ public class Sach_GUI extends JPanel {
 	
 	private JFileChooser fileChooser;
 	private File selectedFile;
-	
+	private XSSFWorkbook wordkbook;
+
 	private KhoiPhucSach_GUI khoiPhucSach_GUI;
 
 	// private JButton btnChonHinhAnh;
@@ -686,6 +695,21 @@ public class Sach_GUI extends JPanel {
 		lblChiTitSch.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblChiTitSch.setBounds(22, 10, 200, 40);
 		pDanhSach.add(lblChiTitSch);
+		
+		btnXuatFile = new JButton("Xuất File");
+		btnXuatFile.setOpaque(true);
+		btnXuatFile.setForeground(Color.WHITE);
+		btnXuatFile.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnXuatFile.setBackground(new Color(73, 129, 158));
+		btnXuatFile.setBounds(1098, 10, 135, 27);
+		btnXuatFile.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				xuatFile(sanPham_DAO.getAllSach());
+			}
+		});
+		pDanhSach.add(btnXuatFile);
 
 		loadData(sanPham_DAO.getAllSach());
 		// unfocus
@@ -1365,6 +1389,110 @@ public class Sach_GUI extends JPanel {
 		} else // JFileChooser.CANCEL_OPTION
 			return false;
 	}
+	
+	public boolean xuatFile(ArrayList<SanPham> ds) {
+			fileChooser = new JFileChooser();
+			int userSelection = fileChooser.showSaveDialog(this);
+			if (userSelection == JFileChooser.APPROVE_OPTION) {
+				File fileToSave = fileChooser.getSelectedFile();
+				String excelFilePath = fileToSave.getAbsolutePath();
+				// Đảm bảo tệp có đuôi
+				if (!excelFilePath.endsWith(".xlsx")) {
+					excelFilePath += ".xlsx";
+				}
+				try {
+					wordkbook = new XSSFWorkbook();
+					XSSFSheet sheet = wordkbook.createSheet("Danh Sách");
+					XSSFRow row = null;
+					XSSFCell cell = null;
+					row = (XSSFRow) sheet.createRow(2);
+					cell = row.createCell(0, CellType.STRING);
+					cell.setCellValue("STT");
+
+					cell = row.createCell(1, CellType.STRING);
+					cell.setCellValue("Mã SP");
+
+					cell = row.createCell(2, CellType.STRING);
+					cell.setCellValue("Tên SP");
+
+					cell = row.createCell(3, CellType.STRING);
+					cell.setCellValue("Xuất Xứ");
+
+					cell = row.createCell(4, CellType.STRING);
+					cell.setCellValue("Giá Nhập");
+
+					cell = row.createCell(5, CellType.STRING);
+					cell.setCellValue("Giá Bán");
+
+					cell = row.createCell(6, CellType.STRING);
+					cell.setCellValue("Số Lượng Tồn");
+					
+					cell = row.createCell(7, CellType.STRING);
+					cell.setCellValue("Nhà Xuất Bản");
+					
+					cell = row.createCell(8, CellType.STRING);
+					cell.setCellValue("Thể Loại Sách");
+					
+					cell = row.createCell(9, CellType.STRING);
+					cell.setCellValue("Tác Giả");
+					
+					cell = row.createCell(10, CellType.STRING);
+					cell.setCellValue("Số Trang");
+					
+					cell = row.createCell(11, CellType.STRING);
+					cell.setCellValue("Năm Xuất Bản");
+					for (int i = 0; i < ds.size(); i++) {
+
+						row = (XSSFRow) sheet.createRow(3 + i);
+						cell = row.createCell(0, CellType.NUMERIC);
+						cell.setCellValue(i + 1);
+
+						cell = row.createCell(1, CellType.STRING);
+						cell.setCellValue(ds.get(i).getMaSanPham());
+
+						cell = row.createCell(2, CellType.STRING);
+						cell.setCellValue(ds.get(i).getTenSanPham());
+
+						cell = row.createCell(3, CellType.STRING);
+						cell.setCellValue(ds.get(i).getXuatXu());
+
+						cell = row.createCell(4, CellType.STRING);
+						cell.setCellValue(ds.get(i).getGiaNhap());
+
+						cell = row.createCell(5, CellType.STRING);
+						cell.setCellValue(ds.get(i).getGiaBan());
+
+						cell = row.createCell(6, CellType.STRING);
+						cell.setCellValue(ds.get(i).getSoLuongTon());
+
+						cell = row.createCell(7, CellType.STRING);
+						cell.setCellValue(ds.get(i).getMaNXB());
+
+						cell = row.createCell(8, CellType.STRING);
+						cell.setCellValue(ds.get(i).getMaTheLoaiSach());
+
+						cell = row.createCell(9, CellType.STRING);
+						cell.setCellValue(ds.get(i).getTacGia());
+
+						cell = row.createCell(10, CellType.STRING);
+						cell.setCellValue(ds.get(i).getSoTrang());
+						
+						cell = row.createCell(11, CellType.STRING);
+						cell.setCellValue(ds.get(i).getNamXuatBan());
+
+
+					}
+					FileOutputStream fis = new FileOutputStream(excelFilePath);
+					wordkbook.write(fis);
+					fis.close();
+					JOptionPane.showMessageDialog(null, "Xuất File Thành Công !");
+				} catch (Exception e) {
+					
+				}
+			}
+			return false;
+		}
+	
 
 	private void enableEdit() {
 		txtMaSach.setEditable(true);

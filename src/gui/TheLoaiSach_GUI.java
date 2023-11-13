@@ -319,6 +319,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		txtMaTheLoaiSach.setBorder(null);
 		txtMaTheLoaiSach.setBackground(Color.WHITE);
 		txtMaTheLoaiSach.setBounds(227, 102, 400, 40);
+		txtMaTheLoaiSach.setBorder(null);
 		pThongTin.add(txtMaTheLoaiSach);
 
 		txtTenTheLoaiSach = new JTextField();
@@ -329,6 +330,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		txtTenTheLoaiSach.setBorder(null);
 		txtTenTheLoaiSach.setBackground(Color.WHITE);
 		txtTenTheLoaiSach.setBounds(850, 100, 400, 40);
+		txtTenTheLoaiSach.setBorder(null);
 		pThongTin.add(txtTenTheLoaiSach);
 
 		scrollPaneTheLoaiSach = new JScrollPane();
@@ -405,9 +407,11 @@ public class TheLoaiSach_GUI extends JPanel {
 		lblChiTitTheLoaiSach.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblChiTitTheLoaiSach.setBounds(22, 10, 291, 40);
 		pDanhSach.add(lblChiTitTheLoaiSach);
-
-		refresh();
-		;
+		// load Data
+		loadDataIntoTable(theLoaiSach_DAO.getAllListTheLoaiSach());
+//		refresh();
+		// unfocus
+		unfocusable();
 	}
 
 	public TheLoaiSach_GUI() {
@@ -467,7 +471,8 @@ public class TheLoaiSach_GUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				refresh();
+				lamMoi();
+//				refresh();
 			}
 		});
 		btnLamMoi.setBounds(960, 200, 135, 40);
@@ -540,6 +545,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		txtMaTheLoaiSach.setEditable(false);
 		txtMaTheLoaiSach.setColumns(10);
 		txtMaTheLoaiSach.setBackground(Color.WHITE);
+		txtMaTheLoaiSach.setBorder(null);
 		txtMaTheLoaiSach.setBounds(227, 102, 400, 40);
 		pThongTin.add(txtMaTheLoaiSach);
 
@@ -550,6 +556,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		txtTenTheLoaiSach.setColumns(10);
 		txtTenTheLoaiSach.setBackground(Color.WHITE);
 		txtTenTheLoaiSach.setBounds(850, 100, 400, 40);
+		txtTenTheLoaiSach.setBorder(null);
 		pThongTin.add(txtTenTheLoaiSach);
 
 		scrollPaneTheLoaiSach = new JScrollPane();

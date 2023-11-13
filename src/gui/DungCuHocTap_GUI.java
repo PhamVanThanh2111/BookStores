@@ -369,7 +369,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 				lblHinhAnh.setIcon(new ImageIcon(DungCuHocTap_GUI.class.getResource(dungCuHocTap.getHinhAnh())));
 				relativePath = dungCuHocTap.getHinhAnh();
 			}
-		});;
+		});
 		
 		if (nhanVien.getChucVu().equals("Bán hàng")) {
 			btnAdd.setEnabled(false);

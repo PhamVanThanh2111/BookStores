@@ -89,15 +89,13 @@ public class Sach_GUI extends JPanel {
 	private SanPham_DAO sanPham_DAO;
 	private PhatSinhMa_DAO phatSinhMa_DAO;
 	private TimKiemSach_GUI timKiemSach_GUI;
-
 	private NhaXuatBan nhaXuatBan;
 	private TheLoaiSach theLoaiSach;
 	private ArrayList<SanPham> ds;
-
+	private Border borderDefault;
 	private JButton btnTim;
 
 	// private String relativePath;
-	private Border borderDefault;
 //	private String relativePath;
 
 	// private JButton btnChonHinhAnh;
@@ -172,7 +170,6 @@ public class Sach_GUI extends JPanel {
 		txtMaSach.setColumns(10);
 		txtMaSach.setBackground(Color.WHITE);
 		txtMaSach.setBounds(145, 70, 255, 40);
-		txtMaSach.setBorder(null);
 		pThongTin.add(txtMaSach);
 
 		txtTenSach = new JTextField();
@@ -182,7 +179,6 @@ public class Sach_GUI extends JPanel {
 		txtTenSach.setColumns(10);
 		txtTenSach.setBackground(Color.WHITE);
 		txtTenSach.setBounds(145, 115, 255, 40);
-		txtTenSach.setBorder(null);
 		pThongTin.add(txtTenSach);
 
 		txtXuatXu = new JTextField();
@@ -192,7 +188,6 @@ public class Sach_GUI extends JPanel {
 		txtXuatXu.setColumns(10);
 		txtXuatXu.setBackground(Color.WHITE);
 		txtXuatXu.setBounds(145, 160, 255, 40);
-		txtXuatXu.setBorder(null);
 		pThongTin.add(txtXuatXu);
 
 		txtTacGia = new JTextField();
@@ -202,7 +197,6 @@ public class Sach_GUI extends JPanel {
 		txtTacGia.setColumns(10);
 		txtTacGia.setBackground(Color.WHITE);
 		txtTacGia.setBounds(145, 207, 255, 40);
-		txtTacGia.setBorder(null);
 		pThongTin.add(txtTacGia);
 
 		lblLoaiSach = new JLabel("Loại Sách:");
@@ -233,7 +227,6 @@ public class Sach_GUI extends JPanel {
 		txtGiaNhap.setColumns(10);
 		txtGiaNhap.setBackground(Color.WHITE);
 		txtGiaNhap.setBounds(600, 160, 255, 40);
-		txtGiaNhap.setBorder(null);
 		pThongTin.add(txtGiaNhap);
 
 		txtGiaBan = new JTextField();
@@ -243,7 +236,6 @@ public class Sach_GUI extends JPanel {
 		txtGiaBan.setColumns(10);
 		txtGiaBan.setBackground(Color.WHITE);
 		txtGiaBan.setBounds(600, 205, 255, 40);
-		txtGiaBan.setBorder(null);
 		pThongTin.add(txtGiaBan);
 
 		cmbTenLoaiSach = new JComboBox<String>();
@@ -251,9 +243,9 @@ public class Sach_GUI extends JPanel {
 		cmbTenLoaiSach.setToolTipText("Loại Sách");
 		cmbTenLoaiSach.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		cmbTenLoaiSach.setBounds(600, 70, 255, 40);
+		cmbTenLoaiSach.setEnabled(false);
 		loadDataIntoComboboxTenLoaiSach();
 		cmbTenLoaiSach.setSelectedIndex(-1);
-		cmbTenLoaiSach.setBorder(null);
 		pThongTin.add(cmbTenLoaiSach);
 
 		cmbTenNhaXuatBan = new JComboBox<String>();
@@ -261,8 +253,8 @@ public class Sach_GUI extends JPanel {
 		cmbTenNhaXuatBan.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		cmbTenNhaXuatBan.setBounds(600, 115, 255, 40);
 		loadDataIntoComboboxTenNhaXuatBan();
+		cmbTenNhaXuatBan.setEnabled(false);
 		cmbTenNhaXuatBan.setSelectedIndex(-1);
-		cmbTenNhaXuatBan.setBorder(null);
 		pThongTin.add(cmbTenNhaXuatBan);
 
 		lblSoTrang = new JLabel("Số Trang:");
@@ -287,7 +279,6 @@ public class Sach_GUI extends JPanel {
 		txtSoTrang.setColumns(10);
 		txtSoTrang.setBackground(Color.WHITE);
 		txtSoTrang.setBounds(1005, 115, 215, 40);
-		txtSoTrang.setBorder(null);
 		pThongTin.add(txtSoTrang);
 
 		txtSoLuong = new JTextField();
@@ -297,7 +288,6 @@ public class Sach_GUI extends JPanel {
 		txtSoLuong.setColumns(10);
 		txtSoLuong.setBackground(Color.WHITE);
 		txtSoLuong.setBounds(1005, 162, 215, 40);
-		txtSoLuong.setBorder(null);
 		pThongTin.add(txtSoLuong);
 
 		btnAdd = new JButton("Thêm");
@@ -421,19 +411,18 @@ public class Sach_GUI extends JPanel {
 		pThongTin.add(lblHinhAnh);
 
 		txtNamXuatBan = new JTextField();
-		txtNamXuatBan.setToolTipText("năm xuất bản");
+		txtNamXuatBan.setToolTipText("năm xuất bản:");
 		txtNamXuatBan.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtNamXuatBan.setEditable(false);
 		txtNamXuatBan.setColumns(10);
 		txtNamXuatBan.setBackground(Color.WHITE);
 		txtNamXuatBan.setBounds(1005, 65, 215, 40);
-		txtNamXuatBan.setBorder(null);
 		pThongTin.add(txtNamXuatBan);
 
-		lblNamXuatBan = new JLabel("Năm XB::");
+		lblNamXuatBan = new JLabel("Năm XB:");
 		lblNamXuatBan.setToolTipText("Năm Xuất Bản:");
 		lblNamXuatBan.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNamXuatBan.setBounds(890, 70, 90, 40);
+		lblNamXuatBan.setBounds(900, 70, 90, 40);
 		pThongTin.add(lblNamXuatBan);
 
 		btnTim = new JButton("Tìm");
@@ -490,6 +479,15 @@ public class Sach_GUI extends JPanel {
 			}
 		});
 		pThongTin.add(btnTim);
+		
+		if (nhanVien.getChucVu().equals("Bán hàng")) {
+			btnAdd.setEnabled(false);
+			btnDelete.setEnabled(false);
+			btnUpdate.setEnabled(false);
+			btnLamMoi.setEnabled(false);
+		}
+
+		offFocus();
 
 		// danh sách sách
 		pDanhSach = new JPanel();
@@ -666,7 +664,6 @@ public class Sach_GUI extends JPanel {
 		txtMaSach.setColumns(10);
 		txtMaSach.setBackground(Color.WHITE);
 		txtMaSach.setBounds(145, 70, 255, 40);
-		txtMaSach.setBorder(null);
 		pThongTin.add(txtMaSach);
 
 		txtTenSach = new JTextField();
@@ -676,7 +673,6 @@ public class Sach_GUI extends JPanel {
 		txtTenSach.setColumns(10);
 		txtTenSach.setBackground(Color.WHITE);
 		txtTenSach.setBounds(145, 115, 255, 40);
-		txtTenSach.setBorder(null);
 		pThongTin.add(txtTenSach);
 
 		txtXuatXu = new JTextField();
@@ -686,7 +682,6 @@ public class Sach_GUI extends JPanel {
 		txtXuatXu.setColumns(10);
 		txtXuatXu.setBackground(Color.WHITE);
 		txtXuatXu.setBounds(145, 160, 255, 40);
-		txtXuatXu.setBorder(null);
 		pThongTin.add(txtXuatXu);
 
 		txtTacGia = new JTextField();
@@ -696,7 +691,7 @@ public class Sach_GUI extends JPanel {
 		txtTacGia.setColumns(10);
 		txtTacGia.setBackground(Color.WHITE);
 		txtTacGia.setBounds(145, 207, 255, 40);
-		txtTacGia.setBorder(null);
+		borderDefault = txtTacGia.getBorder();
 		pThongTin.add(txtTacGia);
 
 		lblLoaiSach = new JLabel("Loại Sách:");
@@ -727,7 +722,6 @@ public class Sach_GUI extends JPanel {
 		txtGiaNhap.setColumns(10);
 		txtGiaNhap.setBackground(Color.WHITE);
 		txtGiaNhap.setBounds(600, 160, 255, 40);
-		txtGiaNhap.setBorder(null);
 		pThongTin.add(txtGiaNhap);
 
 		txtGiaBan = new JTextField();
@@ -737,14 +731,12 @@ public class Sach_GUI extends JPanel {
 		txtGiaBan.setColumns(10);
 		txtGiaBan.setBackground(Color.WHITE);
 		txtGiaBan.setBounds(600, 205, 255, 40);
-		txtGiaBan.setBorder(null);
 		pThongTin.add(txtGiaBan);
 
 		cmbTenLoaiSach = new JComboBox<String>();
 		cmbTenLoaiSach.setForeground(new Color(0, 0, 0));
 		cmbTenLoaiSach.setToolTipText("Loại Sách");
 		cmbTenLoaiSach.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cmbTenLoaiSach.setBorder(null);
 		cmbTenLoaiSach.setBounds(600, 70, 255, 40);
 		loadDataIntoComboboxTenLoaiSach();
 		cmbTenLoaiSach.setSelectedIndex(-1);
@@ -753,7 +745,6 @@ public class Sach_GUI extends JPanel {
 		cmbTenNhaXuatBan = new JComboBox<String>();
 		cmbTenNhaXuatBan.setToolTipText("Nhà Xuất Bản");
 		cmbTenNhaXuatBan.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cmbTenNhaXuatBan.setBorder(null);
 		cmbTenNhaXuatBan.setBounds(600, 115, 255, 40);
 		loadDataIntoComboboxTenNhaXuatBan();
 		cmbTenNhaXuatBan.setSelectedIndex(-1);
@@ -781,7 +772,6 @@ public class Sach_GUI extends JPanel {
 		txtSoTrang.setColumns(10);
 		txtSoTrang.setBackground(Color.WHITE);
 		txtSoTrang.setBounds(1005, 115, 215, 40);
-		txtSoTrang.setBorder(null);
 		pThongTin.add(txtSoTrang);
 
 		txtSoLuong = new JTextField();
@@ -791,7 +781,6 @@ public class Sach_GUI extends JPanel {
 		txtSoLuong.setColumns(10);
 		txtSoLuong.setBackground(Color.WHITE);
 		txtSoLuong.setBounds(1005, 162, 215, 40);
-		txtSoLuong.setBorder(null);
 		pThongTin.add(txtSoLuong);
 
 		btnLamMoi = new JButton("Làm mới");
@@ -815,13 +804,13 @@ public class Sach_GUI extends JPanel {
 		txtNamXuatBan.setColumns(10);
 		txtNamXuatBan.setBackground(Color.WHITE);
 		txtNamXuatBan.setBounds(1005, 65, 215, 40);
-		txtNamXuatBan.setBorder(null);
+		txtNamXuatBan.setBorder(borderDefault);
 		pThongTin.add(txtNamXuatBan);
 
-		lblNamXuatBan = new JLabel("Năm XB::");
+		lblNamXuatBan = new JLabel("Năm XB:");
 		lblNamXuatBan.setToolTipText("Năm Xuất Bản:");
 		lblNamXuatBan.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNamXuatBan.setBounds(890, 70, 90, 40);
+		lblNamXuatBan.setBounds(900, 70, 90, 40);
 		pThongTin.add(lblNamXuatBan);
 
 		btnTim = new JButton("Tìm");
@@ -980,6 +969,7 @@ public class Sach_GUI extends JPanel {
 		
 	}
 
+	
 	// load Data lên bảng
 	public void loadData(ArrayList<SanPham> ds) {
 		model.setRowCount(0);
@@ -1254,7 +1244,30 @@ public class Sach_GUI extends JPanel {
 		btnDelete.setEnabled(true);
 		// btnChonHinhAnh.setEnabled(true);
 	}
-
+	private void offFocus() {
+		txtMaSach.setFocusable(false);
+		txtTenSach.setFocusable(false);
+		txtXuatXu.setFocusable(false);
+		txtTacGia.setFocusable(false);
+		txtGiaNhap.setFocusable(false);
+		txtGiaBan.setFocusable(false);
+		txtNamXuatBan.setFocusable(false);
+		txtSoTrang.setFocusable(false);
+		txtSoLuong.setFocusable(false);
+	}
+	
+	private void openFocus() {
+		txtMaSach.setFocusable(false);
+		txtTenSach.setFocusable(true);
+		txtXuatXu.setFocusable(true);
+		txtTacGia.setFocusable(true);
+		txtGiaNhap.setFocusable(true);
+		txtGiaBan.setFocusable(true);
+		txtNamXuatBan.setFocusable(true);
+		txtSoTrang.setFocusable(true);
+		txtSoLuong.setFocusable(true);
+	}
+	
 	private void disableButton() {
 		btnLamMoi.setEnabled(false);
 		btnAdd.setEnabled(false);

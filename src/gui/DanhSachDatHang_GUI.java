@@ -341,8 +341,8 @@ public class DanhSachDatHang_GUI extends JPanel {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		for (PhieuDatHang phieuDatHang : danhSachPhieuDatHangs) {
 			Object[] objects = {phieuDatHang.getMaPhieuDatHang(), 
-								khachHang_DAO.getKhachHangTheoMaKhachHang(phieuDatHang.getMaKhachHang()).getTenKhachHang(),
-								khachHang_DAO.getKhachHangTheoMaKhachHang(phieuDatHang.getMaKhachHang()).getSoDienThoai(),
+								khachHang_DAO.getKhachHangTheoMa(phieuDatHang.getMaKhachHang()).getTenKhachHang(),
+								khachHang_DAO.getKhachHangTheoMa(phieuDatHang.getMaKhachHang()).getSoDienThoai(),
 								nhanVien_DAO.getNhanVienTheoMa(phieuDatHang.getMaNhanVien()).getTenNhanVien(), 
 								simpleDateFormat.format(phieuDatHang.getNgayLap()), 
 								phieuDatHang.getThanhTien()};

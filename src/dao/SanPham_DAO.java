@@ -12,7 +12,7 @@ import entity.SanPham;
 
 public class SanPham_DAO {
 	// Lấy sách
-
+	private PhatSinhMa_DAO phatSinhMa_DAO;
 	public ArrayList<SanPham> getAllSach() {
 		ArrayList<SanPham> ds = new ArrayList<SanPham>();
 		ConnectDB.getInstance();
@@ -241,5 +241,54 @@ public class SanPham_DAO {
 		return false;
 	}
 	
+	public boolean suaMaDCHT(SanPham sanPham) throws SQLException {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		phatSinhMa_DAO =new PhatSinhMa_DAO();
+		try {
+			PreparedStatement preparedstaments = connection.prepareStatement(
+					"update SanPham set maSanPham= ? where maSanPham = '" + sanPham.getMaSanPham() + "'");
+			preparedstaments.setString(1, phatSinhMa_DAO.getMaDCHTXoa());
+			return preparedstaments.executeUpdate() > 0;
+		} catch (SQLException e) {
+			
+		}
+//		connection.close();
+		return false;
+	}
 	
+	public boolean khoiPhucSanPham(SanPham sanPham) throws SQLException {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		phatSinhMa_DAO =new PhatSinhMa_DAO();
+		try {
+			PreparedStatement preparedstaments = connection.prepareStatement(
+					"update SanPham set maSanPham= ? where maSanPham = '" + sanPham.getMaSanPham() + "'");
+			preparedstaments.setString(1, phatSinhMa_DAO.getMaDCHT());
+			return preparedstaments.executeUpdate() > 0;
+		} catch (SQLException e) {
+			
+		}
+//		connection.close();
+		return false;
+	}
+	
+	public ArrayList<SanPham> getAllDCHTXoa() {
+		ArrayList<SanPham> ds = new ArrayList<SanPham>();
+		ConnectDB.getInstance();
+		Connection con = ConnectDB.getConnection();
+		try {
+			PreparedStatement preparedStatement = con
+					.prepareStatement("select * from SanPham where maSanPham like 'XDCHT%'");
+			ResultSet result = preparedStatement.executeQuery();
+			while (result.next()) {
+				ds.add(new SanPham(result.getString(1), result.getString(2), result.getString(3), result.getFloat(4),
+						result.getFloat(5), result.getInt(6), result.getString(7), result.getString(13)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return ds;
+	}
 }

@@ -1,7 +1,5 @@
 package gui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -15,7 +13,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-import dao.NhaCungCap_DAO;
 import dao.NhaXuatBan_DAO;
 import dao.SanPham_DAO;
 import dao.TheLoaiSach_DAO;
@@ -30,6 +27,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class KhoiPhucSach_GUI extends JInternalFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private DefaultTableModel model;
 	
 	private JPanel pMain;

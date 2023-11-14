@@ -27,6 +27,10 @@ import entity.SanPham;
 import javax.swing.JButton;
 
 public class KhoiPhucDungCuHocTap_GUI extends JInternalFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private DefaultTableModel model;
 	private JTable table;
 	private JTableHeader tableHeader;

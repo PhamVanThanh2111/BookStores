@@ -439,7 +439,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		pThongTin.setLayout(null);
 		pThongTin.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pThongTin.setBackground(Color.WHITE);
-		pThongTin.setBounds(0, 0, 1300, 370);
+		pThongTin.setBounds(0, 0, 1300, 311);
 		pMain.add(pThongTin);
 
 		JLabel lblthongTinDCHT = new JLabel("Thông Tin Dụng Cụ Học Tập");
@@ -454,12 +454,12 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 
 		JLabel lbltenDCHT = new JLabel("Tên DCHT:");
 		lbltenDCHT.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lbltenDCHT.setBounds(40, 115, 90, 40);
+		lbltenDCHT.setBounds(448, 70, 90, 40);
 		pThongTin.add(lbltenDCHT);
 
 		JLabel lblnhaCC = new JLabel("Nhà CC:");
 		lblnhaCC.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblnhaCC.setBounds(40, 160, 90, 40);
+		lblnhaCC.setBounds(40, 115, 90, 40);
 		pThongTin.add(lblnhaCC);
 
 		txtmaDCHT = new JTextField();
@@ -480,22 +480,17 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		txttenDCHT.setEditable(false);
 		txttenDCHT.setColumns(10);
 		txttenDCHT.setBackground(Color.WHITE);
-		txttenDCHT.setBounds(145, 115, 255, 40);
+		txttenDCHT.setBounds(550, 70, 255, 40);
 		pThongTin.add(txttenDCHT);
-
-		JLabel lblgia = new JLabel("Giá Nhập:");
-		lblgia.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblgia.setBounds(450, 115, 130, 40);
-		pThongTin.add(lblgia);
 
 		JLabel lblnhaXuatBan = new JLabel("Giá Bán:");
 		lblnhaXuatBan.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblnhaXuatBan.setBounds(450, 160, 130, 40);
+		lblnhaXuatBan.setBounds(448, 115, 130, 40);
 		pThongTin.add(lblnhaXuatBan);
 
 		JLabel lblgiaNhap = new JLabel("Số Lượng:");
 		lblgiaNhap.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblgiaNhap.setBounds(450, 205, 98, 40);
+		lblgiaNhap.setBounds(448, 160, 98, 40);
 		pThongTin.add(lblgiaNhap);
 
 		txtsoLuong = new JTextField();
@@ -504,7 +499,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		txtsoLuong.setEditable(false);
 		txtsoLuong.setColumns(10);
 		txtsoLuong.setBackground(Color.WHITE);
-		txtsoLuong.setBounds(550, 205, 255, 40);
+		txtsoLuong.setBounds(550, 160, 255, 40);
 		pThongTin.add(txtsoLuong);
 
 		btnlamMoi = new JButton("Làm mới");
@@ -512,7 +507,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		btnlamMoi.setForeground(Color.WHITE);
 		btnlamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnlamMoi.setBackground(new Color(73, 129, 158));
-		btnlamMoi.setBounds(909, 298, 135, 40);
+		btnlamMoi.setBounds(909, 255, 135, 40);
 		btnlamMoi.addActionListener(new ActionListener() {
 
 			@Override
@@ -536,7 +531,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 
 		lblHinhAnh = new JLabel("");
 		lblHinhAnh.setBorder(new LineBorder(new Color(0, 0, 0)));
-		lblHinhAnh.setBounds(857, 70, 397, 146);
+		lblHinhAnh.setBounds(857, 70, 397, 130);
 		pThongTin.add(lblHinhAnh);
 
 		txtgiaBan = new JTextField();
@@ -545,21 +540,12 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		txtgiaBan.setEditable(false);
 		txtgiaBan.setColumns(10);
 		txtgiaBan.setBackground(Color.WHITE);
-		txtgiaBan.setBounds(550, 160, 255, 40);
+		txtgiaBan.setBounds(550, 115, 255, 40);
 		pThongTin.add(txtgiaBan);
-
-		txtgiaNhap = new JTextField();
-		txtgiaNhap.setToolTipText("Giá nhập");
-		txtgiaNhap.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtgiaNhap.setEditable(false);
-		txtgiaNhap.setColumns(10);
-		txtgiaNhap.setBackground(Color.WHITE);
-		txtgiaNhap.setBounds(550, 115, 255, 40);
-		pThongTin.add(txtgiaNhap);
 
 		JLabel lblXutX = new JLabel("Xuất Xứ:");
 		lblXutX.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblXutX.setBounds(40, 205, 94, 40);
+		lblXutX.setBounds(40, 160, 94, 40);
 		pThongTin.add(lblXutX);
 
 		txtXuatXu = new JTextField();
@@ -568,12 +554,12 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		txtXuatXu.setEditable(false);
 		txtXuatXu.setColumns(10);
 		txtXuatXu.setBackground(Color.WHITE);
-		txtXuatXu.setBounds(145, 205, 255, 40);
+		txtXuatXu.setBounds(145, 160, 255, 40);
 		pThongTin.add(txtXuatXu);
 
 		cbNhaCC = new JComboBox<String>();
 		cbNhaCC.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cbNhaCC.setBounds(145, 160, 255, 40);
+		cbNhaCC.setBounds(145, 115, 255, 40);
 		loadCBNhaCC();
 		cbNhaCC.setSelectedIndex(-1);
 		pThongTin.add(cbNhaCC);
@@ -582,7 +568,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		btnTim.setForeground(Color.WHITE);
 		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnTim.setBackground(new Color(73, 129, 158));
-		btnTim.setBounds(1060, 298, 135, 40);
+		btnTim.setBounds(1060, 255, 135, 40);
 		btnTim.addActionListener(new ActionListener() {
 
 			@Override
@@ -625,17 +611,17 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		pDanhSach.setLayout(null);
 		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pDanhSach.setBackground(Color.WHITE);
-		pDanhSach.setBounds(0, 380, 1300, 340);
+		pDanhSach.setBounds(0, 329, 1300, 391);
 		pMain.add(pDanhSach);
 
 		JScrollPane scrollPaneDungCuHocTap = new JScrollPane();
 		scrollPaneDungCuHocTap.setToolTipText("Chọn vào Dụng cụ học tập cần hiển thị thông tin");
 		scrollPaneDungCuHocTap.setBorder(null);
 		scrollPaneDungCuHocTap.setBackground(Color.WHITE);
-		scrollPaneDungCuHocTap.setBounds(30, 65, 1259, 250);
+		scrollPaneDungCuHocTap.setBounds(20, 65, 1259, 304);
 		pDanhSach.add(scrollPaneDungCuHocTap);
 
-		String cols[] = { "Mã Dụng Cụ Học Tập", "Tên Dụng Cụ Học Tập ", "Xuất Xứ", "Giá Nhập", "Giá Bán",
+		String cols[] = { "Mã Dụng Cụ Học Tập", "Tên Dụng Cụ Học Tập ", "Xuất Xứ", "Giá Bán",
 				"Số Lượng Tồn", "Nhà Cung Cấp" };
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
@@ -664,7 +650,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		table.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
 		table.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
 		table.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
-		table.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
+//		table.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
 		desktopPane.setLayout(null);
 
 		JLabel lblChiTeitDungCuHocTap = new JLabel("Chi Tiết Dụng Cụ Học Tập");
@@ -672,7 +658,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		lblChiTeitDungCuHocTap.setBounds(20, 15, 246, 40);
 		pDanhSach.add(lblChiTeitDungCuHocTap);
 
-		loadData(sanPham_DAO.getAllDungCuHocTap());
+		loadDataDCHTChoKhachHang(sanPham_DAO.getAllDungCuHocTap());
 
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.addMouseListener(new MouseListener() {
@@ -709,10 +695,9 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 				txtmaDCHT.setText((String) model.getValueAt(r, 0));
 				txttenDCHT.setText((String) model.getValueAt(r, 1));
 				txtXuatXu.setText((String) model.getValueAt(r, 2));
-				txtgiaNhap.setText((String) model.getValueAt(r, 3).toString());
-				txtgiaBan.setText((String) model.getValueAt(r, 4).toString());
-				txtsoLuong.setText((String) model.getValueAt(r, 5).toString());
-				cbNhaCC.setSelectedItem((String) model.getValueAt(r, 6));
+				txtgiaBan.setText((String) model.getValueAt(r, 3).toString());
+				txtsoLuong.setText((String) model.getValueAt(r, 4).toString());
+				cbNhaCC.setSelectedItem((String) model.getValueAt(r, 5));
 				lblHinhAnh.setIcon(new ImageIcon(DungCuHocTap_GUI.class.getResource(dungCuHocTap.getHinhAnh())));
 				relativePath = dungCuHocTap.getHinhAnh();
 			}
@@ -727,6 +712,19 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		for (SanPham sanPham : ds) {
 			Object[] object = { sanPham.getMaSanPham(), sanPham.getTenSanPham(), sanPham.getXuatXu(),
 					sanPham.getGiaNhap(), sanPham.getGiaBan(), sanPham.getSoLuongTon(),
+					nhaCC_DAO.getNhaCCTheoMa(sanPham.getMaNhaCungCap()).getTenNCC() };
+			model.addRow(object);
+			table.setRowHeight(25);
+		}
+	}
+	
+	public void loadDataDCHTChoKhachHang(ArrayList<SanPham> ds) {
+		// Xóa dữ liệu cũ trước khi nạp dữ liệu mới
+		model.setRowCount(0);
+
+		for (SanPham sanPham : ds) {
+			Object[] object = { sanPham.getMaSanPham(), sanPham.getTenSanPham(), sanPham.getXuatXu(),
+					sanPham.getGiaBan(), sanPham.getSoLuongTon(),
 					nhaCC_DAO.getNhaCCTheoMa(sanPham.getMaNhaCungCap()).getTenNCC() };
 			model.addRow(object);
 			table.setRowHeight(25);

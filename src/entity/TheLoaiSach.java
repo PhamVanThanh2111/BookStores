@@ -1,7 +1,5 @@
 package entity;
 
-import java.util.Objects;
-
 public class TheLoaiSach {
 	private String maTheLoaiSach;
 	private String tenTheLoaiSach;

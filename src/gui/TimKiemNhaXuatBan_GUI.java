@@ -9,7 +9,6 @@ import java.awt.event.KeyEvent;
 import java.beans.PropertyVetoException;
 import java.util.ArrayList;
 
-import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -232,16 +231,6 @@ public class TimKiemNhaXuatBan_GUI extends JInternalFrame {
 		}
 	}
 
-	// Inner class để xử lý sự kiện khi nhấn Enter
-    private class EnterKeyListener extends KeyAdapter {
-        @Override
-        public void keyPressed(KeyEvent e) {
-            if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            	AbstractButton btnTim = null;
-				btnTim.doClick();
-            }
-        }
-    }
 	private boolean duLieuRong() {
 		// TODO Auto-generated method stub
 		if (txtMaNhaXuatBan.getText().equals("") && txtTenNhaXuatBan.getText().equals("")

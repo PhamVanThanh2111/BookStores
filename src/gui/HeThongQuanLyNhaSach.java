@@ -1296,7 +1296,6 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		});
 		contentPane.add(btnDangNhap);
 	}
-
 	
 	public static void main(String[] args) {
 		try {

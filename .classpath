@@ -12,5 +12,11 @@
 	<classpathentry kind="lib" path="library/flatlaf-3.2.1.jar"/>
 	<classpathentry kind="lib" path="library/jcommon-1.0.23.jar"/>
 	<classpathentry kind="lib" path="library/jfreechart-1.0.19.jar"/>
+	<classpathentry kind="lib" path="library/poi-4.0.1.jar"/>
+	<classpathentry kind="lib" path="library/poi-ooxml-4.0.1.jar"/>
+	<classpathentry kind="lib" path="library/poi-ooxml-schemas-4.0.1.jar"/>
+	<classpathentry kind="lib" path="library/xmlbeans-3.0.2.jar"/>
+	<classpathentry kind="lib" path="library/commons-collections4-4.2.jar"/>
+	<classpathentry kind="lib" path="library/commons-compress-1.24.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

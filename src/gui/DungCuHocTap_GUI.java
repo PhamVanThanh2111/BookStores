@@ -1171,7 +1171,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 									}
 								} else {
 									if (o.equals(btnXuatFile)) {
-										ghiFileExcel();
+//										ghiFileExcel();
 									}
 								}
 							}

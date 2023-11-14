@@ -228,6 +228,7 @@ public class NhaXuatBan_GUI extends JPanel {
 		table.setSelectionBackground(new Color(141, 208, 229));
 		table.setSelectionForeground(new Color(0, 0, 0));
 		table.setDefaultEditor(Object.class, null);
+		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		tableHeader = table.getTableHeader();
 		tableHeader.setBackground(new Color(73, 129, 158));
 		tableHeader.setForeground(Color.white);
@@ -618,6 +619,7 @@ public class NhaXuatBan_GUI extends JPanel {
 		model = new DefaultTableModel(cols, 0);
 
 		table = new JTable(model);
+		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		table.setRowHeight(25);
 		table.setSelectionBackground(new Color(141, 208, 229));
 		table.setSelectionForeground(new Color(0, 0, 0));

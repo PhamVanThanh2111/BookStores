@@ -464,6 +464,7 @@ public class NhanVien_GUI extends JPanel {
 												}
 												else {
 													disableEdit();
+													unfocusable();
 													btnAdd.setText("Thêm");
 													btnSua.setText("Sửa");
 													btnXoa.setText("Xóa");

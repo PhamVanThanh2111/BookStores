@@ -78,7 +78,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setSize(1560, 882);
 		setResizable(false);
-		setTitle("Quản lý sách");
+		setTitle("Trang Chủ");
 		setContentPane(contentPane);
 		setLocationRelativeTo(null);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -121,6 +121,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 					sprDoc1.setVisible(true);
 					sprDoc2.setVisible(true);
 					sprDoc3.setVisible(true);
+					setTitle("Nhân Viên");
 				} else {
 					cardLayoutContent.show(pContent, "ThongKe_GUI");
 					lblSubMenu1.setText("Thống Kê");
@@ -130,6 +131,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 					sprDoc1.setVisible(true);
 					sprDoc2.setVisible(true);
 					sprDoc3.setVisible(false);
+					setTitle("Thống Kê");
 				}
 			}
 		});
@@ -173,6 +175,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				sprDoc1.setVisible(false);
 				sprDoc2.setVisible(false);
 				sprDoc3.setVisible(false);
+				setTitle("Trang Chủ");
 			}
 		});
 		pMenu1.add(lblTrangChu);
@@ -210,6 +213,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				sprDoc1.setVisible(false);
 				sprDoc2.setVisible(false);
 				sprDoc3.setVisible(false);
+				setTitle("Khách Hàng");
 			}
 		});
 		pMenu1.add(lblKhachHang);
@@ -247,6 +251,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				sprDoc1.setVisible(true);
 				sprDoc2.setVisible(false);
 				sprDoc3.setVisible(false);
+				setTitle("Hóa Đơn");
 			}
 		});
 		pMenu1.add(lblHoaDon);
@@ -284,6 +289,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				sprDoc1.setVisible(true);
 				sprDoc2.setVisible(true);
 				sprDoc3.setVisible(false);
+				setTitle("Sách");
 			}
 		});
 		pMenu1.add(lblSach);
@@ -322,6 +328,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				sprDoc1.setVisible(true);
 				sprDoc2.setVisible(false);
 				sprDoc3.setVisible(false);
+				setTitle("Dụng Cụ Học Tập");
 			}
 		});
 		pMenu1.add(lblDungCuHocTap);
@@ -435,6 +442,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				sprDoc1.setVisible(false);
 				sprDoc2.setVisible(false);
 				sprDoc3.setVisible(false);
+				setTitle("Trang Chủ");
 			}
 		});
 		pMenu1.add(lblIconTrangChu);
@@ -472,6 +480,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 					sprDoc1.setVisible(true);
 					sprDoc2.setVisible(true);
 					sprDoc3.setVisible(true);
+					setTitle("Nhân Viên");
 				} else {
 					cardLayoutContent.show(pContent, "ThongKe_GUI");
 					lblSubMenu1.setText("Thống Kê");
@@ -481,6 +490,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 					sprDoc1.setVisible(true);
 					sprDoc2.setVisible(true);
 					sprDoc3.setVisible(false);
+					setTitle("Thống Kê");
 				}
 			}
 		});
@@ -518,6 +528,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				sprDoc1.setVisible(false);
 				sprDoc2.setVisible(false);
 				sprDoc3.setVisible(false);
+				setTitle("Khách Hàng");
 			}
 		});
 		pMenu1.add(lblIconKhachHang);
@@ -554,6 +565,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				sprDoc1.setVisible(true);
 				sprDoc2.setVisible(true);
 				sprDoc3.setVisible(false);
+				setTitle("Sách");
 			}
 		});
 		pMenu1.add(lblIconSach);
@@ -590,6 +602,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				sprDoc1.setVisible(true);
 				sprDoc2.setVisible(false);
 				sprDoc3.setVisible(false);
+				setTitle("Dụng Cụ Học Tập");
 			}
 		});
 		pMenu1.add(lblIconDCHT);
@@ -626,6 +639,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				sprDoc1.setVisible(true);
 				sprDoc2.setVisible(false);
 				sprDoc3.setVisible(false);
+				setTitle("Hóa Đơn");
 			}
 		});
 		pMenu1.add(lblIconHoaDon);
@@ -662,6 +676,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				lblSubMenu3.setText("");
 				sprDoc1.setVisible(false);
 				sprDoc2.setVisible(false);
+				setTitle("Hồ Sơ");
 			}
 		});
 		lblHoSo.setOpaque(true);
@@ -695,6 +710,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				lblSubMenu3.setText("");
 				sprDoc1.setVisible(false);
 				sprDoc2.setVisible(false);
+				setTitle("Hồ Sơ");
 			}
 		});
 		pMenu2.add(lblIconHoSo);
@@ -768,26 +784,31 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				if (lblSubMenu1.getText().equals("Nhân Viên")) {
 					pContent.add(new NhanVien_GUI(), "NhanVien_GUI");
 					cardLayoutContent.show(pContent, "NhanVien_GUI");
+					setTitle("Nhân Viên");
 				}
 
 				else if (lblSubMenu1.getText().equals("Sách")) {
 					pContent.add(new Sach_GUI(nhanVien), "Sach_GUI");
 					cardLayoutContent.show(pContent, "Sach_GUI");
+					setTitle("Sách");
 				}
 
 				else if (lblSubMenu1.getText().equals("Dụng Cụ Học Tập")) {
 					pContent.add(new DungCuHocTap_GUI(nhanVien), "DungCuHocTap_GUI");
 					cardLayoutContent.show(pContent, "DungCuHocTap_GUI");
+					setTitle("Dụng Cụ Học Tập");
 				}
 
 				else if (lblSubMenu1.getText().equals("Hóa Đơn")) {
 					pContent.add(new HoaDon_GUI(nhanVien), "HoaDon_GUI");
 					cardLayoutContent.show(pContent, "HoaDon_GUI");
+					setTitle("Hóa Đơn");
 				}
 
 				else if (lblSubMenu1.getText().equals("Thống Kê")) {
 					pContent.add(new ThongKe_GUI(), "ThongKe_GUI");
 					cardLayoutContent.show(pContent, "ThongKe_GUI");
+					setTitle("Thống Kê");
 				}
 			}
 		});
@@ -830,20 +851,24 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				if (lblSubMenu2.getText().equals("Thống Kê")) {
 					pContent.add(new ThongKe_GUI(), "ThongKe_GUI");
 					cardLayoutContent.show(pContent, "ThongKe_GUI");
+					setTitle("Thống Kê");
 				} else if (lblSubMenu2.getText().equals("Loại Sách")) {
 					pContent.add(new TheLoaiSach_GUI(nhanVien), "TheLoaiSach_GUI");
 					cardLayoutContent.show(pContent, "TheLoaiSach_GUI");
+					setTitle("Loại Sách");
 				} else if (lblSubMenu2.getText().equals("Nhà Cung Cấp")) {
 					pContent.add(new NhaCungCap_GUI(nhanVien), "NhaCungCap_GUI");
 					cardLayoutContent.show(pContent, "NhaCungCap_GUI");
+					setTitle("Nhà Cung Cấp");
 				} else if (lblSubMenu2.getText().equals("Danh Sách Hóa Đơn")) {
 					pContent.add(new DanhSachHoaDon_GUI(), "DanhSachHoaDon_GUI");
 					cardLayoutContent.show(pContent, "DanhSachHoaDon_GUI");
+					setTitle("Danh Sách Hóa Đơn");
 				} else if (lblSubMenu2.getText().equals("Đặt Hàng")) {
 					pContent.add(new DatHang_GUI(nhanVien), "DatHang_GUI");
 					cardLayoutContent.show(pContent, "DatHang_GUI");
+					setTitle("Đặt Hàng");
 				}
-
 			}
 		});
 		lblSubMenu2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -883,16 +908,19 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				if (lblSubMenu3.getText().equals("Đặt Hàng")) {
 					pContent.add(new DatHang_GUI(nhanVien), "DatHang_GUI");
 					cardLayoutContent.show(pContent, "DatHang_GUI");
+					setTitle("Đặt Hàng");
 				}
 
 				if (lblSubMenu3.getText().equals("Nhà Xuất Bản")) {
 					pContent.add(new NhaXuatBan_GUI(nhanVien), "NhaXuatBan_GUI");
 					cardLayoutContent.show(pContent, "NhaXuatBan_GUI");
+					setTitle("Nhà Xuất Bản");
 				}
 
 				if (lblSubMenu3.getText().equals("Danh Sách Đặt Hàng")) {
 					pContent.add(new DanhSachDatHang_GUI(), "DanhSachDatHang_GUI");
 					cardLayoutContent.show(pContent, "DanhSachDatHang_GUI");
+					setTitle("Danh Sách Đặt Hàng");
 				}
 
 			}
@@ -934,6 +962,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				if (lblSubMenu4.getText().equals("Danh Sách Đặt Hàng")) {
 					pContent.add(new DanhSachDatHang_GUI(), "DanhSachDatHang_GUI");
 					cardLayoutContent.show(pContent, "DanhSachDatHang_GUI");
+					setTitle("Danh Sách Đặt Hàng");
 				}
 
 			}
@@ -961,7 +990,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setSize(1560, 882);
 		setResizable(false);
-		setTitle("Quản lý sách");
+		setTitle("Trang Chủ");
 		setContentPane(contentPane);
 		setLocationRelativeTo(null);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -1000,6 +1029,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				lblSubMenu3.setText("Nhà Xuất Bản");
 				sprDoc1.setVisible(true);
 				sprDoc2.setVisible(true);
+				setTitle("Sách");
 			}
 		});
 		lblSach.setHorizontalAlignment(SwingConstants.LEFT);
@@ -1035,6 +1065,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				lblSubMenu3.setText("");
 				sprDoc1.setVisible(true);
 				sprDoc2.setVisible(false);
+				setTitle("Dụng Cụ Học Tập");
 			}
 		});
 		lblDungCuHocTap.setToolTipText("Dụng cụ học tập");
@@ -1092,6 +1123,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				lblSubMenu3.setText("Nhà Xuất Bản");
 				sprDoc1.setVisible(true);
 				sprDoc2.setVisible(true);
+				setTitle("Sách");
 			}
 		});
 		lblIconSach.setIcon(new ImageIcon(HeThongQuanLyNhaSach.class.getResource("/image/HeThong/book.png")));
@@ -1126,6 +1158,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				lblSubMenu3.setText("");
 				sprDoc1.setVisible(true);
 				sprDoc2.setVisible(false);
+				setTitle("Dụng Cụ Học Tập");
 			}
 		});
 		lblIconDCHT.setIcon(new ImageIcon(HeThongQuanLyNhaSach.class.getResource("/image/HeThong/pen.png")));
@@ -1167,11 +1200,13 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				if (lblSubMenu1.getText().equals("Sách")) {
 					pContent.add(new Sach_GUI(), "Sach_GUI");
 					cardLayoutContent.show(pContent, "Sach_GUI");
+					setTitle("Sách");
 				}
 
 				else if (lblSubMenu1.getText().equals("Dụng Cụ Học Tập")) {
 					pContent.add(new DungCuHocTap_GUI(), "DungCuHocTap_GUI");
 					cardLayoutContent.show(pContent, "DungCuHocTap_GUI");
+					setTitle("Dụng Cụ Học Tập");
 				}
 			}
 		});
@@ -1213,11 +1248,13 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				if (lblSubMenu2.getText().equals("Loại Sách")) {
 					pContent.add(new TheLoaiSach_GUI(), "TheLoaiSach_GUI");
 					cardLayoutContent.show(pContent, "TheLoaiSach_GUI");
+					setTitle("Loại Sách");
 				}
 
 				else if (lblSubMenu2.getText().equals("Nhà Cung Cấp")) {
 					pContent.add(new NhaCungCap_GUI(), "NhaCungCap_GUI");
 					cardLayoutContent.show(pContent, "NhaCungCap_GUI");
+					setTitle("Nhà Cung Cấp");
 				}
 
 			}
@@ -1259,6 +1296,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				if (lblSubMenu3.getText().equals("Nhà Xuất Bản")) {
 					pContent.add(new NhaXuatBan_GUI(), "NhaXuatBan_GUI");
 					cardLayoutContent.show(pContent, "NhaXuatBan_GUI");
+					setTitle("Nhà Xuất Bản");
 				}
 			}
 		});
@@ -1296,7 +1334,6 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		});
 		contentPane.add(btnDangNhap);
 	}
-	
 	public static void main(String[] args) {
 		try {
 			UIManager.setLookAndFeel(new FlatMacLightLaf());

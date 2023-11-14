@@ -199,11 +199,10 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 		String cols[] = { "Mã Nhà Cung Cấp ", "Tên Nhà Cung Cấp", "Địa Chỉ", "Số Điện Thoại", "Email" };
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
-
 		table.setRowHeight(25);
 		table.setSelectionBackground(new Color(141, 208, 229));
 		table.setSelectionForeground(new Color(0, 0, 0));
-
+		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setDefaultEditor(Object.class, null);
 
@@ -469,6 +468,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 		String cols[] = { "Mã Nhà Cung Cấp ", "Tên Nhà Cung Cấp", "Địa Chỉ", "Số Điện Thoại", "Email" };
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
+		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
 		table.setRowHeight(25);
 		table.setSelectionBackground(new Color(141, 208, 229));

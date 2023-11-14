@@ -105,12 +105,12 @@ public class Sach_GUI extends JPanel {
 	private ArrayList<SanPham> ds;
 	private Border borderDefault;
 	private JButton btnXuatFile;
-	
+
 	private JButton btnTim;
 	private JButton btnChonHinhAnh;
 	private JButton btnKhoiPhuc;
 	private String relativePath;
-	
+
 	private JFileChooser fileChooser;
 	private File selectedFile;
 	private XSSFWorkbook wordkbook;
@@ -154,7 +154,7 @@ public class Sach_GUI extends JPanel {
 		pThongTin.setLayout(null);
 		pThongTin.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pThongTin.setBackground(Color.WHITE);
-		pThongTin.setBounds(0, 0, 1300, 358);
+		pThongTin.setBounds(0, 0, 1299, 358);
 		pMain.add(pThongTin);
 
 		lblthongTinSach = new JLabel("Thông Tin Sách");
@@ -213,7 +213,7 @@ public class Sach_GUI extends JPanel {
 		pThongTin.add(txtXuatXu);
 
 		txtTacGia = new JTextField();
-		txtTacGia.setToolTipText(  "Tác giả");
+		txtTacGia.setToolTipText("Tác giả");
 		txtTacGia.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtTacGia.setEditable(false);
 		txtTacGia.setColumns(10);
@@ -353,8 +353,7 @@ public class Sach_GUI extends JPanel {
 			}
 		});
 		pThongTin.add(btnAdd);
-		
-		
+
 		btnDelete = new JButton("Xóa");
 		btnDelete.setIcon(new ImageIcon(Sach_GUI.class.getResource("/image/HeThong/remove_person.png")));
 		btnDelete.setOpaque(true);
@@ -514,7 +513,7 @@ public class Sach_GUI extends JPanel {
 			}
 		});
 		pThongTin.add(btnTim);
-		
+
 		btnChonHinhAnh = new JButton("Choose");
 		btnChonHinhAnh.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		btnChonHinhAnh.setBounds(1105, 225, 90, 19);
@@ -523,9 +522,9 @@ public class Sach_GUI extends JPanel {
 				chooseFile();
 			}
 		});
-		
+
 		pThongTin.add(btnChonHinhAnh);
-		
+
 		btnKhoiPhuc = new JButton("Khôi Phục");
 		btnKhoiPhuc.setOpaque(true);
 		btnKhoiPhuc.setForeground(Color.WHITE);
@@ -586,7 +585,7 @@ public class Sach_GUI extends JPanel {
 		pDanhSach = new JPanel();
 		pDanhSach.setBackground(new Color(255, 255, 255));
 		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		pDanhSach.setBounds(0, 372, 1300, 348);
+		pDanhSach.setBounds(0, 372, 1299, 348);
 		pMain.add(pDanhSach);
 		pDanhSach.setLayout(null);
 
@@ -642,21 +641,21 @@ public class Sach_GUI extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
 				int row = table.getSelectedRow();
-					SanPham sach = sanPham_DAO.getSanPhamTheoMaSanPham((String)model.getValueAt(row, 0).toString());
-					txtMaSach.setText((String) model.getValueAt(row, 0));
-					txtTenSach.setText((String) model.getValueAt(row, 1));
-					txtXuatXu.setText((String) model.getValueAt(row, 2));
-					txtGiaNhap.setText(model.getValueAt(row, 3).toString());
-					txtGiaBan.setText(model.getValueAt(row, 4).toString());
-					txtSoLuong.setText(model.getValueAt(row, 5).toString());
-					cmbTenNhaXuatBan.setSelectedItem(model.getValueAt(row, 6));
-					cmbTenLoaiSach.setSelectedItem(model.getValueAt(row, 7));
-					txtTacGia.setText(model.getValueAt(row, 8).toString());
-					txtSoTrang.setText(model.getValueAt(row, 9).toString());
-					txtNamXuatBan.setText(model.getValueAt(row, 10).toString());
-					lblHinhAnh.setIcon(new ImageIcon(Sach_GUI.class.getResource(sach.getHinhAnh())));
+				SanPham sach = sanPham_DAO.getSanPhamTheoMaSanPham((String) model.getValueAt(row, 0).toString());
+				txtMaSach.setText((String) model.getValueAt(row, 0));
+				txtTenSach.setText((String) model.getValueAt(row, 1));
+				txtXuatXu.setText((String) model.getValueAt(row, 2));
+				txtGiaNhap.setText(model.getValueAt(row, 3).toString());
+				txtGiaBan.setText(model.getValueAt(row, 4).toString());
+				txtSoLuong.setText(model.getValueAt(row, 5).toString());
+				cmbTenNhaXuatBan.setSelectedItem(model.getValueAt(row, 6));
+				cmbTenLoaiSach.setSelectedItem(model.getValueAt(row, 7));
+				txtTacGia.setText(model.getValueAt(row, 8).toString());
+				txtSoTrang.setText(model.getValueAt(row, 9).toString());
+				txtNamXuatBan.setText(model.getValueAt(row, 10).toString());
+				lblHinhAnh.setIcon(new ImageIcon(Sach_GUI.class.getResource(sach.getHinhAnh())));
 //					System.out.println(sach.getHinhAnh());
-					relativePath = sach.getHinhAnh();
+				relativePath = sach.getHinhAnh();
 			}
 			//
 		});
@@ -666,7 +665,7 @@ public class Sach_GUI extends JPanel {
 //			btnUpdate.setEnabled(false);
 //			btnChonHinhAnh.setEnabled(false);
 //		}
-		
+
 		scrollPaneSach.setViewportView(table);
 		// header of table
 		tableHeader = table.getTableHeader();
@@ -694,7 +693,7 @@ public class Sach_GUI extends JPanel {
 		lblChiTitSch.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblChiTitSch.setBounds(22, 10, 200, 40);
 		pDanhSach.add(lblChiTitSch);
-		
+
 		btnXuatFile = new JButton("Xuất File");
 		btnXuatFile.setOpaque(true);
 		btnXuatFile.setForeground(Color.WHITE);
@@ -702,7 +701,7 @@ public class Sach_GUI extends JPanel {
 		btnXuatFile.setBackground(new Color(73, 129, 158));
 		btnXuatFile.setBounds(1098, 10, 135, 27);
 		btnXuatFile.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				xuatFile(sanPham_DAO.getAllSach());
@@ -715,10 +714,9 @@ public class Sach_GUI extends JPanel {
 		unfocusable();
 	}
 
-	
 	public Sach_GUI() {
 
-		// Khai báo Dao
+		// Khai báo DAO
 		nhaXuatBan_DAO = new NhaXuatBan_DAO();
 		theLoaiSach_DAO = new TheLoaiSach_DAO();
 		sanPham_DAO = new SanPham_DAO();
@@ -747,7 +745,7 @@ public class Sach_GUI extends JPanel {
 		pThongTin.setLayout(null);
 		pThongTin.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pThongTin.setBackground(Color.WHITE);
-		pThongTin.setBounds(0, 9, 1300, 352);
+		pThongTin.setBounds(0, 0, 1300, 352);
 		pMain.add(pThongTin);
 
 		lblthongTinSach = new JLabel("Thông Tin Sách");
@@ -819,33 +817,18 @@ public class Sach_GUI extends JPanel {
 		lblLoaiSach = new JLabel("Loại Sách:");
 		lblLoaiSach.setToolTipText("thể loại sách ");
 		lblLoaiSach.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblLoaiSach.setBounds(360, 67, 130, 40);
+		lblLoaiSach.setBounds(360, 112, 130, 40);
 		pThongTin.add(lblLoaiSach);
 
 		lblNhaXuatBan = new JLabel("Nhà Xuất Bản:");
 		lblNhaXuatBan.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNhaXuatBan.setBounds(360, 112, 130, 40);
+		lblNhaXuatBan.setBounds(360, 157, 130, 40);
 		pThongTin.add(lblNhaXuatBan);
-
-		lblGiaNhap = new JLabel("Giá Nhập:");
-		lblGiaNhap.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblGiaNhap.setBounds(360, 157, 130, 40);
-		pThongTin.add(lblGiaNhap);
 
 		lblGiaBan = new JLabel("Giá Bán:");
 		lblGiaBan.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblGiaBan.setBounds(360, 202, 130, 40);
+		lblGiaBan.setBounds(360, 200, 130, 40);
 		pThongTin.add(lblGiaBan);
-
-		txtGiaNhap = new JTextField();
-		txtGiaNhap.setToolTipText("Giá nhập");
-		txtGiaNhap.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtGiaNhap.setEditable(false);
-		txtGiaNhap.setColumns(10);
-		txtGiaNhap.setBorder(null);
-		txtGiaNhap.setBackground(Color.WHITE);
-		txtGiaNhap.setBounds(476, 157, 200, 40);
-		pThongTin.add(txtGiaNhap);
 
 		txtGiaBan = new JTextField();
 		txtGiaBan.setToolTipText("Giá bán");
@@ -854,14 +837,14 @@ public class Sach_GUI extends JPanel {
 		txtGiaBan.setColumns(10);
 		txtGiaBan.setBackground(Color.WHITE);
 		txtGiaBan.setBorder(null);
-		txtGiaBan.setBounds(476, 205, 200, 40);
+		txtGiaBan.setBounds(476, 200, 200, 40);
 		pThongTin.add(txtGiaBan);
 
 		cmbTenLoaiSach = new JComboBox<String>();
 		cmbTenLoaiSach.setForeground(new Color(0, 0, 0));
 		cmbTenLoaiSach.setToolTipText("Loại Sách");
 		cmbTenLoaiSach.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cmbTenLoaiSach.setBounds(476, 68, 200, 40);
+		cmbTenLoaiSach.setBounds(476, 112, 200, 40);
 		cmbTenLoaiSach.setBorder(null);
 		loadDataIntoComboboxTenLoaiSach();
 		cmbTenLoaiSach.setSelectedIndex(-1);
@@ -870,7 +853,7 @@ public class Sach_GUI extends JPanel {
 		cmbTenNhaXuatBan = new JComboBox<String>();
 		cmbTenNhaXuatBan.setToolTipText("Nhà Xuất Bản");
 		cmbTenNhaXuatBan.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		cmbTenNhaXuatBan.setBounds(476, 113, 200, 40);
+		cmbTenNhaXuatBan.setBounds(476, 157, 200, 40);
 		cmbTenNhaXuatBan.setBorder(null);
 		loadDataIntoComboboxTenNhaXuatBan();
 		cmbTenNhaXuatBan.setSelectedIndex(-1);
@@ -878,12 +861,12 @@ public class Sach_GUI extends JPanel {
 
 		lblSoTrang = new JLabel("Số Trang:");
 		lblSoTrang.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblSoTrang.setBounds(698, 157, 90, 40);
+		lblSoTrang.setBounds(698, 200, 90, 40);
 		pThongTin.add(lblSoTrang);
 
 		lblSoLuong = new JLabel("Số Lượng:");
 		lblSoLuong.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblSoLuong.setBounds(698, 62, 90, 40);
+		lblSoLuong.setBounds(698, 112, 90, 40);
 		pThongTin.add(lblSoLuong);
 
 //		lblAnh = new JLabel("Ảnh:");
@@ -897,7 +880,7 @@ public class Sach_GUI extends JPanel {
 		txtSoTrang.setEditable(false);
 		txtSoTrang.setColumns(10);
 		txtSoTrang.setBackground(Color.WHITE);
-		txtSoTrang.setBounds(798, 157, 200, 40);
+		txtSoTrang.setBounds(798, 200, 200, 40);
 		txtSoTrang.setBorder(null);
 		pThongTin.add(txtSoTrang);
 
@@ -907,7 +890,7 @@ public class Sach_GUI extends JPanel {
 		txtSoLuong.setEditable(false);
 		txtSoLuong.setColumns(10);
 		txtSoLuong.setBackground(Color.WHITE);
-		txtSoLuong.setBounds(798, 67, 200, 40);
+		txtSoLuong.setBounds(798, 112, 200, 40);
 		txtSoLuong.setBorder(null);
 		pThongTin.add(txtSoLuong);
 
@@ -930,7 +913,7 @@ public class Sach_GUI extends JPanel {
 		lblHinhAnh = new JLabel("");
 		lblHinhAnh.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHinhAnh.setBorder(new LineBorder(new Color(0, 0, 0)));
-		lblHinhAnh.setBounds(1023, 15, 200, 200);		
+		lblHinhAnh.setBounds(1023, 15, 200, 200);
 		pThongTin.add(lblHinhAnh);
 
 		txtNamXuatBan = new JTextField();
@@ -939,14 +922,14 @@ public class Sach_GUI extends JPanel {
 		txtNamXuatBan.setEditable(false);
 		txtNamXuatBan.setColumns(10);
 		txtNamXuatBan.setBackground(Color.WHITE);
-		txtNamXuatBan.setBounds(798, 112, 200, 40);
+		txtNamXuatBan.setBounds(798, 157, 200, 40);
 		txtNamXuatBan.setBorder(null);
 		pThongTin.add(txtNamXuatBan);
 
 		lblNamXuatBan = new JLabel("Năm XB:");
 		lblNamXuatBan.setToolTipText("Năm Xuất Bản:");
 		lblNamXuatBan.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNamXuatBan.setBounds(697, 107, 90, 40);		
+		lblNamXuatBan.setBounds(697, 157, 90, 40);
 		pThongTin.add(lblNamXuatBan);
 
 		btnTim = new JButton("Tìm");
@@ -1010,7 +993,7 @@ public class Sach_GUI extends JPanel {
 		scrollPaneSach.setBackground(new Color(255, 255, 255));
 		pDanhSach.add(scrollPaneSach);
 
-		String cols[] = { "Mã Sách", "Tên Sách", "Xuất Xứ", "Giá Nhập", "Giá Bán", "Số Lượng Tồn", "Nhà Xuất Bản",
+		String cols[] = { "Mã Sách", "Tên Sách", "Xuất Xứ", "Giá Bán", "Số Lượng Tồn", "Nhà Xuất Bản",
 				"Thể Loại Sách", "Tác Giả", "Số Trang", "Năm Xuất Bản" };
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
@@ -1059,17 +1042,18 @@ public class Sach_GUI extends JPanel {
 					txtMaSach.setText((String) model.getValueAt(row, 0));
 					txtTenSach.setText((String) model.getValueAt(row, 1));
 					txtXuatXu.setText((String) model.getValueAt(row, 2));
-					txtGiaNhap.setText(model.getValueAt(row, 3).toString());
-					txtGiaBan.setText(model.getValueAt(row, 4).toString());
-					txtSoLuong.setText(model.getValueAt(row, 5).toString());
-					cmbTenNhaXuatBan.setSelectedItem(model.getValueAt(row, 6));
-					cmbTenLoaiSach.setSelectedItem(model.getValueAt(row, 7));
-					txtTacGia.setText(model.getValueAt(row, 8).toString());
-					txtSoTrang.setText(model.getValueAt(row, 9).toString());
-					txtNamXuatBan.setText(model.getValueAt(row, 10).toString());
-					SanPham sach = sanPham_DAO.getSanPhamTheoMaSanPham((String)model.getValueAt(row, 0).toString());
+					txtGiaBan.setText(model.getValueAt(row, 3).toString());
+					txtSoLuong.setText(model.getValueAt(row, 4).toString());
+					cmbTenNhaXuatBan.setSelectedItem(model.getValueAt(row, 5));
+					cmbTenLoaiSach.setSelectedItem(model.getValueAt(row, 6));
+					txtTacGia.setText(model.getValueAt(row, 7).toString());
+					txtSoTrang.setText(model.getValueAt(row, 8).toString());
+					txtNamXuatBan.setText(model.getValueAt(row, 9).toString());
+					SanPham sach = sanPham_DAO.getSanPhamTheoMaSanPham((String) model.getValueAt(row, 0).toString());
+					relativePath = sach.getHinhAnh();
 					lblHinhAnh.setIcon(new ImageIcon(Sach_GUI.class.getResource(sach.getHinhAnh())));
-					
+//					System.out.println(sach.getHinhAnh());
+
 				}
 			}
 			//
@@ -1093,28 +1077,48 @@ public class Sach_GUI extends JPanel {
 		table.getColumnModel().getColumn(7).setCellRenderer(centerRenderer);
 		table.getColumnModel().getColumn(8).setCellRenderer(centerRenderer);
 		table.getColumnModel().getColumn(9).setCellRenderer(centerRenderer);
-		table.getColumnModel().getColumn(10).setCellRenderer(centerRenderer);
+//		table.getColumnModel().getColumn(10).setCellRenderer(centerRenderer);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
 
 		JLabel lblChiTitSch = new JLabel("Chi Tiết Sách");
 		lblChiTitSch.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblChiTitSch.setBounds(22, 10, 200, 40);
 		pDanhSach.add(lblChiTitSch);
-		
+
 		// loadData
-		loadData(sanPham_DAO.getAllSach());
+		loadDataSachChoKhachHang(sanPham_DAO.getAllSach());
 		// unfocus
-		unfocusable();
-		
+		txtMaSach.setFocusable(false);
+		txtTenSach.setFocusable(false);
+		txtXuatXu.setFocusable(false);
+		txtTacGia.setFocusable(false);
+		txtGiaBan.setFocusable(false);
+		txtSoLuong.setFocusable(false);
+		txtSoTrang.setFocusable(false);
+		txtNamXuatBan.setFocusable(false);
+
 	}
 
-	
 	// load Data lên bảng
 	public void loadData(ArrayList<SanPham> ds) {
 		model.setRowCount(0);
 		for (SanPham sanPham : ds) {
 			Object[] object = { sanPham.getMaSanPham(), sanPham.getTenSanPham(), sanPham.getXuatXu(),
 					sanPham.getGiaNhap(), sanPham.getGiaBan(), sanPham.getSoLuongTon(),
+					nhaXuatBan_DAO.getnhaXuatBanTheoMa(sanPham.getMaNXB()).getTenNhaXuatBan(),
+					theLoaiSach_DAO.getTheLoaiSachTheoMa(sanPham.getMaTheLoaiSach()).gettenTheLoaiSach(),
+					sanPham.getTacGia(), sanPham.getSoTrang(), sanPham.getNamXuatBan(), };
+			model.addRow(object);
+			table.setRowHeight(25);
+		}
+	}
+	
+	// loadData sach cho khachhang
+	public void loadDataSachChoKhachHang(ArrayList<SanPham> ds) {
+		model.setRowCount(0);
+		for (SanPham sanPham : ds) {
+			Object[] object = { sanPham.getMaSanPham(), sanPham.getTenSanPham(), sanPham.getXuatXu(),
+					sanPham.getGiaBan(), sanPham.getSoLuongTon(),
 					nhaXuatBan_DAO.getnhaXuatBanTheoMa(sanPham.getMaNXB()).getTenNhaXuatBan(),
 					theLoaiSach_DAO.getTheLoaiSachTheoMa(sanPham.getMaTheLoaiSach()).gettenTheLoaiSach(),
 					sanPham.getTacGia(), sanPham.getSoTrang(), sanPham.getNamXuatBan(), };
@@ -1230,6 +1234,7 @@ public class Sach_GUI extends JPanel {
 			}
 		}
 	}
+
 	// xóa sách
 	public boolean delete() {
 //		int row = table.getSelectedRow();
@@ -1255,10 +1260,11 @@ public class Sach_GUI extends JPanel {
 //			}
 //		}
 		int row = table.getSelectedRow();
-		if(row !=-1) {
-			int tb = JOptionPane.showConfirmDialog(null, "Bạn Muốn Xóa Sản Phẩm? ", "Delete", JOptionPane.YES_NO_OPTION);
-			if(tb == JOptionPane.YES_OPTION) {
-				if(tb == JOptionPane.YES_OPTION) {
+		if (row != -1) {
+			int tb = JOptionPane.showConfirmDialog(null, "Bạn Muốn Xóa Sản Phẩm? ", "Delete",
+					JOptionPane.YES_NO_OPTION);
+			if (tb == JOptionPane.YES_OPTION) {
+				if (tb == JOptionPane.YES_OPTION) {
 					try {
 						SanPham sanPham = new SanPham();
 						sanPham.setMaSanPham(txtMaSach.getText());
@@ -1268,11 +1274,11 @@ public class Sach_GUI extends JPanel {
 						sanPham.setGiaBan(Float.parseFloat(txtGiaBan.getText()));
 						sanPham.setSoLuongTon(Integer.parseInt(txtSoLuong.getText()));
 						sanPham.setHinhAnh(relativePath);
-						sanPham.setMaNXB(nhaXuatBan_DAO.getnhaXuatBanTheoTen(cmbTenNhaXuatBan.getSelectedItem().toString())
-								.getMaNhaXuatBan());
-						sanPham.setMaTheLoaiSach(
-								theLoaiSach_DAO.getTheLoaiSachTheoTen(cmbTenLoaiSach.getSelectedItem().toString().toString())
-										.getmaTheLoaiSach());
+						sanPham.setMaNXB(nhaXuatBan_DAO
+								.getnhaXuatBanTheoTen(cmbTenNhaXuatBan.getSelectedItem().toString()).getMaNhaXuatBan());
+						sanPham.setMaTheLoaiSach(theLoaiSach_DAO
+								.getTheLoaiSachTheoTen(cmbTenLoaiSach.getSelectedItem().toString().toString())
+								.getmaTheLoaiSach());
 						sanPham.setTacGia(txtTacGia.getText());
 						sanPham.setSoTrang(Integer.parseInt(txtSoTrang.getText()));
 						sanPham.setNamXuatBan(Integer.parseInt(txtNamXuatBan.getText()));
@@ -1288,7 +1294,7 @@ public class Sach_GUI extends JPanel {
 				}
 			}
 		}
-		return false ;
+		return false;
 	}
 
 	// sửa sách
@@ -1358,6 +1364,7 @@ public class Sach_GUI extends JPanel {
 			}
 		}
 	}
+
 	private boolean chooseFile() {
 		fileChooser = new JFileChooser();
 		// Chỉ cho phép chọn tệp hình ảnh
@@ -1388,110 +1395,108 @@ public class Sach_GUI extends JPanel {
 		} else // JFileChooser.CANCEL_OPTION
 			return false;
 	}
-	
+
 	public boolean xuatFile(ArrayList<SanPham> ds) {
-			fileChooser = new JFileChooser();
-			int userSelection = fileChooser.showSaveDialog(this);
-			if (userSelection == JFileChooser.APPROVE_OPTION) {
-				File fileToSave = fileChooser.getSelectedFile();
-				String excelFilePath = fileToSave.getAbsolutePath();
-				// Đảm bảo tệp có đuôi
-				if (!excelFilePath.endsWith(".xlsx")) {
-					excelFilePath += ".xlsx";
-				}
-				try {
-					wordkbook = new XSSFWorkbook();
-					XSSFSheet sheet = wordkbook.createSheet("Danh Sách");
-					XSSFRow row = null;
-					XSSFCell cell = null;
-					row = (XSSFRow) sheet.createRow(2);
-					cell = row.createCell(0, CellType.STRING);
-					cell.setCellValue("STT");
+		fileChooser = new JFileChooser();
+		int userSelection = fileChooser.showSaveDialog(this);
+		if (userSelection == JFileChooser.APPROVE_OPTION) {
+			File fileToSave = fileChooser.getSelectedFile();
+			String excelFilePath = fileToSave.getAbsolutePath();
+			// Đảm bảo tệp có đuôi
+			if (!excelFilePath.endsWith(".xlsx")) {
+				excelFilePath += ".xlsx";
+			}
+			try {
+				wordkbook = new XSSFWorkbook();
+				XSSFSheet sheet = wordkbook.createSheet("Danh Sách");
+				XSSFRow row = null;
+				XSSFCell cell = null;
+				row = (XSSFRow) sheet.createRow(2);
+				cell = row.createCell(0, CellType.STRING);
+				cell.setCellValue("STT");
+
+				cell = row.createCell(1, CellType.STRING);
+				cell.setCellValue("Mã SP");
+
+				cell = row.createCell(2, CellType.STRING);
+				cell.setCellValue("Tên SP");
+
+				cell = row.createCell(3, CellType.STRING);
+				cell.setCellValue("Xuất Xứ");
+
+				cell = row.createCell(4, CellType.STRING);
+				cell.setCellValue("Giá Nhập");
+
+				cell = row.createCell(5, CellType.STRING);
+				cell.setCellValue("Giá Bán");
+
+				cell = row.createCell(6, CellType.STRING);
+				cell.setCellValue("Số Lượng Tồn");
+
+				cell = row.createCell(7, CellType.STRING);
+				cell.setCellValue("Nhà Xuất Bản");
+
+				cell = row.createCell(8, CellType.STRING);
+				cell.setCellValue("Thể Loại Sách");
+
+				cell = row.createCell(9, CellType.STRING);
+				cell.setCellValue("Tác Giả");
+
+				cell = row.createCell(10, CellType.STRING);
+				cell.setCellValue("Số Trang");
+
+				cell = row.createCell(11, CellType.STRING);
+				cell.setCellValue("Năm Xuất Bản");
+				for (int i = 0; i < ds.size(); i++) {
+
+					row = (XSSFRow) sheet.createRow(3 + i);
+					cell = row.createCell(0, CellType.NUMERIC);
+					cell.setCellValue(i + 1);
 
 					cell = row.createCell(1, CellType.STRING);
-					cell.setCellValue("Mã SP");
+					cell.setCellValue(ds.get(i).getMaSanPham());
 
 					cell = row.createCell(2, CellType.STRING);
-					cell.setCellValue("Tên SP");
+					cell.setCellValue(ds.get(i).getTenSanPham());
 
 					cell = row.createCell(3, CellType.STRING);
-					cell.setCellValue("Xuất Xứ");
+					cell.setCellValue(ds.get(i).getXuatXu());
 
 					cell = row.createCell(4, CellType.STRING);
-					cell.setCellValue("Giá Nhập");
+					cell.setCellValue(ds.get(i).getGiaNhap());
 
 					cell = row.createCell(5, CellType.STRING);
-					cell.setCellValue("Giá Bán");
+					cell.setCellValue(ds.get(i).getGiaBan());
 
 					cell = row.createCell(6, CellType.STRING);
-					cell.setCellValue("Số Lượng Tồn");
-					
+					cell.setCellValue(ds.get(i).getSoLuongTon());
+
 					cell = row.createCell(7, CellType.STRING);
-					cell.setCellValue("Nhà Xuất Bản");
-					
+					cell.setCellValue(ds.get(i).getMaNXB());
+
 					cell = row.createCell(8, CellType.STRING);
-					cell.setCellValue("Thể Loại Sách");
-					
+					cell.setCellValue(ds.get(i).getMaTheLoaiSach());
+
 					cell = row.createCell(9, CellType.STRING);
-					cell.setCellValue("Tác Giả");
-					
+					cell.setCellValue(ds.get(i).getTacGia());
+
 					cell = row.createCell(10, CellType.STRING);
-					cell.setCellValue("Số Trang");
-					
+					cell.setCellValue(ds.get(i).getSoTrang());
+
 					cell = row.createCell(11, CellType.STRING);
-					cell.setCellValue("Năm Xuất Bản");
-					for (int i = 0; i < ds.size(); i++) {
+					cell.setCellValue(ds.get(i).getNamXuatBan());
 
-						row = (XSSFRow) sheet.createRow(3 + i);
-						cell = row.createCell(0, CellType.NUMERIC);
-						cell.setCellValue(i + 1);
-
-						cell = row.createCell(1, CellType.STRING);
-						cell.setCellValue(ds.get(i).getMaSanPham());
-
-						cell = row.createCell(2, CellType.STRING);
-						cell.setCellValue(ds.get(i).getTenSanPham());
-
-						cell = row.createCell(3, CellType.STRING);
-						cell.setCellValue(ds.get(i).getXuatXu());
-
-						cell = row.createCell(4, CellType.STRING);
-						cell.setCellValue(ds.get(i).getGiaNhap());
-
-						cell = row.createCell(5, CellType.STRING);
-						cell.setCellValue(ds.get(i).getGiaBan());
-
-						cell = row.createCell(6, CellType.STRING);
-						cell.setCellValue(ds.get(i).getSoLuongTon());
-
-						cell = row.createCell(7, CellType.STRING);
-						cell.setCellValue(ds.get(i).getMaNXB());
-
-						cell = row.createCell(8, CellType.STRING);
-						cell.setCellValue(ds.get(i).getMaTheLoaiSach());
-
-						cell = row.createCell(9, CellType.STRING);
-						cell.setCellValue(ds.get(i).getTacGia());
-
-						cell = row.createCell(10, CellType.STRING);
-						cell.setCellValue(ds.get(i).getSoTrang());
-						
-						cell = row.createCell(11, CellType.STRING);
-						cell.setCellValue(ds.get(i).getNamXuatBan());
-
-
-					}
-					FileOutputStream fis = new FileOutputStream(excelFilePath);
-					wordkbook.write(fis);
-					fis.close();
-					JOptionPane.showMessageDialog(null, "Xuất File Thành Công !");
-				} catch (Exception e) {
-					
 				}
+				FileOutputStream fis = new FileOutputStream(excelFilePath);
+				wordkbook.write(fis);
+				fis.close();
+				JOptionPane.showMessageDialog(null, "Xuất File Thành Công !");
+			} catch (Exception e) {
+
 			}
-			return false;
 		}
-	
+		return false;
+	}
 
 	private void enableEdit() {
 		txtMaSach.setEditable(true);
@@ -1551,6 +1556,7 @@ public class Sach_GUI extends JPanel {
 		btnChonHinhAnh.setEnabled(true);
 		btnKhoiPhuc.setEnabled(true);
 	}
+
 	private void offFocus() {
 		txtMaSach.setFocusable(false);
 		txtTenSach.setFocusable(false);
@@ -1562,7 +1568,7 @@ public class Sach_GUI extends JPanel {
 		txtSoTrang.setFocusable(false);
 		txtSoLuong.setFocusable(false);
 	}
-	
+
 	@SuppressWarnings("unused")
 	private void openFocus() {
 		txtMaSach.setFocusable(false);
@@ -1575,7 +1581,7 @@ public class Sach_GUI extends JPanel {
 		txtSoTrang.setFocusable(true);
 		txtSoLuong.setFocusable(true);
 	}
-	
+
 	private void disableButton() {
 		btnLamMoi.setEnabled(false);
 		btnAdd.setEnabled(false);
@@ -1584,7 +1590,7 @@ public class Sach_GUI extends JPanel {
 		btnChonHinhAnh.setEnabled(false);
 		btnKhoiPhuc.setEnabled(false);
 	}
-	
+
 	private void focusable() {
 		txtMaSach.setFocusable(true);
 		txtTenSach.setFocusable(true);
@@ -1596,7 +1602,7 @@ public class Sach_GUI extends JPanel {
 		txtSoTrang.setFocusable(true);
 		txtNamXuatBan.setFocusable(true);
 	}
-	
+
 	private void unfocusable() {
 		txtMaSach.setFocusable(false);
 		txtTenSach.setFocusable(false);

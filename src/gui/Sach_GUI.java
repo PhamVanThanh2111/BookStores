@@ -690,7 +690,7 @@ public class Sach_GUI extends JPanel {
 		desktopPane.setLayout(null);
 
 		JLabel lblChiTitSch = new JLabel("Chi Tiết Sách");
-		lblChiTitSch.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblChiTitSch.setFont(new Font("Tahoma", Font.BOLD, 8));
 		lblChiTitSch.setBounds(22, 10, 200, 40);
 		pDanhSach.add(lblChiTitSch);
 
@@ -824,6 +824,12 @@ public class Sach_GUI extends JPanel {
 		lblNhaXuatBan.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNhaXuatBan.setBounds(360, 157, 130, 40);
 		pThongTin.add(lblNhaXuatBan);
+
+//		lblGiaNhap = new JLabel("Giá Nhập:");
+//		lblGiaNhap.setBorder(null);
+//		lblGiaNhap.setFont(new Font("Tahoma", Font.PLAIN, 18));
+//		lblGiaNhap.setBounds(360, 157, 130, 40);
+//		pThongTin.add(lblGiaNhap);
 
 		lblGiaBan = new JLabel("Giá Bán:");
 		lblGiaBan.setFont(new Font("Tahoma", Font.PLAIN, 18));

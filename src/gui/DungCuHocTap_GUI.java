@@ -394,7 +394,6 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 			}
 		});
 		;
-
 		if (nhanVien.getChucVu().equals("Bán hàng")) {
 			btnAdd.setEnabled(false);
 			btnDelete.setEnabled(false);
@@ -580,23 +579,23 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 					timKiemDungCuHoctap.addInternalFrameListener(new InternalFrameAdapter() {
 						@Override
 						public void internalFrameActivated(InternalFrameEvent e) {
-//			                System.out.println("Internal frame is activated.");
+							// System.out.println("Internal frame is activated.");
 						}
 
 						@Override
 						public void internalFrameDeactivated(InternalFrameEvent e) {
-//			                System.out.println("Internal frame is deactivated.");
+							// System.out.println("Internal frame is deactivated.");
 						}
 
 						@Override
 						public void internalFrameOpened(InternalFrameEvent e) {
-//			                System.out.println("Internal frame is opened.");
+							// System.out.println("Internal frame is opened.");
 							btnlamMoi.setEnabled(false);
 						}
 
 						@Override
 						public void internalFrameClosed(InternalFrameEvent e) {
-//			                System.out.println("Internal frame is closed.");
+							// System.out.println("Internal frame is closed.");
 							loadData(ds);
 							ds.removeAll(ds);
 							btnlamMoi.setEnabled(true);
@@ -705,8 +704,6 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		});
 		;
 	}
-
-
 
 	public void loadData(ArrayList<SanPham> ds) {
 		// Xóa dữ liệu cũ trước khi nạp dữ liệu mới
@@ -891,6 +888,8 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 			if (!excelFilePath.endsWith(".xlsx")) {
 				excelFilePath += ".xlsx";
 			}
+//			loadFile();
+			// System.out.println("a");
 			try {
 				wordkbook = new XSSFWorkbook();
 				XSSFSheet sheet = wordkbook.createSheet("Danh Sách");
@@ -947,12 +946,13 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 					cell = row.createCell(7, CellType.STRING);
 					cell.setCellValue(ds.get(i).getMaNhaCungCap());
 				}
+				// File file = new File("E://a.xlsx");
 				FileOutputStream fis = new FileOutputStream(excelFilePath);
 				wordkbook.write(fis);
 				fis.close();
 				JOptionPane.showMessageDialog(null, "Xuất File Thành Công !");
 			} catch (Exception e) {
-				
+
 			}
 		}
 	}
@@ -1083,23 +1083,23 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 									timKiemDungCuHoctap.addInternalFrameListener(new InternalFrameAdapter() {
 										@Override
 										public void internalFrameActivated(InternalFrameEvent e) {
-//							                System.out.println("Internal frame is activated.");
+											// System.out.println("Internal frame is activated.");
 										}
 
 										@Override
 										public void internalFrameDeactivated(InternalFrameEvent e) {
-//							                System.out.println("Internal frame is deactivated.");
+											// System.out.println("Internal frame is deactivated.");
 										}
 
 										@Override
 										public void internalFrameOpened(InternalFrameEvent e) {
-//							                System.out.println("Internal frame is opened.");
-//							            	disableButton();
+											// System.out.println("Internal frame is opened.");
+											// disableButton();
 										}
 
 										@Override
 										public void internalFrameClosed(InternalFrameEvent e) {
-//							                System.out.println("Internal frame is closed.");
+											// System.out.println("Internal frame is closed.");
 											loadData(ds);
 											ds.removeAll(ds);
 											btnAdd.setEnabled(true);
@@ -1123,23 +1123,23 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 										khoiPhucDuLieu.addInternalFrameListener(new InternalFrameAdapter() {
 											@Override
 											public void internalFrameActivated(InternalFrameEvent e) {
-//								                System.out.println("Internal frame is activated.");
+												// System.out.println("Internal frame is activated.");
 											}
 
 											@Override
 											public void internalFrameDeactivated(InternalFrameEvent e) {
-//								                System.out.println("Internal frame is deactivated.");
+												// System.out.println("Internal frame is deactivated.");
 											}
 
 											@Override
 											public void internalFrameOpened(InternalFrameEvent e) {
-//								                System.out.println("Internal frame is opened.");
-//								            	disableButton();
+												// System.out.println("Internal frame is opened.");
+												// disableButton();
 											}
 
 											@Override
 											public void internalFrameClosed(InternalFrameEvent e) {
-//								                System.out.println("Internal frame is closed.");
+												// System.out.println("Internal frame is closed.");
 												loadData(ds);
 												ds.removeAll(ds);
 												btnAdd.setEnabled(true);
@@ -1153,7 +1153,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 									}
 								} else {
 									if (o.equals(btnXuatFile)) {
-										ghiFileExcel(sanPham_DAO.getAllDungCuHocTap());
+										 ghiFileExcel(sanPham_DAO.getAllDungCuHocTap());
 									}
 								}
 							}

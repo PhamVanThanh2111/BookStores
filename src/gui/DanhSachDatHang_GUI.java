@@ -96,7 +96,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 		
 		JScrollPane scrDanhSachHoaDon = new JScrollPane();
 		scrDanhSachHoaDon.setBounds(20, 82, 710, 500);
-		scrDanhSachHoaDon.setToolTipText("Chọn vào hóa đơn cần hiển thị thông tin");
+		scrDanhSachHoaDon.setToolTipText("Chọn vào phiếu đặt hàng cần hiển thị thông tin");
 		scrDanhSachHoaDon.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		scrDanhSachHoaDon.setBackground(new Color(255, 255, 255));
 		pDanhSachDatHang.add(scrDanhSachHoaDon);

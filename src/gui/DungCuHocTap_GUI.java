@@ -46,6 +46,7 @@ import entity.SanPham;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JDesktopPane;
+import javax.swing.SwingConstants;
 
 public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 
@@ -226,6 +227,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		pThongTin.add(btnChonHinhAnh);
 
 		lblHinhAnh = new JLabel("");
+		lblHinhAnh.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHinhAnh.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblHinhAnh.setBounds(857, 70, 397, 146);
 		pThongTin.add(lblHinhAnh);
@@ -530,6 +532,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		pThongTin.add(btnChonHinhAnh);
 
 		lblHinhAnh = new JLabel("");
+		lblHinhAnh.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHinhAnh.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblHinhAnh.setBounds(857, 70, 397, 130);
 		pThongTin.add(lblHinhAnh);

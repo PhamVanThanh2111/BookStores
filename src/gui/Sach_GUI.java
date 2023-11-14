@@ -690,7 +690,7 @@ public class Sach_GUI extends JPanel {
 		desktopPane.setLayout(null);
 
 		JLabel lblChiTitSch = new JLabel("Chi Tiết Sách");
-		lblChiTitSch.setFont(new Font("Tahoma", Font.BOLD, 8));
+		lblChiTitSch.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblChiTitSch.setBounds(22, 10, 200, 40);
 		pDanhSach.add(lblChiTitSch);
 

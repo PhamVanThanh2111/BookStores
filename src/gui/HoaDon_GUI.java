@@ -144,6 +144,7 @@ public class HoaDon_GUI extends JPanel {
 						khachHang = khachHang_DAO.getKhachHangTheoSoDienThoai(txtSoDienThoai.getText());
 						if (khachHang.getMaKhachHang() == null) {
 							JOptionPane.showMessageDialog(null, "Không tìm thấy khách hàng này!");
+							lamMoi();
 						}
 						else {
 							txtMaKhachHang.setText(khachHang.getMaKhachHang());

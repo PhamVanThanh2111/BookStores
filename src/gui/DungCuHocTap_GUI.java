@@ -730,11 +730,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		;
 	}
 
-	public void loadFile() {
-		for (SanPham sanPham : sanPham_DAO.getAllDungCuHocTap()) {
-			ds.add(sanPham);
-		}
-	}
+
 
 	public void loadData(ArrayList<SanPham> ds) {
 		// Xóa dữ liệu cũ trước khi nạp dữ liệu mới
@@ -896,7 +892,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		return false;
 	}
 
-	private void ghiFileExcel() {
+	private void ghiFileExcel(ArrayList<SanPham> ds) {
 		fileChooser = new JFileChooser();
 		int userSelection = fileChooser.showSaveDialog(this);
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
@@ -906,7 +902,6 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 			if (!excelFilePath.endsWith(".xlsx")) {
 				excelFilePath += ".xlsx";
 			}
-			loadFile();
 			try {
 				wordkbook = new XSSFWorkbook();
 				XSSFSheet sheet = wordkbook.createSheet("Danh Sách");
@@ -962,7 +957,6 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 
 					cell = row.createCell(7, CellType.STRING);
 					cell.setCellValue(ds.get(i).getMaNhaCungCap());
-					System.out.println("a");
 				}
 				FileOutputStream fis = new FileOutputStream(excelFilePath);
 				wordkbook.write(fis);
@@ -1170,7 +1164,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 									}
 								} else {
 									if (o.equals(btnXuatFile)) {
-										ghiFileExcel();
+										ghiFileExcel(sanPham_DAO.getAllDungCuHocTap());
 									}
 								}
 							}

@@ -64,6 +64,7 @@ public class DatHang_GUI extends JPanel {
 	private PhieuDatHang_DAO phieuDatHang_DAO;
 	private ChiTietPhieuDatHang_DAO chiTietPhieuDatHang_DAO;
 	private PhatSinhMa_DAO phatSinhMa_DAO;
+	private JTextField txtMaSanPham;
 	
 	/**
 	 * Create the panel.
@@ -358,6 +359,7 @@ public class DatHang_GUI extends JPanel {
 				if (cbTenSP.getSelectedIndex() != -1) {
 					sanPham = sanPham_DAO.getSanPhamTheoTenSanPham(cbTenSP.getSelectedItem().toString());
 					txtConLai.setText(sanPham.getSoLuongTon() + "");
+					txtMaSanPham.setText(sanPham.getMaSanPham());
 				}
 			}
 		});
@@ -488,7 +490,8 @@ public class DatHang_GUI extends JPanel {
 					JOptionPane.showInternalMessageDialog(null, "Bạn phải chọn sản phẩm cần sửa!");
 				}
 				else {
-					if (Integer.parseInt(txtConLai.getText()) < Integer.parseInt(txtSoLuong.getText())) {
+					SanPham sanPham = sanPham_DAO.getSanPhamTheoMaSanPham(txtMaSanPham.getText());
+					if (sanPham.getSoLuongTon() < Integer.parseInt(txtSoLuong.getText())) {
 						JOptionPane.showMessageDialog(null, "Không đủ sản phẩm!");
 					}
 					else {
@@ -498,13 +501,16 @@ public class DatHang_GUI extends JPanel {
 							if (Integer.parseInt(txtSoLuong.getText()) <= 0) {
 								JOptionPane.showMessageDialog(null, "Số lượng phải lớn hơn không!");
 							}
+							else if (model.getValueAt(row, 2).toString().equals(txtSoLuong.getText())) {
+								JOptionPane.showMessageDialog(null, "Bạn chưa thay đổi số lượng!");
+							}
 							else {
 								model.setValueAt(txtSoLuong.getText(), row, 2);
+								txtConLai.setText(sanPham.getSoLuongTon() - Integer.parseInt(txtSoLuong.getText()) + "");
 							}
 							model.setValueAt(sanPham.getGiaBan(), row, 3);
 							model.setValueAt(Integer.parseInt(txtSoLuong.getText()) * sanPham.getGiaBan(), row, 4);
 							lblTongTienValue.setText(tinhThanhTien() + " VND");
-							txtConLai.setText(Integer.parseInt(txtConLai.getText()) - Integer.parseInt(txtSoLuong.getText()) + "");
 						} catch (Exception e2) {
 							// TODO: handle exception
 							JOptionPane.showMessageDialog(null, "Số lượng phải là số!");
@@ -514,6 +520,34 @@ public class DatHang_GUI extends JPanel {
 			}
 		});
 		pThongTinKH.add(btnSua);
+		
+		txtMaSanPham = new JTextField();
+		txtMaSanPham.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					sanPham = sanPham_DAO.getSanPhamTheoMaSanPham(txtMaSanPham.getText());
+					if (sanPham.getMaSanPham() == null) {
+						JOptionPane.showMessageDialog(null, "Không có sản phẩm này!");
+						lamMoi();
+					}
+					else {
+						txtConLai.setText(sanPham.getSoLuongTon() + "");
+						cbTenSP.setSelectedItem(sanPham.getTenSanPham().toString());
+						if (txtMaSanPham.getText().charAt(0) == 'S') {
+							cbLoaiSP.setSelectedIndex(0);
+						}
+						else {
+							cbLoaiSP.setSelectedIndex(1);
+						}
+					}
+				}
+			}
+		});
+		txtMaSanPham.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtMaSanPham.setColumns(10);
+		txtMaSanPham.setBounds(464, 120, 274, 40);
+		pThongTinKH.add(txtMaSanPham);
 
 	}
 

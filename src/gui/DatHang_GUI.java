@@ -109,6 +109,7 @@ public class DatHang_GUI extends JPanel {
 		txtMaKhachHang.setColumns(10);
 		txtMaKhachHang.setBounds(174, 70, 336, 40);
 		txtMaKhachHang.setEditable(false);
+		txtMaKhachHang.setFocusable(false);
 		pTenKhachHang.add(txtMaKhachHang);
 		
 		JLabel lblTenKhachHang = new JLabel("Tên Khách Hàng:");
@@ -121,6 +122,7 @@ public class DatHang_GUI extends JPanel {
 		txtTenKhachHang.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtTenKhachHang.setColumns(10);
 		txtTenKhachHang.setBounds(174, 120, 336, 40);
+		txtTenKhachHang.setFocusable(false);
 		pTenKhachHang.add(txtTenKhachHang);
 		
 		JLabel lblSoDienThoai = new JLabel("Số Điện Thoại:");
@@ -174,6 +176,7 @@ public class DatHang_GUI extends JPanel {
 		txtDiaChi.setEditable(false);
 		txtDiaChi.setColumns(10);
 		txtDiaChi.setBounds(174, 220, 336, 40);
+		txtDiaChi.setFocusable(false);
 		pTenKhachHang.add(txtDiaChi);
 
 		JPanel pChiTietPhieuDatHang = new JPanel();
@@ -344,6 +347,10 @@ public class DatHang_GUI extends JPanel {
 				// TODO Auto-generated method stub
 				if (cbLoaiSP.getSelectedIndex() != -1) {
 					loadDataIntoComboboxTenSP(cbLoaiSP.getSelectedItem().toString());
+					cbTenSP.setEnabled(true);
+				}
+				else {
+					cbTenSP.setEnabled(false);
 				}
 			}
 		});
@@ -353,6 +360,7 @@ public class DatHang_GUI extends JPanel {
 		cbTenSP.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		cbTenSP.setBounds(170, 120, 284, 40);
 		cbTenSP.setSelectedIndex(-1);
+		cbTenSP.setEnabled(false);
 		cbTenSP.addActionListener(new ActionListener() {
 			
 			@Override
@@ -362,6 +370,10 @@ public class DatHang_GUI extends JPanel {
 					sanPham = sanPham_DAO.getSanPhamTheoTenSanPham(cbTenSP.getSelectedItem().toString());
 					txtConLai.setText(sanPham.getSoLuongTon() + "");
 					txtMaSanPham.setText(sanPham.getMaSanPham());
+					txtSoLuong.setEnabled(true);
+				}
+				else {
+					txtSoLuong.setEnabled(false);
 				}
 			}
 		});
@@ -370,6 +382,7 @@ public class DatHang_GUI extends JPanel {
 		txtSoLuong = new JTextField();
 		txtSoLuong.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtSoLuong.setBounds(170, 220, 282, 40);
+		txtSoLuong.setEnabled(false);
 		pThongTinKH.add(txtSoLuong);
 		txtSoLuong.setColumns(10);
 
@@ -474,6 +487,7 @@ public class DatHang_GUI extends JPanel {
 		txtConLai.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtConLai.setColumns(10);
 		txtConLai.setBounds(170, 170, 282, 40);
+		txtConLai.setFocusable(false);
 		pThongTinKH.add(txtConLai);
 		
 		JButton btnSua = new JButton("Sửa");
@@ -549,6 +563,7 @@ public class DatHang_GUI extends JPanel {
 		txtMaSanPham.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtMaSanPham.setColumns(10);
 		txtMaSanPham.setBounds(464, 120, 274, 40);
+		txtMaSanPham.setFocusable(false);
 		pThongTinKH.add(txtMaSanPham);
 
 	}
@@ -629,10 +644,11 @@ public class DatHang_GUI extends JPanel {
 		txtTenKhachHang.setText("");
 		txtSoDienThoai.setText("");
 		txtDiaChi.setText("");
-		cbTenSP.setSelectedIndex(-1);
 		cbLoaiSP.setSelectedIndex(-1);
+		cbTenSP.setSelectedIndex(-1);
 		txtConLai.setText("");
 		txtSoLuong.setText("");
+		txtMaSanPham.setText("");
 		model.setRowCount(0);
 	}
 }

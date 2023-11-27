@@ -167,6 +167,25 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		txtUser.setText("NV0001");
 		getContentPane().add(txtUser);
 		txtUser.setColumns(10);
+		
+		JButton btnQuayLai = new JButton("← Quay lại");
+		btnQuayLai.setMnemonic(KeyEvent.VK_ENTER);
+		btnQuayLai.setForeground(new Color(0, 0, 0));
+		btnQuayLai.setFont(new Font("SansSerif", Font.BOLD, 15));
+		btnQuayLai.setBorder(null);
+		btnQuayLai.setBackground(new Color(255, 255, 255));
+		btnQuayLai.setBounds(10, 473, 87, 21);
+		btnQuayLai.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				HeThongQuanLyNhaSach heThongQuanLyNhaSach = new HeThongQuanLyNhaSach();
+				heThongQuanLyNhaSach.setVisible(true);
+				setVisible(false);
+			}
+		});
+		getContentPane().add(btnQuayLai);
 
 		JLabel lblBackground = new JLabel("");
 		lblBackground.setHorizontalAlignment(SwingConstants.CENTER);

@@ -229,7 +229,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		lblHinhAnh = new JLabel("");
 		lblHinhAnh.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHinhAnh.setBorder(new LineBorder(new Color(0, 0, 0)));
-		lblHinhAnh.setBounds(857, 70, 397, 146);
+		lblHinhAnh.setBounds(857, 15, 400, 200);
 		pThongTin.add(lblHinhAnh);
 
 		txtgiaBan = new JTextField();
@@ -534,7 +534,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		lblHinhAnh = new JLabel("");
 		lblHinhAnh.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHinhAnh.setBorder(new LineBorder(new Color(0, 0, 0)));
-		lblHinhAnh.setBounds(857, 70, 397, 130);
+		lblHinhAnh.setBounds(857, 15, 400, 200);
 		pThongTin.add(lblHinhAnh);
 
 		txtgiaBan = new JTextField();

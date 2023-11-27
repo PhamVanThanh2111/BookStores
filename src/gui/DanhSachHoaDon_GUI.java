@@ -67,7 +67,6 @@ public class DanhSachHoaDon_GUI extends JPanel {
 	private NhanVien_DAO nhanVien_DAO;
 	private SanPham_DAO sanPham_DAO;
 	private JButton btnTim;
-	
 	private JButton btnInHoaDon;
 	
 	/**
@@ -401,6 +400,10 @@ public class DanhSachHoaDon_GUI extends JPanel {
 								hoaDon.getThanhTien()};
 			modelDanhSachHoaDon.addRow(objects);
 		}
+	}
+	
+	public void lamMoi() {
+		loadDataIntoTableHoaDon(hoaDon_DAO.getAllListHoaDon());
 	}
 	
 	private void loadDataIntoTableChiTietHoaDonTheoMaHoaDon(String maHoaDon) {

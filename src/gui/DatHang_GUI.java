@@ -65,11 +65,13 @@ public class DatHang_GUI extends JPanel {
 	private ChiTietPhieuDatHang_DAO chiTietPhieuDatHang_DAO;
 	private PhatSinhMa_DAO phatSinhMa_DAO;
 	private JTextField txtMaSanPham;
+	private DanhSachDatHang_GUI danhSachDatHang_GUI;
 	
 	/**
 	 * Create the panel.
 	 */
-	public DatHang_GUI(NhanVien nhanVien) {
+	public DatHang_GUI(NhanVien nhanVien, DanhSachDatHang_GUI danhSachDatHang_GUI) {
+		this.danhSachDatHang_GUI = danhSachDatHang_GUI;
 		setBackground(new Color(255, 255, 255));
 		// khai bao DAO
 		sanPham_DAO = new SanPham_DAO();
@@ -619,6 +621,7 @@ public class DatHang_GUI extends JPanel {
 			sanPham_DAO.banSanPham(maSanPham, soLuong);
 		}
 		JOptionPane.showMessageDialog(null, "Đặt hàng thành công!");
+		danhSachDatHang_GUI.lamMoi();
 	}
 	
 	private void lamMoi() {

@@ -361,7 +361,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 		}
 	}
 	
-	private void refresh() {
+	public void lamMoi() {
 		loadDataIntoTableDanhSachPhieuDatHang(phieuDatHang_DAO.getAllListPhieuDatHang());
 	}
 	
@@ -384,7 +384,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 				}
 				JOptionPane.showMessageDialog(null,
 						"Xóa phiếu đặt hàng '" + modelDSPD.getValueAt(row, 0) + "' thành công!");
-				refresh();
+				lamMoi();
 				return true;
 			} else {
 				return false;
@@ -424,7 +424,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 				// xóa phiếu đặt hàng
 				phieuDatHang_DAO.xoaPhieuDatHangTheoMa(phieuDatHang.getMaPhieuDatHang());
 				JOptionPane.showMessageDialog(null, "Lập hóa đơn thành công!");
-				refresh();
+				lamMoi();
 				return true;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

@@ -66,12 +66,15 @@ public class HoaDon_GUI extends JPanel {
 	private PhatSinhMa_DAO phatSinhMa_DAO;
 	private JTextField txtMaSanPham;
 	private DanhSachHoaDon_GUI danhSachHoaDon_GUI;
+	private ThongKe_GUI thongKe_GUI;
 	
 	/**
 	 * Create the panel.
 	 */
-	public HoaDon_GUI(NhanVien nhanVien, DanhSachHoaDon_GUI danhSachHoaDon_GUI) {
+	public HoaDon_GUI(NhanVien nhanVien, DanhSachHoaDon_GUI danhSachHoaDon_GUI, ThongKe_GUI thongKe_GUI) {
 		this.danhSachHoaDon_GUI = danhSachHoaDon_GUI;
+		this.thongKe_GUI = thongKe_GUI;
+		
 		setBackground(new Color(255, 255, 255));
 		// khai bao DAO
 		sanPham_DAO = new SanPham_DAO();
@@ -626,7 +629,8 @@ public class HoaDon_GUI extends JPanel {
 			sanPham_DAO.banSanPham(maSanPham, soLuong);
 		}
 		JOptionPane.showMessageDialog(null, "Lập hóa đơn thành công!");
-		danhSachHoaDon_GUI.lamMoi();
+		danhSachHoaDon_GUI.refresh();
+		thongKe_GUI.refresh();
 	}
 	
 	private void lamMoi() {

@@ -104,13 +104,14 @@ public class HoaDon_DAO {
 	}
 
 	// get danh sach hoa don theo ngay
-	public ArrayList<HoaDon> getListHoaDonTheoNgay(LocalDate date) { // i là số ngày cách ngày hiện tại. VD: i = 1 (ngay hom qua)
+	public ArrayList<HoaDon> getListHoaDonTheoNgay(LocalDate date) { // i là số ngày cách ngày hiện tại. VD: i = 1 (ngay
+																		// hom qua)
 		ConnectDB.getInstance();
 		Connection connection = ConnectDB.getConnection();
 		ArrayList<HoaDon> ds = new ArrayList<HoaDon>();
 		try {
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("select * from HoaDon where ngayLap = '"+ date +"'");
+					.prepareStatement("select * from HoaDon where ngayLap = '" + date + "'");
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				HoaDon hoaDon = new HoaDon();
@@ -125,5 +126,89 @@ public class HoaDon_DAO {
 			// TODO: handle exception
 		}
 		return ds;
+	}
+	
+	// thống kê top khách hàng mua nhiều nhất
+	public ResultSet getDanhSachKhachHangMuaNhieuNhat() {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		ResultSet resultSet = null;
+		try {
+			PreparedStatement preparedStatement = connection
+					.prepareStatement(
+							  "SELECT TOP 10 "
+							+ "    KH.tenKhachHang, "
+							+ "    SUM(HD.thanhTien) AS TongTienMua "
+							+ "FROM "
+							+ "    HoaDon HD "
+							+ "    INNER JOIN KhachHang KH ON HD.maKhachHang = KH.maKhachHang "
+							+ "    INNER JOIN ChiTietHoaDon CTHD ON HD.maHoaDon = CTHD.maHoaDon "
+							+ "GROUP BY "
+							+ "    KH.tenKhachHang "
+							+ "ORDER BY "
+							+ "    TongTienMua DESC; "
+							);
+			resultSet = preparedStatement.executeQuery();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return resultSet;
+	}
+	
+	// thống kê danh sách các sản phẩm bán chạy nhất
+	public ResultSet getDanhSachSanPhamBanChay() {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		ResultSet resultSet = null;
+		try {
+			PreparedStatement preparedStatement = connection
+					.prepareStatement(
+							"SELECT TOP 8 "
+							+ "    SP.maSanPham, "
+							+ "    SP.tenSanPham, "
+							+ "    SUM(CTHD.soLuong) AS TongSoLuongBan "
+							+ "FROM "
+							+ "    SanPham SP "
+							+ "    INNER JOIN ChiTietHoaDon CTHD ON SP.maSanPham = CTHD.maSanPham "
+							+ "GROUP BY "
+							+ "    SP.maSanPham, SP.tenSanPham "
+							+ "ORDER BY "
+							+ "    TongSoLuongBan DESC; "
+							);
+			resultSet = preparedStatement.executeQuery();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return resultSet;
+	}
+	
+	// thống kê doanh thu và số lượng hóa đơn của các nhân viên có doanh thu cao 
+	public ResultSet getDanhSachNhanVienTheoDoanhThu() {
+		ConnectDB.getInstance();
+		Connection connection = ConnectDB.getConnection();
+		ResultSet resultSet = null;
+		try {
+			PreparedStatement preparedStatement = connection
+					.prepareStatement(
+							  "SELECT TOP 10 "
+							  + "    NV.maNhanVien, "
+							  + "    NV.tenNhanVien, "
+							  + "    COUNT(HD.maHoaDon) AS SoLuongHoaDon, "
+							  + "    SUM(CTHD.soLuong) AS SoLuongSanPham, "
+							  + "    SUM(HD.thanhTien) AS TongDoanhThu "
+							  + "FROM "
+							  + "    NhanVien NV "
+							  + "    LEFT JOIN HoaDon HD ON NV.maNhanVien = HD.maNhanVien "
+							  + "    LEFT JOIN ChiTietHoaDon CTHD ON HD.maHoaDon = CTHD.maHoaDon "
+							  + "GROUP BY "
+							  + "    NV.maNhanVien, NV.tenNhanVien "
+							  + "ORDER BY "
+							  + "    TongDoanhThu DESC; "
+							);
+			resultSet = preparedStatement.executeQuery();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return resultSet;
 	}
 }

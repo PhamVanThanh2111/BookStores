@@ -339,4 +339,26 @@ public class SanPham_DAO {
 		return ds;
 	}
 	
+	// lấy danh sách các sản phẩm gần hết hàng (soLuongTon <= 10)
+	public ArrayList<SanPham> getSanPhamGanHetHang() {
+		ArrayList<SanPham> ds = new ArrayList<SanPham>();
+		ConnectDB.getInstance();
+		Connection con = ConnectDB.getConnection();
+		try {
+			PreparedStatement preparedStatement = con
+					.prepareStatement(
+							  "SELECT * "
+							+ "FROM SanPham "
+							+ "WHERE soLuongTon <= 10");
+			ResultSet result = preparedStatement.executeQuery();
+			while (result.next()) {
+				ds.add(new SanPham(result.getString(1), result.getString(2), result.getString(3), result.getFloat(4),
+						result.getFloat(5), result.getInt(6), result.getString(7), result.getString(13)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return ds;
+	}
 }

@@ -402,7 +402,7 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		}
 	}
 	
-	public void lamMoi() {
+	public void refresh() {
 		loadDataIntoTableHoaDon(hoaDon_DAO.getAllListHoaDon());
 	}
 	

@@ -34,10 +34,17 @@ public class Regular_expression {
         return matcher.matches();
     }
 	
-//	public static boolean validateDiaChi(String diaChi) {
-//		String regex = "^[\\p{Lu}\\p{L}0-9/'.,-]+$";
-//		Pattern pattern = Pattern.compile(regex);
-//		Matcher matcher = pattern.matcher(diaChi);
-//		return matcher.matches();
-//	}
+	public static boolean validateDiaChi(String diaChi) {
+		String regex = "[.&&[^@#!$%^&*+()]]+";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(diaChi);
+		return matcher.matches();
+	}
+	
+	public static boolean validateCCCD(String CCCD) {
+		String regex = "\\d{12}";
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(CCCD);
+		return matcher.matches();
+	}
 }

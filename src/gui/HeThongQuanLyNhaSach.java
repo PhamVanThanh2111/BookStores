@@ -337,11 +337,11 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		getContentPane().add(pContent);
 		cardLayoutContent = new CardLayout();
 		pContent.setLayout(cardLayoutContent);
-		
+
 		danhSachHoaDon_GUI = new DanhSachHoaDon_GUI();
 		danhSachDatHang_GUI = new DanhSachDatHang_GUI();
 		thongKe_GUI = new ThongKe_GUI();
-		
+
 		// main menu
 		pContent.add(new TrangChu_GUI(nhanVien), "TrangChu_GUI");
 		pContent.add(new NhanVien_GUI(), "NhanVien_GUI");
@@ -358,7 +358,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		pContent.add(new NhaXuatBan_GUI(nhanVien), "NhaXuatBan_GUI");
 		pContent.add(new NhaCungCap_GUI(nhanVien), "NhaCungCap_GUI");
 		pContent.add(danhSachHoaDon_GUI, "DanhSachHoaDon_GUI");
-		
+
 		// mac dinh hien thi giao dien trang chu dau tien
 		cardLayoutContent.show(pContent, "TrangChu_GUI");
 
@@ -1308,6 +1308,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		});
 		contentPane.add(btnDangNhap);
 	}
+
 	public static void main(String[] args) {
 		try {
 			UIManager.setLookAndFeel(new FlatMacLightLaf());

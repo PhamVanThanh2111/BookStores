@@ -35,14 +35,14 @@ public class Regular_expression {
     }
 	
 	public static boolean validateDiaChi(String diaChi) {
-		String regex = "[.&&[^@#!$%^&*+()]]+";
+		String regex = "[^@#!$%^&*+()]+";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(diaChi);
 		return matcher.matches();
 	}
 	
 	public static boolean validateCCCD(String CCCD) {
-		String regex = "\\d{12}";
+		String regex = "\\d{12}|\\d{9}";
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(CCCD);
 		return matcher.matches();

@@ -745,7 +745,7 @@ public class NhanVien_GUI extends JPanel {
 				JOptionPane.showMessageDialog(null, "Ngày sinh của nhân viên không được để trống!");
 				return false;
 			}
-			else if (dateChooserNgaySinh.getDate().before(new java.util.Date()) && (new java.util.Date().getYear() - dateChooserNgaySinh.getDate().getYear() >= 18)) {
+			else if (dateChooserNgaySinh.getDate().after(new java.util.Date()) || ((new java.util.Date().getYear() + 1900) - (dateChooserNgaySinh.getDate().getYear() + 1900) < 18)) {
 				JOptionPane.showMessageDialog(null, "Ngày sinh của nhân viên phải trước ngày hiện tại và nhân viên phải đủ 18 tuổi!");
 				return false;
 			}
@@ -908,7 +908,7 @@ public class NhanVien_GUI extends JPanel {
 				JOptionPane.showMessageDialog(null, "Ngày sinh của nhân viên không được để trống!");
 				return false;
 			}
-			else if (dateChooserNgaySinh.getDate().before(new java.util.Date()) && (new java.util.Date().getYear() - dateChooserNgaySinh.getDate().getYear() >= 18)) {
+			else if (dateChooserNgaySinh.getDate().after(new java.util.Date()) || ((new java.util.Date().getYear() + 1900) - (dateChooserNgaySinh.getDate().getYear() + 1900) < 18)) {
 				JOptionPane.showMessageDialog(null, "Ngày sinh của nhân viên phải trước ngày hiện tại và nhân viên phải đủ 18 tuổi!");
 				return false;
 			}

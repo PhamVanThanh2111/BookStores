@@ -145,9 +145,11 @@ public class HoaDon_GUI extends JPanel {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) { 
 					if (txtSoDienThoai.getText().length() != 10) { // Regular expression
 						JOptionPane.showMessageDialog(null, "Số điện thoại phải đủ 10 số!");
+						lamMoi();
 					}
 					else if (!Regular_expression.validatePhoneNumber(txtSoDienThoai.getText())) {
 						JOptionPane.showMessageDialog(null, "Số điện thoại không hợp lệ!");
+						lamMoi();
 					}
 					else {
 						khachHang = khachHang_DAO.getKhachHangTheoSoDienThoai(txtSoDienThoai.getText());
@@ -307,6 +309,9 @@ public class HoaDon_GUI extends JPanel {
 						e1.printStackTrace();
 					}
 				}
+				else if (txtMaKhachHang.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Bạn chưa chọn khách hàng!");
+				}
 				else {
 					JOptionPane.showMessageDialog(null, "Chưa có sản phẩm nào!");
 				}
@@ -429,7 +434,7 @@ public class HoaDon_GUI extends JPanel {
 					}
 				} catch (Exception e2) {
 					// TODO: handle exception
-					JOptionPane.showMessageDialog(null, "Số lượng phải là số và không được để trống!");
+					JOptionPane.showMessageDialog(null, "Số lượng phải là số và có giá trị lớn hơn 0!");
 				}
 			}
 		});

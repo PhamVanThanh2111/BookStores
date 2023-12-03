@@ -671,8 +671,10 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				lblSubMenu1.setText("Hồ Sơ");
 				lblSubMenu2.setText("");
 				lblSubMenu3.setText("");
+				lblSubMenu4.setText("");
 				sprDoc1.setVisible(false);
 				sprDoc2.setVisible(false);
+				sprDoc3.setVisible(false);
 				setTitle("Hồ Sơ");
 			}
 		});
@@ -705,8 +707,10 @@ public class HeThongQuanLyNhaSach extends JFrame {
 				lblSubMenu1.setText("Hồ Sơ");
 				lblSubMenu2.setText("");
 				lblSubMenu3.setText("");
+				lblSubMenu4.setText("");
 				sprDoc1.setVisible(false);
 				sprDoc2.setVisible(false);
+				sprDoc3.setVisible(false);
 				setTitle("Hồ Sơ");
 			}
 		});

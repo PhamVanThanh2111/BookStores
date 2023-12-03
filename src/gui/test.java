@@ -17,16 +17,7 @@ public class test extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					test frame = new test();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		System.out.println(Regular_expression.validateDiaChi("Gò Xoài"));
 	}
 
 	/**

@@ -692,88 +692,141 @@ public class NhanVien_GUI extends JPanel {
 		loadDataIntoTable(nhanVien_DAO.getAllListNhanVien());
 	}
 
+	@SuppressWarnings("deprecation")
 	public boolean add() {
-		if (txtTenNhanVien.getText().equals("")) {
-			JOptionPane.showMessageDialog(null, "Tên nhân viên không được để trống!");
-			txtTenNhanVien.requestFocus();
-			return false;
-		}
-		else if (lblHinhAnh.getIcon() == null) {
-			JOptionPane.showMessageDialog(null, "Hình ảnh nhân viên không được để trống!");
-			return false;
-		}
-		else if (txtSoDienThoai.getText().equals("")) {
-			JOptionPane.showMessageDialog(null, "Số điện thoại nhân viên không được để trống!");
-			txtSoDienThoai.requestFocus();
-			return false;
-		}
-		else if (txtEmail.getText().equals("")) {
-			JOptionPane.showMessageDialog(null, "Email nhân viên không được để trống!");
-			txtEmail.requestFocus();
-			return false;
-		}
-		else if (cbChucVu.getSelectedIndex() == -1) {
-			JOptionPane.showMessageDialog(null, "Chức vụ nhân viên không được để trống!");
-			return false;
-		}
-		else if (cbCa.getSelectedIndex() == -1) {
-			JOptionPane.showMessageDialog(null, "Ca của nhân viên không được để trống!");
-			return false;
-		}
-		else if (dateChooserNgaySinh == null) {
-			JOptionPane.showMessageDialog(null, "Ngày sinh của nhân viên không được để trống!");
-			return false;
-		}
-		else if (txtcCCD.getText().equals("")) {
-			JOptionPane.showMessageDialog(null, "Căn cước công dân của nhân viên không được để trống!");
-			txtcCCD.requestFocus();
-			return false;
-		}
-		else if (cbGioiTinh.getSelectedIndex() == -1) {
-			JOptionPane.showMessageDialog(null, "Giới tính của nhân viên không được để trống!");
-			return false;
-		}
-		else if (txtDiaChi.getText().equals("")) {
-			JOptionPane.showMessageDialog(null, "Địa chỉ nhân viên không được để trống!");
-			txtDiaChi.requestFocus();
+		if (kiemTraRong()) {
+			JOptionPane.showMessageDialog(null, "Bạn phải điền đầy đủ thông tin!");
 			return false;
 		}
 		else {
-			try {
-				// Thêm tài khoản mới cho nhân viên mới
-				TaiKhoan taiKhoan = new TaiKhoan();
-				String taiKhoanString = phatSinhMa_DAO.getMaTaiKhoan();
-				taiKhoan.setTaiKhoan(taiKhoanString);
-				taiKhoan.setMatKhau(taiKhoanString);
-				taiKhoan_DAO.themTaiKhoan(taiKhoan);
-
-				NhanVien nhanVien = new NhanVien();
-				nhanVien.setMaNhanVien(phatSinhMa_DAO.getMaNhanVien());
-				nhanVien.setTenNhanVien(txtTenNhanVien.getText());
-				nhanVien.setDiaChi(txtDiaChi.getText());
-				nhanVien.setGioiTinh(cbGioiTinh.getSelectedItem().toString());
-				nhanVien.setNgaySinh(new Date(dateChooserNgaySinh.getDate().getTime()));
-				nhanVien.setNgayVaoLam(new Date(new java.util.Date().getTime()));
-				nhanVien.setcCCD(txtcCCD.getText());
-				nhanVien.setEmail(txtEmail.getText());
-				nhanVien.setSoDienThoai(txtSoDienThoai.getText());
-				nhanVien.setChucVu(cbChucVu.getSelectedItem().toString());
-				nhanVien.setTaiKhoan(taiKhoan);
-				nhanVien.setMaCa("C" + cbCa.getSelectedItem());
-				nhanVien.setHinhAnh(relativePath);
-				nhanVien_DAO.themNhanVien(nhanVien);
-				JOptionPane.showMessageDialog(null, "Thêm nhân viên thành công!");
-				refresh();
-				return true;
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				JOptionPane.showMessageDialog(null, "Thêm nhân viên thất bại!");
-				e1.printStackTrace();
+			if (txtTenNhanVien.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Tên nhân viên không được để trống!");
+				txtTenNhanVien.requestFocus();
 				return false;
 			}
-		}
+			else if (!Regular_expression.validateTen(txtTenNhanVien.getText())) {
+				JOptionPane.showMessageDialog(null, "Tên nhân viên không được chứa ký tự số, ký tự đặc biệt, ví dụ: \"Nguyễn Văn A\"!");
+				txtTenNhanVien.requestFocus();
+				return false;
+			}
+			else if (lblHinhAnh.getIcon() == null) {
+				JOptionPane.showMessageDialog(null, "Hình ảnh nhân viên không được để trống!");
+				return false;
+			}
+			else if (txtSoDienThoai.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Số điện thoại nhân viên không được để trống!");
+				txtSoDienThoai.requestFocus();
+				return false;
+			}
+			else if (!Regular_expression.validatePhoneNumber(txtSoDienThoai.getText())) {
+				JOptionPane.showMessageDialog(null, "Số điện thoại phải đúng 10 chữ số và không được bắt đầu bằng '02' hoặc '06'!");
+				txtSoDienThoai.requestFocus();
+				return false;
+			}
+			else if (txtEmail.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Email nhân viên không được để trống!");
+				txtEmail.requestFocus();
+				return false;
+			}
+			else if (!Regular_expression.validateEmail(txtEmail.getText())) {
+				JOptionPane.showMessageDialog(null, "Email không hợp lệ! Ví dụ: 'thanh@gmail.com'!");
+				txtEmail.requestFocus();
+				return false;
+			}
+			else if (cbChucVu.getSelectedIndex() == -1) {
+				JOptionPane.showMessageDialog(null, "Chức vụ nhân viên không được để trống!");
+				return false;
+			}
+			else if (cbCa.getSelectedIndex() == -1) {
+				JOptionPane.showMessageDialog(null, "Ca của nhân viên không được để trống!");
+				return false;
+			}
+			else if (dateChooserNgaySinh == null) {
+				JOptionPane.showMessageDialog(null, "Ngày sinh của nhân viên không được để trống!");
+				return false;
+			}
+			else if (dateChooserNgaySinh.getDate().after(new java.util.Date()) || ((new java.util.Date().getYear() + 1900) - (dateChooserNgaySinh.getDate().getYear() + 1900) < 18)) {
+				JOptionPane.showMessageDialog(null, "Ngày sinh của nhân viên phải trước ngày hiện tại và nhân viên phải đủ 18 tuổi!");
+				return false;
+			}
+			else if (txtcCCD.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Căn cước công dân của nhân viên không được để trống!");
+				txtcCCD.requestFocus();
+				return false;
+			}
+			else if (!Regular_expression.validateCCCD(txtcCCD.getText())) {
+				JOptionPane.showMessageDialog(null, "Căn cước công dân phải chứa 12 ký tự số!");
+				txtcCCD.requestFocus();
+				return false;
+			}
+			else if (cbGioiTinh.getSelectedIndex() == -1) {
+				JOptionPane.showMessageDialog(null, "Giới tính của nhân viên không được để trống!");
+				return false;
+			}
+			else if (txtDiaChi.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Địa chỉ nhân viên không được để trống!");
+				txtDiaChi.requestFocus();
+				return false;
+			}
+			else if (!Regular_expression.validateDiaChi(txtDiaChi.getText())) {
+				JOptionPane.showMessageDialog(null, "Địa chỉ nhân viên không được chứa ký tự đặc biệt!");
+				txtDiaChi.requestFocus();
+				return false;
+			}
+			else {
+				try {
+					// Thêm tài khoản mới cho nhân viên mới
+					TaiKhoan taiKhoan = new TaiKhoan();
+					String taiKhoanString = phatSinhMa_DAO.getMaTaiKhoan();
+					taiKhoan.setTaiKhoan(taiKhoanString);
+					taiKhoan.setMatKhau(taiKhoanString);
+					taiKhoan_DAO.themTaiKhoan(taiKhoan);
 
+					NhanVien nhanVien = new NhanVien();
+					nhanVien.setMaNhanVien(phatSinhMa_DAO.getMaNhanVien());
+					nhanVien.setTenNhanVien(txtTenNhanVien.getText());
+					nhanVien.setDiaChi(txtDiaChi.getText());
+					nhanVien.setGioiTinh(cbGioiTinh.getSelectedItem().toString());
+					nhanVien.setNgaySinh(new Date(dateChooserNgaySinh.getDate().getTime()));
+					nhanVien.setNgayVaoLam(new Date(new java.util.Date().getTime()));
+					nhanVien.setcCCD(txtcCCD.getText());
+					nhanVien.setEmail(txtEmail.getText());
+					nhanVien.setSoDienThoai(txtSoDienThoai.getText());
+					nhanVien.setChucVu(cbChucVu.getSelectedItem().toString());
+					nhanVien.setTaiKhoan(taiKhoan);
+					nhanVien.setMaCa("C" + cbCa.getSelectedItem());
+					nhanVien.setHinhAnh(relativePath);
+					nhanVien_DAO.themNhanVien(nhanVien);
+					JOptionPane.showMessageDialog(null, "Thêm nhân viên thành công!");
+					refresh();
+					return true;
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "Thêm nhân viên thất bại!");
+					e1.printStackTrace();
+					return false;
+				}
+			}
+
+		}
 	}
+	
+	private boolean kiemTraRong() {
+		if (txtTenNhanVien.getText().equals("") &&
+				lblHinhAnh.getIcon() == null &&
+				txtSoDienThoai.getText().equals("") &&
+				txtEmail.getText().equals("") &&
+				cbChucVu.getSelectedIndex() == -1 &&
+				cbCa.getSelectedIndex() == -1 &&
+				dateChooserNgaySinh == null &&
+				txtcCCD.getText().equals("") &&
+				cbGioiTinh.getSelectedIndex() == -1 &&
+				txtDiaChi.getText().equals("")) {
+			return true;
+		}
+		return false;
+	}
+	
 	public boolean delete() {
 		int row = table.getSelectedRow();
 		if (row == -1) {
@@ -802,80 +855,116 @@ public class NhanVien_GUI extends JPanel {
 			}
 		}
 	}
+	@SuppressWarnings("deprecation")
 	public boolean update() {
-		if (txtTenNhanVien.getText().equals("")) {
-			JOptionPane.showMessageDialog(null, "Tên nhân viên không được để trống!");
-			txtTenNhanVien.requestFocus();
-			return false;
-		}
-		else if (lblHinhAnh.getIcon() == null) {
-			JOptionPane.showMessageDialog(null, "Hình ảnh nhân viên không được để trống!");
-			return false;
-		}
-		else if (txtSoDienThoai.getText().equals("")) {
-			JOptionPane.showMessageDialog(null, "Số điện thoại nhân viên không được để trống!");
-			txtSoDienThoai.requestFocus();
-			return false;
-		}
-		else if (txtEmail.getText().equals("")) {
-			JOptionPane.showMessageDialog(null, "Email nhân viên không được để trống!");
-			txtEmail.requestFocus();
-			return false;
-		}
-		else if (cbChucVu.getSelectedIndex() == -1) {
-			JOptionPane.showMessageDialog(null, "Chức vụ nhân viên không được để trống!");
-			return false;
-		}
-		else if (cbCa.getSelectedIndex() == -1) {
-			JOptionPane.showMessageDialog(null, "Ca của nhân viên không được để trống!");
-			return false;
-		}
-		else if (dateChooserNgaySinh == null) {
-			JOptionPane.showMessageDialog(null, "Ngày sinh của nhân viên không được để trống!");
-			return false;
-		}
-		else if (txtcCCD.getText().equals("")) {
-			JOptionPane.showMessageDialog(null, "Căn cước công dân của nhân viên không được để trống!");
-			txtcCCD.requestFocus();
-			return false;
-		}
-		else if (cbGioiTinh.getSelectedIndex() == -1) {
-			JOptionPane.showMessageDialog(null, "Giới tính của nhân viên không được để trống!");
-			return false;
-		}
-		else if (txtDiaChi.getText().equals("")) {
-			JOptionPane.showMessageDialog(null, "Địa chỉ nhân viên không được để trống!");
-			txtDiaChi.requestFocus();
+		if (kiemTraRong()) {
+			JOptionPane.showMessageDialog(null, "Bạn phải điền đầy đủ thông tin!");
 			return false;
 		}
 		else {
-			int row = table.getSelectedRow();
-			int option = JOptionPane.showConfirmDialog(null,
-					"Bạn có chắc muốn sửa nhân viên '" + model.getValueAt(row, 0) + "' chứ?", "Sửa?",
-					JOptionPane.YES_NO_OPTION);
-			if (option == JOptionPane.YES_OPTION) {
-				try {
-					TaiKhoan taiKhoan = nhanVien_DAO.getNhanVienTheoMa(model.getValueAt(row, 0).toString())
-							.getTaiKhoan();
-					Date ngayVaoLam = nhanVien_DAO.getNhanVienTheoMa(model.getValueAt(row, 0).toString())
-							.getNgayVaoLam();
-					Date ngaySinh = nhanVien_DAO.getNhanVienTheoMa(model.getValueAt(row, 0).toString()).getNgaySinh();
-					NhanVien nhanVien = new NhanVien(lblMaNhanVienValue.getText(), txtTenNhanVien.getText(), txtDiaChi.getText(),
-							cbGioiTinh.getSelectedItem().toString(), ngaySinh, ngayVaoLam, txtcCCD.getText(),
-							txtEmail.getText(), txtSoDienThoai.getText(), cbChucVu.getSelectedItem().toString(),
-							taiKhoan, "C" + cbCa.getSelectedItem(), relativePath);
-					nhanVien_DAO.suaNhanVien(nhanVien);
-					JOptionPane.showMessageDialog(null, "Sửa thành công nhân viên '" + model.getValueAt(row, 0) + "'!");
-					refresh();
-					return true;
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null,
-							"Sửa nhân viên '\" + model.getValueAt(row, 0) + \"' không thành công!");
+			if (txtTenNhanVien.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Tên nhân viên không được để trống!");
+				txtTenNhanVien.requestFocus();
+				return false;
+			}
+			else if (!Regular_expression.validateTen(txtTenNhanVien.getText())) {
+				JOptionPane.showMessageDialog(null, "Tên nhân viên không được chứa ký tự số, ký tự đặc biệt, ví dụ: \"Nguyễn Văn A\"!");
+				txtTenNhanVien.requestFocus();
+				return false;
+			}
+			else if (lblHinhAnh.getIcon() == null) {
+				JOptionPane.showMessageDialog(null, "Hình ảnh nhân viên không được để trống!");
+				return false;
+			}
+			else if (txtSoDienThoai.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Số điện thoại nhân viên không được để trống!");
+				txtSoDienThoai.requestFocus();
+				return false;
+			}
+			else if (!Regular_expression.validatePhoneNumber(txtSoDienThoai.getText())) {
+				JOptionPane.showMessageDialog(null, "Số điện thoại phải đúng 10 chữ số và không được bắt đầu bằng '02' hoặc '06'!");
+				txtSoDienThoai.requestFocus();
+				return false;
+			}
+			else if (txtEmail.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Email nhân viên không được để trống!");
+				txtEmail.requestFocus();
+				return false;
+			}
+			else if (!Regular_expression.validateEmail(txtEmail.getText())) {
+				JOptionPane.showMessageDialog(null, "Email không hợp lệ! Ví dụ: 'thanh@gmail.com'!");
+				txtEmail.requestFocus();
+				return false;
+			}
+			else if (cbChucVu.getSelectedIndex() == -1) {
+				JOptionPane.showMessageDialog(null, "Chức vụ nhân viên không được để trống!");
+				return false;
+			}
+			else if (cbCa.getSelectedIndex() == -1) {
+				JOptionPane.showMessageDialog(null, "Ca của nhân viên không được để trống!");
+				return false;
+			}
+			else if (dateChooserNgaySinh == null) {
+				JOptionPane.showMessageDialog(null, "Ngày sinh của nhân viên không được để trống!");
+				return false;
+			}
+			else if (dateChooserNgaySinh.getDate().after(new java.util.Date()) || ((new java.util.Date().getYear() + 1900) - (dateChooserNgaySinh.getDate().getYear() + 1900) < 18)) {
+				JOptionPane.showMessageDialog(null, "Ngày sinh của nhân viên phải trước ngày hiện tại và nhân viên phải đủ 18 tuổi!");
+				return false;
+			}
+			else if (txtcCCD.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Căn cước công dân của nhân viên không được để trống!");
+				txtcCCD.requestFocus();
+				return false;
+			}
+			else if (!Regular_expression.validateCCCD(txtcCCD.getText())) {
+				JOptionPane.showMessageDialog(null, "Căn cước công dân phải chứa 12 ký tự số!");
+				txtcCCD.requestFocus();
+				return false;
+			}
+			else if (cbGioiTinh.getSelectedIndex() == -1) {
+				JOptionPane.showMessageDialog(null, "Giới tính của nhân viên không được để trống!");
+				return false;
+			}
+			else if (txtDiaChi.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Địa chỉ nhân viên không được để trống!");
+				txtDiaChi.requestFocus();
+				return false;
+			}
+			else if (!Regular_expression.validateDiaChi(txtDiaChi.getText())) {
+				JOptionPane.showMessageDialog(null, "Địa chỉ nhân viên không được chứa ký tự đặc biệt!");
+				txtDiaChi.requestFocus();
+				return false;
+			}
+			else {
+				int row = table.getSelectedRow();
+				int option = JOptionPane.showConfirmDialog(null,
+						"Bạn có chắc muốn sửa nhân viên '" + model.getValueAt(row, 0) + "' chứ?", "Sửa?",
+						JOptionPane.YES_NO_OPTION);
+				if (option == JOptionPane.YES_OPTION) {
+					try {
+						TaiKhoan taiKhoan = nhanVien_DAO.getNhanVienTheoMa(model.getValueAt(row, 0).toString())
+								.getTaiKhoan();
+						Date ngayVaoLam = nhanVien_DAO.getNhanVienTheoMa(model.getValueAt(row, 0).toString())
+								.getNgayVaoLam();
+						Date ngaySinh = nhanVien_DAO.getNhanVienTheoMa(model.getValueAt(row, 0).toString()).getNgaySinh();
+						NhanVien nhanVien = new NhanVien(lblMaNhanVienValue.getText(), txtTenNhanVien.getText(), txtDiaChi.getText(),
+								cbGioiTinh.getSelectedItem().toString(), ngaySinh, ngayVaoLam, txtcCCD.getText(),
+								txtEmail.getText(), txtSoDienThoai.getText(), cbChucVu.getSelectedItem().toString(),
+								taiKhoan, "C" + cbCa.getSelectedItem(), relativePath);
+						nhanVien_DAO.suaNhanVien(nhanVien);
+						JOptionPane.showMessageDialog(null, "Sửa thành công nhân viên '" + model.getValueAt(row, 0) + "'!");
+						refresh();
+						return true;
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(null,
+								"Sửa nhân viên '\" + model.getValueAt(row, 0) + \"' không thành công!");
+						return false;
+					}
+				} else {
 					return false;
 				}
-			} else {
-				return false;
 			}
 		}
 	}

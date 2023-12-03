@@ -31,6 +31,9 @@ public class DoiMatKhau_GUI extends JInternalFrame {
 	private JPasswordField pwdMatKhauMoi;
 	private TaiKhoan_DAO taiKhoan_DAO;
 	private NhanVien nhanVien;
+	private String matKhauHienTai;
+	private String matKhauMoi;
+	private String nhapLaiMatKhau;
 
 	/**
 	 * Create the frame.
@@ -157,33 +160,63 @@ public class DoiMatKhau_GUI extends JInternalFrame {
 		
 	}
 	
-	@SuppressWarnings("deprecation")
-	private boolean doiMatKhau() {
-		if (trungKhop()) {
-			int option = JOptionPane.showConfirmDialog(null,
-					"Đổi mật khẩu?", "Đổi mật khẩu",
-					JOptionPane.YES_NO_OPTION);
-			if (option == JOptionPane.YES_OPTION) {
-				if (Regular_expression.validatePassword(pwdMatKhauMoi.getText())) {
-					if (taiKhoan_DAO.getTaiKhoanTheoMaTaiKhoan(nhanVien.getTaiKhoan().getTaiKhoan()).getMatKhau().equals(pwdMatKhauHienTai.getText())) {
-						TaiKhoan taiKhoan = new TaiKhoan();
-						taiKhoan.setTaiKhoan(nhanVien.getTaiKhoan().getTaiKhoan());
-						taiKhoan.setMatKhau(pwdMatKhauMoi.getText());
-						taiKhoan_DAO.suaTaiKhoan(taiKhoan);
-						JOptionPane.showMessageDialog(null, "Đổi mật khẩu thành công!");
-						setClosable(true);
-						return true;
-					}
-					else {
-						JOptionPane.showMessageDialog(null, "Mật khẩu hiện tại không đúng!");
-					}
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Mật khẩu mới phải có ít nhất 8 ký tự. Trong đó có ít nhất 1 chữ cái in thường, 1 chữ cái in hoa, 1 ký tự số và 1 ký tự đặc biệt!");
-				}
-			}
-
+	private boolean kiemTraRong() {
+		matKhauHienTai = new String(pwdMatKhauHienTai.getPassword());
+		matKhauMoi = new String(pwdMatKhauMoi.getPassword());
+		nhapLaiMatKhau = new String(pwdNhapLai.getPassword());
+		if (matKhauHienTai.equals("") && matKhauMoi.equals("") && nhapLaiMatKhau.equals("")) {
+			return true;
 		}
 		return false;
+	}
+	
+	@SuppressWarnings("deprecation")
+	private boolean doiMatKhau() {
+		if (kiemTraRong()) {
+			JOptionPane.showMessageDialog(null, "Bạn chưa nhập thông tin!");
+			return false;
+		}
+		else if (matKhauHienTai.equals("")) {
+			JOptionPane.showMessageDialog(null, "Bạn chưa nhập mật khẩu hiện tại!");
+			pwdMatKhauHienTai.requestFocus();
+			return false;
+		}
+		else if (matKhauMoi.equals("")) {
+			JOptionPane.showMessageDialog(null, "Bạn chưa nhập mật khẩu mới!");
+			pwdMatKhauMoi.requestFocus();
+			return false;
+		}
+		else if (nhapLaiMatKhau.equals("")) {
+			JOptionPane.showMessageDialog(null, "Bạn chưa nhập lại mật khẩu mới!");
+			pwdNhapLai.requestFocus();
+			return false;
+		}
+		else {
+			if (trungKhop()) {
+				int option = JOptionPane.showConfirmDialog(null,
+						"Đổi mật khẩu?", "Đổi mật khẩu",
+						JOptionPane.YES_NO_OPTION);
+				if (option == JOptionPane.YES_OPTION) {
+					if (Regular_expression.validatePassword(pwdMatKhauMoi.getText())) {
+						if (taiKhoan_DAO.getTaiKhoanTheoMaTaiKhoan(nhanVien.getTaiKhoan().getTaiKhoan()).getMatKhau().equals(pwdMatKhauHienTai.getText())) {
+							TaiKhoan taiKhoan = new TaiKhoan();
+							taiKhoan.setTaiKhoan(nhanVien.getTaiKhoan().getTaiKhoan());
+							taiKhoan.setMatKhau(pwdMatKhauMoi.getText());
+							taiKhoan_DAO.suaTaiKhoan(taiKhoan);
+							JOptionPane.showMessageDialog(null, "Đổi mật khẩu thành công!");
+							setClosable(true);
+							return true;
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "Mật khẩu hiện tại không đúng!");
+						}
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Mật khẩu mới phải có ít nhất 8 ký tự. Trong đó có ít nhất 1 chữ cái in thường, 1 chữ cái in hoa, 1 ký tự số và 1 ký tự đặc biệt!");
+					}
+				}
+			}
+			return false;
+		}
 	}
 }

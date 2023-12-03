@@ -22,6 +22,7 @@ import entity.HoaDon;
 import entity.KhachHang;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -204,7 +205,12 @@ public class DanhSachHoaDon_GUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				loadDataIntoTableHoaDon(timHoaDon());
+				if (!kiemTraRong()) {
+					loadDataIntoTableHoaDon(timHoaDon());
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Bạn phải nhập ít nhất 1 thông tin!");
+				}
 			}
 		});
 		pnlThongTinTimKiem.add(btnTim);
@@ -485,4 +491,14 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		return false;
 	}
 	
+	private boolean kiemTraRong() {
+		if (txtMaHoaDon.getText().equals("") &&
+			txtSoDienThoai.getText().equals("") &&
+			txtTenKhachHang.getText().equals("") &&
+			dateChooserTuNgay.getDate() == null &&
+			dateChooserDenNgay.getDate() == null) {
+			return true;
+		}
+		return false;
+	}
 }

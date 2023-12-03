@@ -37,7 +37,6 @@ import dao.HoaDon_DAO;
 import dao.SanPham_DAO;
 import entity.ChiTietHoaDon;
 import entity.HoaDon;
-import entity.NhanVien;
 import entity.SanPham;
 
 import java.beans.PropertyChangeListener;
@@ -335,7 +334,6 @@ public class ThongKe_GUI extends JPanel {
 			datasetDoanhThu.addValue(tinhDoanhThuTheoNgay(tuNgay.plusDays(i)), "Doanh thu 1", dateFormat.format(tuNgay.plusDays(i)).toString());
 			i++;
 		}
-		
 		chartDoanhThu = ChartFactory.createBarChart("DOANH THU", "NGÀY", "VND", datasetDoanhThu, PlotOrientation.VERTICAL, true, true, false);
 		
 		categoryDoanhThu = chartDoanhThu.getCategoryPlot();
@@ -354,7 +352,8 @@ public class ThongKe_GUI extends JPanel {
 		chartPanelDoanhThu = new ChartPanel(chartDoanhThu);
 		chartPanelDoanhThu.setBounds(2, 2, 886, 332);
 		pnlThongKeDoanhThu.add(chartPanelDoanhThu);
-		pnlThongKeDoanhThu.validate();
+		chartPanelDoanhThu.removeAll();
+		chartPanelDoanhThu.repaint();
 		
 	}
 	
@@ -386,7 +385,8 @@ public class ThongKe_GUI extends JPanel {
 		chartPanelSoLuong = new ChartPanel(chartSoLuong);
 		chartPanelSoLuong.setBounds(2, 2, 886, 332);
 		pnlThongKeSoLuong.add(chartPanelSoLuong);
-		pnlThongKeSoLuong.validate();
+		chartPanelSoLuong.removeAll();
+		chartPanelSoLuong.repaint();
 	}
 	
 	private void showBarChartSanPhamBanChay() { 

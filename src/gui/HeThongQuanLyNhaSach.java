@@ -201,7 +201,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			public void mouseExited(MouseEvent e) {
 				lblKhachHang.setBackground(new Color(39, 63, 96));
 				lblIconKhachHang.setBackground(new Color(39, 63, 96));
-			}
+			}	
 
 			@Override
 			public void mouseClicked(MouseEvent e) {

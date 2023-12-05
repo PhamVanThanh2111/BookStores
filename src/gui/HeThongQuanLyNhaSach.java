@@ -33,7 +33,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private JPanel contentPane;	
 	private JPanel pContent;
 	private CardLayout cardLayoutContent;
 	private JLabel lblNhanVien;

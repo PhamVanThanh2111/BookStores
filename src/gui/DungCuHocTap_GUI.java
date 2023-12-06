@@ -624,8 +624,8 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		scrollPaneDungCuHocTap.setBounds(20, 65, 1259, 304);
 		pDanhSach.add(scrollPaneDungCuHocTap);
 
-		String cols[] = { "Mã Dụng Cụ Học Tập", "Tên Dụng Cụ Học Tập ", "Xuất Xứ", "Giá Bán",
-				"Số Lượng Tồn", "Nhà Cung Cấp" };
+		String cols[] = { "Mã Dụng Cụ Học Tập", "Tên Dụng Cụ Học Tập ", "Xuất Xứ", "Giá Bán", "Số Lượng Tồn",
+				"Nhà Cung Cấp" };
 		model = new DefaultTableModel(cols, 0);
 		table = new JTable(model);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -720,7 +720,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 			table.setRowHeight(25);
 		}
 	}
-	
+
 	public void loadDataDCHTChoKhachHang(ArrayList<SanPham> ds) {
 		// Xóa dữ liệu cũ trước khi nạp dữ liệu mới
 		model.setRowCount(0);
@@ -790,34 +790,43 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 	}
 
 	public void themDCHT() {
-		if (txtmaDCHT.getText().equalsIgnoreCase("") || txttenDCHT.getText().equalsIgnoreCase("")
-				|| txtgiaNhap.getText().equalsIgnoreCase("") || txtgiaBan.getText().equalsIgnoreCase("")
-				|| txtXuatXu.getText().equalsIgnoreCase("") || txtsoLuong.getText().equalsIgnoreCase("")
-				|| cbNhaCC.getSelectedIndex() == -1) {
-			JOptionPane.showMessageDialog(null, "Thông Tin Rỗng !");
-		} else {
-			SanPham sanPham = new SanPham();
+		try {
+			if (txtmaDCHT.getText().equalsIgnoreCase("") || txttenDCHT.getText().equalsIgnoreCase("")
+					|| txtgiaNhap.getText().equalsIgnoreCase("") || txtgiaBan.getText().equalsIgnoreCase("")
+					|| txtXuatXu.getText().equalsIgnoreCase("") || txtsoLuong.getText().equalsIgnoreCase("")
+					|| cbNhaCC.getSelectedIndex() == -1) {
+				JOptionPane.showMessageDialog(null, "Thông Tin Rỗng !");
+			} else {
+				if (Float.parseFloat(txtgiaNhap.getText()) < 0 || Float.parseFloat(txtgiaBan.getText()) < 0
+						|| Integer.parseInt(txtsoLuong.getText()) < 0) {
+					JOptionPane.showMessageDialog(null, "Dữ liệu không phù hợp!");
+				} else {
+					try {
+						SanPham sanPham = new SanPham();
+						sanPham.setMaSanPham(phatSinhMa_DAO.getMaDCHT());
+						sanPham.setTenSanPham(txttenDCHT.getText());
+						sanPham.setXuatXu(txtXuatXu.getText());
 
-			try {
-				sanPham.setMaSanPham(phatSinhMa_DAO.getMaDCHT());
-				sanPham.setTenSanPham(txttenDCHT.getText());
-				sanPham.setXuatXu(txtXuatXu.getText());
-				sanPham.setGiaNhap(Float.parseFloat(txtgiaNhap.getText()));
-				sanPham.setGiaBan(Float.parseFloat(txtgiaBan.getText()));
-				sanPham.setSoLuongTon(Integer.parseInt(txtsoLuong.getText()));
+						sanPham.setGiaNhap(Float.parseFloat(txtgiaNhap.getText()));
+						sanPham.setGiaBan(Float.parseFloat(txtgiaBan.getText()));
+						sanPham.setSoLuongTon(Integer.parseInt(txtsoLuong.getText()));
 
-				//
-				if (cbNhaCC.getSelectedIndex() != -1) {
-					nhacc = nhaCC_DAO.getNhaCungCapTheoTen(cbNhaCC.getSelectedItem().toString());
+						//
+						if (cbNhaCC.getSelectedIndex() != -1) {
+							nhacc = nhaCC_DAO.getNhaCungCapTheoTen(cbNhaCC.getSelectedItem().toString());
+						}
+						sanPham.setMaNhaCungCap(nhacc.getMaNCC());
+						sanPham.setHinhAnh(relativePath);
+						sanPham_DAO.themSanPham(sanPham);
+						JOptionPane.showMessageDialog(null, "Thêm Sản Phẩm Thành Công !");
+					} catch (SQLException e) {
+						JOptionPane.showMessageDialog(null, "Dữ liệu không phù hợp!");
+					}
 				}
-				sanPham.setMaNhaCungCap(nhacc.getMaNCC());
-				sanPham.setHinhAnh(relativePath);
-				sanPham_DAO.themSanPham(sanPham);
-				JOptionPane.showMessageDialog(null, "Thêm Sản Phẩm Thành Công !");
-
-			} catch (SQLException e) {
-				e.printStackTrace();
 			}
+		} catch (NumberFormatException e) {
+			// TODO: handle exception
+			JOptionPane.showMessageDialog(null, "Dữ liệu không phù hợp!");
 		}
 	}
 
@@ -847,6 +856,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 					JOptionPane.showMessageDialog(null, "Xóa Thành Công !");
 					refresh();
 				} catch (Exception e) {
+					System.out.println("aaaaaaaaaaaaaa");
 					JOptionPane.showMessageDialog(null, "Sản Phẩm Tồn Tại Trong Hóa Đơn !");
 				}
 			}
@@ -861,22 +871,28 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 				|| cbNhaCC.getSelectedIndex() == -1) {
 			JOptionPane.showMessageDialog(null, "Thông Tin Rỗng !");
 		} else {
-			SanPham sanPham = new SanPham();
-			sanPham.setMaSanPham(txtmaDCHT.getText());
-			sanPham.setTenSanPham(txttenDCHT.getText());
-			sanPham.setXuatXu(txtXuatXu.getText());
-			sanPham.setGiaNhap(Float.parseFloat(txtgiaNhap.getText()));
-			sanPham.setGiaBan(Float.parseFloat(txtgiaBan.getText()));
-			sanPham.setSoLuongTon(Integer.parseInt(txtsoLuong.getText()));
-			sanPham.setHinhAnh(relativePath);
-			sanPham.setMaNXB(null);
-			sanPham.setMaTheLoaiSach(null);
-			sanPham.setSoTrang(0);
-			sanPham.setTacGia(null);
-			sanPham.setNamXuatBan(0);
-			sanPham.setMaNhaCungCap(nhaCC_DAO.getNhaCungCapTheoTen(cbNhaCC.getSelectedItem().toString()).getMaNCC());
-			sanPham_DAO.suaSanPhamTheoMa(sanPham);
-			JOptionPane.showMessageDialog(null, "Cập Nhập Sản Phẩm Thành Công !");
+			if (Float.parseFloat(txtgiaNhap.getText()) < 0 || Float.parseFloat(txtgiaBan.getText()) < 0
+					|| Integer.parseInt(txtsoLuong.getText()) < 0) {
+				JOptionPane.showMessageDialog(null, "Dữ liệu không phù hợp!");
+			} else {
+				SanPham sanPham = new SanPham();
+				sanPham.setMaSanPham(txtmaDCHT.getText());
+				sanPham.setTenSanPham(txttenDCHT.getText());
+				sanPham.setXuatXu(txtXuatXu.getText());
+				sanPham.setGiaNhap(Float.parseFloat(txtgiaNhap.getText()));
+				sanPham.setGiaBan(Float.parseFloat(txtgiaBan.getText()));
+				sanPham.setSoLuongTon(Integer.parseInt(txtsoLuong.getText()));
+				sanPham.setHinhAnh(relativePath);
+				sanPham.setMaNXB(null);
+				sanPham.setMaTheLoaiSach(null);
+				sanPham.setSoTrang(0);
+				sanPham.setTacGia(null);
+				sanPham.setNamXuatBan(0);
+				sanPham.setMaNhaCungCap(
+						nhaCC_DAO.getNhaCungCapTheoTen(cbNhaCC.getSelectedItem().toString()).getMaNCC());
+				sanPham_DAO.suaSanPhamTheoMa(sanPham);
+				JOptionPane.showMessageDialog(null, "Cập Nhập Sản Phẩm Thành Công !");
+			}
 		}
 		return false;
 	}
@@ -1156,7 +1172,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 									}
 								} else {
 									if (o.equals(btnXuatFile)) {
-										 ghiFileExcel(sanPham_DAO.getAllDungCuHocTap());
+										ghiFileExcel(sanPham_DAO.getAllDungCuHocTap());
 									}
 								}
 							}

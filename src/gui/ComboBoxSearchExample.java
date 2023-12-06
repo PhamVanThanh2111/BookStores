@@ -8,11 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ComboBoxSearchExample extends JFrame {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private JComboBox<String> comboBox;
+    private JComboBox<String> comboBox;
     private JTextField searchField;
 
     public ComboBoxSearchExample() {
@@ -22,7 +18,7 @@ public class ComboBoxSearchExample extends JFrame {
 
         // Sample data for the combo box
         List<String> items = new ArrayList<>();
-        items.add("Apple Thanh");
+        items.add("Apple");
         items.add("Banana");
         items.add("Cherry");
         items.add("Grapes");
@@ -66,10 +62,10 @@ public class ComboBoxSearchExample extends JFrame {
         setLocationRelativeTo(null);
     }
 
-//    public static void main(String[] args) {
-//        SwingUtilities.invokeLater(() -> {
-//            ComboBoxSearchExample example = new ComboBoxSearchExample();
-//            example.setVisible(true);
-//        });
-//    }
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            ComboBoxSearchExample example = new ComboBoxSearchExample();
+            example.setVisible(true);
+        });
+    }
 }

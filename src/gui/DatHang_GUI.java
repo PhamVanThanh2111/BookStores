@@ -29,6 +29,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.event.KeyAdapter;
@@ -36,6 +38,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -66,6 +69,7 @@ public class DatHang_GUI extends JPanel {
 	private PhatSinhMa_DAO phatSinhMa_DAO;
 	private JTextField txtMaSanPham;
 	private DanhSachDatHang_GUI danhSachDatHang_GUI;
+	private JTextField txtSearchSanPham;
 	
 	/**
 	 * Create the panel.
@@ -542,19 +546,24 @@ public class DatHang_GUI extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					sanPham = sanPham_DAO.getSanPhamTheoMaSanPham(txtMaSanPham.getText());
-					if (sanPham.getMaSanPham() == null) {
-						JOptionPane.showMessageDialog(null, "Không có sản phẩm này!");
-						lamMoi();
+					if (txtMaSanPham.getText().equals("")) {
+						loadDataIntoComboboxTenSP(cbLoaiSP.getSelectedItem().toString());
 					}
 					else {
-						txtConLai.setText(sanPham.getSoLuongTon() + "");
-						cbTenSP.setSelectedItem(sanPham.getTenSanPham().toString());
-						if (txtMaSanPham.getText().charAt(0) == 'S') {
-							cbLoaiSP.setSelectedIndex(0);
+						sanPham = sanPham_DAO.getSanPhamTheoMaSanPham(txtMaSanPham.getText());
+						if (sanPham.getMaSanPham() == null) {
+							JOptionPane.showMessageDialog(null, "Không có sản phẩm này!");
+							lamMoi();
 						}
 						else {
-							cbLoaiSP.setSelectedIndex(1);
+							txtConLai.setText(sanPham.getSoLuongTon() + "");
+							cbTenSP.setSelectedItem(sanPham.getTenSanPham().toString());
+							if (txtMaSanPham.getText().charAt(0) == 'S') {
+								cbLoaiSP.setSelectedIndex(0);
+							}
+							else {
+								cbLoaiSP.setSelectedIndex(1);
+							}
 						}
 					}
 				}
@@ -562,10 +571,65 @@ public class DatHang_GUI extends JPanel {
 		});
 		txtMaSanPham.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtMaSanPham.setColumns(10);
-		txtMaSanPham.setBounds(464, 120, 274, 40);
+		txtMaSanPham.setBounds(505, 70, 233, 40);
 		txtMaSanPham.setFocusable(false);
 		pThongTinKH.add(txtMaSanPham);
+		
+		JLabel lblMaSanPham = new JLabel("Mã:");
+		lblMaSanPham.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		lblMaSanPham.setBounds(465, 70, 40, 40);
+		pThongTinKH.add(lblMaSanPham);
+		
+		JLabel lblTimSanPham = new JLabel("Tìm:");
+		lblTimSanPham.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		lblTimSanPham.setBounds(464, 120, 41, 40);
+		pThongTinKH.add(lblTimSanPham);
+		
+		txtSearchSanPham = new JTextField();
+		txtSearchSanPham.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtSearchSanPham.setColumns(10);
+		txtSearchSanPham.setBounds(505, 120, 233, 40);
+		txtSearchSanPham.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					String searchText = txtSearchSanPham.getText().toLowerCase();
+					if (searchText.isEmpty()) {
+	                    // If search text is empty, show all items
+	                    loadDataIntoComboboxTenSP(cbLoaiSP.getSelectedItem().toString());
+	                } else {
+	                    // Filter items based on the search text
+	                    ArrayList<String> filteredItems = new ArrayList<>();
+	                    for (String item : getDanhSachComboBoxTenSanPham()) {
+	                        if (item.toLowerCase().contains(searchText)) {
+	                            filteredItems.add(item);
+	                        }
+	                    }
+	                    themArrayListVaoComboBox(filteredItems, cbTenSP);
+	                }
+				}
+			}
+		});
+		pThongTinKH.add(txtSearchSanPham);
 
+	}
+	
+	private void themArrayListVaoComboBox(ArrayList<String> a, JComboBox<String> b) {
+		b.removeAllItems();
+		for (String item : a) {
+			b.addItem(item);
+		}
+	}
+	
+	private ArrayList<String> getDanhSachComboBoxTenSanPham() {
+		ArrayList<String> ds = new ArrayList<String>();
+		DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) cbTenSP.getModel();
+		int size = model.getSize();
+		for (int i = 0; i < size; i++) {
+			String item = model.getElementAt(i);
+			ds.add(item);
+		}
+		return ds;
 	}
 
 	// load data ten sach vao combobox

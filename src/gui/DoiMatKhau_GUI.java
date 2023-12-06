@@ -68,7 +68,7 @@ public class DoiMatKhau_GUI extends JInternalFrame {
 		
 		JLabel lblNhapLai = new JLabel("Nhập Lại:");
 		lblNhapLai.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNhapLai.setBounds(69, 98, 165, 40);
+		lblNhapLai.setBounds(69, 158, 165, 40);
 		getContentPane().add(lblNhapLai);
 		
 		pwdNhapLai = new JPasswordField();
@@ -88,12 +88,12 @@ public class DoiMatKhau_GUI extends JInternalFrame {
 			}
 		});
 		pwdNhapLai.setColumns(10);
-		pwdNhapLai.setBounds(244, 98, 238, 40);
+		pwdNhapLai.setBounds(244, 158, 238, 40);
 		getContentPane().add(pwdNhapLai);
 		
 		JLabel lblMatKhauMoi = new JLabel("Mật Khẩu Mới:");
 		lblMatKhauMoi.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblMatKhauMoi.setBounds(69, 158, 165, 40);
+		lblMatKhauMoi.setBounds(69, 98, 165, 40);
 		getContentPane().add(lblMatKhauMoi);
 		
 		pwdMatKhauMoi = new JPasswordField();
@@ -108,7 +108,7 @@ public class DoiMatKhau_GUI extends JInternalFrame {
 			}
 		});
 		pwdMatKhauMoi.setColumns(10);
-		pwdMatKhauMoi.setBounds(244, 158, 238, 40);
+		pwdMatKhauMoi.setBounds(244, 98, 238, 40);
 		getContentPane().add(pwdMatKhauMoi);
 		
 		JButton btnDoiMatKhau = new JButton("Đổi Mật Khẩu");

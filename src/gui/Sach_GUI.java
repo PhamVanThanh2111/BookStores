@@ -192,6 +192,7 @@ public class Sach_GUI extends JPanel {
 //		txtMaSach.setBorder(null);
 		txtMaSach.setBackground(Color.WHITE);
 		txtMaSach.setBounds(135, 67, 200, 40);
+//		txtMaSach.setEditable(false);
 		pThongTin.add(txtMaSach);
 
 		txtTenSach = new JTextField();
@@ -331,6 +332,7 @@ public class Sach_GUI extends JPanel {
 				// TODO Auto-generated method stub
 				if (btnAdd.getText().equals("Thêm")) {
 //					lamMoi();
+//					txtMaSach.setEditable(false);
 					enableEdit();
 					focusable();
 					btnDelete.setText("Hủy");
@@ -784,6 +786,7 @@ public class Sach_GUI extends JPanel {
 		txtMaSach.setBorder(null);
 		txtMaSach.setBackground(Color.WHITE);
 		txtMaSach.setBounds(135, 67, 200, 40);
+//		txtMaSach.setEnabled(isEnabled());
 		pThongTin.add(txtMaSach);
 
 		txtTenSach = new JTextField();
@@ -1167,7 +1170,6 @@ public class Sach_GUI extends JPanel {
 		lblHinhAnh.setIcon(null);
 		lblHinhAnh.removeAll();
 	}
-
 	public void refresh() {
 		loadData(sanPham_DAO.getAllSach());
 	}
@@ -1182,41 +1184,75 @@ public class Sach_GUI extends JPanel {
 				JOptionPane.showMessageDialog(null, "Tên sách không được để trống!");
 				txtTenSach.requestFocus();
 				return false;
-			} else if (txtXuatXu.getText().equals("")) {
+			} 
+			else if (txtXuatXu.getText().equals("")) {
 				JOptionPane.showMessageDialog(null, "Xuất xứ sách không được để trống!");
 				txtXuatXu.requestFocus();
 				return false;
-			} else if (txtGiaNhap.getText().equals("")) {
+			} 
+			else if (txtGiaNhap.getText().equals("")) {
 				JOptionPane.showMessageDialog(null, "Giá nhập sách không được để trống!");
 				txtGiaNhap.requestFocus();
 				return false;
-			} else if (txtGiaBan.getText().equals("")) {
+			}
+			else if (!Regular_expression.validateGiaNhap(txtGiaNhap.getText())) {
+				JOptionPane.showMessageDialog(null, "c");
+				txtGiaNhap.requestFocus();
+				return false;
+			}
+			else if (txtGiaBan.getText().equals("")) {
 				JOptionPane.showMessageDialog(null, "Giá bán sách không được để trống!");
 				txtGiaBan.requestFocus();
 				return false;
-			} else if (txtSoLuong.getText().equals("")) {
+			} 
+			else if (!Regular_expression.validateGiaBan(txtGiaBan.getText())) {
+				JOptionPane.showMessageDialog(null, "Giá bán phải là chữ số > 0 và không phải là ký tự đặc biệt!");
+				txtGiaBan.requestFocus();
+				return false;
+			}
+			else if (txtSoLuong.getText().equals("")) {
 				JOptionPane.showMessageDialog(null, "Số lượng sách không được để trống!");
 				txtSoLuong.requestFocus();
 				return false;
-			} else if (cmbTenNhaXuatBan.getSelectedIndex() == -1) {
+			}
+			else if (!Regular_expression.validateSoLuongSach(txtSoLuong.getText())) {
+				JOptionPane.showMessageDialog(null, "Số lượng sách phải là chữ số > 0 và không phải là ký tự đặc biệt !!");
+				txtSoLuong.requestFocus();
+				return false;
+			}
+			else if (cmbTenNhaXuatBan.getSelectedIndex() == -1) {
 				JOptionPane.showMessageDialog(null, "Chưa chọn nhà xuất bản!");
 				return false;
-			} else if (cmbTenLoaiSach.getSelectedIndex() == -1) {
+			} 
+			else if (cmbTenLoaiSach.getSelectedIndex() == -1) {
 				JOptionPane.showMessageDialog(null, "Chưa chọn loại sách!");
 				return false;
-			} else if (txtTacGia.getText().equals("")) {
+			} 
+			else if (txtTacGia.getText().equals("")) {
 				JOptionPane.showMessageDialog(null, "Tên tác giả không được để trống!");
 				txtTacGia.requestFocus();
 				return false;
-			} else if (txtSoTrang.getText().equals("")) {
+			} 
+			else if (txtSoTrang.getText().equals("")) {
 				JOptionPane.showMessageDialog(null, "Số trang sách không được để trống!");
 				txtSoTrang.requestFocus();
 				return false;
-			} else if (txtNamXuatBan.getText().equals("")) {
+			}
+			else if (!Regular_expression.validateSoLuongSach(txtSoTrang.getText())) {
+				JOptionPane.showMessageDialog(null, "Số trang phải là chữ số > 0 và không phải là ký tự đặc biệt !!");
+				txtSoTrang.requestFocus();
+				return false;
+			}
+			else if (txtNamXuatBan.getText().equals("")) {
 				JOptionPane.showMessageDialog(null, "Năm xuất bản sách không được để trống!");
 				txtNamXuatBan.requestFocus();
 				return false;
-			} else {
+			} 
+			else if (! Regular_expression.validateNamXuatBan(txtNamXuatBan.getText())) {
+				JOptionPane.showMessageDialog(null, "Năm xuất bản phải trước năm hiện tại!");
+				return false;
+			}
+			else {
 				try {
 					SanPham sanPham = new SanPham();
 					sanPham.setMaSanPham(phatSinhMa_DAO.getMaSach());

@@ -677,7 +677,7 @@ public class NhanVien_GUI extends JPanel {
 		unfocusable();
 	}
 
-	public void loadDataIntoTable(ArrayList<NhanVien> nhanViens) {
+	private void loadDataIntoTable(ArrayList<NhanVien> nhanViens) {
 		model.setRowCount(0);
 		for (NhanVien nhanVien : nhanViens) {
 			Object[] objects = { nhanVien.getMaNhanVien(), nhanVien.getTenNhanVien(),
@@ -688,89 +688,106 @@ public class NhanVien_GUI extends JPanel {
 		}
 	}
 
-	public void refresh() {
+	private void refresh() {
 		loadDataIntoTable(nhanVien_DAO.getAllListNhanVien());
 	}
 
 	@SuppressWarnings("deprecation")
-	public boolean add() {
+	private boolean add() {
 		if (kiemTraRong()) {
 			JOptionPane.showMessageDialog(null, "Bạn phải điền đầy đủ thông tin!");
+			xoaTrang();
 			return false;
 		}
 		else {
 			if (txtTenNhanVien.getText().equals("")) {
 				JOptionPane.showMessageDialog(null, "Tên nhân viên không được để trống!");
 				txtTenNhanVien.requestFocus();
+				xoaTrang();
 				return false;
 			}
 			else if (!Regular_expression.validateTen(txtTenNhanVien.getText())) {
 				JOptionPane.showMessageDialog(null, "Tên nhân viên không được chứa ký tự số, ký tự đặc biệt, ví dụ: \"Nguyễn Văn A\"!");
 				txtTenNhanVien.requestFocus();
+				xoaTrang();
 				return false;
 			}
 			else if (lblHinhAnh.getIcon() == null) {
 				JOptionPane.showMessageDialog(null, "Hình ảnh nhân viên không được để trống!");
+				xoaTrang();
 				return false;
 			}
 			else if (txtSoDienThoai.getText().equals("")) {
 				JOptionPane.showMessageDialog(null, "Số điện thoại nhân viên không được để trống!");
 				txtSoDienThoai.requestFocus();
+				xoaTrang();
 				return false;
 			}
 			else if (!Regular_expression.validatePhoneNumber(txtSoDienThoai.getText())) {
 				JOptionPane.showMessageDialog(null, "Số điện thoại phải đúng 10 chữ số và không được bắt đầu bằng '02' hoặc '06'!");
 				txtSoDienThoai.requestFocus();
+				xoaTrang();
 				return false;
 			}
 			else if (txtEmail.getText().equals("")) {
 				JOptionPane.showMessageDialog(null, "Email nhân viên không được để trống!");
 				txtEmail.requestFocus();
+				xoaTrang();
 				return false;
 			}
 			else if (!Regular_expression.validateEmail(txtEmail.getText())) {
 				JOptionPane.showMessageDialog(null, "Email không hợp lệ! Ví dụ: 'thanh@gmail.com'!");
 				txtEmail.requestFocus();
+				xoaTrang();
 				return false;
 			}
 			else if (cbChucVu.getSelectedIndex() == -1) {
 				JOptionPane.showMessageDialog(null, "Chức vụ nhân viên không được để trống!");
+				xoaTrang();
 				return false;
 			}
 			else if (cbCa.getSelectedIndex() == -1) {
 				JOptionPane.showMessageDialog(null, "Ca của nhân viên không được để trống!");
+				xoaTrang();
 				return false;
 			}
 			else if (dateChooserNgaySinh == null) {
 				JOptionPane.showMessageDialog(null, "Ngày sinh của nhân viên không được để trống!");
+				xoaTrang();
 				return false;
 			}
 			else if (dateChooserNgaySinh.getDate().after(new java.util.Date()) || ((new java.util.Date().getYear() + 1900) - (dateChooserNgaySinh.getDate().getYear() + 1900) < 18)) {
 				JOptionPane.showMessageDialog(null, "Ngày sinh của nhân viên phải trước ngày hiện tại và nhân viên phải đủ 18 tuổi!");
+				xoaTrang();
 				return false;
 			}
 			else if (txtcCCD.getText().equals("")) {
 				JOptionPane.showMessageDialog(null, "Căn cước công dân của nhân viên không được để trống!");
 				txtcCCD.requestFocus();
+				xoaTrang();
 				return false;
 			}
 			else if (!Regular_expression.validateCCCD(txtcCCD.getText())) {
 				JOptionPane.showMessageDialog(null, "Căn cước công dân phải chứa 12 ký tự số!");
 				txtcCCD.requestFocus();
+				xoaTrang();
 				return false;
 			}
 			else if (cbGioiTinh.getSelectedIndex() == -1) {
 				JOptionPane.showMessageDialog(null, "Giới tính của nhân viên không được để trống!");
+				xoaTrang();
 				return false;
 			}
 			else if (txtDiaChi.getText().equals("")) {
 				JOptionPane.showMessageDialog(null, "Địa chỉ nhân viên không được để trống!");
 				txtDiaChi.requestFocus();
+				xoaTrang();
 				return false;
 			}
 			else if (!Regular_expression.validateDiaChi(txtDiaChi.getText())) {
 				JOptionPane.showMessageDialog(null, "Địa chỉ nhân viên không được chứa ký tự đặc biệt!");
 				txtDiaChi.requestFocus();
+				xoaTrang();
 				return false;
 			}
 			else {
@@ -827,7 +844,7 @@ public class NhanVien_GUI extends JPanel {
 		return false;
 	}
 	
-	public boolean delete() {
+	private boolean delete() {
 		int row = table.getSelectedRow();
 		if (row == -1) {
 			JOptionPane.showInternalMessageDialog(null, "Bạn phải chọn nhân viên cần xóa!");
@@ -856,7 +873,7 @@ public class NhanVien_GUI extends JPanel {
 		}
 	}
 	@SuppressWarnings("deprecation")
-	public boolean update() {
+	private boolean update() {
 		if (kiemTraRong()) {
 			JOptionPane.showMessageDialog(null, "Bạn phải điền đầy đủ thông tin!");
 			return false;
@@ -1079,5 +1096,18 @@ public class NhanVien_GUI extends JPanel {
 		txtEmail.setFocusable(true);
 		txtcCCD.setFocusable(true);
 		txtDiaChi.setFocusable(true);
+	}
+	
+	private void xoaTrang() {
+		txtTenNhanVien.setText("");
+		txtSoDienThoai.setText("");
+		txtEmail.setText("");
+		lblMaNhanVienValue.setText("");
+		cbChucVu.setSelectedIndex(-1);
+		cbCa.setSelectedIndex(-1);
+		dateChooserNgaySinh.setDate(null);
+		txtcCCD.setText("");
+		cbGioiTinh.setSelectedIndex(-1);
+		txtDiaChi.setText("");
 	}
 }

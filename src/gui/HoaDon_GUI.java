@@ -23,12 +23,20 @@ import entity.HoaDon;
 import entity.KhachHang;
 import entity.NhanVien;
 import entity.SanPham;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import java.awt.event.KeyAdapter;
@@ -36,7 +44,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 
 public class HoaDon_GUI extends JPanel {
@@ -67,6 +78,7 @@ public class HoaDon_GUI extends JPanel {
 	private JTextField txtMaSanPham;
 	private DanhSachHoaDon_GUI danhSachHoaDon_GUI;
 	private ThongKe_GUI thongKe_GUI;
+	private JTextField txtSearchSanPham;
 	
 	/**
 	 * Create the panel.
@@ -303,8 +315,16 @@ public class HoaDon_GUI extends JPanel {
 				// TODO Auto-generated method stub
 				if (tinhThanhTien() > 0) {
 					try {
-						lapHoaDon(nhanVien.getMaNhanVien());
+						try {
+							lapHoaDon(nhanVien.getMaNhanVien());
+						} catch (JRException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
 					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
@@ -371,6 +391,7 @@ public class HoaDon_GUI extends JPanel {
 		cbTenSP.setBounds(170, 120, 284, 40);
 		cbTenSP.setSelectedIndex(-1);
 		cbTenSP.setEnabled(false);
+		cbTenSP.setFocusable(false);
 		cbTenSP.addActionListener(new ActionListener() {
 			
 			@Override
@@ -546,23 +567,29 @@ public class HoaDon_GUI extends JPanel {
 		pThongTinKH.add(btnSua);
 		
 		txtMaSanPham = new JTextField();
+		txtMaSanPham.setToolTipText("Mã Sản Phẩm");
 		txtMaSanPham.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					sanPham = sanPham_DAO.getSanPhamTheoMaSanPham(txtMaSanPham.getText());
-					if (sanPham.getMaSanPham() == null) {
-						JOptionPane.showMessageDialog(null, "Không có sản phẩm này!");
-						lamMoi();
+					if (txtMaSanPham.getText().equals("")) {
+						loadDataIntoComboboxTenSP(cbLoaiSP.getSelectedItem().toString());
 					}
 					else {
-						txtConLai.setText(sanPham.getSoLuongTon() + "");
-						cbTenSP.setSelectedItem(sanPham.getTenSanPham().toString());
-						if (txtMaSanPham.getText().charAt(0) == 'S') {
-							cbLoaiSP.setSelectedIndex(0);
+						sanPham = sanPham_DAO.getSanPhamTheoMaSanPham(txtMaSanPham.getText());
+						if (sanPham.getMaSanPham() == null) {
+							JOptionPane.showMessageDialog(null, "Không có sản phẩm này!");
+							lamMoi();
 						}
 						else {
-							cbLoaiSP.setSelectedIndex(1);
+							txtConLai.setText(sanPham.getSoLuongTon() + "");
+							cbTenSP.setSelectedItem(sanPham.getTenSanPham().toString());
+							if (txtMaSanPham.getText().charAt(0) == 'S') {
+								cbLoaiSP.setSelectedIndex(0);
+							}
+							else {
+								cbLoaiSP.setSelectedIndex(1);
+							}
 						}
 					}
 				}
@@ -570,9 +597,46 @@ public class HoaDon_GUI extends JPanel {
 		});
 		txtMaSanPham.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtMaSanPham.setColumns(10);
-		txtMaSanPham.setBounds(464, 120, 274, 40);
-		txtMaSanPham.setFocusable(false);
+		txtMaSanPham.setBounds(505, 70, 233, 40);
 		pThongTinKH.add(txtMaSanPham);
+		
+		JLabel lblMaSanPham = new JLabel("Mã:");
+		lblMaSanPham.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		lblMaSanPham.setBounds(465, 70, 40, 40);
+		pThongTinKH.add(lblMaSanPham);
+		
+		txtSearchSanPham = new JTextField();
+		searchInComboBox();
+		txtSearchSanPham.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					String searchText = txtSearchSanPham.getText().toLowerCase();
+					if (searchText.isEmpty()) {
+	                    // If search text is empty, show all items
+	                    loadDataIntoComboboxTenSP(cbLoaiSP.getSelectedItem().toString());
+	                } else {
+	                    // Filter items based on the search text
+	                    ArrayList<String> filteredItems = new ArrayList<>();
+	                    for (String item : getDanhSachComboBoxTenSanPham()) {
+	                        if (item.toLowerCase().contains(searchText)) {
+	                            filteredItems.add(item);
+	                        }
+	                    }
+	                    themArrayListVaoComboBox(filteredItems, cbTenSP);
+	                }
+				}
+			}
+		});
+		txtSearchSanPham.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtSearchSanPham.setColumns(10);
+		txtSearchSanPham.setBounds(505, 120, 233, 40);
+		pThongTinKH.add(txtSearchSanPham);
+		
+		JLabel lblTimSanPham = new JLabel("Tìm:");
+		lblTimSanPham.setFont(new Font("SansSerif", Font.PLAIN, 18));
+		lblTimSanPham.setBounds(464, 120, 41, 40);
+		pThongTinKH.add(lblTimSanPham);
 
 	}
 
@@ -613,7 +677,7 @@ public class HoaDon_GUI extends JPanel {
 		return false;
 	}
 	
-	private void lapHoaDon(String maNhanVien) throws SQLException {
+	private void lapHoaDon(String maNhanVien) throws SQLException, JRException {
 		HoaDon hoaDon = new HoaDon();
 		String maHoaDon = phatSinhMa_DAO.getMaHoaDon();
 		hoaDon.setMaHoaDon(maHoaDon);
@@ -633,11 +697,21 @@ public class HoaDon_GUI extends JPanel {
 			chiTietHoaDon_DAO.themChiTietHoaDon(chiTietHoaDon);
 			sanPham_DAO.banSanPham(maSanPham, soLuong);
 		}
-		JOptionPane.showMessageDialog(null, "Lập hóa đơn thành công!");
+		xemHoaDon();
 		danhSachHoaDon_GUI.refresh();
 		thongKe_GUI.refresh();
+		
 	}
 	
+	private void xemHoaDon() throws JRException {
+		// Biên dịch JRXML thành .jasper
+		JasperReport jasperReport = JasperCompileManager.compileReport("src/report/hoaDon_report.jrxml");
+		// Tạo và chạy báo cáo từ tập tin .jasper
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,null, ConnectDB.con);
+		JasperViewer.viewReport(jasperPrint,true);
+		
+	}
+
 	private void lamMoi() {
 		txtMaKhachHang.setText("");
 		txtTenKhachHang.setText("");
@@ -657,5 +731,43 @@ public class HoaDon_GUI extends JPanel {
 		txtConLai.setText("");
 		txtSoLuong.setText("");
 		txtMaSanPham.setText("");
+	}
+	
+	private ArrayList<String> getDanhSachComboBoxTenSanPham() {
+		ArrayList<String> ds = new ArrayList<String>();
+		DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) cbTenSP.getModel();
+		int size = model.getSize();
+		for (int i = 0; i < size; i++) {
+			String item = model.getElementAt(i);
+			ds.add(item);
+		}
+		return ds;
+	}
+		
+	private void themArrayListVaoComboBox(ArrayList<String> a, JComboBox<String> b) {
+		b.removeAllItems();
+		for (String item : a) {
+			b.addItem(item);
+		}
+	}
+	
+	private void searchInComboBox() {
+		cbTenSP.addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent evt) {
+				String searchText = cbTenSP.getEditor().getItem().toString().toLowerCase();
+				if (searchText.isEmpty() && cbLoaiSP.getSelectedIndex() != -1) {
+					loadDataIntoComboboxTenSP(cbLoaiSP.getSelectedItem().toString());
+				}
+				else {
+					ArrayList<String> filteredItems = new ArrayList<String>();
+					for (String item : getDanhSachComboBoxTenSanPham()) {
+						if (item.toLowerCase().contains(searchText)) {
+							filteredItems.add(item);
+						}
+					}
+					themArrayListVaoComboBox(filteredItems, cbTenSP);
+				}
+			}
+		});
 	}
 }

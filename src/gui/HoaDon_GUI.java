@@ -23,6 +23,12 @@ import entity.HoaDon;
 import entity.KhachHang;
 import entity.NhanVien;
 import entity.SanPham;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
@@ -36,7 +42,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Hashtable;
 
 
 public class HoaDon_GUI extends JPanel {
@@ -303,8 +311,16 @@ public class HoaDon_GUI extends JPanel {
 				// TODO Auto-generated method stub
 				if (tinhThanhTien() > 0) {
 					try {
-						lapHoaDon(nhanVien.getMaNhanVien());
+						try {
+							lapHoaDon(nhanVien.getMaNhanVien());
+						} catch (JRException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
 					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
@@ -613,7 +629,7 @@ public class HoaDon_GUI extends JPanel {
 		return false;
 	}
 	
-	private void lapHoaDon(String maNhanVien) throws SQLException {
+	private void lapHoaDon(String maNhanVien) throws SQLException, JRException {
 		HoaDon hoaDon = new HoaDon();
 		String maHoaDon = phatSinhMa_DAO.getMaHoaDon();
 		hoaDon.setMaHoaDon(maHoaDon);
@@ -633,11 +649,21 @@ public class HoaDon_GUI extends JPanel {
 			chiTietHoaDon_DAO.themChiTietHoaDon(chiTietHoaDon);
 			sanPham_DAO.banSanPham(maSanPham, soLuong);
 		}
-		JOptionPane.showMessageDialog(null, "Lập hóa đơn thành công!");
+		xemHoaDon();
 		danhSachHoaDon_GUI.refresh();
 		thongKe_GUI.refresh();
+		
 	}
 	
+	private void xemHoaDon() throws JRException {
+		// Biên dịch JRXML thành .jasper
+		JasperReport jasperReport = JasperCompileManager.compileReport("src/report/hoaDon_report.jrxml");
+		// Tạo và chạy báo cáo từ tập tin .jasper
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,null, ConnectDB.con);
+		JasperViewer.viewReport(jasperPrint,true);
+		
+	}
+
 	private void lamMoi() {
 		txtMaKhachHang.setText("");
 		txtTenKhachHang.setText("");

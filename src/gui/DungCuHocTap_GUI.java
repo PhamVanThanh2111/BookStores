@@ -516,7 +516,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				loadCBNhaCC();
-				lamMoi();
+				lamMoiKhachHang();
 			}
 		});
 		pThongTin.add(btnlamMoi);
@@ -744,6 +744,16 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		txtmaDCHT.setText("");
 		txttenDCHT.setText("");
 		txtgiaNhap.setText("");
+		txtXuatXu.setText("");
+		txtgiaBan.setText("");
+		txtsoLuong.setText("");
+		cbNhaCC.setSelectedIndex(-1);
+		lblHinhAnh.removeAll();
+	}
+	// làm mới cho Khách Hàng
+	public void lamMoiKhachHang() {
+		txtmaDCHT.setText("");
+		txttenDCHT.setText("");
 		txtXuatXu.setText("");
 		txtgiaBan.setText("");
 		txtsoLuong.setText("");

@@ -33,7 +33,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private JPanel contentPane;	
 	private JPanel pContent;
 	private CardLayout cardLayoutContent;
 	private JLabel lblNhanVien;
@@ -201,7 +201,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			public void mouseExited(MouseEvent e) {
 				lblKhachHang.setBackground(new Color(39, 63, 96));
 				lblIconKhachHang.setBackground(new Color(39, 63, 96));
-			}
+			}	
 
 			@Override
 			public void mouseClicked(MouseEvent e) {

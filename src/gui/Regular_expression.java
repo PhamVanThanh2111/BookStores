@@ -78,12 +78,12 @@ public class Regular_expression {
 		return matcher.matches();
 	}
 	public static boolean validateNamXuatBan(String namXuatBan) {
-//	    String regex = "\\d{4}";
-//	    Pattern pattern = Pattern.compile(regex);
-//	    Matcher matcher = pattern.matcher(namXuatBan);
-//	    if (!matcher.matches()) {
-//	        return false;
-//	    }
+	    String regex = "\\d{4}";
+	    Pattern pattern = Pattern.compile(regex);
+	    Matcher matcher = pattern.matcher(namXuatBan);
+	    if (!matcher.matches()) {
+	        return false;
+	    }
 	    int currentYear = Calendar.getInstance().get(Calendar.YEAR);
 	    int year = Integer.parseInt(namXuatBan);
 	    return year <= currentYear;

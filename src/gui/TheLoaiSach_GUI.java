@@ -546,6 +546,8 @@ public class TheLoaiSach_GUI extends JPanel {
 		txtMaTheLoaiSach.setBackground(Color.WHITE);
 		txtMaTheLoaiSach.setBorder(null);
 		txtMaTheLoaiSach.setBounds(227, 102, 400, 40);
+		txtMaTheLoaiSach.setFocusable(false);
+//		txtMaTheLoaiSach.isEditable();
 		pThongTin.add(txtMaTheLoaiSach);
 
 		txtTenTheLoaiSach = new JTextField();
@@ -663,6 +665,7 @@ public class TheLoaiSach_GUI extends JPanel {
 
 	// Thêm thể loại sách
 	public boolean add() {
+		
 		if (txtTenTheLoaiSach.getText().equals("")) {
 			JOptionPane.showMessageDialog(null, "Tên thể loại sách không được để trống!");
 			txtTenTheLoaiSach.requestFocus();
@@ -670,7 +673,6 @@ public class TheLoaiSach_GUI extends JPanel {
 		} else {
 			try {
 				TheLoaiSach theLoaiSach = new TheLoaiSach();
-
 				theLoaiSach.setmaTheLoaiSach(phatSinhMa_DAO.getMaTheLoaiSach());
 				theLoaiSach.settenTheLoaiSach(txtTenTheLoaiSach.getText());
 				theLoaiSach_DAO.themTheLoaiSach(theLoaiSach);
@@ -684,6 +686,14 @@ public class TheLoaiSach_GUI extends JPanel {
 			}
 		}
 	}
+	// Kiểm tra rỗng cho thể loại sách
+//		private boolean kiemTraRong() {
+//			if (txtTenTheLoaiSach.getText().equals("") ||
+//				txtMaTheLoaiSach.getText().equals("") {
+//				return true;
+//			}
+//			return false;
+//		}
 	// Xóa thể loại sách
 	public boolean delete() {
 		int row = table.getSelectedRow();
@@ -754,6 +764,8 @@ public class TheLoaiSach_GUI extends JPanel {
 	private void disableEdit() {
 		txtTenTheLoaiSach.setEditable(false);
 		txtTenTheLoaiSach.setBorder(null);
+		txtMaTheLoaiSach.setEditable(false);
+		txtMaTheLoaiSach.setBorder(null);
 	}
 
 	private void enableButton() {
@@ -771,12 +783,13 @@ public class TheLoaiSach_GUI extends JPanel {
 		btnUpdate.setEnabled(false);
 		btnTim.setEnabled(false);
 	}
+	private void focusable() {
+		txtTenTheLoaiSach.setFocusable(true);
+//		txtMaTheLoaiSach.setFocusable(true);
+	}
 	private void unfocusable() {
 		txtTenTheLoaiSach.setFocusable(false);
 		txtMaTheLoaiSach.setFocusable(false);
 	}
-	private void focusable() {
-		txtTenTheLoaiSach.setFocusable(true);
-		txtMaTheLoaiSach.setFocusable(true);
-	}
+	
 }

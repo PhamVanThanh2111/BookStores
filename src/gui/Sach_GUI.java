@@ -189,10 +189,10 @@ public class Sach_GUI extends JPanel {
 		txtMaSach.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtMaSach.setEditable(false);
 		txtMaSach.setColumns(10);
-		// txtMaSach.setBorder(null);
 		txtMaSach.setBackground(Color.WHITE);
 		txtMaSach.setBounds(135, 67, 200, 40);
-		// txtMaSach.setEditable(false);
+		txtMaSach.setEditable(false);
+		txtMaSach.setFocusable(false);
 		pThongTin.add(txtMaSach);
 
 		txtTenSach = new JTextField();
@@ -331,8 +331,6 @@ public class Sach_GUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if (btnAdd.getText().equals("Thêm")) {
-					// lamMoi();
-					// txtMaSach.setEditable(false);
 					enableEdit();
 					focusable();
 					btnDelete.setText("Hủy");
@@ -781,12 +779,12 @@ public class Sach_GUI extends JPanel {
 		txtMaSach = new JTextField();
 		txtMaSach.setToolTipText("Mã Sách");
 		txtMaSach.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtMaSach.setEditable(false);
 		txtMaSach.setColumns(10);
 		txtMaSach.setBorder(null);
 		txtMaSach.setBackground(Color.WHITE);
 		txtMaSach.setBounds(135, 67, 200, 40);
-		// txtMaSach.setEnabled(isEnabled());
+		txtMaSach.setFocusable(false);
+		txtMaSach.setEditable(false);
 		pThongTin.add(txtMaSach);
 
 		txtTenSach = new JTextField();
@@ -821,7 +819,7 @@ public class Sach_GUI extends JPanel {
 		pThongTin.add(txtTacGia);
 
 		lblLoaiSach = new JLabel("Loại Sách:");
-		lblLoaiSach.setToolTipText("thể loại sách ");
+		lblLoaiSach.setToolTipText("Thể loại sách ");
 		lblLoaiSach.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblLoaiSach.setBounds(360, 112, 130, 40);
 		pThongTin.add(lblLoaiSach);
@@ -917,7 +915,7 @@ public class Sach_GUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				lamMoi();
+				lamMoiKhachHang();
 			}
 		});
 		pThongTin.add(btnLamMoi);
@@ -1171,6 +1169,21 @@ public class Sach_GUI extends JPanel {
 		lblHinhAnh.setIcon(null);
 		lblHinhAnh.removeAll();
 	}
+	// làm mới dữ liệu trên bảng
+		public void lamMoiKhachHang() {
+			txtMaSach.setText("");
+			txtTenSach.setText("");
+			txtXuatXu.setText("");
+			txtGiaBan.setText("");
+			txtSoLuong.setText("");
+			txtSoTrang.setText("");
+			txtNamXuatBan.setText("");
+			txtTacGia.setText("");
+			cmbTenLoaiSach.setSelectedIndex(-1);
+			cmbTenNhaXuatBan.setSelectedIndex(-1);
+			lblHinhAnh.setIcon(null);
+			lblHinhAnh.removeAll();
+		}
 
 	public void refresh() {
 		loadData(sanPham_DAO.getAllSach());
@@ -1195,7 +1208,7 @@ public class Sach_GUI extends JPanel {
 				txtGiaNhap.requestFocus();
 				return false;
 			} else if (!Regular_expression.validateGiaNhap(txtGiaNhap.getText())) {
-				JOptionPane.showMessageDialog(null, "c");
+				JOptionPane.showMessageDialog(null, "Giá nhập phải là chữ số > 0 và không phải là ký tự đặc biệt!");
 				txtGiaNhap.requestFocus();
 				return false;
 			} else if (txtGiaBan.getText().equals("")) {
@@ -1531,7 +1544,7 @@ public class Sach_GUI extends JPanel {
 	}
 
 	private void enableEdit() {
-		txtMaSach.setEditable(true);
+//		txtMaSach.setEditable(true);
 		txtMaSach.setBorder(borderDefault);
 		txtTenSach.setEditable(true);
 		txtTenSach.setBorder(null);
@@ -1603,7 +1616,7 @@ public class Sach_GUI extends JPanel {
 
 	@SuppressWarnings("unused")
 	private void openFocus() {
-		txtMaSach.setFocusable(false);
+//		txtMaSach.setFocusable(false);
 		txtTenSach.setFocusable(true);
 		txtXuatXu.setFocusable(true);
 		txtTacGia.setFocusable(true);
@@ -1624,7 +1637,7 @@ public class Sach_GUI extends JPanel {
 	}
 
 	private void focusable() {
-		txtMaSach.setFocusable(true);
+//		txtMaSach.setFocusable(true);
 		txtTenSach.setFocusable(true);
 		txtXuatXu.setFocusable(true);
 		txtTacGia.setFocusable(true);

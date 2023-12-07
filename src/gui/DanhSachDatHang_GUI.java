@@ -13,6 +13,9 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Map;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -22,6 +25,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import connect.ConnectDB;
 import dao.ChiTietHoaDon_DAO;
 import dao.ChiTietPhieuDatHang_DAO;
 import dao.HoaDon_DAO;
@@ -34,6 +38,17 @@ import entity.ChiTietHoaDon;
 import entity.ChiTietPhieuDatHang;
 import entity.HoaDon;
 import entity.PhieuDatHang;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.export.OutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.awt.Color;
 import javax.swing.JButton;
@@ -197,7 +212,13 @@ public class DanhSachDatHang_GUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				lapHoaDon();
+				try {
+					lapHoaDon();
+				} catch (JRException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		pDanhSachDatHang.add(btnLapHD);
@@ -392,7 +413,8 @@ public class DanhSachDatHang_GUI extends JPanel {
 		}
 	}
 	
-	private boolean lapHoaDon() {
+	private boolean lapHoaDon() throws JRException {
+		
 		int row = tableDSPD.getSelectedRow();
 		if (row != -1) {
 			PhieuDatHang phieuDatHang = phieuDatHang_DAO.getPhieuDatHangTheoMa(modelDSPD.getValueAt(row, 0).toString());
@@ -401,6 +423,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 				
 				// thêm hóa đơn
 				String maHoaDon = phatSinhMa_DAO.getMaHoaDon();
+			
 				hoaDon.setMaHoaDon(maHoaDon);
 				hoaDon.setMaNhanVien(phieuDatHang.getMaNhanVien());
 				hoaDon.setMaKhachHang(phieuDatHang.getMaKhachHang());
@@ -417,12 +440,11 @@ public class DanhSachDatHang_GUI extends JPanel {
 					chiTietHoaDon.setDonGia(chiTietPhieuDatHang.getDonGia());
 					chiTietHoaDon_DAO.themChiTietHoaDon(chiTietHoaDon);
 				}
-				
 				// xóa chi tiết phiếu đặt hàng
 				chiTietPhieuDatHang_DAO.xoaChiTietPhieuDatHang(phieuDatHang.getMaPhieuDatHang());
-
 				// xóa phiếu đặt hàng
 				phieuDatHang_DAO.xoaPhieuDatHangTheoMa(phieuDatHang.getMaPhieuDatHang());
+				xuatHoaDon(maHoaDon);
 				JOptionPane.showMessageDialog(null, "Lập hóa đơn thành công!");
 				lamMoi();
 				return true;
@@ -436,5 +458,25 @@ public class DanhSachDatHang_GUI extends JPanel {
 			JOptionPane.showMessageDialog(null, "Bạn chưa chọn phiếu đặt hàng!");
 			return false;
 		}
+	}
+	
+	private void xuatHoaDon(String object)  {
+		
+		try {
+			Hashtable map = new Hashtable();
+			JasperReport  jasperReport = JasperCompileManager.compileReport("src/report/hoaDonNV_report.jrxml");
+			
+			map.put("maPhieu",object);
+			
+			JasperPrint jasperPrint = JasperFillManager.fillReport( jasperReport , map , ConnectDB.con);
+			JasperViewer.viewReport(jasperPrint,false);
+			String filePath = "src//report//report.pdf";
+			JasperExportManager.exportReportToPdfFile(jasperPrint, filePath);
+
+		} catch (JRException e) {
+			// TODO Auto-generated catch block
+			//System.out.println(e.getMessage());
+		}
+		
 	}
 }

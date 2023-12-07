@@ -46,6 +46,7 @@ import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Hashtable;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 
@@ -697,17 +698,23 @@ public class HoaDon_GUI extends JPanel {
 			chiTietHoaDon_DAO.themChiTietHoaDon(chiTietHoaDon);
 			sanPham_DAO.banSanPham(maSanPham, soLuong);
 		}
-		xemHoaDon();
+		xemHoaDon(maHoaDon);
 		danhSachHoaDon_GUI.refresh();
 		thongKe_GUI.refresh();
 		
 	}
 	
-	private void xemHoaDon() throws JRException {
+	private void xemHoaDon(String object) throws JRException {
 		// Biên dịch JRXML thành .jasper
-		JasperReport jasperReport = JasperCompileManager.compileReport("src/report/hoaDon_report.jrxml");
+		Hashtable map = new Hashtable();
+		JasperReport jasperReport = JasperCompileManager.compileReport("src/report/hoaDonNV_report.jrxml");
 		// Tạo và chạy báo cáo từ tập tin .jasper
-		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,null, ConnectDB.con);
+		
+		map.put("maPhieu",object);
+		
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,map, ConnectDB.con);
+		
+		
 		JasperViewer.viewReport(jasperPrint,true);
 		
 	}

@@ -341,7 +341,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		danhSachHoaDon_GUI = new DanhSachHoaDon_GUI();
 		danhSachDatHang_GUI = new DanhSachDatHang_GUI();
 		thongKe_GUI = new ThongKe_GUI();
-
+		
 		// main menu
 		pContent.add(new TrangChu_GUI(nhanVien), "TrangChu_GUI");
 		pContent.add(new NhanVien_GUI(), "NhanVien_GUI");
@@ -404,7 +404,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			}
 		});
 		pMenu2.add(lblDangXuat);
-
+		
 		// set mau cho menu
 		lblTrangChu.setOpaque(true);
 		lblNhanVien.setOpaque(true);
@@ -448,7 +448,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			}
 		});
 		pMenu1.add(lblIconTrangChu);
-
+		
 		lblIconNhanVien = new JLabel("");
 		lblIconNhanVien.setIcon(new ImageIcon(HeThongQuanLyNhaSach.class.getResource("/image/HeThong/staff.png")));
 		lblIconNhanVien.setOpaque(true);

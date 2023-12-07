@@ -987,14 +987,16 @@ public class NhanVien_GUI extends JPanel {
 	}
 	private boolean chooseFile() { 
 		fileChooser = new JFileChooser();
+		
 		// Chỉ cho phép chọn tệp hình ảnh
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files", "jpg", "jpeg", "png");
 		fileChooser.setFileFilter(filter);
+		
 		// Thiết lập thư mục mặc định khi mở
 		File defaultDirectory = new File(System.getProperty("user.dir") + "/data/image");
 		fileChooser.setCurrentDirectory(defaultDirectory);
 		
-		// chon file
+		// Chọn file
 		int returnValue = fileChooser.showOpenDialog(null);
 		selectedFile = fileChooser.getSelectedFile();
 		

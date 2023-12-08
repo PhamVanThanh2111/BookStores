@@ -13,9 +13,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Hashtable;
-import java.util.Map;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -44,10 +42,6 @@ import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.export.JRPdfExporter;
-import net.sf.jasperreports.export.OutputStreamExporterOutput;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.view.JasperViewer;
 
 import java.awt.Color;
@@ -463,7 +457,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 	private void xuatHoaDon(String object)  {
 		
 		try {
-			Hashtable map = new Hashtable();
+			Hashtable<String, Object> map = new Hashtable<String, Object>();
 			JasperReport  jasperReport = JasperCompileManager.compileReport("src/report/hoaDonNV_report.jrxml");
 			
 			map.put("maPhieu",object);

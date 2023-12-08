@@ -24,7 +24,7 @@
 	<classpathentry kind="lib" path="library/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="library/groovy-all-2.0.8.jar"/>
 	<classpathentry kind="lib" path="library/jasperreports-6.21.0.jar"/>
-	<classpathentry kind="lib" path="library/bcprov-jdk15on-1.52.0.jar"/>
 	<classpathentry kind="lib" path="library/itextpdf-5.5.13.jar"/>
+	<classpathentry kind="lib" path="library/bcprov-jdk15on-1.52.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

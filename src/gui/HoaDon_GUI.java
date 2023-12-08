@@ -706,7 +706,7 @@ public class HoaDon_GUI extends JPanel {
 	
 	private void xemHoaDon(String object) throws JRException {
 		// Biên dịch JRXML thành .jasper
-		Hashtable map = new Hashtable();
+		Hashtable<String, Object> map = new Hashtable<String, Object>();
 		JasperReport jasperReport = JasperCompileManager.compileReport("src/report/hoaDonNV_report.jrxml");
 		// Tạo và chạy báo cáo từ tập tin .jasper
 		

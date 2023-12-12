@@ -62,6 +62,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 	private DanhSachHoaDon_GUI danhSachHoaDon_GUI;
 	private DanhSachDatHang_GUI danhSachDatHang_GUI;
 	private ThongKe_GUI thongKe_GUI;
+	private TrangChu_GUI trangChu_GUI;
 
 	/**
 	 * Create the frame.
@@ -341,14 +342,15 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		danhSachHoaDon_GUI = new DanhSachHoaDon_GUI();
 		danhSachDatHang_GUI = new DanhSachDatHang_GUI();
 		thongKe_GUI = new ThongKe_GUI();
+		trangChu_GUI = new TrangChu_GUI(nhanVien);
 		
 		// main menu
-		pContent.add(new TrangChu_GUI(nhanVien), "TrangChu_GUI");
+		pContent.add(trangChu_GUI, "TrangChu_GUI");
 		pContent.add(new NhanVien_GUI(), "NhanVien_GUI");
 		pContent.add(new KhachHang_GUI(), "KhachHang_GUI");
 		pContent.add(new Sach_GUI(nhanVien), "Sach_GUI");
 		pContent.add(new DungCuHocTap_GUI(nhanVien), "DungCuHocTap_GUI");
-		pContent.add(new HoaDon_GUI(nhanVien, danhSachHoaDon_GUI, thongKe_GUI), "HoaDon_GUI");
+		pContent.add(new HoaDon_GUI(nhanVien, danhSachHoaDon_GUI, thongKe_GUI, trangChu_GUI), "HoaDon_GUI");
 		pContent.add(new HoSo_GUI(nhanVien), "HoSo_GUI");
 		// sub menu
 		pContent.add(thongKe_GUI, "ThongKe_GUI");

@@ -38,7 +38,6 @@ import entity.HoaDon;
 import entity.PhieuDatHang;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -457,7 +456,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 	private void xuatHoaDon(String ma)  {
 		
 		try {
-			Hashtable map = new Hashtable();
+			Hashtable<String, Object> map = new Hashtable<String, Object>();
 			JasperReport  jasperReport = JasperCompileManager.compileReport("src/report/hoaDonNV_report.jrxml");
 			
 			map.put("maPhieu",ma);

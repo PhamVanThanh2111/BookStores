@@ -77,14 +77,16 @@ public class HoaDon_GUI extends JPanel {
 	private JTextField txtMaSanPham;
 	private DanhSachHoaDon_GUI danhSachHoaDon_GUI;
 	private ThongKe_GUI thongKe_GUI;
+	private TrangChu_GUI trangChu_GUI;
 	private JTextField txtSearchSanPham;
 	
 	/**
 	 * Create the panel.
 	 */
-	public HoaDon_GUI(NhanVien nhanVien, DanhSachHoaDon_GUI danhSachHoaDon_GUI, ThongKe_GUI thongKe_GUI) {
+	public HoaDon_GUI(NhanVien nhanVien, DanhSachHoaDon_GUI danhSachHoaDon_GUI, ThongKe_GUI thongKe_GUI, TrangChu_GUI trangChu_GUI) {
 		this.danhSachHoaDon_GUI = danhSachHoaDon_GUI;
 		this.thongKe_GUI = thongKe_GUI;
+		this.trangChu_GUI = trangChu_GUI;
 		
 		setBackground(new Color(255, 255, 255));
 		// khai bao DAO
@@ -322,8 +324,6 @@ public class HoaDon_GUI extends JPanel {
 						}
 						
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
@@ -709,11 +709,11 @@ public class HoaDon_GUI extends JPanel {
 		xemHoaDon(maHoaDon);
 		danhSachHoaDon_GUI.refresh();
 		thongKe_GUI.refresh();
-		
+		trangChu_GUI.refresh();
 	}
 	
 	private void xemHoaDon(String ma) throws JRException {
-		Hashtable map = new Hashtable();
+		Hashtable<String, Object> map = new Hashtable<String, Object>();
 		JasperReport jasperReport = JasperCompileManager.compileReport("src/report/hoaDonNV_report.jrxml");
 		map.put("maPhieu",ma);
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,map, ConnectDB.con);

@@ -190,7 +190,7 @@ public class HoaDon_DAO {
 		try {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement(
-							  "SELECT TOP 10 "
+							  "SELECT TOP 7 "
 							  + "    NV.maNhanVien, "
 							  + "    NV.tenNhanVien, "
 							  + "    COUNT(HD.maHoaDon) AS SoLuongHoaDon, "

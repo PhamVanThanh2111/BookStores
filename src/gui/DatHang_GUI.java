@@ -383,13 +383,6 @@ public class DatHang_GUI extends JPanel {
 		});
 		pThongTinKH.add(cbTenSP);
 
-		txtSoLuong = new JTextField();
-		txtSoLuong.setFont(new Font("SansSerif", Font.PLAIN, 14));
-		txtSoLuong.setBounds(170, 220, 282, 40);
-		txtSoLuong.setEnabled(false);
-		pThongTinKH.add(txtSoLuong);
-		txtSoLuong.setColumns(10);
-
 		JButton btnThem = new JButton("Thêm");
 		btnThem.setIcon(new ImageIcon(DatHang_GUI.class.getResource("/image/HeThong/cart.png")));
 		btnThem.setBackground(new Color(73, 129, 158));
@@ -437,6 +430,21 @@ public class DatHang_GUI extends JPanel {
 			}
 		});
 		pThongTinKH.add(btnThem);
+		
+		txtSoLuong = new JTextField();
+		txtSoLuong.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					btnThem.doClick();
+				}
+			}
+		});
+		txtSoLuong.setFont(new Font("SansSerif", Font.PLAIN, 14));
+		txtSoLuong.setBounds(170, 220, 282, 40);
+		txtSoLuong.setEnabled(false);
+		pThongTinKH.add(txtSoLuong);
+		txtSoLuong.setColumns(10);
 
 		JButton btnXoa = new JButton("Xóa");
 		btnXoa.setIcon(new ImageIcon(DatHang_GUI.class.getResource("/image/HeThong/trash-can.png")));

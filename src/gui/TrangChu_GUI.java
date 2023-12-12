@@ -51,7 +51,7 @@ public class TrangChu_GUI extends JPanel {
 		JLabel lblTieuDe = new JLabel("Chào '" + nhanVien.getTenNhanVien() +"' , Chúc Bạn Ngày Mới Tốt Lành!");
 		lblTieuDe.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTieuDe.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblTieuDe.setBounds(413, 28, 494, 58);
+		lblTieuDe.setBounds(190, 28, 919, 58);
 		pnlMain.add(lblTieuDe);
 		
 		JPanel pnlDoanhThu = new JPanel();

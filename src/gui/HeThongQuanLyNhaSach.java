@@ -337,7 +337,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		getContentPane().add(pContent);
 		cardLayoutContent = new CardLayout();
 		pContent.setLayout(cardLayoutContent);
-
+		
 		danhSachHoaDon_GUI = new DanhSachHoaDon_GUI();
 		danhSachDatHang_GUI = new DanhSachDatHang_GUI();
 		thongKe_GUI = new ThongKe_GUI();

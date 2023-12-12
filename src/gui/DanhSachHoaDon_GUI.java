@@ -68,7 +68,6 @@ public class DanhSachHoaDon_GUI extends JPanel {
 	private NhanVien_DAO nhanVien_DAO;
 	private SanPham_DAO sanPham_DAO;
 	private JButton btnTim;
-	private JButton btnInHoaDon;
 	
 	/**
 	 * Create the panel.
@@ -230,13 +229,6 @@ public class DanhSachHoaDon_GUI extends JPanel {
 			}
 		});
 		pnlThongTinTimKiem.add(btnLamMoi);
-		
-		btnInHoaDon = new JButton("In Hóa Đơn");
-		btnInHoaDon.setForeground(Color.WHITE);
-		btnInHoaDon.setFont(new Font("SansSerif", Font.BOLD, 14));
-		btnInHoaDon.setBackground(new Color(73, 129, 158));
-		btnInHoaDon.setBounds(1154, 10, 135, 40);
-		pnlThongTinTimKiem.add(btnInHoaDon);
 		
 		JPanel pnlDanhSachHoaDon = new JPanel();
 		pnlDanhSachHoaDon.setBorder(new LineBorder(new Color(0, 0, 0)));

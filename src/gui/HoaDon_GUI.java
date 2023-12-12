@@ -47,8 +47,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
 
 
 public class HoaDon_GUI extends JPanel {
@@ -574,23 +572,25 @@ public class HoaDon_GUI extends JPanel {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					if (txtMaSanPham.getText().equals("")) {
-						loadDataIntoComboboxTenSP(cbLoaiSP.getSelectedItem().toString());
+						lamMoiThongTinSanPham();
 					}
 					else {
 						sanPham = sanPham_DAO.getSanPhamTheoMaSanPham(txtMaSanPham.getText());
+						String tenSanPham = sanPham.getTenSanPham();
+						int soLuongTon = sanPham.getSoLuongTon();
 						if (sanPham.getMaSanPham() == null) {
 							JOptionPane.showMessageDialog(null, "Không có sản phẩm này!");
 							lamMoi();
 						}
 						else {
-							txtConLai.setText(sanPham.getSoLuongTon() + "");
-							cbTenSP.setSelectedItem(sanPham.getTenSanPham().toString());
-							if (txtMaSanPham.getText().charAt(0) == 'S') {
+							if (txtMaSanPham.getText().charAt(0) == 'S' || txtMaSanPham.getText().charAt(0) == 's') {
 								cbLoaiSP.setSelectedIndex(0);
 							}
 							else {
 								cbLoaiSP.setSelectedIndex(1);
 							}
+							txtConLai.setText(soLuongTon + "");
+							cbTenSP.setSelectedItem(tenSanPham);
 						}
 					}
 				}
@@ -607,7 +607,7 @@ public class HoaDon_GUI extends JPanel {
 		pThongTinKH.add(lblMaSanPham);
 		
 		txtSearchSanPham = new JTextField();
-		searchInComboBox();
+//		searchInComboBox();
 		txtSearchSanPham.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -715,7 +715,7 @@ public class HoaDon_GUI extends JPanel {
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,map, ConnectDB.con);
 		
 		
-		JasperViewer.viewReport(jasperPrint,true);
+		JasperViewer.viewReport(jasperPrint, false);
 		
 	}
 
@@ -724,12 +724,8 @@ public class HoaDon_GUI extends JPanel {
 		txtTenKhachHang.setText("");
 		txtSoDienThoai.setText("");
 		txtDiaChi.setText("");
-		txtMaSanPham.setText("");
-		cbLoaiSP.setSelectedIndex(-1);
-		cbTenSP.setSelectedIndex(-1);
-		txtConLai.setText("");
-		txtSoLuong.setText("");
 		model.setRowCount(0);
+		lamMoiThongTinSanPham();
 	}
 	
 	private void lamMoiThongTinSanPham() {
@@ -738,6 +734,7 @@ public class HoaDon_GUI extends JPanel {
 		txtConLai.setText("");
 		txtSoLuong.setText("");
 		txtMaSanPham.setText("");
+		txtSearchSanPham.setText("");
 	}
 	
 	private ArrayList<String> getDanhSachComboBoxTenSanPham() {
@@ -758,23 +755,23 @@ public class HoaDon_GUI extends JPanel {
 		}
 	}
 	
-	private void searchInComboBox() {
-		cbTenSP.addPropertyChangeListener(new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
-				String searchText = cbTenSP.getEditor().getItem().toString().toLowerCase();
-				if (searchText.isEmpty() && cbLoaiSP.getSelectedIndex() != -1) {
-					loadDataIntoComboboxTenSP(cbLoaiSP.getSelectedItem().toString());
-				}
-				else {
-					ArrayList<String> filteredItems = new ArrayList<String>();
-					for (String item : getDanhSachComboBoxTenSanPham()) {
-						if (item.toLowerCase().contains(searchText)) {
-							filteredItems.add(item);
-						}
-					}
-					themArrayListVaoComboBox(filteredItems, cbTenSP);
-				}
-			}
-		});
-	}
+//	private void searchInComboBox() {
+//		cbTenSP.addPropertyChangeListener(new PropertyChangeListener() {
+//			public void propertyChange(PropertyChangeEvent evt) {
+//				String searchText = cbTenSP.getEditor().getItem().toString().toLowerCase();
+//				if (searchText.isEmpty() && cbLoaiSP.getSelectedIndex() != -1) {
+//					loadDataIntoComboboxTenSP(cbLoaiSP.getSelectedItem().toString());
+//				}
+//				else {
+//					ArrayList<String> filteredItems = new ArrayList<String>();
+//					for (String item : getDanhSachComboBoxTenSanPham()) {
+//						if (item.toLowerCase().contains(searchText)) {
+//							filteredItems.add(item);
+//						}
+//					}
+//					themArrayListVaoComboBox(filteredItems, cbTenSP);
+//				}
+//			}
+//		});
+//	}
 }

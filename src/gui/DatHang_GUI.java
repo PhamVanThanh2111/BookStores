@@ -547,10 +547,12 @@ public class DatHang_GUI extends JPanel {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					if (txtMaSanPham.getText().equals("")) {
-						loadDataIntoComboboxTenSP(cbLoaiSP.getSelectedItem().toString());
+						lamMoiThongTinSanPham();
 					}
 					else {
 						sanPham = sanPham_DAO.getSanPhamTheoMaSanPham(txtMaSanPham.getText());
+						String tenSanPham = sanPham.getTenSanPham();
+						int soLuongTon = sanPham.getSoLuongTon();
 						if (sanPham.getMaSanPham() == null) {
 							JOptionPane.showMessageDialog(null, "Không có sản phẩm này!");
 							lamMoi();
@@ -558,12 +560,14 @@ public class DatHang_GUI extends JPanel {
 						else {
 							txtConLai.setText(sanPham.getSoLuongTon() + "");
 							cbTenSP.setSelectedItem(sanPham.getTenSanPham().toString());
-							if (txtMaSanPham.getText().charAt(0) == 'S') {
+							if (txtMaSanPham.getText().charAt(0) == 'S' || txtMaSanPham.getText().charAt(0) == 's') {
 								cbLoaiSP.setSelectedIndex(0);
 							}
 							else {
 								cbLoaiSP.setSelectedIndex(1);
 							}
+							txtConLai.setText(soLuongTon + "");
+							cbTenSP.setSelectedItem(tenSanPham);
 						}
 					}
 				}
@@ -572,7 +576,6 @@ public class DatHang_GUI extends JPanel {
 		txtMaSanPham.setFont(new Font("SansSerif", Font.PLAIN, 14));
 		txtMaSanPham.setColumns(10);
 		txtMaSanPham.setBounds(505, 70, 233, 40);
-		txtMaSanPham.setFocusable(false);
 		pThongTinKH.add(txtMaSanPham);
 		
 		JLabel lblMaSanPham = new JLabel("Mã:");
@@ -708,11 +711,16 @@ public class DatHang_GUI extends JPanel {
 		txtTenKhachHang.setText("");
 		txtSoDienThoai.setText("");
 		txtDiaChi.setText("");
+		model.setRowCount(0);
+		lamMoiThongTinSanPham();
+	}
+	
+	private void lamMoiThongTinSanPham() {
 		cbLoaiSP.setSelectedIndex(-1);
 		cbTenSP.setSelectedIndex(-1);
 		txtConLai.setText("");
 		txtSoLuong.setText("");
 		txtMaSanPham.setText("");
-		model.setRowCount(0);
+		txtSearchSanPham.setText("");
 	}
 }

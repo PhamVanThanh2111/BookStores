@@ -463,7 +463,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 			map.put("maPhieu",object);
 			
 			JasperPrint jasperPrint = JasperFillManager.fillReport( jasperReport , map , ConnectDB.con);
-			JasperViewer.viewReport(jasperPrint,false);
+			JasperViewer.viewReport(jasperPrint, false);
 			String filePath = "src//report//report.pdf";
 			JasperExportManager.exportReportToPdfFile(jasperPrint, filePath);
 

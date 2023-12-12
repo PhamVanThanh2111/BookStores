@@ -35,6 +35,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import javax.swing.JDesktopPane;
+import javax.swing.ImageIcon;
 
 public class KhachHang_GUI extends JPanel implements ActionListener {
 	/**
@@ -172,6 +173,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		pNhapThongTin.setLayout(null);
 
 		JLabel lblHinhAnh = new JLabel("");
+		lblHinhAnh.setIcon(new ImageIcon(KhachHang_GUI.class.getResource("/image/HeThong/people.jpg")));
 		lblHinhAnh.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblHinhAnh.setBounds(20, 20, 64, 64);
 		pNhapThongTin.add(lblHinhAnh);

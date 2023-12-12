@@ -454,19 +454,17 @@ public class DanhSachDatHang_GUI extends JPanel {
 		}
 	}
 	
-	private void xuatHoaDon(String object)  {
+	private void xuatHoaDon(String ma)  {
 		
 		try {
-			Hashtable<String, Object> map = new Hashtable<String, Object>();
+			Hashtable map = new Hashtable();
 			JasperReport  jasperReport = JasperCompileManager.compileReport("src/report/hoaDonNV_report.jrxml");
 			
-			map.put("maPhieu",object);
+			map.put("maPhieu",ma);
 			
 			JasperPrint jasperPrint = JasperFillManager.fillReport( jasperReport , map , ConnectDB.con);
-			JasperViewer.viewReport(jasperPrint, false);
-			String filePath = "src//report//report.pdf";
-			JasperExportManager.exportReportToPdfFile(jasperPrint, filePath);
-
+			JasperViewer.viewReport(jasperPrint,false);
+			
 		} catch (JRException e) {
 			// TODO Auto-generated catch block
 			//System.out.println(e.getMessage());

@@ -2,7 +2,7 @@
 <!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="hoaDon_report" pageWidth="595" pageHeight="500" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7d579833-d12e-4050-8878-216f05e69a76">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ConnectDatabase"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ConnectData"/>
 	<parameter name="maPhieu" class="java.lang.String" nestedType="java.lang.String" evaluationTime="Early"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT
@@ -31,8 +31,7 @@ FROM
 WHERE
     HD.maHoaDon = $P{maPhieu}
 GROUP BY
-    HD.maHoaDon, HD.maNhanVien, KH.tenKhachHang, NV.tenNhanVien, HD.ngayLap, CTHD.maSanPham, SP.tenSanPham, CTHD.donGia, CTHD.soLuong, TT.ThanhTien
-]]>
+    HD.maHoaDon, HD.maNhanVien, KH.tenKhachHang, NV.tenNhanVien, HD.ngayLap, CTHD.maSanPham, SP.tenSanPham, CTHD.donGia, CTHD.soLuong, TT.ThanhTien]]>
 	</queryString>
 	<field name="maHoaDon" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="maHoaDon"/>
@@ -166,14 +165,14 @@ GROUP BY
 				<textFieldExpression><![CDATA[$F{tenKhachHang}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="385" y="1" width="132" height="30" uuid="cf59a415-f95b-40aa-8ace-6d45a1806006">
+				<reportElement x="385" y="1" width="36" height="30" uuid="cf59a415-f95b-40aa-8ace-6d45a1806006">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
 				<textElement>
 					<font fontName="Cambria" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{ngayLap}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ngayLap}.getDate()]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="385" y="30" width="154" height="30" uuid="f3b201ea-50e8-4d08-a378-c6e0a9b522e8">
@@ -191,6 +190,40 @@ GROUP BY
 					<pen lineStyle="Solid"/>
 				</graphicElement>
 			</line>
+			<textField>
+				<reportElement x="434" y="1" width="36" height="30" uuid="920e160e-b296-419d-b903-627c23320c38">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Cambria" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ngayLap}.getMonth()+1]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="1" width="36" height="30" uuid="7a458a61-1282-46b0-bb5d-2a28d0971ebe">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Cambria" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ngayLap}.getYear()+1900]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="422" y="1" width="14" height="30" uuid="a3b227e2-d540-4f81-8920-1ff99d58431f"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[/]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="470" y="1" width="14" height="30" uuid="19409b65-da44-4b4e-883e-15efefbbf0e6"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[/]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<columnHeader>

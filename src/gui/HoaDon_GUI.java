@@ -712,19 +712,12 @@ public class HoaDon_GUI extends JPanel {
 		
 	}
 	
-	private void xemHoaDon(String object) throws JRException {
-		// Biên dịch JRXML thành .jasper
-		Hashtable<String, Object> map = new Hashtable<String, Object>();
+	private void xemHoaDon(String ma) throws JRException {
+		Hashtable map = new Hashtable();
 		JasperReport jasperReport = JasperCompileManager.compileReport("src/report/hoaDonNV_report.jrxml");
-		// Tạo và chạy báo cáo từ tập tin .jasper
-		
-		map.put("maPhieu",object);
-		
+		map.put("maPhieu",ma);
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,map, ConnectDB.con);
-		
-		
-		JasperViewer.viewReport(jasperPrint, false);
-		
+		JasperViewer.viewReport(jasperPrint,false);
 	}
 
 	private void lamMoi() {

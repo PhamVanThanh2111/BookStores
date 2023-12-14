@@ -714,6 +714,13 @@ public class Sach_GUI extends JPanel {
 		loadData(sanPham_DAO.getAllSach());
 		// unfocus
 		unfocusable();
+		
+		if (nhanVien.getChucVu().equals("Bán hàng")) {
+			btnAdd.setEnabled(false);
+			btnDelete.setEnabled(false);
+			btnUpdate.setEnabled(false);
+			btnChonHinhAnh.setEnabled(false);
+		}
 	}
 
 	public Sach_GUI() {

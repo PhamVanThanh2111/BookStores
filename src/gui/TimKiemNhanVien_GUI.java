@@ -298,7 +298,7 @@ public class TimKiemNhanVien_GUI extends JInternalFrame {
 	}
 	
 	public void searchNhanVien() {
-		for (NhanVien nhanVien : nhanVien_DAO.getAllListNhanVien()) {
+		for (NhanVien nhanVien : nhanVien_DAO.getAllNhanVien()) {
 			boolean thoaMan = false;
 			if (!txtMaNhanVien.getText().isEmpty()) {
 				if (nhanVien.getMaNhanVien().equalsIgnoreCase(txtMaNhanVien.getText().trim())) {
@@ -366,7 +366,7 @@ public class TimKiemNhanVien_GUI extends JInternalFrame {
 	}
 	
 	public void loadAll() {
-		for (NhanVien nhanVien : nhanVien_DAO.getAllListNhanVien()) {
+		for (NhanVien nhanVien : nhanVien_DAO.getAllNhanVien()) {
 			ds.add(nhanVien);	
 		}
 	}

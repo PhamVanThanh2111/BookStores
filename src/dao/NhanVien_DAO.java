@@ -17,7 +17,7 @@ public class NhanVien_DAO {
 	private TaiKhoan_DAO taiKhoan_DAO;
 
 	// get all nhan vien
-	public ArrayList<NhanVien> getAllListNhanVien() {
+	public ArrayList<NhanVien> getAllNhanVien() {
 		ConnectDB.getInstance();
 		Connection connection = ConnectDB.getConnection();
 		ArrayList<NhanVien> ds = new ArrayList<NhanVien>();

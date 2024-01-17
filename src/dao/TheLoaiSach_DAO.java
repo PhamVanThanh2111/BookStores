@@ -11,7 +11,7 @@ import entity.TheLoaiSach;
 
 public class TheLoaiSach_DAO {
 	// get all loai sách //lấy
-	public ArrayList<TheLoaiSach> getAllListTheLoaiSach() {
+	public ArrayList<TheLoaiSach> getAllTheLoaiSach() {
 		ConnectDB.getInstance();
 		Connection connection = ConnectDB.getConnection();
 		ArrayList<TheLoaiSach> ds = new ArrayList<TheLoaiSach>();

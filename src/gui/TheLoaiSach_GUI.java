@@ -101,7 +101,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		pDanhSach = new JPanel();
 		pDanhSach.setBackground(new Color(255, 255, 255));
 		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		pDanhSach.setBounds(0, 362, 1300, 348);
+		pDanhSach.setBounds(0, 204, 1300, 516);
 
 		pMain.add(pDanhSach);
 		pDanhSach.setLayout(null);
@@ -110,7 +110,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		pThongTin.setLayout(null);
 		pThongTin.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pThongTin.setBackground(Color.WHITE);
-		pThongTin.setBounds(0, 0, 1300, 300);
+		pThongTin.setBounds(0, 0, 1300, 184);
 		pMain.add(pThongTin);
 
 		lblThongTinTheLoaiSach = new JLabel("Thông Tin Thể Loại Sách");
@@ -124,7 +124,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		btnAdd.setForeground(Color.WHITE);
 		btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnAdd.setBackground(new Color(73, 129, 158));
-		btnAdd.setBounds(104, 200, 135, 40);
+		btnAdd.setBounds(103, 124, 135, 40);
 		btnAdd.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -159,7 +159,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		btnDelete.setForeground(Color.WHITE);
 		btnDelete.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnDelete.setBackground(new Color(73, 129, 158));
-		btnDelete.setBounds(343, 200, 135, 40);
+		btnDelete.setBounds(342, 124, 135, 40);
 		btnDelete.addActionListener(new ActionListener() {
 
 			@Override
@@ -191,7 +191,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		btnUpdate.setForeground(Color.WHITE);
 		btnUpdate.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnUpdate.setBackground(new Color(73, 129, 158));
-		btnUpdate.setBounds(582, 200, 135, 40);
+		btnUpdate.setBounds(581, 124, 135, 40);
 		btnUpdate.addActionListener(new ActionListener() {
 
 			@Override
@@ -239,7 +239,7 @@ public class TheLoaiSach_GUI extends JPanel {
 //				refresh();
 			}
 		});
-		btnLamMoi.setBounds(821, 200, 135, 40);
+		btnLamMoi.setBounds(1060, 124, 135, 40);
 
 		pThongTin.add(btnLamMoi);
 		btnTim = new JButton("Tìm");
@@ -248,7 +248,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		btnTim.setForeground(Color.WHITE);
 		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnTim.setBackground(new Color(73, 129, 158));
-		btnTim.setBounds(1060, 200, 135, 40);
+		btnTim.setBounds(820, 124, 135, 40);
 		btnTim.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -301,12 +301,12 @@ public class TheLoaiSach_GUI extends JPanel {
 
 		lblMaTheLoaiSach = new JLabel("Mã Thể Loại Sách:");
 		lblMaTheLoaiSach.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblMaTheLoaiSach.setBounds(50, 100, 150, 40);
+		lblMaTheLoaiSach.setBounds(50, 65, 150, 40);
 		pThongTin.add(lblMaTheLoaiSach);
 
 		lblTenTheLoaiSach = new JLabel("Tên Thể Loại Sách:");
 		lblTenTheLoaiSach.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblTenTheLoaiSach.setBounds(680, 100, 175, 40);
+		lblTenTheLoaiSach.setBounds(680, 65, 175, 40);
 		pThongTin.add(lblTenTheLoaiSach);
 
 		txtMaTheLoaiSach = new JTextField();
@@ -316,7 +316,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		txtMaTheLoaiSach.setColumns(10);
 		txtMaTheLoaiSach.setBorder(null);
 		txtMaTheLoaiSach.setBackground(Color.WHITE);
-		txtMaTheLoaiSach.setBounds(227, 102, 400, 40);
+		txtMaTheLoaiSach.setBounds(227, 65, 400, 40);
 		txtMaTheLoaiSach.setBorder(null);
 		pThongTin.add(txtMaTheLoaiSach);
 
@@ -327,7 +327,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		txtTenTheLoaiSach.setColumns(10);
 		txtTenTheLoaiSach.setBorder(null);
 		txtTenTheLoaiSach.setBackground(Color.WHITE);
-		txtTenTheLoaiSach.setBounds(850, 100, 400, 40);
+		txtTenTheLoaiSach.setBounds(850, 65, 400, 40);
 		txtTenTheLoaiSach.setBorder(null);
 		pThongTin.add(txtTenTheLoaiSach);
 
@@ -335,7 +335,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		scrollPaneTheLoaiSach.setToolTipText("Chọn vào thể loại Sách cần hiển thị thông tin");
 		scrollPaneTheLoaiSach.setBorder(null);
 		scrollPaneTheLoaiSach.setBackground(Color.WHITE);
-		scrollPaneTheLoaiSach.setBounds(20, 44, 1259, 285);
+		scrollPaneTheLoaiSach.setBounds(20, 44, 1259, 451);
 		pDanhSach.add(scrollPaneTheLoaiSach);
 
 		String cols[] = { "Mã Thể Loại Sách", "Tên Thể Loại Sách" };
@@ -443,7 +443,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		pDanhSach = new JPanel();
 		pDanhSach.setBackground(new Color(255, 255, 255));
 		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		pDanhSach.setBounds(0, 362, 1300, 348);
+		pDanhSach.setBounds(0, 204, 1300, 516);
 
 		pMain.add(pDanhSach);
 		pDanhSach.setLayout(null);
@@ -452,7 +452,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		pThongTin.setLayout(null);
 		pThongTin.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pThongTin.setBackground(Color.WHITE);
-		pThongTin.setBounds(0, 0, 1300, 300);
+		pThongTin.setBounds(0, 0, 1300, 184);
 		pMain.add(pThongTin);
 
 		lblThongTinTheLoaiSach = new JLabel("Thông Tin Thể Loại Sách");
@@ -475,7 +475,7 @@ public class TheLoaiSach_GUI extends JPanel {
 //				refresh();
 			}
 		});
-		btnLamMoi.setBounds(960, 200, 135, 40);
+		btnLamMoi.setBounds(960, 124, 135, 40);
 
 		pThongTin.add(btnLamMoi);
 
@@ -485,7 +485,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		btnTim.setForeground(Color.WHITE);
 		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnTim.setBackground(new Color(73, 129, 158));
-		btnTim.setBounds(1115, 200, 135, 40);
+		btnTim.setBounds(1115, 124, 135, 40);
 		btnTim.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -531,12 +531,12 @@ public class TheLoaiSach_GUI extends JPanel {
 
 		lblMaTheLoaiSach = new JLabel("Mã Thể Loại Sách:");
 		lblMaTheLoaiSach.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblMaTheLoaiSach.setBounds(50, 100, 150, 40);
+		lblMaTheLoaiSach.setBounds(50, 65, 150, 40);
 		pThongTin.add(lblMaTheLoaiSach);
 
 		lblTenTheLoaiSach = new JLabel("Tên Thể Loại Sách:");
 		lblTenTheLoaiSach.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblTenTheLoaiSach.setBounds(680, 100, 175, 40);
+		lblTenTheLoaiSach.setBounds(680, 65, 175, 40);
 		pThongTin.add(lblTenTheLoaiSach);
 
 		txtMaTheLoaiSach = new JTextField();
@@ -546,7 +546,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		txtMaTheLoaiSach.setColumns(10);
 		txtMaTheLoaiSach.setBackground(Color.WHITE);
 		txtMaTheLoaiSach.setBorder(null);
-		txtMaTheLoaiSach.setBounds(227, 102, 400, 40);
+		txtMaTheLoaiSach.setBounds(227, 67, 400, 40);
 		txtMaTheLoaiSach.setFocusable(false);
 //		txtMaTheLoaiSach.isEditable();
 		pThongTin.add(txtMaTheLoaiSach);
@@ -557,7 +557,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		txtTenTheLoaiSach.setEditable(false);
 		txtTenTheLoaiSach.setColumns(10);
 		txtTenTheLoaiSach.setBackground(Color.WHITE);
-		txtTenTheLoaiSach.setBounds(850, 100, 400, 40);
+		txtTenTheLoaiSach.setBounds(850, 65, 400, 40);
 		txtTenTheLoaiSach.setBorder(null);
 		pThongTin.add(txtTenTheLoaiSach);
 
@@ -565,7 +565,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		scrollPaneTheLoaiSach.setToolTipText("Chọn vào thể loại Sách cần hiển thị thông tin");
 		scrollPaneTheLoaiSach.setBorder(null);
 		scrollPaneTheLoaiSach.setBackground(Color.WHITE);
-		scrollPaneTheLoaiSach.setBounds(20, 44, 1259, 285);
+		scrollPaneTheLoaiSach.setBounds(20, 44, 1259, 451);
 		pDanhSach.add(scrollPaneTheLoaiSach);
 
 		String cols[] = { "Mã Thể Loại Sách", "Tên Thể Loại Sách" };
@@ -636,7 +636,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		lblChiTitTheLoaiSach.setBounds(22, 10, 291, 40);
 		pDanhSach.add(lblChiTitTheLoaiSach);
 		// loadData
-		loadData(theLoaiSach_DAO.getAllListTheLoaiSach());
+		loadData(theLoaiSach_DAO.getAllTheLoaiSach());
 		// unfocus
 		unfocusable();
 //		refresh();
@@ -659,7 +659,7 @@ public class TheLoaiSach_GUI extends JPanel {
 	}
 	// làm mới bảng
 	public void refresh() {
-		loadData(theLoaiSach_DAO.getAllListTheLoaiSach());
+		loadData(theLoaiSach_DAO.getAllTheLoaiSach());
 	}
 
 	// Thêm thể loại sách

@@ -350,7 +350,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 //    	loadDataIntoTableDanhSachPhieuDatHang(phieuDatHang_DAO.getAllListPhieuDatHang());
 	}
 	
-	public void loadDataIntoTableDanhSachPhieuDatHang(ArrayList<PhieuDatHang> danhSachPhieuDatHangs) {
+	public void loadData(ArrayList<PhieuDatHang> danhSachPhieuDatHangs) {
 		modelDSPD.setRowCount(0);
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		for (PhieuDatHang phieuDatHang : danhSachPhieuDatHangs) {
@@ -376,7 +376,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 	}
 	
 	public void lamMoi() {
-		loadDataIntoTableDanhSachPhieuDatHang(phieuDatHang_DAO.getAllListPhieuDatHang());
+		loadData(phieuDatHang_DAO.getAllPhieuDatHang());
 	}
 	
 	private boolean delete() {

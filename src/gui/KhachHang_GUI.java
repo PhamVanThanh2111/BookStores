@@ -136,21 +136,21 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		btnThem.setForeground(Color.WHITE);
 		btnThem.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnThem.setBackground(new Color(73, 129, 158));
-		btnThem.setBounds(245, 660, 135, 40);
+		btnThem.setBounds(93, 660, 135, 40);
 		pDanhSach.add(btnThem);
 
 		btnXoa = new JButton("Xóa");
 		btnXoa.setForeground(Color.WHITE);
 		btnXoa.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnXoa.setBackground(new Color(73, 129, 158));
-		btnXoa.setBounds(395, 660, 135, 40);
+		btnXoa.setBounds(243, 660, 135, 40);
 		pDanhSach.add(btnXoa);
 
 		btnSua = new JButton("Sửa");
 		btnSua.setForeground(Color.WHITE);
 		btnSua.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnSua.setBackground(new Color(73, 129, 158));
-		btnSua.setBounds(545, 660, 135, 40);
+		btnSua.setBounds(393, 660, 135, 40);
 		pDanhSach.add(btnSua);
 		
 		btnTim = new JButton("Tìm");
@@ -158,8 +158,16 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		btnTim.setForeground(Color.WHITE);
 		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnTim.setBackground(new Color(73, 129, 158));
-		btnTim.setBounds(694, 660, 135, 40);
+		btnTim.setBounds(542, 660, 135, 40);
 		pDanhSach.add(btnTim);
+		
+		JButton btnLamMoi = new JButton("Làm Mới");
+		btnLamMoi.setOpaque(true);
+		btnLamMoi.setForeground(Color.WHITE);
+		btnLamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnLamMoi.setBackground(new Color(73, 129, 158));
+		btnLamMoi.setBounds(693, 660, 135, 40);
+		pDanhSach.add(btnLamMoi);
 		
 		JPanel pNhapThongTin = new JPanel();
 		pNhapThongTin.setBorder(new LineBorder(new Color(0, 0, 0), 2));

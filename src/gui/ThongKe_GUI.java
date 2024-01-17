@@ -134,10 +134,12 @@ public class ThongKe_GUI extends JPanel {
 		pnlNangSuatNhanVien.setLayout(null);
 		
 		pnlSanPhamBanChay = new JPanel();
+		pnlSanPhamBanChay.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		tabbedPane.addTab("Sản phẩm bán chạy", null, pnlSanPhamBanChay, "Sản phẩm bán chạy");
 		pnlSanPhamBanChay.setLayout(new BorderLayout(0, 0));
 		
 		pnlKhachHangMuaNhieuNhat = new JPanel();
+		pnlKhachHangMuaNhieuNhat.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		tabbedPane.addTab("Khách hàng mua nhiều nhất", null, pnlKhachHangMuaNhieuNhat, "Khách hàng mua nhiều nhất");
 		pnlKhachHangMuaNhieuNhat.setLayout(new BorderLayout(0, 0));
 		
@@ -193,18 +195,18 @@ public class ThongKe_GUI extends JPanel {
 		
 		pnlThongKeDoanhThu = new JPanel();
 		pnlThongKeDoanhThu.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		pnlThongKeDoanhThu.setBounds(0, 0, 890, 336);
+		pnlThongKeDoanhThu.setBounds(0, 0, 890, 330);
 		pnlDoanhThu.add(pnlThongKeDoanhThu);
 		
 		pnlThongKeSoLuong = new JPanel();
 		pnlThongKeSoLuong.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		pnlThongKeSoLuong.setBounds(0, 357, 890, 336);
+		pnlThongKeSoLuong.setBounds(0, 350, 890, 341);
 		pnlDoanhThu.add(pnlThongKeSoLuong);
 		
 		pnlChucNang = new JPanel();
 		pnlChucNang.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pnlChucNang.setBackground(new Color(255, 255, 255));
-		pnlChucNang.setBounds(910, 0, 385, 693);
+		pnlChucNang.setBounds(908, 0, 385, 689);
 		pnlDoanhThu.add(pnlChucNang);
 		pnlChucNang.setLayout(null);
 		
@@ -316,11 +318,13 @@ public class ThongKe_GUI extends JPanel {
 		pnlChucNang.add(btnThongKe);
 		
 		pnlThongKeDoanhThuNhanVien = new JPanel();
-		pnlThongKeDoanhThuNhanVien.setBounds(0, 5, 1295, 334);
+		pnlThongKeDoanhThuNhanVien.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		pnlThongKeDoanhThuNhanVien.setBounds(0, 0, 1295, 334);
 		pnlNangSuatNhanVien.add(pnlThongKeDoanhThuNhanVien);
 		
 		pnlThongKeSoLuongHoaDonVaSanPhamNhanVien = new JPanel();
-		pnlThongKeSoLuongHoaDonVaSanPhamNhanVien.setBounds(0, 359, 1295, 334);
+		pnlThongKeSoLuongHoaDonVaSanPhamNhanVien.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		pnlThongKeSoLuongHoaDonVaSanPhamNhanVien.setBounds(0, 354, 1295, 339);
 		pnlNangSuatNhanVien.add(pnlThongKeSoLuongHoaDonVaSanPhamNhanVien);
 		
 //		showAllChart();
@@ -354,6 +358,7 @@ public class ThongKe_GUI extends JPanel {
 		pnlThongKeDoanhThu.add(chartPanelDoanhThu);
 		chartPanelDoanhThu.removeAll();
 		chartPanelDoanhThu.repaint();
+		chartPanelDoanhThu.validate();
 		
 	}
 	

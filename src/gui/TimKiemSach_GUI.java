@@ -391,7 +391,7 @@ public class TimKiemSach_GUI extends JInternalFrame {
 	// load cbTenNhaXuatBan
 	private void loadDataIntoComboboxTenNhaXuatBan() {
 		cmbNhaXuatBan.removeAllItems();
-		for (NhaXuatBan nhaXuatBan : nhaXuatBan_DAO.getAllListNhaXuatBan()) {
+		for (NhaXuatBan nhaXuatBan : nhaXuatBan_DAO.getAllNhaXuatBan()) {
 			cmbNhaXuatBan.addItem(nhaXuatBan.getTenNhaXuatBan());
 		}
 	}
@@ -399,7 +399,7 @@ public class TimKiemSach_GUI extends JInternalFrame {
 	// load cbTenTheLoaiSachs
 	private void loadDataIntoComboboxTenLoaiSach() {
 		cmbTheLoaiSach.removeAllItems();
-		for (TheLoaiSach theLoaiSach : theLoaiSach_DAO.getAllListTheLoaiSach()) {
+		for (TheLoaiSach theLoaiSach : theLoaiSach_DAO.getAllTheLoaiSach()) {
 			cmbTheLoaiSach.addItem(theLoaiSach.gettenTheLoaiSach());
 		}
 	}

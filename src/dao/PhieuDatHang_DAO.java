@@ -11,7 +11,7 @@ import entity.PhieuDatHang;
 
 public class PhieuDatHang_DAO {
 	// get all hoa don
-	public ArrayList<PhieuDatHang> getAllListPhieuDatHang() {
+	public ArrayList<PhieuDatHang> getAllPhieuDatHang() {
 		ConnectDB.getInstance();
 		Connection connection = ConnectDB.getConnection();
 		ArrayList<PhieuDatHang> ds = new ArrayList<PhieuDatHang>();

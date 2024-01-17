@@ -76,7 +76,7 @@ public class NhanVien_GUI extends JPanel {
 	private JButton btnXoa;
 	private JButton btnLamMoi;
 	private JButton btnSua;
-	private JButton btnAdd;
+	private JButton btnThem;
 	private JButton btnTim;
 	private TimKiemNhanVien_GUI timNhanVien_GUI;
 	private JDesktopPane desktopPane;
@@ -370,23 +370,23 @@ public class NhanVien_GUI extends JPanel {
 								separator.setBounds(126, 60, 704, 2);
 								pDanhSach.add(separator);
 								
-								btnAdd = new JButton("Thêm");
-								btnAdd.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/add_person.png")));
-								btnAdd.setForeground(new Color(255, 255, 255));
-								btnAdd.setBackground(new Color(73, 129, 158));
-								btnAdd.setBounds(245, 660, 135, 40);
-								btnAdd.setOpaque(true);
-								btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
-								btnAdd.addActionListener(new ActionListener() {
+								btnThem = new JButton("Thêm");
+								btnThem.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/add_person.png")));
+								btnThem.setForeground(new Color(255, 255, 255));
+								btnThem.setBackground(new Color(73, 129, 158));
+								btnThem.setBounds(93, 660, 135, 40);
+								btnThem.setOpaque(true);
+								btnThem.setFont(new Font("SansSerif", Font.BOLD, 14));
+								btnThem.addActionListener(new ActionListener() {
 									
 									@Override
 									public void actionPerformed(ActionEvent e) {
 										// TODO Auto-generated method stub
-										if (btnAdd.getText().equals("Thêm")) {
+										if (btnThem.getText().equals("Thêm")) {
 											enableEdit();
 											focusable();
 											btnXoa.setText("Hủy");
-											btnAdd.setText("Xác nhận");
+											btnThem.setText("Xác nhận");
 											btnLamMoi.setEnabled(false);
 											btnSua.setEnabled(false);
 											btnTim.setEnabled(false);
@@ -396,7 +396,7 @@ public class NhanVien_GUI extends JPanel {
 											add();
 											disableEdit();
 											unfocusable();
-											btnAdd.setText("Thêm");
+											btnThem.setText("Thêm");
 											btnXoa.setText("Xóa");
 											btnLamMoi.setEnabled(true);
 											btnSua.setEnabled(true);
@@ -404,13 +404,13 @@ public class NhanVien_GUI extends JPanel {
 										}
 									}
 								});
-								pDanhSach.add(btnAdd);
+								pDanhSach.add(btnThem);
 								
 									btnSua = new JButton("Sửa");
 									btnSua.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/update_person.png")));
 									btnSua.setBackground(new Color(73, 129, 158));
 									btnSua.setForeground(new Color(255, 255, 255));
-									btnSua.setBounds(545, 660, 135, 40);
+									btnSua.setBounds(393, 660, 135, 40);
 									btnSua.setFont(new Font("SansSerif", Font.BOLD, 14));
 									btnSua.addActionListener(new ActionListener() {
 	
@@ -427,7 +427,7 @@ public class NhanVien_GUI extends JPanel {
 													btnXoa.setText("Hủy");
 													btnSua.setText("Xác nhận");
 													btnLamMoi.setEnabled(false);
-													btnAdd.setEnabled(false);
+													btnThem.setEnabled(false);
 													btnTim.setEnabled(false);
 												}
 											}
@@ -438,7 +438,7 @@ public class NhanVien_GUI extends JPanel {
 												disableEdit();
 												unfocusable();
 												btnLamMoi.setEnabled(true);
-												btnAdd.setEnabled(true);
+												btnThem.setEnabled(true);
 												btnTim.setEnabled(true);
 											}
 										}
@@ -449,7 +449,7 @@ public class NhanVien_GUI extends JPanel {
 										btnXoa.setIcon(new ImageIcon(NhanVien_GUI.class.getResource("/image/HeThong/remove_person.png")));
 										btnXoa.setBackground(new Color(73, 129, 158));
 										btnXoa.setForeground(new Color(255, 255, 255));
-										btnXoa.setBounds(395, 660, 135, 40);
+										btnXoa.setBounds(243, 660, 135, 40);
 										btnXoa.setFont(new Font("SansSerif", Font.BOLD, 14));
 										btnXoa.addActionListener(new ActionListener() {
 
@@ -462,11 +462,11 @@ public class NhanVien_GUI extends JPanel {
 												else {
 													disableEdit();
 													unfocusable();
-													btnAdd.setText("Thêm");
+													btnThem.setText("Thêm");
 													btnSua.setText("Sửa");
 													btnXoa.setText("Xóa");
 													btnLamMoi.setEnabled(true);
-													btnAdd.setEnabled(true);
+													btnThem.setEnabled(true);
 													btnSua.setEnabled(true);
 													btnTim.setEnabled(true);
 												}
@@ -479,7 +479,7 @@ public class NhanVien_GUI extends JPanel {
 											btnTim.setBackground(new Color(73, 129, 158));
 											btnTim.setForeground(new Color(255, 255, 255));
 											btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
-											btnTim.setBounds(695, 660, 135, 40);
+											btnTim.setBounds(543, 660, 135, 40);
 											btnTim.addActionListener(new ActionListener() {
 												@Override
 												public void actionPerformed(ActionEvent e) {
@@ -509,7 +509,7 @@ public class NhanVien_GUI extends JPanel {
 												            public void internalFrameClosed(InternalFrameEvent e) {
 //												                System.out.println("Internal frame is closed.");
 												                model.setRowCount(0);
-												            	loadDataIntoTable(ds);
+												            	loadData(ds);
 												            	ds.removeAll(ds);
 												            	enableButton();
 												            	focusable();
@@ -529,7 +529,7 @@ public class NhanVien_GUI extends JPanel {
 											btnLamMoi.setForeground(Color.WHITE);
 											btnLamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
 											btnLamMoi.setBackground(new Color(73, 129, 158));
-											btnLamMoi.setBounds(93, 660, 135, 40);
+											btnLamMoi.setBounds(693, 660, 135, 40);
 											btnLamMoi.addActionListener(new ActionListener() {
 												
 												@Override
@@ -674,7 +674,7 @@ public class NhanVien_GUI extends JPanel {
 		unfocusable();
 	}
 
-	public void loadDataIntoTable(ArrayList<NhanVien> nhanViens) {
+	public void loadData(ArrayList<NhanVien> nhanViens) {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		model.setRowCount(0);
 		for (NhanVien nhanVien : nhanViens) {
@@ -687,7 +687,7 @@ public class NhanVien_GUI extends JPanel {
 	}
 
 	private void refresh() {
-		loadDataIntoTable(nhanVien_DAO.getAllListNhanVien());
+		loadData(nhanVien_DAO.getAllNhanVien());
 	}
 
 	@SuppressWarnings("deprecation")
@@ -1068,7 +1068,7 @@ public class NhanVien_GUI extends JPanel {
 	
 	private void enableButton() {
 		btnLamMoi.setEnabled(true);
-		btnAdd.setEnabled(true);
+		btnThem.setEnabled(true);
 		btnXoa.setEnabled(true);
 		btnSua.setEnabled(true);
 		btnTim.setEnabled(true);
@@ -1076,7 +1076,7 @@ public class NhanVien_GUI extends JPanel {
 	
 	private void disableButton() {
 		btnLamMoi.setEnabled(false);
-		btnAdd.setEnabled(false);
+		btnThem.setEnabled(false);
 		btnXoa.setEnabled(false);
 		btnSua.setEnabled(false);
 		btnTim.setEnabled(false);

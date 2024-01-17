@@ -10,7 +10,7 @@ import entity.NhaXuatBan;
 public class NhaXuatBan_DAO {
 
 	// get all nhà xuất bản
-    public ArrayList<NhaXuatBan> getAllListNhaXuatBan() {
+    public ArrayList<NhaXuatBan> getAllNhaXuatBan() {
     	ArrayList<NhaXuatBan> ds = new ArrayList<>();
         ConnectDB.getInstance();
         Connection con = ConnectDB.getConnection();

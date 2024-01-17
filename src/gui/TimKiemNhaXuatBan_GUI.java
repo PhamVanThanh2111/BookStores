@@ -194,7 +194,7 @@ public class TimKiemNhaXuatBan_GUI extends JInternalFrame {
 	}
 	private void searchNhaXuatBan() {
 		// TODO Auto-generated method stub
-		for (NhaXuatBan nhaXuatBan : nhaXuatBan_DAO.getAllListNhaXuatBan()) {
+		for (NhaXuatBan nhaXuatBan : nhaXuatBan_DAO.getAllNhaXuatBan()) {
 			boolean thoaMan = false;
 			if (!txtMaNhaXuatBan.getText().isEmpty()) {
 				if (nhaXuatBan.getMaNhaXuatBan().equalsIgnoreCase(txtMaNhaXuatBan.getText().trim())) {
@@ -242,7 +242,7 @@ public class TimKiemNhaXuatBan_GUI extends JInternalFrame {
 		return false;
 	}
 	public void loadAll() {
-		for (NhaXuatBan nhaXuatBan : nhaXuatBan_DAO.getAllListNhaXuatBan()) {
+		for (NhaXuatBan nhaXuatBan : nhaXuatBan_DAO.getAllNhaXuatBan()) {
 			ds.add(nhaXuatBan);
 		}
 	}	

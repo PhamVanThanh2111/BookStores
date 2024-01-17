@@ -225,7 +225,7 @@ public class DanhSachHoaDon_GUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				loadData(hoaDon_DAO.getAllListHoaDon());
+				loadData(hoaDon_DAO.getAllHoaDon());
 			}
 		});
 		pnlThongTinTimKiem.add(btnLamMoi);
@@ -400,7 +400,7 @@ public class DanhSachHoaDon_GUI extends JPanel {
 	}
 	
 	public void refresh() {
-		loadData(hoaDon_DAO.getAllListHoaDon());
+		loadData(hoaDon_DAO.getAllHoaDon());
 	}
 	
 	private void loadDataIntoTableChiTietHoaDonTheoMaHoaDon(String maHoaDon) {
@@ -416,7 +416,7 @@ public class DanhSachHoaDon_GUI extends JPanel {
 	
 	private ArrayList<HoaDon> timHoaDon() {
 		ArrayList<HoaDon> ds = new ArrayList<HoaDon>();
-		for (HoaDon hoaDon : hoaDon_DAO.getAllListHoaDon()) {
+		for (HoaDon hoaDon : hoaDon_DAO.getAllHoaDon()) {
 			boolean thoaMan = false;
 			
 			if (!txtMaHoaDon.getText().isEmpty()) {

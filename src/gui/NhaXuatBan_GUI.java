@@ -50,7 +50,6 @@ public class NhaXuatBan_GUI extends JPanel {
 
 	private JLabel lblMaNXBValue;
 	private JLabel lblMaNXB;
-
 	private JButton btnLamMoi;
 	private JButton btnDelete;
 	private JButton btnAdd;
@@ -309,7 +308,7 @@ public class NhaXuatBan_GUI extends JPanel {
 		btnAdd.setForeground(Color.WHITE);
 		btnAdd.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnAdd.setBackground(new Color(73, 129, 158));
-		btnAdd.setBounds(239, 660, 135, 40);
+		btnAdd.setBounds(87, 660, 135, 40);
 		btnAdd.addActionListener(new ActionListener() {
 
 			@Override
@@ -343,7 +342,7 @@ public class NhaXuatBan_GUI extends JPanel {
 		btnDelete.setForeground(Color.WHITE);
 		btnDelete.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnDelete.setBackground(new Color(73, 129, 158));
-		btnDelete.setBounds(391, 660, 135, 40);
+		btnDelete.setBounds(239, 660, 135, 40);
 		btnDelete.addActionListener(new ActionListener() {
 
 			@Override
@@ -370,7 +369,7 @@ public class NhaXuatBan_GUI extends JPanel {
 		btnUpdate.setForeground(Color.WHITE);
 		btnUpdate.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnUpdate.setBackground(new Color(73, 129, 158));
-		btnUpdate.setBounds(543, 660, 135, 40);
+		btnUpdate.setBounds(391, 660, 135, 40);
 		btnUpdate.addActionListener(new ActionListener() {
 
 			@Override
@@ -408,7 +407,7 @@ public class NhaXuatBan_GUI extends JPanel {
 		btnTim.setForeground(Color.WHITE);
 		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnTim.setBackground(new Color(73, 129, 158));
-		btnTim.setBounds(695, 660, 135, 40);
+		btnTim.setBounds(543, 660, 135, 40);
 		btnTim.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -457,7 +456,7 @@ public class NhaXuatBan_GUI extends JPanel {
 		btnLamMoi.setForeground(Color.WHITE);
 		btnLamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnLamMoi.setBackground(new Color(73, 129, 158));
-		btnLamMoi.setBounds(87, 660, 135, 40);
+		btnLamMoi.setBounds(693, 660, 135, 40);
 		btnLamMoi.addActionListener(new ActionListener() {
 
 			@Override
@@ -784,7 +783,7 @@ public class NhaXuatBan_GUI extends JPanel {
 		pDanhSach.add(lblNhaXuatBan1);
 
 		// load Data
-		loadData(nhaXuatBan_DAO.getAllListNhaXuatBan());
+		loadData(nhaXuatBan_DAO.getAllNhaXuatBan());
 //		refresh();
 		// unfocus
 		unfocusable();
@@ -802,7 +801,7 @@ public class NhaXuatBan_GUI extends JPanel {
 	}
 
 	private void refresh() {
-		loadData(nhaXuatBan_DAO.getAllListNhaXuatBan());
+		loadData(nhaXuatBan_DAO.getAllNhaXuatBan());
 	}
 	//làm mới dữ liệu 
 	private void lamMoi() {

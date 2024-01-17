@@ -140,7 +140,7 @@ public class TimKiemTheLoaiSach_GUI extends JInternalFrame {
 	}
 	private void searchTheLoaiSach() {
 		// TODO Auto-generated method stub
-		for (TheLoaiSach theLoaiSach : theLoaiSach_DAO.getAllListTheLoaiSach()) {
+		for (TheLoaiSach theLoaiSach : theLoaiSach_DAO.getAllTheLoaiSach()) {
 			boolean thoaMan = false;
 			if (!txtMaTheLoaiSach.getText().isEmpty()) {
 				if (theLoaiSach.getmaTheLoaiSach().equalsIgnoreCase(txtMaTheLoaiSach.getText().trim())) {
@@ -167,8 +167,8 @@ public class TimKiemTheLoaiSach_GUI extends JInternalFrame {
 	        return false;
 	    }
     private void loadAll() {
-        if (theLoaiSach_DAO.getAllListTheLoaiSach() != null) {
-            for (TheLoaiSach theLoaiSach : theLoaiSach_DAO.getAllListTheLoaiSach()) {
+        if (theLoaiSach_DAO.getAllTheLoaiSach() != null) {
+            for (TheLoaiSach theLoaiSach : theLoaiSach_DAO.getAllTheLoaiSach()) {
                 ds.add(theLoaiSach);
             }
         }

@@ -12,7 +12,7 @@ import entity.HoaDon;
 
 public class HoaDon_DAO {
 	// get all hoa don
-	public ArrayList<HoaDon> getAllListHoaDon() {
+	public ArrayList<HoaDon> getAllHoaDon() {
 		ConnectDB.getInstance();
 		Connection connection = ConnectDB.getConnection();
 		ArrayList<HoaDon> ds = new ArrayList<HoaDon>();

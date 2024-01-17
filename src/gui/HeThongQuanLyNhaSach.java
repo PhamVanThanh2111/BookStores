@@ -1014,16 +1014,16 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		Thread thread = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				nhanVien_GUI.loadDataIntoTable(nhanVien_DAO.getAllListNhanVien());
+				nhanVien_GUI.loadData(nhanVien_DAO.getAllNhanVien());
 				thongKe_GUI.showAllChart();
-				danhSachDatHang_GUI.loadDataIntoTableDanhSachPhieuDatHang(phieuDatHang_DAO.getAllListPhieuDatHang());
+				danhSachDatHang_GUI.loadData(phieuDatHang_DAO.getAllPhieuDatHang());
 				khachHang_GUI.loadData(khachHang_DAO.getAllKhachHang());
 				sach_GUI_NhanVien.loadData(sanPham_DAO.getAllSach());
-				theLoaiSach_GUI_NhanVien.loadData(theLoaiSach_DAO.getAllListTheLoaiSach());
-				nhaXuatBan_GUI_NhanVien.loadData(nhaXuatBan_DAO.getAllListNhaXuatBan());;
+				theLoaiSach_GUI_NhanVien.loadData(theLoaiSach_DAO.getAllTheLoaiSach());
+				nhaXuatBan_GUI_NhanVien.loadData(nhaXuatBan_DAO.getAllNhaXuatBan());;
 				dungCuHocTap_GUI_NhanVien.loadData(sanPham_DAO.getAllDungCuHocTap());
 				nhaCungCap_GUI_NhanVien.loadData(nhaCungCap_DAO.getAllNhaCungCap());
-				danhSachHoaDon_GUI.loadData(hoaDon_DAO.getAllListHoaDon());
+				danhSachHoaDon_GUI.loadData(hoaDon_DAO.getAllHoaDon());
 			}
 		});
 		thread.start();

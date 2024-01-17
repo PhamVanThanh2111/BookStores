@@ -428,7 +428,7 @@ public class Sach_GUI extends JPanel {
 		btnLamMoi.setForeground(Color.WHITE);
 		btnLamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnLamMoi.setBackground(new Color(73, 129, 158));
-		btnLamMoi.setBounds(685, 297, 135, 40);
+		btnLamMoi.setBounds(890, 297, 135, 40);
 		btnLamMoi.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -467,7 +467,7 @@ public class Sach_GUI extends JPanel {
 		btnTim.setForeground(Color.WHITE);
 		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnTim.setBackground(new Color(73, 129, 158));
-		btnTim.setBounds(890, 297, 135, 40);
+		btnTim.setBounds(685, 297, 135, 40);
 		btnTim.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -917,7 +917,7 @@ public class Sach_GUI extends JPanel {
 		btnLamMoi.setForeground(Color.WHITE);
 		btnLamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnLamMoi.setBackground(new Color(73, 129, 158));
-		btnLamMoi.setBounds(821, 297, 135, 40);
+		btnLamMoi.setBounds(890, 297, 135, 40);
 		btnLamMoi.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -955,7 +955,7 @@ public class Sach_GUI extends JPanel {
 		btnTim.setForeground(Color.WHITE);
 		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnTim.setBackground(new Color(73, 129, 158));
-		btnTim.setBounds(1060, 297, 135, 40);
+		btnTim.setBounds(1103, 297, 135, 40);
 		btnTim.addActionListener(new ActionListener() {
 
 			@Override
@@ -1147,7 +1147,7 @@ public class Sach_GUI extends JPanel {
 	// load cbTenNhaXuatBan
 	private void loadDataIntoComboboxTenNhaXuatBan() {
 		cmbTenNhaXuatBan.removeAllItems();
-		for (NhaXuatBan nhaXuatBan : nhaXuatBan_DAO.getAllListNhaXuatBan()) {
+		for (NhaXuatBan nhaXuatBan : nhaXuatBan_DAO.getAllNhaXuatBan()) {
 			cmbTenNhaXuatBan.addItem(nhaXuatBan.getTenNhaXuatBan());
 		}
 	}
@@ -1155,7 +1155,7 @@ public class Sach_GUI extends JPanel {
 	// load cbTenTheLoaiSachs
 	private void loadDataIntoComboboxTenLoaiSach() {
 		cmbTenLoaiSach.removeAllItems();
-		for (TheLoaiSach theLoaiSach : theLoaiSach_DAO.getAllListTheLoaiSach()) {
+		for (TheLoaiSach theLoaiSach : theLoaiSach_DAO.getAllTheLoaiSach()) {
 			cmbTenLoaiSach.addItem(theLoaiSach.gettenTheLoaiSach());
 		}
 	}

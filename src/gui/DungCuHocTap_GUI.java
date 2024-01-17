@@ -213,7 +213,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		btnlamMoi.setForeground(Color.WHITE);
 		btnlamMoi.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnlamMoi.setBackground(new Color(73, 129, 158));
-		btnlamMoi.setBounds(685, 298, 135, 40);
+		btnlamMoi.setBounds(890, 298, 135, 40);
 		pThongTin.add(btnlamMoi);
 
 		btnChonHinhAnh = new JButton("Choose");
@@ -269,7 +269,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		btnTim.setForeground(Color.WHITE);
 		btnTim.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnTim.setBackground(new Color(73, 129, 158));
-		btnTim.setBounds(890, 298, 135, 40);
+		btnTim.setBounds(685, 298, 135, 40);
 		pThongTin.add(btnTim);
 
 		cbNhaCC = new JComboBox<String>();

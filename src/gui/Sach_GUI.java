@@ -442,7 +442,7 @@ public class Sach_GUI extends JPanel {
 		lblHinhAnh = new JLabel("");
 		lblHinhAnh.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblHinhAnh.setHorizontalAlignment(SwingConstants.CENTER);
-		lblHinhAnh.setBounds(1023, 15, 250, 200);
+		lblHinhAnh.setBounds(1028, 15, 256, 256);
 		pThongTin.add(lblHinhAnh);
 
 		txtNamXuatBan = new JTextField();
@@ -711,7 +711,6 @@ public class Sach_GUI extends JPanel {
 		});
 		pDanhSach.add(btnXuatFile);
 
-		loadData(sanPham_DAO.getAllSach());
 		// unfocus
 		unfocusable();
 		
@@ -721,6 +720,8 @@ public class Sach_GUI extends JPanel {
 			btnUpdate.setEnabled(false);
 			btnChonHinhAnh.setEnabled(false);
 		}
+		
+//		loadData(sanPham_DAO.getAllSach());
 	}
 
 	public Sach_GUI() {
@@ -929,7 +930,7 @@ public class Sach_GUI extends JPanel {
 		lblHinhAnh = new JLabel("");
 		lblHinhAnh.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHinhAnh.setBorder(new LineBorder(new Color(0, 0, 0)));
-		lblHinhAnh.setBounds(1023, 15, 200, 200);
+		lblHinhAnh.setBounds(1028, 15, 256, 256);
 		pThongTin.add(lblHinhAnh);
 
 		txtNamXuatBan = new JTextField();
@@ -998,12 +999,12 @@ public class Sach_GUI extends JPanel {
 		pDanhSach = new JPanel();
 		pDanhSach.setBackground(new Color(255, 255, 255));
 		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		pDanhSach.setBounds(0, 362, 1300, 348);
+		pDanhSach.setBounds(0, 362, 1300, 358);
 		pMain.add(pDanhSach);
 		pDanhSach.setLayout(null);
 
 		scrollPaneSach = new JScrollPane();
-		scrollPaneSach.setBounds(20, 44, 1259, 292);
+		scrollPaneSach.setBounds(20, 44, 1260, 295);
 		scrollPaneSach.setToolTipText("Chọn vào Sách cần hiển thị thông tin");
 		scrollPaneSach.setBorder(null);
 		scrollPaneSach.setBackground(new Color(255, 255, 255));
@@ -1102,7 +1103,7 @@ public class Sach_GUI extends JPanel {
 		pDanhSach.add(lblChiTitSch);
 
 		// loadData
-		loadDataSachChoKhachHang(sanPham_DAO.getAllSach());
+		loadData_KhachHang(sanPham_DAO.getAllSach());
 		// unfocus
 		txtMaSach.setFocusable(false);
 		txtTenSach.setFocusable(false);
@@ -1130,9 +1131,9 @@ public class Sach_GUI extends JPanel {
 	}
 
 	// loadData sach cho khachhang
-	public void loadDataSachChoKhachHang(ArrayList<SanPham> ds) {
+	public void loadData_KhachHang(ArrayList<SanPham> danhSach) {
 		model.setRowCount(0);
-		for (SanPham sanPham : ds) {
+		for (SanPham sanPham : danhSach) {
 			Object[] object = { sanPham.getMaSanPham(), sanPham.getTenSanPham(), sanPham.getXuatXu(),
 					sanPham.getGiaBan(), sanPham.getSoLuongTon(),
 					nhaXuatBan_DAO.getnhaXuatBanTheoMa(sanPham.getMaNXB()).getTenNhaXuatBan(),

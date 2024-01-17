@@ -60,13 +60,13 @@ public class DanhSachDatHang_GUI extends JPanel {
 	private JTableHeader tableHeaderDSPD;
 	private JTableHeader tableHeaderCTPD;
 	private PhieuDatHang_DAO phieuDatHang_DAO;
-	private KhachHang_DAO khachHang_DAO;
-	private NhanVien_DAO nhanVien_DAO;
 	private ChiTietPhieuDatHang_DAO chiTietPhieuDatHang_DAO;
 	private SanPham_DAO sanPham_DAO;
 	private PhatSinhMa_DAO phatSinhMa_DAO;
 	private HoaDon_DAO hoaDon_DAO;
 	private ChiTietHoaDon_DAO chiTietHoaDon_DAO;
+	private NhanVien_DAO nhanVien_DAO;
+	private KhachHang_DAO khachHang_DAO;
 	
 	/**
 	 * Create the panel.
@@ -75,13 +75,13 @@ public class DanhSachDatHang_GUI extends JPanel {
 		
 		// khai bao DAO
 		phieuDatHang_DAO = new PhieuDatHang_DAO();
-		khachHang_DAO = new KhachHang_DAO();
-		nhanVien_DAO = new NhanVien_DAO();
 		chiTietPhieuDatHang_DAO = new ChiTietPhieuDatHang_DAO();
 		sanPham_DAO = new SanPham_DAO();
 		phatSinhMa_DAO = new PhatSinhMa_DAO();
 		hoaDon_DAO = new HoaDon_DAO();
 		chiTietHoaDon_DAO = new ChiTietHoaDon_DAO();
+		nhanVien_DAO = new NhanVien_DAO();
+		khachHang_DAO = new KhachHang_DAO();
 		
 		setLayout(null);
 		
@@ -347,19 +347,19 @@ public class DanhSachDatHang_GUI extends JPanel {
 		lblTien.setBounds(360, 550, 150, 40);
 		pThongTinChiTiet.add(lblTien);
 
-    	loadDataIntoTableDanhSachPhieuDatHang(phieuDatHang_DAO.getAllListPhieuDatHang());
+//    	loadDataIntoTableDanhSachPhieuDatHang(phieuDatHang_DAO.getAllListPhieuDatHang());
 	}
 	
-	private void loadDataIntoTableDanhSachPhieuDatHang(ArrayList<PhieuDatHang> danhSachPhieuDatHangs) {
+	public void loadDataIntoTableDanhSachPhieuDatHang(ArrayList<PhieuDatHang> danhSachPhieuDatHangs) {
 		modelDSPD.setRowCount(0);
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		for (PhieuDatHang phieuDatHang : danhSachPhieuDatHangs) {
 			Object[] objects = {phieuDatHang.getMaPhieuDatHang(), 
-								khachHang_DAO.getKhachHangTheoMa(phieuDatHang.getMaKhachHang()).getTenKhachHang(),
-								khachHang_DAO.getKhachHangTheoMa(phieuDatHang.getMaKhachHang()).getSoDienThoai(),
-								nhanVien_DAO.getNhanVienTheoMa(phieuDatHang.getMaNhanVien()).getTenNhanVien(), 
-								simpleDateFormat.format(phieuDatHang.getNgayLap()), 
-								phieuDatHang.getThanhTien()};
+					khachHang_DAO.getKhachHangTheoMa(phieuDatHang.getMaKhachHang()).getTenKhachHang(),
+					khachHang_DAO.getKhachHangTheoMa(phieuDatHang.getMaKhachHang()).getSoDienThoai(),
+					nhanVien_DAO.getNhanVienTheoMa(phieuDatHang.getMaNhanVien()).getTenNhanVien(), 
+					simpleDateFormat.format(phieuDatHang.getNgayLap()), 
+					phieuDatHang.getThanhTien()};
 			modelDSPD.addRow(objects);
 		}
 	}

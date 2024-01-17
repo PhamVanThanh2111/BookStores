@@ -205,7 +205,7 @@ public class DanhSachHoaDon_GUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if (!kiemTraRong()) {
-					loadDataIntoTableHoaDon(timHoaDon());
+					loadData(timHoaDon());
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Bạn phải nhập ít nhất 1 thông tin!");
@@ -225,7 +225,7 @@ public class DanhSachHoaDon_GUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				loadDataIntoTableHoaDon(hoaDon_DAO.getAllListHoaDon());
+				loadData(hoaDon_DAO.getAllListHoaDon());
 			}
 		});
 		pnlThongTinTimKiem.add(btnLamMoi);
@@ -382,11 +382,10 @@ public class DanhSachHoaDon_GUI extends JPanel {
 		tableChiTietHoaDon.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
 		tableChiTietHoaDon.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
 		
-		loadDataIntoTableHoaDon(hoaDon_DAO.getAllListHoaDon());
-		
+//		loadDataIntoTableHoaDon(hoaDon_DAO.getAllListHoaDon());
 	}
 	
-	private void loadDataIntoTableHoaDon(ArrayList<HoaDon> danhSachHoaDons) {
+	public void loadData(ArrayList<HoaDon> danhSachHoaDons) {
 		modelDanhSachHoaDon.setRowCount(0);
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		for (HoaDon hoaDon : danhSachHoaDons) {
@@ -401,7 +400,7 @@ public class DanhSachHoaDon_GUI extends JPanel {
 	}
 	
 	public void refresh() {
-		loadDataIntoTableHoaDon(hoaDon_DAO.getAllListHoaDon());
+		loadData(hoaDon_DAO.getAllListHoaDon());
 	}
 	
 	private void loadDataIntoTableChiTietHoaDonTheoMaHoaDon(String maHoaDon) {

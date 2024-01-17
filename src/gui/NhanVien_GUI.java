@@ -61,7 +61,6 @@ public class NhanVien_GUI extends JPanel {
 	private NhanVien_DAO nhanVien_DAO;
 	private PhatSinhMa_DAO phatSinhMa_DAO;
 	private TaiKhoan_DAO taiKhoan_DAO;
-	private SimpleDateFormat simpleDateFormat;
 	private JComboBox<String> cbGioiTinh;
 	private JComboBox<String> cbCa;
 	private JTextField txtLuong;
@@ -97,8 +96,6 @@ public class NhanVien_GUI extends JPanel {
 		taiKhoan_DAO = new TaiKhoan_DAO();
 
 		ds = new ArrayList<NhanVien>();
-		
-		simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 		setLayout(null);
 		
@@ -670,14 +667,15 @@ public class NhanVien_GUI extends JPanel {
 		txtTenNhanVien.setBackground(new Color(255, 255, 255));
 		pNhapThongTin.add(txtTenNhanVien);
 
-		// loadData
-		loadDataIntoTable(nhanVien_DAO.getAllListNhanVien());
+//		loadData
+//		loadDataIntoTable(nhanVien_DAO.getAllListNhanVien());
 		
-		// unfocus
+//		unfocusable
 		unfocusable();
 	}
 
-	private void loadDataIntoTable(ArrayList<NhanVien> nhanViens) {
+	public void loadDataIntoTable(ArrayList<NhanVien> nhanViens) {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		model.setRowCount(0);
 		for (NhanVien nhanVien : nhanViens) {
 			Object[] objects = { nhanVien.getMaNhanVien(), nhanVien.getTenNhanVien(),

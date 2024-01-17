@@ -5,17 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import connect.ConnectDB;
 import entity.TheLoaiSach;
 
 public class TheLoaiSach_DAO {
 	// get all loai sách //lấy
-	public List<TheLoaiSach> getAllListTheLoaiSach() {
+	public ArrayList<TheLoaiSach> getAllListTheLoaiSach() {
 		ConnectDB.getInstance();
 		Connection connection = ConnectDB.getConnection();
-		List<TheLoaiSach> ds = new ArrayList<TheLoaiSach>();
+		ArrayList<TheLoaiSach> ds = new ArrayList<TheLoaiSach>();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement("select * from TheLoaiSach");
 			ResultSet resultSet = preparedStatement.executeQuery();

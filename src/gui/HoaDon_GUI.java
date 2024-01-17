@@ -708,7 +708,7 @@ public class HoaDon_GUI extends JPanel {
 		}
 		xemHoaDon(maHoaDon);
 		danhSachHoaDon_GUI.refresh();
-		thongKe_GUI.refresh();
+		thongKe_GUI.showAllChart();
 		trangChu_GUI.refresh();
 	}
 	

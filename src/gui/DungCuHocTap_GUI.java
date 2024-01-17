@@ -342,8 +342,6 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		lblChiTeitDungCuHocTap.setBounds(20, 15, 246, 40);
 		pDanhSach.add(lblChiTeitDungCuHocTap);
 
-		loadData(sanPham_DAO.getAllDungCuHocTap());
-
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 		btnXuatFile = new JButton("Xuất File");
@@ -411,6 +409,8 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		btnKhoiPhuc.addActionListener(this);
 		btnXuatFile.addActionListener(this);
 		closeText();
+		
+//		loadData(sanPham_DAO.getAllDungCuHocTap());
 	}
 
 	public DungCuHocTap_GUI() {

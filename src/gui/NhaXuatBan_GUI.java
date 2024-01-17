@@ -438,7 +438,7 @@ public class NhaXuatBan_GUI extends JPanel {
 						public void internalFrameClosed(InternalFrameEvent e) {
 							// System.out.println("Internal frame is closed.");
 							model.setRowCount(0);
-							loadDataIntoTable(ds);
+							loadData(ds);
 							ds.removeAll(ds);
 							enableButton();
 							focusable();	
@@ -474,10 +474,8 @@ public class NhaXuatBan_GUI extends JPanel {
 		lblNhXutBn.setBounds(20, 40, 133, 40);
 		pDanhSach.add(lblNhXutBn);
 
-		// load Data
-		loadDataIntoTable(nhaXuatBan_DAO.getAllListNhaXuatBan());
 //		refresh();
-		// unfocus
+//		unfocus
 		unfocusable();
 
 		if (nhanVien.getChucVu().equals("Bán hàng")) {
@@ -485,6 +483,9 @@ public class NhaXuatBan_GUI extends JPanel {
 			btnDelete.setEnabled(false);
 			btnUpdate.setEnabled(false);
 		}
+		
+//		load Data
+//		loadDataIntoTable(nhaXuatBan_DAO.getAllListNhaXuatBan());
 	}
 
 	public NhaXuatBan_GUI() {
@@ -747,7 +748,7 @@ public class NhaXuatBan_GUI extends JPanel {
 						public void internalFrameClosed(InternalFrameEvent e) {
 							// System.out.println("Internal frame is closed.");
 							model.setRowCount(0);
-							loadDataIntoTable(ds);
+							loadData(ds);
 							ds.removeAll(ds);
 							btnLamMoi.setVisible(true);
 						}
@@ -783,7 +784,7 @@ public class NhaXuatBan_GUI extends JPanel {
 		pDanhSach.add(lblNhaXuatBan1);
 
 		// load Data
-		loadDataIntoTable(nhaXuatBan_DAO.getAllListNhaXuatBan());
+		loadData(nhaXuatBan_DAO.getAllListNhaXuatBan());
 //		refresh();
 		// unfocus
 		unfocusable();
@@ -791,7 +792,7 @@ public class NhaXuatBan_GUI extends JPanel {
 	}
 
 	// đưa dữ liệu lên bảng
-	private void loadDataIntoTable(ArrayList<NhaXuatBan> list) {
+	public void loadData(ArrayList<NhaXuatBan> list) {
 		model.setRowCount(0);
 		for (NhaXuatBan nhaXuatBan : list) {
 			Object[] object = { nhaXuatBan.getMaNhaXuatBan(), nhaXuatBan.getTenNhaXuatBan(), nhaXuatBan.getDiaChi(),
@@ -801,7 +802,7 @@ public class NhaXuatBan_GUI extends JPanel {
 	}
 
 	private void refresh() {
-		loadDataIntoTable(nhaXuatBan_DAO.getAllListNhaXuatBan());
+		loadData(nhaXuatBan_DAO.getAllListNhaXuatBan());
 	}
 	//làm mới dữ liệu 
 	private void lamMoi() {

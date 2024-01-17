@@ -110,12 +110,8 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		table.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
 		table.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
 		table.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
-
-		
-		
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setDefaultEditor(Object.class, null);
-		
 		
 		tableHeader = table.getTableHeader();
 		tableHeader.setBackground(new Color(73, 129, 158));
@@ -286,7 +282,6 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		txtDiaChi.setBounds(170, 360, 240, 40);
 		txtDiaChi.setBorder(null);
 		pNhapThongTin.add(txtDiaChi);
-		loadData(khachHang_DAO.getAllKhachHang());
 	
 		btnThem.addActionListener(this);
 		btnXoa.addActionListener(this);
@@ -333,6 +328,8 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 			}
 	
 		});
+		
+//		loadData(khachHang_DAO.getAllKhachHang());
 	}
 	public void loadData(ArrayList<KhachHang> ds) {
 		model.setRowCount(0);

@@ -1,4 +1,3 @@
-
 package gui;
 
 import java.sql.SQLException;
@@ -13,6 +12,15 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
+
+import dao.HoaDon_DAO;
+import dao.KhachHang_DAO;
+import dao.NhaCungCap_DAO;
+import dao.NhaXuatBan_DAO;
+import dao.NhanVien_DAO;
+import dao.PhieuDatHang_DAO;
+import dao.SanPham_DAO;
+import dao.TheLoaiSach_DAO;
 import entity.NhanVien;
 
 import java.awt.CardLayout;
@@ -63,7 +71,25 @@ public class HeThongQuanLyNhaSach extends JFrame {
 	private DanhSachDatHang_GUI danhSachDatHang_GUI;
 	private ThongKe_GUI thongKe_GUI;
 	private TrangChu_GUI trangChu_GUI;
-
+	private NhanVien_GUI nhanVien_GUI;
+	private KhachHang_GUI khachHang_GUI;
+	private Sach_GUI sach_GUI_NhanVien;
+	private DungCuHocTap_GUI dungCuHocTap_GUI_NhanVien;
+	private HoaDon_GUI hoaDon_GUI_NhanVien;
+	private HoSo_GUI hoSo_GUI_NhanVien;
+	private DatHang_GUI datHang_GUI_NhanVien;
+	private TheLoaiSach_GUI theLoaiSach_GUI_NhanVien;
+	private NhaXuatBan_GUI nhaXuatBan_GUI_NhanVien;
+	private NhaCungCap_GUI nhaCungCap_GUI_NhanVien;
+	private NhanVien_DAO nhanVien_DAO;
+	private PhieuDatHang_DAO phieuDatHang_DAO;
+	private KhachHang_DAO khachHang_DAO;
+	private SanPham_DAO sanPham_DAO;
+	private TheLoaiSach_DAO theLoaiSach_DAO;
+	private NhaXuatBan_DAO nhaXuatBan_DAO;
+	private NhaCungCap_DAO nhaCungCap_DAO;
+	private HoaDon_DAO hoaDon_DAO;
+	
 	/**
 	 * Create the frame.
 	 * 
@@ -71,6 +97,16 @@ public class HeThongQuanLyNhaSach extends JFrame {
 	 */
 	public HeThongQuanLyNhaSach(NhanVien nhanVien) throws SQLException {
 
+		// initialization variable DAO
+		nhanVien_DAO = new NhanVien_DAO();
+		phieuDatHang_DAO = new PhieuDatHang_DAO();
+		khachHang_DAO = new KhachHang_DAO();
+		sanPham_DAO = new SanPham_DAO();
+		theLoaiSach_DAO = new TheLoaiSach_DAO();
+		nhaXuatBan_DAO = new NhaXuatBan_DAO();
+		nhaCungCap_DAO = new NhaCungCap_DAO();
+		hoaDon_DAO = new HoaDon_DAO();
+		
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(HeThongQuanLyNhaSach.class.getResource("/image/HeThong/favicon.jpg")));
 		setForeground(new Color(255, 255, 255));
@@ -343,22 +379,32 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		danhSachDatHang_GUI = new DanhSachDatHang_GUI();
 		thongKe_GUI = new ThongKe_GUI();
 		trangChu_GUI = new TrangChu_GUI(nhanVien);
+		nhanVien_GUI = new NhanVien_GUI();
+		khachHang_GUI = new KhachHang_GUI();
+		sach_GUI_NhanVien = new Sach_GUI(nhanVien);
+		dungCuHocTap_GUI_NhanVien = new DungCuHocTap_GUI(nhanVien);
+		hoaDon_GUI_NhanVien = new HoaDon_GUI(nhanVien, danhSachHoaDon_GUI, thongKe_GUI, trangChu_GUI);
+		hoSo_GUI_NhanVien = new HoSo_GUI(nhanVien);
+		datHang_GUI_NhanVien = new DatHang_GUI(nhanVien, danhSachDatHang_GUI);
+		theLoaiSach_GUI_NhanVien = new TheLoaiSach_GUI(nhanVien);
+		nhaXuatBan_GUI_NhanVien = new NhaXuatBan_GUI(nhanVien);
+		nhaCungCap_GUI_NhanVien = new NhaCungCap_GUI(nhanVien);
 		
 		// main menu
 		pContent.add(trangChu_GUI, "TrangChu_GUI");
-		pContent.add(new NhanVien_GUI(), "NhanVien_GUI");
-		pContent.add(new KhachHang_GUI(), "KhachHang_GUI");
-		pContent.add(new Sach_GUI(nhanVien), "Sach_GUI");
-		pContent.add(new DungCuHocTap_GUI(nhanVien), "DungCuHocTap_GUI");
-		pContent.add(new HoaDon_GUI(nhanVien, danhSachHoaDon_GUI, thongKe_GUI, trangChu_GUI), "HoaDon_GUI");
-		pContent.add(new HoSo_GUI(nhanVien), "HoSo_GUI");
+		pContent.add(nhanVien_GUI, "NhanVien_GUI");
+		pContent.add(khachHang_GUI, "KhachHang_GUI");
+		pContent.add(sach_GUI_NhanVien, "Sach_GUI");
+		pContent.add(dungCuHocTap_GUI_NhanVien, "DungCuHocTap_GUI");
+		pContent.add(hoaDon_GUI_NhanVien, "HoaDon_GUI");
+		pContent.add(hoSo_GUI_NhanVien, "HoSo_GUI");
 		// sub menu
 		pContent.add(thongKe_GUI, "ThongKe_GUI");
-		pContent.add(new DatHang_GUI(nhanVien, danhSachDatHang_GUI), "DatHang_GUI");
+		pContent.add(datHang_GUI_NhanVien, "DatHang_GUI");
 		pContent.add(danhSachDatHang_GUI, "DanhSachDatHang_GUI");
-		pContent.add(new TheLoaiSach_GUI(nhanVien), "TheLoaiSach_GUI");
-		pContent.add(new NhaXuatBan_GUI(nhanVien), "NhaXuatBan_GUI");
-		pContent.add(new NhaCungCap_GUI(nhanVien), "NhaCungCap_GUI");
+		pContent.add(theLoaiSach_GUI_NhanVien, "TheLoaiSach_GUI");
+		pContent.add(nhaXuatBan_GUI_NhanVien, "NhaXuatBan_GUI");
+		pContent.add(nhaCungCap_GUI_NhanVien, "NhaCungCap_GUI");
 		pContent.add(danhSachHoaDon_GUI, "DanhSachHoaDon_GUI");
 
 		// mac dinh hien thi giao dien trang chu dau tien
@@ -953,7 +999,6 @@ public class HeThongQuanLyNhaSach extends JFrame {
 					cardLayoutContent.show(pContent, "DanhSachDatHang_GUI");
 					setTitle("Danh Sách Đặt Hàng");
 				}
-
 			}
 		});
 		lblSubMenu4.setHorizontalAlignment(SwingConstants.CENTER);
@@ -965,6 +1010,23 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		sprNgang.setBounds(220, 85, 1300, 2);
 		sprNgang.setForeground(new Color(60, 60, 60));
 		contentPane.add(sprNgang);
+		
+		Thread thread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				nhanVien_GUI.loadDataIntoTable(nhanVien_DAO.getAllListNhanVien());
+				thongKe_GUI.showAllChart();
+				danhSachDatHang_GUI.loadDataIntoTableDanhSachPhieuDatHang(phieuDatHang_DAO.getAllListPhieuDatHang());
+				khachHang_GUI.loadData(khachHang_DAO.getAllKhachHang());
+				sach_GUI_NhanVien.loadData(sanPham_DAO.getAllSach());
+				theLoaiSach_GUI_NhanVien.loadData(theLoaiSach_DAO.getAllListTheLoaiSach());
+				nhaXuatBan_GUI_NhanVien.loadData(nhaXuatBan_DAO.getAllListNhaXuatBan());;
+				dungCuHocTap_GUI_NhanVien.loadData(sanPham_DAO.getAllDungCuHocTap());
+				nhaCungCap_GUI_NhanVien.loadData(nhaCungCap_DAO.getAllNhaCungCap());
+				danhSachHoaDon_GUI.loadData(hoaDon_DAO.getAllListHoaDon());
+			}
+		});
+		thread.start();
 	}
 
 	public HeThongQuanLyNhaSach() {

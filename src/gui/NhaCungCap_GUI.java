@@ -215,7 +215,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 		tableHeader.setReorderingAllowed(false);
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-		loadData(nhaCungCap_DAO.getAllNhaCungCap());
+		
 		closeFocusTXT();
 		table.addMouseListener(new MouseListener() {
 
@@ -325,6 +325,7 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 			btnSua.setEnabled(false);
 		}
 
+//		loadData(nhaCungCap_DAO.getAllNhaCungCap());
 	}
 
 	public NhaCungCap_GUI() {

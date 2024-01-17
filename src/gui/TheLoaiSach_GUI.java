@@ -8,7 +8,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -279,7 +278,7 @@ public class TheLoaiSach_GUI extends JPanel {
 						public void internalFrameClosed(InternalFrameEvent e) {
 //			                System.out.println("Internal frame is closed.");
 							model.setRowCount(0);
-							loadDataIntoTable(ds);
+							loadData(ds);
 //			            	System.out.println(ds);
 							ds.removeAll(ds);
 							enableButton();
@@ -406,11 +405,13 @@ public class TheLoaiSach_GUI extends JPanel {
 		lblChiTitTheLoaiSach.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblChiTitTheLoaiSach.setBounds(22, 10, 291, 40);
 		pDanhSach.add(lblChiTitTheLoaiSach);
-		// load Data
-		loadDataIntoTable(theLoaiSach_DAO.getAllListTheLoaiSach());
+		
 //		refresh();
-		// unfocus
+//		unfocus
 		unfocusable();
+		
+//		load Data
+//		loadDataIntoTable(theLoaiSach_DAO.getAllListTheLoaiSach());
 	}
 
 	public TheLoaiSach_GUI() {
@@ -514,7 +515,7 @@ public class TheLoaiSach_GUI extends JPanel {
 						public void internalFrameClosed(InternalFrameEvent e) {
 //			                System.out.println("Internal frame is closed.");
 							model.setRowCount(0);
-							loadDataIntoTable(ds);
+							loadData(ds);
 //			            	System.out.println(ds);
 							ds.removeAll(ds);
 							btnLamMoi.setEnabled(true);
@@ -635,7 +636,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		lblChiTitTheLoaiSach.setBounds(22, 10, 291, 40);
 		pDanhSach.add(lblChiTitTheLoaiSach);
 		// loadData
-		loadDataIntoTable(theLoaiSach_DAO.getAllListTheLoaiSach());
+		loadData(theLoaiSach_DAO.getAllListTheLoaiSach());
 		// unfocus
 		unfocusable();
 //		refresh();
@@ -643,10 +644,8 @@ public class TheLoaiSach_GUI extends JPanel {
 	}
 
 	// đổ dữ liệu lên bảng
-	public void loadDataIntoTable(List<TheLoaiSach> list) {
-		// Xóa dữ liệu cũ trước khi nạp dữ liệu mới
+	public void loadData(ArrayList<TheLoaiSach> list) {
 		model.setRowCount(0);
-		// Nạp dữ liệu sản phẩm lên bảng
 		for (TheLoaiSach theLoaiSach : list) {
 			Object[] object = { theLoaiSach.getmaTheLoaiSach(), theLoaiSach.gettenTheLoaiSach() };
 			model.addRow(object);
@@ -660,7 +659,7 @@ public class TheLoaiSach_GUI extends JPanel {
 	}
 	// làm mới bảng
 	public void refresh() {
-		loadDataIntoTable(theLoaiSach_DAO.getAllListTheLoaiSach());
+		loadData(theLoaiSach_DAO.getAllListTheLoaiSach());
 	}
 
 	// Thêm thể loại sách

@@ -288,7 +288,7 @@ public class ThongKe_GUI extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				refresh();
+				showAllChart();
 				dateChooserTuNgay.setDate(null);
 				dateChooserDenNgay.setDate(null);
 			}
@@ -323,7 +323,7 @@ public class ThongKe_GUI extends JPanel {
 		pnlThongKeSoLuongHoaDonVaSanPhamNhanVien.setBounds(0, 359, 1295, 334);
 		pnlNangSuatNhanVien.add(pnlThongKeSoLuongHoaDonVaSanPhamNhanVien);
 		
-		refresh();
+//		showAllChart();
 	}
 	
 	private void showBarChartDoanhThu(LocalDate tuNgay, LocalDate denNgay) {
@@ -517,7 +517,7 @@ public class ThongKe_GUI extends JPanel {
 		return soLuong;
 	}
 	
-	public void refresh() {
+	public void showAllChart() {
 		showBarChartDoanhThu(LocalDate.now().minusDays(6), LocalDate.now());
 		showBarChartSoLuong(LocalDate.now().minusDays(6), LocalDate.now());
 		showBarChartKhachHangMuaNhieuNhat();

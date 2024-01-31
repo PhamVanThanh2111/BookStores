@@ -49,8 +49,8 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 	private JTextField txtSDT;
 	private JTextField txtDiaChi;
 	private JTableHeader tableHeader;
-	private JButton btnThem,btnXoa,btnSua,btnTim;
-	private JComboBox<String> cbGioiTinh ;
+	private JButton btnThem, btnXoa, btnSua, btnTim;
+	private JComboBox<String> cbGioiTinh;
 	private PhatSinhMa_DAO phatSinhMa_DAO;
 	private JLabel lblMaKhachHang;
 	private Border borderDefault;
@@ -58,26 +58,26 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 	private TimKiemKhachHang_GUI timKiemKhachHang_GUI;
 	private ArrayList<KhachHang> ds;
 	private JDesktopPane desktopPane;
-	
+
 	/**
 	 * Create the panel.
 	 */
 	public KhachHang_GUI() {
-		
+
 		khachHang_DAO = new KhachHang_DAO();
 		phatSinhMa_DAO = new PhatSinhMa_DAO();
 		ds = new ArrayList<KhachHang>();
 		setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1300, 720);
 		add(panel);
 		panel.setLayout(null);
-		
+
 		desktopPane = new JDesktopPane();
 		desktopPane.setBounds(0, 0, 1300, 720);
 		panel.add(desktopPane);
-		
+
 		JPanel pMain = new JPanel();
 		pMain.setBackground(new Color(241, 245, 249));
 		pMain.setBounds(0, 0, 1300, 720);
@@ -86,8 +86,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 
 		JPanel pDanhSach = new JPanel();
 		pDanhSach.setBackground(new Color(255, 255, 255));
-		pDanhSach.setBorder(
-				new LineBorder(new Color(0, 0, 0), 2));
+		pDanhSach.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pDanhSach.setBounds(0, 0, 850, 720);
 		pMain.add(pDanhSach);
 		pDanhSach.setLayout(null);
@@ -112,13 +111,13 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		table.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setDefaultEditor(Object.class, null);
-		
+
 		tableHeader = table.getTableHeader();
 		tableHeader.setBackground(new Color(73, 129, 158));
 		tableHeader.setForeground(Color.white);
 		tableHeader.setFont(new Font("SansSerif", Font.BOLD, 14));
 		tableHeader.setReorderingAllowed(false);
-		
+
 		scrollPaneKH.setViewportView(table);
 
 		JLabel lblThongTin = new JLabel("Khách Hàng");
@@ -152,7 +151,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		btnSua.setBackground(new Color(73, 129, 158));
 		btnSua.setBounds(393, 660, 135, 40);
 		pDanhSach.add(btnSua);
-		
+
 		btnTim = new JButton("Tìm");
 		btnTim.setOpaque(true);
 		btnTim.setForeground(Color.WHITE);
@@ -160,7 +159,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		btnTim.setBackground(new Color(73, 129, 158));
 		btnTim.setBounds(542, 660, 135, 40);
 		pDanhSach.add(btnTim);
-		
+
 		JButton btnLamMoi = new JButton("Làm Mới");
 		btnLamMoi.setOpaque(true);
 		btnLamMoi.setForeground(Color.WHITE);
@@ -168,7 +167,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		btnLamMoi.setBackground(new Color(73, 129, 158));
 		btnLamMoi.setBounds(693, 660, 135, 40);
 		pDanhSach.add(btnLamMoi);
-		
+
 		JPanel pNhapThongTin = new JPanel();
 		pNhapThongTin.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pNhapThongTin.setBackground(new Color(255, 255, 255));
@@ -224,7 +223,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		txtSDT.setBounds(170, 145, 240, 40);
 		borderDefault = txtSDT.getBorder();
 		txtSDT.setBorder(null);
-	
+
 		pNhapThongTin.add(txtSDT);
 
 		JSeparator separator_1 = new JSeparator();
@@ -290,7 +289,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		txtDiaChi.setBounds(170, 360, 240, 40);
 		txtDiaChi.setBorder(null);
 		pNhapThongTin.add(txtDiaChi);
-	
+
 		btnThem.addActionListener(this);
 		btnXoa.addActionListener(this);
 		btnSua.addActionListener(this);
@@ -316,7 +315,6 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-			
 
 			}
 
@@ -334,11 +332,10 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 					txtDiaChi.setText(table.getValueAt(r, 4).toString());
 				}
 			}
-	
+
 		});
-		
-//		loadData(khachHang_DAO.getAllKhachHang());
 	}
+
 	public void loadData(ArrayList<KhachHang> ds) {
 		model.setRowCount(0);
 		for (KhachHang Kh : ds) {
@@ -347,6 +344,7 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 			model.addRow(object);
 		}
 	}
+
 	public void xoaTrang() {
 		txtTenKH.setText("");
 		txtDiaChi.setText("");
@@ -355,14 +353,13 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		txtTenKH.requestFocus();
 	}
 
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object o = e.getSource();
-		
-		if(o.equals(btnThem)) {
-			if(btnThem.getText().equalsIgnoreCase("Thêm")) {
-			
+
+		if (o.equals(btnThem)) {
+			if (btnThem.getText().equalsIgnoreCase("Thêm")) {
+
 				try {
 					xoaTrang();
 					btnThem.setText("Xác Nhận");
@@ -371,17 +368,16 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 					btnTim.setEnabled(false);
 					lblMaKhachHang.setText(phatSinhMa_DAO.getMaKhachHang().toString());
 					openText();
-					
+
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
-			
-			}else {
-				if(btnThem.getText().equalsIgnoreCase("Xác Nhận")) {
+
+			} else {
+				if (btnThem.getText().equalsIgnoreCase("Xác Nhận")) {
 					try {
 						themKhachHang();
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					loadData(khachHang_DAO.getAllKhachHang());
@@ -390,25 +386,24 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 					btnThem.setText("Thêm");
 					btnXoa.setText("Xóa");
 					closeText();
-				
 				}
 			}
-		}else {
-			if(o.equals(btnXoa)){
-				if(btnXoa.getText().equalsIgnoreCase("Hủy")) {
+		} else {
+			if (o.equals(btnXoa)) {
+				if (btnXoa.getText().equalsIgnoreCase("Hủy")) {
 					btnThem.setText("Thêm");
 					btnXoa.setText("Xóa");
 					btnSua.setEnabled(true);
 					btnTim.setEnabled(true);
 					xoaTrang();
 					closeText();
-					
-				}else {
-					if(btnXoa.getText().equalsIgnoreCase("Xóa")) {
+
+				} else {
+					if (btnXoa.getText().equalsIgnoreCase("Xóa")) {
 						int r = table.getSelectedRow();
-						if(r==-1) {
+						if (r == -1) {
 							JOptionPane.showMessageDialog(null, "Bạn Chưa Chọn Khách Hàng !");
-						}else {
+						} else {
 							try {
 								xoaKhachHang();
 							} catch (SQLException e1) {
@@ -417,20 +412,20 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 						}
 					}
 				}
-			}else {
-				if(o.equals(btnSua)) {
+			} else {
+				if (o.equals(btnSua)) {
 					int r = table.getSelectedRow();
-					if(r==-1) {
+					if (r == -1) {
 						JOptionPane.showMessageDialog(null, "Bạn Chưa Chọn Khách Hàng !");
-					}else {
-						if(btnSua.getText().equalsIgnoreCase("Sửa")) {
+					} else {
+						if (btnSua.getText().equalsIgnoreCase("Sửa")) {
 							btnSua.setText("Xác Nhận");
 							btnTim.setText("Hủy");
 							btnThem.setEnabled(false);
 							btnXoa.setEnabled(false);
 							openText();
-						}else {
-							if(btnSua.getText().equalsIgnoreCase("Xác Nhận")) {
+						} else {
+							if (btnSua.getText().equalsIgnoreCase("Xác Nhận")) {
 								btnSua.setText("Sửa");
 								btnTim.setText("Tìm");
 								suaKhachHang();
@@ -440,93 +435,101 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 							}
 						}
 					}
-				}else {
-					if(o.equals(btnTim)) {
-						if(btnTim.getText().equalsIgnoreCase("Hủy")) {
+				} else {
+					if (o.equals(btnTim)) {
+						if (btnTim.getText().equalsIgnoreCase("Hủy")) {
 							btnSua.setText("Sửa");
 							btnTim.setText("Tìm");
 							btnThem.setEnabled(true);
 							btnXoa.setEnabled(true);
-							xoaTrang();	
+							xoaTrang();
 							closeText();
-						}else {
-							if(btnTim.getText().equalsIgnoreCase("Tìm")){
+						} else {
+							if (btnTim.getText().equalsIgnoreCase("Tìm")) {
 								btnThem.setEnabled(false);
 								btnXoa.setEnabled(false);
 								btnSua.setEnabled(false);
 								if (timKiemKhachHang_GUI == null || timKiemKhachHang_GUI.isClosed()) {
 									timKiemKhachHang_GUI = new TimKiemKhachHang_GUI(ds);
 									timKiemKhachHang_GUI.addInternalFrameListener(new InternalFrameAdapter() {
-							            @Override
-							            public void internalFrameActivated(InternalFrameEvent e) {
+										@Override
+										public void internalFrameActivated(InternalFrameEvent e) {
 //							                System.out.println("Internal frame is activated.");
-							            }
+										}
 
-							            @Override
-							            public void internalFrameDeactivated(InternalFrameEvent e) {
+										@Override
+										public void internalFrameDeactivated(InternalFrameEvent e) {
 //							                System.out.println("Internal frame is deactivated.");
-							            }
+										}
 
-							            @Override
-							            public void internalFrameOpened(InternalFrameEvent e) {
+										@Override
+										public void internalFrameOpened(InternalFrameEvent e) {
 //							                System.out.println("Internal frame is opened.");
 //							            	disableButton();
-							            }
-							            
-							            @Override
-							            public void internalFrameClosed(InternalFrameEvent e) {
+										}
+
+										@Override
+										public void internalFrameClosed(InternalFrameEvent e) {
 //							                System.out.println("Internal frame is closed.");
-							            	loadData(ds);
-							            	ds.removeAll(ds);
-							            	btnThem.setEnabled(true);
+											loadData(ds);
+											ds.removeAll(ds);
+											btnThem.setEnabled(true);
 											btnXoa.setEnabled(true);
 											btnSua.setEnabled(true);
-							            }
-							        });
+										}
+									});
 									desktopPane.add(timKiemKhachHang_GUI).setVisible(true);
 								}
 							}
 						}
 					}
-					
+
 				}
 			}
 		}
 	}
+
 	private void themKhachHang() throws SQLException {
-		if(txtTenKH.getText().equalsIgnoreCase("")||txtSDT.getText().equalsIgnoreCase("")||cbGioiTinh.getSelectedItem().toString().equalsIgnoreCase("")||txtDiaChi.getText().equalsIgnoreCase("")) {
+		if (txtTenKH.getText().equalsIgnoreCase("") || txtSDT.getText().equalsIgnoreCase("")
+				|| cbGioiTinh.getSelectedItem().toString().equalsIgnoreCase("")
+				|| txtDiaChi.getText().equalsIgnoreCase("")) {
 			JOptionPane.showMessageDialog(null, "Thông Tin Rỗng !");
 		}
-		if(!txtTenKH.getText().equalsIgnoreCase("")&&!txtSDT.getText().equalsIgnoreCase("")&&!cbGioiTinh.getSelectedItem().toString().equalsIgnoreCase("")&&!txtDiaChi.getText().equalsIgnoreCase("")) {
+		if (!txtTenKH.getText().equalsIgnoreCase("") && !txtSDT.getText().equalsIgnoreCase("")
+				&& !cbGioiTinh.getSelectedItem().toString().equalsIgnoreCase("")
+				&& !txtDiaChi.getText().equalsIgnoreCase("")) {
 			KhachHang khachHang = new KhachHang();
 			khachHang.setMaKhachHang(phatSinhMa_DAO.getMaKhachHang());
 			khachHang.setTenKhachHang(txtTenKH.getText());
 			khachHang.setGioiTinh(cbGioiTinh.getSelectedItem().toString());
 			khachHang.setSoDienThoai(txtSDT.getText());
 			khachHang.setDiaChi(txtDiaChi.getText());
-			if(!kiemTraTrungSDT(txtSDT.getText())) {
+			if (!kiemTraTrungSDT(txtSDT.getText())) {
 				khachHang_DAO.themKhachHang(khachHang);
 				JOptionPane.showMessageDialog(null, "Thêm Khách Hàng Thành Công");
-			}else{
+			} else {
 				JOptionPane.showMessageDialog(null, "Số Điện Thoại Đã Tồn Tại");
 
 			}
 		}
 	}
+
 	public void xoaKhachHang() throws SQLException {
 		int row = table.getSelectedRow();
-		if(row !=-1) {
-			int tb = JOptionPane.showConfirmDialog(null, "Bạn Muốn Xóa Khách Hàng ? ", "Delete", JOptionPane.YES_NO_OPTION);
-			if(tb == JOptionPane.YES_OPTION) {
+		if (row != -1) {
+			int tb = JOptionPane.showConfirmDialog(null, "Bạn Muốn Xóa Khách Hàng ? ", "Delete",
+					JOptionPane.YES_NO_OPTION);
+			if (tb == JOptionPane.YES_OPTION) {
 				try {
-					khachHang_DAO.xoaKhachHangTheoMa((String)model.getValueAt(row,1));
+					khachHang_DAO.xoaKhachHangTheoMa((String) model.getValueAt(row, 1));
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, "Khách Hàng Đang Có Hóa Đơn Trong Cửa Hàng !");
 				}
-			
+
 			}
 		}
 	}
+
 	public void closeText() {
 		cbGioiTinh.setEditable(false);
 		cbGioiTinh.setEnabled(false);
@@ -538,14 +541,14 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		txtTenKH.setBorder(null);
 		txtSDT.setBorder(null);
 		txtDiaChi.setBorder(null);
-		
+
 		txtDiaChi.setFocusable(false);
 		txtTenKH.setFocusable(false);
 		txtSDT.setFocusable(false);
 		txtDiaChi.setFocusable(false);
-		
+
 	}
-	
+
 	public void openText() {
 		txtTenKH.setEditable(true);
 		txtSDT.setEditable(true);
@@ -558,32 +561,34 @@ public class KhachHang_GUI extends JPanel implements ActionListener {
 		txtTenKH.setBorder(borderDefault);
 		txtSDT.setBorder(borderDefault);
 		txtDiaChi.setBorder(borderDefault);
-		
-		
+
 		txtDiaChi.setFocusable(true);
 		txtTenKH.setFocusable(true);
 		txtSDT.setFocusable(true);
 		txtDiaChi.setFocusable(true);
-		
+
 	}
-	
+
 	private boolean kiemTraTrungSDT(String sDT) {
-		for(KhachHang khachHang : khachHang_DAO.getAllKhachHang()) {
-			if(khachHang.getSoDienThoai().equalsIgnoreCase(sDT.trim())) {
+		for (KhachHang khachHang : khachHang_DAO.getAllKhachHang()) {
+			if (khachHang.getSoDienThoai().equalsIgnoreCase(sDT.trim())) {
 				return true;
 			}
 		}
 		return false;
 	}
-	
+
 	public boolean suaKhachHang() {
-		
-		if(txtTenKH.getText().equalsIgnoreCase("")||txtSDT.getText().equalsIgnoreCase("")||cbGioiTinh.getSelectedItem().toString().equalsIgnoreCase("")||txtDiaChi.getText().equalsIgnoreCase("")) {
+
+		if (txtTenKH.getText().equalsIgnoreCase("") || txtSDT.getText().equalsIgnoreCase("")
+				|| cbGioiTinh.getSelectedItem().toString().equalsIgnoreCase("")
+				|| txtDiaChi.getText().equalsIgnoreCase("")) {
 			JOptionPane.showMessageDialog(null, "Thông Tin Rỗng !");
-			
-			
+
 		}
-		if(!txtTenKH.getText().equalsIgnoreCase("")&&!txtSDT.getText().equalsIgnoreCase("")&&!cbGioiTinh.getSelectedItem().toString().equalsIgnoreCase("")&&!txtDiaChi.getText().equalsIgnoreCase("")){
+		if (!txtTenKH.getText().equalsIgnoreCase("") && !txtSDT.getText().equalsIgnoreCase("")
+				&& !cbGioiTinh.getSelectedItem().toString().equalsIgnoreCase("")
+				&& !txtDiaChi.getText().equalsIgnoreCase("")) {
 			KhachHang khachHang = new KhachHang();
 			khachHang.setMaKhachHang(lblMaKhachHang.getText());
 			khachHang.setTenKhachHang(txtTenKH.getText());

@@ -160,7 +160,6 @@ public class KhoiPhucDungCuHocTap_GUI extends JInternalFrame {
 				try {
 					setClosed(true);
 				} catch (PropertyVetoException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}

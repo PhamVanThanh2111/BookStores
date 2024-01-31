@@ -313,18 +313,15 @@ public class HoaDon_GUI extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				if (tinhThanhTien() > 0) {
 					try {
 						try {
 							lapHoaDon(nhanVien.getMaNhanVien());
 						} catch (JRException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 						
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
@@ -446,7 +443,6 @@ public class HoaDon_GUI extends JPanel {
 						
 					}
 				} catch (Exception e2) {
-					// TODO: handle exception
 					JOptionPane.showMessageDialog(null, "Số lượng phải là số và có giá trị lớn hơn 0!");
 				}
 			}
@@ -535,7 +531,6 @@ public class HoaDon_GUI extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				int row = table.getSelectedRow();
 				if (row == -1) {
 					JOptionPane.showMessageDialog(null, "Bạn phải chọn sản phẩm cần sửa!");
@@ -563,7 +558,6 @@ public class HoaDon_GUI extends JPanel {
 							model.setValueAt(Integer.parseInt(txtSoLuong.getText()) * sanPham.getGiaBan(), row, 4);
 							lblTongTienValue.setText(tinhThanhTien() + " VND");
 						} catch (Exception e2) {
-							// TODO: handle exception
 							JOptionPane.showMessageDialog(null, "Số lượng phải là số!");
 						}
 					}
@@ -672,7 +666,7 @@ public class HoaDon_GUI extends JPanel {
 				thanhTien += Float.parseFloat(model.getValueAt(i, 4).toString());
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return thanhTien;
 	}

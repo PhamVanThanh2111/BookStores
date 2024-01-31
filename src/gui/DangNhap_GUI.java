@@ -47,11 +47,8 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 	private JCheckBox chkShow;
 
 	public DangNhap_GUI() throws SQLException {
-
-		// connectDB
 		connect();
 
-		// khai bao dao
 		taiKhoan_DAO = new TaiKhoan_DAO();
 		nhanVien_DAO = new NhanVien_DAO();
 
@@ -61,9 +58,8 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
-		// image
 		setIconImage(Toolkit.getDefaultToolkit().getImage(DangNhap_GUI.class.getResource("/image/HeThong/favicon.jpg")));
-		// title
+
 		lblTitle = new JLabel("ĐĂNG NHẬP");
 		lblTitle.setFont(new Font("Times new roman", Font.BOLD, 40));
 		lblTitle.setForeground(Color.blue);
@@ -72,13 +68,9 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		lblUser.setSize(20, 300);
 		lblUser.setFont(new Font("times new roman", Font.TRUETYPE_FONT, 28));
 
-		// iconuser
 		lblUser.setIcon(new ImageIcon("image//user.png"));
 
-		// icon btn exit
-
 		btnExit = new JButton("Thoát");
-
 		chkShow = new JCheckBox("Hiển Thị Mật Khẩu");
 		chkShow.setFont(new Font("Tahoma", Font.ITALIC, 10));
 		chkShow.setBackground(new Color(255, 255, 255));
@@ -86,7 +78,7 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 		chkShow.setBounds(138, 321, 151, 21);
 		getContentPane().add(chkShow);
 
-		// Hiển thị mất khẩu
+		// Show password
 		chkShow.addActionListener(new ActionListener() {
 
 			@Override
@@ -116,13 +108,6 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 			}
 		});
 
-//		txtPwd.addKeyListener(new KeyAdapter() {
-//			@Override
-//			public void keyPressed(KeyEvent e) {
-//				if (e.getKeyCode() == KeyEvent.VK_ENTER) 
-//					login();
-//			}
-//		});
 		txtPwd.setText("NV0001");
 		txtPwd.setBorder(BorderFactory.createLineBorder(new Color(117, 128, 134)));
 		txtPwd.setBounds(138, 283, 191, 32);
@@ -200,19 +185,6 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 
 	}
 
-//		  cbxHienThi.addActionListener(new ActionListener() {
-//	            @Override
-//	            public void actionPerformed(ActionEvent e) {
-//	            	if (cbxHienThi.isSelected()) {
-//	                	tfMatKhau.setEchoChar((char) 0);
-//					} else {
-//	                	tfMatKhau.setEchoChar('*');
-//					}
-//	            }
-//	        });
-
-//		lblBackground.setIcon(new ImageIcon(DangNhap_GUI.class.getResource("/image/background-login.jpg")));
-
 	public void connect() throws SQLException {
 		ConnectDB.getInstance();
 		ConnectDB.connect();
@@ -220,12 +192,10 @@ public class DangNhap_GUI extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		if (e.getSource().equals(btnLogin)) {
 			try {
 				login();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		} else if (e.getSource().equals(btnExit)) {

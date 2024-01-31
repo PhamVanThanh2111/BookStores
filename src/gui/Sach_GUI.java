@@ -720,8 +720,6 @@ public class Sach_GUI extends JPanel {
 			btnUpdate.setEnabled(false);
 			btnChonHinhAnh.setEnabled(false);
 		}
-		
-//		loadData(sanPham_DAO.getAllSach());
 	}
 
 	public Sach_GUI() {
@@ -1102,8 +1100,6 @@ public class Sach_GUI extends JPanel {
 		lblChiTitSch.setBounds(22, 10, 200, 40);
 		pDanhSach.add(lblChiTitSch);
 
-		// loadData
-		loadData_KhachHang(sanPham_DAO.getAllSach());
 		// unfocus
 		txtMaSach.setFocusable(false);
 		txtTenSach.setFocusable(false);
@@ -1436,7 +1432,6 @@ public class Sach_GUI extends JPanel {
 			// cắt chuỗi từ /image về sau
 			relativePath = absolutePath.substring(absolutePath.indexOf("/image"));
 		} catch (Exception e) {
-			// TODO: handle exception
 			JOptionPane.showMessageDialog(null, "Bạn chưa chọn file!");
 		}
 
@@ -1544,7 +1539,7 @@ public class Sach_GUI extends JPanel {
 				fis.close();
 				JOptionPane.showMessageDialog(null, "Xuất File Thành Công !");
 			} catch (Exception e) {
-
+				e.printStackTrace();
 			}
 		}
 		return false;

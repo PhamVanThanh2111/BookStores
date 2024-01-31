@@ -782,12 +782,7 @@ public class NhaXuatBan_GUI extends JPanel {
 		lblNhaXuatBan1.setBounds(20, 40, 133, 40);
 		pDanhSach.add(lblNhaXuatBan1);
 
-		// load Data
-		loadData(nhaXuatBan_DAO.getAllNhaXuatBan());
-//		refresh();
-		// unfocus
 		unfocusable();
-
 	}
 
 	// đưa dữ liệu lên bảng
@@ -860,7 +855,6 @@ public class NhaXuatBan_GUI extends JPanel {
 				try {
 					nhaXuatBan_DAO.xoaNhaXuatBanTheoMa(model.getValueAt(row, 0).toString());
 				} catch (Exception e) {
-					// TODO: handle exception
 					JOptionPane.showMessageDialog(null,
 							"Không được xóa nhà xuất bản này. Bởi vì sẽ mất toàn bộ dữ liệu sách của nhà xuất bản này!");
 					return false;
@@ -905,7 +899,6 @@ public class NhaXuatBan_GUI extends JPanel {
 					refresh();
 					return true;
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null,
 							"Sửa nhà xuất bản '\" + model.getValueAt(row, 0) + \"' không thành công!");
 					return false;

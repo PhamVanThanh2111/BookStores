@@ -1,6 +1,8 @@
 package gui;
 
 import java.sql.SQLException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -41,7 +43,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;	
+	private JPanel contentPane;
 	private JPanel pContent;
 	private CardLayout cardLayoutContent;
 	private JLabel lblNhanVien;
@@ -89,12 +91,13 @@ public class HeThongQuanLyNhaSach extends JFrame {
 	private NhaXuatBan_DAO nhaXuatBan_DAO;
 	private NhaCungCap_DAO nhaCungCap_DAO;
 	private HoaDon_DAO hoaDon_DAO;
-	
+
 	/**
 	 * Create the frame.
 	 * 
 	 * @throws SQLException
 	 */
+
 	public HeThongQuanLyNhaSach(NhanVien nhanVien) throws SQLException {
 
 		// initialization variable DAO
@@ -106,7 +109,9 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		nhaXuatBan_DAO = new NhaXuatBan_DAO();
 		nhaCungCap_DAO = new NhaCungCap_DAO();
 		hoaDon_DAO = new HoaDon_DAO();
-		
+
+		ExecutorService executor = Executors.newCachedThreadPool();
+
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(HeThongQuanLyNhaSach.class.getResource("/image/HeThong/favicon.jpg")));
 		setForeground(new Color(255, 255, 255));
@@ -238,7 +243,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			public void mouseExited(MouseEvent e) {
 				lblKhachHang.setBackground(new Color(39, 63, 96));
 				lblIconKhachHang.setBackground(new Color(39, 63, 96));
-			}	
+			}
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -374,7 +379,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		getContentPane().add(pContent);
 		cardLayoutContent = new CardLayout();
 		pContent.setLayout(cardLayoutContent);
-		
+
 		danhSachHoaDon_GUI = new DanhSachHoaDon_GUI();
 		danhSachDatHang_GUI = new DanhSachDatHang_GUI();
 		thongKe_GUI = new ThongKe_GUI();
@@ -389,7 +394,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		theLoaiSach_GUI_NhanVien = new TheLoaiSach_GUI(nhanVien);
 		nhaXuatBan_GUI_NhanVien = new NhaXuatBan_GUI(nhanVien);
 		nhaCungCap_GUI_NhanVien = new NhaCungCap_GUI(nhanVien);
-		
+
 		// main menu
 		pContent.add(trangChu_GUI, "TrangChu_GUI");
 		pContent.add(nhanVien_GUI, "NhanVien_GUI");
@@ -452,7 +457,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			}
 		});
 		pMenu2.add(lblDangXuat);
-		
+
 		// set mau cho menu
 		lblTrangChu.setOpaque(true);
 		lblNhanVien.setOpaque(true);
@@ -496,7 +501,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 			}
 		});
 		pMenu1.add(lblIconTrangChu);
-		
+
 		lblIconNhanVien = new JLabel("");
 		lblIconNhanVien.setIcon(new ImageIcon(HeThongQuanLyNhaSach.class.getResource("/image/HeThong/staff.png")));
 		lblIconNhanVien.setOpaque(true);
@@ -1010,26 +1015,72 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		sprNgang.setBounds(220, 85, 1300, 2);
 		sprNgang.setForeground(new Color(60, 60, 60));
 		contentPane.add(sprNgang);
-		
-		Thread thread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				nhanVien_GUI.loadData(nhanVien_DAO.getAllNhanVien());
-				thongKe_GUI.showAllChart();
-				danhSachDatHang_GUI.loadData(phieuDatHang_DAO.getAllPhieuDatHang());
-				khachHang_GUI.loadData(khachHang_DAO.getAllKhachHang());
-				sach_GUI_NhanVien.loadData(sanPham_DAO.getAllSach());
-				theLoaiSach_GUI_NhanVien.loadData(theLoaiSach_DAO.getAllTheLoaiSach());
-				nhaXuatBan_GUI_NhanVien.loadData(nhaXuatBan_DAO.getAllNhaXuatBan());;
-				dungCuHocTap_GUI_NhanVien.loadData(sanPham_DAO.getAllDungCuHocTap());
-				nhaCungCap_GUI_NhanVien.loadData(nhaCungCap_DAO.getAllNhaCungCap());
-				danhSachHoaDon_GUI.loadData(hoaDon_DAO.getAllHoaDon());
-			}
-		});
-		thread.start();
+
+		Runnable loadDataNhanVien = () -> {
+			nhanVien_GUI.loadData(nhanVien_DAO.getAllNhanVien());
+		};
+
+		Runnable loadDataThongKe = () -> {
+			thongKe_GUI.showAllChart();
+		};
+
+		Runnable loadDataDanhSachDatHang = () -> {
+			danhSachDatHang_GUI.loadData(phieuDatHang_DAO.getAllPhieuDatHang());
+		};
+
+		Runnable loadDataKhachHang = () -> {
+			khachHang_GUI.loadData(khachHang_DAO.getAllKhachHang());
+		};
+
+		Runnable loadDataSach = () -> {
+			sach_GUI_NhanVien.loadData(sanPham_DAO.getAllSach());
+		};
+
+		Runnable loadDataSach_NhanVien = () -> {
+			sach_GUI_NhanVien.loadData(sanPham_DAO.getAllSach());
+		};
+
+		Runnable loadDataTheLoaiSach = () -> {
+			theLoaiSach_GUI_NhanVien.loadData(theLoaiSach_DAO.getAllTheLoaiSach());
+		};
+
+		Runnable loadDataNhaXuatBan_NhanVien = () -> {
+			nhaXuatBan_GUI_NhanVien.loadData(nhaXuatBan_DAO.getAllNhaXuatBan());
+		};
+
+		Runnable loadDataDungCuHocTap_NhanVien = () -> {
+			dungCuHocTap_GUI_NhanVien.loadData(sanPham_DAO.getAllDungCuHocTap());
+		};
+
+		Runnable loadDataNhaCungCap_NhanVien = () -> {
+			nhaCungCap_GUI_NhanVien.loadData(nhaCungCap_DAO.getAllNhaCungCap());
+		};
+
+		Runnable loadDataHoaDon = () -> {
+			danhSachHoaDon_GUI.loadData(hoaDon_DAO.getAllHoaDon());
+		};
+
+		executor.execute(loadDataNhanVien);
+		executor.execute(loadDataThongKe);
+		executor.execute(loadDataDanhSachDatHang);
+		executor.execute(loadDataKhachHang);
+		executor.execute(loadDataSach);
+		executor.execute(loadDataSach_NhanVien);
+		executor.execute(loadDataTheLoaiSach);
+		executor.execute(loadDataNhaXuatBan_NhanVien);
+		executor.execute(loadDataDungCuHocTap_NhanVien);
+		executor.execute(loadDataNhaCungCap_NhanVien);
+		executor.execute(loadDataHoaDon);
+		executor.shutdown();
 	}
 
 	public HeThongQuanLyNhaSach() {
+		// khai bao DAO
+		sanPham_DAO = new SanPham_DAO();
+		nhaXuatBan_DAO = new NhaXuatBan_DAO();
+		theLoaiSach_DAO = new TheLoaiSach_DAO();
+		nhaCungCap_DAO = new NhaCungCap_DAO();
+		
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(HeThongQuanLyNhaSach.class.getResource("/image/HeThong/favicon.jpg")));
 		setForeground(new Color(255, 255, 255));
@@ -1134,13 +1185,20 @@ public class HeThongQuanLyNhaSach extends JFrame {
 
 		cardLayoutContent = new CardLayout();
 		pContent.setLayout(cardLayoutContent);
+		
+		Sach_GUI sach_GUI = new Sach_GUI();
+		DungCuHocTap_GUI dungCuHocTap_GUI = new DungCuHocTap_GUI();
+		NhaXuatBan_GUI nhaXuatBan_GUI = new NhaXuatBan_GUI();
+		TheLoaiSach_GUI theLoaiSach_GUI = new TheLoaiSach_GUI();
+		NhaCungCap_GUI nhaCungCap_GUI = new NhaCungCap_GUI();
+		
 		// menu
-		pContent.add(new Sach_GUI(), "Sach_GUI");
-		pContent.add(new DungCuHocTap_GUI(), "DungCuHocTap_GUI");
+		pContent.add(sach_GUI, "Sach_GUI");
+		pContent.add(dungCuHocTap_GUI, "DungCuHocTap_GUI");
 		// sub menu
-		pContent.add(new NhaXuatBan_GUI(), "NhaXuatBan_GUI");
-		pContent.add(new TheLoaiSach_GUI(), "TheLoaiSach_GUI");
-		pContent.add(new NhaCungCap_GUI(), "NhaCungCap_GUI");
+		pContent.add(nhaXuatBan_GUI, "NhaXuatBan_GUI");
+		pContent.add(theLoaiSach_GUI, "TheLoaiSach_GUI");
+		pContent.add(nhaCungCap_GUI, "NhaCungCap_GUI");
 		cardLayoutContent.show(pContent, "Sach_GUI");
 
 		// set mau cho menu
@@ -1362,19 +1420,46 @@ public class HeThongQuanLyNhaSach extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				setVisible(false);
 				DangNhap_GUI dangNhap_GUI;
 				try {
 					dangNhap_GUI = new DangNhap_GUI();
 					dangNhap_GUI.setVisible(true);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
 		contentPane.add(btnDangNhap);
+		
+		ExecutorService executor = Executors.newCachedThreadPool();
+		
+		Runnable loadDataSach = () -> {
+			sach_GUI.loadData(sanPham_DAO.getAllSach());
+		};
+		
+		Runnable loadDataDungCuHocTap = () -> {
+			dungCuHocTap_GUI.loadData(sanPham_DAO.getAllDungCuHocTap());
+		};
+		
+		Runnable loadDataNhaXuatBan = () -> {
+			nhaXuatBan_GUI.loadData(nhaXuatBan_DAO.getAllNhaXuatBan());
+		};
+		
+		Runnable loadDataTheLoaiSach = () -> {
+			theLoaiSach_GUI.loadData(theLoaiSach_DAO.getAllTheLoaiSach());
+		};
+		
+		Runnable loadDataNhaCungCap = () -> {
+			nhaCungCap_GUI.loadData(nhaCungCap_DAO.getAllNhaCungCap());
+		};
+		
+		executor.execute(loadDataSach);
+		executor.execute(loadDataDungCuHocTap);
+		executor.execute(loadDataNhaXuatBan);
+		executor.execute(loadDataTheLoaiSach);
+		executor.execute(loadDataNhaCungCap);
+		executor.shutdown();
 	}
 
 	public static void main(String[] args) {

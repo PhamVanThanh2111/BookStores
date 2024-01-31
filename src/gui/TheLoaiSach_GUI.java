@@ -169,7 +169,7 @@ public class TheLoaiSach_GUI extends JPanel {
 					try {
 						delete();
 					} catch (Exception e2) {
-						// TODO: handle exception
+						e2.printStackTrace();
 					}
 				else {
 					disableEdit();
@@ -405,13 +405,8 @@ public class TheLoaiSach_GUI extends JPanel {
 		lblChiTitTheLoaiSach.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblChiTitTheLoaiSach.setBounds(22, 10, 291, 40);
 		pDanhSach.add(lblChiTitTheLoaiSach);
-		
-//		refresh();
-//		unfocus
+
 		unfocusable();
-		
-//		load Data
-//		loadDataIntoTable(theLoaiSach_DAO.getAllListTheLoaiSach());
 	}
 
 	public TheLoaiSach_GUI() {
@@ -508,7 +503,7 @@ public class TheLoaiSach_GUI extends JPanel {
 						public void internalFrameOpened(InternalFrameEvent e) {
 //			                System.out.println("Internal frame is opened.");
 							btnLamMoi.setEnabled(false);
-							
+
 						}
 
 						@Override
@@ -519,7 +514,7 @@ public class TheLoaiSach_GUI extends JPanel {
 //			            	System.out.println(ds);
 							ds.removeAll(ds);
 							btnLamMoi.setEnabled(true);
-							
+
 						}
 					});
 					desktopPane.add(timKiemTheLoaiSach_GUI).setVisible(true);
@@ -635,12 +630,8 @@ public class TheLoaiSach_GUI extends JPanel {
 		lblChiTitTheLoaiSach.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblChiTitTheLoaiSach.setBounds(22, 10, 291, 40);
 		pDanhSach.add(lblChiTitTheLoaiSach);
-		// loadData
-		loadData(theLoaiSach_DAO.getAllTheLoaiSach());
-		// unfocus
+
 		unfocusable();
-//		refresh();
-		;
 	}
 
 	// đổ dữ liệu lên bảng
@@ -657,6 +648,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		txtMaTheLoaiSach.setText("");
 		txtTenTheLoaiSach.setText("");
 	}
+
 	// làm mới bảng
 	public void refresh() {
 		loadData(theLoaiSach_DAO.getAllTheLoaiSach());
@@ -664,7 +656,7 @@ public class TheLoaiSach_GUI extends JPanel {
 
 	// Thêm thể loại sách
 	public boolean add() {
-		
+
 		if (txtTenTheLoaiSach.getText().equals("")) {
 			JOptionPane.showMessageDialog(null, "Tên thể loại sách không được để trống!");
 			txtTenTheLoaiSach.requestFocus();
@@ -685,14 +677,7 @@ public class TheLoaiSach_GUI extends JPanel {
 			}
 		}
 	}
-	// Kiểm tra rỗng cho thể loại sách
-//		private boolean kiemTraRong() {
-//			if (txtTenTheLoaiSach.getText().equals("") ||
-//				txtMaTheLoaiSach.getText().equals("") {
-//				return true;
-//			}
-//			return false;
-//		}
+
 	// Xóa thể loại sách
 	public boolean delete() {
 		int row = table.getSelectedRow();
@@ -707,7 +692,6 @@ public class TheLoaiSach_GUI extends JPanel {
 				try {
 					theLoaiSach_DAO.xoaTheLoaiSachTheoMa(model.getValueAt(row, 0).toString());
 				} catch (Exception e) {
-					// TODO: handle exception
 					JOptionPane.showMessageDialog(null,
 							"Không được xóa thể loại sách này. Bởi vì sẽ mất toàn bộ dữ liệu sách và nhà xuất bản của thể loại sách này!");
 					return false;
@@ -744,7 +728,6 @@ public class TheLoaiSach_GUI extends JPanel {
 					refresh();
 					return true;
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null,
 							"Sửa thể loại sách '\" + model.getValueAt(row, 0) + \"' không thành công!");
 					return false;
@@ -755,7 +738,7 @@ public class TheLoaiSach_GUI extends JPanel {
 		}
 		return false;
 	}
-	
+
 	private void enableEdit() {
 		txtTenTheLoaiSach.setEditable(true);
 	}
@@ -782,13 +765,15 @@ public class TheLoaiSach_GUI extends JPanel {
 		btnUpdate.setEnabled(false);
 		btnTim.setEnabled(false);
 	}
+
 	private void focusable() {
 		txtTenTheLoaiSach.setFocusable(true);
 //		txtMaTheLoaiSach.setFocusable(true);
 	}
+
 	private void unfocusable() {
 		txtTenTheLoaiSach.setFocusable(false);
 		txtMaTheLoaiSach.setFocusable(false);
 	}
-	
+
 }

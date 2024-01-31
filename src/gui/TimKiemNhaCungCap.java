@@ -102,12 +102,10 @@ public class TimKiemNhaCungCap extends JInternalFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				searchNhaCungCap();
 				try {
 					setClosed(true);
 				} catch (PropertyVetoException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -120,7 +118,6 @@ public class TimKiemNhaCungCap extends JInternalFrame {
 					try {
 						setClosed(true);
 					} catch (PropertyVetoException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}

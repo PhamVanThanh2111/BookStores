@@ -298,12 +298,10 @@ public class DatHang_GUI extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				if (tinhThanhTien() > 0) {
 					try {
 						lapPhieuDatHang(nhanVien.getMaNhanVien());
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
@@ -393,7 +391,6 @@ public class DatHang_GUI extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				try {
 					if (khachHang == null) {
 						JOptionPane.showMessageDialog(null, "Bạn chưa chọn khách hàng!");
@@ -418,13 +415,12 @@ public class DatHang_GUI extends JPanel {
 							try {
 								txtConLai.setText(Integer.parseInt(txtConLai.getText()) - Integer.parseInt(txtSoLuong.getText()) + "");
 							} catch (Exception e2) {
-								// TODO: handle exception
+								e2.printStackTrace();
 							}
 						}
 						
 					}
 				} catch (Exception e2) {
-					// TODO: handle exception
 					JOptionPane.showMessageDialog(null, "Số lượng phải là số và không được để trống!");
 				}
 			}
@@ -512,7 +508,6 @@ public class DatHang_GUI extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				int row = table.getSelectedRow();
 				if (row == -1) {
 					JOptionPane.showInternalMessageDialog(null, "Bạn phải chọn sản phẩm cần sửa!");
@@ -540,7 +535,6 @@ public class DatHang_GUI extends JPanel {
 							model.setValueAt(Integer.parseInt(txtSoLuong.getText()) * sanPham.getGiaBan(), row, 4);
 							lblTongTienValue.setText(tinhThanhTien() + " VND");
 						} catch (Exception e2) {
-							// TODO: handle exception
 							JOptionPane.showMessageDialog(null, "Số lượng phải là số!");
 						}
 					}
@@ -666,7 +660,7 @@ public class DatHang_GUI extends JPanel {
 				thanhTien += Float.parseFloat(model.getValueAt(i, 4).toString());
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return thanhTien;
 	}
@@ -711,7 +705,7 @@ public class DatHang_GUI extends JPanel {
 			sanPham_DAO.banSanPham(maSanPham, soLuong);
 		}
 		JOptionPane.showMessageDialog(null, "Đặt hàng thành công!");
-		danhSachDatHang_GUI.lamMoi();
+		danhSachDatHang_GUI.refresh();
 	}
 	
 	private void lamMoi() {

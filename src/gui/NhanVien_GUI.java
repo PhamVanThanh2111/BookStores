@@ -516,7 +516,6 @@ public class NhanVien_GUI extends JPanel {
 												            }
 												        });
 														desktopPane.add(timNhanVien_GUI).setVisible(true);
-//														loadDataIntoTable(timNhanVien_GUI.searchNhanVien());
 													}
 												}
 											});
@@ -667,10 +666,6 @@ public class NhanVien_GUI extends JPanel {
 		txtTenNhanVien.setBackground(new Color(255, 255, 255));
 		pNhapThongTin.add(txtTenNhanVien);
 
-//		loadData
-//		loadDataIntoTable(nhanVien_DAO.getAllListNhanVien());
-		
-//		unfocusable
 		unfocusable();
 	}
 
@@ -816,7 +811,6 @@ public class NhanVien_GUI extends JPanel {
 					refresh();
 					return true;
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null, "Thêm nhân viên thất bại!");
 					e1.printStackTrace();
 					return false;
@@ -972,7 +966,6 @@ public class NhanVien_GUI extends JPanel {
 						refresh();
 						return true;
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
 						JOptionPane.showMessageDialog(null,
 								"Sửa nhân viên '\" + model.getValueAt(row, 0) + \"' không thành công!");
 						return false;
@@ -1004,7 +997,6 @@ public class NhanVien_GUI extends JPanel {
 			// cắt chuỗi từ /image về sau
 			relativePath = absolutePath.substring(absolutePath.indexOf("/image"));
 		} catch (Exception e) {
-			// TODO: handle exception
 			JOptionPane.showMessageDialog(null, "Bạn chưa chọn file!");
 		}
 		

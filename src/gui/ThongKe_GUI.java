@@ -326,8 +326,6 @@ public class ThongKe_GUI extends JPanel {
 		pnlThongKeSoLuongHoaDonVaSanPhamNhanVien.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pnlThongKeSoLuongHoaDonVaSanPhamNhanVien.setBounds(0, 354, 1295, 339);
 		pnlNangSuatNhanVien.add(pnlThongKeSoLuongHoaDonVaSanPhamNhanVien);
-		
-//		showAllChart();
 	}
 	
 	private void showBarChartDoanhThu(LocalDate tuNgay, LocalDate denNgay) {
@@ -404,7 +402,7 @@ public class ThongKe_GUI extends JPanel {
 				datasetSanPhamBanChay.addValue(resultSet.getInt(3), "Sản phẩm", resultSet.getString(2));
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 		chartSanPhamBanChay = ChartFactory.createBarChart("CÁC SẢN PHẨM BÁN CHẠY", "SẢN PHẨM", "SỐ LƯỢNG", datasetSanPhamBanChay, PlotOrientation.VERTICAL, true, true, false);
@@ -425,7 +423,6 @@ public class ThongKe_GUI extends JPanel {
 	
 	private void showBarChartKhachHangMuaNhieuNhat() {
 		datasetKhachHangMuaNhieuNhat = new DefaultCategoryDataset();
-		
 		// add value
 		ResultSet resultSet = hoaDon_DAO.getDanhSachKhachHangMuaNhieuNhat();
 		try {
@@ -433,7 +430,6 @@ public class ThongKe_GUI extends JPanel {
 				datasetKhachHangMuaNhieuNhat.addValue(resultSet.getFloat(2), "VNĐ", resultSet.getString(1));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -466,7 +462,7 @@ public class ThongKe_GUI extends JPanel {
 				datasetSoLuongHoaDonVaSanPhamNhanVien.addValue(resultSet.getInt(4), "Sản phẩm", resultSet.getString(2));
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 
 		// chart 1

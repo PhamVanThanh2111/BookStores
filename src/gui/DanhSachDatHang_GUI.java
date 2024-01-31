@@ -73,7 +73,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 	 */
 	public DanhSachDatHang_GUI() {
 		
-		// khai bao DAO
+		// declare variables DAO
 		phieuDatHang_DAO = new PhieuDatHang_DAO();
 		chiTietPhieuDatHang_DAO = new ChiTietPhieuDatHang_DAO();
 		sanPham_DAO = new SanPham_DAO();
@@ -189,7 +189,6 @@ public class DanhSachDatHang_GUI extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				delete();
 			}
 		});
@@ -204,11 +203,9 @@ public class DanhSachDatHang_GUI extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				try {
 					lapHoaDon();
 				} catch (JRException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				
@@ -346,8 +343,6 @@ public class DanhSachDatHang_GUI extends JPanel {
 		lblTien.setFont(new Font("Tahoma", Font.BOLD, 18));
 		lblTien.setBounds(360, 550, 150, 40);
 		pThongTinChiTiet.add(lblTien);
-
-//    	loadDataIntoTableDanhSachPhieuDatHang(phieuDatHang_DAO.getAllListPhieuDatHang());
 	}
 	
 	public void loadData(ArrayList<PhieuDatHang> danhSachPhieuDatHangs) {
@@ -375,7 +370,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 		}
 	}
 	
-	public void lamMoi() {
+	public void refresh() {
 		loadData(phieuDatHang_DAO.getAllPhieuDatHang());
 	}
 	
@@ -398,7 +393,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 				}
 				JOptionPane.showMessageDialog(null,
 						"Xóa phiếu đặt hàng '" + modelDSPD.getValueAt(row, 0) + "' thành công!");
-				lamMoi();
+				refresh();
 				return true;
 			} else {
 				return false;
@@ -439,7 +434,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 				phieuDatHang_DAO.xoaPhieuDatHangTheoMa(phieuDatHang.getMaPhieuDatHang());
 				xuatHoaDon(maHoaDon);
 				JOptionPane.showMessageDialog(null, "Lập hóa đơn thành công!");
-				lamMoi();
+				refresh();
 				return true;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -465,8 +460,7 @@ public class DanhSachDatHang_GUI extends JPanel {
 			JasperViewer.viewReport(jasperPrint,false);
 			
 		} catch (JRException e) {
-			// TODO Auto-generated catch block
-			//System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		
 	}

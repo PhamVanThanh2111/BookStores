@@ -409,8 +409,6 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		btnKhoiPhuc.addActionListener(this);
 		btnXuatFile.addActionListener(this);
 		closeText();
-		
-//		loadData(sanPham_DAO.getAllDungCuHocTap());
 	}
 
 	public DungCuHocTap_GUI() {
@@ -661,8 +659,6 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		lblChiTeitDungCuHocTap.setBounds(20, 15, 246, 40);
 		pDanhSach.add(lblChiTeitDungCuHocTap);
 
-		loadDataDCHTChoKhachHang(sanPham_DAO.getAllDungCuHocTap());
-
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.addMouseListener(new MouseListener() {
 
@@ -721,7 +717,7 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 		}
 	}
 
-	public void loadDataDCHTChoKhachHang(ArrayList<SanPham> ds) {
+	public void loadDataDCHT_KhachHang(ArrayList<SanPham> ds) {
 		// Xóa dữ liệu cũ trước khi nạp dữ liệu mới
 		model.setRowCount(0);
 
@@ -835,7 +831,6 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 				}
 			}
 		} catch (NumberFormatException e) {
-			// TODO: handle exception
 			JOptionPane.showMessageDialog(null, "Dữ liệu không phù hợp!");
 		}
 	}
@@ -866,7 +861,6 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 					JOptionPane.showMessageDialog(null, "Xóa Thành Công !");
 					refresh();
 				} catch (Exception e) {
-					System.out.println("aaaaaaaaaaaaaa");
 					JOptionPane.showMessageDialog(null, "Sản Phẩm Tồn Tại Trong Hóa Đơn !");
 				}
 			}
@@ -975,13 +969,12 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 					cell = row.createCell(7, CellType.STRING);
 					cell.setCellValue(ds.get(i).getMaNhaCungCap());
 				}
-				// File file = new File("E://a.xlsx");
 				FileOutputStream fis = new FileOutputStream(excelFilePath);
 				wordkbook.write(fis);
 				fis.close();
 				JOptionPane.showMessageDialog(null, "Xuất File Thành Công !");
 			} catch (Exception e) {
-
+				e.printStackTrace();
 			}
 		}
 	}
@@ -1005,12 +998,10 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 			// cắt chuỗi từ /image về sau
 			relativePath = absolutePath.substring(absolutePath.indexOf("/image"));
 		} catch (Exception e) {
-			// TODO: handle exception
 			JOptionPane.showMessageDialog(null, "Bạn chưa chọn file!");
 		}
 
 		if (returnValue == JFileChooser.APPROVE_OPTION) {
-			// Nhấn Open file
 			lblHinhAnh.setIcon(new ImageIcon(NhanVien_GUI.class.getResource(relativePath)));
 			return true;
 		} else // JFileChooser.CANCEL_OPTION
@@ -1071,7 +1062,6 @@ public class DungCuHocTap_GUI extends JPanel implements ActionListener {
 								suaDCHT();
 								loadData(sanPham_DAO.getAllDungCuHocTap());
 							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
 								e1.printStackTrace();
 							}
 						}

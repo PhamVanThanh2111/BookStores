@@ -230,12 +230,10 @@ public class TimKiemSach_GUI extends JInternalFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				loadAll();
 				try {
 					setClosed(true);
 				} catch (PropertyVetoException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}

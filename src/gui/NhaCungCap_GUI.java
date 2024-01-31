@@ -496,7 +496,6 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 		tableHeader.setReorderingAllowed(false);
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-		loadData(nhaCungCap_DAO.getAllNhaCungCap());
 		closeFocusTXT();
 		table.addMouseListener(new MouseListener() {
 
@@ -615,7 +614,6 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 
 	// đưa dữ liệu lên bảng
 	public void loadData(ArrayList<NhaCungCap> ds) {
-
 		model.setRowCount(0);
 		for (NhaCungCap NhaCungCap : ds) {
 			Object[] object = { NhaCungCap.getMaNCC(), NhaCungCap.getTenNCC(), NhaCungCap.getDiaChi(),
@@ -758,7 +756,6 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 					try {
 						themNhaCungCap();
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
@@ -808,7 +805,6 @@ public class NhaCungCap_GUI extends JPanel implements ActionListener {
 								try {
 									suaNhaCungCap();
 								} catch (SQLException e1) {
-									// TODO Auto-generated catch block
 									e1.printStackTrace();
 								}
 								closeFocusTXT();

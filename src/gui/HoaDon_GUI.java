@@ -325,9 +325,6 @@ public class HoaDon_GUI extends JPanel {
 						e1.printStackTrace();
 					}
 				}
-				else if (txtMaKhachHang.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Bạn chưa chọn khách hàng!");
-				}
 				else {
 					JOptionPane.showMessageDialog(null, "Chưa có sản phẩm nào!");
 				}
@@ -418,10 +415,7 @@ public class HoaDon_GUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
-					if (khachHang == null) {
-						JOptionPane.showMessageDialog(null, "Bạn chưa chọn khách hàng!");
-					}
-					else if (sanPham == null) {
+					if (sanPham == null) {
 						JOptionPane.showMessageDialog(null, "Bạn chưa chọn sản phẩm!");
 					}
 					else if (Integer.parseInt(txtConLai.getText()) < Integer.parseInt(txtSoLuong.getText())) {
@@ -683,9 +677,14 @@ public class HoaDon_GUI extends JPanel {
 	private void lapHoaDon(String maNhanVien) throws SQLException, JRException {
 		HoaDon hoaDon = new HoaDon();
 		String maHoaDon = phatSinhMa_DAO.getMaHoaDon();
+		if (khachHang != null) {
+			hoaDon.setMaKhachHang(khachHang.getMaKhachHang());
+		}
+		else {
+			khachHang = new KhachHang();
+		}
 		hoaDon.setMaHoaDon(maHoaDon);
 		hoaDon.setMaNhanVien(maNhanVien);
-		hoaDon.setMaKhachHang(khachHang.getMaKhachHang());
 		hoaDon.setNgayLap(new java.sql.Date(new Date().getTime()));
 		hoaDon.setThanhTien(tinhThanhTien());
 		hoaDon_DAO.lapHoaDon(hoaDon);
@@ -706,11 +705,11 @@ public class HoaDon_GUI extends JPanel {
 		trangChu_GUI.refresh();
 	}
 	
-	private void xemHoaDon(String ma) throws JRException {
+	private void xemHoaDon(String maHoaDon) throws JRException {
 		Hashtable<String, Object> map = new Hashtable<String, Object>();
+		map.put("maPhieu", maHoaDon);
 		JasperReport jasperReport = JasperCompileManager.compileReport("src/report/hoaDonNV_report.jrxml");
-		map.put("maPhieu",ma);
-		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,map, ConnectDB.con);
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, ConnectDB.con);
 		JasperViewer.viewReport(jasperPrint, false);
 
 	}

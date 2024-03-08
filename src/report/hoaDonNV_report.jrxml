@@ -19,7 +19,7 @@
     TT.ThanhTien
 FROM
     HoaDon HD
-    INNER JOIN KhachHang KH ON HD.maKhachHang = KH.maKhachHang
+    LEFT JOIN KhachHang KH ON HD.maKhachHang = KH.maKhachHang
     INNER JOIN ChiTietHoaDon CTHD ON HD.maHoaDon = CTHD.maHoaDon
     INNER JOIN NhanVien NV ON HD.maNhanVien = NV.maNhanVien
     INNER JOIN SanPham SP ON CTHD.maSanPham = SP.maSanPham

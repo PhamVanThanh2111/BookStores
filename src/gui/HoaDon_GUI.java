@@ -25,6 +25,7 @@ import entity.NhanVien;
 import entity.SanPham;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -46,8 +47,7 @@ import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Hashtable;
-
+import java.util.HashMap;
 
 public class HoaDon_GUI extends JPanel {
 
@@ -706,12 +706,12 @@ public class HoaDon_GUI extends JPanel {
 	}
 	
 	private void xemHoaDon(String maHoaDon) throws JRException {
-		Hashtable<String, Object> map = new Hashtable<String, Object>();
-		map.put("maPhieu", maHoaDon);
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("maPhieu", maHoaDon);
 		JasperReport jasperReport = JasperCompileManager.compileReport("src/report/hoaDonNV_report.jrxml");
-		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, ConnectDB.con);
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, ConnectDB.getConnection());
 		JasperViewer.viewReport(jasperPrint, false);
-
+		JasperExportManager.exportReportToPdfFile(jasperPrint, "D:\\HoaDon\\" + maHoaDon + ".pdf");
 	}
 
 	private void lamMoi() {

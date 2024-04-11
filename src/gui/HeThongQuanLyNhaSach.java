@@ -1465,10 +1465,10 @@ public class HeThongQuanLyNhaSach extends JFrame {
 	public static void main(String[] args) {
 		try {
 			UIManager.setLookAndFeel(new FlatMacLightLaf());
+			HeThongQuanLyNhaSach heThongQuanLyNhaSach = new HeThongQuanLyNhaSach();
+			heThongQuanLyNhaSach.setVisible(true);
 		} catch (Exception ex) {
 			System.err.println("Failed to initialize LaF");
 		}
-		HeThongQuanLyNhaSach heThongQuanLyNhaSach = new HeThongQuanLyNhaSach();
-		heThongQuanLyNhaSach.setVisible(true);
 	}
 }

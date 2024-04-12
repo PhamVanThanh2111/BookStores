@@ -163,7 +163,7 @@ public class PhatSinhMa_DAO {
 		return maDCHT;
 	}
 	
-	public String getMaSachXoa() throws SQLException {
+	public String getMaDungCuHocTapXoa() throws SQLException {
 		ConnectDB.getInstance();
 		Connection con = ConnectDB.getConnection();
 		Statement statement = con.createStatement();
@@ -175,7 +175,7 @@ public class PhatSinhMa_DAO {
 		}
 		return maDCHT;
 	}
-	public String getMaSachXoa01() throws SQLException {
+	public String getMaSachXoa() throws SQLException {
 		ConnectDB.getInstance();
 		Connection con = ConnectDB.getConnection();
 		Statement statement = con.createStatement();

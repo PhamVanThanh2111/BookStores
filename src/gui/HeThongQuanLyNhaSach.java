@@ -39,9 +39,6 @@ import javax.swing.JButton;
 
 public class HeThongQuanLyNhaSach extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel pContent;
@@ -1033,7 +1030,7 @@ public class HeThongQuanLyNhaSach extends JFrame {
 		};
 
 		Runnable loadDataSach = () -> {
-			sach_GUI_NhanVien.loadData(sanPham_DAO.getAllSach());
+			sach_GUI_NhanVien.loadData_KhachHang(sanPham_DAO.getAllSach());
 		};
 
 		Runnable loadDataSach_NhanVien = () -> {

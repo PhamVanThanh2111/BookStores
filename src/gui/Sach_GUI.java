@@ -369,7 +369,11 @@ public class Sach_GUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if (btnDelete.getText().equals("Xóa")) {
-					delete();
+					try {
+						delete();
+					} catch (Exception e2) {
+						e2.printStackTrace();
+					}
 				} else {
 					disableEdit();
 					btnAdd.setText("Thêm");
@@ -510,7 +514,6 @@ public class Sach_GUI extends JPanel {
 						}
 					});
 					desktopPane.add(timKiemSach_GUI).setVisible(true);
-					// loadDataIntoTable(timKiemSach_GUI.searchSach());
 				}
 			}
 		});
@@ -533,6 +536,7 @@ public class Sach_GUI extends JPanel {
 		btnKhoiPhuc.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnKhoiPhuc.setBackground(new Color(73, 129, 158));
 		btnKhoiPhuc.setBounds(1095, 297, 135, 40);
+		btnKhoiPhuc.setIcon(new ImageIcon(Sach_GUI.class.getResource("/image/HeThong/restore.png")));
 		btnKhoiPhuc.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -575,7 +579,6 @@ public class Sach_GUI extends JPanel {
 						}
 					});
 					desktopPane.add(khoiPhucSach_GUI).setVisible(true);
-					// loadDataIntoTable(timKiemSach_GUI.searchSach());
 				}
 			}
 		});
@@ -1109,10 +1112,9 @@ public class Sach_GUI extends JPanel {
 		txtSoLuong.setFocusable(false);
 		txtSoTrang.setFocusable(false);
 		txtNamXuatBan.setFocusable(false);
-
 	}
 
-	// load Data lên bảng
+	// load Data to table
 	public void loadData(ArrayList<SanPham> ds) {
 		model.setRowCount(0);
 		for (SanPham sanPham : ds) {
@@ -1334,10 +1336,9 @@ public class Sach_GUI extends JPanel {
 
 						// sanPham_DAO.suaSanPhamTheoMa(sanPham);
 						sanPham_DAO.suaMaSach(sanPham);
-						JOptionPane.showMessageDialog(null, "Xóa Thành Công !");
 						refresh();
 					} catch (Exception e) {
-						JOptionPane.showMessageDialog(null, "Sản Phẩm Tồn Tại Trong Hóa Đơn !");
+						JOptionPane.showMessageDialog(null, "Sản phẩm tồn tại trong hóa đơn!");
 					}
 				}
 			}

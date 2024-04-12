@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import connect.ConnectDB;
 import entity.SanPham;
 
@@ -54,6 +56,7 @@ public class SanPham_DAO {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return sanPham;
 	}
@@ -93,9 +96,10 @@ public class SanPham_DAO {
 		try {
 			PreparedStatement preparedstaments = connection.prepareStatement(
 					"update SanPham set maSanPham= ? where maSanPham = '" + sanPham.getMaSanPham() + "'");
-			preparedstaments.setString(1, phatSinhMa_DAO.getMaSachXoa01());
+			preparedstaments.setString(1, phatSinhMa_DAO.getMaSachXoa());
 			return preparedstaments.executeUpdate() > 0;
 		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Không thể xóa sách này!");
 		}
 //		connection.close();
 		return false;
@@ -111,6 +115,7 @@ public class SanPham_DAO {
 			preparedstaments.setString(1, phatSinhMa_DAO.getMaSach());
 			return preparedstaments.executeUpdate() > 0;
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 //		connection.close();
 		return false;
@@ -158,6 +163,7 @@ public class SanPham_DAO {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return sanPham;
 	}
@@ -185,7 +191,7 @@ public class SanPham_DAO {
 				sanPham.setMaNhaCungCap(resultSet.getString(13));
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return sanPham;
 	}
@@ -241,6 +247,7 @@ public class SanPham_DAO {
 			return preparedstaments.executeUpdate() > 0;
 		} catch (SQLException e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 //		connection.close();
 		return false;
@@ -284,6 +291,7 @@ public class SanPham_DAO {
 			return preparedstaments.executeUpdate() > 0;
 		} catch (SQLException e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 		connection.close();
 		return false;
@@ -299,7 +307,7 @@ public class SanPham_DAO {
 			preparedstaments.setString(1, phatSinhMa_DAO.getMaDCHTXoa());
 			return preparedstaments.executeUpdate() > 0;
 		} catch (SQLException e) {
-			
+			e.printStackTrace();
 		}
 //		connection.close();
 		return false;
@@ -315,7 +323,7 @@ public class SanPham_DAO {
 			preparedstaments.setString(1, phatSinhMa_DAO.getMaDCHT());
 			return preparedstaments.executeUpdate() > 0;
 		} catch (SQLException e) {
-			
+			e.printStackTrace();
 		}
 //		connection.close();
 		return false;
